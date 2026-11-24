@@ -1,0 +1,376 @@
+[
+ {
+  "id": "walmart",
+  "name": "Walmart",
+  "countryIds": [
+   "us",
+   "ca"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#0071CE"
+ },
+ {
+  "id": "kroger",
+  "name": "Kroger",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#134B97"
+ },
+ {
+  "id": "aldi",
+  "name": "Aldi",
+  "countryIds": [
+   "us",
+   "gb",
+   "pt",
+   "es",
+   "fr",
+   "de",
+   "nl",
+   "au",
+   "ie",
+   "be",
+   "at"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#00205B"
+ },
+ {
+  "id": "target",
+  "name": "Target",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#CC0000"
+ },
+ {
+  "id": "costco",
+  "name": "Costco",
+  "countryIds": [
+   "us",
+   "ca"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#E31837"
+ },
+ {
+  "id": "trader-joes",
+  "name": "Trader Joe's",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#BA0C2F"
+ },
+ {
+  "id": "whole-foods",
+  "name": "Whole Foods",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "premium",
+  "brandColorHex": "#00674B"
+ },
+ {
+  "id": "publix",
+  "name": "Publix",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#3F8F29"
+ },
+ {
+  "id": "safeway",
+  "name": "Safeway",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#E21A2C"
+ },
+ {
+  "id": "heb",
+  "name": "H-E-B",
+  "countryIds": [
+   "us"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#EE3124"
+ },
+ {
+  "id": "tesco",
+  "name": "Tesco",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#00539F"
+ },
+ {
+  "id": "sainsburys",
+  "name": "Sainsbury's",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#F06C00"
+ },
+ {
+  "id": "asda",
+  "name": "Asda",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#5D9732"
+ },
+ {
+  "id": "lidl",
+  "name": "Lidl",
+  "countryIds": [
+   "gb",
+   "pt",
+   "es",
+   "fr",
+   "de",
+   "nl",
+   "it",
+   "ie",
+   "be",
+   "at"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#0050AA"
+ },
+ {
+  "id": "morrisons",
+  "name": "Morrisons",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#00563F"
+ },
+ {
+  "id": "waitrose",
+  "name": "Waitrose",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "premium",
+  "brandColorHex": "#4B6B2F"
+ },
+ {
+  "id": "marks-spencer",
+  "name": "M&S",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "premium",
+  "brandColorHex": "#2B2B2B"
+ },
+ {
+  "id": "coop-uk",
+  "name": "Co-op",
+  "countryIds": [
+   "gb"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#00A1CC"
+ },
+ {
+  "id": "continente",
+  "name": "Continente",
+  "countryIds": [
+   "pt"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#E30613"
+ },
+ {
+  "id": "pingo-doce",
+  "name": "Pingo Doce",
+  "countryIds": [
+   "pt"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#4C9A2A"
+ },
+ {
+  "id": "auchan",
+  "name": "Auchan",
+  "countryIds": [
+   "pt",
+   "fr"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#E2001A"
+ },
+ {
+  "id": "mercadona",
+  "name": "Mercadona",
+  "countryIds": [
+   "pt",
+   "es"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#00843D"
+ },
+ {
+  "id": "intermarche",
+  "name": "Intermarché",
+  "countryIds": [
+   "pt",
+   "fr"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#D52B1E"
+ },
+ {
+  "id": "carrefour",
+  "name": "Carrefour",
+  "countryIds": [
+   "es",
+   "fr",
+   "it",
+   "ie",
+   "be",
+   "at"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#004E9E"
+ },
+ {
+  "id": "dia",
+  "name": "Dia",
+  "countryIds": [
+   "es"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#E4032E"
+ },
+ {
+  "id": "leclerc",
+  "name": "E.Leclerc",
+  "countryIds": [
+   "fr"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#0066B3"
+ },
+ {
+  "id": "edeka",
+  "name": "Edeka",
+  "countryIds": [
+   "de"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#1B4C9C"
+ },
+ {
+  "id": "rewe",
+  "name": "Rewe",
+  "countryIds": [
+   "de"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#CC071E"
+ },
+ {
+  "id": "kaufland",
+  "name": "Kaufland",
+  "countryIds": [
+   "de"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#E10915"
+ },
+ {
+  "id": "penny",
+  "name": "Penny",
+  "countryIds": [
+   "de"
+  ],
+  "tier": "budget",
+  "brandColorHex": "#CD1719"
+ },
+ {
+  "id": "albert-heijn",
+  "name": "Albert Heijn",
+  "countryIds": [
+   "nl"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#00A0E2"
+ },
+ {
+  "id": "jumbo",
+  "name": "Jumbo",
+  "countryIds": [
+   "nl"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#EEB111"
+ },
+ {
+  "id": "plus",
+  "name": "Plus",
+  "countryIds": [
+   "nl"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#6CB33F"
+ },
+ {
+  "id": "esselunga",
+  "name": "Esselunga",
+  "countryIds": [
+   "it"
+  ],
+  "tier": "premium",
+  "brandColorHex": "#E4022D"
+ },
+ {
+  "id": "coop-it",
+  "name": "Coop",
+  "countryIds": [
+   "it"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#E3001B"
+ },
+ {
+  "id": "conad",
+  "name": "Conad",
+  "countryIds": [
+   "it"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#E30613"
+ },
+ {
+  "id": "local",
+  "name": "My local store",
+  "countryIds": [
+   "us",
+   "gb",
+   "ie",
+   "pt",
+   "es",
+   "fr",
+   "de",
+   "nl",
+   "it",
+   "be",
+   "at",
+   "ca",
+   "au"
+  ],
+  "tier": "standard",
+  "brandColorHex": "#E8553D"
+ }
+]

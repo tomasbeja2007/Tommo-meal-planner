@@ -1,0 +1,867 @@
+{
+ "onion": {
+  "US": 2.49,
+  "UK": 0.95,
+  "EU": 1.29
+ },
+ "red-onion": {
+  "US": 1.99,
+  "UK": 0.85,
+  "EU": 1.19
+ },
+ "garlic": {
+  "US": 0.69,
+  "UK": 0.35,
+  "EU": 0.45
+ },
+ "ginger": {
+  "US": 0.99,
+  "UK": 0.5,
+  "EU": 0.7
+ },
+ "carrot": {
+  "US": 1.49,
+  "UK": 0.7,
+  "EU": 0.99
+ },
+ "celery": {
+  "US": 1.99,
+  "UK": 0.75,
+  "EU": 1.29
+ },
+ "potato": {
+  "US": 4.49,
+  "UK": 1.6,
+  "EU": 2.49
+ },
+ "sweet-potato": {
+  "US": 2.99,
+  "UK": 1.2,
+  "EU": 1.99
+ },
+ "bell-pepper": {
+  "US": 3.49,
+  "UK": 1.6,
+  "EU": 1.99
+ },
+ "tomato": {
+  "US": 2.49,
+  "UK": 1.0,
+  "EU": 1.79
+ },
+ "cherry-tomatoes": {
+  "US": 2.99,
+  "UK": 1.1,
+  "EU": 1.69
+ },
+ "cucumber": {
+  "US": 0.89,
+  "UK": 0.75,
+  "EU": 0.79
+ },
+ "zucchini": {
+  "US": 1.99,
+  "UK": 1.1,
+  "EU": 1.49
+ },
+ "eggplant": {
+  "US": 1.79,
+  "UK": 0.9,
+  "EU": 1.29
+ },
+ "broccoli": {
+  "US": 2.49,
+  "UK": 0.75,
+  "EU": 1.29
+ },
+ "cauliflower": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.79
+ },
+ "spinach": {
+  "US": 2.99,
+  "UK": 1.3,
+  "EU": 1.69
+ },
+ "kale": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.79
+ },
+ "lettuce": {
+  "US": 2.29,
+  "UK": 0.9,
+  "EU": 1.19
+ },
+ "mushrooms": {
+  "US": 2.49,
+  "UK": 1.1,
+  "EU": 1.49
+ },
+ "green-beans": {
+  "US": 2.99,
+  "UK": 1.2,
+  "EU": 1.79
+ },
+ "avocado": {
+  "US": 1.49,
+  "UK": 0.9,
+  "EU": 1.19
+ },
+ "lime": {
+  "US": 0.39,
+  "UK": 0.3,
+  "EU": 0.35
+ },
+ "lemon": {
+  "US": 0.69,
+  "UK": 0.35,
+  "EU": 0.45
+ },
+ "cilantro": {
+  "US": 0.99,
+  "UK": 0.7,
+  "EU": 0.89
+ },
+ "parsley": {
+  "US": 0.99,
+  "UK": 0.7,
+  "EU": 0.89
+ },
+ "basil": {
+  "US": 2.49,
+  "UK": 0.85,
+  "EU": 1.29
+ },
+ "spring-onion": {
+  "US": 0.99,
+  "UK": 0.55,
+  "EU": 0.79
+ },
+ "chili-fresh": {
+  "US": 0.99,
+  "UK": 0.6,
+  "EU": 0.79
+ },
+ "cabbage": {
+  "US": 1.99,
+  "UK": 0.7,
+  "EU": 1.19
+ },
+ "butternut-squash": {
+  "US": 3.49,
+  "UK": 1.2,
+  "EU": 1.99
+ },
+ "bean-sprouts": {
+  "US": 2.29,
+  "UK": 0.8,
+  "EU": 1.29
+ },
+ "bok-choy": {
+  "US": 2.49,
+  "UK": 1.1,
+  "EU": 1.49
+ },
+ "arugula": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "leek": {
+  "US": 2.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "apple": {
+  "US": 3.49,
+  "UK": 1.6,
+  "EU": 1.99
+ },
+ "red-cabbage": {
+  "US": 2.29,
+  "UK": 0.85,
+  "EU": 1.29
+ },
+ "mint": {
+  "US": 1.99,
+  "UK": 0.7,
+  "EU": 0.99
+ },
+ "asparagus": {
+  "US": 3.99,
+  "UK": 2.0,
+  "EU": 2.99
+ },
+ "corn-on-cob": {
+  "US": 1.49,
+  "UK": 1.25,
+  "EU": 1.49
+ },
+ "chicken-breast": {
+  "US": 4.99,
+  "UK": 3.9,
+  "EU": 5.49
+ },
+ "chicken-thighs": {
+  "US": 4.49,
+  "UK": 3.6,
+  "EU": 4.99
+ },
+ "ground-beef": {
+  "US": 5.99,
+  "UK": 2.9,
+  "EU": 4.49
+ },
+ "beef-steak": {
+  "US": 8.99,
+  "UK": 5.0,
+  "EU": 7.99
+ },
+ "ground-pork": {
+  "US": 4.99,
+  "UK": 2.5,
+  "EU": 3.99
+ },
+ "pork-tenderloin": {
+  "US": 6.99,
+  "UK": 4.0,
+  "EU": 5.99
+ },
+ "bacon": {
+  "US": 4.99,
+  "UK": 2.0,
+  "EU": 2.29
+ },
+ "sausages": {
+  "US": 4.99,
+  "UK": 2.5,
+  "EU": 3.49
+ },
+ "chorizo": {
+  "US": 4.49,
+  "UK": 2.2,
+  "EU": 2.49
+ },
+ "ground-turkey": {
+  "US": 5.49,
+  "UK": 3.5,
+  "EU": 4.99
+ },
+ "salmon-fillet": {
+  "US": 8.99,
+  "UK": 4.0,
+  "EU": 5.99
+ },
+ "white-fish": {
+  "US": 7.99,
+  "UK": 4.5,
+  "EU": 5.99
+ },
+ "shrimp": {
+  "US": 8.99,
+  "UK": 3.5,
+  "EU": 5.99
+ },
+ "ham": {
+  "US": 3.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "lamb-mince": {
+  "US": 7.99,
+  "UK": 4.5,
+  "EU": 6.49
+ },
+ "eggs": {
+  "US": 3.99,
+  "UK": 2.8,
+  "EU": 3.29
+ },
+ "butter": {
+  "US": 4.49,
+  "UK": 2.2,
+  "EU": 2.79
+ },
+ "milk": {
+  "US": 1.79,
+  "UK": 0.95,
+  "EU": 1.09
+ },
+ "heavy-cream": {
+  "US": 2.99,
+  "UK": 1.4,
+  "EU": 1.29
+ },
+ "greek-yogurt": {
+  "US": 4.49,
+  "UK": 1.8,
+  "EU": 2.29
+ },
+ "cheddar": {
+  "US": 3.99,
+  "UK": 2.2,
+  "EU": 2.49
+ },
+ "parmesan": {
+  "US": 3.99,
+  "UK": 2.25,
+  "EU": 2.49
+ },
+ "mozzarella": {
+  "US": 2.49,
+  "UK": 0.85,
+  "EU": 0.99
+ },
+ "feta": {
+  "US": 3.99,
+  "UK": 1.7,
+  "EU": 1.99
+ },
+ "sour-cream": {
+  "US": 2.49,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "cream-cheese": {
+  "US": 2.99,
+  "UK": 1.25,
+  "EU": 1.49
+ },
+ "halloumi": {
+  "US": 4.99,
+  "UK": 2.5,
+  "EU": 2.99
+ },
+ "paneer": {
+  "US": 4.49,
+  "UK": 2.75,
+  "EU": 2.99
+ },
+ "blue-cheese": {
+  "US": 3.99,
+  "UK": 2.0,
+  "EU": 2.29
+ },
+ "tofu": {
+  "US": 2.49,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "coconut-yogurt": {
+  "US": 4.49,
+  "UK": 2.0,
+  "EU": 2.49
+ },
+ "tortillas": {
+  "US": 2.99,
+  "UK": 1.25,
+  "EU": 1.79
+ },
+ "corn-tortillas": {
+  "US": 2.49,
+  "UK": 2.0,
+  "EU": 2.49
+ },
+ "burger-buns": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "naan": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "baguette": {
+  "US": 2.49,
+  "UK": 0.75,
+  "EU": 0.99
+ },
+ "pita-bread": {
+  "US": 2.49,
+  "UK": 0.75,
+  "EU": 1.19
+ },
+ "breadcrumbs": {
+  "US": 2.49,
+  "UK": 0.9,
+  "EU": 1.29
+ },
+ "sourdough": {
+  "US": 4.99,
+  "UK": 2.0,
+  "EU": 2.99
+ },
+ "spaghetti": {
+  "US": 1.49,
+  "UK": 0.75,
+  "EU": 0.99
+ },
+ "penne": {
+  "US": 1.49,
+  "UK": 0.75,
+  "EU": 0.99
+ },
+ "egg-noodles": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "rice-noodles": {
+  "US": 2.49,
+  "UK": 1.5,
+  "EU": 1.79
+ },
+ "gnocchi": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "orzo": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "lasagne-sheets": {
+  "US": 2.29,
+  "UK": 0.95,
+  "EU": 1.29
+ },
+ "udon-noodles": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "long-grain-rice": {
+  "US": 2.49,
+  "UK": 1.3,
+  "EU": 1.69
+ },
+ "basmati-rice": {
+  "US": 3.99,
+  "UK": 2.2,
+  "EU": 2.49
+ },
+ "arborio-rice": {
+  "US": 3.49,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "microwave-rice": {
+  "US": 1.99,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "couscous": {
+  "US": 2.49,
+  "UK": 0.9,
+  "EU": 1.29
+ },
+ "quinoa": {
+  "US": 4.99,
+  "UK": 2.5,
+  "EU": 2.99
+ },
+ "red-lentils": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.69
+ },
+ "rolled-oats": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "bulgur": {
+  "US": 2.99,
+  "UK": 1.3,
+  "EU": 1.79
+ },
+ "chopped-tomatoes": {
+  "US": 1.29,
+  "UK": 0.45,
+  "EU": 0.79
+ },
+ "passata": {
+  "US": 2.49,
+  "UK": 0.7,
+  "EU": 0.99
+ },
+ "tomato-paste": {
+  "US": 1.29,
+  "UK": 0.65,
+  "EU": 0.89
+ },
+ "coconut-milk": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "chickpeas": {
+  "US": 1.19,
+  "UK": 0.65,
+  "EU": 0.85
+ },
+ "black-beans": {
+  "US": 1.19,
+  "UK": 0.8,
+  "EU": 1.19
+ },
+ "kidney-beans": {
+  "US": 1.19,
+  "UK": 0.55,
+  "EU": 0.89
+ },
+ "cannellini-beans": {
+  "US": 1.29,
+  "UK": 0.65,
+  "EU": 0.89
+ },
+ "canned-tuna": {
+  "US": 1.49,
+  "UK": 1.0,
+  "EU": 1.39
+ },
+ "olives": {
+  "US": 2.99,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "pesto": {
+  "US": 3.49,
+  "UK": 1.75,
+  "EU": 2.29
+ },
+ "peanut-butter": {
+  "US": 2.99,
+  "UK": 1.6,
+  "EU": 2.29
+ },
+ "tahini": {
+  "US": 5.99,
+  "UK": 2.5,
+  "EU": 3.49
+ },
+ "thai-curry-paste": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "curry-paste": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "salsa": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "roasted-peppers": {
+  "US": 3.49,
+  "UK": 1.3,
+  "EU": 1.79
+ },
+ "sweetcorn-tin": {
+  "US": 1.19,
+  "UK": 0.6,
+  "EU": 0.89
+ },
+ "kimchi": {
+  "US": 5.99,
+  "UK": 3.0,
+  "EU": 3.99
+ },
+ "vegetable-stock": {
+  "US": 2.49,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "chicken-stock": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "soy-sauce": {
+  "US": 2.49,
+  "UK": 1.3,
+  "EU": 1.79
+ },
+ "honey": {
+  "US": 4.99,
+  "UK": 1.6,
+  "EU": 2.49
+ },
+ "maple-syrup": {
+  "US": 7.99,
+  "UK": 3.5,
+  "EU": 4.99
+ },
+ "dijon-mustard": {
+  "US": 2.49,
+  "UK": 0.85,
+  "EU": 1.29
+ },
+ "mayonnaise": {
+  "US": 3.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "ketchup": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "sriracha": {
+  "US": 2.99,
+  "UK": 1.75,
+  "EU": 2.29
+ },
+ "fish-sauce": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "worcestershire": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.69
+ },
+ "hoisin-sauce": {
+  "US": 2.99,
+  "UK": 1.4,
+  "EU": 1.99
+ },
+ "miso-paste": {
+  "US": 4.99,
+  "UK": 2.75,
+  "EU": 3.49
+ },
+ "bbq-sauce": {
+  "US": 2.49,
+  "UK": 1.25,
+  "EU": 1.79
+ },
+ "gochujang": {
+  "US": 4.49,
+  "UK": 2.5,
+  "EU": 2.99
+ },
+ "sweet-chili-sauce": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.69
+ },
+ "hot-sauce": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "salt": {
+  "US": 1.29,
+  "UK": 0.65,
+  "EU": 0.49
+ },
+ "black-pepper": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "cumin": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "paprika": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "chili-flakes": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "dried-oregano": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "curry-powder": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "garam-masala": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "turmeric": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "cinnamon": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "chili-powder": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "dried-thyme": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "italian-herbs": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "five-spice": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "ground-coriander": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "garlic-powder": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "onion-powder": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "bay-leaves": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "sesame-seeds": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "vegetable-bouillon": {
+  "US": 3.49,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "olive-oil": {
+  "US": 7.99,
+  "UK": 4.5,
+  "EU": 5.99
+ },
+ "vegetable-oil": {
+  "US": 3.99,
+  "UK": 1.8,
+  "EU": 2.49
+ },
+ "sesame-oil": {
+  "US": 3.99,
+  "UK": 2.0,
+  "EU": 2.49
+ },
+ "balsamic-vinegar": {
+  "US": 3.49,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "rice-vinegar": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.99
+ },
+ "red-wine-vinegar": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "peas-frozen": {
+  "US": 1.99,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "corn-frozen": {
+  "US": 1.99,
+  "UK": 1.0,
+  "EU": 1.39
+ },
+ "mixed-veg-frozen": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.69
+ },
+ "edamame-frozen": {
+  "US": 2.99,
+  "UK": 2.0,
+  "EU": 2.49
+ },
+ "spinach-frozen": {
+  "US": 2.49,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "flour": {
+  "US": 1.99,
+  "UK": 0.75,
+  "EU": 0.89
+ },
+ "cornstarch": {
+  "US": 2.29,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "sugar": {
+  "US": 2.49,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "baking-powder": {
+  "US": 2.49,
+  "UK": 1.0,
+  "EU": 1.29
+ },
+ "peanuts": {
+  "US": 2.99,
+  "UK": 1.2,
+  "EU": 1.49
+ },
+ "cashews": {
+  "US": 4.49,
+  "UK": 2.25,
+  "EU": 2.99
+ },
+ "walnuts": {
+  "US": 4.99,
+  "UK": 2.25,
+  "EU": 2.99
+ },
+ "tempeh": {
+  "US": 3.99,
+  "UK": 2.75,
+  "EU": 2.99
+ },
+ "raisins": {
+  "US": 2.99,
+  "UK": 1.0,
+  "EU": 1.49
+ },
+ "dark-chocolate": {
+  "US": 2.99,
+  "UK": 1.5,
+  "EU": 1.79
+ }
+}

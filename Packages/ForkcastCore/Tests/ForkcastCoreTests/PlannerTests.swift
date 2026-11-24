@@ -1,0 +1,206 @@
+import XCTest
+@testable import ForkcastCore
+
+final class PlannerTests: XCTestCase {
+    let catalog = TestSupport.catalog
+    lazy var planner = MealPlanner(catalog: catalog)
+
+    func profile(of id: String) -> RecipeProfile {
+        RecipeClassifier.profile(for: catalog.recipe(id: id)!, catalog: catalog)
+    }
+
+    func testFillsEveryCookingDay() {
+        let result = planner.plan(TestSupport.request(days: [1, 2, 3, 4, 5, 6, 7]))
+        XCTAssertEqual(result.meals.count, 7)
+        XCTAssertEqual(Set(result.meals.map { $0.recipeId }).count, 7, "no repeated recipe in a week")
+    }
+
+    func testAllergensNeverAppearAcross100Seeds() {
+        var rng = SeededRandom(seed: 99)
+        for seed in 0..<100 {
+            var allergens: Set<Allergen> = []
+            for allergen in Allergen.allCases where rng.nextUnit() < 0.3 {
+                allergens.insert(allergen)
+            }
+            if allergens.isEmpty { allergens = [.gluten] }
+            let request = TestSupport.request(profile: PlannerProfile(allergens: allergens), days: [1, 2, 3, 4, 5, 6, 7], seed: UInt64(seed))
+            let result = planner.plan(request)
+            for meal in result.meals {
+                let found = profile(of: meal.recipeId).allergens
+                XCTAssertTrue(found.isDisjoint(with: allergens), "seed \(seed): \(meal.recipeId) contains \(found.intersection(allergens))")
+            }
+            // Alternatives must respect allergens too.
+            if let first = result.meals.first {
+                var current: [Int: LockedMeal] = [:]
+                for meal in result.meals { current[meal.slotIndex] = LockedMeal(recipeId: meal.recipeId, servings: meal.servings) }
+                for alt in planner.alternatives(for: first.slotIndex, current: current, request: request) {
+                    XCTAssertTrue(profile(of: alt.recipeId).allergens.isDisjoint(with: allergens))
+                }
+            }
+        }
+    }
+
+    func testDietIsRespected() {
+        for diet in Diet.allCases {
+            for seed in 0..<20 {
+                let result = planner.plan(TestSupport.request(profile: PlannerProfile(diet: diet), days: [1, 2, 3, 4, 5, 6, 7], seed: UInt64(seed)))
+                XCTAssertFalse(result.meals.isEmpty)
+                for meal in result.meals {
+                    XCTAssertTrue(profile(of: meal.recipeId).diet.isCompatible(with: diet), "\(diet): \(meal.recipeId)")
+                }
+            }
+        }
+    }
+
+    func testDislikesAndAppliancesAreRespected() {
+        let rules = PlannerProfile(
+            dislikes: ["mushrooms", DislikeCatalog.spicy, DislikeCatalog.pork, "cilantro"],
+            appliances: [.stovetop, .oven]
+        )
+        for seed in 0..<30 {
+            let result = planner.plan(TestSupport.request(profile: rules, seed: UInt64(seed)))
+            for meal in result.meals {
+                let recipe = catalog.recipe(id: meal.recipeId)!
+                let p = profile(of: meal.recipeId)
+                XCTAssertFalse(p.ingredientIds.contains("mushrooms"))
+                XCTAssertFalse(p.ingredientIds.contains("cilantro"))
+                XCTAssertFalse(p.isSpicy, meal.recipeId)
+                XCTAssertFalse(p.proteinGroups.contains(.pork), meal.recipeId)
+                XCTAssertTrue(Set(recipe.appliances).isSubset(of: [.stovetop, .oven]), meal.recipeId)
+            }
+        }
+    }
+
+    func testNotForMeIsNeverPlanned() {
+        let banned: Set<String> = Set(catalog.recipes.prefix(10).map { $0.id })
+        let result = planner.plan(TestSupport.request(feedback: FeedbackSummary(notForMe: banned)))
+        XCTAssertTrue(result.meals.allSatisfy { !banned.contains($0.recipeId) })
+    }
+
+    func testTimeLimitIsAppliedAndOnlyRelaxedWhenNeeded() {
+        let quick = PlannerProfile(maxCookMinutes: 30)
+        let result = planner.plan(TestSupport.request(profile: quick))
+        XCTAssertFalse(result.relaxedTimeLimit)
+        for meal in result.meals {
+            XCTAssertLessThanOrEqual(catalog.recipe(id: meal.recipeId)!.handsOnMinutes, 40)
+        }
+        // Vegan + very short time + microwave only forces relaxation, but other rules hold.
+        let strict = PlannerProfile(diet: .vegan, appliances: [.stovetop], maxCookMinutes: 20)
+        let relaxed = planner.plan(TestSupport.request(profile: strict, days: [1, 2, 3, 4, 5, 6, 7]))
+        XCTAssertTrue(relaxed.relaxedTimeLimit)
+        for meal in relaxed.meals {
+            XCTAssertEqual(profile(of: meal.recipeId).diet, .vegan)
+            XCTAssertEqual(catalog.recipe(id: meal.recipeId)!.appliances, [.stovetop])
+        }
+    }
+
+    func testVarietyRules() {
+        for seed in 0..<50 {
+            let result = planner.plan(TestSupport.request(days: [1, 2, 3, 4, 5, 6, 7], seed: UInt64(seed)))
+            var proteins: [ProteinGroup: Int] = [:]
+            var cuisines: [Cuisine: Int] = [:]
+            for meal in result.meals {
+                proteins[profile(of: meal.recipeId).mainProtein, default: 0] += 1
+                cuisines[catalog.recipe(id: meal.recipeId)!.cuisine, default: 0] += 1
+            }
+            XCTAssertLessThanOrEqual(proteins.values.max() ?? 0, 2, "seed \(seed): \(proteins)")
+            XCTAssertLessThanOrEqual(cuisines.values.max() ?? 0, 2, "seed \(seed): \(cuisines)")
+        }
+    }
+
+    func testDeterministicForSameSeedAndDifferentAcrossRegenerations() {
+        let a = planner.plan(TestSupport.request(seed: 7)).meals.map { $0.recipeId }
+        let b = planner.plan(TestSupport.request(seed: 7)).meals.map { $0.recipeId }
+        XCTAssertEqual(a, b)
+        var distinct: Set<[String]> = []
+        for regeneration in 0..<6 {
+            let seed = SeededRandom.seed(weekStart: TestSupport.monday, regeneration: regeneration)
+            distinct.insert(planner.plan(TestSupport.request(seed: seed)).meals.map { $0.recipeId })
+        }
+        XCTAssertGreaterThan(distinct.count, 1, "regenerating should give different weeks")
+    }
+
+    func testBudgetFitting() {
+        let generous = planner.plan(TestSupport.request(budget: 1000, seed: 3))
+        XCTAssertEqual(generous.overBudgetBy, 0)
+
+        // A tighter budget produces a cheaper (or equal) basket, without breaking rules.
+        let target = generous.estimatedTotal * 0.75
+        let tight = planner.plan(TestSupport.request(budget: target, seed: 3))
+        XCTAssertLessThanOrEqual(tight.estimatedTotal, generous.estimatedTotal + 0.001)
+        XCTAssertEqual(tight.meals.count, generous.meals.count)
+        if tight.estimatedTotal > target {
+            XCTAssertEqual(tight.overBudgetBy, tight.estimatedTotal - target, accuracy: 0.001, "honestly reports the overage")
+        } else {
+            XCTAssertEqual(tight.overBudgetBy, 0)
+        }
+
+        // Impossible budget: keeps a valid full plan and reports how far over it is.
+        let impossible = planner.plan(TestSupport.request(profile: PlannerProfile(allergens: [.dairy]), budget: 5, seed: 3))
+        XCTAssertEqual(impossible.meals.count, 5)
+        XCTAssertGreaterThan(impossible.overBudgetBy, 0)
+        for meal in impossible.meals {
+            XCTAssertFalse(profile(of: meal.recipeId).allergens.contains(.dairy))
+        }
+    }
+
+    func testMealCostsAddUpToTotal() {
+        let result = planner.plan(TestSupport.request(seed: 11))
+        let sum = result.meals.reduce(0) { $0 + $1.allocatedCost }
+        XCTAssertEqual(sum, result.estimatedTotal, accuracy: 0.01)
+        XCTAssertTrue(result.meals.allSatisfy { $0.allocatedCost > 0 })
+    }
+
+    func testLockedMealsAreKept() {
+        let locked: [Int: LockedMeal] = [0: LockedMeal(recipeId: "shakshuka", servings: 3), 2: LockedMeal(recipeId: "black-bean-tacos", servings: 2)]
+        let result = planner.plan(TestSupport.request(locked: locked))
+        XCTAssertEqual(result.meals.first { $0.slotIndex == 0 }?.recipeId, "shakshuka")
+        XCTAssertEqual(result.meals.first { $0.slotIndex == 0 }?.servings, 3)
+        XCTAssertEqual(result.meals.first { $0.slotIndex == 2 }?.recipeId, "black-bean-tacos")
+    }
+
+    func testLikedAndVibesScoreHigher() {
+        let request = TestSupport.request(profile: PlannerProfile(vibes: [.quickEasy]), feedback: FeedbackSummary(liked: ["shakshuka"], stars: ["shakshuka": 5]))
+        let liked = planner.score(catalog.recipe(id: "shakshuka")!, request: request)
+        let plain = planner.score(catalog.recipe(id: "mushroom-pea-risotto")!, request: request)
+        XCTAssertEqual(liked, 3 + 4 + 2)
+        XCTAssertEqual(plain, 0)
+        let recent = TestSupport.request(history: ["shakshuka": 1, "mushroom-pea-risotto": 4])
+        XCTAssertEqual(planner.score(catalog.recipe(id: "shakshuka")!, request: recent), -5)
+        XCTAssertEqual(planner.score(catalog.recipe(id: "mushroom-pea-risotto")!, request: recent), -1)
+    }
+
+    func testAlternativesExcludePlannedRecipesAndReportCostDelta() {
+        let request = TestSupport.request(seed: 5)
+        let result = planner.plan(request)
+        var current: [Int: LockedMeal] = [:]
+        for meal in result.meals { current[meal.slotIndex] = LockedMeal(recipeId: meal.recipeId, servings: meal.servings) }
+        let alternatives = planner.alternatives(for: 1, current: current, request: request)
+        XCTAssertEqual(alternatives.count, 3)
+        let planned = Set(result.meals.map { $0.recipeId })
+        for alt in alternatives {
+            XCTAssertFalse(planned.contains(alt.recipeId))
+            XCTAssertTrue(alt.costDelta.isFinite)
+        }
+    }
+
+    func testUserRecipesCanBePlanned() {
+        let mine = Recipe(id: "user:abc", title: "My beans on toast", emoji: "🍞", cuisine: .british, vibes: [.quickEasy], appliances: [.stovetop], prepMinutes: 2, cookMinutes: 5, baseServings: 2,
+                          ingredients: [RecipeIngredient(ingredientId: "cannellini-beans", amount: 240, unit: .g), RecipeIngredient(ingredientId: "sourdough", amount: 4, unit: .slice), RecipeIngredient(ingredientId: nil, name: "Secret sauce", amount: 2, unit: .tbsp)],
+                          steps: ["Heat the beans.", "Toast the bread.", "Serve."], source: .manual)
+        let request = TestSupport.request(profile: PlannerProfile(vibes: [.quickEasy]), feedback: FeedbackSummary(liked: [mine.id]), recipes: catalog.recipes + [mine])
+        let result = planner.plan(request)
+        XCTAssertTrue(result.meals.contains { $0.recipeId == mine.id }, "a liked user recipe with matching vibe should be picked")
+        XCTAssertTrue(result.groceryList.allItems.contains { $0.name == "Secret sauce" })
+    }
+
+    func testPlannerIsFast() {
+        let request = TestSupport.request(days: [1, 2, 3, 4, 5, 6, 7], budget: 40)
+        let start = Date()
+        _ = planner.plan(request)
+        let elapsed = Date().timeIntervalSince(start)
+        // Target is < 200 ms on device in release; debug builds on CI are slower.
+        XCTAssertLessThan(elapsed, 2.0)
+        print("planner took \(Int(elapsed * 1000)) ms (debug)")
+    }
+}

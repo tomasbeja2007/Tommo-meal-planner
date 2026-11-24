@@ -1,0 +1,121 @@
+[
+ {
+  "id": "us",
+  "name": "United States",
+  "flagEmoji": "🇺🇸",
+  "currencyCode": "USD",
+  "unitSystem": "imperial",
+  "regionPriceKey": "US",
+  "priceMultiplier": 1.0
+ },
+ {
+  "id": "gb",
+  "name": "United Kingdom",
+  "flagEmoji": "🇬🇧",
+  "currencyCode": "GBP",
+  "unitSystem": "metric",
+  "regionPriceKey": "UK",
+  "priceMultiplier": 1.0
+ },
+ {
+  "id": "ie",
+  "name": "Ireland",
+  "flagEmoji": "🇮🇪",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.0
+ },
+ {
+  "id": "pt",
+  "name": "Portugal",
+  "flagEmoji": "🇵🇹",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 0.92
+ },
+ {
+  "id": "es",
+  "name": "Spain",
+  "flagEmoji": "🇪🇸",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 0.95
+ },
+ {
+  "id": "fr",
+  "name": "France",
+  "flagEmoji": "🇫🇷",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.05
+ },
+ {
+  "id": "de",
+  "name": "Germany",
+  "flagEmoji": "🇩🇪",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.0
+ },
+ {
+  "id": "nl",
+  "name": "Netherlands",
+  "flagEmoji": "🇳🇱",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.03
+ },
+ {
+  "id": "it",
+  "name": "Italy",
+  "flagEmoji": "🇮🇹",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.0
+ },
+ {
+  "id": "be",
+  "name": "Belgium",
+  "flagEmoji": "🇧🇪",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.05
+ },
+ {
+  "id": "at",
+  "name": "Austria",
+  "flagEmoji": "🇦🇹",
+  "currencyCode": "EUR",
+  "unitSystem": "metric",
+  "regionPriceKey": "EU",
+  "priceMultiplier": 1.05
+ },
+ {
+  "id": "ca",
+  "name": "Canada",
+  "flagEmoji": "🇨🇦",
+  "currencyCode": "CAD",
+  "unitSystem": "metric",
+  "regionPriceKey": "US",
+  "priceMultiplier": 1.37,
+  "priceNote": "Prices are rough conversions from US estimates."
+ },
+ {
+  "id": "au",
+  "name": "Australia",
+  "flagEmoji": "🇦🇺",
+  "currencyCode": "AUD",
+  "unitSystem": "metric",
+  "regionPriceKey": "US",
+  "priceMultiplier": 1.52,
+  "priceNote": "Prices are rough conversions from US estimates."
+ }
+]

@@ -1,0 +1,5992 @@
+[
+ {
+  "id": "onion",
+  "name": "onion",
+  "pluralName": "onions",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 40,
+   "protein": 1.1,
+   "carbs": 9.3,
+   "fat": 0.1,
+   "fiber": 1.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧅",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 150
+  }
+ },
+ {
+  "id": "red-onion",
+  "name": "red onion",
+  "pluralName": "red onions",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 40,
+   "protein": 1.1,
+   "carbs": 9.3,
+   "fat": 0.1,
+   "fiber": 1.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧅",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 150
+  }
+ },
+ {
+  "id": "garlic",
+  "name": "garlic",
+  "pluralName": "garlic",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 149,
+   "protein": 6.4,
+   "carbs": 33,
+   "fat": 0.5,
+   "fiber": 2.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 50,
+   "display": "1 bulb",
+   "displayImperial": "1 bulb",
+   "noun": "bulb",
+   "nounPlural": "bulbs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧄",
+  "tags": [],
+  "gramsPerUnit": {
+   "clove": 5,
+   "piece": 50,
+   "tsp": 3
+  }
+ },
+ {
+  "id": "ginger",
+  "name": "fresh ginger",
+  "pluralName": "fresh ginger",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 80,
+   "protein": 1.8,
+   "carbs": 18,
+   "fat": 0.8,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g piece",
+   "displayImperial": "3.5 oz piece",
+   "noun": "piece",
+   "nounPlural": "pieces"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫚",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 15,
+   "tsp": 2,
+   "tbsp": 6
+  }
+ },
+ {
+  "id": "carrot",
+  "name": "carrot",
+  "pluralName": "carrots",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 41,
+   "protein": 0.9,
+   "carbs": 10,
+   "fat": 0.2,
+   "fiber": 2.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥕",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 70
+  }
+ },
+ {
+  "id": "celery",
+  "name": "celery",
+  "pluralName": "celery",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 16,
+   "protein": 0.7,
+   "carbs": 3,
+   "fat": 0.2,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 450,
+   "display": "1 head",
+   "displayImperial": "1 bunch",
+   "noun": "head",
+   "nounPlural": "heads"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 40
+  }
+ },
+ {
+  "id": "potato",
+  "name": "potato",
+  "pluralName": "potatoes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 77,
+   "protein": 2,
+   "carbs": 17,
+   "fat": 0.1,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 2000,
+   "display": "2 kg bag",
+   "displayImperial": "5 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥔",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 200
+  }
+ },
+ {
+  "id": "sweet-potato",
+  "name": "sweet potato",
+  "pluralName": "sweet potatoes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 86,
+   "protein": 1.6,
+   "carbs": 20,
+   "fat": 0.1,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍠",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 250
+  }
+ },
+ {
+  "id": "bell-pepper",
+  "name": "bell pepper",
+  "pluralName": "bell peppers",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 31,
+   "protein": 1,
+   "carbs": 6,
+   "fat": 0.3,
+   "fiber": 2.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 450,
+   "display": "3-pack",
+   "displayImperial": "3-pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫑",
+  "tags": [],
+  "ukName": "pepper",
+  "gramsPerUnit": {
+   "piece": 150
+  }
+ },
+ {
+  "id": "tomato",
+  "name": "tomato",
+  "pluralName": "tomatoes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 18,
+   "protein": 0.9,
+   "carbs": 3.9,
+   "fat": 0.2,
+   "fiber": 1.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍅",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 120
+  }
+ },
+ {
+  "id": "cherry-tomatoes",
+  "name": "cherry tomatoes",
+  "pluralName": "cherry tomatoes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 18,
+   "protein": 0.9,
+   "carbs": 3.9,
+   "fat": 0.2,
+   "fiber": 1.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g punnet",
+   "displayImperial": "10 oz pint",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍅",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 15,
+   "cup": 150
+  }
+ },
+ {
+  "id": "cucumber",
+  "name": "cucumber",
+  "pluralName": "cucumbers",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 15,
+   "protein": 0.7,
+   "carbs": 3.6,
+   "fat": 0.1,
+   "fiber": 0.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "1 cucumber",
+   "displayImperial": "1 cucumber",
+   "noun": "cucumber",
+   "nounPlural": "cucumbers"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥒",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 300
+  }
+ },
+ {
+  "id": "zucchini",
+  "name": "zucchini",
+  "pluralName": "zucchini",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 17,
+   "protein": 1.2,
+   "carbs": 3.1,
+   "fat": 0.3,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥒",
+  "tags": [],
+  "ukName": "courgette",
+  "gramsPerUnit": {
+   "piece": 200
+  }
+ },
+ {
+  "id": "eggplant",
+  "name": "eggplant",
+  "pluralName": "eggplants",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 25,
+   "protein": 1,
+   "carbs": 6,
+   "fat": 0.2,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "1 aubergine",
+   "displayImperial": "1 eggplant",
+   "noun": "piece",
+   "nounPlural": "pieces"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍆",
+  "tags": [],
+  "ukName": "aubergine",
+  "gramsPerUnit": {
+   "piece": 300
+  }
+ },
+ {
+  "id": "broccoli",
+  "name": "broccoli",
+  "pluralName": "broccoli",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 34,
+   "protein": 2.8,
+   "carbs": 7,
+   "fat": 0.4,
+   "fiber": 2.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 350,
+   "display": "1 head",
+   "displayImperial": "1 head",
+   "noun": "head",
+   "nounPlural": "heads"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥦",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 350,
+   "cup": 90
+  }
+ },
+ {
+  "id": "cauliflower",
+  "name": "cauliflower",
+  "pluralName": "cauliflowers",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 25,
+   "protein": 1.9,
+   "carbs": 5,
+   "fat": 0.3,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 600,
+   "display": "1 head",
+   "displayImperial": "1 head",
+   "noun": "head",
+   "nounPlural": "heads"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥦",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 600
+  }
+ },
+ {
+  "id": "spinach",
+  "name": "spinach",
+  "pluralName": "spinach",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 23,
+   "protein": 2.9,
+   "carbs": 3.6,
+   "fat": 0.4,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g bag",
+   "displayImperial": "7 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 30
+  }
+ },
+ {
+  "id": "kale",
+  "name": "kale",
+  "pluralName": "kale",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 49,
+   "protein": 4.3,
+   "carbs": 8.8,
+   "fat": 0.9,
+   "fiber": 3.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g bag",
+   "displayImperial": "7 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 20
+  }
+ },
+ {
+  "id": "lettuce",
+  "name": "romaine lettuce",
+  "pluralName": "romaine lettuces",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 17,
+   "protein": 1.2,
+   "carbs": 3.3,
+   "fat": 0.3,
+   "fiber": 2.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "1 head",
+   "displayImperial": "1 head",
+   "noun": "head",
+   "nounPlural": "heads"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "ukName": "romaine lettuce",
+  "gramsPerUnit": {
+   "piece": 400
+  }
+ },
+ {
+  "id": "mushrooms",
+  "name": "mushrooms",
+  "pluralName": "mushrooms",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 22,
+   "protein": 3.1,
+   "carbs": 3.3,
+   "fat": 0.3,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g pack",
+   "displayImperial": "8 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍄",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 18,
+   "cup": 70
+  }
+ },
+ {
+  "id": "green-beans",
+  "name": "green beans",
+  "pluralName": "green beans",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 31,
+   "protein": 1.8,
+   "carbs": 7,
+   "fat": 0.2,
+   "fiber": 2.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g pack",
+   "displayImperial": "10 oz bag",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫛",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 100
+  }
+ },
+ {
+  "id": "avocado",
+  "name": "avocado",
+  "pluralName": "avocados",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 160,
+   "protein": 2,
+   "carbs": 8.5,
+   "fat": 14.7,
+   "fiber": 6.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "1 avocado",
+   "displayImperial": "1 avocado",
+   "noun": "avocado",
+   "nounPlural": "avocados"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥑",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 150
+  }
+ },
+ {
+  "id": "lime",
+  "name": "lime",
+  "pluralName": "limes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 30,
+   "protein": 0.7,
+   "carbs": 10,
+   "fat": 0.2,
+   "fiber": 2.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 65,
+   "display": "1 lime",
+   "displayImperial": "1 lime",
+   "noun": "lime",
+   "nounPlural": "limes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍋‍🟩",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 65,
+   "tbsp": 15
+  }
+ },
+ {
+  "id": "lemon",
+  "name": "lemon",
+  "pluralName": "lemons",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 29,
+   "protein": 1.1,
+   "carbs": 9,
+   "fat": 0.3,
+   "fiber": 2.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "1 lemon",
+   "displayImperial": "1 lemon",
+   "noun": "lemon",
+   "nounPlural": "lemons"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍋",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 100,
+   "tbsp": 15
+  }
+ },
+ {
+  "id": "cilantro",
+  "name": "cilantro",
+  "pluralName": "cilantro",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 23,
+   "protein": 2.1,
+   "carbs": 3.7,
+   "fat": 0.5,
+   "fiber": 2.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 25,
+   "display": "1 bunch",
+   "displayImperial": "1 bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": [],
+  "ukName": "coriander",
+  "gramsPerUnit": {
+   "bunch": 25,
+   "tbsp": 1,
+   "cup": 16
+  }
+ },
+ {
+  "id": "parsley",
+  "name": "parsley",
+  "pluralName": "parsley",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 36,
+   "protein": 3,
+   "carbs": 6,
+   "fat": 0.8,
+   "fiber": 3.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 25,
+   "display": "1 bunch",
+   "displayImperial": "1 bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "bunch": 25,
+   "tbsp": 1,
+   "cup": 30
+  }
+ },
+ {
+  "id": "basil",
+  "name": "basil",
+  "pluralName": "basil",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 23,
+   "protein": 3.2,
+   "carbs": 2.7,
+   "fat": 0.6,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 25,
+   "display": "1 bunch",
+   "displayImperial": "1 bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "bunch": 25,
+   "tbsp": 1,
+   "cup": 20
+  }
+ },
+ {
+  "id": "spring-onion",
+  "name": "scallion",
+  "pluralName": "scallions",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 32,
+   "protein": 1.8,
+   "carbs": 7.3,
+   "fat": 0.2,
+   "fiber": 2.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "1 bunch",
+   "displayImperial": "1 bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧅",
+  "tags": [],
+  "ukName": "spring onion",
+  "gramsPerUnit": {
+   "piece": 15
+  }
+ },
+ {
+  "id": "chili-fresh",
+  "name": "fresh chili",
+  "pluralName": "fresh chilies",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 40,
+   "protein": 1.9,
+   "carbs": 9,
+   "fat": 0.4,
+   "fiber": 1.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 50,
+   "display": "50 g pack",
+   "displayImperial": "2 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "ukName": "fresh chilli",
+  "gramsPerUnit": {
+   "piece": 10
+  }
+ },
+ {
+  "id": "cabbage",
+  "name": "cabbage",
+  "pluralName": "cabbages",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 25,
+   "protein": 1.3,
+   "carbs": 5.8,
+   "fat": 0.1,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 900,
+   "display": "1 head",
+   "displayImperial": "1 head",
+   "noun": "head",
+   "nounPlural": "heads"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 900,
+   "cup": 70
+  }
+ },
+ {
+  "id": "butternut-squash",
+  "name": "butternut squash",
+  "pluralName": "butternut squashes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 45,
+   "protein": 1,
+   "carbs": 12,
+   "fat": 0.1,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 squash",
+   "displayImperial": "1 squash",
+   "noun": "squash",
+   "nounPlural": "squashes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🎃",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 1000
+  }
+ },
+ {
+  "id": "bean-sprouts",
+  "name": "bean sprouts",
+  "pluralName": "bean sprouts",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 30,
+   "protein": 3,
+   "carbs": 6,
+   "fat": 0.2,
+   "fiber": 1.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g bag",
+   "displayImperial": "10 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌱",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 100
+  }
+ },
+ {
+  "id": "bok-choy",
+  "name": "bok choy",
+  "pluralName": "bok choy",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 13,
+   "protein": 1.5,
+   "carbs": 2.2,
+   "fat": 0.2,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g pack",
+   "displayImperial": "9 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "ukName": "pak choi",
+  "gramsPerUnit": {
+   "piece": 125
+  }
+ },
+ {
+  "id": "arugula",
+  "name": "arugula",
+  "pluralName": "arugula",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 25,
+   "protein": 2.6,
+   "carbs": 3.7,
+   "fat": 0.7,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g bag",
+   "displayImperial": "4 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥗",
+  "tags": [],
+  "ukName": "rocket",
+  "gramsPerUnit": {
+   "cup": 20
+  }
+ },
+ {
+  "id": "leek",
+  "name": "leek",
+  "pluralName": "leeks",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 61,
+   "protein": 1.5,
+   "carbs": 14,
+   "fat": 0.3,
+   "fiber": 1.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 150
+  }
+ },
+ {
+  "id": "apple",
+  "name": "apple",
+  "pluralName": "apples",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 52,
+   "protein": 0.3,
+   "carbs": 14,
+   "fat": 0.2,
+   "fiber": 2.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍎",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 180
+  }
+ },
+ {
+  "id": "red-cabbage",
+  "name": "red cabbage",
+  "pluralName": "red cabbages",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 31,
+   "protein": 1.4,
+   "carbs": 7.4,
+   "fat": 0.2,
+   "fiber": 2.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 900,
+   "display": "1 head",
+   "displayImperial": "1 head",
+   "noun": "head",
+   "nounPlural": "heads"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 900,
+   "cup": 70
+  }
+ },
+ {
+  "id": "mint",
+  "name": "mint",
+  "pluralName": "mint",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 70,
+   "protein": 3.8,
+   "carbs": 15,
+   "fat": 0.9,
+   "fiber": 8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 25,
+   "display": "1 bunch",
+   "displayImperial": "1 bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "bunch": 25,
+   "tbsp": 1
+  }
+ },
+ {
+  "id": "asparagus",
+  "name": "asparagus",
+  "pluralName": "asparagus",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 20,
+   "protein": 2.2,
+   "carbs": 3.9,
+   "fat": 0.1,
+   "fiber": 2.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g bunch",
+   "displayImperial": "9 oz bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌱",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 16
+  }
+ },
+ {
+  "id": "corn-on-cob",
+  "name": "corn on the cob",
+  "pluralName": "corn cobs",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 86,
+   "protein": 3.3,
+   "carbs": 19,
+   "fat": 1.4,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "2 cobs",
+   "displayImperial": "2 ears",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌽",
+  "tags": [],
+  "ukName": "corn on the cob",
+  "gramsPerUnit": {
+   "piece": 150
+  }
+ },
+ {
+  "id": "chicken-breast",
+  "name": "chicken breast",
+  "pluralName": "chicken breasts",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 120,
+   "protein": 22.5,
+   "carbs": 0,
+   "fat": 2.6,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍗",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 180
+  },
+  "proteinGroup": "chicken"
+ },
+ {
+  "id": "chicken-thighs",
+  "name": "boneless chicken thighs",
+  "pluralName": "boneless chicken thighs",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 177,
+   "protein": 18,
+   "carbs": 0,
+   "fat": 11,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍗",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 100
+  },
+  "proteinGroup": "chicken"
+ },
+ {
+  "id": "ground-beef",
+  "name": "ground beef",
+  "pluralName": "ground beef",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 215,
+   "protein": 18.6,
+   "carbs": 0,
+   "fat": 15,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "ukName": "beef mince",
+  "proteinGroup": "beef"
+ },
+ {
+  "id": "beef-steak",
+  "name": "sirloin steak",
+  "pluralName": "sirloin steaks",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 180,
+   "protein": 20,
+   "carbs": 0,
+   "fat": 11,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g pack",
+   "displayImperial": "14 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 200
+  },
+  "proteinGroup": "beef"
+ },
+ {
+  "id": "ground-pork",
+  "name": "ground pork",
+  "pluralName": "ground pork",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 263,
+   "protein": 17,
+   "carbs": 0,
+   "fat": 21,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "ukName": "pork mince",
+  "proteinGroup": "pork"
+ },
+ {
+  "id": "pork-tenderloin",
+  "name": "pork tenderloin",
+  "pluralName": "pork tenderloins",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 120,
+   "protein": 21,
+   "carbs": 0,
+   "fat": 3.5,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "ukName": "pork fillet",
+  "gramsPerUnit": {
+   "piece": 400
+  },
+  "proteinGroup": "pork"
+ },
+ {
+  "id": "bacon",
+  "name": "bacon",
+  "pluralName": "bacon",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 330,
+   "protein": 15,
+   "carbs": 1,
+   "fat": 29,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g pack",
+   "displayImperial": "8 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥓",
+  "tags": [],
+  "ukName": "smoked bacon lardons",
+  "gramsPerUnit": {
+   "slice": 25
+  },
+  "proteinGroup": "pork"
+ },
+ {
+  "id": "sausages",
+  "name": "pork sausages",
+  "pluralName": "pork sausages",
+  "aisle": "Meat & Fish",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 300,
+   "protein": 13,
+   "carbs": 3,
+   "fat": 26,
+   "fiber": 0.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 450,
+   "display": "6 sausages",
+   "displayImperial": "6 sausages",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌭",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 75
+  },
+  "proteinGroup": "pork"
+ },
+ {
+  "id": "chorizo",
+  "name": "chorizo",
+  "pluralName": "chorizo",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 455,
+   "protein": 24,
+   "carbs": 2,
+   "fat": 38,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g ring",
+   "displayImperial": "7 oz link",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌭",
+  "tags": [],
+  "proteinGroup": "pork"
+ },
+ {
+  "id": "ground-turkey",
+  "name": "ground turkey",
+  "pluralName": "ground turkey",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 150,
+   "protein": 19.7,
+   "carbs": 0,
+   "fat": 8.3,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🦃",
+  "tags": [],
+  "ukName": "turkey mince",
+  "proteinGroup": "turkey"
+ },
+ {
+  "id": "salmon-fillet",
+  "name": "salmon fillet",
+  "pluralName": "salmon fillets",
+  "aisle": "Meat & Fish",
+  "allergens": [
+   "fish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 208,
+   "protein": 20,
+   "carbs": 0,
+   "fat": 13,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "2 fillets",
+   "displayImperial": "2 fillets",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🐟",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 120
+  },
+  "proteinGroup": "fish"
+ },
+ {
+  "id": "white-fish",
+  "name": "cod fillet",
+  "pluralName": "cod fillets",
+  "aisle": "Meat & Fish",
+  "allergens": [
+   "fish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 82,
+   "protein": 18,
+   "carbs": 0,
+   "fat": 0.7,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 280,
+   "display": "2 fillets",
+   "displayImperial": "2 fillets",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🐟",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 140
+  },
+  "proteinGroup": "fish"
+ },
+ {
+  "id": "shrimp",
+  "name": "raw shrimp",
+  "pluralName": "raw shrimp",
+  "aisle": "Meat & Fish",
+  "allergens": [
+   "shellfish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 85,
+   "protein": 20,
+   "carbs": 0,
+   "fat": 0.5,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g pack",
+   "displayImperial": "10 oz bag",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍤",
+  "tags": [],
+  "ukName": "raw king prawns",
+  "proteinGroup": "shellfish"
+ },
+ {
+  "id": "ham",
+  "name": "sliced ham",
+  "pluralName": "sliced ham",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 145,
+   "protein": 21,
+   "carbs": 1.5,
+   "fat": 6,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g pack",
+   "displayImperial": "5 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍖",
+  "tags": [],
+  "gramsPerUnit": {
+   "slice": 25
+  },
+  "proteinGroup": "pork"
+ },
+ {
+  "id": "lamb-mince",
+  "name": "ground lamb",
+  "pluralName": "ground lamb",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 282,
+   "protein": 17,
+   "carbs": 0,
+   "fat": 23,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "ukName": "lamb mince",
+  "proteinGroup": "lamb"
+ },
+ {
+  "id": "eggs",
+  "name": "egg",
+  "pluralName": "eggs",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "egg"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 143,
+   "protein": 12.6,
+   "carbs": 0.7,
+   "fat": 9.5,
+   "fiber": 0
+  },
+  "baseUnit": "piece",
+  "pack": {
+   "amount": 12,
+   "display": "12 eggs",
+   "displayImperial": "1 dozen",
+   "noun": "box",
+   "nounPlural": "boxes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥚",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 50
+  },
+  "proteinGroup": "egg"
+ },
+ {
+  "id": "butter",
+  "name": "butter",
+  "pluralName": "butter",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 717,
+   "protein": 0.9,
+   "carbs": 0.1,
+   "fat": 81,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g block",
+   "displayImperial": "8 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧈",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 14,
+   "tsp": 5,
+   "cup": 227
+  }
+ },
+ {
+  "id": "milk",
+  "name": "milk",
+  "pluralName": "milk",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 61,
+   "protein": 3.2,
+   "carbs": 4.8,
+   "fat": 3.3,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 1000,
+   "display": "1 litre",
+   "displayImperial": "1 quart",
+   "noun": "carton",
+   "nounPlural": "cartons"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥛",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 244,
+   "tbsp": 15
+  },
+  "gramsPerMl": 1.03
+ },
+ {
+  "id": "heavy-cream",
+  "name": "heavy cream",
+  "pluralName": "heavy cream",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 340,
+   "protein": 2.8,
+   "carbs": 2.7,
+   "fat": 36,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 300,
+   "display": "300 ml pot",
+   "displayImperial": "10 fl oz carton",
+   "noun": "carton",
+   "nounPlural": "cartons"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥛",
+  "tags": [],
+  "ukName": "double cream",
+  "gramsPerUnit": {
+   "cup": 238,
+   "tbsp": 15
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "greek-yogurt",
+  "name": "plain Greek yogurt",
+  "pluralName": "plain Greek yogurt",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 97,
+   "protein": 9,
+   "carbs": 3.9,
+   "fat": 5,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g tub",
+   "displayImperial": "16 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥣",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "cup": 245
+  }
+ },
+ {
+  "id": "cheddar",
+  "name": "cheddar",
+  "pluralName": "cheddar",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 403,
+   "protein": 25,
+   "carbs": 1.3,
+   "fat": 33,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g block",
+   "displayImperial": "8 oz block",
+   "noun": "block",
+   "nounPlural": "blocks"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 113,
+   "tbsp": 7
+  },
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "parmesan",
+  "name": "parmesan",
+  "pluralName": "parmesan",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 431,
+   "protein": 38,
+   "carbs": 4,
+   "fat": 29,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g wedge",
+   "displayImperial": "3.5 oz wedge",
+   "noun": "wedge",
+   "nounPlural": "wedges"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 5,
+   "cup": 100
+  },
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "mozzarella",
+  "name": "mozzarella",
+  "pluralName": "mozzarella",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 280,
+   "protein": 28,
+   "carbs": 3,
+   "fat": 17,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 125,
+   "display": "125 g ball",
+   "displayImperial": "4.5 oz ball",
+   "noun": "ball",
+   "nounPlural": "balls"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 125,
+   "cup": 112
+  },
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "feta",
+  "name": "feta",
+  "pluralName": "feta",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 264,
+   "protein": 14,
+   "carbs": 4,
+   "fat": 21,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g block",
+   "displayImperial": "7 oz block",
+   "noun": "block",
+   "nounPlural": "blocks"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 150
+  },
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "sour-cream",
+  "name": "sour cream",
+  "pluralName": "sour cream",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 198,
+   "protein": 2.4,
+   "carbs": 4.6,
+   "fat": 19,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g tub",
+   "displayImperial": "8 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥣",
+  "tags": [],
+  "ukName": "soured cream",
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "cup": 230
+  }
+ },
+ {
+  "id": "cream-cheese",
+  "name": "cream cheese",
+  "pluralName": "cream cheese",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 342,
+   "protein": 6,
+   "carbs": 4,
+   "fat": 34,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g tub",
+   "displayImperial": "8 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "ukName": "soft cheese",
+  "gramsPerUnit": {
+   "tbsp": 15
+  }
+ },
+ {
+  "id": "halloumi",
+  "name": "halloumi",
+  "pluralName": "halloumi",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 321,
+   "protein": 22,
+   "carbs": 2,
+   "fat": 25,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 225,
+   "display": "225 g block",
+   "displayImperial": "8 oz block",
+   "noun": "block",
+   "nounPlural": "blocks"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "paneer",
+  "name": "paneer",
+  "pluralName": "paneer",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 321,
+   "protein": 21,
+   "carbs": 3.6,
+   "fat": 25,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 225,
+   "display": "225 g block",
+   "displayImperial": "8 oz block",
+   "noun": "block",
+   "nounPlural": "blocks"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "blue-cheese",
+  "name": "blue cheese",
+  "pluralName": "blue cheese",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 353,
+   "protein": 21,
+   "carbs": 2.3,
+   "fat": 29,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g wedge",
+   "displayImperial": "5 oz wedge",
+   "noun": "wedge",
+   "nounPlural": "wedges"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧀",
+  "tags": [],
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "tofu",
+  "name": "firm tofu",
+  "pluralName": "firm tofu",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "soy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 144,
+   "protein": 15.8,
+   "carbs": 3.5,
+   "fat": 8.7,
+   "fiber": 2.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g block",
+   "displayImperial": "14 oz block",
+   "noun": "block",
+   "nounPlural": "blocks"
+  },
+  "isPantryStaple": false,
+  "emoji": "🧊",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 400
+  },
+  "proteinGroup": "tofu"
+ },
+ {
+  "id": "coconut-yogurt",
+  "name": "coconut yogurt",
+  "pluralName": "coconut yogurt",
+  "aisle": "Dairy & Eggs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 120,
+   "protein": 1,
+   "carbs": 6,
+   "fat": 10,
+   "fiber": 0.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g tub",
+   "displayImperial": "14 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥥",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15
+  }
+ },
+ {
+  "id": "tortillas",
+  "name": "flour tortilla",
+  "pluralName": "flour tortillas",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 312,
+   "protein": 8.3,
+   "carbs": 52,
+   "fat": 8,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 360,
+   "display": "8 wraps",
+   "displayImperial": "8 tortillas",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫓",
+  "tags": [],
+  "ukName": "tortilla wrap",
+  "gramsPerUnit": {
+   "piece": 45
+  }
+ },
+ {
+  "id": "corn-tortillas",
+  "name": "corn tortilla",
+  "pluralName": "corn tortillas",
+  "aisle": "Bakery",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 218,
+   "protein": 5.7,
+   "carbs": 45,
+   "fat": 2.9,
+   "fiber": 6.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 312,
+   "display": "12 tortillas",
+   "displayImperial": "12 tortillas",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫓",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 26
+  }
+ },
+ {
+  "id": "burger-buns",
+  "name": "burger bun",
+  "pluralName": "burger buns",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten",
+   "sesame"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 279,
+   "protein": 9.5,
+   "carbs": 49,
+   "fat": 4.3,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "4 buns",
+   "displayImperial": "4 buns",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍔",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 60
+  }
+ },
+ {
+  "id": "naan",
+  "name": "naan bread",
+  "pluralName": "naan breads",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten",
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 290,
+   "protein": 9,
+   "carbs": 50,
+   "fat": 5.6,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 180,
+   "display": "2 naans",
+   "displayImperial": "2 naans",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫓",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 90
+  }
+ },
+ {
+  "id": "baguette",
+  "name": "baguette",
+  "pluralName": "baguettes",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 274,
+   "protein": 9,
+   "carbs": 52,
+   "fat": 3,
+   "fiber": 2.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "1 baguette",
+   "displayImperial": "1 baguette",
+   "noun": "baguette",
+   "nounPlural": "baguettes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥖",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 250,
+   "slice": 25
+  }
+ },
+ {
+  "id": "pita-bread",
+  "name": "pita bread",
+  "pluralName": "pita breads",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 275,
+   "protein": 9,
+   "carbs": 55,
+   "fat": 1.2,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 360,
+   "display": "6 pitas",
+   "displayImperial": "6 pitas",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫓",
+  "tags": [],
+  "ukName": "pitta bread",
+  "gramsPerUnit": {
+   "piece": 60
+  }
+ },
+ {
+  "id": "breadcrumbs",
+  "name": "panko breadcrumbs",
+  "pluralName": "panko breadcrumbs",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 395,
+   "protein": 13,
+   "carbs": 72,
+   "fat": 5.5,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g bag",
+   "displayImperial": "7 oz box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍞",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 7,
+   "cup": 60
+  }
+ },
+ {
+  "id": "sourdough",
+  "name": "sourdough loaf",
+  "pluralName": "sourdough loaves",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 270,
+   "protein": 10,
+   "carbs": 52,
+   "fat": 2,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "1 loaf",
+   "displayImperial": "1 loaf",
+   "noun": "loaf",
+   "nounPlural": "loaves"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍞",
+  "tags": [],
+  "gramsPerUnit": {
+   "slice": 45
+  }
+ },
+ {
+  "id": "spaghetti",
+  "name": "spaghetti",
+  "pluralName": "spaghetti",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": []
+ },
+ {
+  "id": "penne",
+  "name": "penne",
+  "pluralName": "penne",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 100
+  }
+ },
+ {
+  "id": "egg-noodles",
+  "name": "egg noodles",
+  "pluralName": "egg noodles",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten",
+   "egg"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 384,
+   "protein": 14,
+   "carbs": 71,
+   "fat": 4.4,
+   "fiber": 3.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "6 nests",
+   "displayImperial": "10 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍜",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 50
+  }
+ },
+ {
+  "id": "rice-noodles",
+  "name": "rice noodles",
+  "pluralName": "rice noodles",
+  "aisle": "Pasta",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 364,
+   "protein": 6,
+   "carbs": 80,
+   "fat": 0.6,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g pack",
+   "displayImperial": "9 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍜",
+  "tags": []
+ },
+ {
+  "id": "gnocchi",
+  "name": "gnocchi",
+  "pluralName": "gnocchi",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 133,
+   "protein": 3.3,
+   "carbs": 28,
+   "fat": 0.4,
+   "fiber": 1.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥟",
+  "tags": []
+ },
+ {
+  "id": "orzo",
+  "name": "orzo",
+  "pluralName": "orzo",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 180
+  }
+ },
+ {
+  "id": "lasagne-sheets",
+  "name": "lasagna sheets",
+  "pluralName": "lasagna sheets",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g box",
+   "displayImperial": "9 oz box",
+   "noun": "box",
+   "nounPlural": "boxes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": [],
+  "ukName": "lasagne sheets",
+  "gramsPerUnit": {
+   "piece": 20
+  }
+ },
+ {
+  "id": "udon-noodles",
+  "name": "udon noodles",
+  "pluralName": "udon noodles",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 125,
+   "protein": 3,
+   "carbs": 26,
+   "fat": 0.5,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "2 x 200 g",
+   "displayImperial": "2 portions",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍜",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 200
+  }
+ },
+ {
+  "id": "long-grain-rice",
+  "name": "long-grain rice",
+  "pluralName": "long-grain rice",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 365,
+   "protein": 7,
+   "carbs": 80,
+   "fat": 0.7,
+   "fiber": 1.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍚",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 185
+  }
+ },
+ {
+  "id": "basmati-rice",
+  "name": "basmati rice",
+  "pluralName": "basmati rice",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 360,
+   "protein": 8,
+   "carbs": 78,
+   "fat": 0.9,
+   "fiber": 1.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍚",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 185
+  }
+ },
+ {
+  "id": "arborio-rice",
+  "name": "arborio rice",
+  "pluralName": "arborio rice",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 350,
+   "protein": 6.5,
+   "carbs": 79,
+   "fat": 0.6,
+   "fiber": 1.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍚",
+  "tags": [],
+  "ukName": "risotto rice",
+  "gramsPerUnit": {
+   "cup": 200
+  }
+ },
+ {
+  "id": "microwave-rice",
+  "name": "microwave rice pouch",
+  "pluralName": "microwave rice pouches",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 150,
+   "protein": 3,
+   "carbs": 32,
+   "fat": 1.5,
+   "fiber": 0.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g pouch",
+   "displayImperial": "8.8 oz pouch",
+   "noun": "pouch",
+   "nounPlural": "pouches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍚",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 250
+  }
+ },
+ {
+  "id": "couscous",
+  "name": "couscous",
+  "pluralName": "couscous",
+  "aisle": "Rice & Grains",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 376,
+   "protein": 13,
+   "carbs": 77,
+   "fat": 0.6,
+   "fiber": 5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍚",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 175
+  }
+ },
+ {
+  "id": "quinoa",
+  "name": "quinoa",
+  "pluralName": "quinoa",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 368,
+   "protein": 14,
+   "carbs": 64,
+   "fat": 6,
+   "fiber": 7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌾",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 170
+  }
+ },
+ {
+  "id": "red-lentils",
+  "name": "red lentils",
+  "pluralName": "red lentils",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 358,
+   "protein": 24,
+   "carbs": 63,
+   "fat": 2.2,
+   "fiber": 11
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 190
+  },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "rolled-oats",
+  "name": "rolled oats",
+  "pluralName": "rolled oats",
+  "aisle": "Rice & Grains",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 379,
+   "protein": 13,
+   "carbs": 68,
+   "fat": 6.5,
+   "fiber": 10
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb canister",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌾",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 90
+  }
+ },
+ {
+  "id": "bulgur",
+  "name": "bulgur wheat",
+  "pluralName": "bulgur wheat",
+  "aisle": "Rice & Grains",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 342,
+   "protein": 12,
+   "carbs": 76,
+   "fat": 1.3,
+   "fiber": 12.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌾",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 140
+  }
+ },
+ {
+  "id": "chopped-tomatoes",
+  "name": "diced tomatoes",
+  "pluralName": "diced tomatoes",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 32,
+   "protein": 1.6,
+   "carbs": 5.5,
+   "fat": 0.3,
+   "fiber": 1.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g tin",
+   "displayImperial": "14.5 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥫",
+  "tags": [],
+  "ukName": "chopped tomatoes",
+  "gramsPerUnit": {
+   "cup": 240
+  }
+ },
+ {
+  "id": "passata",
+  "name": "tomato sauce (passata)",
+  "pluralName": "tomato sauce (passata)",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 30,
+   "protein": 1.3,
+   "carbs": 5,
+   "fat": 0.2,
+   "fiber": 1.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g jar",
+   "displayImperial": "17 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥫",
+  "tags": [],
+  "ukName": "passata",
+  "gramsPerUnit": {
+   "cup": 245
+  }
+ },
+ {
+  "id": "tomato-paste",
+  "name": "tomato paste",
+  "pluralName": "tomato paste",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 82,
+   "protein": 4.3,
+   "carbs": 19,
+   "fat": 0.5,
+   "fiber": 4.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 140,
+   "display": "140 g tube",
+   "displayImperial": "6 oz can",
+   "noun": "tube",
+   "nounPlural": "tubes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥫",
+  "tags": [],
+  "ukName": "tomato purée",
+  "gramsPerUnit": {
+   "tbsp": 16,
+   "tsp": 5
+  }
+ },
+ {
+  "id": "coconut-milk",
+  "name": "coconut milk",
+  "pluralName": "coconut milk",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 197,
+   "protein": 2,
+   "carbs": 2.8,
+   "fat": 21,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 400,
+   "display": "400 ml tin",
+   "displayImperial": "13.5 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥥",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 240,
+   "tbsp": 15
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "chickpeas",
+  "name": "chickpeas",
+  "pluralName": "chickpeas",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 139,
+   "protein": 7.1,
+   "carbs": 22.5,
+   "fat": 2.6,
+   "fiber": 6.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "15 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 165
+  },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "black-beans",
+  "name": "black beans",
+  "pluralName": "black beans",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 132,
+   "protein": 8.9,
+   "carbs": 23.7,
+   "fat": 0.5,
+   "fiber": 8.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "15 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 172
+  },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "kidney-beans",
+  "name": "kidney beans",
+  "pluralName": "kidney beans",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 127,
+   "protein": 8.7,
+   "carbs": 22.8,
+   "fat": 0.5,
+   "fiber": 6.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "15 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 177
+  },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "cannellini-beans",
+  "name": "cannellini beans",
+  "pluralName": "cannellini beans",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 114,
+   "protein": 7.6,
+   "carbs": 20,
+   "fat": 0.4,
+   "fiber": 6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "15 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 180
+  },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "canned-tuna",
+  "name": "canned tuna",
+  "pluralName": "canned tuna",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "fish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 116,
+   "protein": 26,
+   "carbs": 0,
+   "fat": 1,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 145,
+   "display": "145 g tin",
+   "displayImperial": "5 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🐟",
+  "tags": [],
+  "ukName": "tinned tuna",
+  "proteinGroup": "fish"
+ },
+ {
+  "id": "olives",
+  "name": "black olives",
+  "pluralName": "black olives",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 115,
+   "protein": 0.8,
+   "carbs": 6,
+   "fat": 10.7,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g jar",
+   "displayImperial": "5 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫒",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 9,
+   "cup": 135
+  }
+ },
+ {
+  "id": "pesto",
+  "name": "basil pesto",
+  "pluralName": "basil pesto",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "dairy",
+   "treeNut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 430,
+   "protein": 5,
+   "carbs": 6,
+   "fat": 43,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 190,
+   "display": "190 g jar",
+   "displayImperial": "6.7 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": [],
+  "ukName": "green pesto",
+  "gramsPerUnit": {
+   "tbsp": 16
+  }
+ },
+ {
+  "id": "peanut-butter",
+  "name": "peanut butter",
+  "pluralName": "peanut butter",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "peanut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 588,
+   "protein": 25,
+   "carbs": 20,
+   "fat": 50,
+   "fiber": 6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 340,
+   "display": "340 g jar",
+   "displayImperial": "12 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥜",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 16,
+   "tsp": 5
+  }
+ },
+ {
+  "id": "tahini",
+  "name": "tahini",
+  "pluralName": "tahini",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "sesame"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 595,
+   "protein": 17,
+   "carbs": 21,
+   "fat": 54,
+   "fiber": 9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g jar",
+   "displayImperial": "10 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫙",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15
+  }
+ },
+ {
+  "id": "thai-curry-paste",
+  "name": "Thai red curry paste",
+  "pluralName": "Thai red curry paste",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "shellfish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 140,
+   "protein": 2,
+   "carbs": 15,
+   "fat": 7,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 115,
+   "display": "115 g jar",
+   "displayImperial": "4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "tsp": 5
+  }
+ },
+ {
+  "id": "curry-paste",
+  "name": "tikka curry paste",
+  "pluralName": "tikka curry paste",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 300,
+   "protein": 4,
+   "carbs": 15,
+   "fat": 25,
+   "fiber": 4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 280,
+   "display": "280 g jar",
+   "displayImperial": "10 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍛",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "tsp": 5
+  }
+ },
+ {
+  "id": "salsa",
+  "name": "tomato salsa",
+  "pluralName": "tomato salsa",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 36,
+   "protein": 1.5,
+   "carbs": 7,
+   "fat": 0.2,
+   "fiber": 1.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 450,
+   "display": "450 g jar",
+   "displayImperial": "16 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍅",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 16,
+   "cup": 260
+  }
+ },
+ {
+  "id": "roasted-peppers",
+  "name": "roasted red peppers",
+  "pluralName": "roasted red peppers",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 28,
+   "protein": 1,
+   "carbs": 5,
+   "fat": 0.3,
+   "fiber": 1.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 290,
+   "display": "290 g jar",
+   "displayImperial": "10 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫑",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 50
+  }
+ },
+ {
+  "id": "sweetcorn-tin",
+  "name": "canned sweetcorn",
+  "pluralName": "canned sweetcorn",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 81,
+   "protein": 2.7,
+   "carbs": 16,
+   "fat": 1.2,
+   "fiber": 2.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g tin (drained)",
+   "displayImperial": "8.5 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌽",
+  "tags": [],
+  "ukName": "tinned sweetcorn",
+  "gramsPerUnit": {
+   "cup": 165
+  }
+ },
+ {
+  "id": "kimchi",
+  "name": "kimchi",
+  "pluralName": "kimchi",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "fish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 15,
+   "protein": 1.1,
+   "carbs": 2.4,
+   "fat": 0.5,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g jar",
+   "displayImperial": "10 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "cup": 150
+  }
+ },
+ {
+  "id": "vegetable-stock",
+  "name": "vegetable stock",
+  "pluralName": "vegetable stock",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 5,
+   "protein": 0.2,
+   "carbs": 0.9,
+   "fat": 0.1,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 1000,
+   "display": "1 litre carton",
+   "displayImperial": "32 fl oz carton",
+   "noun": "carton",
+   "nounPlural": "cartons"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥣",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 240
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "chicken-stock",
+  "name": "chicken stock",
+  "pluralName": "chicken stock",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 7,
+   "protein": 0.6,
+   "carbs": 0.4,
+   "fat": 0.2,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 1000,
+   "display": "1 litre carton",
+   "displayImperial": "32 fl oz carton",
+   "noun": "carton",
+   "nounPlural": "cartons"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥣",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 240
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "soy-sauce",
+  "name": "soy sauce",
+  "pluralName": "soy sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "soy",
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 53,
+   "protein": 8,
+   "carbs": 4.9,
+   "fat": 0.6,
+   "fiber": 0.8
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 150,
+   "display": "150 ml bottle",
+   "displayImperial": "5 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍶",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 16,
+   "tsp": 5.3
+  },
+  "gramsPerMl": 1.07
+ },
+ {
+  "id": "honey",
+  "name": "honey",
+  "pluralName": "honey",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 304,
+   "protein": 0.3,
+   "carbs": 82,
+   "fat": 0,
+   "fiber": 0.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 340,
+   "display": "340 g jar",
+   "displayImperial": "12 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍯",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 21,
+   "tsp": 7
+  }
+ },
+ {
+  "id": "maple-syrup",
+  "name": "maple syrup",
+  "pluralName": "maple syrup",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 260,
+   "protein": 0,
+   "carbs": 67,
+   "fat": 0.1,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 250,
+   "display": "250 ml bottle",
+   "displayImperial": "8 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍁",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 20,
+   "tsp": 7
+  },
+  "gramsPerMl": 1.32
+ },
+ {
+  "id": "dijon-mustard",
+  "name": "Dijon mustard",
+  "pluralName": "Dijon mustard",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 66,
+   "protein": 4,
+   "carbs": 5,
+   "fat": 4,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g jar",
+   "displayImperial": "7 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🟡",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 5,
+   "tbsp": 15
+  }
+ },
+ {
+  "id": "mayonnaise",
+  "name": "mayonnaise",
+  "pluralName": "mayonnaise",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "egg"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 680,
+   "protein": 1,
+   "carbs": 0.6,
+   "fat": 75,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g jar",
+   "displayImperial": "15 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫙",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 14,
+   "tsp": 5
+  }
+ },
+ {
+  "id": "ketchup",
+  "name": "ketchup",
+  "pluralName": "ketchup",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 101,
+   "protein": 1,
+   "carbs": 27,
+   "fat": 0.1,
+   "fiber": 0.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bottle",
+   "displayImperial": "20 oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍅",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 17
+  }
+ },
+ {
+  "id": "sriracha",
+  "name": "sriracha",
+  "pluralName": "sriracha",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 93,
+   "protein": 1.9,
+   "carbs": 19,
+   "fat": 0.9,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 ml bottle",
+   "displayImperial": "7 oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "tsp": 6,
+   "tbsp": 17
+  }
+ },
+ {
+  "id": "fish-sauce",
+  "name": "fish sauce",
+  "pluralName": "fish sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "fish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 35,
+   "protein": 5,
+   "carbs": 3.6,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 200,
+   "display": "200 ml bottle",
+   "displayImperial": "7 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🐟",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 18,
+   "tsp": 6
+  },
+  "gramsPerMl": 1.2
+ },
+ {
+  "id": "worcestershire",
+  "name": "Worcestershire sauce",
+  "pluralName": "Worcestershire sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "fish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 78,
+   "protein": 0,
+   "carbs": 19,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 150,
+   "display": "150 ml bottle",
+   "displayImperial": "5 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍶",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 5,
+   "tbsp": 15
+  },
+  "gramsPerMl": 1.1
+ },
+ {
+  "id": "hoisin-sauce",
+  "name": "hoisin sauce",
+  "pluralName": "hoisin sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "soy",
+   "gluten",
+   "sesame"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 220,
+   "protein": 3.3,
+   "carbs": 44,
+   "fat": 3.4,
+   "fiber": 2.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g jar",
+   "displayImperial": "7 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍶",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 16
+  }
+ },
+ {
+  "id": "miso-paste",
+  "name": "white miso paste",
+  "pluralName": "white miso paste",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "soy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 198,
+   "protein": 12,
+   "carbs": 26,
+   "fat": 6,
+   "fiber": 5.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g tub",
+   "displayImperial": "10 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥣",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 17,
+   "tsp": 6
+  }
+ },
+ {
+  "id": "bbq-sauce",
+  "name": "barbecue sauce",
+  "pluralName": "barbecue sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 172,
+   "protein": 0.8,
+   "carbs": 41,
+   "fat": 0.6,
+   "fiber": 0.9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bottle",
+   "displayImperial": "18 oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍖",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 17,
+   "cup": 280
+  }
+ },
+ {
+  "id": "gochujang",
+  "name": "gochujang",
+  "pluralName": "gochujang",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "soy",
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 230,
+   "protein": 4,
+   "carbs": 46,
+   "fat": 2,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g tub",
+   "displayImperial": "7 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "tbsp": 16,
+   "tsp": 6
+  }
+ },
+ {
+  "id": "sweet-chili-sauce",
+  "name": "sweet chili sauce",
+  "pluralName": "sweet chili sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 230,
+   "protein": 0.3,
+   "carbs": 56,
+   "fat": 0.2,
+   "fiber": 0.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 ml bottle",
+   "displayImperial": "8 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [],
+  "ukName": "sweet chilli sauce",
+  "gramsPerUnit": {
+   "tbsp": 18
+  }
+ },
+ {
+  "id": "hot-sauce",
+  "name": "hot sauce",
+  "pluralName": "hot sauce",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 12,
+   "protein": 0.5,
+   "carbs": 1.8,
+   "fat": 0.4,
+   "fiber": 0.3
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 150,
+   "display": "150 ml bottle",
+   "displayImperial": "5 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "tsp": 5
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "salt",
+  "name": "salt",
+  "pluralName": "salt",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 0,
+   "protein": 0,
+   "carbs": 0,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 750,
+   "display": "750 g tub",
+   "displayImperial": "26 oz canister",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": true,
+  "emoji": "🧂",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 6,
+   "tbsp": 18,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "black-pepper",
+  "name": "black pepper",
+  "pluralName": "black pepper",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 251,
+   "protein": 10,
+   "carbs": 64,
+   "fat": 3.3,
+   "fiber": 25
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "⚫️",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2.3,
+   "tbsp": 6.8999999999999995,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "cumin",
+  "name": "ground cumin",
+  "pluralName": "ground cumin",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 375,
+   "protein": 18,
+   "carbs": 44,
+   "fat": 22,
+   "fiber": 10
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟤",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2,
+   "tbsp": 6,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "paprika",
+  "name": "smoked paprika",
+  "pluralName": "smoked paprika",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 282,
+   "protein": 14,
+   "carbs": 54,
+   "fat": 13,
+   "fiber": 35
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🔴",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2.3,
+   "tbsp": 6.8999999999999995,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "chili-flakes",
+  "name": "red chili flakes",
+  "pluralName": "red chili flakes",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 318,
+   "protein": 12,
+   "carbs": 57,
+   "fat": 17,
+   "fiber": 27
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "tsp": 1.8,
+   "tbsp": 5.4,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "dried-oregano",
+  "name": "dried oregano",
+  "pluralName": "dried oregano",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 265,
+   "protein": 9,
+   "carbs": 69,
+   "fat": 4,
+   "fiber": 43
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 1,
+   "tbsp": 3,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "curry-powder",
+  "name": "curry powder",
+  "pluralName": "curry powder",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 325,
+   "protein": 14,
+   "carbs": 58,
+   "fat": 14,
+   "fiber": 53
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟡",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2,
+   "tbsp": 6,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "garam-masala",
+  "name": "garam masala",
+  "pluralName": "garam masala",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 379,
+   "protein": 15,
+   "carbs": 45,
+   "fat": 15,
+   "fiber": 30
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟤",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2,
+   "tbsp": 6,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "turmeric",
+  "name": "ground turmeric",
+  "pluralName": "ground turmeric",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 312,
+   "protein": 10,
+   "carbs": 67,
+   "fat": 3,
+   "fiber": 23
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟡",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 3,
+   "tbsp": 9,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "cinnamon",
+  "name": "ground cinnamon",
+  "pluralName": "ground cinnamon",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 247,
+   "protein": 4,
+   "carbs": 81,
+   "fat": 1.2,
+   "fiber": 53
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟤",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2.6,
+   "tbsp": 7.800000000000001,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "chili-powder",
+  "name": "chili powder",
+  "pluralName": "chili powder",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 282,
+   "protein": 13,
+   "carbs": 50,
+   "fat": 14,
+   "fiber": 35
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "gramsPerUnit": {
+   "tsp": 2.7,
+   "tbsp": 8.100000000000001,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "dried-thyme",
+  "name": "dried thyme",
+  "pluralName": "dried thyme",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 276,
+   "protein": 9,
+   "carbs": 64,
+   "fat": 7.4,
+   "fiber": 37
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 1,
+   "tbsp": 3,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "italian-herbs",
+  "name": "Italian seasoning",
+  "pluralName": "Italian seasoning",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 270,
+   "protein": 10,
+   "carbs": 60,
+   "fat": 6,
+   "fiber": 40
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 1,
+   "tbsp": 3,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "five-spice",
+  "name": "Chinese five-spice",
+  "pluralName": "Chinese five-spice",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 350,
+   "protein": 10,
+   "carbs": 60,
+   "fat": 10,
+   "fiber": 30
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟤",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2,
+   "tbsp": 6,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "ground-coriander",
+  "name": "ground coriander",
+  "pluralName": "ground coriander",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 298,
+   "protein": 12,
+   "carbs": 55,
+   "fat": 18,
+   "fiber": 42
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🟤",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 1.8,
+   "tbsp": 5.4,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "garlic-powder",
+  "name": "garlic powder",
+  "pluralName": "garlic powder",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 331,
+   "protein": 17,
+   "carbs": 73,
+   "fat": 0.7,
+   "fiber": 9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🧄",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 3.1,
+   "tbsp": 9.3,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "onion-powder",
+  "name": "onion powder",
+  "pluralName": "onion powder",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 341,
+   "protein": 10,
+   "carbs": 79,
+   "fat": 1,
+   "fiber": 15
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🧅",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 2.4,
+   "tbsp": 7.199999999999999,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "bay-leaves",
+  "name": "bay leaves",
+  "pluralName": "bay leaves",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 313,
+   "protein": 7.6,
+   "carbs": 75,
+   "fat": 8.4,
+   "fiber": 26
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 10,
+   "display": "10 g jar",
+   "displayImperial": "0.3 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🍃",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 0.6,
+   "tbsp": 1.7999999999999998,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "sesame-seeds",
+  "name": "sesame seeds",
+  "pluralName": "sesame seeds",
+  "aisle": "Spices & Herbs",
+  "allergens": [
+   "sesame"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 573,
+   "protein": 18,
+   "carbs": 23,
+   "fat": 50,
+   "fiber": 12
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g bag",
+   "displayImperial": "3.5 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "⚪️",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 3,
+   "tbsp": 9,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "vegetable-bouillon",
+  "name": "vegetable bouillon powder",
+  "pluralName": "vegetable bouillon powder",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 250,
+   "protein": 10,
+   "carbs": 30,
+   "fat": 10,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🥣",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 3,
+   "tbsp": 9,
+   "pinch": 0.4
+  }
+ },
+ {
+  "id": "olive-oil",
+  "name": "olive oil",
+  "pluralName": "olive oil",
+  "aisle": "Oils & Vinegars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 884,
+   "protein": 0,
+   "carbs": 0,
+   "fat": 100,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 500,
+   "display": "500 ml bottle",
+   "displayImperial": "17 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": true,
+  "emoji": "🫒",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 13.5,
+   "tsp": 4.5
+  },
+  "gramsPerMl": 0.91
+ },
+ {
+  "id": "vegetable-oil",
+  "name": "vegetable oil",
+  "pluralName": "vegetable oil",
+  "aisle": "Oils & Vinegars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 884,
+   "protein": 0,
+   "carbs": 0,
+   "fat": 100,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 1000,
+   "display": "1 litre bottle",
+   "displayImperial": "32 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": true,
+  "emoji": "🛢️",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 13.6,
+   "tsp": 4.5
+  },
+  "gramsPerMl": 0.92
+ },
+ {
+  "id": "sesame-oil",
+  "name": "toasted sesame oil",
+  "pluralName": "toasted sesame oil",
+  "aisle": "Oils & Vinegars",
+  "allergens": [
+   "sesame"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 884,
+   "protein": 0,
+   "carbs": 0,
+   "fat": 100,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 150,
+   "display": "150 ml bottle",
+   "displayImperial": "5 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫙",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 13.6,
+   "tsp": 4.5
+  },
+  "gramsPerMl": 0.92
+ },
+ {
+  "id": "balsamic-vinegar",
+  "name": "balsamic vinegar",
+  "pluralName": "balsamic vinegar",
+  "aisle": "Oils & Vinegars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 88,
+   "protein": 0.5,
+   "carbs": 17,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 250,
+   "display": "250 ml bottle",
+   "displayImperial": "8.5 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍶",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 16,
+   "tsp": 5
+  },
+  "gramsPerMl": 1.06
+ },
+ {
+  "id": "rice-vinegar",
+  "name": "rice vinegar",
+  "pluralName": "rice vinegar",
+  "aisle": "Oils & Vinegars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 18,
+   "protein": 0,
+   "carbs": 0.5,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 300,
+   "display": "300 ml bottle",
+   "displayImperial": "10 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍶",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "tsp": 5
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "red-wine-vinegar",
+  "name": "red wine vinegar",
+  "pluralName": "red wine vinegar",
+  "aisle": "Oils & Vinegars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 19,
+   "protein": 0,
+   "carbs": 0.3,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 500,
+   "display": "500 ml bottle",
+   "displayImperial": "16 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": true,
+  "emoji": "🍷",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "tsp": 5
+  },
+  "gramsPerMl": 1.0
+ },
+ {
+  "id": "peas-frozen",
+  "name": "frozen peas",
+  "pluralName": "frozen peas",
+  "aisle": "Frozen",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 81,
+   "protein": 5.4,
+   "carbs": 14,
+   "fat": 0.4,
+   "fiber": 5.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🟢",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 145
+  }
+ },
+ {
+  "id": "corn-frozen",
+  "name": "frozen sweetcorn",
+  "pluralName": "frozen sweetcorn",
+  "aisle": "Frozen",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 86,
+   "protein": 3.3,
+   "carbs": 19,
+   "fat": 1.4,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌽",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 145
+  }
+ },
+ {
+  "id": "mixed-veg-frozen",
+  "name": "frozen stir-fry vegetables",
+  "pluralName": "frozen stir-fry vegetables",
+  "aisle": "Frozen",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 65,
+   "protein": 3.3,
+   "carbs": 13,
+   "fat": 0.5,
+   "fiber": 4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 750,
+   "display": "750 g bag",
+   "displayImperial": "1.5 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥦",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 140
+  }
+ },
+ {
+  "id": "edamame-frozen",
+  "name": "frozen edamame",
+  "pluralName": "frozen edamame",
+  "aisle": "Frozen",
+  "allergens": [
+   "soy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 121,
+   "protein": 12,
+   "carbs": 9,
+   "fat": 5,
+   "fiber": 5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g bag",
+   "displayImperial": "14 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫛",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 155
+  },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "spinach-frozen",
+  "name": "frozen spinach",
+  "pluralName": "frozen spinach",
+  "aisle": "Frozen",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 29,
+   "protein": 3.6,
+   "carbs": 4.2,
+   "fat": 0.5,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 450,
+   "display": "450 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥬",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 156
+  }
+ },
+ {
+  "id": "flour",
+  "name": "all-purpose flour",
+  "pluralName": "all-purpose flour",
+  "aisle": "Baking",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 364,
+   "protein": 10,
+   "carbs": 76,
+   "fat": 1,
+   "fiber": 2.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 1000,
+   "display": "1 kg bag",
+   "displayImperial": "2 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌾",
+  "tags": [],
+  "ukName": "plain flour",
+  "gramsPerUnit": {
+   "tbsp": 8,
+   "cup": 125,
+   "tsp": 3
+  }
+ },
+ {
+  "id": "cornstarch",
+  "name": "cornstarch",
+  "pluralName": "cornstarch",
+  "aisle": "Baking",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 381,
+   "protein": 0.3,
+   "carbs": 91,
+   "fat": 0.1,
+   "fiber": 0.9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g box",
+   "displayImperial": "16 oz box",
+   "noun": "box",
+   "nounPlural": "boxes"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌽",
+  "tags": [],
+  "ukName": "cornflour",
+  "gramsPerUnit": {
+   "tbsp": 8,
+   "tsp": 2.7
+  }
+ },
+ {
+  "id": "sugar",
+  "name": "brown sugar",
+  "pluralName": "brown sugar",
+  "aisle": "Baking",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 380,
+   "protein": 0,
+   "carbs": 98,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": true,
+  "emoji": "🍬",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 4,
+   "tbsp": 12.5,
+   "cup": 220
+  }
+ },
+ {
+  "id": "baking-powder",
+  "name": "baking powder",
+  "pluralName": "baking powder",
+  "aisle": "Baking",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 53,
+   "protein": 0,
+   "carbs": 28,
+   "fat": 0,
+   "fiber": 0.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 170,
+   "display": "170 g tub",
+   "displayImperial": "6 oz can",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": true,
+  "emoji": "🧁",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 4
+  }
+ },
+ {
+  "id": "peanuts",
+  "name": "roasted peanuts",
+  "pluralName": "roasted peanuts",
+  "aisle": "Other",
+  "allergens": [
+   "peanut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 585,
+   "protein": 24,
+   "carbs": 21,
+   "fat": 50,
+   "fiber": 8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g bag",
+   "displayImperial": "7 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥜",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 9,
+   "cup": 145
+  }
+ },
+ {
+  "id": "cashews",
+  "name": "cashews",
+  "pluralName": "cashews",
+  "aisle": "Other",
+  "allergens": [
+   "treeNut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 553,
+   "protein": 18,
+   "carbs": 30,
+   "fat": 44,
+   "fiber": 3.3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g bag",
+   "displayImperial": "5 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌰",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 9,
+   "cup": 130
+  }
+ },
+ {
+  "id": "walnuts",
+  "name": "walnuts",
+  "pluralName": "walnuts",
+  "aisle": "Other",
+  "allergens": [
+   "treeNut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 654,
+   "protein": 15,
+   "carbs": 14,
+   "fat": 65,
+   "fiber": 6.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g bag",
+   "displayImperial": "5 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌰",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 8,
+   "cup": 100
+  }
+ },
+ {
+  "id": "tempeh",
+  "name": "tempeh",
+  "pluralName": "tempeh",
+  "aisle": "Other",
+  "allergens": [
+   "soy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 192,
+   "protein": 20,
+   "carbs": 7.6,
+   "fat": 11,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g block",
+   "displayImperial": "7 oz block",
+   "noun": "block",
+   "nounPlural": "blocks"
+  },
+  "isPantryStaple": false,
+  "emoji": "🟫",
+  "tags": [],
+  "proteinGroup": "tofu"
+ },
+ {
+  "id": "raisins",
+  "name": "raisins",
+  "pluralName": "raisins",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 299,
+   "protein": 3.1,
+   "carbs": 79,
+   "fat": 0.5,
+   "fiber": 3.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g bag",
+   "displayImperial": "9 oz box",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍇",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 9
+  }
+ },
+ {
+  "id": "dark-chocolate",
+  "name": "dark chocolate",
+  "pluralName": "dark chocolate",
+  "aisle": "Other",
+  "allergens": [
+   "dairy",
+   "soy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 546,
+   "protein": 4.9,
+   "carbs": 61,
+   "fat": 31,
+   "fiber": 7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g bar",
+   "displayImperial": "3.5 oz bar",
+   "noun": "bar",
+   "nounPlural": "bars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍫",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 10
+  }
+ }
+]
