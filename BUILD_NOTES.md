@@ -147,8 +147,8 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 
 - [ ] **Real reviews**: `Testimonial.placeholders` in `Features/Onboarding/Steps/SocialProofStep.swift` are clearly
       marked placeholders. Replace them with genuine App Store reviews (or remove the carousel). Never invent reviews or user counts.
-- [ ] **Artwork**: see `Design/IMAGE_REQUESTS.md` (mascot moods, clean app icon, 40 recipe photos, optional
-      onboarding illustrations). Drop images into the asset catalog with the listed names; no code changes needed.
+- [x] **Artwork**: mascot moods, 40 recipe photos and 25 onboarding illustrations are in the asset catalog.
+      Still open (see `Design/IMAGE_REQUESTS.md`): the optional `MascotRig` layers and a clean app icon.
 - [ ] **App icon**: `AppIcon-1024.png` was cropped from the provided mascot art with the dark border removed.
       A clean 1024×1024 export (opaque, cream to the edges, no rounded corners) would look better.
 - [ ] **Full recipe library** (~200 recipes). Schema is in `Models/Recipe.swift`; add to `Tools/recipes_data.py`

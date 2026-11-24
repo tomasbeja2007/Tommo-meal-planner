@@ -5,6 +5,11 @@ fallback. Drop a finished PNG into `Forkcast/Resources/Assets.xcassets` as an
 **Image Set with exactly the name given** and the app picks it up automatically,
 with no code changes.
 
+## Status (Nov 2026)
+- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3)
+  and all 25 onboarding illustrations (section 4).
+- **Still open:** the optional `MascotRig` layers (section 1) and the clean app icon export (section 2).
+
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
   white chef hat with a tomato-red band, green leaves, wooden spoon, friendly face.
