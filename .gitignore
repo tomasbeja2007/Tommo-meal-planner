@@ -7,3 +7,4 @@ DerivedData/
 Packages/ForkcastCore/.build/
 Packages/ForkcastCore/Package.resolved
 *.xcworkspace/
+__pycache__/
