@@ -6,11 +6,12 @@ fallback. Drop a finished PNG into `Forkcast/Resources/Assets.xcassets` as an
 with no code changes.
 
 ## Status (Nov 2026)
-- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3)
-  and all 25 onboarding illustrations (section 4).
-- **Still open:** the optional `MascotRig` layers (section 1), the clean app icon export (section 2), and the
-  onboarding extras in section 5 (splash ingredient pieces, cloud-sync illustration), and the 72 pantry photos
-  in section 6.
+- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3),
+  all 25 onboarding illustrations (section 4), and the 6 splash pieces + `illustration-cloudSync` (section 5).
+- **MascotRig, round 1:** arms and both mouths are good and kept in `Design/MascotRig/` (not in the app until the
+  live face is built). `MascotRig-body` and `MascotRig-head` need a redo, see section 1.
+- **Still open:** the clean app icon export (section 2), the 72 pantry photos (section 6), and the
+  `MascotRig-body` / `MascotRig-head` redo (section 1).
 
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
@@ -45,6 +46,13 @@ Separate 1024×1024 transparent PNG layers, all aligned on the same canvas so th
 | `MascotRig-head` | Leaves + chef hat, plus the face with the **eyes drawn as plain whites, no pupils** |
 | `MascotRig-armLeft` / `MascotRig-armRight` | Each arm on its own (the right one holding the spoon) |
 | `MascotRig-mouth-closed` / `MascotRig-mouth-open` | The mouth shapes only |
+
+**Redo notes (round 1):** the body layer was made by erasing the old face, so it shows a flat smudged circle where
+the mouth was and dark marks where the pupils were, which peek out from under the new eye whites. Ask for:
+- `MascotRig-body`: **clean, continuous glossy tomato skin across the whole face area**, as if the face had never been
+  drawn (no eye marks, no mouth patch, no circles), same shape, position and lighting as before.
+- `MascotRig-head`: the same layer again with **smooth, anti-aliased edges on the eye whites** (no jagged pixels),
+  and a little larger eye whites so they fully cover where the old eyes were. Keep the brows and cheeks.
 
 With these, the app can use the motion skill's live face (gliding pupils, blinks every 3–4 s, a happy squint)
 and wave the spoon arm with follow-through.
