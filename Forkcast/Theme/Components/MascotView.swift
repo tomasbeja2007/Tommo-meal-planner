@@ -24,6 +24,8 @@ struct MascotView: View {
         case cheer
         /// A slow, held head tilt to one side and then the other.
         case thinking
+        /// Holding the reminder bell (`MascotBell` art); moves like idle.
+        case bell
     }
 
     var size: CGFloat = 160
@@ -40,6 +42,7 @@ struct MascotView: View {
         case .idle: specific = "MascotIdle"
         case .cheer: specific = "MascotCheer"
         case .thinking: specific = "MascotThinking"
+        case .bell: specific = "MascotBell"
         }
         return AssetImage.exists(specific) ? specific : assetName
     }
@@ -114,7 +117,7 @@ private struct MascotPose {
         let drift: Double = MascotMotion.driftAmount * wave(t, period: MascotMotion.driftPeriod)
 
         switch mood {
-        case .idle:
+        case .idle, .bell:
             break
         case .thinking:
             tilt = flow(t, MascotMotion.thinkTilt) + 0.8 * wave(t, period: MascotMotion.swayPeriod)

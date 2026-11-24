@@ -1,7 +1,8 @@
 import SwiftUI
 import ForkcastCore
 
-/// Full-screen loader. Runs the real planner while three rows tick on.
+/// 13. Full-screen loader (~3 s). Runs the real planner while a checklist built from the
+/// user's own answers ticks off, with a progress ring around Chef Tomato.
 struct BuildingWeekStep: View {
     let state: OnboardingState
     let onFinished: () -> Void
@@ -13,22 +14,56 @@ struct BuildingWeekStep: View {
     @State private var started: Bool = false
     @State private var finished: Bool = false
 
-    private var storeName: String {
-        FoodCatalog.bundled.store(id: state.mainStoreId)?.name ?? String(localized: "your shop")
-    }
+    private var catalog: FoodCatalog { .bundled }
+    private var country: Country { state.country(in: catalog) }
 
     private var rows: [String] {
-        [
-            String(localized: "pricing ingredients at \(storeName)"),
-            String(localized: "matching your tastes and rules"),
-            String(localized: "writing your grocery list")
-        ]
+        [householdRow, avoidingRow, kitchenRow, budgetRow]
+    }
+
+    /// "Matching 2 adults + 1 kid"
+    private var householdRow: String {
+        let adults: String = state.adults == 1 ? String(localized: "1 adult") : String(localized: "\(state.adults) adults")
+        guard state.kids > 0 else { return String(localized: "Matching \(adults)") }
+        let kids: String = state.kids == 1 ? String(localized: "1 kid") : String(localized: "\(state.kids) kids")
+        return String(localized: "Matching \(adults) + \(kids)")
+    }
+
+    /// "Avoiding mushrooms and peanuts", or the diet when there's nothing to avoid.
+    private var avoidingRow: String {
+        let system: UnitSystem = country.unitSystem
+        let dislikes: [String] = state.dislikes.sorted().map { DislikeCatalog.label(for: $0, catalog: catalog, system: system).lowercased() }
+        let allergens: [String] = Allergen.allCases.filter { state.effectiveAllergens.contains($0) }.map { $0.displayName.lowercased() }
+        let avoided: [String] = Array((allergens + dislikes).prefix(3))
+        if !avoided.isEmpty {
+            return String(localized: "Avoiding \(avoided.formatted(.list(type: .and)))")
+        }
+        switch state.diet {
+        case .none: return String(localized: "Picking from every recipe you'll love")
+        default: return String(localized: "Keeping it \(state.diet.displayName.lowercased())")
+        }
+    }
+
+    /// "Only air fryer + oven recipes"
+    private var kitchenRow: String {
+        if state.appliances.count >= Appliance.allCases.count { return String(localized: "Using your whole kitchen") }
+        let names: String = Appliance.allCases.filter { state.appliances.contains($0) }.map { $0.displayName.lowercased() }.joined(separator: " + ")
+        return String(localized: "Only \(names) recipes")
+    }
+
+    /// "Keeping it under £85"
+    private var budgetRow: String {
+        String(localized: "Keeping it under \(MoneyFormat.string(state.budget, currencyCode: country.currencyCode, fractionDigits: 0))")
     }
 
     var body: some View {
         VStack(spacing: Theme.Spacing.xxl) {
             Spacer()
-            MascotView(size: 170, mood: .thinking)
+            ZStack {
+                ProgressRing(value: Double(completedRows) / Double(rows.count), lineWidth: 8, tint: Theme.tomato)
+                    .frame(width: 210, height: 210)
+                MascotView(size: 160, mood: .thinking)
+            }
             Text("building your week…")
                 .font(.system(.title2, design: .rounded).weight(.bold))
                 .foregroundStyle(Theme.aubergine)
@@ -54,11 +89,11 @@ struct BuildingWeekStep: View {
             await planStore.generatePlan()
         }
         for index in 0..<rows.count {
-            try? await Task.sleep(nanoseconds: 900_000_000)
+            try? await Task.sleep(nanoseconds: 700_000_000)
             withAnimation(Theme.spring) { completedRows = index + 1 }
         }
         _ = await planTask.value
-        try? await Task.sleep(nanoseconds: 350_000_000)
+        try? await Task.sleep(nanoseconds: 250_000_000)
         notifications.apply(profile: profileStore.profile)
         finished = true
         onFinished()
