@@ -30,11 +30,7 @@ struct PaywallView: View {
         ZStack(alignment: .topLeading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    HStack {
-                        Spacer()
-                        MascotView(size: 96, mood: .cheer)
-                        Spacer()
-                    }
+                    IngredientHero(height: 138)
                     Text("Your entire week of meals, sorted.")
                         .font(.system(.largeTitle, design: .rounded).weight(.bold))
                         .foregroundStyle(Theme.aubergine)
@@ -242,6 +238,7 @@ private struct PaywallBenefit: View {
 }
 
 private struct PlanCard: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let title: String
     let badge: String?
     let price: String
@@ -288,6 +285,7 @@ private struct PlanCard: View {
             .overlay(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).stroke(isSelected ? Theme.tomato : Theme.line, lineWidth: isSelected ? 2 : 1))
         }
         .buttonStyle(.plain)
+        .animation(reduceMotion ? nil : Theme.Motion.update, value: isSelected)
         .sensoryFeedback(.selection, trigger: isSelected)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
     }

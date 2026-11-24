@@ -44,7 +44,19 @@ enum Theme {
     }
 
     // MARK: Motion
-    static let spring: Animation = .spring(response: 0.35, dampingFraction: 0.8)
+    static let spring = Motion.selection
+
+    enum Motion {
+        static let press = Animation.easeOut(duration: 0.10)
+        static let release = Animation.spring(response: 0.18, dampingFraction: 0.9)
+        static let selection = Animation.spring(response: 0.35, dampingFraction: 0.8)
+        static let update = Animation.spring(response: 0.24, dampingFraction: 0.9)
+        static let fadeIn = Animation.easeOut(duration: 0.18)
+        static let fadeOut = Animation.easeIn(duration: 0.15)
+        static let reveal = Animation.open(0.36)
+        static let stagger: Double = 0.05
+        static let ambientDuration: Double = 60_000
+    }
 
     /// Returns the spring, or nil when Reduce Motion is on.
     static func motion(_ reduceMotion: Bool) -> Animation? {

@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Full-width 56 pt tomato button. Scales to 0.97 when pressed, with a light haptic.
+/// Full-width 56 pt tomato button. Scales gently when pressed, with a light haptic.
 struct PrimaryButtonStyle: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     func makeBody(configuration: Configuration) -> some View {
@@ -15,8 +16,8 @@ struct PrimaryButtonStyle: ButtonStyle {
                     .fill(configuration.isPressed ? Theme.tomatoDeep : Theme.tomato)
             )
             .opacity(isEnabled ? 1 : 0.4)
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.8), value: configuration.isPressed)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.98 : 1)
+            .animation(reduceMotion ? nil : (configuration.isPressed ? Theme.Motion.press : Theme.Motion.release), value: configuration.isPressed)
             .sensoryFeedback(.impact(weight: .light), trigger: configuration.isPressed) { _, newValue in
                 newValue
             }
@@ -26,6 +27,7 @@ struct PrimaryButtonStyle: ButtonStyle {
 /// Secondary button: tomato outline (or quiet cream fill).
 struct SecondaryButtonStyle: ButtonStyle {
     var outlined: Bool = true
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -41,8 +43,8 @@ struct SecondaryButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous)
                     .stroke(outlined ? Theme.tomato : Color.clear, lineWidth: 1.5)
             )
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.8), value: configuration.isPressed)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.98 : 1)
+            .animation(reduceMotion ? nil : (configuration.isPressed ? Theme.Motion.press : Theme.Motion.release), value: configuration.isPressed)
     }
 }
 

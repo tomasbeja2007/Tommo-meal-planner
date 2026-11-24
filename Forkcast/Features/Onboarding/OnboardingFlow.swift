@@ -93,11 +93,15 @@ struct OnboardingFlow: View {
         guard let next = step.next else { return }
         if next == .budget { state.refreshSuggestedBudget(catalog: FoodCatalog.bundled) }
         goingForward = true
-        withAnimation(Theme.motion(reduceMotion) ?? .easeInOut(duration: 0.2)) { step = next }
+        withAnimation(reduceMotion ? nil : Theme.Motion.selection) { step = next }
     }
 
     /// Single-select screens advance after a short beat so the selection is visible.
     private func autoAdvance() {
+        if reduceMotion {
+            advance()
+            return
+        }
         let current: OnboardingStep = step
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 250_000_000)
@@ -108,7 +112,7 @@ struct OnboardingFlow: View {
     private func back() {
         guard let previous = step.previous else { return }
         goingForward = false
-        withAnimation(Theme.motion(reduceMotion) ?? .easeInOut(duration: 0.2)) { step = previous }
+        withAnimation(reduceMotion ? nil : Theme.Motion.selection) { step = previous }
     }
 
     private func finish() {

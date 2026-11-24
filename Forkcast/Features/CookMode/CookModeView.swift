@@ -59,12 +59,12 @@ struct CookModeView: View {
             if timer.isActive {
                 TimerPill(timer: timer)
                     .padding(.horizontal, Theme.Spacing.gutter)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .transition(reduceMotion ? .identity : .move(edge: .bottom).combined(with: .opacity))
             }
         }
         .padding(.bottom, Theme.Spacing.s)
         .background(Theme.cream.ignoresSafeArea())
-        .animation(Theme.spring, value: timer.isActive)
+        .animation(reduceMotion ? nil : Theme.Motion.update, value: timer.isActive)
         .sensoryFeedback(.selection, trigger: index)
         .onAppear {
             stars = library.stars[recipe.id] ?? 0

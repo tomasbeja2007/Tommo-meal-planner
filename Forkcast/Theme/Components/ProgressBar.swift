@@ -33,7 +33,7 @@ struct ProgressBar: View {
             if reduceMotion {
                 isDrawn = true
             } else {
-                withAnimation(Animation.open(0.6).delay(drawOnDelay)) { isDrawn = true }
+                withAnimation(Theme.Motion.reveal.delay(drawOnDelay)) { isDrawn = true }
             }
         }
         .accessibilityElement()
@@ -62,6 +62,7 @@ struct ProgressRing: View {
                 Text(label)
                     .font(.system(.caption, design: .rounded).weight(.bold))
                     .monospacedDigit()
+                    .contentTransition(reduceMotion ? .identity : .numericText())
                     .foregroundStyle(Theme.aubergine)
                     .minimumScaleFactor(0.6)
                     .padding(lineWidth)
@@ -74,7 +75,7 @@ struct ProgressRing: View {
             if reduceMotion {
                 isDrawn = true
             } else {
-                withAnimation(Animation.open(0.6).delay(0)) { isDrawn = true }
+                withAnimation(Theme.Motion.reveal) { isDrawn = true }
             }
         }
     }

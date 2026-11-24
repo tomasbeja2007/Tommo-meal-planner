@@ -7,6 +7,8 @@ struct PlanView: View {
     @Environment(AppRouter.self) private var router: AppRouter
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     @State private var swapTarget: PlannedMeal? = nil
     @State private var addMealDate: Date? = nil
     @State private var isEditingWeek: Bool = false
@@ -22,7 +24,10 @@ struct PlanView: View {
         NavigationStack(path: $router.planPath) {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    PlanHeader(name: profileStore.name, storeName: profileStore.storeName, store: profileStore.store)
+                    HStack(alignment: .top, spacing: Theme.Spacing.m) {
+                        PlanHeader(name: profileStore.name, storeName: profileStore.storeName, store: profileStore.store)
+                        quickActions.padding(.top, Theme.Spacing.l)
+                    }
                     if planStore.hasPlan {
                         planContent
                     } else {
@@ -46,7 +51,7 @@ struct PlanView: View {
             .overlay(alignment: .top) {
                 if router.showPlanReveal {
                     PlanRevealToast(name: profileStore.name) {
-                        withAnimation(Theme.spring) { router.showPlanReveal = false }
+                        withAnimation(reduceMotion ? nil : Theme.Motion.fadeOut) { router.showPlanReveal = false }
                     }
                     .transition(.move(edge: .top).combined(with: .opacity))
                 }
@@ -56,6 +61,7 @@ struct PlanView: View {
                     GeneratingOverlay()
                 }
             }
+            .animation(reduceMotion ? nil : Theme.Motion.fadeIn, value: planStore.isGenerating)
         }
         .sheet(item: $swapTarget) { meal in
             SwapSheet(meal: meal)
@@ -100,8 +106,38 @@ struct PlanView: View {
             guard router.showPlanReveal else { return }
             Haptics.success()
             try? await Task.sleep(nanoseconds: 3_500_000_000)
-            withAnimation(Theme.spring) { router.showPlanReveal = false }
+            guard !Task.isCancelled else { return }
+            withAnimation(reduceMotion ? nil : Theme.Motion.fadeOut) { router.showPlanReveal = false }
         }
+    }
+
+    private var quickActions: some View {
+        Menu {
+            Button {
+                router.gate(isPro: isPro) {
+                    router.pendingImportText = nil
+                    router.isImportPresented = true
+                }
+            } label: {
+                Label("Import recipe", systemImage: "square.and.arrow.down")
+            }
+            Button {
+                if planStore.hasPlan {
+                    router.gate(isPro: isPro) { isEditingWeek = true }
+                } else {
+                    Task { await planStore.generatePlan() }
+                }
+            } label: {
+                Label(planStore.hasPlan ? String(localized: "Edit week") : String(localized: "Build my week"), systemImage: "calendar")
+            }
+        } label: {
+            Image(systemName: "plus")
+                .font(.system(size: 17, weight: .bold))
+                .foregroundStyle(Theme.tomatoDeep)
+                .frame(width: 44, height: 44)
+                .background(Theme.tomatoSoft, in: Circle())
+        }
+        .accessibilityLabel(Text("Quick actions"))
     }
 
     @ViewBuilder

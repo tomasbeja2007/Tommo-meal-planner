@@ -442,6 +442,7 @@ struct StepChips: View {
 
 /// Floating countdown.
 struct TimerPill: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
     let timer: CountdownTimer
 
     var body: some View {
@@ -456,7 +457,7 @@ struct TimerPill: View {
                     .font(.system(.title3, design: .rounded).weight(.bold))
                     .monospacedDigit()
                     .foregroundStyle(Theme.aubergine)
-                    .contentTransition(.numericText(countsDown: true))
+                    .contentTransition(reduceMotion ? .identity : .numericText(countsDown: true))
             }
             Spacer()
             if !timer.didFinish {
@@ -493,7 +494,7 @@ struct TimerPill: View {
                 .fill(Theme.card)
                 .shadow(color: Color.black.opacity(0.12), radius: 14, x: 0, y: 4)
         )
-        .animation(.default, value: timer.remaining)
+        .animation(reduceMotion ? nil : Theme.Motion.update, value: timer.remaining)
     }
 }
 

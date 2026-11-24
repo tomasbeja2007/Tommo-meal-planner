@@ -42,7 +42,7 @@ struct GroceriesView: View {
             .navigationTitle(String(localized: "Grocery list"))
             .toolbar { toolbarContent }
             .overlay(alignment: .bottom) {
-                if showDoneToast {
+                if showDoneToast && planStore.allGroceriesChecked {
                     ShopDoneToast()
                         .padding(.bottom, Theme.Spacing.l)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -54,13 +54,16 @@ struct GroceriesView: View {
                 .presentationDetents([.height(320)])
         }
         .onChange(of: planStore.allGroceriesChecked) { _, allDone in
-            guard allDone else { return }
-            Haptics.success()
-            withAnimation(Theme.spring) { showDoneToast = true }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) {
-                withAnimation(Theme.spring) { showDoneToast = false }
-            }
+            if allDone { Haptics.success() }
+            withAnimation(reduceMotion ? nil : Theme.Motion.update) { showDoneToast = allDone }
         }
+        .task(id: showDoneToast) {
+            guard showDoneToast else { return }
+            try? await Task.sleep(for: .seconds(2.8))
+            guard !Task.isCancelled else { return }
+            withAnimation(reduceMotion ? nil : Theme.Motion.update) { showDoneToast = false }
+        }
+        .onDisappear { showDoneToast = false }
     }
 
     private var listContent: some View {
@@ -138,7 +141,7 @@ struct GroceriesView: View {
             .accessibilityLabel(Text("Share grocery list"))
             Menu {
                 Button(String(localized: "Uncheck all"), systemImage: "arrow.uturn.backward") {
-                    withAnimation(Theme.spring) { planStore.uncheckAll() }
+                    withAnimation(reduceMotion ? nil : Theme.Motion.update) { planStore.uncheckAll() }
                 }
                 Button(String(localized: "Add item"), systemImage: "plus") { isAddingExtra = true }
             } label: {
@@ -211,6 +214,7 @@ private struct AisleHeader: View {
 }
 
 struct GroceryRow: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
     let item: GroceryItem
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
@@ -218,7 +222,7 @@ struct GroceryRow: View {
     var body: some View {
         let checked: Bool = planStore.isChecked(item.key)
         Button {
-            withAnimation(Theme.spring) { planStore.toggleChecked(item.key) }
+            withAnimation(reduceMotion ? nil : Theme.Motion.update) { planStore.toggleChecked(item.key) }
         } label: {
             HStack(alignment: .top, spacing: Theme.Spacing.m) {
                 CheckCircle(isChecked: checked)
@@ -250,6 +254,7 @@ struct GroceryRow: View {
                         .foregroundStyle(Theme.aubergineFaint)
                 }
             }
+            .frame(minHeight: 44)
             .padding(.vertical, 4)
             .contentShape(Rectangle())
         }

@@ -28,8 +28,8 @@ struct MacrosCard: View {
                     .foregroundStyle(Theme.aubergineFaint)
             }
             MacroBarRow(label: String(localized: "Protein"), grams: macros.protein, fraction: macros.protein / totalGrams, tint: Theme.macroProtein, delay: 0)
-            MacroBarRow(label: String(localized: "Carbs"), grams: macros.carbs, fraction: macros.carbs / totalGrams, tint: Theme.macroCarbs, delay: 0.06)
-            MacroBarRow(label: String(localized: "Fat"), grams: macros.fat, fraction: macros.fat / totalGrams, tint: Theme.macroFat, delay: 0.12)
+            MacroBarRow(label: String(localized: "Carbs"), grams: macros.carbs, fraction: macros.carbs / totalGrams, tint: Theme.macroCarbs, delay: Theme.Motion.stagger)
+            MacroBarRow(label: String(localized: "Fat"), grams: macros.fat, fraction: macros.fat / totalGrams, tint: Theme.macroFat, delay: 2 * Theme.Motion.stagger)
             if let note {
                 Text(note)
                     .font(.caption)

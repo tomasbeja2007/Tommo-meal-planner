@@ -121,6 +121,7 @@ public struct LoopClock<Content: View>: View {
     var paused: Bool
     let content: (Double) -> Content
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
     @State private var start = Date()
 
     public init(period: Double, paused: Bool = false, @ViewBuilder content: @escaping (Double) -> Content) {
@@ -130,7 +131,7 @@ public struct LoopClock<Content: View>: View {
     }
 
     public var body: some View {
-        let still = paused || reduceMotion
+        let still = paused || reduceMotion || scenePhase != .active
         TimelineView(.animation(minimumInterval: nil, paused: still)) { context in
             let t = still ? 0 : (context.date.timeIntervalSince(start) * 1000).truncatingRemainder(dividingBy: period)
             content(t)

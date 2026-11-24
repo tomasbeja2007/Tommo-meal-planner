@@ -10,7 +10,7 @@ struct DayList: View {
     let onAdd: (Date) -> Void
 
     var body: some View {
-        VStack(spacing: Theme.Spacing.m) {
+        LazyVStack(spacing: Theme.Spacing.m) {
             ForEach(planStore.weekDays, id: \.self) { day in
                 if let meal = planStore.meal(on: day), let recipe = planStore.recipe(for: meal) {
                     MealCard(
@@ -35,6 +35,7 @@ struct DayList: View {
 struct MealCard: View {
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
     let day: Date
     let meal: PlannedMeal
     let recipe: Recipe
@@ -52,7 +53,10 @@ struct MealCard: View {
                     HStack(alignment: .top, spacing: Theme.Spacing.m) {
                         DishTileView(recipe: recipe, size: 76)
                             .overlay(alignment: .bottomTrailing) {
-                                if meal.isCooked { CookedBadge().offset(x: 4, y: 4) }
+                                if meal.isCooked {
+                                    CookedBadge().offset(x: 4, y: 4)
+                                        .transition(.scale(scale: 0.9).combined(with: .opacity))
+                                }
                             }
                         MealCardText(recipe: recipe, meal: meal, cost: cost, currencyCode: profileStore.currencyCode, macros: repository.nutrition(for: recipe).macros)
                         Spacer(minLength: 0)
@@ -73,7 +77,8 @@ struct MealCard: View {
             }
         }
         .cardStyle(padding: Theme.Spacing.m)
-        .opacity(meal.isCooked ? 0.6 : 1)
+        .opacity(meal.isCooked ? 0.75 : 1)
+        .animation(reduceMotion ? nil : Theme.Motion.update, value: meal.isCooked)
     }
 }
 

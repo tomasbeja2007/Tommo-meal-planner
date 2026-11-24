@@ -5,6 +5,7 @@ import ForkcastCore
 /// Two screens: the trial-reminder promise, then the plan selector.
 struct PaywallFlow: View {
     @Environment(\.dismiss) private var dismiss: DismissAction
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @State private var showsPlans: Bool = false
 
@@ -13,10 +14,10 @@ struct PaywallFlow: View {
             Theme.cream.ignoresSafeArea()
             if showsPlans || !subscriptions.isEligibleForTrial {
                 PaywallView { dismiss() }
-                    .transition(.move(edge: .trailing).combined(with: .opacity))
+                    .transition(reduceMotion ? .identity : .move(edge: .trailing).combined(with: .opacity))
             } else {
                 TrialReminderView(
-                    onContinue: { withAnimation(Theme.spring) { showsPlans = true } },
+                    onContinue: { withAnimation(reduceMotion ? nil : Theme.Motion.selection) { showsPlans = true } },
                     onClose: { dismiss() }
                 )
                 .transition(.opacity)

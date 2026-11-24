@@ -74,6 +74,7 @@ struct CountStepperRow: View {
 
 /// Compact "− n +" control.
 struct RoundStepper: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Binding var value: Int
     let range: ClosedRange<Int>
     var suffix: String = ""
@@ -86,8 +87,8 @@ struct RoundStepper: View {
                 .monospacedDigit()
                 .foregroundStyle(Theme.aubergine)
                 .frame(minWidth: 32)
-                .contentTransition(.numericText())
-                .animation(Theme.spring, value: value)
+                .contentTransition(reduceMotion ? .identity : .numericText())
+                .animation(reduceMotion ? nil : Theme.Motion.update, value: value)
             stepButton(systemImage: "plus", enabled: value < range.upperBound) { value += 1 }
         }
         .sensoryFeedback(.selection, trigger: value)
