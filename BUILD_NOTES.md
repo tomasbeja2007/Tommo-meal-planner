@@ -17,6 +17,13 @@ reference-screens/           Competitor screenshots (reference only, not shipped
 
 ## 1. First run on the Mac
 
+**Quick start:** from the repo folder run `./setup-mac.sh`. It installs XcodeGen with Homebrew if needed,
+generates `Forkcast.xcodeproj` and opens it. Then do step 3 (Team) below and press Run.
+Run it again after pulling changes that add or remove files or touch `project.yml`, because the
+`.xcodeproj` is generated and not committed (it's in `.gitignore`).
+
+Step by step:
+
 1. Install XcodeGen and generate the project:
    ```bash
    brew install xcodegen
