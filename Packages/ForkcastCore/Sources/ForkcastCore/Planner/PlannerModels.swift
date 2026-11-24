@@ -50,11 +50,14 @@ public struct PlanSlot: Hashable, Sendable {
     public let date: Date
     /// ISO weekday 1...7
     public let weekday: Int
+    /// Only recipes of this meal type fill the slot.
+    public let mealType: MealType
 
-    public init(index: Int, date: Date, weekday: Int) {
+    public init(index: Int, date: Date, weekday: Int, mealType: MealType = .dinner) {
         self.index = index
         self.date = date
         self.weekday = weekday
+        self.mealType = mealType
     }
 }
 
@@ -104,6 +107,7 @@ public struct PlannedMealDraft: Hashable, Sendable {
     public let slotIndex: Int
     public let date: Date
     public let weekday: Int
+    public let mealType: MealType
     public let recipeId: String
     public let servings: Double
     /// This meal's share of the basket.

@@ -37,6 +37,8 @@ public struct Recipe: Codable, Identifiable, Hashable, Sendable {
     public var steps: [String]
     public var imageName: String?
     public var isLeftoverFriendly: Bool
+    /// Breakfast, lunch, dinner or snack. Older JSON without the key means dinner.
+    public var mealType: MealType
 
     // User-recipe extras (absent from bundled JSON).
     public var source: RecipeSourceKind
@@ -60,6 +62,7 @@ public struct Recipe: Codable, Identifiable, Hashable, Sendable {
         steps: [String] = [],
         imageName: String? = nil,
         isLeftoverFriendly: Bool = false,
+        mealType: MealType = .dinner,
         source: RecipeSourceKind = .bundled,
         macroOverride: Macros? = nil,
         tags: [String] = [],
@@ -79,6 +82,7 @@ public struct Recipe: Codable, Identifiable, Hashable, Sendable {
         self.steps = steps
         self.imageName = imageName
         self.isLeftoverFriendly = isLeftoverFriendly
+        self.mealType = mealType
         self.source = source
         self.macroOverride = macroOverride
         self.tags = tags
@@ -88,6 +92,7 @@ public struct Recipe: Codable, Identifiable, Hashable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, title, emoji, cuisine, vibes, appliances, prepMinutes, cookMinutes, baseServings, ingredients, steps, imageName, isLeftoverFriendly
+        case mealType
         case source, macroOverride, tags, notes, sourceURL
     }
 
@@ -106,6 +111,7 @@ public struct Recipe: Codable, Identifiable, Hashable, Sendable {
         steps = try c.decodeIfPresent([String].self, forKey: .steps) ?? []
         imageName = try c.decodeIfPresent(String.self, forKey: .imageName)
         isLeftoverFriendly = try c.decodeIfPresent(Bool.self, forKey: .isLeftoverFriendly) ?? false
+        mealType = try c.decodeIfPresent(MealType.self, forKey: .mealType) ?? .dinner
         source = try c.decodeIfPresent(RecipeSourceKind.self, forKey: .source) ?? .bundled
         macroOverride = try c.decodeIfPresent(Macros.self, forKey: .macroOverride)
         tags = try c.decodeIfPresent([String].self, forKey: .tags) ?? []

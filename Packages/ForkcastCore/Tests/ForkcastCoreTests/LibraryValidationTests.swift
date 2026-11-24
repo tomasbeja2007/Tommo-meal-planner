@@ -6,7 +6,11 @@ final class LibraryValidationTests: XCTestCase {
 
     func testCatalogLoads() throws {
         let loaded = try FoodCatalog.loadBundled()
-        XCTAssertEqual(loaded.recipes.count, 40)
+        XCTAssertEqual(loaded.recipes.count, 72)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 40)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .breakfast }.count, 12)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .lunch }.count, 12)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .snack }.count, 8)
         XCTAssertGreaterThanOrEqual(loaded.ingredients.count, 140)
         XCTAssertEqual(loaded.countries.first?.id, "us", "United States must be first in every list")
         XCTAssertEqual(loaded.countries[1].id, "gb", "then the United Kingdom")
@@ -37,12 +41,14 @@ final class LibraryValidationTests: XCTestCase {
 
     func testRecipesHaveStepsAndSensibleMacros() {
         for recipe in catalog.recipes {
-            XCTAssertTrue((6...10).contains(recipe.steps.count), "\(recipe.id) has \(recipe.steps.count) steps")
+            XCTAssertTrue(recipe.mealType.stepRange.contains(recipe.steps.count), "\(recipe.id) (\(recipe.mealType.rawValue)) has \(recipe.steps.count) steps")
             XCTAssertTrue([2, 4].contains(recipe.baseServings), "\(recipe.id) baseServings")
-            XCTAssertFalse(recipe.appliances.isEmpty, "\(recipe.id) needs appliances")
+            if recipe.mealType == .dinner {
+                XCTAssertFalse(recipe.appliances.isEmpty, "\(recipe.id) needs appliances")
+            }
             let nutrition = NutritionCalculator.perServing(recipe, catalog: catalog)
             XCTAssertFalse(nutrition.hasIncompleteData, recipe.id)
-            XCTAssertTrue((250...950).contains(nutrition.macros.kcal), "\(recipe.id): \(Int(nutrition.macros.kcal)) kcal per serving")
+            XCTAssertTrue(recipe.mealType.kcalRange.contains(nutrition.macros.kcal), "\(recipe.id) (\(recipe.mealType.rawValue)): \(Int(nutrition.macros.kcal)) kcal per serving")
         }
     }
 
@@ -54,18 +60,20 @@ final class LibraryValidationTests: XCTestCase {
         }
     }
 
+    /// The dinner library's original coverage targets.
     func testCoverageRequirements() {
-        let profiles = catalog.recipes.map { ($0, RecipeClassifier.profile(for: $0, catalog: catalog)) }
+        let dinners: [Recipe] = catalog.recipes.filter { $0.mealType == .dinner }
+        let profiles = dinners.map { ($0, RecipeClassifier.profile(for: $0, catalog: catalog)) }
         let vegetarian = profiles.filter { $0.1.diet >= .vegetarian }.count
         let vegan = profiles.filter { $0.1.diet == .vegan }.count
         let pescatarian = profiles.filter { $0.1.diet == .pescatarian }.count
         let glutenFree = profiles.filter { $0.1.isGlutenFree }.count
         let dairyFree = profiles.filter { $0.1.isDairyFree }.count
-        let quick = catalog.recipes.filter { $0.totalMinutes <= 25 }.count
-        let airFryer = catalog.recipes.filter { $0.appliances.contains(.airFryer) }.count
-        let slowCooker = catalog.recipes.filter { $0.appliances.contains(.slowCooker) }.count
-        let microwaveOnly = catalog.recipes.filter { $0.appliances == [.microwave] }.count
-        let onePan = catalog.recipes.filter { $0.vibes.contains(.onePan) }.count
+        let quick = dinners.filter { $0.totalMinutes <= 25 }.count
+        let airFryer = dinners.filter { $0.appliances.contains(.airFryer) }.count
+        let slowCooker = dinners.filter { $0.appliances.contains(.slowCooker) }.count
+        let microwaveOnly = dinners.filter { $0.appliances == [.microwave] }.count
+        let onePan = dinners.filter { $0.vibes.contains(.onePan) }.count
         let meatProteins = Set(profiles.map { $0.1.mainProtein })
 
         XCTAssertGreaterThanOrEqual(vegetarian, 14)
@@ -80,6 +88,21 @@ final class LibraryValidationTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(onePan, 6)
         for protein in [ProteinGroup.chicken, .beef, .pork, .turkey] {
             XCTAssertTrue(meatProteins.contains(protein), "missing \(protein)")
+        }
+    }
+
+    /// Every meal type can fill a week for the common diets and allergies.
+    func testBreakfastLunchAndSnackCoverage() {
+        for type in [MealType.breakfast, .lunch, .snack] {
+            let recipes: [Recipe] = catalog.recipes.filter { $0.mealType == type }
+            let profiles = recipes.map { RecipeClassifier.profile(for: $0, catalog: catalog) }
+            let minimum: Int = type == .snack ? 3 : 4
+            XCTAssertGreaterThanOrEqual(profiles.filter { $0.diet >= .vegetarian }.count, minimum * 2, "\(type) vegetarian")
+            XCTAssertGreaterThanOrEqual(profiles.filter { $0.diet == .vegan }.count, minimum / 2 + 1, "\(type) vegan")
+            XCTAssertGreaterThanOrEqual(profiles.filter { $0.isGlutenFree }.count, minimum, "\(type) gluten-free")
+            XCTAssertGreaterThanOrEqual(profiles.filter { $0.isDairyFree }.count, minimum, "\(type) dairy-free")
+            XCTAssertGreaterThanOrEqual(profiles.filter { !$0.allergens.contains(.peanut) && !$0.allergens.contains(.treeNut) }.count, minimum + 2, "\(type) nut-free")
+            XCTAssertGreaterThanOrEqual(recipes.filter { $0.appliances.allSatisfy { [.stovetop, .microwave].contains($0) } }.count, minimum, "\(type) without an oven")
         }
     }
 

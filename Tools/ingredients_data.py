@@ -229,4 +229,14 @@ ROWS = [
   I("tempeh","tempeh","tempeh",None,OT,["soy"],"",(192,20,7.6,11,0),"g",None,(200,"200 g block","7 oz block","block","blocks"),False,"🟫","tofu",prices=(3.99,2.75,2.99)),
   I("raisins","raisins","raisins",None,OT,[],"",(299,3.1,79,0.5,3.7),"g",{"tbsp":9},(250,"250 g bag","9 oz box","bag","bags"),False,"🍇",prices=(2.99,1.00,1.49)),
   I("dark-chocolate","dark chocolate","dark chocolate",None,OT,["dairy","soy"],A,(546,4.9,61,31,7),"g",{"piece":10},(100,"100 g bar","3.5 oz bar","bar","bars"),False,"🍫",prices=(2.99,1.50,1.79)),
+
+  # ---------- Breakfast, lunch & snacks (Nov 2026) ----------
+  I("banana","banana","bananas",None,P,[],"",(89,1.1,23,0.3,2.6),"g",{"piece":120},(720,"bunch of 6","bunch of 6","bunch","bunches"),False,"🍌",prices=(1.69,0.95,1.29)),
+  I("berries-frozen","frozen mixed berries","frozen mixed berries",None,FR,[],"",(50,0.7,12,0.3,2.4),"g",{"cup":140},(500,"500 g bag","16 oz bag","bag","bags"),False,"🫐",prices=(4.49,2.00,2.79)),
+  I("chia-seeds","chia seeds","chia seeds",None,OT,[],"",(486,17,42,31,34),"g",{"tbsp":12,"tsp":4},(200,"200 g bag","7 oz bag","bag","bags"),False,"🌱",prices=(5.99,2.50,3.49)),
+  I("hummus","hummus","hummus",None,DE,["sesame"],"",(166,7.9,14,9.6,6),"g",{"tbsp":15,"cup":246},(200,"200 g tub","8 oz tub","tub","tubs"),False,"🫘",prices=(2.99,1.20,1.79)),
+  I("wholemeal-bread","whole wheat bread","whole wheat bread","wholemeal bread",BK,["gluten"],"",(247,13,41,3.4,7),"g",{"slice":40},(800,"800 g loaf","24 oz loaf","loaf","loaves"),False,"🍞",prices=(3.49,1.30,1.79)),
+  I("soy-milk","soy milk","soy milk",None,DE,["soy"],"",(54,3.3,6,1.8,0.6),"ml",{"cup":243,"tbsp":15},(1000,"1 L carton","32 fl oz carton","carton","cartons"),False,"🥛",prices=(2.99,1.20,1.49),gpm=1.01),
+  I("rice-cakes","rice cakes","rice cakes",None,OT,[],"",(387,8,81,2.8,4.2),"g",{"piece":9},(130,"130 g pack","4.5 oz pack","pack","packs"),False,"🍘",prices=(2.49,1.00,1.29)),
+  I("popcorn-kernels","popcorn kernels","popcorn kernels",None,OT,[],"",(387,13,78,4.5,15),"g",{"tbsp":12,"cup":200},(500,"500 g bag","16 oz bag","bag","bags"),False,"🍿",prices=(3.49,1.50,1.99)),
 ]

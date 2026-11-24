@@ -88,7 +88,8 @@
    "Serve the curry spooned over the rice."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "slow-cooker-red-lentil-dahl",
@@ -194,7 +195,8 @@
    "Scatter with cilantro and serve with the rice."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "black-bean-tacos",
@@ -295,7 +297,8 @@
    "Finish with the remaining onion, cilantro and lime wedges for squeezing."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "peanut-noodle-stir-fry",
@@ -382,7 +385,8 @@
    "Serve topped with spring onions, peanuts and the remaining lime cut into wedges."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "roast-veg-chickpea-couscous",
@@ -479,7 +483,8 @@
    "Fold in the roast veg and chickpeas and scatter with parsley."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "sticky-sesame-cauliflower",
@@ -568,7 +573,8 @@
    "Serve over the rice with sesame seeds and spring onions."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "lentil-ragu-spaghetti",
@@ -669,7 +675,8 @@
    "Toss the spaghetti through the sauce and serve."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "sweet-potato-peanut-curry",
@@ -774,7 +781,8 @@
    "Serve over rice, scattered with cilantro."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "microwave-chickpea-curry-bowl",
@@ -848,7 +856,8 @@
    "Divide the rice between two bowls, top with the curry and finish with a spoonful of coconut yogurt."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "air-fryer-halloumi-wraps",
@@ -932,7 +941,8 @@
    "Roll up tightly and cut in half to serve."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "shakshuka",
@@ -1028,7 +1038,8 @@
    "Scatter over the feta and parsley and serve straight from the pan with the bread."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "creamy-tomato-gnocchi-bake",
@@ -1106,7 +1117,8 @@
    "Scatter with basil leaves and serve."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "mushroom-pea-risotto",
@@ -1194,7 +1206,8 @@
    "Season with pepper, cover and rest for 2 minutes before serving."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "two-minute-burrito-bowls",
@@ -1265,7 +1278,8 @@
    "Squeeze over the lime juice and serve."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "veggie-egg-fried-rice",
@@ -1350,7 +1364,8 @@
    "Serve scattered with spring onions."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "paneer-tikka-traybake",
@@ -1428,7 +1443,8 @@
    "Pile the paneer and veg onto the naans, drizzle with yogurt and scatter with cilantro."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "air-fryer-honey-soy-salmon",
@@ -1507,7 +1523,8 @@
    "Serve the salmon on the rice with the beans, scattered with sesame seeds and spring onions."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "thai-red-prawn-curry",
@@ -1593,7 +1610,8 @@
    "Scatter with basil and serve with the rice."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "tuna-sweetcorn-pasta-bake",
@@ -1676,7 +1694,8 @@
    "Tip into a baking dish, scatter over the rest of the cheese and bake for 15 minutes until golden."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "lemon-cod-traybake",
@@ -1753,7 +1772,8 @@
    "Squeeze over the rest of the lemon, scatter with parsley and serve."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "garlic-prawn-spaghetti",
@@ -1829,7 +1849,8 @@
    "Serve topped with arugula."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "air-fryer-lemon-chicken-potatoes",
@@ -1908,7 +1929,8 @@
    "Squeeze the lemon juice over everything and serve."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "slow-cooker-beef-chili",
@@ -2008,7 +2030,8 @@
    "Serve over rice with a spoonful of sour cream."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "slow-cooker-bbq-pulled-chicken",
@@ -2090,7 +2113,8 @@
    "Toast the buns, then fill with the pulled chicken and slaw."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "sheet-pan-chicken-fajitas",
@@ -2178,7 +2202,8 @@
    "Fill the tortillas with chicken and veg and top with sour cream."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "honey-garlic-chicken-stir-fry",
@@ -2268,7 +2293,8 @@
    "Serve over the rice, sprinkled with sesame seeds."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "chicken-tikka-masala",
@@ -2358,7 +2384,8 @@
    "Take off the heat and stir in the yogurt. Scatter with cilantro and serve with rice."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "air-fryer-turkey-meatballs",
@@ -2445,7 +2472,8 @@
    "Serve over the spaghetti, torn basil on top."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "turkey-taco-lettuce-cups",
@@ -2534,7 +2562,8 @@
    "Serve with the remaining lime in wedges."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "weeknight-spaghetti-bolognese",
@@ -2629,7 +2658,8 @@
    "Serve the sauce over the spaghetti with grated parmesan."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "beef-broccoli-rice",
@@ -2713,7 +2743,8 @@
    "Drizzle with sesame oil and serve with the rice."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "korean-beef-rice-bowls",
@@ -2808,7 +2839,8 @@
    "Finish with spring onions and sesame seeds."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "chicken-chorizo-rice",
@@ -2908,7 +2940,8 @@
    "Scatter over the peas, cover for 3 minutes more, then serve with lemon wedges."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "sausage-white-bean-casserole",
@@ -2998,7 +3031,8 @@
    "Serve the casserole in bowls with chunks of bread."
   ],
   "imageName": null,
-  "isLeftoverFriendly": true
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  },
  {
   "id": "miso-pork-sesame-greens",
@@ -3074,7 +3108,8 @@
    "Slice the pork and serve with the rice and greens, sprinkled with sesame seeds."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "bangers-mash-onion-gravy",
@@ -3161,7 +3196,8 @@
    "Serve the sausages on the mash with peas, and pour over the gravy."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "chicken-caesar-salad",
@@ -3248,7 +3284,8 @@
    "Top with the chicken, croutons and the remaining parmesan."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "pesto-chicken-pasta",
@@ -3315,7 +3352,8 @@
    "Serve topped with parmesan."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "thai-basil-chicken",
@@ -3404,7 +3442,8 @@
    "Serve the chicken over rice with a fried egg on top."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
  },
  {
   "id": "beef-kofta-pittas",
@@ -3498,6 +3537,1864 @@
    "Warm the pitas, then fill with koftas, salad and garlic yogurt."
   ],
   "imageName": null,
-  "isLeftoverFriendly": false
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
+ },
+ {
+  "id": "berry-overnight-oats",
+  "title": "Berry overnight oats",
+  "emoji": "🫐",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chia-seeds",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 240,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 150,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Stir the oats, chia seeds, milk and yogurt together in a bowl, or split between two jars.",
+   "Stir in the honey and half the berries.",
+   "Cover and chill overnight, or for at least 4 hours.",
+   "In the morning, loosen with a splash of milk and top with the rest of the berries."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "peanut-banana-porridge",
+  "title": "Peanut butter & banana porridge",
+  "emoji": "🥣",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 2,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 500,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "banana",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 2,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Put the oats, milk and cinnamon in a small pan over a medium heat.",
+   "Bring to a gentle simmer and cook for 5 minutes, stirring often, until thick and creamy.",
+   "Loosen with a splash of water if it gets too thick.",
+   "Spoon into bowls and top with the banana slices.",
+   "Finish each bowl with a spoonful of peanut butter."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "spinach-tomato-scrambled-eggs",
+  "title": "Spinach & tomato scrambled eggs on toast",
+  "emoji": "🍳",
+  "cuisine": "British",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 3,
+  "cookMinutes": 7,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 100,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Beat the eggs with the salt and pepper.",
+   "Melt half the butter in a non-stick pan over a medium heat and soften the tomatoes for 2 minutes.",
+   "Add the spinach and stir until just wilted, then push everything to one side.",
+   "Toast the bread.",
+   "Melt the rest of the butter in the pan, pour in the eggs and stir slowly until softly set.",
+   "Pile the eggs and vegetables onto the toast and serve straight away."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "bean-egg-breakfast-burritos",
+  "title": "Bean & egg breakfast burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "black-beans",
+    "amount": 120,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 30,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Warm the black beans in a small pan with a splash of water, lightly crushing them.",
+   "Beat the eggs with the salt and half the spring onion.",
+   "Scramble the eggs in a non-stick pan over a medium heat until just set.",
+   "Warm the tortillas in a dry pan for 20 seconds on each side.",
+   "Fill each tortilla with beans, eggs, cheese and salsa, then scatter over the rest of the spring onion.",
+   "Fold in the ends, roll up tightly and cut in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "avocado-toast-fried-egg",
+  "title": "Smashed avocado toast with a fried egg",
+  "emoji": "🥑",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 5,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "avocado",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Mash the avocado with the lime juice and salt.",
+   "Toast the bread.",
+   "Heat the oil in a frying pan over a medium heat and fry the eggs for 3 minutes until the whites are set.",
+   "Spread the avocado over the toast.",
+   "Top each slice with an egg and a pinch of chilli flakes."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "greek-yogurt-berry-bowl",
+  "title": "Greek yogurt berry bowl",
+  "emoji": "🍓",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "quickEasy",
+   "healthyish",
+   "highProtein"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 150,
+    "unit": "g",
+    "note": "thawed"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "walnuts",
+    "amount": 30,
+    "unit": "g",
+    "note": "roughly chopped"
+   },
+   {
+    "ingredientId": "chia-seeds",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Leave the berries to thaw in a bowl for 10 minutes, or overnight in the fridge.",
+   "Spoon the yogurt into two bowls.",
+   "Top with the berries and their juice.",
+   "Drizzle with honey and scatter over the walnuts and chia seeds."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "berry-chia-pudding",
+  "title": "Berry chia pudding",
+  "emoji": "🫐",
+  "cuisine": "Other",
+  "vibes": [
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chia-seeds",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-milk",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 150,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Whisk the chia seeds, soy milk and maple syrup together in a bowl.",
+   "Leave for 10 minutes, then whisk again so the seeds don't clump.",
+   "Cover and chill overnight, or for at least 3 hours, until thick.",
+   "Spoon into two bowls and top with the berries."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "berry-banana-smoothie",
+  "title": "Berry & banana smoothie",
+  "emoji": "🥤",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [
+   "blender"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "banana",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-milk",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chia-seeds",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Peel the bananas and break them into the blender.",
+   "Add the frozen berries, soy milk and chia seeds.",
+   "Blend for 1 minute until completely smooth.",
+   "Pour into two glasses and drink straight away."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "sweet-potato-breakfast-hash",
+  "title": "Sweet potato & pepper breakfast hash",
+  "emoji": "🍠",
+  "cuisine": "American",
+  "vibes": [
+   "onePan",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sweet-potato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "peeled and diced"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 120,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oil in a large frying pan over a medium-high heat.",
+   "Add the sweet potato and cook for 8 minutes, stirring now and then, until starting to soften.",
+   "Add the onion and pepper and cook for 5 minutes more.",
+   "Stir in the paprika and black beans and cook for 2 minutes until hot.",
+   "Season with salt and serve."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "cinnamon-french-toast",
+  "title": "Cinnamon French toast with berries",
+  "emoji": "🍞",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 100,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 100,
+    "unit": "g",
+    "note": "thawed"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Whisk the eggs, milk and cinnamon in a shallow dish.",
+   "Melt half the butter in a frying pan over a medium heat.",
+   "Dip two slices of bread in the egg mixture for a few seconds on each side.",
+   "Fry for 2 minutes on each side until golden. Repeat with the rest of the butter and bread.",
+   "Serve topped with the berries and a drizzle of maple syrup."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "turmeric-tofu-scramble",
+  "title": "Turmeric tofu scramble",
+  "emoji": "🍳",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 100,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "tofu",
+    "amount": 300,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oil in a frying pan over a medium heat and cook the spring onions and tomatoes for 2 minutes.",
+   "Crumble the tofu into the pan with your fingers.",
+   "Stir in the turmeric and salt and cook for 4 minutes until hot and golden.",
+   "Add the spinach and stir until just wilted.",
+   "Serve straight away."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "ham-cheese-omelette",
+  "title": "Ham & cheese omelette",
+  "emoji": "🍳",
+  "cuisine": "British",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 3,
+  "cookMinutes": 5,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 2,
+    "unit": "slice",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 30,
+    "unit": "g",
+    "note": "grated"
+   }
+  ],
+  "steps": [
+   "Beat the eggs with half the spring onion.",
+   "Melt the butter in a non-stick frying pan over a medium heat.",
+   "Pour in the eggs and cook for 2 minutes, drawing the edges into the middle.",
+   "Scatter the ham and cheese over one half and cook for 1 minute more.",
+   "Fold the omelette over, cut in half and serve with the rest of the spring onion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast"
+ },
+ {
+  "id": "chicken-hummus-wraps",
+  "title": "Chicken, hummus & spinach wraps",
+  "emoji": "🌯",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "hummus",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Slice the chicken into thin strips and toss with the paprika and oil.",
+   "Fry in a pan over a medium-high heat for 6–8 minutes until cooked through.",
+   "Warm the tortillas in a dry pan for 20 seconds on each side.",
+   "Spread each tortilla with hummus.",
+   "Add the spinach, cucumber and chicken, then roll up tightly and cut in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "tuna-sweetcorn-sandwiches",
+  "title": "Tuna & sweetcorn sandwiches",
+  "emoji": "🥪",
+  "cuisine": "British",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [],
+  "prepMinutes": 8,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "canned-tuna",
+    "amount": 145,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 80,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.25,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Flake the tuna into a bowl.",
+   "Stir in the sweetcorn, mayonnaise and pepper.",
+   "Spread over two slices of bread and top with the cucumber.",
+   "Close the sandwiches and cut in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "greek-chickpea-salad",
+  "title": "Greek salad with feta & chickpeas",
+  "emoji": "🥗",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 150,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "olives",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "red-wine-vinegar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 100,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Put the cucumber, tomatoes, onion, chickpeas and olives in a large bowl.",
+   "Whisk the oil, vinegar and oregano together.",
+   "Pour the dressing over the salad and toss well.",
+   "Crumble the feta over the top and serve."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "black-bean-quinoa-bowl",
+  "title": "Quinoa, black bean & avocado bowl",
+  "emoji": "🥗",
+  "cuisine": "Mexican",
+  "vibes": [
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "quinoa",
+    "amount": 120,
+    "unit": "g",
+    "note": "rinsed"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 100,
+    "unit": "g",
+    "note": "quartered"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g",
+    "note": "chopped"
+   }
+  ],
+  "steps": [
+   "Cook the quinoa in a pan of boiling water for 15 minutes, then drain well.",
+   "Meanwhile, warm the black beans in a small pan with a splash of water.",
+   "Toss the quinoa with the tomatoes, the juice of the lime and the salt.",
+   "Divide between two bowls and top with the beans and avocado.",
+   "Scatter over the cilantro and serve warm or cold."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch"
+ },
+ {
+  "id": "red-lentil-carrot-soup",
+  "title": "Red lentil & carrot soup",
+  "emoji": "🥣",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "healthyish",
+   "batchFriendly",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop",
+   "blender"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 3,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "red-lentils",
+    "amount": 250,
+    "unit": "g",
+    "note": "rinsed"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 1000,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oil in a large pan over a medium heat and soften the onion and carrots for 6 minutes.",
+   "Stir in the cumin and cook for 1 minute.",
+   "Add the lentils and stock and bring to the boil.",
+   "Simmer for 20 minutes until the lentils have collapsed.",
+   "Blend until smooth, loosening with a little water if needed.",
+   "Season with salt and serve."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch"
+ },
+ {
+  "id": "lemon-couscous-halloumi",
+  "title": "Lemon couscous with halloumi",
+  "emoji": "🧀",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "couscous",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 200,
+    "unit": "ml",
+    "note": "hot"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 100,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "mint",
+    "amount": 10,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "halloumi",
+    "amount": 200,
+    "unit": "g",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Pour the hot stock over the couscous, cover and leave for 5 minutes.",
+   "Fluff with a fork and stir in the juice of the lemon and the oil.",
+   "Fold in the tomatoes, cucumber and mint.",
+   "Fry the halloumi in a dry non-stick pan over a medium-high heat for 2 minutes on each side until golden.",
+   "Serve the couscous topped with the halloumi."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "chicken-noodle-soup",
+  "title": "Ginger chicken noodle soup",
+  "emoji": "🍜",
+  "cuisine": "Chinese",
+  "vibes": [
+   "comfort",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 1000,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 10,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 1,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "egg-noodles",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Bring the stock, ginger and carrot to a simmer in a large pan.",
+   "Add the whole chicken breast and poach gently for 12 minutes until cooked through.",
+   "Lift out the chicken and shred it with two forks.",
+   "Add the noodles to the pan and cook for 4 minutes.",
+   "Return the chicken, stir in the soy sauce and ladle into bowls.",
+   "Scatter over the spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "caprese-pesto-toastie",
+  "title": "Tomato, mozzarella & pesto toastie",
+  "emoji": "🥪",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 6,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp",
+    "note": "softened"
+   },
+   {
+    "ingredientId": "pesto",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Butter one side of each slice of bread.",
+   "Spread pesto on the other side of two slices, then layer on the mozzarella and tomato.",
+   "Top with the remaining slices, buttered side out.",
+   "Cook in a frying pan over a medium heat for 3 minutes on each side until golden and melting."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "smashed-chickpea-sandwiches",
+  "title": "Smashed chickpea salad sandwiches",
+  "emoji": "🥪",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "hummus",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 1,
+    "unit": "piece",
+    "note": "finely chopped"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.25,
+    "unit": "piece",
+    "note": "finely chopped"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   }
+  ],
+  "steps": [
+   "Roughly mash the chickpeas with a fork, leaving some whole.",
+   "Stir in the hummus, lemon juice and mustard.",
+   "Fold in the celery and onion.",
+   "Spread over two slices of bread, top with the rest and cut in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "cheesy-bean-jacket-potatoes",
+  "title": "Microwave jacket potatoes with cheesy beans",
+  "emoji": "🥔",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "microwave"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 60,
+    "unit": "g",
+    "note": "grated"
+   }
+  ],
+  "steps": [
+   "Prick the potatoes all over with a fork.",
+   "Microwave on high for 8–10 minutes, turning halfway, until soft all the way through.",
+   "Meanwhile, mix the beans, passata and paprika in a bowl and microwave for 2 minutes until hot.",
+   "Split the potatoes and add a little butter to each.",
+   "Spoon over the beans and top with the cheese."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "tuna-white-bean-salad",
+  "title": "Tuna & white bean salad",
+  "emoji": "🐟",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "healthyish",
+   "highProtein"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 150,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "arugula",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "canned-tuna",
+    "amount": 145,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g",
+    "note": "chopped"
+   }
+  ],
+  "steps": [
+   "Put the beans, onion and tomatoes in a bowl.",
+   "Dress with the juice of the lemon and the oil.",
+   "Fold through the arugula.",
+   "Flake the tuna over the top and scatter with parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "sweet-potato-bean-quesadillas",
+  "title": "Sweet potato & black bean quesadillas",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "sweet-potato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "peeled and grated"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 60,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 4,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Cook the grated sweet potato in a dry non-stick pan over a medium heat for 5 minutes until soft.",
+   "Stir in the cumin and beans, lightly crushing the beans, then tip into a bowl.",
+   "Spread the filling over two tortillas, scatter with cheese and top with the other tortillas.",
+   "Cook one at a time in the pan for 2–3 minutes on each side until crisp and melting.",
+   "Cut into wedges and serve with the salsa."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch"
+ },
+ {
+  "id": "hummus-veg-sticks",
+  "title": "Hummus with veg sticks",
+  "emoji": "🥕",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "carrot",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "hummus",
+    "amount": 200,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cut the carrots, cucumber and pepper into sticks.",
+   "Spoon the hummus into a bowl and serve with the veg for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack"
+ },
+ {
+  "id": "apple-peanut-butter",
+  "title": "Apple slices with peanut butter",
+  "emoji": "🍎",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "apple",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Core the apples and cut each into 8 slices.",
+   "Spoon the peanut butter into a small bowl and dust with cinnamon.",
+   "Serve the apple slices with the peanut butter for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack"
+ },
+ {
+  "id": "paprika-popcorn",
+  "title": "Stovetop paprika popcorn",
+  "emoji": "🍿",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "family",
+   "lowCalorie"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 1,
+  "cookMinutes": 5,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "popcorn-kernels",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oil in a large pan with a lid over a medium-high heat with 3 kernels in it.",
+   "When they pop, add the rest of the kernels, cover and shake the pan.",
+   "Cook for 2–3 minutes, shaking often, until the popping slows to a few seconds apart.",
+   "Tip into a bowl and toss with the paprika and salt."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack"
+ },
+ {
+  "id": "oat-raisin-energy-balls",
+  "title": "Oat & raisin energy balls",
+  "emoji": "🟤",
+  "cuisine": "Other",
+  "vibes": [
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [],
+  "prepMinutes": 15,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chia-seeds",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Mix everything together in a bowl until it clumps.",
+   "Roll into 12 small balls with damp hands.",
+   "Chill for 20 minutes to firm up.",
+   "Keep in a sealed box in the fridge for up to 5 days."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "snack"
+ },
+ {
+  "id": "yogurt-berry-pots",
+  "title": "Yogurt & berry pots",
+  "emoji": "🍓",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Thaw the berries in a bowl for 10 minutes and lightly crush half of them.",
+   "Layer the yogurt and berries in four small glasses or pots.",
+   "Drizzle with honey before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack"
+ },
+ {
+  "id": "avocado-rice-cakes",
+  "title": "Rice cakes with avocado & chilli",
+  "emoji": "🍘",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "avocado",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "rice-cakes",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Mash the avocado with the lime juice and salt.",
+   "Spread over the rice cakes.",
+   "Finish with a pinch of chilli flakes."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack"
+ },
+ {
+  "id": "crispy-spiced-chickpeas",
+  "title": "Crispy spiced chickpeas",
+  "emoji": "🫘",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "batchFriendly",
+   "healthyish"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chickpeas",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F).",
+   "Pat the chickpeas very dry with a clean tea towel.",
+   "Toss with the oil, paprika, cumin and salt on a baking tray.",
+   "Roast for 25–30 minutes, shaking the tray halfway, until crisp.",
+   "Leave to cool on the tray: they crisp up more as they cool."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "snack"
+ },
+ {
+  "id": "devilled-eggs",
+  "title": "Devilled eggs",
+  "emoji": "🥚",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Lower the eggs into a pan of boiling water and cook for 10 minutes.",
+   "Cool in cold water, then peel and halve lengthways.",
+   "Mash the yolks with the mayonnaise and mustard until smooth.",
+   "Spoon back into the whites and dust with paprika."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack"
  }
 ]

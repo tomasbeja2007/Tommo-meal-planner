@@ -1,13 +1,15 @@
-# Starter recipe library (40 original recipes) used to bootstrap recipes.json.
+# Recipe library used to bootstrap recipes.json: 40 dinners, plus breakfasts, lunches and snacks
+# (meal_recipes.py, Nov 2026).
 # Diet, allergens and macros are NOT stored: ForkcastCore computes them from ingredients.
 
-def R(id, title, emoji, cuisine, vibes, appliances, prep, cook, servings, leftovers, ingredients, steps):
+def R(id, title, emoji, cuisine, vibes, appliances, prep, cook, servings, leftovers, ingredients, steps, meal="dinner"):
     return {
         "id": id, "title": title, "emoji": emoji, "cuisine": cuisine, "vibes": vibes,
         "appliances": appliances, "prepMinutes": prep, "cookMinutes": cook,
         "baseServings": servings,
         "ingredients": [dict({"ingredientId": i[0], "amount": i[1], "unit": i[2]}, **({"note": i[3]} if len(i) > 3 else {})) for i in ingredients],
         "steps": steps, "imageName": None, "isLeftoverFriendly": leftovers,
+        "mealType": meal,
     }
 
 RECIPES = [
@@ -474,3 +476,6 @@ R("beef-kofta-pittas","Beef kofta pittas with garlic yogurt","🥙","Middle East
   "Toss the cucumber and tomato with the lemon juice and remaining parsley.",
   "Warm the pitas, then fill with koftas, salad and garlic yogurt."]),
 ]
+
+from meal_recipes import BREAKFASTS, LUNCHES, SNACKS
+RECIPES += BREAKFASTS + LUNCHES + SNACKS

@@ -41,32 +41,40 @@ public enum BudgetMath {
 
     public static func step(region: RegionPriceKey) -> Double { 5 }
 
+    /// Planned days expressed in dinners: each meal type counts by its `budgetWeight`
+    /// (5 days of breakfast + dinner = 5 × 1.35 = 6.75). Dinners only = `days`.
+    public static func dinnerEquivalents(days: Int, mealTypes: Set<MealType> = [.dinner]) -> Double {
+        let weight: Double = MealType.ordered(mealTypes).reduce(0) { $0 + $1.budgetWeight }
+        return Double(max(1, days)) * weight
+    }
+
     /// Slider range. US default $35–$250, widened for big households.
-    public static func range(region: RegionPriceKey, portions: Double, days: Int, multiplier: Double = 1) -> ClosedRange<Double> {
+    public static func range(region: RegionPriceKey, portions: Double, days: Int, multiplier: Double = 1, mealTypes: Set<MealType> = [.dinner]) -> ClosedRange<Double> {
         let base: (Double, Double)
         switch region {
         case .US: base = (35, 250)
         case .UK: base = (25, 200)
         case .EU: base = (30, 220)
         }
-        let suggested: Double = defaultBudget(region: region, portions: portions, days: days, multiplier: multiplier)
+        let suggested: Double = defaultBudget(region: region, portions: portions, days: days, multiplier: multiplier, mealTypes: mealTypes)
         let lower: Double = roundTo5(base.0 * multiplier)
         let upper: Double = roundTo5(max(base.1 * multiplier, suggested * 2.5))
         return lower...max(upper, lower + 50)
     }
 
-    public static func defaultBudget(region: RegionPriceKey, portions: Double, days: Int, multiplier: Double = 1) -> Double {
-        let raw: Double = portions * Double(max(1, days)) * plannedCostPerPortion(region: region) * multiplier
+    public static func defaultBudget(region: RegionPriceKey, portions: Double, days: Int, multiplier: Double = 1, mealTypes: Set<MealType> = [.dinner]) -> Double {
+        let raw: Double = portions * dinnerEquivalents(days: days, mealTypes: mealTypes) * plannedCostPerPortion(region: region) * multiplier
         return max(roundTo5(raw), 20)
     }
 
-    public static func costPerServing(budget: Double, portions: Double, days: Int) -> Double {
-        let servings: Double = portions * Double(max(1, days))
+    /// Budget per dinner-sized serving.
+    public static func costPerServing(budget: Double, portions: Double, days: Int, mealTypes: Set<MealType> = [.dinner]) -> Double {
+        let servings: Double = portions * dinnerEquivalents(days: days, mealTypes: mealTypes)
         return servings > 0 ? budget / servings : 0
     }
 
-    public static func verdict(budget: Double, portions: Double, days: Int, region: RegionPriceKey, multiplier: Double = 1) -> Verdict {
-        let perServing: Double = costPerServing(budget: budget, portions: portions, days: days)
+    public static func verdict(budget: Double, portions: Double, days: Int, region: RegionPriceKey, multiplier: Double = 1, mealTypes: Set<MealType> = [.dinner]) -> Verdict {
+        let perServing: Double = costPerServing(budget: budget, portions: portions, days: days, mealTypes: mealTypes)
         let typical: Double = plannedCostPerPortion(region: region) * multiplier
         if perServing < typical * 0.8 { return .tight }
         if perServing < typical * 1.6 { return .comfortable }
@@ -75,8 +83,8 @@ public enum BudgetMath {
 
     /// estimatedWeeklySavings = max(5, portionsPerWeek × unplanned − planned × portionsPerWeek) × 0.25,
     /// capped at a believable value. Returns (weekly, yearly).
-    public static func estimatedSavings(budget: Double, portions: Double, days: Int, region: RegionPriceKey, multiplier: Double = 1) -> (weekly: Double, yearly: Double) {
-        let portionsPerWeek: Double = portions * Double(max(1, days))
+    public static func estimatedSavings(budget: Double, portions: Double, days: Int, region: RegionPriceKey, multiplier: Double = 1, mealTypes: Set<MealType> = [.dinner]) -> (weekly: Double, yearly: Double) {
+        let portionsPerWeek: Double = portions * dinnerEquivalents(days: days, mealTypes: mealTypes)
         let plannedPerPortion: Double = portionsPerWeek > 0 ? budget / portionsPerWeek : 0
         let unplanned: Double = unplannedCostPerPortion(region: region) * multiplier
         let gap: Double = portionsPerWeek * unplanned - plannedPerPortion * portionsPerWeek

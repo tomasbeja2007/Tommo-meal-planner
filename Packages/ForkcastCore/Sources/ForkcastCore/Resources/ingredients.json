@@ -5988,5 +5988,281 @@
   "gramsPerUnit": {
    "piece": 10
   }
+ },
+ {
+  "id": "banana",
+  "name": "banana",
+  "pluralName": "bananas",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 89,
+   "protein": 1.1,
+   "carbs": 23,
+   "fat": 0.3,
+   "fiber": 2.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 720,
+   "display": "bunch of 6",
+   "displayImperial": "bunch of 6",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍌",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 120
+  }
+ },
+ {
+  "id": "berries-frozen",
+  "name": "frozen mixed berries",
+  "pluralName": "frozen mixed berries",
+  "aisle": "Frozen",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 50,
+   "protein": 0.7,
+   "carbs": 12,
+   "fat": 0.3,
+   "fiber": 2.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "16 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫐",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 140
+  }
+ },
+ {
+  "id": "chia-seeds",
+  "name": "chia seeds",
+  "pluralName": "chia seeds",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 486,
+   "protein": 17,
+   "carbs": 42,
+   "fat": 31,
+   "fiber": 34
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g bag",
+   "displayImperial": "7 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌱",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 12,
+   "tsp": 4
+  }
+ },
+ {
+  "id": "hummus",
+  "name": "hummus",
+  "pluralName": "hummus",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "sesame"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 166,
+   "protein": 7.9,
+   "carbs": 14,
+   "fat": 9.6,
+   "fiber": 6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g tub",
+   "displayImperial": "8 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "cup": 246
+  }
+ },
+ {
+  "id": "wholemeal-bread",
+  "name": "whole wheat bread",
+  "pluralName": "whole wheat bread",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 247,
+   "protein": 13,
+   "carbs": 41,
+   "fat": 3.4,
+   "fiber": 7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 800,
+   "display": "800 g loaf",
+   "displayImperial": "24 oz loaf",
+   "noun": "loaf",
+   "nounPlural": "loaves"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍞",
+  "tags": [],
+  "ukName": "wholemeal bread",
+  "gramsPerUnit": {
+   "slice": 40
+  }
+ },
+ {
+  "id": "soy-milk",
+  "name": "soy milk",
+  "pluralName": "soy milk",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "soy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 54,
+   "protein": 3.3,
+   "carbs": 6,
+   "fat": 1.8,
+   "fiber": 0.6
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 1000,
+   "display": "1 L carton",
+   "displayImperial": "32 fl oz carton",
+   "noun": "carton",
+   "nounPlural": "cartons"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥛",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 243,
+   "tbsp": 15
+  },
+  "gramsPerMl": 1.01
+ },
+ {
+  "id": "rice-cakes",
+  "name": "rice cakes",
+  "pluralName": "rice cakes",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 387,
+   "protein": 8,
+   "carbs": 81,
+   "fat": 2.8,
+   "fiber": 4.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 130,
+   "display": "130 g pack",
+   "displayImperial": "4.5 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍘",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 9
+  }
+ },
+ {
+  "id": "popcorn-kernels",
+  "name": "popcorn kernels",
+  "pluralName": "popcorn kernels",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 387,
+   "protein": 13,
+   "carbs": 78,
+   "fat": 4.5,
+   "fiber": 15
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "16 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍿",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 12,
+   "cup": 200
+  }
  }
 ]
