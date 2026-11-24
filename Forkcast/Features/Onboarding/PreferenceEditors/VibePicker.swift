@@ -6,6 +6,7 @@ struct VibePicker: View {
     @Binding var selection: Set<Vibe>
     var maxSelection: Int = 3
     @State private var nudge: Int = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
 
     private let columns: [GridItem] = [
         GridItem(.flexible(), spacing: Theme.Spacing.m),
@@ -15,6 +16,7 @@ struct VibePicker: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+            // A 4th tap gently shakes the whole grid (and the counter turns tomato).
             LazyVGrid(columns: columns, spacing: Theme.Spacing.m) {
                 ForEach(Vibe.allCases, id: \.self) { vibe in
                     OptionTile(
@@ -29,12 +31,12 @@ struct VibePicker: View {
                     }
                 }
             }
+            .modifier(ShakeEffect(animatableData: CGFloat(nudge)))
             Text("\(selection.count) of \(maxSelection) picked")
                 .font(.subheadline.weight(.semibold))
                 .monospacedDigit()
                 .foregroundStyle(selection.count == maxSelection ? Theme.tomatoDeep : Theme.aubergineMuted)
                 .frame(maxWidth: .infinity)
-                .modifier(ShakeEffect(animatableData: CGFloat(nudge)))
         }
         .sensoryFeedback(.warning, trigger: nudge)
     }
@@ -45,7 +47,7 @@ struct VibePicker: View {
         } else if selection.count < maxSelection {
             selection.insert(vibe)
         } else {
-            withAnimation(.default) { nudge += 1 }
+            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.4)) { nudge += 1 }
         }
     }
 }

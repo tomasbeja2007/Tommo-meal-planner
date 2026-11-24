@@ -203,4 +203,22 @@ final class PlannerTests: XCTestCase {
         XCTAssertLessThan(elapsed, 2.0)
         print("planner took \(Int(elapsed * 1000)) ms (debug)")
     }
+
+    func testMealPrepModeFavoursLeftoverFriendlyDinners() {
+        let prep = TestSupport.request(profile: PlannerProfile(prefersMealPrep: true))
+        let keeps = planner.score(catalog.recipe(id: "chickpea-spinach-curry")!, request: prep)
+        let doesNot = planner.score(catalog.recipe(id: "mushroom-pea-risotto")!, request: prep)
+        XCTAssertEqual(keeps, 2)
+        XCTAssertEqual(doesNot, 0)
+        let normal = TestSupport.request()
+        XCTAssertEqual(planner.score(catalog.recipe(id: "chickpea-spinach-curry")!, request: normal), 0)
+    }
+
+    func testPreferredCuisineScoresHigher() {
+        let request = TestSupport.request(profile: PlannerProfile(preferredCuisines: [.mediterranean]))
+        let mediterranean = catalog.recipes.first { $0.cuisine == .mediterranean && !$0.isLeftoverFriendly }!
+        let other = catalog.recipes.first { $0.cuisine != .mediterranean }!
+        XCTAssertEqual(planner.score(mediterranean, request: request), 2)
+        XCTAssertEqual(planner.score(other, request: request), 0)
+    }
 }

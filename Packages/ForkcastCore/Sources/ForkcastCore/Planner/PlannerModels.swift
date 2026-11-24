@@ -11,8 +11,17 @@ public struct PlannerProfile: Hashable, Sendable {
     public var maxCookMinutes: Int?
     public var vibes: Set<Vibe>
     public var includeUserRecipes: Bool
+    /// Ingredient ids the user already has at home: left off the shopping list and the total.
+    public var onHand: Set<String>
+    /// "Meal prep mode": lean towards dinners that keep well as leftovers.
+    public var prefersMealPrep: Bool
+    /// Cuisines the user leans towards (e.g. "Mediterranean" from the diet screen). A soft preference.
+    public var preferredCuisines: Set<Cuisine>
 
-    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true) {
+    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = []) {
+        self.preferredCuisines = preferredCuisines
+        self.onHand = onHand
+        self.prefersMealPrep = prefersMealPrep
         self.allergens = allergens
         self.diet = diet
         self.dislikes = dislikes

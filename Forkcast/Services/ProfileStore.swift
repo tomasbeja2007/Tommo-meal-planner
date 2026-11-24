@@ -101,14 +101,17 @@ final class ProfileStore {
 
     var plannerProfile: PlannerProfile {
         guard let profile else { return PlannerProfile() }
+        let answers: OnboardingAnswers = profile.onboardingAnswers
         return PlannerProfile(
             allergens: profile.allergens,
             diet: profile.diet,
             dislikes: profile.dislikedIngredientIds,
             appliances: profile.appliances.isEmpty ? Set(Appliance.allCases) : profile.appliances,
             maxCookMinutes: profile.maxCookMinutesOrNil,
-            vibes: Set(profile.vibes),
-            includeUserRecipes: profile.includeUserRecipesInPlans
+            vibes: Set(profile.vibes).union(answers.impliedVibes),
+            includeUserRecipes: profile.includeUserRecipesInPlans,
+            prefersMealPrep: answers.mealPrepMode,
+            preferredCuisines: answers.preferredCuisines
         )
     }
 

@@ -41,6 +41,8 @@ final class UserProfile {
     var trialReminderDaysBefore: Int = 1
     var appleUserId: String? = nil
     var includeUserRecipesInPlans: Bool = true
+    /// `OnboardingAnswers` as JSON (obstacles, pantry, meal prep, extra diets…).
+    var onboardingAnswersJSON: String = ""
     var createdAt: Date = Date()
 
     init() {}
@@ -50,6 +52,11 @@ final class UserProfile {
     var cookingDays: Set<Int> {
         get { Set(Self.ints(cookingDaysRaw)) }
         set { cookingDaysRaw = newValue.sorted().map(String.init).joined(separator: ",") }
+    }
+
+    var onboardingAnswers: OnboardingAnswers {
+        get { OnboardingAnswers.decode(onboardingAnswersJSON) }
+        set { onboardingAnswersJSON = newValue.json }
     }
 
     /// Every shop the user picked, main shop first.

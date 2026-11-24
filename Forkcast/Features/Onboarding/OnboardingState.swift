@@ -10,7 +10,7 @@ final class OnboardingState {
     var goals: Set<String> = []
     /// 0 = "I don't mind".
     var maxCookMinutes: Int = 30
-    var countryId: String = "us"
+    var countryId: String = OnboardingState.deviceCountryId()
     /// Shops in the order they were picked. The first one is the main shop and sets prices.
     var storeIds: [String] = []
     var adults: Int = 2
@@ -22,12 +22,27 @@ final class OnboardingState {
     var vibes: Set<Vibe> = []
     var diet: Diet = .none
     var allergens: Set<Allergen> = []
-    var noAllergies: Bool = false
+    /// "No allergies" is preselected; picking any allergen clears it.
+    var noAllergies: Bool = true
     var dislikes: Set<String> = []
-    var appliances: Set<Appliance> = [.oven, .stovetop, .microwave]
+    var appliances: Set<Appliance> = [.oven, .stovetop]
     var trialReminderDaysBefore: Int = 1
 
+    // Answers stored in `OnboardingAnswers` (JSON on the profile).
+    var obstacles: Set<OnboardingObstacle> = []
+    var laterMealTypes: Set<MealType> = []
+    var mealPrepMode: Bool = false
+    var extraDiets: Set<ExtraDiet> = []
+    var pantry: Set<String> = []
+    var requestedStore: String = ""
+
     init() {}
+
+    /// The phone's region if we support it, otherwise the US.
+    static func deviceCountryId(catalog: FoodCatalog = .bundled) -> String {
+        let region: String = (Locale.current.region?.identifier ?? "US").lowercased()
+        return catalog.country(id: region) != nil ? region : "us"
+    }
 
     /// Pre-fill from an existing profile ("Start over" keeps the old answers).
     init(profile: UserProfile) {
@@ -48,7 +63,20 @@ final class OnboardingState {
         dislikes = profile.dislikedIngredientIds
         appliances = profile.appliances
         trialReminderDaysBefore = profile.trialReminderDaysBefore
+        let answers: OnboardingAnswers = profile.onboardingAnswers
+        obstacles = Set(answers.obstacles.compactMap { OnboardingObstacle(rawValue: $0) })
+        laterMealTypes = Set(answers.laterMealTypes.compactMap { MealType(rawValue: $0) })
+        mealPrepMode = answers.mealPrepMode
+        extraDiets = Set(answers.extraDiets.compactMap { ExtraDiet(rawValue: $0) })
+        pantry = Set(answers.pantry)
+        requestedStore = answers.requestedStore ?? ""
     }
+
+    /// Dinners per week (the only meal type we plan today).
+    var dinnersPerWeek: Int { cookingDays.isEmpty ? 5 : cookingDays.count }
+
+    /// Allergens as the user sees them ("No allergies" clears the set).
+    var effectiveAllergens: Set<Allergen> { noAllergies ? [] : allergens }
 
     var portions: Double { BudgetMath.portions(adults: adults, kids: kids) }
 
@@ -88,37 +116,76 @@ final class OnboardingState {
         profile.dislikedIngredientIds = dislikes
         profile.appliances = appliances.isEmpty ? [.stovetop] : appliances
         profile.trialReminderDaysBefore = trialReminderDaysBefore
+        var answers: OnboardingAnswers = profile.onboardingAnswers
+        answers.obstacles = OnboardingObstacle.allCases.filter { obstacles.contains($0) }.map { $0.rawValue }
+        answers.laterMealTypes = MealType.allCases.filter { laterMealTypes.contains($0) }.map { $0.rawValue }
+        answers.mealPrepMode = mealPrepMode
+        answers.extraDiets = ExtraDiet.allCases.filter { extraDiets.contains($0) }.map { $0.rawValue }
+        if answers.pantry.sorted() != pantry.sorted() {
+            // A new pantry answer applies to the week that starts today.
+            answers.pantry = pantry.sorted()
+            answers.pantryWeekStart = pantry.isEmpty ? nil : WeekMath.gregorian.startOfDay(for: Date())
+        }
+        let trimmedRequest: String = requestedStore.trimmingCharacters(in: .whitespacesAndNewlines)
+        answers.requestedStore = trimmedRequest.isEmpty ? nil : trimmedRequest
+        profile.onboardingAnswers = answers
     }
 }
 
-/// The quiz steps, in order.
+/// The onboarding screens, in order.
 enum OnboardingStep: Int, CaseIterable, Hashable {
     case welcome
-    case name
+    // Questions
     case goals
-    case time
-    case country
-    case store
+    case obstacles
+    case mirror
     case household
-    case cookingDays
-    case budget
-    case vibes
-    case diet
-    case allergies
+    case yourWeek
+    case eating
     case dislikes
-    case appliances
-    case savings
-    case socialProof
-    case notifications
+    case vibes
+    case kitchen
+    case budget
+    case pantry
+    case store
+    // The week
     case building
+    case reveal
+    // Wrap-up
+    case reminders
+    case trial
+    case savePlan
+    case home
 
-    var showsProgress: Bool { self != .welcome && self != .building }
+    /// Steps with the top bar (back, progress, skip).
+    var showsTopBar: Bool {
+        switch self {
+        case .welcome, .building, .reveal, .home: return false
+        default: return true
+        }
+    }
 
-    /// 0...1 for the progress bar.
+    /// Optional steps offer "Skip" in the top bar.
+    var isSkippable: Bool {
+        switch self {
+        case .obstacles, .dislikes, .pantry: return true
+        default: return false
+        }
+    }
+
+    /// Once the week is built there's no going back into the questions.
+    var canGoBack: Bool {
+        switch self {
+        case .welcome, .goals, .building, .reveal, .reminders, .home: return false
+        default: return true
+        }
+    }
+
+    /// 0...1 across every step with a top bar.
     var progress: Double {
-        let first: Int = OnboardingStep.name.rawValue
-        let last: Int = OnboardingStep.notifications.rawValue
-        return Double(rawValue - first + 1) / Double(last - first + 1)
+        let counted: [OnboardingStep] = OnboardingStep.allCases.filter { $0.showsTopBar }
+        guard let index = counted.firstIndex(of: self) else { return self.rawValue > OnboardingStep.store.rawValue ? 1 : 0 }
+        return Double(index + 1) / Double(counted.count)
     }
 
     var next: OnboardingStep? { OnboardingStep(rawValue: rawValue + 1) }
@@ -144,6 +211,18 @@ enum OnboardingGoal: String, CaseIterable, Identifiable {
         case .saveTime: return String(localized: "Save time")
         case .cookMore: return String(localized: "Cook more at home")
         case .feedFamily: return String(localized: "Feed my family")
+        }
+    }
+
+    /// Phrase for the mirror screen: "So you want to **spend less**…".
+    var mirrorPhrase: String {
+        switch self {
+        case .spendLess: return String(localized: "spend less")
+        case .stopWondering: return String(localized: "stop wondering what's for dinner")
+        case .eatHealthier: return String(localized: "eat healthier")
+        case .saveTime: return String(localized: "save time")
+        case .cookMore: return String(localized: "cook more at home")
+        case .feedFamily: return String(localized: "feed the family")
         }
     }
 

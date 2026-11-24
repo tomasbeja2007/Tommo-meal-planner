@@ -91,4 +91,15 @@ final class GroceryTests: XCTestCase {
         XCTAssertEqual(GroceryAggregator.usedOnText([1, 3, 5]), "used Mon, Wed & Fri")
         XCTAssertEqual(GroceryAggregator.usedOnText([]), "")
     }
+
+    func testOnHandIngredientsCostNothingAndLeaveTheList() {
+        let meals = [MealPortion(recipe: recipe("chickpea-spinach-curry"), servings: 4, weekday: 1)]
+        let full = GroceryAggregator.aggregate(meals: meals, catalog: catalog, pricing: TestSupport.usPricing, unitSystem: .metric)
+        let have = GroceryAggregator.aggregate(meals: meals, catalog: catalog, pricing: TestSupport.usPricing, unitSystem: .metric, onHand: ["chickpeas"])
+        let chickpeas = full.allItems.first { $0.ingredientId == "chickpeas" }
+        XCTAssertNotNil(chickpeas)
+        XCTAssertNil(have.allItems.first { $0.ingredientId == "chickpeas" })
+        XCTAssertEqual(have.pantryStaples.first { $0.ingredientId == "chickpeas" }?.cost, 0)
+        XCTAssertEqual(have.total, full.total - (chickpeas?.cost ?? 0), accuracy: 0.001)
+    }
 }

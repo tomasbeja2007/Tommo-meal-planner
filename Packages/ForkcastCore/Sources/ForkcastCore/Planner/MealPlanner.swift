@@ -82,6 +82,8 @@ public struct MealPlanner: Sendable {
             }
         }
         if recipe.isUserRecipe && request.profile.includeUserRecipes { value += 0.5 }
+        if request.profile.prefersMealPrep && recipe.isLeftoverFriendly { value += 2 }
+        if request.profile.preferredCuisines.contains(recipe.cuisine) { value += 2 }
         return value
     }
 
@@ -272,6 +274,6 @@ public struct MealPlanner: Sendable {
             guard let candidate = assignment[slot.index] else { continue }
             portions.append(MealPortion(recipe: candidate.recipe, servings: servings[slot.index] ?? request.servings, weekday: slot.weekday))
         }
-        return GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: request.pricing, unitSystem: request.unitSystem)
+        return GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: request.pricing, unitSystem: request.unitSystem, onHand: request.profile.onHand)
     }
 }

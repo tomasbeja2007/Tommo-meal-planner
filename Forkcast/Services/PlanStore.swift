@@ -101,7 +101,7 @@ final class PlanStore {
             portions.append(MealPortion(recipe: recipe, servings: meal.servings, weekday: WeekMath.isoWeekday(meal.date)))
             indexMap.append(index)
         }
-        let list: GroceryList = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem)
+        let list: GroceryList = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem, onHand: currentOnHand)
         var costs: [Double] = Array(repeating: 0, count: current.count)
         for (position, index) in indexMap.enumerated() where position < list.mealCosts.count {
             costs[index] = list.mealCosts[position]
@@ -137,9 +137,24 @@ final class PlanStore {
         return include ? repository.allRecipes : repository.bundledRecipes
     }
 
+    /// Pantry answers from onboarding count only for the week they were given in
+    /// (after that the user has probably used them up).
+    func onHand(forWeekStarting start: Date) -> Set<String> {
+        let answers: OnboardingAnswers = profileStore.profile?.onboardingAnswers ?? OnboardingAnswers()
+        guard let pantryWeek = answers.pantryWeekStart,
+              WeekMath.gregorian.isDate(pantryWeek, inSameDayAs: start) else { return [] }
+        return Set(answers.pantry)
+    }
+
+    private var currentOnHand: Set<String> {
+        onHand(forWeekStarting: currentPlan?.weekStartDate ?? Date())
+    }
+
     func makeRequest(slots: [PlanSlot], seed: UInt64, locked: [Int: LockedMeal], start: Date, plan: WeekPlan?, recipes: [Recipe]? = nil) -> PlannerRequest {
-        PlannerRequest(
-            profile: profileStore.plannerProfile,
+        var rules: PlannerProfile = profileStore.plannerProfile
+        rules.onHand = onHand(forWeekStarting: start)
+        return PlannerRequest(
+            profile: rules,
             recipes: recipes ?? autoPlanPool(),
             feedback: library.summary,
             history: history(relativeTo: start, excluding: plan),
@@ -276,7 +291,7 @@ final class PlanStore {
             guard let recipe else { continue }
             portions.append(MealPortion(recipe: recipe, servings: item.servings, weekday: WeekMath.isoWeekday(item.date)))
         }
-        let newTotal: Double = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem).total
+        let newTotal: Double = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem, onHand: currentOnHand).total
         return newTotal - total
     }
 
