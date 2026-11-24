@@ -16,6 +16,9 @@ final class AppServices {
     let router: AppRouter
     let appleSignIn: AppleSignInManager
 
+    /// The live instance (for the few places that need app-wide actions, e.g. "Delete all my data").
+    static weak var current: AppServices?
+
     init(inMemory: Bool = false) {
         let container: ModelContainer = PersistenceController.makeContainer(inMemory: inMemory)
         let context: ModelContext = container.mainContext
@@ -33,6 +36,9 @@ final class AppServices {
         self.notifications = NotificationManager()
         self.router = AppRouter()
         self.appleSignIn = AppleSignInManager()
+        if !inMemory {
+            AppServices.current = self
+        }
     }
 
     /// Reloads everything from the store (after CloudKit sync, reset, etc.).
