@@ -6,13 +6,15 @@ import ForkcastCore
 struct CookModeView: View {
     let recipe: Recipe
     let servings: Double
-    let onCooked: () -> Void
+    @Binding var index: Int
+    let timer: CountdownTimer
+    let isPlanned: Bool
+    let onCooked: (Int) -> Void
 
     @Environment(\.dismiss) private var dismiss: DismissAction
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
-    @State private var index: Int = 0
-    @State private var timer: CountdownTimer = CountdownTimer()
-    @State private var markedCooked: Bool = false
+    @Environment(LibraryStore.self) private var library: LibraryStore
+    @State private var stars: Int = 0
 
     private var stepCount: Int { recipe.steps.count }
     private var isFinished: Bool { index >= stepCount }
@@ -22,24 +24,37 @@ struct CookModeView: View {
             CookModeHeader(index: index, stepCount: stepCount) { dismiss() }
             TabView(selection: $index) {
                 ForEach(Array(recipe.steps.enumerated()), id: \.offset) { position, step in
-                    CookStepPage(number: position + 1, text: step, recipe: recipe, timer: timer)
+                    CookStepPage(number: position + 1, text: step, recipe: recipe, servings: servings, timer: timer)
                         .tag(position)
-                        .contentShape(Rectangle())
-                        .onTapGesture { advance() }
                 }
-                CookFinishedPage(isCooked: markedCooked) {
-                    markedCooked = true
-                    onCooked()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { dismiss() }
+                CookFinishedPage(stars: $stars, isPlanned: isPlanned) {
+                    onCooked(stars)
+                    dismiss()
                 }
                 .tag(stepCount)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .animation(Theme.motion(reduceMotion), value: index)
-            if !isFinished {
-                Text("tap or swipe to continue")
-                    .font(.footnote)
-                    .foregroundStyle(Theme.aubergineFaint)
+            if stepCount > 0 {
+                HStack {
+                    Button {
+                        index -= 1
+                    } label: {
+                        Label("Previous", systemImage: "chevron.left")
+                            .frame(minHeight: 44)
+                    }
+                    .disabled(index == 0)
+                    Spacer()
+                    if !isFinished {
+                        Button(action: advance) {
+                            Label(index == stepCount - 1 ? "Finish" : "Next", systemImage: "chevron.right")
+                                .frame(minHeight: 44)
+                        }
+                    }
+                }
+                .buttonStyle(.bordered)
+                .tint(Theme.tomatoDeep)
+                .padding(.horizontal, Theme.Spacing.gutter)
             }
             if timer.isActive {
                 TimerPill(timer: timer)
@@ -51,7 +66,10 @@ struct CookModeView: View {
         .background(Theme.cream.ignoresSafeArea())
         .animation(Theme.spring, value: timer.isActive)
         .sensoryFeedback(.selection, trigger: index)
-        .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
+        .onAppear {
+            stars = library.stars[recipe.id] ?? 0
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
         .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
     }
 
@@ -103,6 +121,7 @@ private struct CookStepPage: View {
     let number: Int
     let text: String
     let recipe: Recipe
+    let servings: Double
     let timer: CountdownTimer
 
     var body: some View {
@@ -119,7 +138,7 @@ private struct CookStepPage: View {
                     .foregroundStyle(Theme.aubergine)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
-                StepChips(text: text, recipe: recipe, timer: timer)
+                StepChips(text: text, recipe: recipe, servings: servings, timer: timer)
             }
             .padding(Theme.Spacing.xl)
             .frame(maxWidth: .infinity)
@@ -135,28 +154,35 @@ private struct CookStepPage: View {
 }
 
 private struct CookFinishedPage: View {
-    let isCooked: Bool
+    @Binding var stars: Int
+    let isPlanned: Bool
     let onMarkCooked: () -> Void
 
+    private var completionTitle: String {
+        if isPlanned { return String(localized: "Mark as cooked") }
+        return stars > 0 ? String(localized: "Save rating") : String(localized: "Done")
+    }
+
     var body: some View {
-        VStack(spacing: Theme.Spacing.xl) {
-            Spacer()
-            MascotView(size: 180, mood: .cheer)
-            Text("enjoy!")
-                .font(.system(size: 40, weight: .heavy, design: .rounded))
-                .foregroundStyle(Theme.aubergine)
-            Text("dinner's on the table. Nice work.")
-                .font(.body)
-                .foregroundStyle(Theme.aubergineMuted)
-            Spacer()
-            PrimaryButton(isCooked ? String(localized: "Marked as cooked") : String(localized: "Mark as cooked"), systemImage: "checkmark", action: onMarkCooked)
-                .disabled(isCooked)
-                .padding(.horizontal, Theme.Spacing.gutter)
+        ScrollView {
+            VStack(spacing: Theme.Spacing.l) {
+                MascotView(size: 110, mood: .cheer)
+                Text("Dinner’s ready!")
+                    .font(.system(.largeTitle, design: .rounded).weight(.heavy))
+                    .foregroundStyle(Theme.aubergine)
+                Text("Rate this meal (optional)")
+                    .font(.body)
+                    .foregroundStyle(Theme.aubergineMuted)
+                StarPicker(stars: $stars)
+                PrimaryButton(completionTitle, systemImage: "checkmark", action: onMarkCooked)
+            }
+            .padding(Theme.Spacing.gutter)
+            .frame(maxWidth: .infinity)
         }
-        .sensoryFeedback(.success, trigger: isCooked)
     }
 }
 
 #Preview {
-    CookModeView(recipe: PreviewData.sampleRecipe, servings: 4) {}.previewEnvironment()
+    CookModeView(recipe: PreviewData.sampleRecipe, servings: 2, index: .constant(0), timer: CountdownTimer(), isPlanned: true) { _ in }
+        .previewEnvironment()
 }

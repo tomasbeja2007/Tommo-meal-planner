@@ -263,11 +263,22 @@ private struct IngredientEditorRow: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 6) {
                         ForEach(suggestions) { ingredient in
-                            Chip(title: "\(ingredient.emoji) \(ingredient.displayName(for: unitSystem))") {
+                            Button {
                                 item.name = ingredient.displayName(for: unitSystem)
                                 item.ingredientId = ingredient.id
                                 nameFocused = false
+                            } label: {
+                                HStack(spacing: Theme.Spacing.s) {
+                                    IngredientThumbnail(ingredientID: ingredient.id, size: 26)
+                                    Text(ingredient.displayName(for: unitSystem))
+                                        .font(.subheadline.weight(.semibold))
+                                        .foregroundStyle(Theme.aubergine)
+                                }
+                                .padding(.horizontal, Theme.Spacing.s)
+                                .frame(minHeight: 44)
+                                .background(Theme.creamDeep, in: Capsule())
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                 }

@@ -16,6 +16,8 @@ struct ProfileView: View {
     @State private var isRedeemShown: Bool = false
     @State private var isDebugShown: Bool = false
     @State private var confirm: DangerAction? = nil
+    @State private var isRestoring = false
+    @State private var restoreMessage: String?
 
     enum DangerAction: Identifiable {
         case resetPlan
@@ -77,13 +79,32 @@ struct ProfileView: View {
                 Button {
                     router.isPaywallPresented = true
                 } label: {
-                    Label(String(localized: "Start free trial"), systemImage: "sparkles")
+                    Label(String(localized: "View subscription plans"), systemImage: "sparkles")
                         .foregroundStyle(Theme.tomato)
                 }
             }
             Button(String(localized: "Manage subscription")) { isManageShown = true }
             Button(String(localized: "Restore purchases")) {
-                Task { await subscriptions.restore() }
+                Task {
+                    isRestoring = true
+                    restoreMessage = nil
+                    defer { isRestoring = false }
+                    do {
+                        try await subscriptions.restore()
+                        restoreMessage = subscriptions.isPro
+                            ? String(localized: "Subscription restored.")
+                            : String(localized: "No active subscription found for this Apple Account.")
+                    } catch {
+                        restoreMessage = String(localized: "Couldn’t restore purchases. \(error.localizedDescription)")
+                    }
+                }
+            }
+            .disabled(isRestoring)
+            if isRestoring {
+                ProgressView("Restoring purchases…")
+            }
+            if let restoreMessage {
+                Text(restoreMessage).font(.footnote).foregroundStyle(Theme.aubergineMuted)
             }
             Button(String(localized: "Redeem code")) { isRedeemShown = true }
         } header: {

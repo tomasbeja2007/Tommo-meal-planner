@@ -10,14 +10,7 @@ struct DislikesPicker: View {
     private var catalog: FoodCatalog { FoodCatalog.bundled }
 
     private var results: [Ingredient] {
-        let trimmed: String = query.trimmingCharacters(in: .whitespaces)
-        guard trimmed.count >= 2 else { return [] }
-        let matches: [Ingredient] = catalog.ingredients.filter { ingredient in
-            ingredient.name.localizedCaseInsensitiveContains(trimmed)
-                || ingredient.pluralName.localizedCaseInsensitiveContains(trimmed)
-                || (ingredient.ukName?.localizedCaseInsensitiveContains(trimmed) ?? false)
-        }
-        return Array(matches.prefix(8))
+        IngredientMatcher.suggestions(for: query, in: catalog, limit: 8)
     }
 
     var body: some View {
@@ -31,7 +24,7 @@ struct DislikesPicker: View {
                             query = ""
                         } label: {
                             HStack {
-                                Text(ingredient.emoji)
+                                IngredientThumbnail(ingredientID: ingredient.id, size: 32)
                                 Text(ingredient.displayName(for: unitSystem).capitalizedFirst)
                                     .foregroundStyle(Theme.aubergine)
                                 Spacer()

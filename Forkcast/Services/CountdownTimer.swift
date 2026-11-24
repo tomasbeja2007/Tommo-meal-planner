@@ -12,6 +12,8 @@ final class CountdownTimer {
     private(set) var isRunning: Bool = false
     private(set) var didFinish: Bool = false
 
+    @ObservationIgnored private var deadline: ContinuousClock.Instant?
+    @ObservationIgnored private var pausedDuration: Duration = .zero
     @ObservationIgnored private var task: Task<Void, Never>? = nil
 
     var isActive: Bool { totalSeconds > 0 && (isRunning || didFinish || remaining > 0) }
@@ -21,44 +23,76 @@ final class CountdownTimer {
     }
 
     func start(label: String, seconds: Int) {
+        guard seconds > 0 else { return }
         task?.cancel()
         self.label = label
         totalSeconds = seconds
         remaining = seconds
         didFinish = false
-        isRunning = true
-        run()
+        resume(for: .seconds(seconds))
     }
 
     func togglePause() {
-        if isRunning {
+        if let deadline {
+            let duration = ContinuousClock().now.duration(to: deadline)
+            if duration <= .zero {
+                finish()
+                return
+            }
+            pausedDuration = duration
+            self.deadline = nil
             isRunning = false
             task?.cancel()
-        } else if remaining > 0 {
-            isRunning = true
-            run()
+        } else if pausedDuration > .zero {
+            resume(for: pausedDuration)
         }
+    }
+
+    func reset() {
+        start(label: label, seconds: totalSeconds)
     }
 
     func stop() {
         task?.cancel()
+        deadline = nil
+        pausedDuration = .zero
         isRunning = false
         didFinish = false
         remaining = 0
         totalSeconds = 0
     }
 
-    private func run() {
+    private func resume(for duration: Duration) {
+        let end = ContinuousClock().now.advanced(by: duration)
+        deadline = end
+        pausedDuration = .zero
+        isRunning = true
         task = Task { @MainActor [weak self] in
-            while let self, self.isRunning, self.remaining > 0 {
-                try? await Task.sleep(nanoseconds: 1_000_000_000)
-                if Task.isCancelled { return }
-                self.remaining -= 1
+            let clock = ContinuousClock()
+            while !Task.isCancelled {
+                let untilEnd = clock.now.duration(to: end)
+                guard untilEnd > .zero else {
+                    self?.finish()
+                    return
+                }
+                let components = untilEnd.components
+                self?.remaining = Int(components.seconds) + (components.attoseconds > 0 ? 1 : 0)
+                guard self != nil else { return }
+                let untilNextSecond = components.attoseconds > 0
+                    ? Duration(secondsComponent: 0, attosecondsComponent: components.attoseconds)
+                    : .seconds(1)
+                try? await clock.sleep(for: untilNextSecond)
             }
-            guard let self, self.remaining <= 0, self.totalSeconds > 0 else { return }
-            self.isRunning = false
-            self.didFinish = true
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
+    }
+
+    private func finish() {
+        deadline = nil
+        pausedDuration = .zero
+        remaining = 0
+        isRunning = false
+        didFinish = true
+        task?.cancel()
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
 }

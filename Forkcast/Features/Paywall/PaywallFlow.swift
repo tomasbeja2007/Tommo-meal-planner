@@ -49,12 +49,12 @@ struct TrialReminderView: View {
             .padding(.horizontal, Theme.Spacing.s)
             ScrollView {
                 VStack(spacing: Theme.Spacing.l) {
-                    Text("we'll remind you before your trial ends")
+                    Text("Want a trial reminder?")
                         .font(Theme.questionFont)
                         .foregroundStyle(Theme.aubergine)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text("no surprises. Cancel anytime in two taps.")
+                    Text("If you start a trial and allow notifications, Forkcast can remind you before it ends.")
                         .font(.body)
                         .foregroundStyle(Theme.aubergineMuted)
                         .multilineTextAlignment(.center)

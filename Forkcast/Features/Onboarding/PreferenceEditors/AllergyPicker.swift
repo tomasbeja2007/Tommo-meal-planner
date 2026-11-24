@@ -29,6 +29,10 @@ struct AllergyPicker: View {
                     }
                 }
             }
+            Text("Always check ingredient labels and preparation for allergens and possible cross-contact.")
+                .font(.footnote)
+                .foregroundStyle(Theme.aubergineMuted)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }

@@ -23,7 +23,7 @@ private enum DetailTab: String, CaseIterable, Identifiable {
     case method
 
     var id: String { rawValue }
-    var title: String { self == .ingredients ? String(localized: "Ingredients") : String(localized: "Method") }
+    var title: String { self == .ingredients ? String(localized: "Ingredients") : String(localized: "Instructions") }
 }
 
 private struct RecipeDetailContent: View {
@@ -36,9 +36,11 @@ private struct RecipeDetailContent: View {
     @Environment(LibraryStore.self) private var library: LibraryStore
 
     @State private var servings: Int = 2
+    @State private var showNutritionTotal = false
     @State private var tab: DetailTab = .ingredients
     @State private var timer: CountdownTimer = CountdownTimer()
     @State private var isCookModeShown: Bool = false
+    @State private var cookStep = 0
     @State private var isSwapShown: Bool = false
     @State private var isAddToPlanShown: Bool = false
     @State private var isEditShown: Bool = false
@@ -48,17 +50,35 @@ private struct RecipeDetailContent: View {
 
     private var nutrition: NutritionResult { repository.nutrition(for: recipe) }
 
+    private var nutritionCaption: String {
+        if showNutritionTotal {
+            return nutrition.isManualOverride
+                ? String(localized: "total for \(servings) · based on your entry")
+                : String(localized: "total for \(servings) · estimated")
+        }
+        return nutrition.isManualOverride
+            ? String(localized: "per serving · entered by you")
+            : String(localized: "per serving · estimated")
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 DishHeroView(recipe: recipe, height: 260)
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
                     DetailHeader(recipe: recipe, servings: Double(servings), costPerServing: repository.costPerServing(recipe, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem), currencyCode: profileStore.currencyCode, profile: repository.profile(for: recipe))
-                    MacrosCard(
-                        macros: nutrition.macros,
-                        caption: nutrition.isManualOverride ? String(localized: "per serving · entered by you") : String(localized: "per serving · estimated"),
-                        note: nutrition.hasIncompleteData ? String(localized: "some ingredients have no nutrition data") : nil
-                    )
+                    VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                        Picker(String(localized: "Nutrition amounts"), selection: $showNutritionTotal) {
+                            Text("Per serving").tag(false)
+                            Text("Selected servings").tag(true)
+                        }
+                        .pickerStyle(.segmented)
+                        MacrosCard(
+                            macros: nutrition.macros.scaled(by: showNutritionTotal ? Double(servings) : 1),
+                            caption: nutritionCaption,
+                            note: nutrition.hasIncompleteData ? String(localized: "some ingredients have no nutrition data") : nil
+                        )
+                    }
                     Picker(String(localized: "Section"), selection: $tab) {
                         ForEach(DetailTab.allCases) { item in
                             Text(item.title).tag(item)
@@ -77,7 +97,7 @@ private struct RecipeDetailContent: View {
                             }
                         )
                     } else {
-                        MethodSection(recipe: recipe, timer: timer) { isCookModeShown = true }
+                        MethodSection(recipe: recipe, servings: Double(servings), timer: timer) { isCookModeShown = true }
                     }
                     DetailFooter(
                         recipe: recipe,
@@ -107,8 +127,9 @@ private struct RecipeDetailContent: View {
         }
         .animation(Theme.spring, value: timer.isActive)
         .fullScreenCover(isPresented: $isCookModeShown) {
-            CookModeView(recipe: recipe, servings: Double(servings)) {
-                markCooked(stars: 0)
+            CookModeView(recipe: recipe, servings: Double(servings), index: $cookStep, timer: timer, isPlanned: plannedMeal != nil) { stars in
+                markCooked(stars: stars)
+                cookStep = 0
             }
         }
         .sheet(isPresented: $isSwapShown) {
@@ -278,7 +299,7 @@ private struct IngredientRow: View {
 
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
-            Text(line.emoji).font(.title3).frame(width: 32)
+            IngredientThumbnail(ingredientID: line.ingredientID)
             VStack(alignment: .leading, spacing: 1) {
                 Text(line.name.capitalizedFirst)
                     .font(.body)
@@ -304,10 +325,9 @@ private struct IngredientRow: View {
 
 private struct MethodSection: View {
     let recipe: Recipe
+    let servings: Double
     let timer: CountdownTimer
     let onCook: () -> Void
-
-    @Environment(RecipeRepository.self) private var repository: RecipeRepository
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.l) {
@@ -317,7 +337,7 @@ private struct MethodSection: View {
                 Text("no steps yet").foregroundStyle(Theme.aubergineMuted)
             }
             ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
-                StepRow(number: index + 1, text: step, recipe: recipe, timer: timer)
+                StepRow(number: index + 1, text: step, recipe: recipe, servings: servings, timer: timer)
             }
         }
     }
@@ -327,10 +347,8 @@ private struct StepRow: View {
     let number: Int
     let text: String
     let recipe: Recipe
+    let servings: Double
     let timer: CountdownTimer
-
-    @Environment(RecipeRepository.self) private var repository: RecipeRepository
-    @Environment(ProfileStore.self) private var profileStore: ProfileStore
 
     var body: some View {
         HStack(alignment: .top, spacing: Theme.Spacing.m) {
@@ -344,7 +362,7 @@ private struct StepRow: View {
                     .font(.body)
                     .foregroundStyle(Theme.aubergine)
                     .fixedSize(horizontal: false, vertical: true)
-                StepChips(text: text, recipe: recipe, timer: timer)
+                StepChips(text: text, recipe: recipe, servings: servings, timer: timer)
             }
         }
     }
@@ -354,38 +372,71 @@ private struct StepRow: View {
 struct StepChips: View {
     let text: String
     let recipe: Recipe
+    let servings: Double
     let timer: CountdownTimer
 
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
 
     var body: some View {
-        let used: [RecipeIngredient] = StepIngredientMatcher.ingredients(in: text, recipe: recipe, catalog: repository.catalog)
-        let timers: [StepTimer] = TimerDetector.timers(in: text)
+        let used = StepIngredientMatcher.ingredients(in: text, recipe: recipe, catalog: repository.catalog)
+        let timers = TimerDetector.timers(in: text)
         if !used.isEmpty || !timers.isEmpty {
-            FlowLayout(spacing: 6) {
-                ForEach(Array(used.enumerated()), id: \.offset) { _, item in
-                    let ingredient: Ingredient? = item.ingredientId.flatMap { repository.catalog.ingredient(id: $0) }
-                    let name: String = ingredient?.displayName(for: profileStore.unitSystem) ?? item.name ?? ""
-                    TagLabel(text: "\(ingredient?.emoji ?? "🛒") \(name.capitalizedFirst)", tint: Theme.aubergine, fill: Theme.creamDeep)
-                }
-                ForEach(timers) { stepTimer in
-                    Button {
-                        timer.start(label: stepTimer.label, seconds: stepTimer.seconds)
-                    } label: {
-                        Label(stepTimer.label, systemImage: "timer")
-                            .font(.caption.weight(.bold))
-                            .foregroundStyle(Theme.aubergine)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(Capsule().fill(Theme.saffronSoft))
-                            .overlay(Capsule().stroke(Theme.saffron, lineWidth: 1))
+            VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                if !used.isEmpty {
+                    Text("Amounts for the full recipe")
+                        .font(.caption)
+                        .foregroundStyle(Theme.aubergineMuted)
+                    FlowLayout(spacing: 6) {
+                        ForEach(Array(used.enumerated()), id: \.offset) { _, item in
+                            ingredientChip(item)
+                        }
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(Text("Start a \(stepTimer.label) timer"))
+                }
+                if !timers.isEmpty {
+                    FlowLayout(spacing: 6) {
+                        ForEach(timers) { stepTimer in
+                            Button {
+                                timer.start(label: stepTimer.label, seconds: stepTimer.seconds)
+                            } label: {
+                                Label(stepTimer.label, systemImage: "timer")
+                                    .font(.caption.weight(.bold))
+                                    .foregroundStyle(Theme.aubergine)
+                                    .padding(.horizontal, 10)
+                                    .frame(minHeight: 44)
+                                    .background(Capsule().fill(Theme.saffronSoft))
+                                    .overlay(Capsule().stroke(Theme.saffron, lineWidth: 1))
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(Text("Start a \(stepTimer.label) timer"))
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private func ingredientChip(_ item: RecipeIngredient) -> some View {
+        let ingredient = item.ingredientId.flatMap { repository.catalog.ingredient(id: $0) }
+        let system = profileStore.unitSystem
+        let amount = item.amount * servings / Double(max(1, recipe.baseServings))
+        let quantity = QuantityFormatter.string(amount: amount, unit: item.unit, system: system, ingredient: ingredient)
+        let name = ingredient?.displayName(for: system) ?? item.name ?? String(localized: "Ingredient")
+        return HStack(spacing: 4) {
+            IngredientThumbnail(ingredientID: ingredient?.id, size: 24)
+            Text(name.capitalizedFirst)
+                .font(.caption.weight(.semibold))
+            if !quantity.isEmpty {
+                Text(quantity)
+                    .font(.caption.monospacedDigit())
+            }
+        }
+        .foregroundStyle(Theme.aubergine)
+        .padding(.leading, 2)
+        .padding(.trailing, 8)
+        .padding(.vertical, 2)
+        .background(Theme.creamDeep, in: Capsule())
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -418,6 +469,14 @@ struct TimerPill: View {
                 }
                 .accessibilityLabel(Text(timer.isRunning ? "Pause timer" : "Resume timer"))
             }
+            Button {
+                timer.reset()
+            } label: {
+                Image(systemName: "arrow.counterclockwise")
+                    .frame(width: 44, height: 44)
+                    .background(Circle().fill(Theme.creamDeep))
+            }
+            .accessibilityLabel(Text("Restart timer"))
             Button {
                 timer.stop()
             } label: {

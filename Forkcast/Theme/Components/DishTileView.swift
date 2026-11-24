@@ -37,11 +37,13 @@ struct DishTileView: View {
 
     private var resolvedHeight: CGFloat { height ?? size }
 
-    /// `imageName` from the recipe, or an asset called "recipe-<id>" if one exists.
-    private var photoName: String? {
+    /// Use supplied photography first, then bundled illustrative artwork.
+    fileprivate var photoName: String? {
         if let imageName, AssetImage.exists(imageName) { return imageName }
-        let conventional: String = "recipe-" + seed
-        return AssetImage.exists(conventional) ? conventional : nil
+        let conventional = "recipe-" + seed
+        if AssetImage.exists(conventional) { return conventional }
+        let illustrative = "illustrative-recipe-" + seed
+        return AssetImage.exists(illustrative) ? illustrative : nil
     }
 
     var body: some View {
@@ -84,7 +86,18 @@ struct DishHeroView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            DishTileView(recipe: recipe, size: proxy.size.width, height: height, cornerRadius: 0)
+            let tile = DishTileView(recipe: recipe, size: proxy.size.width, height: height, cornerRadius: 0)
+            tile.overlay(alignment: .bottomTrailing) {
+                if tile.photoName?.hasPrefix("illustrative-recipe-") == true {
+                    Text("Illustrative photo")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(Theme.aubergine)
+                        .padding(.horizontal, Theme.Spacing.s)
+                        .padding(.vertical, Theme.Spacing.xs)
+                        .background(Theme.card, in: Capsule())
+                        .padding(Theme.Spacing.s)
+                }
+            }
         }
         .frame(height: height)
     }

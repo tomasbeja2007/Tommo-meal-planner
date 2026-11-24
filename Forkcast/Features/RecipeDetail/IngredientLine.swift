@@ -4,7 +4,7 @@ import ForkcastCore
 /// Display-ready ingredient row for a recipe scaled to `servings`.
 struct IngredientLine: Identifiable, Hashable {
     let id: Int
-    let emoji: String
+    let ingredientID: String?
     let name: String
     let amountText: String
     let note: String?
@@ -26,7 +26,7 @@ struct IngredientLine: Identifiable, Hashable {
             }
             return IngredientLine(
                 id: index,
-                emoji: ingredient?.emoji ?? "🛒",
+                ingredientID: ingredient?.id,
                 name: name,
                 amountText: amountText,
                 note: item.note,

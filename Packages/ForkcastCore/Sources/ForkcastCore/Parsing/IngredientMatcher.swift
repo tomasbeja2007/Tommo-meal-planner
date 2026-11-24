@@ -2,6 +2,13 @@ import Foundation
 
 /// Fuzzy matching of free-text ingredient names to `ingredients.json`.
 public enum IngredientMatcher {
+    private static let aliases: [String: [String]] = [
+        "spring-onion": ["scallion", "scallions", "green onion", "green onions"],
+        "chickpeas": ["garbanzo bean", "garbanzo beans", "garbanzo"],
+        "eggplant": ["aubergine", "aubergines"],
+        "cilantro": ["fresh coriander", "coriander leaves", "coriander leaf"]
+    ]
+
     private static let fillerWords: Set<String> = [
         "fresh", "freshly", "chopped", "diced", "sliced", "minced", "grated", "large", "small", "medium",
         "of", "a", "an", "the", "some", "finely", "roughly", "thinly", "crushed", "peeled", "ripe",
@@ -24,16 +31,20 @@ public enum IngredientMatcher {
     static func names(for ingredient: Ingredient) -> [String] {
         var all: [String] = [ingredient.name, ingredient.pluralName, ingredient.id.replacingOccurrences(of: "-", with: " ")]
         if let uk = ingredient.ukName { all.append(uk) }
+        all.append(contentsOf: aliases[ingredient.id, default: []])
         return all.map { normalize($0) }
     }
 
     /// Score how well `query` matches `ingredient`; 0 = no match.
     static func score(query: String, ingredient: Ingredient) -> Double {
+        let normalized: String = normalize(query)
+        let candidates: [String] = names(for: ingredient)
+        if candidates.contains(normalized) { return 110 }
         let words: [String] = keywords(query)
         guard !words.isEmpty else { return 0 }
         let joined: String = words.joined(separator: " ")
         var best: Double = 0
-        for candidate in names(for: ingredient) {
+        for candidate in candidates {
             if candidate == joined {
                 best = max(best, 100)
                 continue

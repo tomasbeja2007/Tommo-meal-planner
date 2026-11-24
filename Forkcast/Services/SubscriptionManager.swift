@@ -26,7 +26,7 @@ final class SubscriptionManager {
     private(set) var trialEndDate: Date? = nil
     private(set) var expirationDate: Date? = nil
     private(set) var activeProductId: String? = nil
-    private(set) var isEligibleForTrial: Bool = true
+    private(set) var isEligibleForTrial: Bool = false
 
     /// Debug-menu override, persisted so it survives relaunches (DEBUG builds only).
     private(set) var debugProOverride: Bool = UserDefaults.standard.bool(forKey: FeatureFlags.debugProOverrideKey)
@@ -58,14 +58,17 @@ final class SubscriptionManager {
     }
 
     func loadProducts() async {
+        guard !isLoadingProducts else { return }
         isLoadingProducts = true
         productLoadFailed = false
+        isEligibleForTrial = false
         defer { isLoadingProducts = false }
         do {
             let loaded: [Product] = try await Product.products(for: SubscriptionManager.productIds)
             products = loaded.sorted { $0.price > $1.price }
             productLoadFailed = loaded.isEmpty
-            if let yearly, let subscription = yearly.subscription {
+            if let subscription = yearly?.subscription,
+               subscription.introductoryOffer?.paymentMode == .freeTrial {
                 isEligibleForTrial = await subscription.isEligibleForIntroOffer
             }
         } catch {
@@ -99,8 +102,8 @@ final class SubscriptionManager {
     }
 
     /// "Restore purchases".
-    func restore() async {
-        try? await AppStore.sync()
+    func restore() async throws {
+        try await AppStore.sync()
         await refreshEntitlements()
     }
 

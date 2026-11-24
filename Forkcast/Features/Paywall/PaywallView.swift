@@ -8,21 +8,23 @@ struct PaywallView: View {
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @Environment(NotificationManager.self) private var notifications: NotificationManager
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
 
     @State private var selectedId: String = SubscriptionManager.yearlyId
     @State private var isPurchasing: Bool = false
     @State private var errorMessage: String? = nil
-    @State private var showsClose: Bool = false
     @State private var isRedeemShown: Bool = false
     @State private var purchased: Bool = false
 
     private var selectedProduct: Product? {
-        subscriptions.products.first { $0.id == selectedId }
+        subscriptions.products.first { $0.id == selectedId } ?? subscriptions.products.first
     }
 
-    private var isYearly: Bool { selectedId == SubscriptionManager.yearlyId }
-    private var offersTrial: Bool { isYearly && subscriptions.isEligibleForTrial }
+    private var trial: Product.SubscriptionOffer? {
+        guard selectedProduct?.id == SubscriptionManager.yearlyId, subscriptions.isEligibleForTrial else { return nil }
+        return selectedProduct?.subscription?.introductoryOffer
+    }
+
+    private var offersTrial: Bool { trial != nil }
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -33,7 +35,7 @@ struct PaywallView: View {
                         MascotView(size: 96, mood: .cheer)
                         Spacer()
                     }
-                    Text(subscriptions.isEligibleForTrial ? String(localized: "Start your 3 days free") : String(localized: "Unlock Forkcast Pro"))
+                    Text("Your entire week of meals, sorted.")
                         .font(.system(.largeTitle, design: .rounded).weight(.bold))
                         .foregroundStyle(Theme.aubergine)
                         .fixedSize(horizontal: false, vertical: true)
@@ -43,8 +45,8 @@ struct PaywallView: View {
                         PaywallBenefit(text: String(localized: "recipes that fit your rules, with macros"))
                     }
                     planSelector
-                    if offersTrial {
-                        TrialTimeline()
+                    if let trial, let selectedProduct {
+                        TrialTimeline(offer: trial, renewalPrice: selectedProduct.displayPrice)
                     }
                     if let errorMessage {
                         Text(errorMessage)
@@ -58,19 +60,16 @@ struct PaywallView: View {
             }
             .safeAreaInset(edge: .bottom) { bottomBar }
 
-            if showsClose {
-                Button(action: onClose) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(Theme.aubergineMuted)
-                        .frame(width: 44, height: 44)
-                        .background(Circle().fill(Theme.card.opacity(0.9)))
-                }
-                .padding(.leading, Theme.Spacing.m)
-                .padding(.top, Theme.Spacing.s)
-                .transition(.opacity)
-                .accessibilityLabel(Text("Close"))
+            Button(action: onClose) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .frame(width: 44, height: 44)
+                    .background(Circle().fill(Theme.card.opacity(0.9)))
             }
+            .padding(.leading, Theme.Spacing.m)
+            .padding(.top, Theme.Spacing.s)
+            .accessibilityLabel(Text("Close"))
         }
         .background(Theme.cream.ignoresSafeArea())
         .sensoryFeedback(.success, trigger: purchased)
@@ -79,10 +78,6 @@ struct PaywallView: View {
         }
         .task {
             if subscriptions.products.isEmpty { await subscriptions.loadProducts() }
-        }
-        .task {
-            try? await Task.sleep(nanoseconds: 2_000_000_000)
-            withAnimation(reduceMotion ? nil : .easeIn(duration: 0.4)) { showsClose = true }
         }
         .onChange(of: subscriptions.hasProAccess) { _, hasPro in
             if hasPro { onClose() }
@@ -117,7 +112,7 @@ struct PaywallView: View {
                         badge: yearlyBadge,
                         price: yearly.displayPrice + String(localized: "/year"),
                         detail: yearlyDetail(yearly),
-                        isSelected: selectedId == yearly.id
+                        isSelected: selectedProduct?.id == yearly.id
                     ) { selectedId = yearly.id }
                 }
                 if let monthly = subscriptions.monthly {
@@ -126,7 +121,7 @@ struct PaywallView: View {
                         badge: nil,
                         price: monthly.displayPrice + String(localized: "/month"),
                         detail: String(localized: "flexible, cancel anytime"),
-                        isSelected: selectedId == monthly.id
+                        isSelected: selectedProduct?.id == monthly.id
                     ) { selectedId = monthly.id }
                 }
             }
@@ -142,9 +137,6 @@ struct PaywallView: View {
 
     private func yearlyDetail(_ product: Product) -> String {
         let perMonth: String = subscriptions.monthlyEquivalent(of: product)
-        if subscriptions.isEligibleForTrial {
-            return String(localized: "\(perMonth)/mo, billed \(product.displayPrice) yearly after 3 days free")
-        }
         return String(localized: "\(perMonth)/mo, billed \(product.displayPrice) yearly")
     }
 
@@ -164,16 +156,29 @@ struct PaywallView: View {
                 Text("No payment due now")
                     .font(.footnote.weight(.semibold))
                     .foregroundStyle(Theme.herb)
+            } else if selectedProduct != nil {
+                Text("Renews automatically. Manage or cancel in Apple Subscriptions.")
+                    .font(.footnote)
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .multilineTextAlignment(.center)
             }
             HStack(spacing: Theme.Spacing.m) {
                 Button(String(localized: "Restore")) {
                     Task {
                         isPurchasing = true
-                        await subscriptions.restore()
-                        isPurchasing = false
-                        if !subscriptions.isPro { errorMessage = String(localized: "No active subscription found for this Apple ID.") }
+                        errorMessage = nil
+                        defer { isPurchasing = false }
+                        do {
+                            try await subscriptions.restore()
+                            if !subscriptions.isPro {
+                                errorMessage = String(localized: "No active subscription found for this Apple Account.")
+                            }
+                        } catch {
+                            errorMessage = String(localized: "Couldn’t restore purchases. \(error.localizedDescription)")
+                        }
                     }
                 }
+                .disabled(isPurchasing)
                 Link(String(localized: "Terms"), destination: AppLinks.terms)
                 Link(String(localized: "Privacy"), destination: AppLinks.privacyPolicy)
                 Button(String(localized: "Have a code?")) { isRedeemShown = true }
@@ -288,53 +293,39 @@ private struct PlanCard: View {
     }
 }
 
-/// Today: full access → Day 2: reminder → Day 3: trial ends.
 private struct TrialTimeline: View {
-    var body: some View {
-        HStack(alignment: .top, spacing: 0) {
-            TimelineStep(systemImage: "lock.open.fill", title: String(localized: "Today"), detail: String(localized: "full access"), tint: Theme.tomato)
-            TimelineConnector()
-            TimelineStep(systemImage: "bell.fill", title: String(localized: "Day 2"), detail: String(localized: "reminder"), tint: Theme.saffron)
-            TimelineConnector()
-            TimelineStep(systemImage: "calendar", title: String(localized: "Day 3"), detail: String(localized: "trial ends"), tint: Theme.aubergineMuted)
+    let offer: Product.SubscriptionOffer
+    let renewalPrice: String
+
+    private var renewalDate: Date? {
+        let component: Calendar.Component
+        switch offer.period.unit {
+        case .day: component = .day
+        case .week: component = .weekOfYear
+        case .month: component = .month
+        case .year: component = .year
+        @unknown default: return nil
         }
-        .cardStyle()
-        .accessibilityElement(children: .combine)
+        return Calendar.current.date(byAdding: component, value: offer.period.value * offer.periodCount, to: Date.now)
     }
-}
-
-private struct TimelineStep: View {
-    let systemImage: String
-    let title: String
-    let detail: String
-    let tint: Color
 
     var body: some View {
-        VStack(spacing: 6) {
-            Image(systemName: systemImage)
-                .font(.system(size: 14, weight: .bold))
-                .foregroundStyle(Color.white)
-                .frame(width: 36, height: 36)
-                .background(Circle().fill(tint))
-            Text(title)
-                .font(.caption.weight(.bold))
-                .foregroundStyle(Theme.aubergine)
-            Text(detail)
-                .font(.caption2)
+        VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+            Label("Today · Full access, no payment due", systemImage: "lock.open")
+            if let renewalDate {
+                let date = renewalDate.formatted(date: .abbreviated, time: .omitted)
+                Label("Estimated first charge on \(date) · \(renewalPrice) per year", systemImage: "calendar")
+            } else {
+                Label("After the trial · \(renewalPrice) per year", systemImage: "calendar")
+            }
+            Text("Renews automatically. To avoid a charge, cancel in Apple Subscriptions before the trial ends.")
+                .font(.footnote)
                 .foregroundStyle(Theme.aubergineMuted)
-                .multilineTextAlignment(.center)
         }
-        .frame(maxWidth: .infinity)
-    }
-}
-
-private struct TimelineConnector: View {
-    var body: some View {
-        Rectangle()
-            .fill(Theme.line)
-            .frame(height: 2)
-            .frame(maxWidth: 40)
-            .padding(.top, 17)
+        .font(.subheadline.weight(.semibold))
+        .foregroundStyle(Theme.aubergine)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .cardStyle()
     }
 }
 

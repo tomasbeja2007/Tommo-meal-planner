@@ -141,6 +141,14 @@ final class UnitAndFractionTests: XCTestCase {
         XCTAssertEqual(IngredientMatcher.suggestions(for: "chick", in: catalog).first?.id.hasPrefix("chick"), true)
     }
 
+    func testIngredientAliasesPreserveCanonicalForms() {
+        XCTAssertEqual(IngredientMatcher.bestMatch(for: "scallions", in: catalog)?.id, "spring-onion")
+        XCTAssertEqual(IngredientMatcher.bestMatch(for: "garbanzo beans", in: catalog)?.id, "chickpeas")
+        XCTAssertEqual(IngredientMatcher.bestMatch(for: "fresh coriander", in: catalog)?.id, "cilantro")
+        XCTAssertEqual(IngredientMatcher.bestMatch(for: "ground coriander", in: catalog)?.id, "ground-coriander")
+        XCTAssertEqual(IngredientMatcher.suggestions(for: "scalli", in: catalog).first?.id, "spring-onion")
+    }
+
     func testWidgetSnapshotRoundTrip() throws {
         let dir = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
