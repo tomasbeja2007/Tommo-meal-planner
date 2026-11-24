@@ -80,6 +80,8 @@ targets:
         LSRequiresIPhoneOS: true
         UILaunchScreen:
           UIColorName: cream
+          UIImageName: LaunchMascot
+          UIImageRespectsSafeAreaInsets: false
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UISupportedInterfaceOrientations:
