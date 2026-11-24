@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "skills": {
+    "rossark-motion-skill": {
+      "source": "rossark0/rossark-motion-skill",
+      "commit": "9b20964e32f07f8ac7e2948cd175746fa4a7712f",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "afc5b8216f1481ee901fae908333dab6d75af54779dfc15c8f505b355e788e98"
+    }
+  }
+}

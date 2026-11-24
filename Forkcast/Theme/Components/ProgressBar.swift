@@ -1,13 +1,19 @@
 import SwiftUI
 
 /// Rounded progress bar: tinted fill on a `creamDeep` track.
+/// Draws on once when it appears (ease-out, like a chart), then follows value changes.
 struct ProgressBar: View {
     /// 0...1 (values above 1 are clamped visually).
     let value: Double
     var tint: Color = Theme.tomato
     var height: CGFloat = 8
+    /// Stagger for bars that appear together (40–80 ms apart).
+    var drawOnDelay: Double = 0
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
+    @State private var isDrawn: Bool = false
+
+    private var shown: Double { isDrawn ? min(max(value, 0), 1) : 0 }
 
     var body: some View {
         GeometryReader { proxy in
@@ -15,12 +21,21 @@ struct ProgressBar: View {
                 Capsule().fill(Theme.creamDeep)
                 Capsule()
                     .fill(tint)
-                    .frame(width: max(height, proxy.size.width * CGFloat(min(max(value, 0), 1))))
-                    .opacity(value <= 0 ? 0 : 1)
+                    .frame(width: max(height, proxy.size.width * CGFloat(shown)))
+                    .opacity(shown <= 0 ? 0 : 1)
             }
         }
         .frame(height: height)
         .animation(Theme.motion(reduceMotion), value: value)
+        .onAppear {
+            // One-shot draw-on with ease-out (charts draw on, then rest); instant with Reduce Motion.
+            guard !isDrawn else { return }
+            if reduceMotion {
+                isDrawn = true
+            } else {
+                withAnimation(Animation.open(0.6).delay(drawOnDelay)) { isDrawn = true }
+            }
+        }
         .accessibilityElement()
         .accessibilityValue(Text("\(Int((min(max(value, 0), 1) * 100).rounded())) percent"))
     }
@@ -34,12 +49,13 @@ struct ProgressRing: View {
     var label: String? = nil
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
+    @State private var isDrawn: Bool = false
 
     var body: some View {
         ZStack {
             Circle().stroke(Theme.creamDeep, lineWidth: lineWidth)
             Circle()
-                .trim(from: 0, to: CGFloat(min(max(value, 0), 1)))
+                .trim(from: 0, to: isDrawn ? CGFloat(min(max(value, 0), 1)) : 0)
                 .stroke(tint, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             if let label {
@@ -52,6 +68,15 @@ struct ProgressRing: View {
             }
         }
         .animation(Theme.motion(reduceMotion), value: value)
+        .onAppear {
+            // One-shot draw-on with ease-out (charts draw on, then rest); instant with Reduce Motion.
+            guard !isDrawn else { return }
+            if reduceMotion {
+                isDrawn = true
+            } else {
+                withAnimation(Animation.open(0.6).delay(0)) { isDrawn = true }
+            }
+        }
     }
 }
 

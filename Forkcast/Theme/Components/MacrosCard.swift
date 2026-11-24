@@ -27,9 +27,9 @@ struct MacrosCard: View {
                     .font(.caption)
                     .foregroundStyle(Theme.aubergineFaint)
             }
-            MacroBarRow(label: String(localized: "Protein"), grams: macros.protein, fraction: macros.protein / totalGrams, tint: Theme.macroProtein)
-            MacroBarRow(label: String(localized: "Carbs"), grams: macros.carbs, fraction: macros.carbs / totalGrams, tint: Theme.macroCarbs)
-            MacroBarRow(label: String(localized: "Fat"), grams: macros.fat, fraction: macros.fat / totalGrams, tint: Theme.macroFat)
+            MacroBarRow(label: String(localized: "Protein"), grams: macros.protein, fraction: macros.protein / totalGrams, tint: Theme.macroProtein, delay: 0)
+            MacroBarRow(label: String(localized: "Carbs"), grams: macros.carbs, fraction: macros.carbs / totalGrams, tint: Theme.macroCarbs, delay: 0.06)
+            MacroBarRow(label: String(localized: "Fat"), grams: macros.fat, fraction: macros.fat / totalGrams, tint: Theme.macroFat, delay: 0.12)
             if let note {
                 Text(note)
                     .font(.caption)
@@ -47,6 +47,8 @@ private struct MacroBarRow: View {
     let grams: Double
     let fraction: Double
     let tint: Color
+    /// Draw-on stagger, in seconds.
+    let delay: Double
 
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
@@ -54,7 +56,7 @@ private struct MacroBarRow: View {
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(Theme.aubergineMuted)
                 .frame(width: 58, alignment: .leading)
-            ProgressBar(value: fraction, tint: tint, height: 6)
+            ProgressBar(value: fraction, tint: tint, height: 6, drawOnDelay: delay)
             Text("\(Int(grams.rounded())) g")
                 .font(.caption)
                 .monospacedDigit()

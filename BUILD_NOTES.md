@@ -87,6 +87,16 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 
 **Deep links**: `forkcast://recipe/<id>`, `forkcast://import`, `forkcast://plan`, `forkcast://groceries`.
 
+**Motion (rossark-motion-skill)**: installed in `.agents/skills/rossark-motion-skill` (pinned in
+`skills-lock.json`; `.claude/skills` links to it so Claude Code finds it). Demo videos are not committed; reinstall with
+`npx skills@latest add rossark0/rossark-motion-skill` if you want them. Project rules: `Forkcast/Theme/Motion/MOTION.md`.
+- `MascotView` runs one 12 s `LoopClock` per mascot: breathing with volume kept, sway and tilt around the feet,
+  weight drift; `.cheer` adds a hop (crouch → stretch → gravity fall → squash → settle) with a floor shadow that
+  shrinks in the air and saffron sparkles in one `Canvas`; `.thinking` holds a slow tilt one way, then the other.
+- Bars and rings draw on once with ease-out (macro bars staggered 60 ms); money counts up with ease-out.
+- Check with **Reduce Motion on**: mascots sit still on a neutral frame, bars and numbers show final values.
+- `CLAUDE.md` holds the standing instructions for Claude Code sessions (plan first, image prompts for Grok, motion skill).
+
 ---
 
 ## 3. Assumptions and decisions
@@ -169,5 +179,8 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
     then sees "open the app to finish", and the import is picked up when the app becomes active.
 11. **`project.yml`**: XcodeGen generates the Info.plists and entitlements. If a key isn't applied, check the
     `info:` / `entitlements:` blocks; `CODE_SIGN_ENTITLEMENTS` is set explicitly for every target.
-12. **SF Symbols**: all are iOS 16/17 symbols (`frying.pan`, `figure.2.and.child.holdinghands`, `oven`, `microwave`, `fan`…).
+12. **`Theme/Components/MascotView.swift`**: the `Canvas` sparkle field (`context.resolve(Image(systemName:))`,
+    `shading = .color(...)`) and `LoopClock` from `Theme/Motion/Motion.swift`. If `Animation.open(_:)` clashes
+    with anything, rename it in `Motion.swift` (it's only used in `ProgressBar` and `MoneyText`).
+13. **SF Symbols**: all are iOS 16/17 symbols (`frying.pan`, `figure.2.and.child.holdinghands`, `oven`, `microwave`, `fan`…).
     Swap any that show as missing.

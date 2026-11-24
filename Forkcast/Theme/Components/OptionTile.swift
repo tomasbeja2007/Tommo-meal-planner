@@ -39,7 +39,7 @@ struct OptionTile: View {
                     if isSelected {
                         CheckBadge()
                             .offset(x: 6, y: -6)
-                            .transition(.scale.combined(with: .opacity))
+                            .transition(.scale(scale: 0.9).combined(with: .opacity))
                     }
                 }
                 .contentShape(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous))

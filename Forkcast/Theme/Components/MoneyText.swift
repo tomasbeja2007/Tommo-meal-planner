@@ -33,7 +33,7 @@ struct MoneyText: View {
                 if reduceMotion {
                     displayed = amount
                 } else {
-                    withAnimation(.easeOut(duration: 1.1)) { displayed = amount }
+                    withAnimation(Animation.open(1.1)) { displayed = amount }
                 }
             }
             .onChange(of: amount) { _, newValue in
@@ -41,7 +41,7 @@ struct MoneyText: View {
                 if reduceMotion {
                     displayed = newValue
                 } else {
-                    withAnimation(.easeOut(duration: 0.6)) { displayed = newValue }
+                    withAnimation(Animation.open(0.6)) { displayed = newValue }
                 }
             }
             .accessibilityElement()

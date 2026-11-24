@@ -277,7 +277,7 @@ struct CheckCircle: View {
                 Image(systemName: "checkmark")
                     .font(.system(size: 12, weight: .heavy))
                     .foregroundStyle(Color.white)
-                    .transition(.scale.combined(with: .opacity))
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
             }
         }
         .frame(width: 26, height: 26)

@@ -1,4 +1,4 @@
-# Image requests (for an image-generation agent)
+# Image prompts for Grok
 
 Nothing below is required to build or run the app: every image has a code-drawn
 fallback. Drop a finished PNG into `Forkcast/Resources/Assets.xcassets` as an
@@ -12,6 +12,8 @@ with no code changes.
   **Avoid green as a dominant colour** (green leaves on the tomato are fine).
 - Soft 3D / clay render, gentle studio light, no text, no logos, no brand names.
 - **Transparent background** for character/illustration assets (PNG, sRGB).
+- **No baked ground shadow** under the mascot: the app draws its own floor shadow, which shrinks when
+  Chef Tomato hops (see `Forkcast/Theme/Motion/MOTION.md`).
 
 ## 1. Mascot moods (highest impact)
 1024×1024 transparent PNG, character centred and filling about 85% of the canvas.
@@ -23,7 +25,22 @@ with no code changes.
 | `MascotThinking` | Spoon tapping chin, eyes looking up, small thought sparkle | "Building your week" loader, regenerating |
 | `MascotBell` | Holding a small golden bell, reassuring smile | Trial-reminder screen before the paywall |
 
-(The app still adds a subtle breathing/bounce/wobble animation on top.)
+The app animates every mood on top of the art (breathing, sway around the feet, a hop with
+squash-and-stretch, sparkles), so draw each pose **standing, feet on the bottom edge area, centred**,
+with nothing touching the canvas edges.
+
+### Optional: `MascotRig` (unlocks blinking and eye movement)
+Separate 1024×1024 transparent PNG layers, all aligned on the same canvas so they stack perfectly:
+
+| Asset name | Layer |
+|---|---|
+| `MascotRig-body` | Tomato body and legs, no arms, no face |
+| `MascotRig-head` | Leaves + chef hat, plus the face with the **eyes drawn as plain whites, no pupils** |
+| `MascotRig-armLeft` / `MascotRig-armRight` | Each arm on its own (the right one holding the spoon) |
+| `MascotRig-mouth-closed` / `MascotRig-mouth-open` | The mouth shapes only |
+
+With these, the app can use the motion skill's live face (gliding pupils, blinks every 3–4 s, a happy squint)
+and wave the spoon arm with follow-through.
 
 ## 2. App icon (clean export)
 - `AppIcon` → replace `Forkcast/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png`

@@ -49,6 +49,7 @@ targets:
       - path: Forkcast
         excludes:
           - "Resources/Forkcast.storekit"
+          - "**/*.md"
           - "Supporting/Info.plist"
           - "Supporting/Forkcast.entitlements"
     dependencies:

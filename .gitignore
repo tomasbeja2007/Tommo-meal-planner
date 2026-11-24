@@ -8,3 +8,7 @@ Packages/ForkcastCore/.build/
 Packages/ForkcastCore/Package.resolved
 *.xcworkspace/
 __pycache__/
+
+# rossark-motion-skill demo media (re-download with: npx skills@latest add rossark0/rossark-motion-skill)
+.agents/skills/*/demo/*.mp4
+.agents/skills/*/demo/*.gif

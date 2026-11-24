@@ -78,7 +78,7 @@ private struct ChecklistRow: View {
                     Image(systemName: "checkmark")
                         .font(.system(size: 13, weight: .heavy))
                         .foregroundStyle(Color.white)
-                        .transition(.scale.combined(with: .opacity))
+                        .transition(.scale(scale: 0.9).combined(with: .opacity))
                 } else if isActive {
                     ProgressView().controlSize(.small).tint(Theme.tomato)
                 }
