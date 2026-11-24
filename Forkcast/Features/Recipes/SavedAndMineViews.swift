@@ -63,9 +63,11 @@ struct MyRecipesView: View {
                             }
                             .buttonStyle(.plain)
                             .contextMenu {
-                                Button(String(localized: "Delete"), systemImage: "trash", role: .destructive) {
+                                Button(role: .destructive) {
                                     repository.delete(userRecipeId: recipe.id)
                                     planStore.recompute()
+                                } label: {
+                                    Label(String(localized: "Delete"), systemImage: "trash")
                                 }
                             }
                         }

@@ -175,7 +175,7 @@ struct PaywallView: View {
                     }
                 }
                 Link(String(localized: "Terms"), destination: AppLinks.terms)
-                Link(String(localized: "Privacy"), destination: AppLinks.privacy)
+                Link(String(localized: "Privacy"), destination: AppLinks.privacyPolicy)
                 Button(String(localized: "Have a code?")) { isRedeemShown = true }
             }
             .font(.caption)

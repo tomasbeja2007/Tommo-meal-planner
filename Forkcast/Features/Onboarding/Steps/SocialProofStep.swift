@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct SocialProofStep: View {
     let onContinue: () -> Void

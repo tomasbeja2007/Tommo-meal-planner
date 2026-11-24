@@ -68,7 +68,7 @@ final class ShareViewController: UIViewController {
     /// the responder chain. If it doesn't work, the confirmation tells the user to open Forkcast.
     private func openMainApp() {
         guard let url = URL(string: "\(SharedConstants.urlScheme)://import") else { return }
-        let selector: Selector = sel_registerName("openURL:")
+        let selector: Selector = NSSelectorFromString("openURL:")
         var responder: UIResponder? = self
         while let current = responder {
             if current.responds(to: selector), current !== self {
