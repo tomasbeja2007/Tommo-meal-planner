@@ -136,6 +136,13 @@ private struct BasicsSection: View {
                     }
                 }
             }
+            Picker(selection: $draft.mealType) {
+                ForEach(MealType.allCases) { type in
+                    Text(type.title).tag(type)
+                }
+            } label: {
+                Label(String(localized: "Meal"), systemImage: "fork.knife")
+            }
             HStack {
                 Label(String(localized: "Servings"), systemImage: "person.2")
                 Spacer()

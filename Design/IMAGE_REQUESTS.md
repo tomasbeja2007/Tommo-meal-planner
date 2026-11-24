@@ -10,8 +10,8 @@ with no code changes.
   all 25 onboarding illustrations (section 4), and the 6 splash pieces + `illustration-cloudSync` (section 5).
 - **MascotRig, round 1:** arms and both mouths are good and kept in `Design/MascotRig/` (not in the app until the
   live face is built). `MascotRig-body` and `MascotRig-head` need a redo, see section 1.
-- **Still open:** the clean app icon export (section 2), the 72 pantry photos (section 6), and the
-  `MascotRig-body` / `MascotRig-head` redo (section 1).
+- **Still open:** the clean app icon export (section 2), the 80 pantry photos (section 6), the 32 breakfast, lunch
+  and snack photos (section 7), and the `MascotRig-body` / `MascotRig-head` redo (section 1).
 
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
@@ -139,9 +139,10 @@ Style notes: each piece is a single object, centred, filling ~80% of the canvas,
 soft studio light from the top left. They float around Chef Tomato on the splash and welcome screens, so they
 should read clearly at about 60 pt.
 
-## 6. Pantry photos (72)
+## 6. Pantry photos (80)
 Real photos (not illustrations) for the "what do you already have?" screen. Each tile shows the photo at about
-60 pt in a rounded square; until a photo exists the tile shows the ingredient's emoji.
+60 pt in a rounded square; until a photo exists the tile shows the ingredient's emoji. The screen shows the most-used
+ingredients, so the list covers every ingredient it can show.
 
 - **File:** `ingredient-<id>.jpg`, **512×512**, **opaque**.
 - **Style:** realistic food photography, the ingredient alone, centred, filling about 70% of the frame, on a plain
@@ -154,6 +155,7 @@ Real photos (not illustrations) for the "what do you already have?" screen. Each
 |---|---|
 | `ingredient-baguette` | A whole crusty baguette |
 | `ingredient-tortillas` | A small stack of soft flour tortillas |
+| `ingredient-wholemeal-bread` | A few slices of wholemeal bread |
 | `ingredient-flour` | Plain flour in a small ceramic bowl with a wooden scoop |
 | `ingredient-butter` | A block of butter on a small plate, one slice cut |
 | `ingredient-cheddar` | A wedge of orange cheddar |
@@ -163,11 +165,14 @@ Real photos (not illustrations) for the "what do you already have?" screen. Each
 | `ingredient-feta` | A block of feta, a few crumbles beside it |
 | `ingredient-halloumi` | A block of halloumi, one slice cut |
 | `ingredient-heavy-cream` | Double cream in a small glass jug |
+| `ingredient-hummus` | Hummus in a small bowl with a swirl of olive oil |
 | `ingredient-milk` | A glass bottle of milk, no label |
 | `ingredient-mozzarella` | A ball of fresh mozzarella |
 | `ingredient-parmesan` | A wedge of parmesan |
 | `ingredient-greek-yogurt` | Thick Greek yogurt in a small bowl |
 | `ingredient-sour-cream` | Sour cream in a small bowl |
+| `ingredient-soy-milk` | A glass of soy milk, no label |
+| `ingredient-berries-frozen` | Frozen mixed berries with a light frost in a small bowl |
 | `ingredient-peas-frozen` | Frozen peas with a light frost in a small bowl |
 | `ingredient-mixed-veg-frozen` | Frozen stir-fry vegetables (peppers, broccoli, carrot) with a light frost in a small bowl |
 | `ingredient-corn-frozen` | Frozen sweetcorn kernels with a light frost in a small bowl |
@@ -180,6 +185,7 @@ Real photos (not illustrations) for the "what do you already have?" screen. Each
 | `ingredient-sausages` | Four raw pork sausages |
 | `ingredient-shrimp` | Raw king prawns in a small bowl |
 | `ingredient-sesame-oil` | Toasted sesame oil in a small glass bottle, no label |
+| `ingredient-chia-seeds` | Chia seeds in a small bowl |
 | `ingredient-penne` | Dry penne pasta in a small heap |
 | `ingredient-spaghetti` | A bundle of dry spaghetti |
 | `ingredient-arugula` | A handful of rocket leaves |
@@ -208,6 +214,7 @@ Real photos (not illustrations) for the "what do you already have?" screen. Each
 | `ingredient-long-grain-rice` | Dry long-grain rice in a small bowl |
 | `ingredient-microwave-rice` | Cooked rice in a plain unlabelled pouch, slightly open |
 | `ingredient-red-lentils` | Dry red lentils in a small bowl |
+| `ingredient-rolled-oats` | Rolled oats in a small bowl |
 | `ingredient-dijon-mustard` | Dijon mustard in a small dish |
 | `ingredient-chicken-stock` | A stock cube next to a small bowl of golden broth |
 | `ingredient-fish-sauce` | Fish sauce in a small glass bottle, no label |
@@ -216,6 +223,8 @@ Real photos (not illustrations) for the "what do you already have?" screen. Each
 | `ingredient-soy-sauce` | Soy sauce in a small dipping dish |
 | `ingredient-vegetable-stock` | A stock cube next to a small bowl of clear vegetable broth |
 | `ingredient-black-beans` | Cooked black beans in a small bowl |
+| `ingredient-canned-tuna` | Flaked tuna in a small bowl |
+| `ingredient-cannellini-beans` | Cooked white cannellini beans in a small bowl |
 | `ingredient-chickpeas` | Cooked chickpeas in a small bowl |
 | `ingredient-coconut-milk` | Coconut milk in a small bowl, half a coconut beside it |
 | `ingredient-chopped-tomatoes` | Chopped tomatoes in a small bowl |
@@ -224,6 +233,45 @@ Real photos (not illustrations) for the "what do you already have?" screen. Each
 | `ingredient-tomato-paste` | Tomato purée in a small dish |
 | `ingredient-salsa` | Chunky tomato salsa in a small bowl |
 | `ingredient-passata` | Passata in a small glass jug |
+
+## 7. Breakfast, lunch and snack photos (32)
+Same brief as the recipe photos in section 3: square **1200×1200** JPG, top-down or 45°, warm neutral surface,
+natural light, no hands, no text, matching the title. File = `recipe-<id>`.
+
+| File | Dish | Meal |
+|---|---|---|
+| `recipe-berry-overnight-oats` | Berry overnight oats | Breakfast |
+| `recipe-peanut-banana-porridge` | Peanut butter & banana porridge | Breakfast |
+| `recipe-spinach-tomato-scrambled-eggs` | Spinach & tomato scrambled eggs on toast | Breakfast |
+| `recipe-bean-egg-breakfast-burritos` | Bean & egg breakfast burritos | Breakfast |
+| `recipe-avocado-toast-fried-egg` | Smashed avocado toast with a fried egg | Breakfast |
+| `recipe-greek-yogurt-berry-bowl` | Greek yogurt berry bowl | Breakfast |
+| `recipe-berry-chia-pudding` | Berry chia pudding | Breakfast |
+| `recipe-berry-banana-smoothie` | Berry & banana smoothie | Breakfast |
+| `recipe-sweet-potato-breakfast-hash` | Sweet potato & pepper breakfast hash | Breakfast |
+| `recipe-cinnamon-french-toast` | Cinnamon French toast with berries | Breakfast |
+| `recipe-turmeric-tofu-scramble` | Turmeric tofu scramble | Breakfast |
+| `recipe-ham-cheese-omelette` | Ham & cheese omelette | Breakfast |
+| `recipe-chicken-hummus-wraps` | Chicken, hummus & spinach wraps | Lunch |
+| `recipe-tuna-sweetcorn-sandwiches` | Tuna & sweetcorn sandwiches | Lunch |
+| `recipe-greek-chickpea-salad` | Greek salad with feta & chickpeas | Lunch |
+| `recipe-black-bean-quinoa-bowl` | Quinoa, black bean & avocado bowl | Lunch |
+| `recipe-red-lentil-carrot-soup` | Red lentil & carrot soup | Lunch |
+| `recipe-lemon-couscous-halloumi` | Lemon couscous with halloumi | Lunch |
+| `recipe-chicken-noodle-soup` | Ginger chicken noodle soup | Lunch |
+| `recipe-caprese-pesto-toastie` | Tomato, mozzarella & pesto toastie | Lunch |
+| `recipe-smashed-chickpea-sandwiches` | Smashed chickpea salad sandwiches | Lunch |
+| `recipe-cheesy-bean-jacket-potatoes` | Microwave jacket potatoes with cheesy beans | Lunch |
+| `recipe-tuna-white-bean-salad` | Tuna & white bean salad | Lunch |
+| `recipe-sweet-potato-bean-quesadillas` | Sweet potato & black bean quesadillas | Lunch |
+| `recipe-hummus-veg-sticks` | Hummus with veg sticks | Snack |
+| `recipe-apple-peanut-butter` | Apple slices with peanut butter | Snack |
+| `recipe-paprika-popcorn` | Stovetop paprika popcorn | Snack |
+| `recipe-oat-raisin-energy-balls` | Oat & raisin energy balls | Snack |
+| `recipe-yogurt-berry-pots` | Yogurt & berry pots | Snack |
+| `recipe-avocado-rice-cakes` | Rice cakes with avocado & chilli | Snack |
+| `recipe-crispy-spiced-chickpeas` | Crispy spiced chickpeas | Snack |
+| `recipe-devilled-eggs` | Devilled eggs | Snack |
 
 ## Do NOT generate
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:

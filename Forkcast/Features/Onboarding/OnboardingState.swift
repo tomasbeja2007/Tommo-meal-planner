@@ -30,7 +30,8 @@ final class OnboardingState {
 
     // Answers stored in `OnboardingAnswers` (JSON on the profile).
     var obstacles: Set<OnboardingObstacle> = []
-    var laterMealTypes: Set<MealType> = []
+    /// Meals to plan on every chosen day. Dinner is preselected; at least one is required.
+    var mealTypes: Set<MealType> = [.dinner]
     var mealPrepMode: Bool = false
     var extraDiets: Set<ExtraDiet> = []
     var pantry: Set<String> = []
@@ -65,15 +66,18 @@ final class OnboardingState {
         trialReminderDaysBefore = profile.trialReminderDaysBefore
         let answers: OnboardingAnswers = profile.onboardingAnswers
         obstacles = Set(answers.obstacles.compactMap { OnboardingObstacle(rawValue: $0) })
-        laterMealTypes = Set(answers.laterMealTypes.compactMap { MealType(rawValue: $0) })
+        mealTypes = profile.mealTypes
         mealPrepMode = answers.mealPrepMode
         extraDiets = Set(answers.extraDiets.compactMap { ExtraDiet(rawValue: $0) })
         pantry = Set(answers.pantry)
         requestedStore = answers.requestedStore ?? ""
     }
 
-    /// Dinners per week (the only meal type we plan today).
+    /// Planning days per week.
     var dinnersPerWeek: Int { cookingDays.isEmpty ? 5 : cookingDays.count }
+
+    /// Meals per week across every chosen meal type.
+    var mealsPerWeek: Int { dinnersPerWeek * MealType.ordered(mealTypes).count }
 
     /// Allergens as the user sees them ("No allergies" clears the set).
     var effectiveAllergens: Set<Allergen> { noAllergies ? [] : allergens }
@@ -97,7 +101,7 @@ final class OnboardingState {
     func refreshSuggestedBudget(catalog: FoodCatalog) {
         guard !budgetTouched else { return }
         let country: Country = country(in: catalog)
-        budget = BudgetMath.defaultBudget(region: country.regionPriceKey, portions: portions, days: cookingDays.count, multiplier: country.priceMultiplier)
+        budget = BudgetMath.defaultBudget(region: country.regionPriceKey, portions: portions, days: cookingDays.count, multiplier: country.priceMultiplier, mealTypes: mealTypes)
     }
 
     func apply(to profile: UserProfile) {
@@ -109,6 +113,7 @@ final class OnboardingState {
         profile.householdAdults = max(1, adults)
         profile.householdKids = max(0, kids)
         profile.cookingDays = cookingDays.isEmpty ? [1, 2, 3, 4, 5] : cookingDays
+        profile.mealTypes = mealTypes.isEmpty ? [.dinner] : mealTypes
         profile.weeklyBudget = budget
         profile.vibes = Vibe.allCases.filter { vibes.contains($0) }
         profile.diet = diet
@@ -118,7 +123,6 @@ final class OnboardingState {
         profile.trialReminderDaysBefore = trialReminderDaysBefore
         var answers: OnboardingAnswers = profile.onboardingAnswers
         answers.obstacles = OnboardingObstacle.allCases.filter { obstacles.contains($0) }.map { $0.rawValue }
-        answers.laterMealTypes = MealType.allCases.filter { laterMealTypes.contains($0) }.map { $0.rawValue }
         answers.mealPrepMode = mealPrepMode
         answers.extraDiets = ExtraDiet.allCases.filter { extraDiets.contains($0) }.map { $0.rawValue }
         if answers.pantry.sorted() != pantry.sorted() {

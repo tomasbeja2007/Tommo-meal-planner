@@ -17,7 +17,7 @@ struct AddToPlanSheet: View {
     var body: some View {
         NavigationStack {
             List(days, id: \.self) { day in
-                let existing: PlannedMeal? = planStore.meal(on: day)
+                let existing: PlannedMeal? = planStore.meal(on: day, type: recipe.mealType)
                 Button {
                     if let existing {
                         planStore.swap(existing, to: recipe.id)
@@ -47,7 +47,7 @@ struct AddToPlanSheet: View {
             }
             .scrollContentBackground(.hidden)
             .background(Theme.cream.ignoresSafeArea())
-            .navigationTitle(String(localized: "add to which day?"))
+            .navigationTitle(recipe.mealType == .dinner ? String(localized: "add to which day?") : String(localized: "add as \(recipe.mealType.noun) on which day?"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

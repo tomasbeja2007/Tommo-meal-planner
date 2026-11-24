@@ -1,34 +1,60 @@
 import SwiftUI
 import ForkcastCore
 
-/// One card per day of the plan: a meal card, or a slim "add one" row.
+/// The week on the Plan tab.
+/// Dinners only: one card per day (a meal card, or a slim "add one" row), as it always was.
+/// More meals: each day gets a heading, then one card or "add" row per planned meal type.
 struct DayList: View {
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
     let onOpen: (PlannedMeal) -> Void
     let onSwap: (PlannedMeal) -> Void
-    let onAdd: (Date) -> Void
+    let onAdd: (Date, MealType) -> Void
 
     var body: some View {
         VStack(spacing: Theme.Spacing.m) {
             ForEach(planStore.weekDays, id: \.self) { day in
-                if let meal = planStore.meal(on: day), let recipe = planStore.recipe(for: meal) {
+                if planStore.isDinnersOnly {
+                    slot(day: day, type: .dinner, header: DateText.dayLabel(day))
+                } else {
+                    VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                        Text(DateText.dayLabel(day))
+                            .font(.system(.subheadline, design: .rounded).weight(.bold))
+                            .foregroundStyle(Theme.aubergine)
+                            .padding(.top, Theme.Spacing.s)
+                            .accessibilityAddTraits(.isHeader)
+                        ForEach(planStore.plannedMealTypes) { type in
+                            slot(day: day, type: type, header: type.title)
+                        }
+                    }
+                }
+            }
+        }
+        .animation(Theme.motion(reduceMotion), value: planStore.revision)
+    }
+
+    @ViewBuilder
+    private func slot(day: Date, type: MealType, header: String) -> some View {
+        let meals: [PlannedMeal] = planStore.meals(on: day, type: type)
+        if meals.isEmpty {
+            EmptyDayRow(day: day, label: header, mealType: type) { onAdd(day, type) }
+        } else {
+            ForEach(meals, id: \.persistentModelID) { meal in
+                if let recipe = planStore.recipe(for: meal) {
                     MealCard(
                         day: day,
+                        header: header,
                         meal: meal,
                         recipe: recipe,
                         cost: planStore.cost(for: meal),
                         onOpen: { onOpen(meal) },
                         onSwap: { onSwap(meal) }
                     )
-                    .id("\(meal.recipeId)-\(day.timeIntervalSince1970)")
+                    .id("\(meal.recipeId)-\(type.rawValue)-\(day.timeIntervalSince1970)")
                     .transition(.asymmetric(insertion: .scale(scale: 0.96).combined(with: .opacity), removal: .opacity))
-                } else {
-                    EmptyDayRow(day: day) { onAdd(day) }
                 }
             }
         }
-        .animation(Theme.motion(reduceMotion), value: planStore.revision)
     }
 }
 
@@ -36,6 +62,8 @@ struct MealCard: View {
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     let day: Date
+    /// "Mon 24 Nov" for dinners-only plans, or the meal ("Lunch") under a day heading.
+    var header: String? = nil
     let meal: PlannedMeal
     let recipe: Recipe
     let cost: Double
@@ -44,7 +72,7 @@ struct MealCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            Text(DateText.dayLabel(day))
+            Text(header ?? DateText.dayLabel(day))
                 .font(.caption.weight(.bold))
                 .foregroundStyle(Theme.aubergineMuted)
             HStack(alignment: .top, spacing: Theme.Spacing.m) {
@@ -69,7 +97,7 @@ struct MealCard: View {
                         .background(Circle().fill(Theme.tomatoSoft))
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel(Text("Swap \(DateText.weekdayName(day))'s dinner"))
+                .accessibilityLabel(Text("Swap \(DateText.weekdayName(day))'s \(meal.mealType.noun)"))
             }
         }
         .cardStyle(padding: Theme.Spacing.m)
@@ -151,18 +179,20 @@ struct CookedBadge: View {
     }
 }
 
-/// "no dinner planned · add one"
+/// "no dinner planned · add one" (or "no lunch planned"…)
 struct EmptyDayRow: View {
     let day: Date
+    var label: String? = nil
+    var mealType: MealType = .dinner
     let onAdd: () -> Void
 
     var body: some View {
         Button(action: onAdd) {
             HStack {
-                Text(DateText.dayLabel(day))
+                Text(label ?? DateText.dayLabel(day))
                     .font(.caption.weight(.bold))
                     .foregroundStyle(Theme.aubergineFaint)
-                Text("no dinner planned")
+                Text("no \(mealType.noun) planned")
                     .font(.subheadline)
                     .foregroundStyle(Theme.aubergineFaint)
                 Spacer()
@@ -182,4 +212,4 @@ struct EmptyDayRow: View {
     }
 }
 
-#Preview { ScrollView { DayList(onOpen: { _ in }, onSwap: { _ in }, onAdd: { _ in }).padding() }.previewEnvironment().creamBackground() }
+#Preview { ScrollView { DayList(onOpen: { _ in }, onSwap: { _ in }, onAdd: { _, _ in }).padding() }.previewEnvironment().creamBackground() }

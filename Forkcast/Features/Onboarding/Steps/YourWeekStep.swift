@@ -2,8 +2,7 @@ import SwiftUI
 import ForkcastCore
 
 /// 5. Which meals, which days, how long on a weeknight, and meal prep mode, on one screen.
-/// Only dinners are planned today: breakfast, lunch and snacks are "coming soon" and a tap
-/// just remembers the interest.
+/// Every chosen meal is planned on every chosen day. Dinner is preselected; at least one meal stays on.
 struct YourWeekStep: View {
     @Bindable var state: OnboardingState
     let onContinue: () -> Void
@@ -11,36 +10,24 @@ struct YourWeekStep: View {
     var body: some View {
         QuestionScaffold(
             title: String(localized: "your week"),
-            subtitle: String(localized: "which meals and which nights should we plan?"),
-            isButtonEnabled: !state.cookingDays.isEmpty,
+            subtitle: String(localized: "which meals and which days should we plan?"),
+            isButtonEnabled: !state.cookingDays.isEmpty && !state.mealTypes.isEmpty,
             onContinue: onContinue
         ) {
             VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
                 section(String(localized: "Meals")) {
-                    FlowLayout(spacing: 8) {
-                        ForEach(MealType.allCases) { meal in
-                            MealTypeChip(
-                                meal: meal,
-                                isInterested: state.laterMealTypes.contains(meal)
-                            ) {
-                                if state.laterMealTypes.contains(meal) {
-                                    state.laterMealTypes.remove(meal)
-                                } else {
-                                    state.laterMealTypes.insert(meal)
-                                }
-                            }
-                        }
-                    }
-                    if !state.laterMealTypes.isEmpty {
-                        Text("We'll tell you when \(laterMealsText) arrive.")
-                            .font(.caption)
-                            .foregroundStyle(Theme.aubergineMuted)
-                            .transition(.opacity)
-                    }
+                    MealTypePicker(selection: $state.mealTypes)
+                        .onChange(of: state.mealTypes) { _, _ in state.refreshSuggestedBudget(catalog: .bundled) }
                 }
-                section(String(localized: "Nights")) {
-                    CookingDaysEditor(days: $state.cookingDays)
+                section(String(localized: "Days")) {
+                    CookingDaysEditor(days: $state.cookingDays, showsSummary: false)
                 }
+                Text(mealsLine)
+                    .font(.system(.title3, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .contentTransition(.numericText())
+                    .animation(Theme.spring, value: state.mealsPerWeek)
+                    .frame(maxWidth: .infinity)
                 section(String(localized: "Weeknight cooking time")) {
                     FlowLayout(spacing: 8) {
                         ForEach(CookTimeOption.allCases) { option in
@@ -52,13 +39,16 @@ struct YourWeekStep: View {
                 }
                 MealPrepToggle(isOn: $state.mealPrepMode)
             }
-            .animation(Theme.spring, value: state.laterMealTypes)
         }
     }
 
-    private var laterMealsText: String {
-        let names: [String] = MealType.allCases.filter { state.laterMealTypes.contains($0) }.map { $0.title.lowercased() }
-        return names.formatted(.list(type: .and))
+    /// "That's 10 meals a week" (or "5 dinners a week" when it's dinners only).
+    private var mealsLine: String {
+        let count: Int = state.mealsPerWeek
+        if state.mealTypes == [.dinner] {
+            return count == 1 ? String(localized: "That's 1 dinner a week") : String(localized: "That's \(count) dinners a week")
+        }
+        return count == 1 ? String(localized: "That's 1 meal a week") : String(localized: "That's \(count) meals a week")
     }
 
     private func section<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
@@ -68,46 +58,6 @@ struct YourWeekStep: View {
                 .foregroundStyle(Theme.aubergine)
             content()
         }
-    }
-}
-
-/// Dinner is always on (with a herb tick). The others say "soon"; tapping one marks interest.
-private struct MealTypeChip: View {
-    let meal: MealType
-    let isInterested: Bool
-    let action: () -> Void
-
-    var body: some View {
-        if meal.isAvailable {
-            label(trailing: AnyView(
-                Image(systemName: "checkmark.circle.fill").foregroundStyle(Theme.herb)
-            ), selected: true)
-            .accessibilityLabel(Text("\(meal.title), planned"))
-        } else {
-            Button(action: action) {
-                label(trailing: AnyView(TagLabel(text: isInterested ? String(localized: "notify me") : String(localized: "soon"), tint: Theme.aubergine, fill: Theme.saffronSoft)), selected: false)
-            }
-            .buttonStyle(.plain)
-            .sensoryFeedback(.selection, trigger: isInterested)
-            .accessibilityLabel(Text("\(meal.title), coming soon"))
-            .accessibilityAddTraits(isInterested ? [.isSelected] : [])
-        }
-    }
-
-    private func label(trailing: AnyView, selected: Bool) -> some View {
-        HStack(spacing: 6) {
-            Text(meal.emoji)
-            Text(meal.title)
-                .font(.system(.subheadline, design: .rounded).weight(.semibold))
-                .foregroundStyle(selected ? Theme.tomatoDeep : Theme.aubergineMuted)
-            trailing
-        }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 9)
-        .frame(minHeight: 44)
-        .background(Capsule().fill(selected ? Theme.tomatoSoft : Theme.creamDeep))
-        .overlay(Capsule().stroke(selected ? Theme.tomato : (isInterested ? Theme.saffron : Color.clear), lineWidth: selected ? 2 : 1.5))
-        .contentShape(Capsule())
     }
 }
 

@@ -1,7 +1,7 @@
 import SwiftUI
 import ForkcastCore
 
-/// "swap Tuesday's dinner": top planner alternatives + saved recipes.
+/// "swap Tuesday's dinner" (or lunch…): top planner alternatives + saved recipes of the same meal type.
 struct SwapSheet: View {
     let meal: PlannedMeal
 
@@ -20,7 +20,7 @@ struct SwapSheet: View {
         let rules: PlannerProfile = profileStore.plannerProfile
         let notForMe: Set<String> = library.notForMeIds
         return library.savedIds.compactMap { repository.recipe(id: $0) }.filter { recipe in
-            !planStore.isInPlan(recipe.id) && repository.passesHardFilters(recipe, rules: rules, notForMe: notForMe)
+            recipe.mealType == meal.mealType && !planStore.isInPlan(recipe.id) && repository.passesHardFilters(recipe, rules: rules, notForMe: notForMe)
         }
     }
 
@@ -73,7 +73,7 @@ struct SwapSheet: View {
             }
             .scrollContentBackground(.hidden)
             .background(Theme.cream.ignoresSafeArea())
-            .navigationTitle(String(localized: "swap \(DateText.weekdayName(meal.date))'s dinner"))
+            .navigationTitle(String(localized: "swap \(DateText.weekdayName(meal.date))'s \(meal.mealType.noun)"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -81,7 +81,7 @@ struct SwapSheet: View {
                 }
             }
             .sheet(isPresented: $isPickerShown) {
-                RecipePickerSheet(title: String(localized: "pick a recipe")) { recipeId in
+                RecipePickerSheet(title: String(localized: "pick a recipe"), mealType: meal.mealType) { recipeId in
                     isPickerShown = false
                     apply(recipeId)
                 }

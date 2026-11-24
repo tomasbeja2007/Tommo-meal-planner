@@ -95,6 +95,11 @@ final class ProfileStore {
         return days.isEmpty ? [1, 2, 3, 4, 5] : days
     }
 
+    /// Meal types to plan (dinner if nothing is set).
+    var mealTypes: Set<MealType> {
+        profile?.mealTypes ?? [.dinner]
+    }
+
     var weeklyBudget: Double {
         profile?.weeklyBudget ?? 50
     }

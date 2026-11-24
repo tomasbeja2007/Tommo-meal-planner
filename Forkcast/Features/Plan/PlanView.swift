@@ -8,7 +8,7 @@ struct PlanView: View {
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
 
     @State private var swapTarget: PlannedMeal? = nil
-    @State private var addMealDate: Date? = nil
+    @State private var addTarget: AddMealTarget? = nil
     @State private var isEditingWeek: Bool = false
     @State private var isWhyCheaperShown: Bool = false
     @State private var isFeedbackShown: Bool = false
@@ -28,7 +28,7 @@ struct PlanView: View {
                     } else {
                         EmptyState(
                             title: String(localized: "no plan this week yet"),
-                            message: String(localized: "we'll build a costed week of dinners for your shop."),
+                            message: profileStore.mealTypes == [.dinner] ? String(localized: "we'll build a costed week of dinners for your shop.") : String(localized: "we'll build a costed week of meals for your shop."),
                             actionTitle: String(localized: "Build my week")
                         ) {
                             Task { await planStore.generatePlan() }
@@ -61,12 +61,10 @@ struct PlanView: View {
             SwapSheet(meal: meal)
                 .presentationDetents([.large, .medium])
         }
-        .sheet(isPresented: Binding<Bool>(get: { addMealDate != nil }, set: { if !$0 { addMealDate = nil } })) {
-            RecipePickerSheet(title: String(localized: "add a meal")) { recipeId in
-                if let date = addMealDate {
-                    planStore.addMeal(recipeId: recipeId, on: date)
-                }
-                addMealDate = nil
+        .sheet(item: $addTarget) { target in
+            RecipePickerSheet(title: String(localized: "add a \(target.mealType.noun)"), mealType: target.mealType) { recipeId in
+                planStore.addMeal(recipeId: recipeId, on: target.date, mealType: target.mealType)
+                addTarget = nil
             }
         }
         .fullScreenCover(isPresented: $isEditingWeek) {
@@ -118,7 +116,7 @@ struct PlanView: View {
         GroceryShortcutCard(itemCount: planStore.groceryList.itemCount, checkedCount: planStore.checkedCount) {
             router.gate(isPro: isPro) { router.selectedTab = .groceries }
         }
-        SectionHeader(title: String(localized: "dinners"), subtitle: dinnersSubtitle)
+        SectionHeader(title: planStore.isDinnersOnly ? String(localized: "dinners") : String(localized: "meals"), subtitle: dinnersSubtitle)
             .padding(.top, Theme.Spacing.s)
         DayList(
             onOpen: { meal in
@@ -127,8 +125,8 @@ struct PlanView: View {
             onSwap: { meal in
                 router.gate(isPro: isPro) { swapTarget = meal }
             },
-            onAdd: { date in
-                router.gate(isPro: isPro) { addMealDate = date }
+            onAdd: { date, type in
+                router.gate(isPro: isPro) { addTarget = AddMealTarget(date: date, mealType: type) }
             }
         )
         PlanActions(
@@ -157,6 +155,13 @@ struct PlanView: View {
         didAutoShowFeedback = true
         isFeedbackShown = true
     }
+}
+
+/// A day and meal type to add a recipe to (drives the add-a-meal sheet).
+struct AddMealTarget: Identifiable, Hashable {
+    let date: Date
+    let mealType: MealType
+    var id: String { "\(date.timeIntervalSince1970)-\(mealType.rawValue)" }
 }
 
 /// "Hi Sam" + "this week" + store pill.

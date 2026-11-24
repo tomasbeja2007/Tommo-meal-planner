@@ -10,8 +10,6 @@ struct OnboardingAnswers: Codable, Hashable {
     var version: Int = 1
     /// `OnboardingObstacle` raw values.
     var obstacles: [String] = []
-    /// Meal types other than dinner the user wants once we support them (`MealType` raw values).
-    var laterMealTypes: [String] = []
     var mealPrepMode: Bool = false
     /// `ExtraDiet` raw values.
     var extraDiets: [String] = []
@@ -100,22 +98,26 @@ enum OnboardingObstacle: String, CaseIterable, Identifiable {
     }
 }
 
-/// Meal types on "Your week". Only dinner is planned today; the rest are "coming soon".
-enum MealType: String, CaseIterable, Identifiable {
-    case breakfast
-    case lunch
-    case dinner
-    case snacks
-
-    var id: String { rawValue }
-    var isAvailable: Bool { self == .dinner }
+/// Display names for the core `MealType` (breakfast, lunch, dinner, snack).
+extension MealType: Identifiable {
+    public var id: String { rawValue }
 
     var title: String {
         switch self {
         case .breakfast: return String(localized: "Breakfast")
         case .lunch: return String(localized: "Lunch")
         case .dinner: return String(localized: "Dinner")
-        case .snacks: return String(localized: "Snacks")
+        case .snack: return String(localized: "Snacks")
+        }
+    }
+
+    /// Singular, lower-case, for sentences: "add a lunch", "swap this snack".
+    var noun: String {
+        switch self {
+        case .breakfast: return String(localized: "breakfast")
+        case .lunch: return String(localized: "lunch")
+        case .dinner: return String(localized: "dinner")
+        case .snack: return String(localized: "snack")
         }
     }
 
@@ -124,7 +126,7 @@ enum MealType: String, CaseIterable, Identifiable {
         case .breakfast: return "🥣"
         case .lunch: return "🥪"
         case .dinner: return "🍝"
-        case .snacks: return "🍎"
+        case .snack: return "🍎"
         }
     }
 }

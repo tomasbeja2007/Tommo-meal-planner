@@ -19,7 +19,8 @@ struct StayOnTrackStep: View {
 
     /// "Smoky black bean tacos with lime slaw · 20 min"
     private var dinnerMessage: String {
-        guard let first = planStore.meals.first, let recipe = repository.recipe(id: first.recipeId) else {
+        guard let first = planStore.meals.first(where: { $0.mealType == .dinner }) ?? planStore.meals.first,
+              let recipe = repository.recipe(id: first.recipeId) else {
             return String(localized: "Your first dinner is ready to cook.")
         }
         let minutes: Int = recipe.prepMinutes + recipe.cookMinutes

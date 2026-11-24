@@ -22,7 +22,8 @@ struct PlanRevealStep: View {
             portions: state.portions,
             days: state.dinnersPerWeek,
             region: country.regionPriceKey,
-            multiplier: country.priceMultiplier
+            multiplier: country.priceMultiplier,
+            mealTypes: state.mealTypes
         ).yearly
     }
 
@@ -73,6 +74,7 @@ struct PlanRevealStep: View {
                     if let recipe = repository.recipe(id: meal.recipeId) {
                         RevealDayCard(
                             date: meal.date,
+                            mealLabel: state.mealTypes == [.dinner] ? nil : meal.mealType.title,
                             recipe: recipe,
                             costText: index < planStore.mealCosts.count ? MoneyFormat.string(planStore.mealCosts[index], currencyCode: currency) : nil
                         )
@@ -86,14 +88,14 @@ struct PlanRevealStep: View {
 
     // MARK: Summary
 
-    /// "5 dinners · £78.40 · £6.60 under budget"
+    /// "5 dinners · £78.40 · £6.60 under budget" ("15 meals · …" when more than dinners are planned)
     private var summaryRow: some View {
         let difference: Double = planStore.budget - planStore.total
         let budgetText: String = difference >= 0
             ? String(localized: "\(MoneyFormat.string(difference, currencyCode: currency)) under budget")
             : String(localized: "\(MoneyFormat.string(-difference, currencyCode: currency)) over budget")
         return HStack(spacing: Theme.Spacing.s) {
-            Text(planStore.meals.count == 1 ? String(localized: "1 dinner") : String(localized: "\(planStore.meals.count) dinners"))
+            Text(mealCountText)
             Text(verbatim: "·").foregroundStyle(Theme.aubergineFaint)
             Text(MoneyFormat.string(planStore.total, currencyCode: currency))
             Text(verbatim: "·").foregroundStyle(Theme.aubergineFaint)
@@ -109,6 +111,14 @@ struct PlanRevealStep: View {
         .padding(.vertical, Theme.Spacing.m)
         .background(Capsule().fill(Theme.card))
         .accessibilityElement(children: .combine)
+    }
+
+    private var mealCountText: String {
+        let count: Int = planStore.meals.count
+        if state.mealTypes == [.dinner] {
+            return count == 1 ? String(localized: "1 dinner") : String(localized: "\(count) dinners")
+        }
+        return count == 1 ? String(localized: "1 meal") : String(localized: "\(count) meals")
     }
 
     // MARK: Savings
@@ -137,12 +147,14 @@ struct PlanRevealStep: View {
 
 private struct RevealDayCard: View {
     let date: Date
+    /// "Lunch" etc. when the plan has more than dinners.
+    let mealLabel: String?
     let recipe: Recipe
     let costText: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            Text(date.formatted(.dateTime.weekday(.abbreviated)))
+            Text(mealLabel.map { "\(date.formatted(.dateTime.weekday(.abbreviated))) · \($0)" } ?? date.formatted(.dateTime.weekday(.abbreviated)))
                 .font(.system(.caption, design: .rounded).weight(.bold))
                 .foregroundStyle(Theme.tomatoDeep)
                 .textCase(.uppercase)

@@ -7,6 +7,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
     case country
     case store
     case household
+    case meals
     case cookingDays
     case budget
     case vibes
@@ -24,6 +25,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
         case .country: return String(localized: "Country")
         case .store: return String(localized: "Store")
         case .household: return String(localized: "Household")
+        case .meals: return String(localized: "Meals")
         case .cookingDays: return String(localized: "Cooking days")
         case .budget: return String(localized: "Weekly budget")
         case .vibes: return String(localized: "Vibes")
@@ -41,6 +43,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
         case .country: return "globe"
         case .store: return "basket"
         case .household: return "person.2"
+        case .meals: return "fork.knife"
         case .cookingDays: return "calendar"
         case .budget: return "banknote"
         case .vibes: return "sparkles"
@@ -106,6 +109,7 @@ struct PreferencesSection: View {
         case .store: return profileStore.storeName
         case .household:
             return String(localized: "\(profile.householdAdults) adults · \(profile.householdKids) kids")
+        case .meals: return MealType.ordered(profile.mealTypes).map { $0.title }.joined(separator: ", ")
         case .cookingDays: return String(localized: "\(profile.cookingDays.count) a week")
         case .budget: return profileStore.formatMoney(profile.weeklyBudget, fractionDigits: 0)
         case .vibes: return profile.vibes.map { $0.displayName }.joined(separator: ", ")

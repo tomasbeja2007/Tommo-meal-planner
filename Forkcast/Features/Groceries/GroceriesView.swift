@@ -28,7 +28,7 @@ struct GroceriesView: View {
                 if planStore.groceryList.itemCount == 0 && planStore.extras.isEmpty {
                     EmptyState(
                         title: String(localized: "your list is empty"),
-                        message: String(localized: "plan a few dinners and your groceries appear here, grouped by aisle."),
+                        message: String(localized: "plan a few meals and your groceries appear here, grouped by aisle."),
                         actionTitle: String(localized: "Go to my plan")
                     ) {
                         router.selectedTab = .plan

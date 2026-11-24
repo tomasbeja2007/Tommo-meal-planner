@@ -147,7 +147,7 @@ struct ProfileView: View {
         case .resetPlan:
             return Alert(
                 title: Text("Reset this week's plan?"),
-                message: Text("Your dinners and grocery checks for this week will be cleared."),
+                message: Text("Your meals and grocery checks for this week will be cleared."),
                 primaryButton: .destructive(Text("Reset")) { planStore.resetCurrentPlan() },
                 secondaryButton: .cancel()
             )

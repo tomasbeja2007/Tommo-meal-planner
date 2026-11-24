@@ -151,7 +151,7 @@ struct BudgetStepView: View {
     private var country: Country { state.country(in: FoodCatalog.bundled) }
 
     private var verdict: BudgetMath.Verdict {
-        BudgetMath.verdict(budget: state.budget, portions: state.portions, days: state.dinnersPerWeek, region: country.regionPriceKey, multiplier: country.priceMultiplier)
+        BudgetMath.verdict(budget: state.budget, portions: state.portions, days: state.dinnersPerWeek, region: country.regionPriceKey, multiplier: country.priceMultiplier, mealTypes: state.mealTypes)
     }
 
     /// Thinking when it's tight, cheering when there's plenty, idle in between.
@@ -166,7 +166,9 @@ struct BudgetStepView: View {
     var body: some View {
         QuestionScaffold(
             title: String(localized: "what's your weekly budget?"),
-            subtitle: String(localized: "for dinners only. We'll show the total before you shop."),
+            subtitle: state.mealTypes == [.dinner]
+                ? String(localized: "for dinners only. We'll show the total before you shop.")
+                : String(localized: "for every meal we plan. We'll show the total before you shop."),
             reaction: reaction,
             onContinue: onContinue
         ) {
@@ -175,6 +177,7 @@ struct BudgetStepView: View {
                 country: country,
                 portions: state.portions,
                 days: state.dinnersPerWeek,
+                mealTypes: state.mealTypes,
                 onUserChange: { state.budgetTouched = true }
             )
         }

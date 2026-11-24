@@ -175,6 +175,26 @@ welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `O
 10. Settings → Accessibility → Motion → **Reduce Motion ON**: no splash burst (cross-fade), no confetti, no shake or bounce, numbers show final values.
 11. iPhone SE: nothing clipped on the store, pantry and reveal screens; the welcome headline fits.
 
+## 3c. Breakfast, lunch and snacks (Nov 2026)
+
+- **Meal types**: `MealType` (breakfast, lunch, dinner, snack) lives in ForkcastCore. Recipes, plan slots, planned meals
+  (`PlannedMeal.mealTypeRaw`), user recipes and the profile (`UserProfile.mealTypesRaw`, default "dinner") all carry it.
+  Anything saved before this change counts as dinner.
+- **Planning**: every chosen meal is planned on every cooking day. Each slot only takes recipes of its own type; lunches and
+  dinners follow the variety rules; a breakfast or snack may repeat once a week. Swaps and "add a meal" stay in type.
+- **Budget**: one budget covers all meals. Suggestions and verdicts count breakfast as 0.35 of a dinner, lunch 0.6,
+  snack 0.2 (`MealType.budgetWeight`). With dinners only, nothing changes.
+- **Recipes**: 12 breakfasts, 12 lunches and 8 snacks in `Tools/meal_recipes.py` (8 new ingredients with prices in
+  `Tools/ingredients_data.py`). Regenerate with `python3 Tools/generate_data.py`. Library tests check calories and step
+  counts per meal type, and diet/allergy coverage for each type.
+- **Plan tab**: dinners only looks exactly as before. With more meals, each day gets a heading and a card (or "add" row)
+  per meal. Edit week edits one meal type at a time and never touches the others. The widget still shows the dinner.
+- **Where to change it**: onboarding "Your week", and You tab → Meals. Your own recipes get a Meal picker.
+
+**Check on the Mac**: `cd Packages/ForkcastCore && swift test` (new planner and library tests), then in the app: pick
+Breakfast + Dinner in onboarding, check the budget suggestion rises, the plan shows both per day, swapping a breakfast only
+offers breakfasts, Edit week's Breakfast tab saves without touching dinners, and the widget shows the dinner.
+
 ## 4. TODO before launch
 
 - [ ] **Real reviews**: the social-proof screen was removed from onboarding (Nov 2026). Only bring it back with
@@ -190,8 +210,7 @@ welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `O
 - [ ] **Legal URLs**: `AppLinks.privacyPolicy`, `AppLinks.terms` and the support email `hello@forkcast.app` in `App/FeatureFlags.swift`.
 - [ ] **Accounts beyond Apple**: "Sign in", Google, Email and "Join with a household code" are hidden until there's a
       backend. The welcome screen has one button; "Save your plan" offers Sign in with Apple only.
-- [ ] **Breakfast, lunch and snacks** show as "coming soon" on the Your week screen; taps are saved in
-      `OnboardingAnswers.laterMealTypes` so we know who wants them.
+- [ ] **More breakfasts, lunches and snacks**: 32 to start; aim for 25+ breakfasts and lunches so weeks don't repeat.
 - [ ] **Localisation**: all copy goes through `String(localized:)` / `Text("…")`. `Localizable.xcstrings` is empty and
       Xcode fills it on build. Some enum display names in `ForkcastCore` are plain English strings, so move them to the app layer or the package's catalog before translating.
 - [ ] App Store Connect: create the two products and the "Forkcast Pro" group to match the `.storekit` file.

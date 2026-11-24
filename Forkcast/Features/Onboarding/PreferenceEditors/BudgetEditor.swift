@@ -7,23 +7,29 @@ struct BudgetEditor: View {
     let country: Country
     let portions: Double
     let days: Int
+    /// Meal types planned on each day (dinner only by default).
+    var mealTypes: Set<MealType> = [.dinner]
     var onUserChange: (() -> Void)? = nil
 
     private var range: ClosedRange<Double> {
-        BudgetMath.range(region: country.regionPriceKey, portions: portions, days: days, multiplier: country.priceMultiplier)
+        BudgetMath.range(region: country.regionPriceKey, portions: portions, days: days, multiplier: country.priceMultiplier, mealTypes: mealTypes)
     }
 
     private var verdict: BudgetMath.Verdict {
-        BudgetMath.verdict(budget: budget, portions: portions, days: days, region: country.regionPriceKey, multiplier: country.priceMultiplier)
+        BudgetMath.verdict(budget: budget, portions: portions, days: days, region: country.regionPriceKey, multiplier: country.priceMultiplier, mealTypes: mealTypes)
     }
 
     private var perServing: Double {
-        BudgetMath.costPerServing(budget: budget, portions: portions, days: days)
+        BudgetMath.costPerServing(budget: budget, portions: portions, days: days, mealTypes: mealTypes)
     }
 
+    private var mealsPerWeek: Int { max(1, days) * MealType.ordered(mealTypes).count }
+
     private var servingsPerWeek: Int {
-        Int((portions * Double(max(1, days))).rounded())
+        Int((portions * Double(mealsPerWeek)).rounded())
     }
+
+    private var isDinnersOnly: Bool { mealTypes == [.dinner] }
 
     var body: some View {
         VStack(spacing: Theme.Spacing.l) {
@@ -68,7 +74,7 @@ struct BudgetEditor: View {
             HStack(spacing: Theme.Spacing.s) {
                 StatTile(value: MoneyFormat.string(perServing, currencyCode: country.currencyCode), label: String(localized: "per serving"))
                 StatTile(value: "\(servingsPerWeek)", label: String(localized: "servings a week"))
-                StatTile(value: "\(days)", label: String(localized: "dinners"))
+                StatTile(value: "\(mealsPerWeek)", label: isDinnersOnly ? String(localized: "dinners") : String(localized: "meals"))
             }
             if let note = country.priceNote {
                 Text(note)
@@ -91,7 +97,9 @@ struct BudgetEditor: View {
 
     private var householdSummary: String {
         let portionsText: String = FractionFormatter.string(portions)
-        return String(localized: "\(portionsText) portions · \(days) dinners a week")
+        return isDinnersOnly
+            ? String(localized: "\(portionsText) portions · \(days) dinners a week")
+            : String(localized: "\(portionsText) portions · \(mealsPerWeek) meals a week")
     }
 }
 

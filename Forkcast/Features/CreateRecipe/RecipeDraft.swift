@@ -38,6 +38,8 @@ struct RecipeDraft: Identifiable, Hashable {
     var emoji: String = "🍲"
     var servings: Int = 2
     var totalMinutes: Int = 30
+    /// Breakfast, lunch, dinner or snack: decides which plan slots it can fill.
+    var mealType: MealType = .dinner
     var tags: Set<String> = []
     var ingredients: [DraftIngredient] = [DraftIngredient()]
     var steps: [DraftStep] = [DraftStep()]
@@ -80,6 +82,7 @@ struct RecipeDraft: Identifiable, Hashable {
         emoji = model.emoji
         servings = model.servings
         totalMinutes = model.totalMinutes
+        mealType = model.mealType
         tags = Set(model.tags)
         ingredients = model.sortedIngredients.map { item in
             DraftIngredient(amountText: FractionFormatter.string(item.amount, maxFractionValue: 1000), unit: item.unit, name: item.name, ingredientId: item.ingredientId)
@@ -163,6 +166,7 @@ struct RecipeDraft: Identifiable, Hashable {
             baseServings: max(1, servings),
             ingredients: ingredients.filter { !$0.isEmpty }.map { RecipeIngredient(ingredientId: $0.ingredientId, name: $0.name, amount: $0.amount, unit: $0.unit) },
             steps: steps.map { $0.text }.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty },
+            mealType: mealType,
             source: sourceKind,
             macroOverride: nil
         )
@@ -181,6 +185,7 @@ struct RecipeDraft: Identifiable, Hashable {
         model.emoji = emoji
         model.servings = max(1, servings)
         model.totalMinutes = max(0, totalMinutes)
+        model.mealType = mealType
         model.tags = tags.sorted()
         model.steps = steps.map { $0.text.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
         model.macroOverride = manualMacros

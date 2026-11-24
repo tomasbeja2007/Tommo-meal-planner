@@ -1,7 +1,9 @@
 import SwiftUI
 import ForkcastCore
 
-/// Reorder dinners between days, remove/add meals, set servings.
+/// Reorder meals between days, remove/add meals, set servings, one meal type at a time
+/// (a segmented picker appears when more than dinners are planned). Saving only rewrites the
+/// meal types that were opened here; everything else in the plan is left alone.
 struct EditWeekSheet: View {
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(\.dismiss) private var dismiss: DismissAction
@@ -11,29 +13,44 @@ struct EditWeekSheet: View {
         var meal: EditableMeal?
     }
 
-    @State private var rows: [Row] = []
+    @State private var mealType: MealType = .dinner
+    @State private var rowsByType: [MealType: [Row]] = [:]
     @State private var pickerIndex: Int? = nil
+
+    private var rows: [Row] { rowsByType[mealType] ?? [] }
 
     var body: some View {
         NavigationStack {
             List {
+                if planStore.plannedMealTypes.count > 1 {
+                    Section {
+                        Picker(String(localized: "Meal"), selection: $mealType) {
+                            ForEach(planStore.plannedMealTypes) { type in
+                                Text(type.title).tag(type)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets())
+                    }
+                }
                 Section {
                     ForEach(Array(rows.enumerated()), id: \.element.id) { index, row in
                         EditRowView(
                             day: day(at: index),
                             meal: row.meal,
-                            onServingsChange: { newValue in rows[index].meal?.servings = newValue },
-                            onRemove: { withAnimation(Theme.spring) { rows[index].meal = nil } },
+                            onServingsChange: { newValue in rowsByType[mealType]?[index].meal?.servings = newValue },
+                            onRemove: { withAnimation(Theme.spring) { rowsByType[mealType]?[index].meal = nil } },
                             onAdd: { pickerIndex = index }
                         )
                         .listRowBackground(Theme.card)
                         .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
                     }
                     .onMove { from, to in
-                        rows.move(fromOffsets: from, toOffset: to)
+                        rowsByType[mealType]?.move(fromOffsets: from, toOffset: to)
                     }
                 } header: {
-                    Label(String(localized: "hold a dinner to move it to another day"), systemImage: "line.3.horizontal")
+                    Label(String(localized: "hold a \(mealType.noun) to move it to another day"), systemImage: "line.3.horizontal")
                         .font(.caption)
                         .textCase(nil)
                         .foregroundStyle(Theme.aubergineMuted)
@@ -55,7 +72,9 @@ struct EditWeekSheet: View {
             }
             .safeAreaInset(edge: .bottom) {
                 PrimaryButton(String(localized: "Save changes")) {
-                    planStore.applyEdit(rows: rows.map { $0.meal })
+                    for (type, typeRows) in rowsByType {
+                        planStore.applyEdit(rows: typeRows.map { $0.meal }, for: type)
+                    }
                     dismiss()
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
@@ -63,17 +82,25 @@ struct EditWeekSheet: View {
                 .background(Theme.cream.opacity(0.97).ignoresSafeArea())
             }
             .sheet(isPresented: Binding<Bool>(get: { pickerIndex != nil }, set: { if !$0 { pickerIndex = nil } })) {
-                RecipePickerSheet(title: String(localized: "add a meal")) { recipeId in
+                RecipePickerSheet(title: String(localized: "add a \(mealType.noun)"), mealType: mealType) { recipeId in
                     if let index = pickerIndex, index < rows.count {
-                        rows[index].meal = EditableMeal(recipeId: recipeId, servings: planStore.profileStore.defaultServings)
+                        rowsByType[mealType]?[index].meal = EditableMeal(recipeId: recipeId, servings: planStore.profileStore.defaultServings)
                     }
                     pickerIndex = nil
                 }
             }
         }
         .onAppear {
-            rows = planStore.editRows().map { Row(id: UUID(), meal: $0) }
+            mealType = planStore.plannedMealTypes.contains(.dinner) ? .dinner : (planStore.plannedMealTypes.first ?? .dinner)
+            loadRows(for: mealType)
         }
+        .onChange(of: mealType) { _, type in loadRows(for: type) }
+    }
+
+    /// Loads a meal type's rows the first time it's opened (later edits are kept while switching).
+    private func loadRows(for type: MealType) {
+        guard rowsByType[type] == nil else { return }
+        rowsByType[type] = planStore.editRows(for: type).map { Row(id: UUID(), meal: $0) }
     }
 
     private func day(at index: Int) -> Date? {
