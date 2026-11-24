@@ -139,6 +139,10 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 - **Colours** exist both as named colour sets and as hex values in `Theme` (code uses `Theme`, so previews,
   widgets and extensions never depend on asset lookup). Asset-symbol generation is switched off to avoid name clashes.
 - **Feedback**: tapping the active like / not-for-me again clears it. Stars only count above 3 (+1 each).
+- **Several shops**: users can pick as many shops as they like. The first one picked is the *main shop*
+  (`UserProfile.storeId`) and sets the price tier; the others live in `extraStoreIdsRaw`. Headers read
+  "Tesco & Lidl" or "Tesco +2". Per-shop pricing or splitting the list by shop is a later feature.
+- **Store logos**: tiles show `store-<id>` from the asset catalog if present (only with permission), else the monogram.
 - **Light mode only**, portrait only, iPhone only.
 
 ---

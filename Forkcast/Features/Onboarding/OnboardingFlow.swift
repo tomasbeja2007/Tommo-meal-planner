@@ -59,7 +59,7 @@ struct OnboardingFlow: View {
         case .country:
             CountryStepView(state: state) { autoAdvance() }
         case .store:
-            StoreStepView(state: state, onPick: { autoAdvance() }, onContinue: { advance() })
+            StoreStepView(state: state, onContinue: { advance() })
         case .household:
             HouseholdStepView(state: state) { advance() }
         case .cookingDays:

@@ -54,7 +54,7 @@ struct PreferenceEditorSheet: View {
         case .country:
             CountryPicker(selection: $state.countryId)
         case .store:
-            StorePicker(countryId: state.countryId, selection: $state.storeId)
+            StorePicker(countryId: state.countryId, selection: $state.storeIds)
         case .household:
             HouseholdEditor(adults: $state.adults, kids: $state.kids)
         case .cookingDays:
@@ -83,7 +83,7 @@ struct PreferenceEditorSheet: View {
         switch kind {
         case .cookingDays: return !state.cookingDays.isEmpty
         case .appliances: return !state.appliances.isEmpty
-        case .store: return !state.storeId.isEmpty
+        case .store: return !state.storeIds.isEmpty
         default: return true
         }
     }
@@ -101,10 +101,8 @@ struct PreferenceEditorSheet: View {
             profile.unitSystemOverride = unitChoice == "auto" ? nil : unitChoice
         } else {
             if kind == .country {
-                let stores: [Store] = FoodCatalog.bundled.stores(forCountry: state.countryId)
-                if !stores.contains(where: { $0.id == state.storeId }) {
-                    state.storeId = Store.localStoreId
-                }
+                // Shops from another country no longer apply; `apply` falls back to "My local store".
+                state.keepOnlyStores(availableIn: state.countryId, catalog: FoodCatalog.bundled)
             }
             state.apply(to: profile)
         }

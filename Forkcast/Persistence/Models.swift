@@ -13,7 +13,10 @@ import ForkcastCore
 final class UserProfile {
     var name: String = ""
     var countryId: String = "us"
+    /// The main shop. It sets the price tier for the whole plan.
     var storeId: String = "local"
+    /// Other shops the user also uses, comma-separated, in the order they were picked.
+    var extraStoreIdsRaw: String = ""
     /// nil = follow the country; "imperial" / "metric" = user override.
     var unitSystemOverride: String? = nil
     var householdAdults: Int = 2
@@ -47,6 +50,15 @@ final class UserProfile {
     var cookingDays: Set<Int> {
         get { Set(Self.ints(cookingDaysRaw)) }
         set { cookingDaysRaw = newValue.sorted().map(String.init).joined(separator: ",") }
+    }
+
+    /// Every shop the user picked, main shop first.
+    var storeIds: [String] {
+        get { [storeId] + Self.strings(extraStoreIdsRaw).filter { $0 != storeId } }
+        set {
+            storeId = newValue.first ?? Store.localStoreId
+            extraStoreIdsRaw = newValue.dropFirst().joined(separator: ",")
+        }
     }
 
     var vibes: [Vibe] {

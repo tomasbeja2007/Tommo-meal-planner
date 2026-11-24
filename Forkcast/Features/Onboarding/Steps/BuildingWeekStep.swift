@@ -14,7 +14,7 @@ struct BuildingWeekStep: View {
     @State private var finished: Bool = false
 
     private var storeName: String {
-        FoodCatalog.bundled.store(id: state.storeId)?.name ?? String(localized: "your shop")
+        FoodCatalog.bundled.store(id: state.mainStoreId)?.name ?? String(localized: "your shop")
     }
 
     private var rows: [String] {

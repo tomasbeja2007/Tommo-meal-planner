@@ -54,11 +54,8 @@ struct CountryStepView: View {
             set: { newValue in
                 guard newValue != state.countryId else { return }
                 state.countryId = newValue
-                // A store from another country no longer applies.
-                let stores: [Store] = FoodCatalog.bundled.stores(forCountry: newValue)
-                if !stores.contains(where: { $0.id == state.storeId }) {
-                    state.storeId = ""
-                }
+                // Shops from another country no longer apply.
+                state.keepOnlyStores(availableIn: newValue, catalog: FoodCatalog.bundled)
                 state.refreshSuggestedBudget(catalog: FoodCatalog.bundled)
             }
         )
@@ -67,17 +64,16 @@ struct CountryStepView: View {
 
 struct StoreStepView: View {
     @Bindable var state: OnboardingState
-    let onPick: () -> Void
     let onContinue: () -> Void
 
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "which shop do you use most?"),
-            subtitle: String(localized: "we'll price your week for this shop"),
-            isButtonEnabled: !state.storeId.isEmpty,
+            title: String(localized: "which shops do you use?"),
+            subtitle: String(localized: "pick as many as you like. we'll price your week at the first one"),
+            isButtonEnabled: !state.storeIds.isEmpty,
             onContinue: onContinue
         ) {
-            StorePicker(countryId: state.countryId, selection: $state.storeId, onPick: onPick)
+            StorePicker(countryId: state.countryId, selection: $state.storeIds)
         }
     }
 }

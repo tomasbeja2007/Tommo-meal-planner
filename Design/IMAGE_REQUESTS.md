@@ -113,6 +113,9 @@ no mascot. They replace the SF Symbol on the matching tile.
 | `goal-spendLess`, `goal-stopWondering`, `goal-eatHealthier`, `goal-saveTime`, `goal-cookMore`, `goal-feedFamily` | Coin jar · question mark over a plate · apple · clock · pan on a hob · family of three at a table |
 
 ## Do NOT generate
-- **Supermarket logos.** The store picker deliberately uses coloured monogram tiles;
-  real retailer logos can't ship without permission.
+- **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:
+  once a retailer gives permission (or you use their official press-kit file under its terms), add it as
+  an Image Set named `store-<id>` (ids are in `ForkcastCore/Resources/stores.json`, e.g. `store-tesco`).
+  A square PNG with a transparent background works best: it sits on a white circle. Without one, the
+  coloured monogram is shown.
 - **Fake reviews or user photos** for the testimonial carousel.

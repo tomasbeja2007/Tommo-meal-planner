@@ -11,7 +11,8 @@ final class OnboardingState {
     /// 0 = "I don't mind".
     var maxCookMinutes: Int = 30
     var countryId: String = "us"
-    var storeId: String = ""
+    /// Shops in the order they were picked. The first one is the main shop and sets prices.
+    var storeIds: [String] = []
     var adults: Int = 2
     var kids: Int = 0
     var cookingDays: Set<Int> = [1, 2, 3, 4, 5]
@@ -34,7 +35,7 @@ final class OnboardingState {
         goals = Set(profile.goals)
         maxCookMinutes = profile.maxCookMinutes
         countryId = profile.countryId
-        storeId = profile.storeId
+        storeIds = profile.storeIds
         adults = profile.householdAdults
         kids = profile.householdKids
         cookingDays = profile.cookingDays
@@ -50,6 +51,15 @@ final class OnboardingState {
     }
 
     var portions: Double { BudgetMath.portions(adults: adults, kids: kids) }
+
+    /// The main shop, or "" before anything is picked.
+    var mainStoreId: String { storeIds.first ?? "" }
+
+    /// Drops shops that don't exist in `countryId` (after the country changes).
+    func keepOnlyStores(availableIn countryId: String, catalog: FoodCatalog) {
+        let available: Set<String> = Set(catalog.stores(forCountry: countryId).map { $0.id })
+        storeIds = storeIds.filter { available.contains($0) }
+    }
 
     func country(in catalog: FoodCatalog) -> Country {
         catalog.country(id: countryId) ?? catalog.defaultCountry
@@ -67,7 +77,7 @@ final class OnboardingState {
         profile.goals = goals.sorted()
         profile.maxCookMinutes = maxCookMinutes
         profile.countryId = countryId
-        profile.storeId = storeId.isEmpty ? Store.localStoreId : storeId
+        profile.storeIds = storeIds.isEmpty ? [Store.localStoreId] : storeIds
         profile.householdAdults = max(1, adults)
         profile.householdKids = max(0, kids)
         profile.cookingDays = cookingDays.isEmpty ? [1, 2, 3, 4, 5] : cookingDays
