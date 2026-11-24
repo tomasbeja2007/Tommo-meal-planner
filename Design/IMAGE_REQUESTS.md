@@ -8,7 +8,8 @@ with no code changes.
 ## Status (Nov 2026)
 - **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3)
   and all 25 onboarding illustrations (section 4).
-- **Still open:** the optional `MascotRig` layers (section 1) and the clean app icon export (section 2).
+- **Still open:** the optional `MascotRig` layers (section 1), the clean app icon export (section 2), and the
+  onboarding extras in section 5 (splash ingredient pieces, cloud-sync illustration).
 
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
@@ -111,6 +112,23 @@ no mascot. They replace the SF Symbol on the matching tile.
 | `vibe-quickEasy`, `vibe-highProtein`, `vibe-comfort`, `vibe-healthyish`, `vibe-family`, `vibe-fakeaway`, `vibe-lowCalorie`, `vibe-onePan`, `vibe-batchFriendly` | Lightning bowl · dumbbell with steak · steaming stew pot · salad bowl · family dinner table · takeaway box · light salad with measuring tape · frying pan · stacked meal-prep boxes |
 | `diet-none`, `diet-vegetarian`, `diet-vegan`, `diet-pescatarian` | Plate with mixed food · carrot & cheese · sprouting leaf · fish |
 | `goal-spendLess`, `goal-stopWondering`, `goal-eatHealthier`, `goal-saveTime`, `goal-cookMore`, `goal-feedFamily` | Coin jar · question mark over a plate · apple · clock · pan on a hob · family of three at a table |
+
+## 5. Onboarding extras (Nov 2026)
+Same clay style and palette as section 4. The app works without them: missing pieces are skipped.
+
+| Asset name | Size | Background | What to draw |
+|---|---|---|---|
+| `splash-tomato` | 256×256 | transparent | A small whole cherry tomato with a green calyx |
+| `splash-basil` | 256×256 | transparent | A single basil leaf, slightly curled |
+| `splash-garlic` | 256×256 | transparent | One garlic bulb, cream with faint aubergine streaks |
+| `splash-chilli` | 256×256 | transparent | A small red chilli, gentle curve |
+| `splash-lemon` | 256×256 | transparent | A lemon slice (saffron yellow), seen from the front |
+| `splash-pepper` | 256×256 | transparent | Three black peppercorns in a little cluster |
+| `illustration-cloudSync` | 512×512 | transparent | A soft cream cloud with a small tomato-red tick, a phone below it, no text |
+
+Style notes: each piece is a single object, centred, filling ~80% of the canvas, no shadow under it, no text,
+soft studio light from the top left. They float around Chef Tomato on the splash and welcome screens, so they
+should read clearly at about 60 pt.
 
 ## Do NOT generate
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:

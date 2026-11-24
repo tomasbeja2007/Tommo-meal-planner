@@ -147,10 +147,38 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 
 ---
 
+## 3b. Onboarding (Nov 2026 rebuild)
+
+Order: splash → welcome → goal → what gets in the way → mirror → who's eating → your week → how do you eat →
+dislikes → vibe → kitchen → budget → pantry → shops → building → plan reveal → stay on track → trial → save your plan →
+welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `OnboardingStep` holds the order).
+
+- **Answers**: the planner fields stay on `UserProfile`; everything else is `OnboardingAnswers` (Codable), stored as
+  JSON in `UserProfile.onboardingAnswersJSON`. `ProfileStore.plannerProfile` merges both.
+- **Planner effects**: "High-protein" / "Lighter meals" add the matching vibe, "Mediterranean" adds a cuisine bonus,
+  Meal prep mode favours leftover-friendly dinners, pantry items are left off the **first** week's list and total.
+- **Country** comes from the phone's region (falls back to the US) and can be changed on the shops screen.
+- **Trial** screen assumes the 3-day intro offer (`TrialTimelineStep.trialLengthDays`); it's skipped for people who
+  can't start a trial. "Start my free trial" opens the existing `PaywallView`.
+- **Debug**: You tab → long-press the version → *Reset onboarding*. The splash plays once per app launch.
+
+**What to check in the Simulator** (iPhone 16 and iPhone SE 3rd gen):
+1. Cold launch: cream launch screen with Chef Tomato, no white flash; the splash pops, then hands off to Welcome. Tap during the splash skips it.
+2. Every question screen: tile tick and bounce, light haptic, "Continue · N selected", Skip on obstacles / dislikes / pantry.
+3. Mirror: the sentence types in and echoes your picks; Continue works straight away.
+4. 0 kids vs 2 kids (portion line, checklist row "Matching 2 adults + 2 kids").
+5. No allergies (preselected) vs peanuts + gluten (the "No allergies" chip clears, checklist "Avoiding peanuts…").
+6. Budget at the minimum and the maximum: corner mascot switches thinking / idle / cheer, verdict card updates.
+7. Pantry: tick 3 items, then check the first week's grocery list shows them under "check you have" at no cost.
+8. Plan reveal: confetti, day cards with photos and costs, the summary row adds up, the yearly number counts up.
+9. Trial: dates are real; the bell rings; "Not now" skips the paywall; a Pro or ineligible account never sees this screen.
+10. Settings → Accessibility → Motion → **Reduce Motion ON**: no splash burst (cross-fade), no confetti, no shake or bounce, numbers show final values.
+11. iPhone SE: nothing clipped on the store, pantry and reveal screens; the welcome headline fits.
+
 ## 4. TODO before launch
 
-- [ ] **Real reviews**: `Testimonial.placeholders` in `Features/Onboarding/Steps/SocialProofStep.swift` are clearly
-      marked placeholders. Replace them with genuine App Store reviews (or remove the carousel). Never invent reviews or user counts.
+- [ ] **Real reviews**: the social-proof screen was removed from onboarding (Nov 2026). Only bring it back with
+      genuine App Store reviews. Never invent reviews, ratings or user counts.
 - [x] **Artwork**: mascot moods, 40 recipe photos and 25 onboarding illustrations are in the asset catalog.
       Still open (see `Design/IMAGE_REQUESTS.md`): the optional `MascotRig` layers and a clean app icon.
 - [ ] **App icon**: `AppIcon-1024.png` was cropped from the provided mascot art with the dark border removed.
@@ -160,7 +188,10 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 - [ ] **Prices** in `prices.json` are rough 2026 estimates per pack (standard tier) and must be refined per market.
       Pack sizes use one metric pack with an imperial label (e.g. "500 g pack" / "1 lb pack").
 - [ ] **Legal URLs**: `AppLinks.privacyPolicy`, `AppLinks.terms` and the support email `hello@forkcast.app` in `App/FeatureFlags.swift`.
-- [ ] **"I have a code"** on the welcome screen does nothing yet (marked TODO).
+- [ ] **Accounts beyond Apple**: "Sign in", Google, Email and "Join with a household code" are hidden until there's a
+      backend. The welcome screen has one button; "Save your plan" offers Sign in with Apple only.
+- [ ] **Breakfast, lunch and snacks** show as "coming soon" on the Your week screen; taps are saved in
+      `OnboardingAnswers.laterMealTypes` so we know who wants them.
 - [ ] **Localisation**: all copy goes through `String(localized:)` / `Text("…")`. `Localizable.xcstrings` is empty and
       Xcode fills it on build. Some enum display names in `ForkcastCore` are plain English strings, so move them to the app layer or the package's catalog before translating.
 - [ ] App Store Connect: create the two products and the "Forkcast Pro" group to match the `.storekit` file.

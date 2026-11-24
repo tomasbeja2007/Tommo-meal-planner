@@ -116,7 +116,13 @@
   Every number lives in `enum MascotMotion` at the top of the file. Moods: `.idle`, `.cheer`, `.thinking`.
   Coordinates: fractions of the mascot's size; pivot = bottom centre (the feet). One `LoopClock` (12 s) per mascot.
 - **Art:** `Forkcast/Resources/Assets.xcassets/Mascot.imageset` (source `Design/mascot-tomato-chef.png`).
-  Optional mood art: `MascotIdle`, `MascotCheer`, `MascotThinking`, `MascotBell` (see `Design/IMAGE_REQUESTS.md`).
+  Mood art: `MascotIdle`, `MascotCheer`, `MascotThinking`, `MascotBell` (moods `.idle`, `.cheer`, `.thinking`, `.bell`).
+  `LaunchMascot` is `MascotIdle` resized to 200 pt for the launch screen (same size and spot as the splash mascot).
+- **Onboarding motion:** `WelcomeStep` (splash: `MascotRing` = mascot + ingredient pieces; one `LoopClock` for the
+  idle drift, one `OneShotClock` for the burst; numbers in `enum RingMotion`), `ConfettiView` (one `Canvas`, one
+  `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),
+  the trial bell (`RingingBell`: a damped swing around its top every 3.2 s), the mirror's typed text (`OneShotClock`),
+  `OptionTile`'s icon bounce (keyframes, off with Reduce Motion), the dislike strike-through and the vibe grid shake.
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 
@@ -128,6 +134,10 @@
 - "Haptics: selection on chip taps, success on plan generated, trial started, and all groceries checked."
 - The mascot appears only on: welcome, building-your-week, plan reveal, empty states, trial reminder, weekly feedback,
   cook-mode finish, savings moment, "shop done". "Keep it special": no mascot on everyday screens.
+- Onboarding brief (Nov 2026) widens that for onboarding only: a 48 pt `MascotReaction` in the top-right of some
+  question screens (obstacles, household, budget), the mirror, stay on track, trial (`.bell` mood) and welcome home.
+  A mood change swaps in with a quick spring. Still never on the main tabs' everyday screens.
+- The splash pop (0.85 → 1) is the one place the mascot gets a spring WITH overshoot, because the brief asks for it.
 - Light mode only; never green as a brand colour (herb green only for success and checkmarks).
 
 ### Rig limits
