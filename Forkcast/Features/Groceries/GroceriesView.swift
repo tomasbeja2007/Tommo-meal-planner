@@ -222,7 +222,7 @@ struct GroceryRow: View {
         } label: {
             HStack(alignment: .top, spacing: Theme.Spacing.m) {
                 CheckCircle(isChecked: checked)
-                IngredientThumbnail(ingredientID: item.ingredientId)
+                IngredientThumbnail(ingredientID: item.ingredientId, showsBackground: false)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.name.capitalizedFirst)
                         .font(.system(.body, design: .rounded).weight(.semibold))

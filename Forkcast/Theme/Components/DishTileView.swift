@@ -124,6 +124,7 @@ struct DiagonalStripes: Shape {
 struct IngredientThumbnail: View {
     let ingredientID: String?
     var size: CGFloat = 36
+    var showsBackground: Bool = true
 
     private var photo: UIImage? {
         ingredientID.flatMap { UIImage(named: "ingredient-\($0)") }
@@ -142,7 +143,7 @@ struct IngredientThumbnail: View {
             }
         }
         .frame(width: size, height: size)
-        .background(Theme.creamDeep, in: RoundedRectangle(cornerRadius: size * 0.25))
+        .background(showsBackground ? Theme.creamDeep : Color.clear, in: RoundedRectangle(cornerRadius: size * 0.25))
         .accessibilityHidden(true)
     }
 }
