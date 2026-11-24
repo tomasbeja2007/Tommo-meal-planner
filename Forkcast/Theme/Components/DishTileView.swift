@@ -37,10 +37,17 @@ struct DishTileView: View {
 
     private var resolvedHeight: CGFloat { height ?? size }
 
+    /// `imageName` from the recipe, or an asset called "recipe-<id>" if one exists.
+    private var photoName: String? {
+        if let imageName, AssetImage.exists(imageName) { return imageName }
+        let conventional: String = "recipe-" + seed
+        return AssetImage.exists(conventional) ? conventional : nil
+    }
+
     var body: some View {
         ZStack {
-            if let imageName, UIImage(named: imageName) != nil {
-                Image(imageName)
+            if let photo = photoName {
+                Image(photo)
                     .resizable()
                     .scaledToFill()
             } else {

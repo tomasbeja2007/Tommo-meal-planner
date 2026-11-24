@@ -20,6 +20,7 @@ struct VibePicker: View {
                     OptionTile(
                         title: vibe.displayName,
                         systemImage: vibe.systemImage,
+                        illustration: "vibe-\(vibe.rawValue)",
                         iconTint: Color(hexString: vibe.tintHex),
                         isSelected: selection.contains(vibe),
                         layout: .grid

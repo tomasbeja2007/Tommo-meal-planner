@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// The ONLY place the mascot artwork is referenced. Every screen goes through
 /// `MascotView`, so the character can be swapped later in one place.
@@ -15,8 +16,20 @@ struct MascotView: View {
     var size: CGFloat = 160
     var mood: Mood = .idle
 
-    /// Asset catalog name of the current mascot artwork.
+    /// Asset catalog name of the base mascot artwork.
     static let assetName: String = "Mascot"
+
+    /// Optional per-mood artwork. If an asset with this name exists it is used,
+    /// otherwise the base "Mascot" image is animated. See Design/IMAGE_REQUESTS.md.
+    static func assetName(for mood: Mood) -> String {
+        let specific: String
+        switch mood {
+        case .idle: specific = "MascotIdle"
+        case .cheer: specific = "MascotCheer"
+        case .thinking: specific = "MascotThinking"
+        }
+        return AssetImage.exists(specific) ? specific : assetName
+    }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
     @State private var animating: Bool = false
@@ -26,7 +39,7 @@ struct MascotView: View {
             if mood == .cheer {
                 SparkleBurst(size: size, active: animating && !reduceMotion)
             }
-            Image(MascotView.assetName)
+            Image(MascotView.assetName(for: mood))
                 .resizable()
                 .interpolation(.high)
                 .scaledToFit()
@@ -79,6 +92,13 @@ struct MascotView: View {
         withAnimation(animation) {
             animating = true
         }
+    }
+}
+
+/// Checks whether an optional image exists in the asset catalog.
+enum AssetImage {
+    static func exists(_ name: String) -> Bool {
+        UIImage(named: name) != nil
     }
 }
 

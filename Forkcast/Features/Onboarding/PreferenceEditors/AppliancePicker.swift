@@ -17,6 +17,7 @@ struct AppliancePicker: View {
                     title: appliance.displayName,
                     subtitle: subtitle(for: appliance),
                     systemImage: appliance.systemImage,
+                    illustration: "appliance-\(appliance.rawValue)",
                     isSelected: selection.contains(appliance),
                     layout: .grid
                 ) {

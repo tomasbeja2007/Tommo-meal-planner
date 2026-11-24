@@ -9,6 +9,7 @@ struct GoalsPicker: View {
                 OptionTile(
                     title: goal.title,
                     systemImage: goal.systemImage,
+                    illustration: "goal-\(goal.rawValue)",
                     isSelected: selection.contains(goal.rawValue)
                 ) {
                     if selection.contains(goal.rawValue) {

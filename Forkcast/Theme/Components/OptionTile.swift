@@ -8,6 +8,8 @@ struct OptionTile: View {
     var subtitle: String? = nil
     var systemImage: String? = nil
     var emoji: String? = nil
+    /// Optional illustration from the asset catalog; used instead of the symbol/emoji when present.
+    var illustration: String? = nil
     var iconTint: Color = Theme.tomato
     let isSelected: Bool
     var layout: Layout = .row
@@ -89,7 +91,13 @@ struct OptionTile: View {
 
     @ViewBuilder
     private var icon: some View {
-        if let emoji {
+        if let illustration, AssetImage.exists(illustration) {
+            Image(illustration)
+                .resizable()
+                .scaledToFit()
+                .frame(width: layout == .grid ? 56 : 32, height: layout == .grid ? 56 : 32)
+                .accessibilityHidden(true)
+        } else if let emoji {
             Text(emoji).font(.system(size: layout == .grid ? 34 : 26))
         } else if let systemImage {
             Image(systemName: systemImage)

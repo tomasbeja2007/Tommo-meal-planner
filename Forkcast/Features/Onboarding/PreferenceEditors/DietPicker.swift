@@ -12,6 +12,7 @@ struct DietPicker: View {
                     title: diet.displayName,
                     subtitle: subtitle(for: diet),
                     emoji: emoji(for: diet),
+                    illustration: "diet-\(diet.rawValue)",
                     isSelected: selection == diet
                 ) {
                     selection = diet
