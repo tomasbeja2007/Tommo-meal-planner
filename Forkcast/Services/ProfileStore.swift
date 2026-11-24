@@ -106,7 +106,7 @@ final class ProfileStore {
     // MARK: Writing
 
     @discardableResult
-    func createProfile(from state: OnboardingState) -> UserProfile {
+    func createProfile(from state: OnboardingState, markComplete: Bool = true) -> UserProfile {
         let target: UserProfile
         if let existing = profile {
             target = existing
@@ -115,7 +115,9 @@ final class ProfileStore {
             context.insert(target)
         }
         state.apply(to: target)
-        target.onboardingCompletedAt = Date()
+        if markComplete {
+            target.onboardingCompletedAt = Date()
+        }
         save()
         profile = target
         return target
@@ -127,6 +129,12 @@ final class ProfileStore {
         } catch {
             PersistenceController.logger.error("Profile save failed: \(String(describing: error), privacy: .public)")
         }
+    }
+
+    /// Called when the "building your week" loader finishes.
+    func completeOnboarding() {
+        profile?.onboardingCompletedAt = Date()
+        save()
     }
 
     /// "Start over": re-run onboarding, keep everything else.
