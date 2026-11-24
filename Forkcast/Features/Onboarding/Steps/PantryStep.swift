@@ -2,7 +2,7 @@ import SwiftUI
 import ForkcastCore
 
 /// 11. What do you already have? (optional). Ticked items are left off this week's
-/// shopping list and total. Tiles use the ingredient emoji until photos exist.
+/// shopping list and total. Tiles show a real photo (`ingredient-<id>`) when it exists, else the emoji.
 struct PantryStep: View {
     @Bindable var state: OnboardingState
     let onContinue: () -> Void
@@ -58,7 +58,7 @@ private struct PantryTile: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 6) {
-                Text(ingredient.emoji).font(.system(size: 34))
+                IngredientPhoto(ingredient: ingredient)
                 Text(ingredient.displayName(for: unitSystem, plural: ingredient.baseUnit == .piece).capitalizedFirst)
                     .font(.system(.caption, design: .rounded).weight(.semibold))
                     .foregroundStyle(Theme.aubergine)
@@ -67,7 +67,7 @@ private struct PantryTile: View {
                     .minimumScaleFactor(0.85)
             }
             .padding(Theme.Spacing.s)
-            .frame(maxWidth: .infinity, minHeight: 96)
+            .frame(maxWidth: .infinity, minHeight: 112)
             .background(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous).fill(isSelected ? Theme.tomatoSoft : Theme.creamDeep))
             .overlay(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous).stroke(isSelected ? Theme.tomato : Color.clear, lineWidth: 2))
             .overlay(alignment: .topTrailing) {
@@ -82,6 +82,32 @@ private struct PantryTile: View {
         .sensoryFeedback(.impact(weight: .light), trigger: isSelected)
         .accessibilityLabel(Text(ingredient.displayName(for: unitSystem).capitalizedFirst))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
+    }
+}
+
+/// A real photo of the ingredient (asset `ingredient-<id>`, see Design/IMAGE_REQUESTS.md section 6),
+/// falling back to its emoji until the photo is added.
+struct IngredientPhoto: View {
+    let ingredient: Ingredient
+    var side: CGFloat = 60
+
+    private var assetName: String { "ingredient-" + ingredient.id }
+
+    var body: some View {
+        if AssetImage.exists(assetName) {
+            Image(assetName)
+                .resizable()
+                .interpolation(.high)
+                .scaledToFill()
+                .frame(width: side, height: side)
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                .accessibilityHidden(true)
+        } else {
+            Text(ingredient.emoji)
+                .font(.system(size: side * 0.56))
+                .frame(width: side, height: side)
+                .accessibilityHidden(true)
+        }
     }
 }
 

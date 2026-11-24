@@ -9,7 +9,8 @@ with no code changes.
 - **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3)
   and all 25 onboarding illustrations (section 4).
 - **Still open:** the optional `MascotRig` layers (section 1), the clean app icon export (section 2), and the
-  onboarding extras in section 5 (splash ingredient pieces, cloud-sync illustration).
+  onboarding extras in section 5 (splash ingredient pieces, cloud-sync illustration), and the 72 pantry photos
+  in section 6.
 
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
@@ -129,6 +130,92 @@ Same clay style and palette as section 4. The app works without them: missing pi
 Style notes: each piece is a single object, centred, filling ~80% of the canvas, no shadow under it, no text,
 soft studio light from the top left. They float around Chef Tomato on the splash and welcome screens, so they
 should read clearly at about 60 pt.
+
+## 6. Pantry photos (72)
+Real photos (not illustrations) for the "what do you already have?" screen. Each tile shows the photo at about
+60 pt in a rounded square; until a photo exists the tile shows the ingredient's emoji.
+
+- **File:** `ingredient-<id>.jpg`, **512×512**, **opaque**.
+- **Style:** realistic food photography, the ingredient alone, centred, filling about 70% of the frame, on a plain
+  warm cream background (#FBF6EE), seen from slightly above (about 45°), soft natural light, no hands, no text,
+  **no packaging, labels or brand names** (show tins and jars as their contents in a small plain bowl).
+- **Prompt template:** "Realistic food photo of [what to show], alone on a plain warm cream background (#FBF6EE),
+  seen from slightly above, soft natural light, no hands, no text, no packaging or labels, square."
+
+| File | What to show |
+|---|---|
+| `ingredient-baguette` | A whole crusty baguette |
+| `ingredient-tortillas` | A small stack of soft flour tortillas |
+| `ingredient-flour` | Plain flour in a small ceramic bowl with a wooden scoop |
+| `ingredient-butter` | A block of butter on a small plate, one slice cut |
+| `ingredient-cheddar` | A wedge of orange cheddar |
+| `ingredient-coconut-yogurt` | Coconut yogurt in a small bowl |
+| `ingredient-cream-cheese` | Cream cheese in a small bowl with a knife |
+| `ingredient-eggs` | Three brown eggs |
+| `ingredient-feta` | A block of feta, a few crumbles beside it |
+| `ingredient-halloumi` | A block of halloumi, one slice cut |
+| `ingredient-heavy-cream` | Double cream in a small glass jug |
+| `ingredient-milk` | A glass bottle of milk, no label |
+| `ingredient-mozzarella` | A ball of fresh mozzarella |
+| `ingredient-parmesan` | A wedge of parmesan |
+| `ingredient-greek-yogurt` | Thick Greek yogurt in a small bowl |
+| `ingredient-sour-cream` | Sour cream in a small bowl |
+| `ingredient-peas-frozen` | Frozen peas with a light frost in a small bowl |
+| `ingredient-mixed-veg-frozen` | Frozen stir-fry vegetables (peppers, broccoli, carrot) with a light frost in a small bowl |
+| `ingredient-corn-frozen` | Frozen sweetcorn kernels with a light frost in a small bowl |
+| `ingredient-chicken-thighs` | Two raw boneless chicken thighs on baking paper |
+| `ingredient-chicken-breast` | A raw chicken breast on baking paper |
+| `ingredient-chorizo` | A chorizo sausage, a few slices cut |
+| `ingredient-white-fish` | A raw cod fillet on baking paper |
+| `ingredient-ground-beef` | Raw beef mince on baking paper |
+| `ingredient-ground-turkey` | Raw turkey mince on baking paper |
+| `ingredient-sausages` | Four raw pork sausages |
+| `ingredient-shrimp` | Raw king prawns in a small bowl |
+| `ingredient-sesame-oil` | Toasted sesame oil in a small glass bottle, no label |
+| `ingredient-penne` | Dry penne pasta in a small heap |
+| `ingredient-spaghetti` | A bundle of dry spaghetti |
+| `ingredient-arugula` | A handful of rocket leaves |
+| `ingredient-avocado` | A whole avocado and a half with the stone |
+| `ingredient-basil` | A bunch of fresh basil |
+| `ingredient-bell-pepper` | A red bell pepper |
+| `ingredient-broccoli` | A head of broccoli |
+| `ingredient-cabbage` | A white cabbage, cut in half |
+| `ingredient-carrot` | Three carrots |
+| `ingredient-celery` | A few sticks of celery |
+| `ingredient-cherry-tomatoes` | Cherry tomatoes on the vine |
+| `ingredient-cilantro` | A bunch of fresh coriander |
+| `ingredient-cucumber` | A cucumber, one end sliced |
+| `ingredient-ginger` | A knob of fresh ginger |
+| `ingredient-garlic` | A garlic bulb and two cloves |
+| `ingredient-green-beans` | A handful of green beans |
+| `ingredient-lemon` | A lemon and a lemon half |
+| `ingredient-lime` | A lime and a lime half |
+| `ingredient-onion` | A brown onion, one half cut |
+| `ingredient-parsley` | A bunch of flat-leaf parsley |
+| `ingredient-potato` | Three potatoes |
+| `ingredient-red-onion` | A red onion, one half cut |
+| `ingredient-spring-onion` | A bunch of spring onions |
+| `ingredient-spinach` | A pile of baby spinach |
+| `ingredient-basmati-rice` | Dry basmati rice in a small bowl |
+| `ingredient-long-grain-rice` | Dry long-grain rice in a small bowl |
+| `ingredient-microwave-rice` | Cooked rice in a plain unlabelled pouch, slightly open |
+| `ingredient-red-lentils` | Dry red lentils in a small bowl |
+| `ingredient-dijon-mustard` | Dijon mustard in a small dish |
+| `ingredient-chicken-stock` | A stock cube next to a small bowl of golden broth |
+| `ingredient-fish-sauce` | Fish sauce in a small glass bottle, no label |
+| `ingredient-honey` | Honey in a small jar with a wooden dipper, no label |
+| `ingredient-mayonnaise` | Mayonnaise in a small dish |
+| `ingredient-soy-sauce` | Soy sauce in a small dipping dish |
+| `ingredient-vegetable-stock` | A stock cube next to a small bowl of clear vegetable broth |
+| `ingredient-black-beans` | Cooked black beans in a small bowl |
+| `ingredient-chickpeas` | Cooked chickpeas in a small bowl |
+| `ingredient-coconut-milk` | Coconut milk in a small bowl, half a coconut beside it |
+| `ingredient-chopped-tomatoes` | Chopped tomatoes in a small bowl |
+| `ingredient-peanut-butter` | Smooth peanut butter in a small jar, no label |
+| `ingredient-curry-paste` | Red curry paste in a small dish |
+| `ingredient-tomato-paste` | Tomato purée in a small dish |
+| `ingredient-salsa` | Chunky tomato salsa in a small bowl |
+| `ingredient-passata` | Passata in a small glass jug |
 
 ## Do NOT generate
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:
