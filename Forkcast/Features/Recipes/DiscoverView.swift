@@ -7,9 +7,13 @@ struct DiscoverView: View {
     @Environment(LibraryStore.self) private var library: LibraryStore
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @State private var query: String = ""
+    /// nil = every meal type.
+    @State private var mealFilter: MealType? = nil
 
     private var pool: [Recipe] {
-        repository.browsable(rules: profileStore.plannerProfile, notForMe: library.notForMeIds)
+        let all: [Recipe] = repository.browsable(rules: profileStore.plannerProfile, notForMe: library.notForMeIds)
+        guard let mealFilter else { return all }
+        return all.filter { $0.mealType == mealFilter }
     }
 
     private var vibeMatches: [Recipe] {
@@ -48,6 +52,17 @@ struct DiscoverView: View {
                         .foregroundStyle(Theme.aubergineMuted)
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: Theme.Spacing.s) {
+                        Chip(title: String(localized: "All"), isSelected: mealFilter == nil) { mealFilter = nil }
+                        ForEach(MealType.allCases) { type in
+                            Chip(title: "\(type.emoji) \(type.title)", isSelected: mealFilter == type) {
+                                mealFilter = mealFilter == type ? nil : type
+                            }
+                        }
+                    }
+                    .padding(.horizontal, Theme.Spacing.gutter)
+                }
                 if query.trimmingCharacters(in: .whitespaces).isEmpty {
                     RecipeCarousel(title: String(localized: "Your vibes"), recipes: vibeMatches)
                     RecipeCarousel(title: String(localized: "Quick (under 25 min)"), recipes: quick)

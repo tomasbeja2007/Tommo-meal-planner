@@ -10,13 +10,20 @@ struct QuestionScaffold<Content: View>: View {
     var showsButton: Bool = true
     var secondaryTitle: String? = nil
     var secondaryAction: (() -> Void)? = nil
+    /// Small Chef Tomato in the top-right corner, reacting to the answers.
+    var reaction: MascotView.Mood? = nil
     let onContinue: () -> Void
     @ViewBuilder let content: () -> Content
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
-                QuestionHeader(title: title, subtitle: subtitle)
+                HStack(alignment: .top, spacing: Theme.Spacing.m) {
+                    QuestionHeader(title: title, subtitle: subtitle)
+                    if let reaction {
+                        MascotReaction(mood: reaction)
+                    }
+                }
                 content()
             }
             .padding(.horizontal, Theme.Spacing.gutter)
@@ -66,11 +73,14 @@ struct QuestionHeader: View {
     }
 }
 
-/// Back chevron + progress bar shown above every question.
-struct OnboardingHeader: View {
+/// Back chevron + spring progress bar + optional "Skip", above every question.
+struct OnboardingTopBar: View {
     let progress: Double
     let canGoBack: Bool
+    var onSkip: (() -> Void)? = nil
     let onBack: () -> Void
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
 
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
@@ -86,16 +96,41 @@ struct OnboardingHeader: View {
             .disabled(!canGoBack)
             .accessibilityLabel(Text("Back"))
             ProgressBar(value: progress, tint: Theme.tomato, height: 8)
+                .animation(Theme.motion(reduceMotion), value: progress)
+            if let onSkip {
+                Button(String(localized: "Skip"), action: onSkip)
+                    .buttonStyle(QuietButtonStyle())
+                    .transition(.opacity)
+            }
         }
         .padding(.horizontal, Theme.Spacing.gutter)
         .padding(.vertical, Theme.Spacing.s)
     }
 }
 
+/// 48 pt Chef Tomato in a screen corner. A new mood swaps in with a quick spring.
+struct MascotReaction: View {
+    let mood: MascotView.Mood
+    var size: CGFloat = 48
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
+
+    var body: some View {
+        ZStack {
+            MascotView(size: size, mood: mood)
+                .id(mood)
+                .transition(reduceMotion ? .opacity : .scale(scale: 0.8).combined(with: .opacity))
+        }
+        .frame(width: size, height: size)
+        .animation(Theme.motion(reduceMotion) ?? .easeInOut(duration: 0.2), value: mood)
+        .accessibilityHidden(true)
+    }
+}
+
 #Preview("Question scaffold") {
     VStack(spacing: 0) {
-        OnboardingHeader(progress: 0.3, canGoBack: true) {}
-        QuestionScaffold(title: "what should we call you?", subtitle: "so your plan feels like yours", onContinue: {}) {
+        OnboardingTopBar(progress: 0.3, canGoBack: true, onSkip: {}) {}
+        QuestionScaffold(title: "who's eating?", subtitle: "so every recipe makes the right amount", reaction: .idle, onContinue: {}) {
             Text("Options go here")
         }
     }

@@ -21,10 +21,10 @@ struct WhyCheaperSheet: View {
                         .foregroundStyle(Theme.aubergine)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                Text("Most things come in whole packs: a bag of onions, a tin of tomatoes, a bottle of oil. When you plan the week together, one pack gets used across several dinners, so you only buy it once.")
+                Text("Most things come in whole packs: a bag of onions, a tin of tomatoes, a bottle of oil. When you plan the week together, one pack gets used across several meals, so you only buy it once.")
                     .foregroundStyle(Theme.aubergine)
                     .fixedSize(horizontal: false, vertical: true)
-                Text("The total on your plan is what the whole list should cost at the till. If you shopped for each dinner on its own, you'd buy some of the same packs again, and it would add up to more.")
+                Text("The total on your plan is what the whole list should cost at the till. If you shopped for each meal on its own, you'd buy some of the same packs again, and it would add up to more.")
                     .foregroundStyle(Theme.aubergine)
                     .fixedSize(horizontal: false, vertical: true)
                 comparison
@@ -41,7 +41,7 @@ struct WhyCheaperSheet: View {
     private var comparison: some View {
         let list: GroceryList = planStore.groceryList
         return VStack(spacing: Theme.Spacing.s) {
-            ComparisonRow(label: String(localized: "each dinner bought on its own"), value: profileStore.formatMoney(list.standaloneTotal), emphasised: false)
+            ComparisonRow(label: String(localized: "each meal bought on its own"), value: profileStore.formatMoney(list.standaloneTotal), emphasised: false)
             ComparisonRow(label: String(localized: "your one tidy list"), value: profileStore.formatMoney(list.total), emphasised: true)
             if list.savingsFromSharing > 0.01 {
                 HStack {

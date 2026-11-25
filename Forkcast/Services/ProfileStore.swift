@@ -46,13 +46,26 @@ final class ProfileStore {
         return catalog.defaultCountry
     }
 
+    /// The main shop: it sets the price tier.
     var store: Store? {
         guard let id = profile?.storeId else { return nil }
         return catalog.store(id: id)
     }
 
+    /// Every shop the user picked, main shop first.
+    var stores: [Store] {
+        (profile?.storeIds ?? []).compactMap { catalog.store(id: $0) }
+    }
+
+    /// "Tesco", "Tesco & Lidl" or "Tesco +2".
     var storeName: String {
-        store?.name ?? String(localized: "your local store")
+        let all: [Store] = stores
+        guard let first = all.first else { return String(localized: "your local store") }
+        switch all.count {
+        case 1: return first.name
+        case 2: return String(localized: "\(first.name) & \(all[1].name)")
+        default: return String(localized: "\(first.name) +\(all.count - 1)")
+        }
     }
 
     var currencyCode: String { country.currencyCode }
@@ -82,20 +95,28 @@ final class ProfileStore {
         return days.isEmpty ? [1, 2, 3, 4, 5] : days
     }
 
+    /// Meal types to plan (dinner if nothing is set).
+    var mealTypes: Set<MealType> {
+        profile?.mealTypes ?? [.dinner]
+    }
+
     var weeklyBudget: Double {
         profile?.weeklyBudget ?? 50
     }
 
     var plannerProfile: PlannerProfile {
         guard let profile else { return PlannerProfile() }
+        let answers: OnboardingAnswers = profile.onboardingAnswers
         return PlannerProfile(
             allergens: profile.allergens,
             diet: profile.diet,
             dislikes: profile.dislikedIngredientIds,
             appliances: profile.appliances.isEmpty ? Set(Appliance.allCases) : profile.appliances,
             maxCookMinutes: profile.maxCookMinutesOrNil,
-            vibes: Set(profile.vibes),
-            includeUserRecipes: profile.includeUserRecipesInPlans
+            vibes: Set(profile.vibes).union(answers.impliedVibes),
+            includeUserRecipes: profile.includeUserRecipesInPlans,
+            prefersMealPrep: answers.mealPrepMode,
+            preferredCuisines: answers.preferredCuisines
         )
     }
 

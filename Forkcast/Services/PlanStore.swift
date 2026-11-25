@@ -82,9 +82,28 @@ final class PlanStore {
         return mealCosts[index]
     }
 
-    func meal(on date: Date) -> PlannedMeal? {
-        meals.first { WeekMath.gregorian.isDate($0.date, inSameDayAs: date) }
+    /// Every meal on a day, in meal order.
+    func meals(on date: Date) -> [PlannedMeal] {
+        meals.filter { WeekMath.gregorian.isDate($0.date, inSameDayAs: date) }
     }
+
+    /// The meals of one type on a day (usually one).
+    func meals(on date: Date, type: MealType) -> [PlannedMeal] {
+        meals(on: date).filter { $0.mealType == type }
+    }
+
+    /// The first meal of a type on a day (dinner by default).
+    func meal(on date: Date, type: MealType = .dinner) -> PlannedMeal? {
+        meals(on: date, type: type).first
+    }
+
+    /// Meal types the Plan tab shows: the ones the user plans, plus any already in this week's plan.
+    var plannedMealTypes: [MealType] {
+        MealType.ordered(profileStore.mealTypes.union(meals.map { $0.mealType }))
+    }
+
+    /// True when only dinners are planned (the Plan tab then shows one card per day, as before).
+    var isDinnersOnly: Bool { plannedMealTypes == [.dinner] }
 
     /// The seven days of the current plan.
     var weekDays: [Date] {
@@ -101,7 +120,7 @@ final class PlanStore {
             portions.append(MealPortion(recipe: recipe, servings: meal.servings, weekday: WeekMath.isoWeekday(meal.date)))
             indexMap.append(index)
         }
-        let list: GroceryList = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem)
+        let list: GroceryList = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem, onHand: currentOnHand)
         var costs: [Double] = Array(repeating: 0, count: current.count)
         for (position, index) in indexMap.enumerated() where position < list.mealCosts.count {
             costs[index] = list.mealCosts[position]
@@ -137,9 +156,24 @@ final class PlanStore {
         return include ? repository.allRecipes : repository.bundledRecipes
     }
 
+    /// Pantry answers from onboarding count only for the week they were given in
+    /// (after that the user has probably used them up).
+    func onHand(forWeekStarting start: Date) -> Set<String> {
+        let answers: OnboardingAnswers = profileStore.profile?.onboardingAnswers ?? OnboardingAnswers()
+        guard let pantryWeek = answers.pantryWeekStart,
+              WeekMath.gregorian.isDate(pantryWeek, inSameDayAs: start) else { return [] }
+        return Set(answers.pantry)
+    }
+
+    private var currentOnHand: Set<String> {
+        onHand(forWeekStarting: currentPlan?.weekStartDate ?? Date())
+    }
+
     func makeRequest(slots: [PlanSlot], seed: UInt64, locked: [Int: LockedMeal], start: Date, plan: WeekPlan?, recipes: [Recipe]? = nil) -> PlannerRequest {
-        PlannerRequest(
-            profile: profileStore.plannerProfile,
+        var rules: PlannerProfile = profileStore.plannerProfile
+        rules.onHand = onHand(forWeekStarting: start)
+        return PlannerRequest(
+            profile: rules,
             recipes: recipes ?? autoPlanPool(),
             feedback: library.summary,
             history: history(relativeTo: start, excluding: plan),
@@ -166,7 +200,7 @@ final class PlanStore {
         isGenerating = true
         defer { isGenerating = false }
         let weekStart: Date = WeekMath.gregorian.startOfDay(for: start)
-        let slots: [PlanSlot] = WeekMath.slots(from: weekStart, cookingDays: profileStore.cookingDays)
+        let slots: [PlanSlot] = WeekMath.slots(from: weekStart, cookingDays: profileStore.cookingDays, mealTypes: profileStore.mealTypes)
         let request: PlannerRequest = makeRequest(slots: slots, seed: SeededRandom.seed(weekStart: weekStart, regeneration: 0), locked: [:], start: weekStart, plan: nil)
         let result: PlanResult = await runPlanner(request)
         applyNewPlan(result, weekStart: weekStart)
@@ -176,7 +210,7 @@ final class PlanStore {
     /// Synchronous variant for previews and the debug menu.
     func generatePlanNow(startingAt start: Date = Date()) {
         let weekStart: Date = WeekMath.gregorian.startOfDay(for: start)
-        let slots: [PlanSlot] = WeekMath.slots(from: weekStart, cookingDays: profileStore.cookingDays)
+        let slots: [PlanSlot] = WeekMath.slots(from: weekStart, cookingDays: profileStore.cookingDays, mealTypes: profileStore.mealTypes)
         let request: PlannerRequest = makeRequest(slots: slots, seed: SeededRandom.seed(weekStart: weekStart, regeneration: 0), locked: [:], start: weekStart, plan: nil)
         let result: PlanResult = MealPlanner(catalog: catalog).plan(request)
         applyNewPlan(result, weekStart: weekStart)
@@ -186,7 +220,7 @@ final class PlanStore {
         let plan = WeekPlan(weekStartDate: weekStart, storeIdSnapshot: profileStore.profile?.storeId ?? "", budgetSnapshot: profileStore.weeklyBudget)
         context.insert(plan)
         for (index, draft) in result.meals.enumerated() {
-            let meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index)
+            let meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index, mealType: draft.mealType)
             meal.userRecipe = repository.userRecipeModel(id: draft.recipeId)
             meal.weekPlan = plan
             context.insert(meal)
@@ -214,13 +248,13 @@ final class PlanStore {
         isGenerating = true
         defer { isGenerating = false }
         plan.regenerationCount += 1
-        let slots: [PlanSlot] = WeekMath.slots(from: plan.weekStartDate, cookingDays: profileStore.cookingDays)
+        let slots: [PlanSlot] = WeekMath.slots(from: plan.weekStartDate, cookingDays: profileStore.cookingDays, mealTypes: profileStore.mealTypes)
         let liked: Set<String> = library.summary.liked
         var locked: [Int: LockedMeal] = [:]
         var keepMeals: [PlannedMeal] = []
         for meal in plan.sortedMeals {
             let keep: Bool = keepCookedAndLiked && (meal.isCooked || liked.contains(meal.recipeId))
-            if keep, let slot = slots.first(where: { WeekMath.gregorian.isDate($0.date, inSameDayAs: meal.date) }) {
+            if keep, let slot = slots.first(where: { WeekMath.gregorian.isDate($0.date, inSameDayAs: meal.date) && $0.mealType == meal.mealType && locked[$0.index] == nil }) {
                 locked[slot.index] = LockedMeal(recipeId: meal.recipeId, servings: meal.servings)
                 keepMeals.append(meal)
             } else if keep {
@@ -236,7 +270,7 @@ final class PlanStore {
             context.delete(meal)
         }
         for (index, draft) in result.meals.enumerated() where locked[draft.slotIndex] == nil {
-            let meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index)
+            let meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index, mealType: draft.mealType)
             meal.userRecipe = repository.userRecipeModel(id: draft.recipeId)
             meal.weekPlan = plan
             context.insert(meal)
@@ -253,7 +287,7 @@ final class PlanStore {
         var slots: [PlanSlot] = []
         var assignment: [Int: LockedMeal] = [:]
         for (index, item) in current.enumerated() {
-            slots.append(PlanSlot(index: index, date: item.date, weekday: WeekMath.isoWeekday(item.date)))
+            slots.append(PlanSlot(index: index, date: item.date, weekday: WeekMath.isoWeekday(item.date), mealType: item.mealType))
             assignment[index] = LockedMeal(recipeId: item.recipeId, servings: item.servings)
         }
         let start: Date = currentPlan?.weekStartDate ?? Date()
@@ -276,7 +310,7 @@ final class PlanStore {
             guard let recipe else { continue }
             portions.append(MealPortion(recipe: recipe, servings: item.servings, weekday: WeekMath.isoWeekday(item.date)))
         }
-        let newTotal: Double = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem).total
+        let newTotal: Double = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem, onHand: currentOnHand).total
         return newTotal - total
     }
 
@@ -288,9 +322,11 @@ final class PlanStore {
         saveAndRefresh()
     }
 
-    func addMeal(recipeId: String, on date: Date, servings: Double? = nil) {
+    /// Adds a meal to a day. The meal type defaults to the recipe's own (a breakfast recipe lands as breakfast).
+    func addMeal(recipeId: String, on date: Date, servings: Double? = nil, mealType: MealType? = nil) {
         guard let plan = currentPlan ?? createEmptyPlan() else { return }
-        let meal = PlannedMeal(date: WeekMath.gregorian.startOfDay(for: date), recipeId: recipeId, servings: servings ?? profileStore.defaultServings, orderIndex: meals.count)
+        let type: MealType = mealType ?? repository.recipe(id: recipeId)?.mealType ?? .dinner
+        let meal = PlannedMeal(date: WeekMath.gregorian.startOfDay(for: date), recipeId: recipeId, servings: servings ?? profileStore.defaultServings, orderIndex: meals.count, mealType: type)
         meal.userRecipe = repository.userRecipeModel(id: recipeId)
         meal.weekPlan = plan
         context.insert(meal)
@@ -336,24 +372,25 @@ final class PlanStore {
         meals.first { $0.recipeId == recipeId }
     }
 
-    /// Rows for the Edit week sheet: one per day of the plan window.
-    func editRows() -> [EditableMeal?] {
+    /// Rows for the Edit week sheet: one per day of the plan window, for one meal type.
+    func editRows(for type: MealType = .dinner) -> [EditableMeal?] {
         weekDays.map { day in
-            guard let meal = meal(on: day) else { return nil }
+            guard let meal = meal(on: day, type: type) else { return nil }
             return EditableMeal(recipeId: meal.recipeId, servings: meal.servings, isCooked: meal.isCooked, cookedAt: meal.cookedAt)
         }
     }
 
-    /// Saves the Edit week sheet (rows aligned with `weekDays`).
-    func applyEdit(rows: [EditableMeal?]) {
+    /// Saves the Edit week sheet for one meal type (rows aligned with `weekDays`).
+    /// Meals of other types are left alone.
+    func applyEdit(rows: [EditableMeal?], for type: MealType = .dinner) {
         guard let plan = currentPlan else { return }
         let days: [Date] = weekDays
-        for meal in plan.meals ?? [] {
+        for meal in plan.meals ?? [] where meal.mealType == type {
             context.delete(meal)
         }
         for (index, row) in rows.enumerated() where index < days.count {
             guard let row else { continue }
-            let meal = PlannedMeal(date: days[index], recipeId: row.recipeId, servings: row.servings, orderIndex: index)
+            let meal = PlannedMeal(date: days[index], recipeId: row.recipeId, servings: row.servings, orderIndex: index, mealType: type)
             meal.isCooked = row.isCooked
             meal.cookedAt = row.cookedAt
             meal.userRecipe = repository.userRecipeModel(id: row.recipeId)

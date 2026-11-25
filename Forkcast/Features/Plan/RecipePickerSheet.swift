@@ -2,9 +2,10 @@ import SwiftUI
 import ForkcastCore
 
 /// Search + Saved / My recipes / All filter. Only recipes that pass the
-/// user's hard filters are offered.
+/// user's hard filters are offered; with `mealType` set, only that kind of meal.
 struct RecipePickerSheet: View {
     let title: String
+    var mealType: MealType? = nil
     let onPick: (String) -> Void
 
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
@@ -32,7 +33,8 @@ struct RecipePickerSheet: View {
     @State private var query: String = ""
 
     private var recipes: [Recipe] {
-        let pool: [Recipe] = repository.browsable(rules: profileStore.plannerProfile, notForMe: library.notForMeIds)
+        let all: [Recipe] = repository.browsable(rules: profileStore.plannerProfile, notForMe: library.notForMeIds)
+        let pool: [Recipe] = mealType.map { type in all.filter { $0.mealType == type } } ?? all
         let filtered: [Recipe]
         switch filter {
         case .all: filtered = pool

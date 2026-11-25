@@ -17,6 +17,13 @@ reference-screens/           Competitor screenshots (reference only, not shipped
 
 ## 1. First run on the Mac
 
+**Quick start:** from the repo folder run `./setup-mac.sh`. It installs XcodeGen with Homebrew if needed,
+generates `Forkcast.xcodeproj` and opens it. Then do step 3 (Team) below and press Run.
+Run it again after pulling changes that add or remove files or touch `project.yml`, because the
+`.xcodeproj` is generated and not committed (it's in `.gitignore`).
+
+Step by step:
+
 1. Install XcodeGen and generate the project:
    ```bash
    brew install xcodegen
@@ -132,16 +139,68 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 - **Colours** exist both as named colour sets and as hex values in `Theme` (code uses `Theme`, so previews,
   widgets and extensions never depend on asset lookup). Asset-symbol generation is switched off to avoid name clashes.
 - **Feedback**: tapping the active like / not-for-me again clears it. Stars only count above 3 (+1 each).
+- **Several shops**: users can pick as many shops as they like. The first one picked is the *main shop*
+  (`UserProfile.storeId`) and sets the price tier; the others live in `extraStoreIdsRaw`. Headers read
+  "Tesco & Lidl" or "Tesco +2". Per-shop pricing or splitting the list by shop is a later feature.
+- **Store logos**: tiles show `store-<id>` from the asset catalog if present (only with permission), else the monogram.
 - **Light mode only**, portrait only, iPhone only.
 
 ---
 
+## 3b. Onboarding (Nov 2026 rebuild)
+
+Order: splash → welcome → goal → what gets in the way → mirror → who's eating → your week → how do you eat →
+dislikes → vibe → kitchen → budget → pantry → shops → building → plan reveal → stay on track → trial → save your plan →
+welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `OnboardingStep` holds the order).
+
+- **Answers**: the planner fields stay on `UserProfile`; everything else is `OnboardingAnswers` (Codable), stored as
+  JSON in `UserProfile.onboardingAnswersJSON`. `ProfileStore.plannerProfile` merges both.
+- **Planner effects**: "High-protein" / "Lighter meals" add the matching vibe, "Mediterranean" adds a cuisine bonus,
+  Meal prep mode favours leftover-friendly dinners, pantry items are left off the **first** week's list and total.
+- **Country** comes from the phone's region (falls back to the US) and can be changed on the shops screen.
+- **Trial** screen assumes the 3-day intro offer (`TrialTimelineStep.trialLengthDays`); it's skipped for people who
+  can't start a trial. "Start my free trial" opens the existing `PaywallView`.
+- **Debug**: You tab → long-press the version → *Reset onboarding*. The splash plays once per app launch.
+
+**What to check in the Simulator** (iPhone 16 and iPhone SE 3rd gen):
+1. Cold launch: cream launch screen with Chef Tomato, no white flash; the splash pops, then hands off to Welcome. Tap during the splash skips it.
+2. Every question screen: tile tick and bounce, light haptic, "Continue · N selected", Skip on obstacles / dislikes / pantry.
+3. Mirror: the sentence types in and echoes your picks; Continue works straight away.
+4. 0 kids vs 2 kids (portion line, checklist row "Matching 2 adults + 2 kids").
+5. No allergies (preselected) vs peanuts + gluten (the "No allergies" chip clears, checklist "Avoiding peanuts…").
+6. Budget at the minimum and the maximum: corner mascot switches thinking / idle / cheer, verdict card updates.
+7. Pantry: tick 3 items, then check the first week's grocery list shows them under "check you have" at no cost.
+8. Plan reveal: confetti, day cards with photos and costs, the summary row adds up, the yearly number counts up.
+9. Trial: dates are real; the bell rings; "Not now" skips the paywall; a Pro or ineligible account never sees this screen.
+10. Settings → Accessibility → Motion → **Reduce Motion ON**: no splash burst (cross-fade), no confetti, no shake or bounce, numbers show final values.
+11. iPhone SE: nothing clipped on the store, pantry and reveal screens; the welcome headline fits.
+
+## 3c. Breakfast, lunch and snacks (Nov 2026)
+
+- **Meal types**: `MealType` (breakfast, lunch, dinner, snack) lives in ForkcastCore. Recipes, plan slots, planned meals
+  (`PlannedMeal.mealTypeRaw`), user recipes and the profile (`UserProfile.mealTypesRaw`, default "dinner") all carry it.
+  Anything saved before this change counts as dinner.
+- **Planning**: every chosen meal is planned on every cooking day. Each slot only takes recipes of its own type; lunches and
+  dinners follow the variety rules; a breakfast or snack may repeat once a week. Swaps and "add a meal" stay in type.
+- **Budget**: one budget covers all meals. Suggestions and verdicts count breakfast as 0.35 of a dinner, lunch 0.6,
+  snack 0.2 (`MealType.budgetWeight`). With dinners only, nothing changes.
+- **Recipes**: 12 breakfasts, 12 lunches and 8 snacks in `Tools/meal_recipes.py` (8 new ingredients with prices in
+  `Tools/ingredients_data.py`). Regenerate with `python3 Tools/generate_data.py`. Library tests check calories and step
+  counts per meal type, and diet/allergy coverage for each type.
+- **Plan tab**: dinners only looks exactly as before. With more meals, each day gets a heading and a card (or "add" row)
+  per meal. Edit week edits one meal type at a time and never touches the others. The widget still shows the dinner.
+- **Where to change it**: onboarding "Your week", and You tab → Meals. Your own recipes get a Meal picker.
+
+**Check on the Mac**: `cd Packages/ForkcastCore && swift test` (new planner and library tests), then in the app: pick
+Breakfast + Dinner in onboarding, check the budget suggestion rises, the plan shows both per day, swapping a breakfast only
+offers breakfasts, Edit week's Breakfast tab saves without touching dinners, and the widget shows the dinner.
+
 ## 4. TODO before launch
 
-- [ ] **Real reviews**: `Testimonial.placeholders` in `Features/Onboarding/Steps/SocialProofStep.swift` are clearly
-      marked placeholders. Replace them with genuine App Store reviews (or remove the carousel). Never invent reviews or user counts.
-- [ ] **Artwork**: see `Design/IMAGE_REQUESTS.md` (mascot moods, clean app icon, 40 recipe photos, optional
-      onboarding illustrations). Drop images into the asset catalog with the listed names; no code changes needed.
+- [ ] **Real reviews**: the social-proof screen was removed from onboarding (Nov 2026). Only bring it back with
+      genuine App Store reviews. Never invent reviews, ratings or user counts.
+- [x] **Artwork**: mascot moods, 40 recipe photos and 25 onboarding illustrations are in the asset catalog.
+      Still open (see `Design/IMAGE_REQUESTS.md`): the optional `MascotRig` layers and a clean app icon.
 - [ ] **App icon**: `AppIcon-1024.png` was cropped from the provided mascot art with the dark border removed.
       A clean 1024×1024 export (opaque, cream to the edges, no rounded corners) would look better.
 - [ ] **Full recipe library** (~200 recipes). Schema is in `Models/Recipe.swift`; add to `Tools/recipes_data.py`
@@ -149,7 +208,9 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 - [ ] **Prices** in `prices.json` are rough 2026 estimates per pack (standard tier) and must be refined per market.
       Pack sizes use one metric pack with an imperial label (e.g. "500 g pack" / "1 lb pack").
 - [ ] **Legal URLs**: `AppLinks.privacyPolicy`, `AppLinks.terms` and the support email `hello@forkcast.app` in `App/FeatureFlags.swift`.
-- [ ] **"I have a code"** on the welcome screen does nothing yet (marked TODO).
+- [ ] **Accounts beyond Apple**: "Sign in", Google, Email and "Join with a household code" are hidden until there's a
+      backend. The welcome screen has one button; "Save your plan" offers Sign in with Apple only.
+- [ ] **More breakfasts, lunches and snacks**: 32 to start; aim for 25+ breakfasts and lunches so weeks don't repeat.
 - [ ] **Localisation**: all copy goes through `String(localized:)` / `Text("…")`. `Localizable.xcstrings` is empty and
       Xcode fills it on build. Some enum display names in `ForkcastCore` are plain English strings, so move them to the app layer or the package's catalog before translating.
 - [ ] App Store Connect: create the two products and the "Forkcast Pro" group to match the `.storekit` file.

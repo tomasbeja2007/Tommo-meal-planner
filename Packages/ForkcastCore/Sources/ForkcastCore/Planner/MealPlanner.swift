@@ -1,12 +1,14 @@
 import Foundation
 
-/// Deterministic, on-device weekly dinner planner.
+/// Deterministic, on-device weekly meal planner (breakfast, lunch, dinner, snacks).
 ///
 /// 1. Hard filters (never broken): allergens, diet, dislikes, appliances,
 ///    time (the only rule that may be relaxed), "not for me".
 /// 2. Score: vibes, likes, stars, recency, user recipes, seeded jitter.
-/// 3. Greedy week with variety rules and ingredient-overlap bonus.
-/// 4. Budget pass: swap expensive meals for cheaper good ones.
+/// 3. Greedy week, slot by slot: each slot only takes recipes of its meal type. Lunches and dinners
+///    follow the variety rules; a breakfast or snack may appear up to `MealType.maxUsesPerWeek` times.
+///    Ingredient overlap across the whole week earns a bonus.
+/// 4. Budget pass: swap expensive meals for cheaper good ones of the same meal type.
 public struct MealPlanner: Sendable {
     public let catalog: FoodCatalog
 
@@ -49,12 +51,16 @@ public struct MealPlanner: Sendable {
     /// Hard-filtered, scored candidates. Relaxes the time rule if too few remain.
     func candidates(for request: PlannerRequest, rng: inout SeededRandom) -> (candidates: [Candidate], relaxedTime: Bool) {
         let profiles: [(Recipe, RecipeProfile)] = request.recipes.map { ($0, RecipeClassifier.profile(for: $0, catalog: catalog)) }
-        let needed: Int = max(1, request.slots.count) * 2
         var relaxed: Bool = false
         var passing: [(Recipe, RecipeProfile)] = profiles.filter {
             passesHardFilters($0.0, recipeProfile: $0.1, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: false)
         }
-        if passing.count < needed && request.profile.maxCookMinutes != nil {
+        // Relax the time rule if any meal type has fewer than 2 options per slot.
+        let slotsByType: [MealType: Int] = Dictionary(grouping: request.slots, by: { $0.mealType }).mapValues { $0.count }
+        let shortOfOptions: Bool = slotsByType.contains { type, count in
+            passing.filter { $0.0.mealType == type }.count < max(1, count) * 2
+        }
+        if shortOfOptions && request.profile.maxCookMinutes != nil {
             passing = profiles.filter {
                 passesHardFilters($0.0, recipeProfile: $0.1, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: true)
             }
@@ -82,6 +88,8 @@ public struct MealPlanner: Sendable {
             }
         }
         if recipe.isUserRecipe && request.profile.includeUserRecipes { value += 0.5 }
+        if request.profile.prefersMealPrep && recipe.isLeftoverFriendly { value += 2 }
+        if request.profile.preferredCuisines.contains(recipe.cuisine) { value += 2 }
         return value
     }
 
@@ -106,9 +114,11 @@ public struct MealPlanner: Sendable {
         }
         let lockedSlots: Set<Int> = Set(assignment.keys)
 
-        // Greedy fill.
+        // Greedy fill, slot by slot, from recipes of the slot's meal type.
+        let typeBySlot: [Int: MealType] = Dictionary(uniqueKeysWithValues: request.slots.map { ($0.index, $0.mealType) })
         for slot in request.slots where assignment[slot.index] == nil {
-            if let pick = bestCandidate(from: candidates, chosen: Array(assignment.values), excluding: nil) {
+            let typed: [Candidate] = candidates.filter { $0.recipe.mealType == slot.mealType }
+            if let pick = bestCandidate(from: typed, chosen: chosen(in: assignment, ofType: slot.mealType, typeBySlot: typeBySlot), weekSoFar: Array(assignment.values), mealType: slot.mealType) {
                 assignment[slot.index] = pick
             }
         }
@@ -126,11 +136,12 @@ public struct MealPlanner: Sendable {
                 .sorted { (costs[$0] ?? 0) > (costs[$1] ?? 0) }
             var improved: Bool = false
             for slotIndex in expensiveFirst {
+                let mealType: MealType = typeBySlot[slotIndex] ?? .dinner
                 var others: [Candidate] = []
-                for (key, value) in assignment where key != slotIndex { others.append(value) }
+                for (key, value) in assignment where key != slotIndex && typeBySlot[key] == mealType { others.append(value) }
                 let usedIds: Set<String> = Set(assignment.values.map { $0.recipe.id })
                 let options: [Candidate] = candidates
-                    .filter { !usedIds.contains($0.recipe.id) }
+                    .filter { $0.recipe.mealType == mealType && !usedIds.contains($0.recipe.id) }
                     .sorted { $0.baseScore + overlapBonus($0, chosen: others) > $1.baseScore + overlapBonus($1, chosen: others) }
                 var bestSwap: (Candidate, Double)? = nil
                 for option in options {
@@ -138,7 +149,7 @@ public struct MealPlanner: Sendable {
                     trial[slotIndex] = option
                     let trialTotal: Double = basket(for: trial, servings: servingsBySlot, slots: request.slots, request: request).total
                     if trialTotal < total - 0.01 {
-                        let respectsVariety: Bool = varietyOK(option, chosen: others)
+                        let respectsVariety: Bool = !mealType.usesVarietyRules || varietyOK(option, chosen: others)
                         if respectsVariety {
                             bestSwap = (option, trialTotal)
                             break
@@ -168,6 +179,7 @@ public struct MealPlanner: Sendable {
                 slotIndex: slot.index,
                 date: slot.date,
                 weekday: slot.weekday,
+                mealType: slot.mealType,
                 recipeId: candidate.recipe.id,
                 servings: servingsBySlot[slot.index] ?? request.servings,
                 allocatedCost: cost
@@ -199,14 +211,17 @@ public struct MealPlanner: Sendable {
         }
         if servings[slotIndex] == nil { servings[slotIndex] = request.servings }
         let slots: [PlanSlot] = request.slots
+        let mealType: MealType = slots.first { $0.index == slotIndex }?.mealType ?? .dinner
+        let typeBySlot: [Int: MealType] = Dictionary(uniqueKeysWithValues: slots.map { ($0.index, $0.mealType) })
         let baseTotal: Double = basket(for: assignment, servings: servings, slots: slots, request: request).total
         var others: [Candidate] = []
-        for (key, value) in assignment where key != slotIndex { others.append(value) }
+        for (key, value) in assignment where key != slotIndex && (typeBySlot[key] ?? .dinner) == mealType { others.append(value) }
         let usedIds: Set<String> = Set(assignment.values.map { $0.recipe.id })
+        let typed: [Candidate] = pool.filter { $0.recipe.mealType == mealType }
 
-        var options: [Candidate] = pool.filter { !usedIds.contains($0.recipe.id) && varietyOK($0, chosen: others) }
+        var options: [Candidate] = typed.filter { !usedIds.contains($0.recipe.id) && (!mealType.usesVarietyRules || varietyOK($0, chosen: others)) }
         if options.count < limit {
-            options = pool.filter { !usedIds.contains($0.recipe.id) }
+            options = typed.filter { !usedIds.contains($0.recipe.id) }
         }
         let ranked: [Candidate] = options.sorted {
             $0.baseScore + overlapBonus($0, chosen: others) > $1.baseScore + overlapBonus($1, chosen: others)
@@ -221,21 +236,32 @@ public struct MealPlanner: Sendable {
 
     // MARK: - Helpers
 
-    func bestCandidate(from candidates: [Candidate], chosen: [Candidate], excluding: Set<String>?) -> Candidate? {
-        let usedIds: Set<String> = Set(chosen.map { $0.recipe.id }).union(excluding ?? [])
-        let fresh: [Candidate] = candidates.filter { !usedIds.contains($0.recipe.id) }
-        let strict: [Candidate] = fresh.filter { varietyOK($0, chosen: chosen) }
+    /// Meals already placed in slots of `type`.
+    func chosen(in assignment: [Int: Candidate], ofType type: MealType, typeBySlot: [Int: MealType]) -> [Candidate] {
+        assignment.compactMap { (typeBySlot[$0.key] ?? .dinner) == type ? $0.value : nil }
+    }
+
+    /// The best pick for one slot. `candidates` are already this meal type; `chosen` are the meals of the
+    /// same type so far (for variety and repeats); `weekSoFar` is every meal (for the overlap bonus).
+    func bestCandidate(from candidates: [Candidate], chosen: [Candidate], weekSoFar: [Candidate], mealType: MealType = .dinner) -> Candidate? {
+        var uses: [String: Int] = [:]
+        for meal in chosen { uses[meal.recipe.id, default: 0] += 1 }
+        let fresh: [Candidate] = candidates.filter { (uses[$0.recipe.id] ?? 0) == 0 }
+        let repeatable: [Candidate] = candidates.filter { (uses[$0.recipe.id] ?? 0) < mealType.maxUsesPerWeek }
+        let strict: [Candidate] = mealType.usesVarietyRules ? fresh.filter { varietyOK($0, chosen: chosen) } : fresh
         let pool: [Candidate]
         if !strict.isEmpty {
             pool = strict
         } else if !fresh.isEmpty {
             pool = fresh
+        } else if !repeatable.isEmpty {
+            pool = repeatable
         } else {
-            // Last resort: repeat a recipe rather than leave a dinner empty.
+            // Last resort: repeat a recipe rather than leave a meal empty.
             pool = candidates
         }
         return pool.max { lhs, rhs in
-            lhs.baseScore + overlapBonus(lhs, chosen: chosen) < rhs.baseScore + overlapBonus(rhs, chosen: chosen)
+            lhs.baseScore + overlapBonus(lhs, chosen: weekSoFar) < rhs.baseScore + overlapBonus(rhs, chosen: weekSoFar)
         }
     }
 
@@ -272,6 +298,6 @@ public struct MealPlanner: Sendable {
             guard let candidate = assignment[slot.index] else { continue }
             portions.append(MealPortion(recipe: candidate.recipe, servings: servings[slot.index] ?? request.servings, weekday: slot.weekday))
         }
-        return GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: request.pricing, unitSystem: request.unitSystem)
+        return GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: request.pricing, unitSystem: request.unitSystem, onHand: request.profile.onHand)
     }
 }

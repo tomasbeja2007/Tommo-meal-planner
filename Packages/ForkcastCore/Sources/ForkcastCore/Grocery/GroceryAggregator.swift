@@ -84,7 +84,8 @@ public enum GroceryAggregator {
         var weekdays: Set<Int> = []
     }
 
-    public static func aggregate(meals: [MealPortion], catalog: FoodCatalog, pricing: PriceContext, unitSystem: UnitSystem) -> GroceryList {
+    /// `onHand`: ingredient ids the user already has. They move to the "check you have" list at no cost.
+    public static func aggregate(meals: [MealPortion], catalog: FoodCatalog, pricing: PriceContext, unitSystem: UnitSystem, onHand: Set<String> = []) -> GroceryList {
         var linked: [String: Accumulator] = [:]
         var custom: [String: CustomAccumulator] = [:]
 
@@ -120,6 +121,25 @@ public enum GroceryAggregator {
             let packPrice: Double? = catalog.packPrice(ingredientId: id, context: pricing)
             let name: String = ingredient.displayName(for: unitSystem, plural: acc.needed > 1.0001 && ingredient.baseUnit == .piece)
             let weekdays: [Int] = acc.weekdays.sorted()
+
+            if onHand.contains(id) {
+                staples.append(GroceryItem(
+                    key: id,
+                    ingredientId: id,
+                    name: name,
+                    emoji: ingredient.emoji,
+                    aisle: ingredient.aisle,
+                    isPantryStaple: true,
+                    packCount: 0,
+                    displayQuantity: ingredient.pack.display(for: unitSystem),
+                    neededText: "you have this · you need " + QuantityFormatter.baseString(acc.needed, ingredient: ingredient, system: unitSystem),
+                    neededBase: acc.needed,
+                    usedOnWeekdays: weekdays,
+                    cost: 0,
+                    hasPrice: packPrice != nil
+                ))
+                continue
+            }
 
             if ingredient.isPantryStaple {
                 let cost: Double = pantryCost(packPrice: packPrice ?? 0)

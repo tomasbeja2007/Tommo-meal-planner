@@ -203,4 +203,87 @@ final class PlannerTests: XCTestCase {
         XCTAssertLessThan(elapsed, 2.0)
         print("planner took \(Int(elapsed * 1000)) ms (debug)")
     }
+
+    func testMealPrepModeFavoursLeftoverFriendlyDinners() {
+        let prep = TestSupport.request(profile: PlannerProfile(prefersMealPrep: true))
+        let keeps = planner.score(catalog.recipe(id: "chickpea-spinach-curry")!, request: prep)
+        let doesNot = planner.score(catalog.recipe(id: "mushroom-pea-risotto")!, request: prep)
+        XCTAssertEqual(keeps, 2)
+        XCTAssertEqual(doesNot, 0)
+        let normal = TestSupport.request()
+        XCTAssertEqual(planner.score(catalog.recipe(id: "chickpea-spinach-curry")!, request: normal), 0)
+    }
+
+    func testPreferredCuisineScoresHigher() {
+        let request = TestSupport.request(profile: PlannerProfile(preferredCuisines: [.mediterranean]))
+        let mediterranean = catalog.recipes.first { $0.cuisine == .mediterranean && !$0.isLeftoverFriendly }!
+        let other = catalog.recipes.first { $0.cuisine != .mediterranean }!
+        XCTAssertEqual(planner.score(mediterranean, request: request), 2)
+        XCTAssertEqual(planner.score(other, request: request), 0)
+    }
+
+    func testSlotsCoverEveryMealTypeInDayOrder() {
+        let slots = WeekMath.slots(from: TestSupport.monday, cookingDays: [1, 2], mealTypes: [.dinner, .breakfast, .snack])
+        XCTAssertEqual(slots.map { $0.mealType }, [.breakfast, .dinner, .snack, .breakfast, .dinner, .snack])
+        XCTAssertEqual(slots.map { $0.index }, Array(0..<6))
+        XCTAssertEqual(WeekMath.slots(from: TestSupport.monday, cookingDays: [1, 2]).map { $0.mealType }, [.dinner, .dinner])
+    }
+
+    func testEverySlotGetsARecipeOfItsMealType() {
+        let all: Set<MealType> = Set(MealType.allCases)
+        for seed in 0..<20 {
+            let request = TestSupport.request(days: [1, 2, 3, 4, 5, 6, 7], mealTypes: all, seed: UInt64(seed))
+            let result = planner.plan(request)
+            XCTAssertEqual(result.meals.count, 28, "seed \(seed)")
+            for meal in result.meals {
+                XCTAssertEqual(catalog.recipe(id: meal.recipeId)?.mealType, meal.mealType, "seed \(seed): \(meal.recipeId)")
+            }
+        }
+    }
+
+    func testBreakfastsAndSnacksRepeatAtMostTwiceAndDinnersNever() {
+        let all: Set<MealType> = Set(MealType.allCases)
+        for seed in 0..<20 {
+            let result = planner.plan(TestSupport.request(days: [1, 2, 3, 4, 5, 6, 7], mealTypes: all, seed: UInt64(seed)))
+            var uses: [String: Int] = [:]
+            for meal in result.meals { uses[meal.recipeId, default: 0] += 1 }
+            for (id, count) in uses {
+                let type: MealType = catalog.recipe(id: id)?.mealType ?? .dinner
+                XCTAssertLessThanOrEqual(count, type.maxUsesPerWeek, "seed \(seed): \(id) used \(count)×")
+            }
+        }
+    }
+
+    func testAllergensNeverAppearInAnyMealType() {
+        let all: Set<MealType> = Set(MealType.allCases)
+        let rules = PlannerProfile(allergens: [.peanut, .treeNut, .dairy])
+        for seed in 0..<20 {
+            let result = planner.plan(TestSupport.request(profile: rules, days: [1, 2, 3, 4, 5, 6, 7], mealTypes: all, seed: UInt64(seed)))
+            for meal in result.meals {
+                let profile = RecipeClassifier.profile(for: catalog.recipe(id: meal.recipeId)!, catalog: catalog)
+                XCTAssertTrue(profile.allergens.isDisjoint(with: rules.allergens), "seed \(seed): \(meal.recipeId)")
+            }
+        }
+    }
+
+    func testSwapAlternativesStayInTheSameMealType() {
+        let request = TestSupport.request(mealTypes: [.breakfast, .dinner], seed: 9)
+        let result = planner.plan(request)
+        guard let breakfast = result.meals.first(where: { $0.mealType == .breakfast }) else { return XCTFail("no breakfast planned") }
+        var current: [Int: LockedMeal] = [:]
+        for meal in result.meals { current[meal.slotIndex] = LockedMeal(recipeId: meal.recipeId, servings: meal.servings) }
+        let options = planner.alternatives(for: breakfast.slotIndex, current: current, request: request)
+        XCTAssertFalse(options.isEmpty)
+        for option in options {
+            XCTAssertEqual(catalog.recipe(id: option.recipeId)?.mealType, .breakfast, option.recipeId)
+        }
+    }
+
+    func testBudgetCountsMealsByWeight() {
+        XCTAssertEqual(BudgetMath.dinnerEquivalents(days: 5), 5)
+        XCTAssertEqual(BudgetMath.dinnerEquivalents(days: 5, mealTypes: [.breakfast, .dinner]), 6.75, accuracy: 0.001)
+        let dinners = BudgetMath.defaultBudget(region: .US, portions: 2, days: 5)
+        let everything = BudgetMath.defaultBudget(region: .US, portions: 2, days: 5, mealTypes: Set(MealType.allCases))
+        XCTAssertGreaterThan(everything, dinners * 2)
+    }
 }

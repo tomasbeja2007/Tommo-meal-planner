@@ -105,7 +105,7 @@ struct FeedbackPromptCard: View {
                     Text("how was this week?")
                         .font(.system(.headline, design: .rounded))
                         .foregroundStyle(Theme.aubergine)
-                    Text("rate your dinners and we'll plan next week")
+                    Text("rate your meals and we'll plan next week")
                         .font(.subheadline)
                         .foregroundStyle(Theme.aubergineMuted)
                 }

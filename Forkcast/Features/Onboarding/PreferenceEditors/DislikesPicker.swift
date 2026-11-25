@@ -60,7 +60,7 @@ struct DislikesPicker: View {
                 Text("Common picks").font(.subheadline.weight(.semibold)).foregroundStyle(Theme.aubergineMuted)
                 FlowLayout(spacing: 8) {
                     ForEach(DislikeCatalog.commonPicks) { pick in
-                        Chip(title: "\(pick.emoji) \(pick.label)", isSelected: selection.contains(pick.id)) {
+                        DislikeChip(emoji: pick.emoji, title: pick.label, isStruck: selection.contains(pick.id)) {
                             if selection.contains(pick.id) {
                                 selection.remove(pick.id)
                             } else {
@@ -71,6 +71,46 @@ struct DislikesPicker: View {
                 }
             }
         }
+    }
+}
+
+/// A "no thanks" chip: picked, it turns aubergine and a line draws through the name.
+struct DislikeChip: View {
+    let emoji: String
+    let title: String
+    let isStruck: Bool
+    let action: () -> Void
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                Text(emoji)
+                Text(title)
+                    .font(.system(.subheadline, design: .rounded).weight(.medium))
+                    .lineLimit(1)
+                    .overlay {
+                        Capsule()
+                            .fill(Theme.cream)
+                            .frame(height: 1.5)
+                            .scaleEffect(x: isStruck ? 1 : 0, anchor: .leading)
+                            .opacity(isStruck ? 1 : 0)
+                    }
+            }
+            .foregroundStyle(isStruck ? Theme.cream : Theme.aubergine)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 9)
+            .frame(minHeight: 36)
+            .background(Capsule().fill(isStruck ? Theme.aubergine : Theme.creamDeep))
+            .contentShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .animation(reduceMotion ? nil : Animation.open(0.25), value: isStruck)
+        .sensoryFeedback(.impact(weight: .light), trigger: isStruck)
+        .accessibilityLabel(Text(title))
+        .accessibilityValue(isStruck ? Text("not for me") : Text(""))
+        .accessibilityAddTraits(isStruck ? [.isButton, .isSelected] : [.isButton])
     }
 }
 

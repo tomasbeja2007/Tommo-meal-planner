@@ -4,6 +4,8 @@ import ForkcastCore
 /// Seven round day toggles (M T W T F S S).
 struct CookingDaysEditor: View {
     @Binding var days: Set<Int>
+    /// "5 dinners a week" under the days (off where the screen shows its own line).
+    var showsSummary: Bool = true
 
     private let fullNames: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
@@ -24,12 +26,14 @@ struct CookingDaysEditor: View {
                     }
                 }
             }
-            Text(summary)
-                .font(.system(.title3, design: .rounded).weight(.bold))
-                .foregroundStyle(Theme.aubergine)
-                .contentTransition(.numericText())
-                .animation(Theme.spring, value: days.count)
-                .frame(maxWidth: .infinity)
+            if showsSummary {
+                Text(summary)
+                    .font(.system(.title3, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .contentTransition(.numericText())
+                    .animation(Theme.spring, value: days.count)
+                    .frame(maxWidth: .infinity)
+            }
         }
     }
 

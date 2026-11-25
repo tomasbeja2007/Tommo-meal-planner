@@ -11,7 +11,9 @@ enum WidgetSnapshotWriter {
         let days: [Date] = WeekMath.days(from: now)
         var entries: [WidgetSnapshot.Day] = []
         for day in days {
-            if let meal = meals.first(where: { calendar.isDate($0.date, inSameDayAs: day) }),
+            // "Tonight's dinner": the day's dinner, or its first meal when no dinner is planned.
+            let dayMeals: [PlannedMeal] = meals.filter { calendar.isDate($0.date, inSameDayAs: day) }
+            if let meal = dayMeals.first(where: { $0.mealType == .dinner }) ?? dayMeals.first,
                let recipe = repository.recipe(id: meal.recipeId) {
                 let macros = repository.nutrition(for: recipe).macros
                 entries.append(WidgetSnapshot.Day(

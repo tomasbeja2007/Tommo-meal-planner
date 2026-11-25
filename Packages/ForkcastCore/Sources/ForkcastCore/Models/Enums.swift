@@ -379,3 +379,69 @@ public enum FeedbackRating: String, Codable, Hashable, Sendable {
     case like
     case notForMe
 }
+
+/// Which meal of the day a recipe or plan slot is for. Raw values are stored in JSON and SwiftData.
+public enum MealType: String, Codable, CaseIterable, Hashable, Sendable, Comparable {
+    case breakfast
+    case lunch
+    case dinner
+    case snack
+
+    /// Order within a day.
+    public var order: Int {
+        switch self {
+        case .breakfast: return 0
+        case .lunch: return 1
+        case .dinner: return 2
+        case .snack: return 3
+        }
+    }
+
+    public static func < (lhs: MealType, rhs: MealType) -> Bool { lhs.order < rhs.order }
+
+    /// Share of a dinner's cost, used for budget suggestions and verdicts.
+    public var budgetWeight: Double {
+        switch self {
+        case .breakfast: return 0.35
+        case .lunch: return 0.6
+        case .dinner: return 1
+        case .snack: return 0.2
+        }
+    }
+
+    /// How many times one recipe may appear in a week for this meal (people repeat breakfasts and snacks).
+    public var maxUsesPerWeek: Int {
+        switch self {
+        case .breakfast, .snack: return 2
+        case .lunch, .dinner: return 1
+        }
+    }
+
+    /// Protein/cuisine variety rules only make sense for proper meals.
+    public var usesVarietyRules: Bool { self == .lunch || self == .dinner }
+
+    /// Calories per serving a bundled recipe of this type should land in (library validation).
+    public var kcalRange: ClosedRange<Double> {
+        switch self {
+        case .breakfast: return 200...700
+        case .lunch: return 250...850
+        case .dinner: return 250...950
+        case .snack: return 80...400
+        }
+    }
+
+    /// Step count a bundled recipe of this type should have (library validation).
+    public var stepRange: ClosedRange<Int> {
+        switch self {
+        case .breakfast, .lunch: return 4...10
+        case .dinner: return 6...10
+        case .snack: return 2...6
+        }
+    }
+
+    /// Sorted, with dinner as the fallback for an empty set.
+    public static func ordered(_ types: Set<MealType>) -> [MealType] {
+        let sorted: [MealType] = types.sorted()
+        return sorted.isEmpty ? [.dinner] : sorted
+    }
+}

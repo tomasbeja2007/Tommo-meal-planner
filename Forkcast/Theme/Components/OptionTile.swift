@@ -1,8 +1,9 @@
 import SwiftUI
 
 /// A selectable answer tile used throughout onboarding and preferences.
-/// Unselected: white with a 1 pt `line` border. Selected: tomato border,
-/// `tomatoSoft` fill and a small tomato check badge.
+/// 64 pt minimum height. Unselected: `creamDeep` fill. Selected: 2 pt tomato border,
+/// `tomatoSoft` fill and a herb tick that pops in. The illustration gives a small bounce
+/// when the tile is picked. Light haptic on every tap.
 struct OptionTile: View {
     let title: String
     var subtitle: String? = nil
@@ -13,6 +14,7 @@ struct OptionTile: View {
     var iconTint: Color = Theme.tomato
     let isSelected: Bool
     var layout: Layout = .row
+    var minHeight: CGFloat = 64
     let action: () -> Void
 
     enum Layout {
@@ -21,32 +23,33 @@ struct OptionTile: View {
     }
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
+    @State private var bounce: Int = 0
 
     var body: some View {
         Button(action: action) {
             content
                 .padding(Theme.Spacing.l)
-                .frame(maxWidth: .infinity, minHeight: 56, alignment: layout == .row ? .leading : .center)
+                .frame(maxWidth: .infinity, minHeight: minHeight, alignment: layout == .row ? .leading : .center)
                 .background(
                     RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous)
-                        .fill(isSelected ? Theme.tomatoSoft : Theme.card)
+                        .fill(isSelected ? Theme.tomatoSoft : Theme.creamDeep)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous)
-                        .stroke(isSelected ? Theme.tomato : Theme.line, lineWidth: isSelected ? 2 : 1)
+                        .stroke(isSelected ? Theme.tomato : Color.clear, lineWidth: 2)
                 )
                 .overlay(alignment: .topTrailing) {
                     if isSelected {
                         CheckBadge()
                             .offset(x: 6, y: -6)
-                            .transition(.scale(scale: 0.9).combined(with: .opacity))
+                            .transition(.scale(scale: 0.6).combined(with: .opacity))
                     }
                 }
                 .contentShape(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous))
         }
         .buttonStyle(.plain)
         .animation(Theme.motion(reduceMotion), value: isSelected)
-        .sensoryFeedback(.selection, trigger: isSelected)
+        .sensoryFeedback(.impact(weight: .light), trigger: isSelected)
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
     }
@@ -89,8 +92,25 @@ struct OptionTile: View {
         }
     }
 
-    @ViewBuilder
+    /// The icon gives one small bounce when the tile is picked (none with Reduce Motion).
     private var icon: some View {
+        iconContent
+            .keyframeAnimator(initialValue: 1.0, trigger: bounce) { content, scale in
+                content.scaleEffect(scale)
+            } keyframes: { _ in
+                KeyframeTrack {
+                    CubicKeyframe(1.14, duration: 0.14)
+                    CubicKeyframe(0.96, duration: 0.12)
+                    CubicKeyframe(1.0, duration: 0.16)
+                }
+            }
+            .onChange(of: isSelected) { _, now in
+                if now && !reduceMotion { bounce += 1 }
+            }
+    }
+
+    @ViewBuilder
+    private var iconContent: some View {
         if let illustration, AssetImage.exists(illustration) {
             Image(illustration)
                 .resizable()
@@ -108,14 +128,14 @@ struct OptionTile: View {
     }
 }
 
-/// The small round tomato checkmark shown on selected tiles.
+/// The small round herb tick shown on selected tiles (herb green is for ticks and success only).
 struct CheckBadge: View {
     var body: some View {
         Image(systemName: "checkmark")
             .font(.system(size: 11, weight: .heavy))
             .foregroundStyle(Color.white)
             .frame(width: 22, height: 22)
-            .background(Circle().fill(Theme.tomato))
+            .background(Circle().fill(Theme.herb))
             .accessibilityHidden(true)
     }
 }

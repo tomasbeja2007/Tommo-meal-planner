@@ -10,7 +10,7 @@ enum PreviewData {
         let state = OnboardingState()
         state.name = "Sam"
         state.countryId = "us"
-        state.storeId = "kroger"
+        state.storeIds = ["kroger", "aldi"]
         state.adults = 2
         state.kids = 1
         state.cookingDays = [1, 2, 3, 4, 5]

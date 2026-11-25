@@ -13,13 +13,18 @@ import ForkcastCore
 final class UserProfile {
     var name: String = ""
     var countryId: String = "us"
+    /// The main shop. It sets the price tier for the whole plan.
     var storeId: String = "local"
+    /// Other shops the user also uses, comma-separated, in the order they were picked.
+    var extraStoreIdsRaw: String = ""
     /// nil = follow the country; "imperial" / "metric" = user override.
     var unitSystemOverride: String? = nil
     var householdAdults: Int = 2
     var householdKids: Int = 0
-    /// ISO weekdays (1 = Mon ... 7 = Sun), comma-separated.
+    /// ISO weekdays (1 = Mon ... 7 = Sun), comma-separated. Every planned meal type uses these days.
     var cookingDaysRaw: String = "1,2,3,4,5"
+    /// `MealType` raw values to plan, comma-separated (dinner only by default).
+    var mealTypesRaw: String = "dinner"
     var weeklyBudget: Double = 50
     var nutritionTargetData: Data? = nil
     var vibesRaw: String = ""
@@ -39,6 +44,8 @@ final class UserProfile {
     var trialReminderDaysBefore: Int = 1
     var appleUserId: String? = nil
     var includeUserRecipesInPlans: Bool = true
+    /// `OnboardingAnswers` as JSON (obstacles, pantry, meal prep, extra diets…).
+    var onboardingAnswersJSON: String = ""
     var createdAt: Date = Date()
 
     init() {}
@@ -57,6 +64,29 @@ final class UserProfile {
     var cookingDays: Set<Int> {
         get { Set(Self.ints(cookingDaysRaw)) }
         set { cookingDaysRaw = newValue.sorted().map(String.init).joined(separator: ",") }
+    }
+
+    var onboardingAnswers: OnboardingAnswers {
+        get { OnboardingAnswers.decode(onboardingAnswersJSON) }
+        set { onboardingAnswersJSON = newValue.json }
+    }
+
+    /// Every shop the user picked, main shop first.
+    var storeIds: [String] {
+        get { [storeId] + Self.strings(extraStoreIdsRaw).filter { $0 != storeId } }
+        set {
+            storeId = newValue.first ?? Store.localStoreId
+            extraStoreIdsRaw = newValue.dropFirst().joined(separator: ",")
+        }
+    }
+
+    /// Meal types to plan; never empty (falls back to dinner).
+    var mealTypes: Set<MealType> {
+        get {
+            let parsed: Set<MealType> = Set(Self.strings(mealTypesRaw).compactMap { MealType(rawValue: $0) })
+            return parsed.isEmpty ? [.dinner] : parsed
+        }
+        set { mealTypesRaw = MealType.ordered(newValue).map { $0.rawValue }.joined(separator: ",") }
     }
 
     var vibes: [Vibe] {
@@ -126,9 +156,14 @@ final class WeekPlan {
         self.createdAt = Date()
     }
 
+    /// By day, then breakfast → lunch → dinner → snack, then the user's order.
     var sortedMeals: [PlannedMeal] {
-        (meals ?? []).sorted { lhs, rhs in
-            if lhs.date != rhs.date { return lhs.date < rhs.date }
+        let calendar: Calendar = WeekMath.gregorian
+        return (meals ?? []).sorted { lhs, rhs in
+            let lhsDay: Date = calendar.startOfDay(for: lhs.date)
+            let rhsDay: Date = calendar.startOfDay(for: rhs.date)
+            if lhsDay != rhsDay { return lhsDay < rhsDay }
+            if lhs.mealType != rhs.mealType { return lhs.mealType < rhs.mealType }
             return lhs.orderIndex < rhs.orderIndex
         }
     }
@@ -150,12 +185,20 @@ final class PlannedMeal {
     var weekPlan: WeekPlan? = nil
     /// Set when the meal is one of the user's own recipes (recipeId also holds "user:<uuid>").
     var userRecipe: UserRecipe? = nil
+    /// `MealType` raw value. Meals saved before meal types existed are dinners.
+    var mealTypeRaw: String = "dinner"
 
-    init(date: Date, recipeId: String, servings: Double, orderIndex: Int) {
+    init(date: Date, recipeId: String, servings: Double, orderIndex: Int, mealType: MealType = .dinner) {
         self.date = date
         self.recipeId = recipeId
         self.servings = servings
         self.orderIndex = orderIndex
+        self.mealTypeRaw = mealType.rawValue
+    }
+
+    var mealType: MealType {
+        get { MealType(rawValue: mealTypeRaw) ?? .dinner }
+        set { mealTypeRaw = newValue.rawValue }
     }
 }
 
@@ -240,6 +283,8 @@ final class UserRecipe {
     var sourceKindRaw: String = "manual"
     var createdAt: Date = Date()
     var notes: String = ""
+    /// `MealType` raw value; the user picks it when creating the recipe.
+    var mealTypeRaw: String = "dinner"
 
     init(title: String) {
         self.uuid = UUID().uuidString
@@ -265,6 +310,11 @@ final class UserRecipe {
     var tags: [String] {
         get { UserProfile.strings(tagsRaw) }
         set { tagsRaw = newValue.joined(separator: ",") }
+    }
+
+    var mealType: MealType {
+        get { MealType(rawValue: mealTypeRaw) ?? .dinner }
+        set { mealTypeRaw = newValue.rawValue }
     }
 
     var sourceKind: RecipeSourceKind {
@@ -309,6 +359,7 @@ final class UserRecipe {
             steps: steps,
             imageName: nil,
             isLeftoverFriendly: tagSet.contains(Vibe.batchFriendly.rawValue),
+            mealType: mealType,
             source: sourceKind,
             macroOverride: macroOverride,
             tags: tags.filter { Vibe(rawValue: $0) == nil },

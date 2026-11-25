@@ -25,13 +25,17 @@ public enum WeekMath {
     }
 
     /// Slots for the cooking days within the 7-day window starting at `start`.
-    public static func slots(from start: Date, cookingDays: Set<Int>, calendar: Calendar = WeekMath.gregorian) -> [PlanSlot] {
+    /// One slot per meal type on every planning day, in day order and then meal order
+    /// (breakfast, lunch, dinner, snack). The default is dinners only.
+    public static func slots(from start: Date, cookingDays: Set<Int>, mealTypes: Set<MealType> = [.dinner], calendar: Calendar = WeekMath.gregorian) -> [PlanSlot] {
         let dates: [Date] = days(from: start, calendar: calendar)
+        let meals: [MealType] = MealType.ordered(mealTypes)
         var result: [PlanSlot] = []
         for date in dates {
             let weekday: Int = isoWeekday(date, calendar: calendar)
-            if cookingDays.contains(weekday) {
-                result.append(PlanSlot(index: result.count, date: date, weekday: weekday))
+            guard cookingDays.contains(weekday) else { continue }
+            for meal in meals {
+                result.append(PlanSlot(index: result.count, date: date, weekday: weekday, mealType: meal))
             }
         }
         return result

@@ -1,11 +1,13 @@
 import SwiftUI
 import ForkcastCore
 
-/// 2-column grid of store tiles (coloured monogram, never a real logo).
+/// 2-column grid of store tiles. Pick as many shops as you like; the first one
+/// picked is the main shop and sets prices. Tiles show a logo only when the asset
+/// "store-<id>" exists (with the store's permission), otherwise a coloured monogram.
 struct StorePicker: View {
     let countryId: String
-    @Binding var selection: String
-    var onPick: (() -> Void)? = nil
+    /// Picked shops in order, main shop first.
+    @Binding var selection: [String]
     @State private var query: String = ""
 
     private var stores: [Store] {
@@ -25,12 +27,23 @@ struct StorePicker: View {
             SearchField(text: $query, prompt: String(localized: "Search stores"))
             LazyVGrid(columns: columns, spacing: Theme.Spacing.m) {
                 ForEach(stores) { store in
-                    StoreTile(store: store, isSelected: selection == store.id) {
-                        selection = store.id
-                        onPick?()
+                    StoreTile(
+                        store: store,
+                        isSelected: selection.contains(store.id),
+                        isMain: selection.count > 1 && selection.first == store.id
+                    ) {
+                        toggle(store.id)
                     }
                 }
             }
+        }
+    }
+
+    private func toggle(_ id: String) {
+        if let index = selection.firstIndex(of: id) {
+            selection.remove(at: index)
+        } else {
+            selection.append(id)
         }
     }
 }
@@ -38,6 +51,8 @@ struct StorePicker: View {
 struct StoreTile: View {
     let store: Store
     let isSelected: Bool
+    /// Shown only when several shops are picked: this one sets prices.
+    var isMain: Bool = false
     let action: () -> Void
 
     var body: some View {
@@ -50,6 +65,11 @@ struct StoreTile: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
+                if isMain {
+                    Text("main shop")
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(Theme.tomatoDeep)
+                }
             }
             .padding(Theme.Spacing.m)
             .frame(maxWidth: .infinity, minHeight: 116)
@@ -62,17 +82,37 @@ struct StoreTile: View {
         }
         .buttonStyle(.plain)
         .sensoryFeedback(.selection, trigger: isSelected)
-        .accessibilityLabel(Text(store.name))
+        .accessibilityLabel(isMain ? Text("\(store.name), main shop") : Text(store.name))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
     }
 }
 
-/// Initial letter on the store's colour. Placeholder for a logo we don't ship.
+/// The store's logo if the asset "store-<id>" exists, otherwise its initial on the store's colour.
+/// Only add a logo asset once the retailer has given permission (see Design/IMAGE_REQUESTS.md).
 struct StoreMonogram: View {
     let store: Store
     var size: CGFloat = 44
 
+    private var logoName: String { "store-" + store.id }
+
     var body: some View {
+        if !store.isLocalStore, AssetImage.exists(logoName) {
+            Image(logoName)
+                .resizable()
+                .interpolation(.high)
+                .scaledToFit()
+                .padding(size * 0.14)
+                .frame(width: size, height: size)
+                .background(Circle().fill(Color.white))
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Theme.line, lineWidth: 1))
+                .accessibilityHidden(true)
+        } else {
+            monogram
+        }
+    }
+
+    private var monogram: some View {
         ZStack {
             Circle().fill(store.isLocalStore ? Theme.creamDeep : Color(hexString: store.brandColorHex))
             if store.isLocalStore {
@@ -91,5 +131,5 @@ struct StoreMonogram: View {
 }
 
 #Preview {
-    ScrollView { StorePicker(countryId: "us", selection: .constant("kroger")).padding() }.creamBackground()
+    ScrollView { StorePicker(countryId: "us", selection: .constant(["kroger", "aldi"])).padding() }.creamBackground()
 }
