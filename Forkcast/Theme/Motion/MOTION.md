@@ -120,11 +120,11 @@
   `LaunchMascot` is `MascotIdle` resized to 200 pt for the launch screen (same size and spot as the splash mascot).
 - **Onboarding motion:** `WelcomeStep` (one continuous intro out of the launch screen: Chef Tommo is drawn at the
   launch size, rests 160 ms, then glides on the travel curve from the window centre into the hero and settles with a
-  small volume-keeping squash; the scene is a ring: a soft tomato "sun" behind
-  Chef Tommo and a floor shadow grow in as he lands; eight ingredients, one size, evenly spaced, open out onto a
-  tilted elliptical orbit (from 35% of the ring, 70 ms apart) and ride it linearly, one turn per 30 s, passing behind
-  him across the top (80% size, dimmer) and in front along the bottom; each rocks ±5° on a seeded 4/5/6/10 s period;
-  a faint dotted orbit line draws on with them. Title, subtitle and buttons rise 14 pt in with ease-out at
+  small volume-keeping squash; the scene is one circle centred on him: the soft
+  tomato disc grows in from 90% as he lands and its dotted rim draws on; eight ingredients, one size, evenly spaced,
+  open out onto that rim (from 35% of the radius, 70 ms apart) and ride it linearly, one turn per 30 s, always in
+  front of the disc and never behind Tommo; each rocks ±5° on a seeded 4/5/6/10 s period.
+  Title, subtitle and buttons rise 14 pt in with ease-out at
   0.62 / 0.72 / 0.86 s; light haptic on landing.
   Plays once per launch. Numbers in `enum WelcomeIntro`), `ConfettiView` (one `Canvas`, one
   `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),

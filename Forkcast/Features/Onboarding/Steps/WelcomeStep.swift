@@ -118,9 +118,8 @@ struct IngredientHero: View {
 
     @State private var isVisible = false
 
-    /// Eight ingredients on one ring round Chef Tommo, evenly spaced, one size: a deliberate shape,
-    /// not a scatter. The ring is a tilted ellipse, so pieces pass behind him across the top (smaller,
-    /// slightly dimmer) and in front of him along the bottom.
+    /// Eight ingredients on the rim of the disc round Chef Tommo, evenly spaced, one size: a deliberate
+    /// shape, not a scatter.
     private static let ring = ["avocado", "cherry-tomatoes", "lemon", "broccoli", "bell-pepper", "garlic", "basil", "eggplant"]
     /// One turn every 30 s (divides the 60 s ambient loop, so the seam never jumps).
     private static let orbitPeriod: Double = 30_000
@@ -128,7 +127,7 @@ struct IngredientHero: View {
     var body: some View {
         GeometryReader { proxy in
             let side = min(proxy.size.width, height * 1.48)
-            let mascotSize = min(height * 0.62, side * 0.52)
+            let mascotSize = min(height * 0.52, side * 0.46)
             let global = proxy.frame(in: .global)
             // How far the launch mascot sits from the hero's centre (window coordinates).
             let fromLaunch: CGSize = playsIntro
@@ -137,18 +136,14 @@ struct IngredientHero: View {
             OneShotClock(duration: WelcomeIntro.duration, play: isVisible && playsIntro) { e in
                 LoopClock(period: Theme.Motion.ambientDuration, paused: !isVisible) { time in
                     let i = playsIntro ? e : WelcomeIntro.duration
-                    let floorY = 0.5 + mascotSize / height * 0.43
                     ZStack {
-                        backdrop(width: side, floorY: floorY, at: time, intro: i)
-                        orbitPath(width: side, front: false, intro: i)
-                        orbit(width: side, front: false, at: time, intro: i)
+                        backdrop(width: side, at: time, intro: i)
                         if showsPlanPreview && AssetImage.exists("WelcomePlanScreenshot") {
                             phonePreview
                         } else {
                             mascot(size: mascotSize, intro: i, from: fromLaunch)
                         }
-                        orbit(width: side, front: true, at: time, intro: i)
-                        orbitPath(width: side, front: true, intro: i)
+                        orbit(width: side, at: time, intro: i)
                     }
                     .frame(width: side, height: height)
                 }
@@ -199,76 +194,56 @@ struct IngredientHero: View {
             .shadow(color: Theme.aubergine.opacity(0.24), radius: 12, x: 3, y: 8)
     }
 
-    /// A soft tomato sun behind Chef Tommo and one shared floor shadow: the scene's ground.
-    /// The sun glows by 1.5% over 6 s; both grow in with the intro (from 90%, never from 0).
-    private func backdrop(width: CGFloat, floorY: CGFloat, at time: Double, intro i: Double) -> some View {
+    /// One shape for the whole scene: a circle centred on Chef Tommo. The soft tomato disc fills it,
+    /// a dotted rim marks its edge, and the ingredients ride exactly on that rim.
+    private var ringRadius: CGFloat { height * 0.40 }
+
+    /// The tomato disc behind Chef Tommo and its dotted rim. The disc grows in from 90% as he lands and
+    /// glows 1.5% over 6 s; the rim draws on round the circle with the ingredients.
+    private func backdrop(width: CGFloat, at time: Double, intro i: Double) -> some View {
         let open = seg(i, WelcomeIntro.landMs - 200, WelcomeIntro.landMs + 300)
+        let draw = seg(i, WelcomeIntro.propsAt - 100, WelcomeIntro.propsAt + 600)
         let glow = 1 + 0.015 * wave(time, period: 6_000)
-        let sun = height * 0.80
+        let diameter = ringRadius * 2
         return ZStack {
             Circle()
-                .fill(RadialGradient(colors: [Theme.tomatoSoft, Theme.tomatoSoft.opacity(0.55)],
-                                     center: .center, startRadius: 0, endRadius: sun / 2))
-                .frame(width: sun, height: sun)
+                .fill(RadialGradient(colors: [Theme.tomatoSoft, Theme.tomatoSoft.opacity(0.45)],
+                                     center: .center, startRadius: 0, endRadius: ringRadius))
+                .frame(width: diameter, height: diameter)
                 .scaleEffect((0.9 + 0.1 * open) * glow)
-                .position(x: width / 2, y: height * (floorY - 0.36))
-            Ellipse()
-                .fill(Theme.aubergine.opacity(0.07))
-                .frame(width: width * 0.5, height: height * 0.07)
-                .blur(radius: 6)
-                .position(x: width / 2, y: height * (floorY + 0.06))
+                .opacity(open)
+            Circle()
+                .trim(from: 0, to: draw)
+                .stroke(Theme.tomato.opacity(0.28), style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [2, 7]))
+                .rotationEffect(.degrees(-90))
+                .frame(width: diameter, height: diameter)
         }
-        .opacity(open)
+        .frame(width: width, height: height)
     }
 
-    /// The ring's geometry: centre a little below Tommo's middle, wide and shallow like a plate seen
-    /// from slightly above.
-    private func ringFrame(width: CGFloat) -> (centre: CGPoint, rx: CGFloat, ry: CGFloat) {
-        (CGPoint(x: width / 2, y: height * 0.57), width * 0.43, height * 0.25)
-    }
-
-    /// A faint dotted line along the ring (its back half behind Tommo, its front half in front), so the
-    /// orbit reads as a designed shape. It draws on with the ingredients.
-    private func orbitPath(width: CGFloat, front: Bool, intro i: Double) -> some View {
-        let g = ringFrame(width: width)
-        let draw = seg(i, WelcomeIntro.propsAt - 100, WelcomeIntro.propsAt + 500)
-        var arc = Path()
-        arc.addArc(center: .zero, radius: 1, startAngle: .degrees(front ? 0 : 180), endAngle: .degrees(front ? 180 : 360), clockwise: false)
-        let shape = arc.applying(CGAffineTransform(translationX: g.centre.x, y: g.centre.y).scaledBy(x: g.rx, y: g.ry))
-        return shape
-            .trim(from: 0, to: draw)
-            .stroke(Theme.tomato.opacity(0.22), style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [2, 6]))
-            .frame(width: width, height: height)
-    }
-
-    /// The ingredients ride the ring (linear, one turn every 30 s), each rocking on its own seeded period.
-    /// Pieces in the back half are drawn behind Tommo, smaller and a touch dimmer; the front half in front.
-    /// On the intro they open out from 35% of the ring, staggered, from 80% scale (never 0).
-    private func orbit(width: CGFloat, front: Bool, at time: Double, intro i: Double) -> some View {
-        let g = ringFrame(width: width)
+    /// Eight ingredients, one size, evenly spaced on the rim, turning slowly (one turn every 30 s, linear)
+    /// and each rocking ±5° on its own seeded period. They sit on the rim, never behind Chef Tommo.
+    /// On the intro they open out from 35% of the radius, staggered, from 80% scale (never 0).
+    private func orbit(width: CGFloat, at time: Double, intro i: Double) -> some View {
         let pieces = Self.ring
+        let centre = CGPoint(x: width / 2, y: height / 2)
+        let side = height * 0.15
         return ZStack {
             ForEach(Array(pieces.enumerated()), id: \.offset) { index, id in
-                let angle = 2 * Double.pi * (Double(index) / Double(pieces.count) + loop(time, period: Self.orbitPeriod))
-                let depth = sin(angle)              // −1 at the back (top), 1 at the front (bottom)
-                if (depth >= 0) == front {
-                    let start = WelcomeIntro.propsAt + Double(index) * WelcomeIntro.propStagger
-                    let open = seg(i, start, start + WelcomeIntro.propOpenMs)
-                    let reach = 0.35 + 0.65 * open
-                    let near = (depth + 1) / 2
-                    let side = height * 0.17 * CGFloat(0.8 + 0.2 * near)
-                    let rock = 5 * wave(time, period: [4_000, 5_000, 6_000, 10_000][index % 4], phase: seeded(index))
-                    Image("ingredient-\(id)")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: side, height: side)
-                        .rotationEffect(.degrees(rock))
-                        .shadow(color: Theme.aubergine.opacity(0.1), radius: 4, y: 3)
-                        .scaleEffect(0.8 + 0.2 * open)
-                        .opacity(open * (0.82 + 0.18 * near))
-                        .position(x: g.centre.x + CGFloat(cos(angle)) * g.rx * CGFloat(reach),
-                                  y: g.centre.y + CGFloat(depth) * g.ry * CGFloat(reach))
-                }
+                let angle = 2 * Double.pi * (Double(index) / Double(pieces.count) + loop(time, period: Self.orbitPeriod)) - .pi / 2
+                let start = WelcomeIntro.propsAt + Double(index) * WelcomeIntro.propStagger
+                let open = seg(i, start, start + WelcomeIntro.propOpenMs)
+                let reach = ringRadius * CGFloat(0.35 + 0.65 * open)
+                let rock = 5 * wave(time, period: [4_000, 5_000, 6_000, 10_000][index % 4], phase: seeded(index))
+                Image("ingredient-\(id)")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: side, height: side)
+                    .rotationEffect(.degrees(rock))
+                    .elevation(Theme.Elevation.subtle)
+                    .scaleEffect(0.8 + 0.2 * open)
+                    .opacity(open)
+                    .position(x: centre.x + CGFloat(cos(angle)) * reach, y: centre.y + CGFloat(sin(angle)) * reach)
             }
         }
         .frame(width: width, height: height)
