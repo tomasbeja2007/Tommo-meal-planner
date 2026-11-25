@@ -29,10 +29,12 @@ def spice(id, name, uk, mac, tsp, emoji, prices=(3.49,1.00,1.49), tags=None, all
     return I(id, name, name, uk, SH, allergens or [], "", mac, "g", {"tsp": tsp, "tbsp": tsp*3, "pinch": 0.4}, (size[0], size[1], size[2], "jar", "jars"), True, emoji, tags=tags, prices=prices)
 
 ROWS = [
+  spice("fenugreek-seeds","fenugreek seeds",None,(323,23,58,6,25),3.5,"🌿"),
   # ---------- Produce ----------
   I("onion","onion","onions",None,P,[],"",(40,1.1,9.3,0.1,1.7),"g",{"piece":150},(1000,"1 kg bag","2 lb bag","bag","bags"),False,"🧅",prices=(2.49,0.95,1.29)),
   I("red-onion","red onion","red onions",None,P,[],"",(40,1.1,9.3,0.1,1.7),"g",{"piece":150},(500,"500 g bag","1 lb bag","bag","bags"),False,"🧅",prices=(1.99,0.85,1.19)),
   I("garlic","garlic","garlic",None,P,[],"",(149,6.4,33,0.5,2.1),"g",{"clove":5,"piece":50,"tsp":3},(50,"1 bulb","1 bulb","bulb","bulbs"),False,"🧄",prices=(0.69,0.35,0.45)),
+  I("lemongrass","lemongrass","lemongrass",None,P,[],"",(99,1.8,25.3,0.5,2),"g",None,(40,"40 g pack","1.4 oz pack","pack","packs"),False,"🌿",prices=(2.49,1.35,1.59)),
   I("ginger","fresh ginger","fresh ginger",None,P,[],"",(80,1.8,18,0.8,2),"g",{"piece":15,"tsp":2,"tbsp":6},(100,"100 g piece","3.5 oz piece","piece","pieces"),False,"🫚",prices=(0.99,0.50,0.70)),
   I("carrot","carrot","carrots",None,P,[],"",(41,0.9,10,0.2,2.8),"g",{"piece":70},(1000,"1 kg bag","2 lb bag","bag","bags"),False,"🥕",prices=(1.49,0.70,0.99)),
   I("celery","celery","celery",None,P,[],"",(16,0.7,3,0.2,1.6),"g",{"piece":40},(450,"1 head","1 bunch","head","heads"),False,"🥬",prices=(1.99,0.75,1.29)),
@@ -94,6 +96,7 @@ ROWS = [
   I("white-fish","cod fillet","cod fillets",None,MF,["fish"],F,(82,18,0,0.7,0),"g",{"piece":140},(280,"2 fillets","2 fillets","pack","packs"),False,"🐟","fish",prices=(7.99,4.50,5.99)),
   I("white-crabmeat","cooked white crabmeat","cooked white crabmeat",None,MF,["shellfish"],F,(97,19.4,0,1.5,0),"g",None,(150,"150 g tub","5 oz tub","tub","tubs"),False,"🦀","shellfish",prices=(8.99,4.50,6.25)),
   I("shrimp","raw shrimp","raw shrimp","raw king prawns",MF,["shellfish"],F,(85,20,0,0.5,0),"g",None,(300,"300 g pack","10 oz bag","pack","packs"),False,"🍤","shellfish",prices=(8.99,3.50,5.99)),
+  I("pepperoni","sliced pepperoni","sliced pepperoni",None,MF,[],M,(494,22,1,44,0),"g",None,(100,"100 g pack","3.5 oz pack","pack","packs"),False,"🍕","pork",prices=(3.49,1.85,2.29)),
   I("salami","cured salami","cured salami",None,MF,[],M,(407,22.6,1.6,33,0),"g",None,(125,"125 g pack","4.4 oz pack","pack","packs"),False,"🍖","pork",prices=(4.49,2.75,2.99)),
   I("ham","sliced ham","sliced ham",None,MF,[],M,(145,21,1.5,6,0),"g",{"slice":25},(150,"150 g pack","5 oz pack","pack","packs"),False,"🍖","pork",prices=(3.99,1.50,1.99)),
   I("lamb-mince","ground lamb","ground lamb","lamb mince",MF,[],M,(282,17,0,23,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","lamb",prices=(7.99,4.50,6.49)),
@@ -135,6 +138,7 @@ ROWS = [
   I("fettuccine","fettuccine","fettuccine",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🍝",prices=(2.49,1.25,1.69)),
   I("spaghetti","spaghetti","spaghetti",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(500,"500 g pack","1 lb box","pack","packs"),False,"🍝",prices=(1.49,0.75,0.99)),
   I("penne","penne","penne",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",{"cup":100},(500,"500 g pack","1 lb box","pack","packs"),False,"🍝",prices=(1.49,0.75,0.99)),
+  I("ramen-noodles","plain wheat ramen noodles","plain wheat ramen noodles",None,PA,["gluten"],"",(355,11,71,2,2.5),"g",None,(250,"250 g pack","9 oz pack","pack","packs"),False,"🍜",prices=(2.59,1.55,1.85)),
   I("egg-noodles","egg noodles","egg noodles",None,PA,["gluten","egg"],A,(384,14,71,4.4,3.3),"g",{"piece":50},(300,"6 nests","10 oz pack","pack","packs"),False,"🍜",prices=(2.49,1.20,1.49)),
   I("rice-noodles","rice noodles","rice noodles",None,PA,[],"",(364,6,80,0.6,1.6),"g",None,(250,"250 g pack","9 oz pack","pack","packs"),False,"🍜",prices=(2.49,1.50,1.79)),
   I("gnocchi","gnocchi","gnocchi",None,PA,["gluten"],"",(133,3.3,28,0.4,1.4),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥟",prices=(2.99,1.00,1.49)),
@@ -192,6 +196,7 @@ ROWS = [
   I("dijon-mustard","Dijon mustard","Dijon mustard",None,SC,[],"",(66,4,5,4,3),"g",{"tsp":5,"tbsp":15},(200,"200 g jar","7 oz jar","jar","jars"),False,"🟡",prices=(2.49,0.85,1.29)),
   I("mayonnaise","mayonnaise","mayonnaise",None,SC,["egg"],A,(680,1,0.6,75,0),"g",{"tbsp":14,"tsp":5},(400,"400 g jar","15 oz jar","jar","jars"),False,"🫙",prices=(3.99,1.50,1.99)),
   I("ketchup","ketchup","ketchup",None,SC,[],"",(101,1,27,0.1,0.3),"g",{"tbsp":17},(500,"500 g bottle","20 oz bottle","bottle","bottles"),False,"🍅",prices=(2.49,1.20,1.49)),
+  I("chili-crisp","chili crisp","chili crisp","chilli crisp",SC,["soy","sesame","peanut"],"",(590,4,12,59,2.5),"g",None,(200,"200 g jar","7 oz jar","jar","jars"),True,"🌶️",tags=["spicy"],prices=(4.99,3.50,3.89)),
   I("sriracha","sriracha","sriracha",None,SC,[],"",(93,1.9,19,0.9,2.2),"g",{"tsp":6,"tbsp":17},(200,"200 ml bottle","7 oz bottle","bottle","bottles"),False,"🌶️",tags=["spicy"],prices=(2.99,1.75,2.29)),
   I("fish-sauce","fish sauce","fish sauce",None,SC,["fish"],F,(35,5,3.6,0,0),"ml",{"tbsp":18,"tsp":6},(200,"200 ml bottle","7 fl oz bottle","bottle","bottles"),False,"🐟",prices=(2.99,1.50,1.99),gpm=1.2),
   I("worcestershire","Worcestershire sauce","Worcestershire sauce",None,SC,["fish"],F,(78,0,19,0,0),"ml",{"tsp":5,"tbsp":15},(150,"150 ml bottle","5 fl oz bottle","bottle","bottles"),False,"🍶",prices=(2.49,1.20,1.69),gpm=1.1),
@@ -233,6 +238,7 @@ ROWS = [
   I("red-wine-vinegar","red wine vinegar","red wine vinegar",None,OV,[],"",(19,0,0.3,0,0),"ml",{"tbsp":15,"tsp":5},(500,"500 ml bottle","16 fl oz bottle","bottle","bottles"),True,"🍷",prices=(2.99,1.00,1.29),gpm=1.0),
 
   # ---------- Frozen ----------
+  I("potato-tots","frozen potato tots","frozen potato tots","mini potato bites",FR,[],"",(190,2.3,25,9,2.2),"g",None,(750,"750 g bag","26 oz bag","bag","bags"),False,"🥔",prices=(4.49,2.65,3.29)),
   I("peas-frozen","frozen peas","frozen peas",None,FR,[],"",(81,5.4,14,0.4,5.1),"g",{"cup":145},(500,"500 g bag","1 lb bag","bag","bags"),False,"🟢",prices=(1.99,1.00,1.49)),
   I("corn-frozen","frozen sweetcorn","frozen sweetcorn",None,FR,[],"",(86,3.3,19,1.4,2),"g",{"cup":145},(500,"500 g bag","1 lb bag","bag","bags"),False,"🌽",prices=(1.99,1.00,1.39)),
   I("mixed-veg-frozen","frozen stir-fry vegetables","frozen stir-fry vegetables",None,FR,[],"",(65,3.3,13,0.5,4),"g",{"cup":140},(750,"750 g bag","1.5 lb bag","bag","bags"),False,"🥦",prices=(2.99,1.00,1.69)),

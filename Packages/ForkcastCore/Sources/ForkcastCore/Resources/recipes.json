@@ -51519,5 +51519,992 @@
   "isLeftoverFriendly": false,
   "mealType": "dinner",
   "tags": []
+ },
+ {
+  "id": "sloppy-joe-potato-tot-casserole",
+  "title": "Sloppy Joe potato tot casserole",
+  "emoji": "🥔",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 38,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato-tots",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 115,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 50,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Dice the onion and pepper and crush the garlic.",
+   "Brown the mince in a dry pan, breaking it up until it is cooked through.",
+   "Add the onion and pepper and soften for 5 minutes. Stir in garlic and paprika.",
+   "Add passata, ketchup and Worcestershire sauce. Simmer until the beef mixture is thick enough to mound.",
+   "Spread the beef into a baking dish. Scatter over half the grated cheese and arrange the frozen potato tots in a single layer.",
+   "Bake for 22–26 minutes until the tots are crisp and the sauce is bubbling. Sprinkle the rest of the cheese on top for the final 3 minutes. Rest for a few minutes before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sweet-paprika-chicken-cutlets",
+  "title": "Sweet paprika chicken cutlets",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 380,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Cook the rice following the packet.",
+   "Trim the beans, toss with half the oil and roast for 12–15 minutes, until browned at the tips.",
+   "Slice the chicken horizontally into thin cutlets. Rub them with paprika, garlic powder, salt, pepper and the rest of the oil.",
+   "Heat a frying pan until hot and sear the cutlets on both sides until browned and 74°C (165°F) inside.",
+   "Fluff the cooked rice and fold through the butter. Squeeze lemon juice over the cooked chicken.",
+   "Serve the cutlets with the loose buttered rice and roasted beans."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "red-curry-chicken-ramen",
+  "title": "Red curry chicken ramen with carrots",
+  "emoji": "🍜",
+  "cuisine": "Thai",
+  "vibes": [
+   "highProtein",
+   "comfort",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 550,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "ramen-noodles",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 850,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "thai-curry-paste",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Chop the chicken into bite-size pieces and slice the carrot into thin sticks. Slice the spring onions, keeping the green tops separate.",
+   "Heat the oil in a deep pan. Fry the curry paste, spring-onion whites and ginger for a minute.",
+   "Add the chicken and turn it through the paste, then pour in the coconut milk and stock.",
+   "Bring to a lively simmer. Add the carrots and cook until the chicken reaches 74°C (165°F).",
+   "Drop in the ramen and cook just until the noodles are tender. Take off the heat and stir in lime juice.",
+   "Ladle into bowls and scatter over the reserved spring-onion greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "baked-turkey-herb-meatballs",
+  "title": "Baked turkey and herb meatballs",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-turkey",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 170,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Rinse the rice and set it on to cook.",
+   "Mix turkey, beaten egg, breadcrumbs, crushed garlic, oregano, most of the chopped parsley and salt.",
+   "Shape into 16 small meatballs. Set on an oiled roasting tray and turn to coat lightly.",
+   "Roast for 15–19 minutes until golden and the centres reach 74°C (165°F).",
+   "Stir lemon zest, juice and a little water into the yoghurt to make a light dressing.",
+   "Serve the browned meatballs over rice with the dressing and the remaining parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-chicken-tenders-wedges",
+  "title": "Crispy chicken tenders with wedges",
+  "emoji": "🍗",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 550,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 750,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 90,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 75,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Cut the potatoes into wedges, toss with half the oil and roast for 15 minutes.",
+   "Cut the chicken into thick strips. Put flour in one bowl, beaten eggs in another and breadcrumbs mixed with paprika, garlic powder and salt in a third.",
+   "Dip the chicken first in flour, then egg and then breadcrumbs. Press the crumbs against the chicken.",
+   "Set the strips on a second lined tray and brush lightly with the remaining oil.",
+   "Turn the wedges and add the chicken tray. Bake both for 14–17 minutes, turning the chicken once, until crisp and 74°C (165°F) inside.",
+   "Serve the tenders with the wedges and ketchup for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "honey-garlic-chicken-chilli-crisp-noodles",
+  "title": "Honey garlic chicken and chilli crisp noodles",
+  "emoji": "🍜",
+  "cuisine": "Other",
+  "vibes": [
+   "fakeaway",
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 17,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "egg-noodles",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 490,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chili-crisp",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Cook the noodles until just tender, keeping a mug of their cooking water. Dice the chicken and cut the broccoli small.",
+   "Mix honey with crushed garlic, soy and vinegar. Thinly slice the spring onions.",
+   "Heat the oil in a frying pan and fry the chicken until golden and fully cooked to 74°C (165°F).",
+   "Stir in the broccoli and a splash of noodle water for 3 minutes.",
+   "Add the noodles and honey-garlic mixture. Toss over high heat until the sauce is glossy.",
+   "Fold through most of the chilli crisp. Spoon the rest over the bowls with sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "nepali-style-chicken-curry",
+  "title": "Nepali-style chicken curry",
+  "emoji": "🍛",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 13,
+  "cookMinutes": 32,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 620,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "fenugreek-seeds",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ground-coriander",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Chop the onion and tomatoes and grate the garlic and ginger. Cut the chicken into pieces.",
+   "Heat the oil in a wide pan. Add fenugreek seeds and stir just until they darken slightly.",
+   "Add the onion and cook until golden. Stir in the chicken, garlic, ginger, turmeric, coriander, cumin and salt.",
+   "Brown the chicken for a few minutes. Add the tomatoes and a splash of water, cover and simmer.",
+   "Cook until the chicken reaches 74°C (165°F) and the tomatoes form a loose gravy. Meanwhile, cook the rice following the packet.",
+   "Serve the curry with rice and chopped fresh coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "beef-pepperoni-pizza",
+  "title": "Beef and pepperoni pizza",
+  "emoji": "🍕",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort",
+   "fakeaway"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 20,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "flour",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 2.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pepperoni",
+    "amount": 65,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 230°C (450°F) with a baking tray inside.",
+   "Mix flour, baking powder, salt and yoghurt into a soft dough. Knead briefly and roll into a large thin round.",
+   "Brown the beef in a frying pan until cooked through, then drain off excess fat.",
+   "Put the base on baking paper and slide onto the hot tray. Bake for 5 minutes to set the surface.",
+   "Brush with oil and spread with passata. Add oregano, torn mozzarella, cooked beef and pepperoni slices.",
+   "Bake for a further 10–14 minutes until the crust is crisp and the cheese is bubbling. Rest briefly before slicing."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "lemongrass-beef-vermicelli",
+  "title": "Lemongrass beef vermicelli bowls",
+  "emoji": "🥢",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 17,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 510,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-noodles",
+    "amount": 280,
+    "unit": "g",
+    "note": "thin vermicelli"
+   },
+   {
+    "ingredientId": "lemongrass",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 18,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Prepare the vermicelli following the packet and drain well. Slice the cucumber and cut the carrot into matchsticks.",
+   "Finely chop the tender lemongrass core and the garlic. Mix with half the fish sauce and rub onto the steak.",
+   "Heat the oil in a heavy pan and sear the steak on both sides to at least 63°C (145°F). Rest for at least 3 minutes.",
+   "Whisk the lime juice, sugar and remaining fish sauce with a splash of water.",
+   "Slice the steak across the grain. Divide the noodles into bowls and add the cucumber, carrots and sliced beef.",
+   "Spoon over the dressing and scatter with coriander and crushed peanuts."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chilli-lime-chicken-corn-salad",
+  "title": "Chilli-lime chicken and corn salad",
+  "emoji": "🌽",
+  "cuisine": "Mexican",
+  "vibes": [
+   "healthyish",
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 14,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 560,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 320,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Rub thin chicken cutlets with lime zest, chilli powder, cumin, a little oil and half the salt.",
+   "Sear the chicken to 74°C (165°F) in the centre. Set it aside to rest, then slice.",
+   "Dry the corn and char it in the same pan. Chop the lettuce and tomatoes and dice the onion.",
+   "Whisk juice from two limes with the remaining oil and salt.",
+   "Toss the vegetables with the dressing and top with sliced chicken. Serve with wedges of the final lime."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "japanese-tomato-egg-rice",
+  "title": "Japanese-style tomato and egg rice bowl",
+  "emoji": "🍳",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 8,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sushi-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Cut the tomatoes into chunky wedges.",
+   "Whisk the eggs and slice the spring onions, keeping the green tops separate.",
+   "Heat the oil in a frying pan. Fry the spring-onion whites for a moment, then add the tomatoes.",
+   "Add soy sauce, vinegar and sugar. Cook just until the tomatoes start to soften.",
+   "Turn the heat low, pour the eggs over the tomatoes and fold slowly until broad soft curds form. Cook until set, then take off the heat.",
+   "Spoon the tomato-egg scramble next to the rice and finish with sliced spring-onion greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "toasted-chicken-queso-tortillas",
+  "title": "Chicken queso tortillas",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "comfort",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 21,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 8,
+    "unit": "piece",
+    "note": "small"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 460,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 145,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 140,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Gently simmer the chicken in water until the centre reaches 74°C (165°F). Let it cool slightly and shred it.",
+   "Mix grated cheddar, cream cheese, paprika, cumin and finely sliced spring onions.",
+   "Spread the queso on four tortillas, add the shredded chicken and cover with the remaining tortillas.",
+   "Toast in a dry skillet, flipping carefully once the bottom is golden. Cook until both sides are toasted and the filling is melted.",
+   "Rest for a minute, then cut each tortilla stack into wedges and serve with salsa."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
  }
 ]

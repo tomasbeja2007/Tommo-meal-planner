@@ -1,5 +1,40 @@
 [
  {
+  "id": "fenugreek-seeds",
+  "name": "fenugreek seeds",
+  "pluralName": "fenugreek seeds",
+  "aisle": "Spices & Herbs",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 323,
+   "protein": 23,
+   "carbs": 58,
+   "fat": 6,
+   "fiber": 25
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g jar",
+   "displayImperial": "1.4 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌿",
+  "tags": [],
+  "gramsPerUnit": {
+   "tsp": 3.5,
+   "tbsp": 10.5,
+   "pinch": 0.4
+  }
+ },
+ {
   "id": "onion",
   "name": "onion",
   "pluralName": "onions",
@@ -99,6 +134,36 @@
    "piece": 50,
    "tsp": 3
   }
+ },
+ {
+  "id": "lemongrass",
+  "name": "lemongrass",
+  "pluralName": "lemongrass",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 99,
+   "protein": 1.8,
+   "carbs": 25.3,
+   "fat": 0.5,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 40,
+   "display": "40 g pack",
+   "displayImperial": "1.4 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": []
  },
  {
   "id": "ginger",
@@ -2048,6 +2113,37 @@
   "proteinGroup": "shellfish"
  },
  {
+  "id": "pepperoni",
+  "name": "sliced pepperoni",
+  "pluralName": "sliced pepperoni",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 494,
+   "protein": 22,
+   "carbs": 1,
+   "fat": 44,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g pack",
+   "displayImperial": "3.5 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍕",
+  "tags": [],
+  "proteinGroup": "pork"
+ },
+ {
   "id": "salami",
   "name": "cured salami",
   "pluralName": "cured salami",
@@ -3263,6 +3359,38 @@
   "gramsPerUnit": {
    "cup": 100
   }
+ },
+ {
+  "id": "ramen-noodles",
+  "name": "plain wheat ramen noodles",
+  "pluralName": "plain wheat ramen noodles",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 355,
+   "protein": 11,
+   "carbs": 71,
+   "fat": 2,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "250 g pack",
+   "displayImperial": "9 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍜",
+  "tags": []
  },
  {
   "id": "egg-noodles",
@@ -4928,6 +5056,43 @@
   }
  },
  {
+  "id": "chili-crisp",
+  "name": "chili crisp",
+  "pluralName": "chili crisp",
+  "aisle": "Sauces & Condiments",
+  "allergens": [
+   "soy",
+   "sesame",
+   "peanut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 590,
+   "protein": 4,
+   "carbs": 12,
+   "fat": 59,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g jar",
+   "displayImperial": "7 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": true,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ],
+  "ukName": "chilli crisp"
+ },
+ {
   "id": "sriracha",
   "name": "sriracha",
   "pluralName": "sriracha",
@@ -6170,6 +6335,37 @@
    "tsp": 5
   },
   "gramsPerMl": 1.0
+ },
+ {
+  "id": "potato-tots",
+  "name": "frozen potato tots",
+  "pluralName": "frozen potato tots",
+  "aisle": "Frozen",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 190,
+   "protein": 2.3,
+   "carbs": 25,
+   "fat": 9,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 750,
+   "display": "750 g bag",
+   "displayImperial": "26 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥔",
+  "tags": [],
+  "ukName": "mini potato bites"
  },
  {
   "id": "peas-frozen",
