@@ -89,6 +89,7 @@ ROWS = [
   I("ground-turkey","ground turkey","ground turkey","turkey mince",MF,[],M,(150,19.7,0,8.3,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🦃","turkey",prices=(5.49,3.50,4.99)),
   I("salmon-fillet","salmon fillet","salmon fillets",None,MF,["fish"],F,(208,20,0,13,0),"g",{"piece":120},(240,"2 fillets","2 fillets","pack","packs"),False,"🐟","fish",prices=(8.99,4.00,5.99)),
   I("white-fish","cod fillet","cod fillets",None,MF,["fish"],F,(82,18,0,0.7,0),"g",{"piece":140},(280,"2 fillets","2 fillets","pack","packs"),False,"🐟","fish",prices=(7.99,4.50,5.99)),
+  I("white-crabmeat","cooked white crabmeat","cooked white crabmeat",None,MF,["shellfish"],F,(97,19.4,0,1.5,0),"g",None,(150,"150 g tub","5 oz tub","tub","tubs"),False,"🦀","shellfish",prices=(8.99,4.50,6.25)),
   I("shrimp","raw shrimp","raw shrimp","raw king prawns",MF,["shellfish"],F,(85,20,0,0.5,0),"g",None,(300,"300 g pack","10 oz bag","pack","packs"),False,"🍤","shellfish",prices=(8.99,3.50,5.99)),
   I("ham","sliced ham","sliced ham",None,MF,[],M,(145,21,1.5,6,0),"g",{"slice":25},(150,"150 g pack","5 oz pack","pack","packs"),False,"🍖","pork",prices=(3.99,1.50,1.99)),
   I("lamb-mince","ground lamb","ground lamb","lamb mince",MF,[],M,(282,17,0,23,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","lamb",prices=(7.99,4.50,6.49)),
@@ -122,6 +123,10 @@ ROWS = [
   I("sourdough","sourdough loaf","sourdough loaves",None,BK,["gluten"],"",(270,10,52,2,2.5),"g",{"slice":45},(400,"1 loaf","1 loaf","loaf","loaves"),False,"🍞",prices=(4.99,2.00,2.99)),
 
   # ---------- Pasta & noodles ----------
+  I("rigatoni","rigatoni","rigatoni",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(500,"500 g bag","1 lb box","pack","packs"),False,"🍝",prices=(1.79,0.85,1.19)),
+  I("macaroni","elbow macaroni","elbow macaroni","macaroni",PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(500,"500 g bag","1 lb box","pack","packs"),False,"🍝",prices=(1.69,0.85,1.19)),
+  I("jumbo-pasta-shells","jumbo pasta shells","jumbo pasta shells","large pasta shells",PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(340,"340 g box","12 oz box","box","boxes"),False,"🍝",prices=(2.89,2.00,2.29)),
+  I("wonton-wrappers","wonton wrappers","wonton wrappers",None,PA,["gluten","egg"],A,(291,9.8,57,1.5,2.2),"g",None,(200,"200 g pack","7 oz pack","pack","packs"),False,"🥟",prices=(3.99,2.75,2.99)),
   I("spaghetti","spaghetti","spaghetti",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(500,"500 g pack","1 lb box","pack","packs"),False,"🍝",prices=(1.49,0.75,0.99)),
   I("penne","penne","penne",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",{"cup":100},(500,"500 g pack","1 lb box","pack","packs"),False,"🍝",prices=(1.49,0.75,0.99)),
   I("egg-noodles","egg noodles","egg noodles",None,PA,["gluten","egg"],A,(384,14,71,4.4,3.3),"g",{"piece":50},(300,"6 nests","10 oz pack","pack","packs"),False,"🍜",prices=(2.49,1.20,1.49)),

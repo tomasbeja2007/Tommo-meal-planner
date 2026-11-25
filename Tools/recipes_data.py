@@ -560,3 +560,7 @@ RECIPES += build_brief_batch1(R)
 from recipe_brief_batch2 import build_recipes as build_brief_batch2
 
 RECIPES += build_brief_batch2(R)
+
+from recipe_brief_batch3 import build_recipes as build_brief_batch3
+
+RECIPES += build_brief_batch3(R)

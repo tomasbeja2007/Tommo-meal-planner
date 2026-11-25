@@ -279,6 +279,11 @@
   "UK": 4.5,
   "EU": 5.99
  },
+ "white-crabmeat": {
+  "US": 8.99,
+  "UK": 4.5,
+  "EU": 6.25
+ },
  "shrimp": {
   "US": 8.99,
   "UK": 3.5,
@@ -412,6 +417,26 @@
  "sourdough": {
   "US": 4.99,
   "UK": 2.0,
+  "EU": 2.99
+ },
+ "rigatoni": {
+  "US": 1.79,
+  "UK": 0.85,
+  "EU": 1.19
+ },
+ "macaroni": {
+  "US": 1.69,
+  "UK": 0.85,
+  "EU": 1.19
+ },
+ "jumbo-pasta-shells": {
+  "US": 2.89,
+  "UK": 2.0,
+  "EU": 2.29
+ },
+ "wonton-wrappers": {
+  "US": 3.99,
+  "UK": 2.75,
   "EU": 2.99
  },
  "spaghetti": {

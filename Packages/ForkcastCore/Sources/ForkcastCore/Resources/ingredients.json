@@ -1884,6 +1884,39 @@
   "proteinGroup": "fish"
  },
  {
+  "id": "white-crabmeat",
+  "name": "cooked white crabmeat",
+  "pluralName": "cooked white crabmeat",
+  "aisle": "Meat & Fish",
+  "allergens": [
+   "shellfish"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": true,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 97,
+   "protein": 19.4,
+   "carbs": 0,
+   "fat": 1.5,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g tub",
+   "displayImperial": "5 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🦀",
+  "tags": [],
+  "proteinGroup": "shellfish"
+ },
+ {
   "id": "shrimp",
   "name": "raw shrimp",
   "pluralName": "raw shrimp",
@@ -2838,6 +2871,137 @@
   "gramsPerUnit": {
    "slice": 45
   }
+ },
+ {
+  "id": "rigatoni",
+  "name": "rigatoni",
+  "pluralName": "rigatoni",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": []
+ },
+ {
+  "id": "macaroni",
+  "name": "elbow macaroni",
+  "pluralName": "elbow macaroni",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb box",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": [],
+  "ukName": "macaroni"
+ },
+ {
+  "id": "jumbo-pasta-shells",
+  "name": "jumbo pasta shells",
+  "pluralName": "jumbo pasta shells",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 340,
+   "display": "340 g box",
+   "displayImperial": "12 oz box",
+   "noun": "box",
+   "nounPlural": "boxes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": [],
+  "ukName": "large pasta shells"
+ },
+ {
+  "id": "wonton-wrappers",
+  "name": "wonton wrappers",
+  "pluralName": "wonton wrappers",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten",
+   "egg"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 291,
+   "protein": 9.8,
+   "carbs": 57,
+   "fat": 1.5,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g pack",
+   "displayImperial": "7 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥟",
+  "tags": []
  },
  {
   "id": "spaghetti",

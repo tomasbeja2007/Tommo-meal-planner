@@ -45540,5 +45540,975 @@
   "isLeftoverFriendly": true,
   "mealType": "dinner",
   "tags": []
+ },
+ {
+  "id": "ham-mac-and-cheese",
+  "title": "Mac and cheese with ham",
+  "emoji": "🧀",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 27,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "macaroni",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 500,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Dice the ham and grate the cheddar.",
+   "Cook the macaroni for 2 minutes less than the packet suggests. Drain well.",
+   "Melt the butter in a saucepan, stir in the flour and cook for a minute until it smells lightly toasted.",
+   "Add the milk gradually, whisking between additions. Simmer until thick, then take off the heat and stir in the mustard, seasoning and most of the cheese.",
+   "Fold the macaroni and diced ham through the sauce. Transfer to a baking dish and scatter the remaining cheese over it.",
+   "Bake for 12–15 minutes until bubbling with golden patches. Rest for 3 minutes before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crab-mac-and-cheese",
+  "title": "Crab mac and cheese",
+  "emoji": "🦀",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "macaroni",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "white-crabmeat",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 150,
+    "unit": "g",
+    "note": "mature white"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 470,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Cook the macaroni for a minute less than the packet suggests.",
+   "Pick through the crab for pieces of shell and tear any large lumps into bite-size pieces.",
+   "Melt the butter, stir in the flour and cook for a minute. Gradually whisk in the milk and simmer until it coats a spoon.",
+   "Take off the heat and stir in grated cheddar, pepper and a little lemon zest. Fold in the drained macaroni and crab, leaving some crab pieces intact.",
+   "Spoon into a baking dish and sprinkle with breadcrumbs. Bake for 10–12 minutes, until the edges bubble and the crumbs are lightly browned.",
+   "Scatter over chopped parsley and finish with a squeeze of lemon just before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "buffalo-chicken-mac-cheese",
+  "title": "Buffalo chicken mac and cheese",
+  "emoji": "🌶️",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "macaroni",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 420,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "hot-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Put the macaroni on to boil. In a second pan, cover the chicken with water and bring it to a gentle simmer.",
+   "Poach the chicken for 12–16 minutes until the thickest part reaches 74°C (165°F). Drain it and pull it into small shreds with forks.",
+   "Melt the butter in a saucepan and stir in the flour and garlic powder for 1 minute.",
+   "Gradually whisk in the milk. Simmer until smooth and thick, then take off the heat and stir in the grated cheddar and hot sauce.",
+   "Drain the macaroni and fold it into the sauce with the shredded chicken. Loosen with a splash of the pasta water if needed.",
+   "Divide into bowls and scatter with thinly sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "classic-glazed-beef-meatloaf",
+  "title": "Classic glazed beef meatloaf",
+  "emoji": "🍽️",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 60,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 600,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 65,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 100,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 85,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 680,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Grate the onion and soak the breadcrumbs in half the milk.",
+   "Mix the beef, breadcrumbs, onion, egg, Worcestershire sauce and half the salt with a fork or your hands. Stop once combined.",
+   "Shape into a low loaf on a lined baking tray. Mix the ketchup and mustard and spread half over the loaf.",
+   "Bake for 40–50 minutes until the centre reaches 71°C (160°F). Brush with the remaining glaze for the final 12 minutes.",
+   "Meanwhile, boil the peeled and chopped potatoes until soft. Drain and mash with butter, the rest of the milk and salt. Boil the peas for 3 minutes.",
+   "Rest the meatloaf for 10 minutes, then cut it into thick slices and serve beside the mash and peas."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "steamed-pork-dumpling-lasagne",
+  "title": "Steamed pork dumpling lasagne",
+  "emoji": "🥟",
+  "cuisine": "Chinese",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 20,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "wonton-wrappers",
+    "amount": 200,
+    "unit": "g",
+    "note": "use thin wheat-based wrappers"
+   },
+   {
+    "ingredientId": "ground-pork",
+    "amount": 470,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Very finely shred the cabbage, toss with salt and leave for 5 minutes. Squeeze it dry.",
+   "Mix the cabbage with minced pork, ginger, soy sauce, sesame oil and the sliced spring-onion whites.",
+   "Set four small heatproof dishes out. Cover the bases with wrappers, spread a thin layer of filling on top, then repeat and finish with wrappers.",
+   "Put the dishes in a covered steamer set over gently boiling water. Steam for 18–23 minutes until the centres reach 71°C (160°F).",
+   "Heat the vegetable oil in a small pan and pour it over the chilli flakes in a heatproof bowl. Let them sizzle and settle.",
+   "Run a knife around the edge of each dumpling stack and slide it onto a plate with a spatula. Scatter over the spring-onion greens and spoon on a little chilli oil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "spaghetti-alfredo",
+  "title": "Spaghetti Alfredo",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spaghetti",
+    "amount": 360,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Bring a pan of water to the boil, add salt and cook the spaghetti until just firm in the centre.",
+   "Grate the parmesan finely while the spaghetti cooks. Scoop out a mug of the pasta water before draining.",
+   "Warm the butter and cream in a wide pan over low heat until the butter melts. Avoid a hard boil.",
+   "Add the spaghetti and a splash of pasta water. Turn it through the warm cream with tongs.",
+   "Take the pan off the heat. Toss in most of the parmesan a little at a time until the sauce clings to the strands.",
+   "Add a final splash of pasta water if the sauce feels tight. Twist the spaghetti into bowls and finish with the remaining parmesan and cracked black pepper."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "french-onion-chicken-orzo",
+  "title": "French onion chicken orzo",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 47,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "orzo",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 750,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Thinly slice the onions. Heat the oven to 210°C (410°F) and season the chicken with salt and pepper.",
+   "Heat the oil in a wide ovenproof pan. Brown the thighs on both sides, then lift them onto a plate.",
+   "Melt the butter in the same pan and cook the onions on medium-low for about 20 minutes. Scrape the pan and add a splash of water when the onions catch.",
+   "Add the thyme, Worcestershire sauce, orzo and stock. Stir well and nestle the chicken and its juices into the orzo.",
+   "Bake for 14 minutes, then scatter torn mozzarella over the pan and bake until the orzo is tender and the chicken reaches 74°C (165°F).",
+   "Rest for 3 minutes, then serve each piece of chicken over orzo with the caramelised onions scooped on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "creamy-italian-sausage-pasta",
+  "title": "Creamy Italian sausage pasta",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rigatoni",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sausages",
+    "amount": 350,
+    "unit": "g",
+    "note": "skins removed"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 100,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 15,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Chop the onion and crush the garlic. Set the rigatoni cooking in a separate pan.",
+   "Heat the oil and pinch the sausage meat into small lumps. Leave them to brown before stirring.",
+   "Add the onion and cook until soft, then add the garlic and herbs for another minute.",
+   "Stir in the passata and simmer for 8–10 minutes until the sausage is cooked and the tomato tastes mellow.",
+   "Stir in the cream. Drain the rigatoni, keeping a cup of the cooking water, and fold the pasta through the sauce.",
+   "Loosen with pasta water as needed and serve with torn basil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "caramelised-cabbage-spaghetti",
+  "title": "Caramelised cabbage pasta",
+  "emoji": "🥬",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "fiberForward"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spaghetti",
+    "amount": 360,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Halve the cabbage and cut it into thin ribbons. Thinly slice the onion and crush the garlic.",
+   "Heat the oil and half of the butter in a wide pan. Fry the onion for 5 minutes over medium heat.",
+   "Add the cabbage and salt in two batches. Let it brown against the pan before tossing, then continue for about 12 minutes until tender.",
+   "Cook the spaghetti until just firm and reserve a mug of the cooking water. Stir the garlic into the cabbage.",
+   "Add the drained spaghetti, remaining butter and a splash of pasta water. Toss until the cabbage is distributed between the strands.",
+   "Squeeze over lemon, divide into bowls and finish with parsley and cracked pepper."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-mushroom-tetrazzini",
+  "title": "Chicken tetrazzini",
+  "emoji": "🍝",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 43,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spaghetti",
+    "amount": 290,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 260,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Simmer the chicken in water until the thickest part reaches 74°C (165°F), then shred it.",
+   "Cook the spaghetti for 2 minutes less than the packet suggests. Drain and set it aside.",
+   "Slice the mushrooms and onion. Fry them in half the butter until the water from the mushrooms evaporates.",
+   "Stir in the remaining butter, flour and thyme. Slowly whisk in the milk and stock. Simmer until the sauce thickens.",
+   "Add the pepper, spaghetti, chicken and half the parmesan. Tip into a baking dish and top with breadcrumbs and the remaining parmesan.",
+   "Bake for 15–18 minutes until bubbling at the sides and golden. Let it settle briefly before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "meatball-stuffed-pasta-shells",
+  "title": "Meatball-stuffed pasta shells",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 23,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "jumbo-pasta-shells",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Lightly oil a baking tray and set a pan of water on to boil.",
+   "Mix the beef with breadcrumbs, egg, half the crushed garlic, half the herbs, salt and pepper. Roll into small meatballs.",
+   "Bake the meatballs for 12–15 minutes until brown and cooked to 71°C (160°F). Meanwhile, boil the shells for 2 minutes less than the packet says.",
+   "Stir the remaining garlic and herbs into the passata. Spread half of the sauce in a baking dish.",
+   "Set the shells in the dish, open side up, and tuck a small meatball into each. Spoon over the remaining sauce and scatter with torn mozzarella.",
+   "Bake for about 15 minutes until the sauce bubbles and the mozzarella turns golden in patches."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sausage-kale-zuppa-toscana",
+  "title": "Sausage and kale zuppa toscana",
+  "emoji": "🥣",
+  "cuisine": "Italian",
+  "vibes": [
+   "onePan",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "sausages",
+    "amount": 350,
+    "unit": "g",
+    "note": "skins removed"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kale",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 800,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 120,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Slice the potatoes into thin half-moons. Chop the onion and garlic and tear the kale from its stems.",
+   "Heat the oil in a deep pan. Crumble the sausage meat into it and cook until browned, breaking up large pieces.",
+   "Stir in the onion for 5 minutes, then add the garlic for 30 seconds.",
+   "Pour in the stock and add the sliced potatoes. Simmer for 12–15 minutes until the potatoes are tender and the sausage is cooked.",
+   "Stir in the torn kale and simmer for 3 minutes, then add the cream and warm it gently.",
+   "Taste, finish with pepper and ladle into bowls with an even share of sausage, potatoes and greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
  }
 ]
