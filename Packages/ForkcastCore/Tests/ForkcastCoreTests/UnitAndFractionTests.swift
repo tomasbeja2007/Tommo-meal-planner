@@ -4,6 +4,31 @@ import XCTest
 final class UnitAndFractionTests: XCTestCase {
     let catalog = TestSupport.catalog
 
+    func testDailyNutritionTargetPresetsAndCustomSplit() throws {
+        var target = NutritionTarget()
+        XCTAssertEqual(target.calories, 2_000)
+        XCTAssertEqual(target.grams.protein, 150)
+        XCTAssertEqual(target.grams.carbs, 200)
+        XCTAssertEqual(target.grams.fat, 67)
+
+        for preset in NutritionTarget.Preset.allCases {
+            target.preset = preset
+            let split = target.percentages
+            XCTAssertEqual(split.protein + split.carbs + split.fat, 100)
+        }
+
+        target.preset = .custom
+        target.customProteinPercent = 60
+        target.customCarbPercent = 25
+        XCTAssertEqual(target.percentages.fat, 15)
+        let data = try JSONEncoder().encode(target)
+        XCTAssertEqual(try JSONDecoder().decode(NutritionTarget.self, from: data), target)
+
+        target.customCarbPercent = 70
+        XCTAssertEqual(target.percentages.carbs, 40)
+        XCTAssertEqual(target.percentages.fat, 0)
+    }
+
     func testFractionFormatting() {
         XCTAssertEqual(FractionFormatter.string(0.5), "½")
         XCTAssertEqual(FractionFormatter.string(0.333), "⅓")

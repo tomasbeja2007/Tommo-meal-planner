@@ -11,6 +11,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
     case budget
     case vibes
     case diet
+    case nutrition
     case allergies
     case dislikes
     case appliances
@@ -28,6 +29,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
         case .budget: return String(localized: "Weekly budget")
         case .vibes: return String(localized: "Vibes")
         case .diet: return String(localized: "Diet")
+        case .nutrition: return String(localized: "Calorie target")
         case .allergies: return String(localized: "Allergies")
         case .dislikes: return String(localized: "Dislikes")
         case .appliances: return String(localized: "Appliances")
@@ -45,6 +47,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
         case .budget: return "banknote"
         case .vibes: return "sparkles"
         case .diet: return "leaf"
+        case .nutrition: return "target"
         case .allergies: return "exclamationmark.shield"
         case .dislikes: return "hand.thumbsdown"
         case .appliances: return "oven"
@@ -54,7 +57,7 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
     }
 
     /// Whether changing it should offer to update this week's plan.
-    var affectsPlan: Bool { self != .units }
+    var affectsPlan: Bool { self != .units && self != .nutrition }
 }
 
 struct PreferencesSection: View {
@@ -128,6 +131,9 @@ struct PreferencesSection: View {
         case .budget: return profileStore.formatMoney(profile.weeklyBudget, fractionDigits: 0)
         case .vibes: return profile.vibes.map { $0.displayName }.joined(separator: ", ")
         case .diet: return profile.diet.displayName
+        case .nutrition:
+            guard let target = profile.nutritionTarget else { return String(localized: "No target") }
+            return String(localized: "\(target.calories.formatted()) kcal/day")
         case .allergies: return profile.allergens.isEmpty ? String(localized: "None") : profile.allergens.map { $0.displayName }.sorted().joined(separator: ", ")
         case .dislikes: return profile.dislikedIngredientIds.isEmpty ? String(localized: "None") : "\(profile.dislikedIngredientIds.count)"
         case .appliances: return "\(profile.appliances.count)"

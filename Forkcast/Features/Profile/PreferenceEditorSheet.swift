@@ -65,6 +65,8 @@ struct PreferenceEditorSheet: View {
             VibePicker(selection: $state.vibes)
         case .diet:
             DietPicker(selection: $state.diet)
+        case .nutrition:
+            NutritionTargetEditor(target: $state.nutritionTarget)
         case .allergies:
             QuestionHeader(title: String(localized: "any allergies?"), subtitle: String(localized: "we'll never include these, and that includes hidden sources."))
             AllergyPicker(selection: $state.allergens, noAllergies: $state.noAllergies)
@@ -99,6 +101,8 @@ struct PreferenceEditorSheet: View {
         guard let profile = profileStore.profile else { return }
         if kind == .units {
             profile.unitSystemOverride = unitChoice == "auto" ? nil : unitChoice
+        } else if kind == .nutrition {
+            profile.nutritionTarget = state.nutritionTarget
         } else {
             if kind == .country {
                 let stores: [Store] = FoodCatalog.bundled.stores(forCountry: state.countryId)

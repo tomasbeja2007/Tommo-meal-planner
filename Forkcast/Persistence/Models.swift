@@ -21,6 +21,7 @@ final class UserProfile {
     /// ISO weekdays (1 = Mon ... 7 = Sun), comma-separated.
     var cookingDaysRaw: String = "1,2,3,4,5"
     var weeklyBudget: Double = 50
+    var nutritionTargetData: Data? = nil
     var vibesRaw: String = ""
     var dietRaw: String = "none"
     var allergensRaw: String = ""
@@ -43,6 +44,15 @@ final class UserProfile {
     init() {}
 
     // MARK: Typed accessors (not persisted)
+
+    var nutritionTarget: NutritionTarget? {
+        get {
+            nutritionTargetData.flatMap { try? JSONDecoder().decode(NutritionTarget.self, from: $0) }
+        }
+        set {
+            nutritionTargetData = newValue.flatMap { try? JSONEncoder().encode($0) }
+        }
+    }
 
     var cookingDays: Set<Int> {
         get { Set(Self.ints(cookingDaysRaw)) }

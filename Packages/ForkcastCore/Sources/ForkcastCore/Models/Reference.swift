@@ -263,3 +263,44 @@ public struct PriceContext: Hashable, Sendable {
 
     public var multiplier: Double { tier.multiplier * countryMultiplier }
 }
+
+/// A person's optional daily reference for calories and macros.
+public struct NutritionTarget: Codable, Equatable, Sendable {
+    public enum Preset: String, Codable, CaseIterable, Identifiable, Sendable {
+        case balanced, highProtein, lowCarb, custom
+
+        public var id: Self { self }
+    }
+
+    public static let calorieRange = 1_000...5_000
+    public static let calorieStep = 50
+
+    public var calories: Int = 2_000
+    public var preset: Preset = .balanced
+    public var customProteinPercent: Int = 30
+    public var customCarbPercent: Int = 40
+
+    public init() {}
+
+    public var percentages: (protein: Int, carbs: Int, fat: Int) {
+        switch preset {
+        case .balanced: return (30, 40, 30)
+        case .highProtein: return (40, 35, 25)
+        case .lowCarb: return (30, 20, 50)
+        case .custom:
+            let protein = min(max(customProteinPercent, 0), 100)
+            let carbs = min(max(customCarbPercent, 0), 100 - protein)
+            return (protein, carbs, 100 - protein - carbs)
+        }
+    }
+
+    public var grams: (protein: Int, carbs: Int, fat: Int) {
+        let split = percentages
+        let energy = Double(min(max(calories, Self.calorieRange.lowerBound), Self.calorieRange.upperBound))
+        return (
+            Int((energy * Double(split.protein) / 400).rounded()),
+            Int((energy * Double(split.carbs) / 400).rounded()),
+            Int((energy * Double(split.fat) / 900).rounded())
+        )
+    }
+}

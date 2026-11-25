@@ -70,6 +70,8 @@ struct OnboardingFlow: View {
             VibesStepView(state: state) { advance() }
         case .diet:
             DietStepView(state: state) { autoAdvance() }
+        case .nutrition:
+            NutritionTargetStep(state: state) { advance() }
         case .allergies:
             AllergiesStepView(state: state) { advance() }
         case .dislikes:

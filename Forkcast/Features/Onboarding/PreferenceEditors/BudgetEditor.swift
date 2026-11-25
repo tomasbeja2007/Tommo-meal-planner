@@ -4,6 +4,7 @@ import ForkcastCore
 /// Big animated currency number, slider, live verdict card and stat tiles.
 struct BudgetEditor: View {
     @Binding var budget: Double
+    @State private var sliderTick = 0
     let country: Country
     let portions: Double
     let days: Int
@@ -50,6 +51,7 @@ struct BudgetEditor: View {
             VStack(spacing: Theme.Spacing.xs) {
                 Slider(value: sliderBinding, in: range, step: BudgetMath.step(region: country.regionPriceKey))
                     .tint(Theme.tomato)
+                    .sensoryFeedback(.selection, trigger: sliderTick)
                     .accessibilityLabel(Text("Weekly budget"))
                     .accessibilityValue(Text(MoneyFormat.string(budget, currencyCode: country.currencyCode, fractionDigits: 0)))
                 HStack {
@@ -76,14 +78,15 @@ struct BudgetEditor: View {
                     .foregroundStyle(Theme.aubergineFaint)
             }
         }
-        .sensoryFeedback(.selection, trigger: budget)
     }
 
     private var sliderBinding: Binding<Double> {
         Binding<Double>(
             get: { min(max(budget, range.lowerBound), range.upperBound) },
             set: { newValue in
+                guard newValue != budget else { return }
                 budget = newValue
+                sliderTick += 1
                 onUserChange?()
             }
         )

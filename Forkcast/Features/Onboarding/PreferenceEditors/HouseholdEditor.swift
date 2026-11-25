@@ -78,18 +78,19 @@ struct RoundStepper: View {
     @Binding var value: Int
     let range: ClosedRange<Int>
     var suffix: String = ""
+    var step: Int = 1
 
     var body: some View {
         HStack(spacing: Theme.Spacing.s) {
-            stepButton(systemImage: "minus", enabled: value > range.lowerBound) { value -= 1 }
-            Text("\(value)\(suffix)")
+            stepButton(systemImage: "minus", enabled: value > range.lowerBound) { value = max(range.lowerBound, value - step) }
+            Text(value.formatted() + suffix)
                 .font(.system(.title3, design: .rounded).weight(.bold))
                 .monospacedDigit()
                 .foregroundStyle(Theme.aubergine)
                 .frame(minWidth: 32)
                 .contentTransition(reduceMotion ? .identity : .numericText())
                 .animation(reduceMotion ? nil : Theme.Motion.update, value: value)
-            stepButton(systemImage: "plus", enabled: value < range.upperBound) { value += 1 }
+            stepButton(systemImage: "plus", enabled: value < range.upperBound) { value = min(range.upperBound, value + step) }
         }
         .sensoryFeedback(.selection, trigger: value)
     }

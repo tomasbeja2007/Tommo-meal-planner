@@ -20,6 +20,7 @@ final class OnboardingState {
     var budgetTouched: Bool = false
     var vibes: Set<Vibe> = []
     var diet: Diet = .none
+    var nutritionTarget: NutritionTarget?
     var allergens: Set<Allergen> = []
     var noAllergies: Bool = false
     var dislikes: Set<String> = []
@@ -42,6 +43,7 @@ final class OnboardingState {
         budgetTouched = true
         vibes = Set(profile.vibes)
         diet = profile.diet
+        nutritionTarget = profile.nutritionTarget
         allergens = profile.allergens
         noAllergies = profile.allergens.isEmpty
         dislikes = profile.dislikedIngredientIds
@@ -74,6 +76,7 @@ final class OnboardingState {
         profile.weeklyBudget = budget
         profile.vibes = Vibe.allCases.filter { vibes.contains($0) }
         profile.diet = diet
+        profile.nutritionTarget = nutritionTarget
         profile.allergens = noAllergies ? [] : allergens
         profile.dislikedIngredientIds = dislikes
         profile.appliances = appliances.isEmpty ? [.stovetop] : appliances
@@ -94,6 +97,7 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case budget
     case vibes
     case diet
+    case nutrition
     case allergies
     case dislikes
     case appliances
