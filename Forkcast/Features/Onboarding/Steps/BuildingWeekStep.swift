@@ -187,7 +187,7 @@ struct BuildingWeekStep: View {
         profileStore.createProfile(from: state, markComplete: false)
         let generation = Task { await planStore.generatePlan() }
         try? await Task.sleep(for: .milliseconds(600))
-        await generation.value
+        _ = await generation.value
         if planStore.currentPlanIsSaved, let plan = planStore.currentPlan {
             profileStore.recordOnboardingPlan(plan)
         }
