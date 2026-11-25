@@ -432,12 +432,9 @@ struct CatalogPreviewStep: View {
         self.state = state
         self.onContinue = onContinue
         _matched = State(initialValue: state.didMatchCatalog)
-        let catalog = FoodCatalog.bundled
-        let profile = PlannerProfile(allergens: state.effectiveAllergens, diet: state.diet, dislikes: state.dislikes,
-                                     appliances: state.appliances, vibes: state.vibes)
-        let meals = catalog.recipes.filter { state.mealTypes.contains($0.mealType) }
-        let fit = MealPlanner(catalog: catalog).safeRecipes(from: meals, profile: profile)
-        self.total = meals.count
+        let match = state.matchingRecipes()
+        let fit = match.fit
+        self.total = match.total
         self.fit = fit
         // Dishes that match their vibes first, then the rest; photos only, so the rivers look real.
         let withPhotos = fit.filter { AssetImage.exists("recipe-\($0.id)") || $0.imageName.map(AssetImage.exists) == true }
@@ -462,8 +459,8 @@ struct CatalogPreviewStep: View {
         if state.appliances.count < Appliance.allCases.count {
             parts.append(Appliance.allCases.filter { state.appliances.contains($0) }.map { $0.displayName.lowercased() }.joined(separator: " + "))
         }
-        if parts.isEmpty { return String(localized: "Out of \(total.formatted()), every one checked against your answers.") }
-        return String(localized: "Out of \(total.formatted()), filtered for \(parts.formatted(.list(type: .and))).")
+        if parts.isEmpty { return String(localized: "Out of \(total.formatted()), every one checked against your answers. Your week is built from these.") }
+        return String(localized: "Out of \(total.formatted()), filtered for \(parts.formatted(.list(type: .and))). Your week is built from these.")
     }
 
     @State private var matched = false

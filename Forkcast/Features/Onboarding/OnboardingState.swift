@@ -106,6 +106,15 @@ final class OnboardingState {
         catalog.country(id: countryId) ?? catalog.defaultCountry
     }
 
+    /// The bundled recipes for their meal types, and the ones that pass their rules (allergens, diet,
+    /// dislikes, kitchen). Shown as "N recipes fit you" and reused by the building screen.
+    func matchingRecipes(catalog: FoodCatalog = .bundled) -> (total: Int, fit: [Recipe]) {
+        let rules = PlannerProfile(allergens: effectiveAllergens, diet: diet, dislikes: dislikes,
+                                   appliances: appliances, vibes: vibes)
+        let pool = catalog.recipes.filter { mealTypes.contains($0.mealType) }
+        return (pool.count, MealPlanner(catalog: catalog).safeRecipes(from: pool, profile: rules))
+    }
+
     /// Re-suggest a budget from the household and days (until the user picks one).
     func refreshSuggestedBudget(catalog: FoodCatalog) {
         guard !budgetTouched else { return }

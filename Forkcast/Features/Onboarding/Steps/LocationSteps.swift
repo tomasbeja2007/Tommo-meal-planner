@@ -4,11 +4,11 @@ import ForkcastCore
 
 // MARK: Locating (the globe)
 
-/// "finding shops near you": an illustrated globe spins and eases to a stop on the user's country,
-/// a tomato pin drops onto it, ripples go out, and the supermarkets we price there deal in around it.
-/// Then it moves on by itself (or on a tap). Uses the country from the device region; no permissions.
-/// One clock for the scene. Timeline (ms): 0 spin starts · 2 600 settles · 2 300–2 600 pin falls ·
-/// 2 600 / 3 100 / 3 600 ripples · 3 000 shop logos · 4 400 advance. Numbers in `GlobeMotion`.
+/// "finding shops near you": an illustrated globe rises in already turning, spins and glides to a stop
+/// on the user's country, a tomato pin falls onto it (the globe gives a little under the impact), flat
+/// ripples spread across the surface, and the supermarkets we price there deal in around it. Then it
+/// moves on by itself (or on a tap). Uses the country from the device region; no permissions.
+/// One one-shot clock for the scene plus one idle loop. Every time and size is in `GlobeMotion`.
 struct LocatingStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
@@ -16,7 +16,7 @@ struct LocatingStep: View {
     @State private var play = false
     @State private var landed = false
     @State private var advanced = false
-    private let globe: CGFloat = 230
+    private let globe: CGFloat = 236
 
     private var country: Country { state.country(in: FoodCatalog.bundled) }
     private var target: (lon: Double, lat: Double) {
@@ -26,30 +26,33 @@ struct LocatingStep: View {
     private var stores: [Store] {
         Array(FoodCatalog.bundled.stores(forCountry: state.countryId).filter { !$0.isLocalStore }.prefix(8))
     }
+    private var captions: [String] {
+        [String(localized: "finding shops near you"),
+         String(localized: "pinpointing \(country.name)"),
+         String(localized: "matching shops in \(country.name)")]
+    }
 
     var body: some View {
         OneShotClock(duration: GlobeMotion.duration, play: play) { t in
             LoopClock(period: GlobeMotion.idlePeriod) { l in
                 let view = camera(t, l)
+                let stage = globe * 1.6
                 VStack(spacing: Theme.Spacing.xl) {
                     Spacer(minLength: 0)
                     ZStack {
                         atmosphere(t, l)
                         GlobeView(lon0: view.lon, lat0: view.lat)
                             .frame(width: globe, height: globe)
-                            .scaleEffect(0.94 + 0.06 * seg(t, 0, 380))
-                            .opacity(seg(t, 0, 260))
-                        pin(t, at: GlobeView.point(lon: target.lon, lat: target.lat, lon0: view.lon, lat0: view.lat, radius: globe / 2))
+                            .scaleEffect(globeScale(t))
+                            .offset(y: 18 * (1 - seg(t, 0, GlobeMotion.enterMs)))
+                            .opacity(seg(t, 0, GlobeMotion.enterMs * 0.5))
+                        pin(t, at: GlobeView.point(lon: target.lon, lat: target.lat, lon0: view.lon, lat0: view.lat, radius: globe / 2), stage: stage)
                         shopRing(t, l)
                     }
-                    .frame(width: globe * 1.55, height: globe * 1.55)
+                    .frame(width: stage, height: stage)
                     VStack(spacing: Theme.Spacing.s) {
-                        Text(caption(t))
-                            .font(.system(.title3, design: .rounded).weight(.bold))
-                            .foregroundStyle(Theme.aubergine)
-                            .contentTransition(.opacity)
-                            .animation(Theme.Motion.fadeIn, value: caption(t))
-                        StepDashes(active: t < 1_300 ? 0 : (t < 3_000 ? 1 : 2))
+                        captionView(t)
+                        StepDashes(active: t < GlobeMotion.captionTimes[1] ? 0 : (t < GlobeMotion.captionTimes[2] ? 1 : 2))
                     }
                     Spacer(minLength: 0)
                 }
@@ -64,30 +67,51 @@ struct LocatingStep: View {
         .task { await run() }
     }
 
-    /// Where the globe looks. It starts 240° away and spins towards the country, decelerating smoothly
-    /// (a power curve, so it starts already turning and never stops abruptly), tilting to the country's
-    /// latitude as it goes. Once settled, a ±2.5° drift keeps it alive; the pin rides along.
+    /// Where the globe looks. It starts `spinDegrees` away and turns towards the country on a power
+    /// curve (already moving when it fades in, never stopping with a jolt), tilting to the country's
+    /// latitude as it goes. Once settled, a ±2.5° drift keeps it alive; the pin rides along with it.
     private func camera(_ t: Double, _ l: Double) -> (lon: Double, lat: Double) {
-        let p = min(1, max(0, t / GlobeMotion.spinMs))
+        let p = min(1, max(0, t / GlobeMotion.landMs))
         let s = 1 - pow(1 - p, GlobeMotion.spinPower)
         let tilt = max(-35, min(45, target.lat - 8))
-        let drift = GlobeMotion.drift * wave(l, period: GlobeMotion.idlePeriod) * seg(t, GlobeMotion.spinMs, GlobeMotion.spinMs + 900)
+        let drift = GlobeMotion.drift * wave(l, period: GlobeMotion.idlePeriod) * seg(t, GlobeMotion.landMs, GlobeMotion.landMs + 1_200)
         // Longitude falls towards the target, so land drifts left to right, the way the Earth turns.
         return (target.lon + GlobeMotion.spinDegrees * (1 - s) + drift,
                 GlobeMotion.startTilt + (tilt - GlobeMotion.startTilt) * s)
     }
 
-    private func caption(_ t: Double) -> String {
-        if t < 1_300 { return String(localized: "finding shops near you") }
-        if t < 3_000 { return String(localized: "pinpointing \(country.name)") }
-        return String(localized: "matching shops in \(country.name)")
+    /// Rises in from 92%, then gives 1.2% under the pin's impact and springs back (follow-through).
+    private func globeScale(_ t: Double) -> CGFloat {
+        let land = GlobeMotion.landMs
+        let give = flow(t, [(0, 0), (land, 0), (land + 90, 1), (land + 260, -0.35), (land + 460, 0), (GlobeMotion.duration, 0)])
+        return CGFloat((0.92 + 0.08 * seg(t, 0, GlobeMotion.enterMs)) * (1 + 0.012 * give))
+    }
+
+    /// One caption at a time: the old one lifts away and fades (160 ms, before the next begins), the new
+    /// one rises in (260 ms). Driven by the scene clock, so two lines never sit on top of each other.
+    private func captionView(_ t: Double) -> some View {
+        let times = GlobeMotion.captionTimes
+        return ZStack {
+            ForEach(captions.indices, id: \.self) { i in
+                let enter = i == 0 ? 1 : seg(t, times[i], times[i] + 260)
+                let leave = i + 1 < times.count ? seg(t, times[i + 1] - 160, times[i + 1], easeOut: false) : 0
+                Text(captions[i])
+                    .font(.system(.title3, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                    .opacity(enter * (1 - leave))
+                    .offset(y: 8 * (1 - enter) - 8 * leave)
+            }
+        }
+        .padding(.horizontal, Theme.Spacing.gutter)
     }
 
     private func run() async {
         play = true
-        try? await Task.sleep(for: .milliseconds(2_600))
+        try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.landMs)))
         landed = true
-        try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.duration) - 2_600))
+        try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.duration - GlobeMotion.landMs)))
         guard !Task.isCancelled else { return }
         advance()
     }
@@ -99,52 +123,58 @@ struct LocatingStep: View {
         onContinue()
     }
 
-    /// A soft blue atmosphere round the globe that breathes 2% over the idle loop.
+    /// A soft blue atmosphere round the globe: it blooms in with the globe, breathes 2% over the idle
+    /// loop and brightens for a moment when the pin lands.
     private func atmosphere(_ t: Double, _ l: Double) -> some View {
-        Circle()
-            .fill(RadialGradient(colors: [Color(hex: 0x9CC8F5).opacity(0.6), Color(hex: 0x9CC8F5).opacity(0)],
-                                 center: .center, startRadius: globe * 0.46, endRadius: globe * 0.7))
-            .frame(width: globe * 1.45, height: globe * 1.45)
-            .scaleEffect(1 + 0.02 * wave(l, period: GlobeMotion.idlePeriod / 2))
-            .opacity(seg(t, 0, 500))
+        let flash = bell(seg(t, GlobeMotion.landMs, GlobeMotion.landMs + 800, easeOut: false))
+        return Circle()
+            .fill(RadialGradient(colors: [Color(hex: 0x9CC8F5).opacity(0.55 + 0.25 * flash), Color(hex: 0x9CC8F5).opacity(0)],
+                                 center: .center, startRadius: globe * 0.46, endRadius: globe * 0.72))
+            .frame(width: globe * 1.5, height: globe * 1.5)
+            .scaleEffect((0.9 + 0.1 * seg(t, 0, GlobeMotion.enterMs)) * (1 + 0.02 * wave(l, period: GlobeMotion.idlePeriod / 2)))
+            .opacity(seg(t, 0, GlobeMotion.enterMs))
     }
 
-    /// The pin falls the last 36 pt onto the country (gravity), squashes on contact keeping its volume,
-    /// settles, and three ripples go out from its tip. Its contact shadow on the globe grows as it lands.
-    private func pin(_ t: Double, at point: CGPoint) -> some View {
-        let fall = seg(t, 2_300, 2_600, easeOut: false)
-        let squash = flow(t, [(0, 1), (2_580, 1), (2_660, 0.8), (2_800, 1.06), (2_960, 1), (GlobeMotion.duration, 1)])
+    /// The pin falls the last 40 pt onto the country with gravity, squashes on contact keeping its volume,
+    /// overshoots a touch and settles. Three flat ripples (ellipses, so they lie on the surface) spread
+    /// from its tip, and its contact shadow grows as it lands.
+    private func pin(_ t: Double, at point: CGPoint, stage: CGFloat) -> some View {
+        let land = GlobeMotion.landMs
+        let fall = seg(t, land - 330, land, easeOut: false)
+        let gravity = fall * fall
+        let squash = flow(t, [(0, 1), (land - 20, 1), (land + 70, 0.78), (land + 210, 1.07), (land + 360, 0.98), (land + 480, 1), (GlobeMotion.duration, 1)])
         return ZStack {
             ForEach(0..<3, id: \.self) { ring in
-                let p = seg(t, 2_600 + Double(ring) * 500, 3_500 + Double(ring) * 500)
-                Circle()
-                    .strokeBorder(Theme.tomato, lineWidth: 2)
-                    .frame(width: 14 + 80 * p, height: 14 + 80 * p)
-                    .opacity(bell(p) * 0.85)
+                let p = seg(t, land + Double(ring) * 420, land + 1_000 + Double(ring) * 420)
+                Ellipse()
+                    .strokeBorder(Theme.tomato, lineWidth: 1.6)
+                    .frame(width: 12 + 84 * p, height: (12 + 84 * p) * 0.45)
+                    .opacity(bell(p) * 0.8)
             }
             Ellipse()
-                .fill(Color.black.opacity(0.25 * fall))
-                .frame(width: 14 * fall, height: 5 * fall)
+                .fill(Color.black.opacity(0.28 * gravity))
+                .frame(width: 16 * (0.4 + 0.6 * gravity), height: 6 * (0.4 + 0.6 * gravity))
                 .blur(radius: 1.5)
             PinShape()
-                .fill(Theme.tomato)
+                .fill(LinearGradient(colors: [Theme.tomato, Theme.tomatoDeep], startPoint: .top, endPoint: .bottom))
                 .overlay(Circle().fill(Theme.cream).frame(width: 10, height: 10).offset(y: -8))
                 .frame(width: 28, height: 38)
                 .shadow(color: Theme.aubergine.opacity(0.3), radius: 3, y: 2)
                 .scaleEffect(x: 1 / pow(squash, 0.6), y: squash, anchor: .bottom)
-                .offset(y: -19 - 36 * (1 - fall))
-                .opacity(seg(t, 2_300, 2_420))
+                .offset(y: -19 - 40 * (1 - gravity))
+                .opacity(seg(t, land - 330, land - 200))
         }
-        .position(x: globe * 1.55 / 2 + point.x, y: globe * 1.55 / 2 + point.y)
+        .position(x: stage / 2 + point.x, y: stage / 2 + point.y)
     }
 
     /// The country's supermarkets deal in around the globe, 70 ms apart, from 85% scale (never 0),
     /// then bob very gently on seeded phases so the ring stays alive while the caption reads.
     private func shopRing(_ t: Double, _ l: Double) -> some View {
-        ZStack {
+        let start = GlobeMotion.captionTimes[2]
+        return ZStack {
             ForEach(Array(stores.enumerated()), id: \.element.id) { index, store in
                 let angle = 2 * Double.pi * Double(index) / Double(max(1, stores.count)) - .pi / 2
-                let p = seg(t, 3_000 + Double(index) * 70, 3_400 + Double(index) * 70)
+                let p = seg(t, start + Double(index) * 70, start + 420 + Double(index) * 70)
                 let bob = 3 * wave(l, period: [2_000, 4_000, 8_000][index % 3], phase: seeded(index))
                 StoreLogo(store: store, height: 26)
                     .frame(width: 70, height: 34)
@@ -153,7 +183,7 @@ struct LocatingStep: View {
                     .shadow(color: Theme.aubergine.opacity(0.1), radius: 5, y: 3)
                     .scaleEffect(0.85 + 0.15 * p)
                     .opacity(p)
-                    .offset(x: cos(angle) * Double(globe) * 0.68, y: sin(angle) * Double(globe) * 0.68 + bob)
+                    .offset(x: cos(angle) * Double(globe) * 0.7, y: sin(angle) * Double(globe) * 0.7 + bob - 8 * (1 - p))
             }
         }
     }
@@ -161,14 +191,19 @@ struct LocatingStep: View {
 
 /// Every number for the globe scene (ms, degrees).
 enum GlobeMotion {
-    static let duration: Double = 4_400
-    static let spinMs: Double = 2_600
-    static let spinDegrees: Double = 240
-    /// 1 − (1 − p)^2.2: starts turning at ~200°/s and glides to a stop without a jolt.
-    static let spinPower: Double = 2.2
+    static let duration: Double = 4_700
+    /// Rise-in of the globe and its atmosphere.
+    static let enterMs: Double = 650
+    /// The spin ends and the pin touches down at the same moment.
+    static let landMs: Double = 2_900
+    static let spinDegrees: Double = 220
+    /// 1 − (1 − p)^2: starts turning at ~150°/s and glides to a stop without a jolt.
+    static let spinPower: Double = 2.0
     static let startTilt: Double = 12
     static let drift: Double = 2.5
     static let idlePeriod: Double = 8_000
+    /// When each caption takes over: searching, pinpointing (just before the pin falls), matching shops.
+    static let captionTimes: [Double] = [0, 1_500, 3_300]
 }
 
 /// An illustrated Earth drawn in one `Canvas`: real coastlines (Natural Earth 1:110m land, public domain,
@@ -198,9 +233,13 @@ struct GlobeView: View {
             }
             var inside = ctx
             inside.clip(to: disc)
+            // Faint meridians and parallels: they make the turning readable even over open ocean.
+            inside.stroke(GlobeView.graticule(l0: l0, sinP0: sinP0, cosP0: cosP0, centre: c, radius: r),
+                          with: .color(Color.white.opacity(0.13)), lineWidth: 0.7)
             inside.fill(land, with: .radialGradient(Gradient(colors: [Color(hex: 0x9AD872), Color(hex: 0x4F9A43)]),
                                                     center: CGPoint(x: c.x - r * 0.35, y: c.y - r * 0.4),
                                                     startRadius: 0, endRadius: r * 1.6))
+            inside.stroke(land, with: .color(Color(hex: 0x3D7F34).opacity(0.45)), lineWidth: 0.6)
             // Light from the top left: a soft specular bloom, then the far edge falling into shadow.
             inside.fill(disc, with: .radialGradient(Gradient(colors: [Color.white.opacity(0.32), Color.white.opacity(0)]),
                                                     center: CGPoint(x: c.x - r * 0.38, y: c.y - r * 0.42),
@@ -212,6 +251,30 @@ struct GlobeView: View {
             ctx.stroke(Path(ellipseIn: rect.insetBy(dx: 1, dy: 1)), with: .color(Color.white.opacity(0.35)), lineWidth: 1.5)
         }
         .accessibilityHidden(true)
+    }
+
+    /// Meridians every 30° and parallels every 30°, drawn only where they face us (the path breaks
+    /// wherever a line goes round the back).
+    static func graticule(l0: Double, sinP0: Double, cosP0: Double, centre c: CGPoint, radius r: CGFloat) -> Path {
+        var path = Path()
+        func trace(_ points: [(lon: Double, lat: Double)]) {
+            var drawing = false
+            for point in points {
+                let p = point.lat * .pi / 180, d = point.lon * .pi / 180 - l0
+                let cp = cos(p), sp = sin(p), cd = cos(d)
+                let z = sinP0 * sp + cosP0 * cp * cd
+                guard z >= 0 else { drawing = false; continue }
+                let screen = CGPoint(x: c.x + cp * sin(d) * r, y: c.y - (cosP0 * sp - sinP0 * cp * cd) * r)
+                if drawing { path.addLine(to: screen) } else { path.move(to: screen); drawing = true }
+            }
+        }
+        for lon in stride(from: -180.0, to: 180, by: 30) {
+            trace(stride(from: -84.0, through: 84, by: 4).map { (lon: lon, lat: $0) })
+        }
+        for lat in stride(from: -60.0, through: 60, by: 30) {
+            trace(stride(from: -180.0, through: 180, by: 4).map { (lon: $0, lat: lat) })
+        }
+        return path
     }
 
     /// Screen offset from the globe's centre of a place, for pinning things to it.

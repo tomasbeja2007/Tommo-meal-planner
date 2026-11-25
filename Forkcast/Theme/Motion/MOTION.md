@@ -150,18 +150,23 @@
   mascot swaps to `.cheer`.
 - **Time saved:** one 1.9 s timeline; the short "with Tommo" bar lands first (tomato), the tall "without a plan"
   bar keeps growing after it (cream), both minute labels count up; the "save about an hour" line rises in last.
-- **Building your week:** `IngredientOrbit`: eight ingredients circle Chef Tomato (40 s a turn, linear), drawn
-  behind him in the top half and in front in the bottom half, shrinking/dimming at the back for depth, each rocking
-  on a seeded 4/5/8 s period; they open out from 60% radius on appear. The 3-step checklist ticks with the grocery
-  `CheckCircle` draw-on, paced 0.85 s apart; the last tick waits for the real plan (screen holds ≥ 2.4 s).
+- **Building your week:** a different moment from the recipe matching: their week as a grid (days across, meals
+  down). Empty plates shimmer in a wave across the week (1.6 s loop) while the planner works; when the real plan
+  exists, its dishes open in from 80% over their plates, column by column (≤ 70 ms apart, ~1 s in all); then three
+  lines tick 450 ms apart (choosing, pricing, grocery list) and the mascot swaps to cheer.
 - **Locating (globe):** `GlobeView` draws the Earth in one `Canvas` (Natural Earth 1:110m coastlines, public
-  domain, orthographic projection, Weiler–Atherton clip to the front hemisphere, glossy ocean + specular + shadow edge).
-  One `OneShotClock` (4.4 s) + one `LoopClock` (8 s idle). The view longitude falls 240° to the country over 2.6 s on
-  1 − (1 − p)^2.2 (starts at ~200°/s, max 3.4° per frame at 60 fps, glides to a stop, land drifts left to right like
-  the real Earth) while tilting to the country's latitude − 8°; then a ±2.5° drift keeps it alive and the pin rides
-  along (its position is projected every frame). The pin falls 36 pt (2.3–2.6 s), squashes to 0.8 keeping volume,
-  settles, and three tomato ripples go out 500 ms apart; light haptic on landing. Shop logos deal in from 3 s.
-  Checked in Python: every 15° of longitude at five tilts draws cleanly; the Belgium sequence lands on Belgium.
+  domain, orthographic projection, Weiler–Atherton clip to the front hemisphere, faint 30° graticule so the turning
+  reads over open ocean, glossy ocean + specular + shadow edge, thin coastline). One `OneShotClock` (4.7 s) + one
+  `LoopClock` (8 s idle); numbers in `GlobeMotion`. The globe rises 18 pt from 92% (0.65 s) already turning; the
+  view longitude falls 220° to the country over 2.9 s on 1 − (1 − p)^2 (starts ~150°/s, ≤ 2.5° per frame at 60 fps,
+  glides to a stop, land drifts left to right like the real Earth) while tilting to the country's latitude − 8°;
+  then a ±2.5° drift keeps it alive and the pin rides along. The pin falls 40 pt with gravity, lands exactly as the
+  spin stops, squashes to 0.78 (volume kept), overshoots to 1.07 and settles; the globe gives 1.2% under the impact;
+  the atmosphere brightens; three flat (ellipse) ripples spread from the tip. Captions hand over one at a time
+  (old lifts and fades in 160 ms, new rises in 260 ms), so lines never overlap. Shop logos deal in at 3.3 s.
+- **Moment transitions (OnboardingFlow):** into and out of the globe, savings, matching, paywall, building and reveal
+  the old screen leaves first (ease-in 0.14 s, to 101.5%) and the new one settles in after (ease-out 0.38 s from
+  98.5%, 0.12 s later), so two busy layouts never overlap.
 - **Matching recipes (catalog):** a ring draws round over 2.3 s while the count inside climbs to the catalog size,
   then settles on how many fit; six of their dishes orbit the ring (9 s a turn); their answers tick off 420 ms
   apart. Plays once per onboarding.

@@ -56,7 +56,18 @@ struct OnboardingFlow: View {
     }
 
     private var transition: AnyTransition {
-        if reduceMotion || crossDissolve { return .opacity }
+        if reduceMotion { return .opacity }
+        if crossDissolve {
+            // Moments (the globe, savings, matching…) never overlap the busy screen before them:
+            // the old screen leaves first (fast, easing in, a hair bigger), then the new one settles in
+            // (ease-out, from 98.5%), so two layouts are never on screen at full strength together.
+            return .asymmetric(
+                insertion: .opacity.combined(with: .scale(scale: 0.985))
+                    .animation(Animation.open(0.38).delay(0.12)),
+                removal: .opacity.combined(with: .scale(scale: 1.015))
+                    .animation(.easeIn(duration: 0.14))
+            )
+        }
         // A short glide instead of a full-screen slide: the next question arrives from 32 pt
         // in the direction of travel and the old one leaves 20 pt the other way, a little faster.
         let direction: CGFloat = goingForward ? 1 : -1
@@ -156,7 +167,7 @@ struct OnboardingFlow: View {
 
     private func navigate(to destination: OnboardingStep, forward: Bool) {
         goingForward = forward
-        let dissolveSteps: Set<OnboardingStep> = [.timeSaved, .locating, .savings, .catalog, .subscriptions]
+        let dissolveSteps: Set<OnboardingStep> = [.timeSaved, .locating, .savings, .catalog, .subscriptions, .building, .reveal]
         crossDissolve = dissolveSteps.contains(step) || dissolveSteps.contains(destination)
         withAnimation(reduceMotion ? .easeOut(duration: 0.14) : .easeInOut(duration: 0.24)) {
             step = destination

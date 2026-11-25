@@ -1,7 +1,11 @@
 import SwiftUI
 import ForkcastCore
 
-/// Shows an indeterminate state for the real planning operation.
+/// "putting your week together": the second half of the story. The recipes page already matched recipes
+/// to them ("244 recipes fit you"); this screen puts those recipes into their days. Their week is drawn as
+/// a grid (days across, meals down) of empty plates that shimmer while the planner works; once the real
+/// plan exists, its dishes deal into the grid column by column, and three lines tick off: choosing,
+/// pricing, the grocery list. The reveal then shows the same dishes up close.
 struct BuildingWeekStep: View {
     let state: OnboardingState
     let onFinished: () -> Void
@@ -10,88 +14,71 @@ struct BuildingWeekStep: View {
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(NotificationManager.self) private var notifications: NotificationManager
     @State private var started: Bool = false
+    /// The dishes deal into the grid once the plan exists.
+    @State private var filling = false
+    /// Checklist lines done (0–3).
+    @State private var done = 0
+    @State private var finished = false
+
+    private let fitCount: Int
+    private let days: [Date]
+    private let types: [MealType]
+
+    init(state: OnboardingState, onFinished: @escaping () -> Void) {
+        self.state = state
+        self.onFinished = onFinished
+        fitCount = state.matchingRecipes().fit.count
+        let calendar = WeekMath.gregorian
+        let slots = WeekMath.slots(from: calendar.startOfDay(for: Date()), cookingDays: state.cookingDays, mealTypes: state.mealTypes)
+        days = Array(Set(slots.map { calendar.startOfDay(for: $0.date) })).sorted()
+        types = MealType.ordered(state.mealTypes)
+    }
+
+    private var cellCount: Int { days.count * types.count }
+    /// Dishes deal in at most 70 ms apart, and the whole grid fills in about a second.
+    private var stagger: Double { min(70, 1_000 / Double(max(1, cellCount))) }
+    private var fillMs: Double { Double(max(0, cellCount - 1)) * stagger + 380 }
+    private var cell: CGFloat { days.count <= 5 ? 50 : 40 }
 
     private var storeName: String {
         FoodCatalog.bundled.store(id: state.mainStoreId)?.name ?? String(localized: "your shop")
     }
 
-    private var catalog: FoodCatalog { .bundled }
-    private var country: Country { state.country(in: catalog) }
-
-    private var rows: [String] {
-        [householdRow, avoidingRow, kitchenRow, budgetRow]
-    }
-
-    /// "Matching 2 adults + 1 kid"
-    private var householdRow: String {
-        let adults: String = state.adults == 1 ? String(localized: "1 adult") : String(localized: "\(state.adults) adults")
-        guard state.kids > 0 else { return String(localized: "Matching \(adults)") }
-        let kids: String = state.kids == 1 ? String(localized: "1 kid") : String(localized: "\(state.kids) kids")
-        return String(localized: "Matching \(adults) + \(kids)")
-    }
-
-    /// "Avoiding mushrooms and peanuts", or the diet when there's nothing to avoid.
-    private var avoidingRow: String {
-        let system: UnitSystem = country.unitSystem
-        let dislikes: [String] = state.dislikes.sorted().map { DislikeCatalog.label(for: $0, catalog: catalog, system: system).lowercased() }
-        let allergens: [String] = Allergen.allCases.filter { state.effectiveAllergens.contains($0) }.map { $0.displayName.lowercased() }
-        let avoided: [String] = Array((allergens + dislikes).prefix(3))
-        if !avoided.isEmpty {
-            return String(localized: "Avoiding \(avoided.formatted(.list(type: .and)))")
-        }
-        switch state.diet {
-        case .none: return String(localized: "Picking from every recipe you'll love")
-        default: return String(localized: "Keeping it \(state.diet.displayName.lowercased())")
-        }
-    }
-
-    /// "Only air fryer + oven recipes"
-    private var kitchenRow: String {
-        if state.appliances.count >= Appliance.allCases.count { return String(localized: "Using your whole kitchen") }
-        let names: String = Appliance.allCases.filter { state.appliances.contains($0) }.map { $0.displayName.lowercased() }.joined(separator: " + ")
-        return String(localized: "Only \(names) recipes")
-    }
-
-    /// "Keeping it under £85"
-    private var budgetRow: String {
-        String(localized: "Budget: \(MoneyFormat.string(state.budget, currencyCode: country.currencyCode, fractionDigits: 0))")
-    }
-
-    /// How many checklist steps are done (0–3). The last one only ticks when the plan really exists.
-    @State private var done: Int = 0
-    @State private var finished = false
-
     private var title: String {
         let name = state.name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return name.isEmpty ? String(localized: "building your week…") : String(localized: "\(name), we're building your week…")
+        return name.isEmpty ? String(localized: "putting your week together…") : String(localized: "\(name), we're putting your week together…")
     }
 
     private var checklist: [String] {
-        let budget = MoneyFormat.string(state.budget, currencyCode: country.currencyCode, fractionDigits: 0)
-        let days = max(1, state.cookingDays.count)
-        let meals: String
-        if state.mealTypes == [.dinner] {
-            meals = days == 1 ? String(localized: "1 dinner") : String(localized: "\(days) dinners")
-        } else {
-            meals = String(localized: "\(days) days of meals")
-        }
+        let budget = MoneyFormat.string(state.budget, currencyCode: state.country(in: FoodCatalog.bundled).currencyCode, fractionDigits: 0)
+        let meals = state.mealTypes == [.dinner]
+            ? (cellCount == 1 ? String(localized: "1 dinner") : String(localized: "\(cellCount) dinners"))
+            : String(localized: "\(cellCount) meals")
         return [
-            String(localized: "Matching meals to \(storeName) + your \(budget) budget"),
-            String(localized: "Lining up \(meals) for the week"),
-            String(localized: "Putting together your grocery list")
+            String(localized: "Choosing \(meals) from your \(fitCount) recipes"),
+            String(localized: "Pricing it at \(storeName), within your \(budget) budget"),
+            String(localized: "Writing your grocery list")
         ]
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-            Text(title)
-                .font(Theme.questionFont)
-                .foregroundStyle(Theme.aubergine)
-                .accessibilityAddTraits(.isHeader)
-                .padding(.top, Theme.Spacing.l)
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                Text(title)
+                    .font(Theme.questionFont)
+                    .foregroundStyle(Theme.aubergine)
+                    .accessibilityAddTraits(.isHeader)
+                Text("from your \(fitCount) recipes, priced at \(storeName)")
+                    .font(.subheadline)
+                    .foregroundStyle(Theme.aubergineMuted)
+            }
+            .padding(.top, Theme.Spacing.l)
             Spacer(minLength: 0)
-            IngredientOrbit()
-                .frame(maxWidth: .infinity)
+            VStack(spacing: Theme.Spacing.m) {
+                MascotReaction(mood: finished ? .cheer : .thinking, size: 96)
+                weekGrid
+            }
+            .frame(maxWidth: .infinity)
             Spacer(minLength: 0)
             VStack(alignment: .leading, spacing: Theme.Spacing.m) {
                 ForEach(Array(checklist.enumerated()), id: \.offset) { index, line in
@@ -111,11 +98,6 @@ struct BuildingWeekStep: View {
             .padding(Theme.Spacing.l)
             .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
             .animation(Theme.Motion.update, value: done)
-            Text(rows.joined(separator: " · "))
-                .font(.caption)
-                .foregroundStyle(Theme.aubergineMuted)
-                .frame(maxWidth: .infinity)
-                .multilineTextAlignment(.center)
         }
         .padding(Theme.Spacing.gutter)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -124,86 +106,104 @@ struct BuildingWeekStep: View {
         .task { await run() }
     }
 
-    /// The first two ticks are paced so each line reads; the third waits for the real plan,
-    /// and the screen always stays at least ~2.4 s so the checklist never flashes past.
+    /// Days across (today in tomato), meals down. Empty plates shimmer in a wave that runs across the
+    /// week while the planner works (one loop clock, 1.6 s); then each dish opens in from 80% (never 0)
+    /// over its plate, column by column (one one-shot clock).
+    private var weekGrid: some View {
+        let calendar = Calendar.current
+        let recipes = plannedRecipes()
+        return OneShotClock(duration: fillMs, play: filling) { t in
+            LoopClock(period: 1_600, paused: filling) { l in
+                VStack(spacing: 6) {
+                    HStack(spacing: 6) {
+                        if types.count > 1 { Color.clear.frame(width: 14, height: 1) }
+                        ForEach(days.indices, id: \.self) { column in
+                            let today = calendar.isDateInToday(days[column])
+                            Text(days[column].formatted(.dateTime.weekday(.narrow)))
+                                .font(.caption.weight(today ? .heavy : .semibold))
+                                .foregroundStyle(today ? Theme.tomatoDeep : Theme.aubergineMuted)
+                                .frame(width: cell)
+                        }
+                    }
+                    ForEach(types.indices, id: \.self) { row in
+                        HStack(spacing: 6) {
+                            if types.count > 1 {
+                                Text(types[row].title.prefix(1))
+                                    .font(.caption2.weight(.bold))
+                                    .foregroundStyle(Theme.aubergineFaint)
+                                    .frame(width: 14)
+                            }
+                            ForEach(days.indices, id: \.self) { column in
+                                let k = Double(column * types.count + row)
+                                let p = seg(t, k * stagger, k * stagger + 380)
+                                let shimmer = 0.5 + 0.5 * wave(l, period: 1_600, phase: -Double(column) * 0.09 - Double(row) * 0.04)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: cell * 0.3, style: .continuous)
+                                        .fill(Theme.creamDeep.opacity(0.5 + 0.5 * shimmer))
+                                        .overlay(RoundedRectangle(cornerRadius: cell * 0.3, style: .continuous)
+                                            .strokeBorder(Theme.line, style: StrokeStyle(lineWidth: 1, dash: [4, 3])))
+                                        .opacity(1 - p)
+                                    if let recipe = recipes[GridKey(day: column, type: types[row])] {
+                                        DishTileView(recipe: recipe, size: cell, cornerRadius: cell * 0.3)
+                                            .shadow(color: Theme.aubergine.opacity(0.12 * p), radius: 3, y: 2)
+                                            .scaleEffect(0.8 + 0.2 * p)
+                                            .opacity(p)
+                                    }
+                                }
+                                .frame(width: cell, height: cell)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .accessibilityHidden(true)
+    }
+
+    private struct GridKey: Hashable {
+        let day: Int
+        let type: MealType
+    }
+
+    /// The planned dish for each (day, meal) once the plan exists.
+    private func plannedRecipes() -> [GridKey: Recipe] {
+        guard filling else { return [:] }
+        let calendar = WeekMath.gregorian
+        var out: [GridKey: Recipe] = [:]
+        for meal in planStore.meals where !meal.isSide {
+            guard let column = days.firstIndex(where: { calendar.isDate($0, inSameDayAs: meal.date) }),
+                  let recipe = planStore.recipe(for: meal) else { continue }
+            let key = GridKey(day: column, type: meal.mealType)
+            if out[key] == nil { out[key] = recipe }
+        }
+        return out
+    }
+
+    /// Plates shimmer for at least 0.6 s, the dishes deal in once the real plan exists, then the three
+    /// lines tick 450 ms apart and the reveal follows. Nothing here pretends: the fill waits for the plan.
     private func run() async {
         guard !started else { return }
         started = true
-        let began = Date()
         profileStore.createProfile(from: state, markComplete: false)
         let generation = Task { await planStore.generatePlan() }
-        try? await Task.sleep(for: .milliseconds(850))
-        done = 1
-        try? await Task.sleep(for: .milliseconds(850))
-        done = 2
+        try? await Task.sleep(for: .milliseconds(600))
         await generation.value
         if planStore.currentPlanIsSaved, let plan = planStore.currentPlan {
             profileStore.recordOnboardingPlan(plan)
         }
-        let remaining = 2.4 - Date().timeIntervalSince(began)
-        if remaining > 0 { try? await Task.sleep(for: .seconds(remaining)) }
+        guard !Task.isCancelled else { return }
+        filling = true
+        try? await Task.sleep(for: .milliseconds(Int(fillMs)))
+        done = 1
+        try? await Task.sleep(for: .milliseconds(450))
+        done = 2
+        try? await Task.sleep(for: .milliseconds(450))
         done = 3
         finished = true
-        try? await Task.sleep(for: .milliseconds(600))
+        try? await Task.sleep(for: .milliseconds(650))
         guard !Task.isCancelled else { return }
         notifications.apply(profile: profileStore.profile)
         onFinished()
-    }
-}
-
-/// Eight ingredients circle Chef Tomato on a slow orbit (linear, 40 s a turn), each rocking on its own
-/// seeded phase and dipping slightly as it passes behind him (depth). They open out from 60% of the
-/// radius once on appear. Reduce Motion: they rest on frame 0.
-private struct IngredientOrbit: View {
-    private let pieces = ["avocado", "cherry-tomatoes", "bell-pepper", "basil", "eggplant", "garlic", "lemon", "broccoli"]
-    private let size: CGFloat = 250
-    @State private var visible = false
-
-    var body: some View {
-        OneShotClock(duration: 900, play: visible) { e in
-            LoopClock(period: 40_000, paused: !visible) { t in
-                ZStack {
-                    Circle()
-                        .fill(Theme.tomatoSoft)
-                        .frame(width: size * 0.56, height: size * 0.56)
-                        .scaleEffect(0.9 + 0.1 * seg(e, 0, 500) + 0.015 * wave(t, period: 5_000))
-                    ForEach(Array(pieces.enumerated()), id: \.offset) { index, id in
-                        piece(id, index: index, t: t, e: e, behind: true)
-                    }
-                    MascotView(size: size * 0.42, mood: .thinking)
-                    ForEach(Array(pieces.enumerated()), id: \.offset) { index, id in
-                        piece(id, index: index, t: t, e: e, behind: false)
-                    }
-                }
-                .frame(width: size, height: size)
-            }
-        }
-        .onAppear { visible = true }
-        .onDisappear { visible = false }
-        .accessibilityHidden(true)
-    }
-
-    /// Each piece is drawn in the back layer while it's in the top half of the orbit and in the front
-    /// layer in the bottom half, so it really passes behind and in front of Chef Tomato.
-    @ViewBuilder
-    private func piece(_ id: String, index: Int, t: Double, e: Double, behind: Bool) -> some View {
-        let angle = 2 * Double.pi * (Double(index) / Double(pieces.count) + loop(t, period: 40_000))
-        let depth = sin(angle)                  // -1 at the back (top), 1 at the front (bottom)
-        if (depth < 0) == behind {
-            let open = seg(e, Double(index) * 50, 450 + Double(index) * 50)
-            let radius = (0.6 + 0.4 * open)
-            let rock = 8 * wave(t, period: [4_000, 5_000, 8_000][index % 3], phase: seeded(index))
-            let side = size * 0.17 * CGFloat(0.85 + 0.15 * depth)
-            Image("ingredient-\(id)")
-                .resizable()
-                .scaledToFit()
-                .frame(width: side, height: side)
-                .rotationEffect(.degrees(rock))
-                .shadow(color: Theme.aubergine.opacity(0.1), radius: 3, y: 2)
-                .opacity(open * (0.75 + 0.25 * (depth + 1) / 2))
-                .offset(x: cos(angle) * Double(size) * 0.42 * radius,
-                        y: depth * Double(size) * 0.34 * radius)
-        }
     }
 }
 
