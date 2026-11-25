@@ -58,7 +58,7 @@ Identifiers are hard-coded in the app: use them exactly.
 - [ ] App name, subtitle (30 characters), description, keywords (100 characters), promotional text.
 - [ ] Review notes: "No login needed. Pro is a subscription with a 3-day free trial; use a sandbox account.
       Sign in with Apple is optional." No demo account needed.
-- [ ] Copyright line ("2026 Tomás Beja").
+- [ ] Copyright line ("2026 <your name or company>").
 
 ## 7. Not needed (so you don't go looking)
 - No backend, database, API keys or third-party services; no analytics or ads SDKs.
