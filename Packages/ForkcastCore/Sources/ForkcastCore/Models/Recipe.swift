@@ -129,6 +129,11 @@ public struct Recipe: Codable, Identifiable, Hashable, Sendable {
 
     public var isUserRecipe: Bool { source != .bundled }
 
+    /// Bundled recipes from the trending set (tag "trending", Tools/trending_recipes.py).
+    public var isTrending: Bool { !isUserRecipe && tags.contains(Recipe.trendingTag) }
+
+    public static let trendingTag: String = "trending"
+
     /// Prefix used for user recipe ids so they never collide with bundled slugs.
     public static let userIdPrefix: String = "user:"
 }

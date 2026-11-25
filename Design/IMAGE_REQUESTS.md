@@ -11,7 +11,7 @@ with no code changes.
 - **MascotRig, round 1:** arms and both mouths are good and kept in `Design/MascotRig/` (not in the app until the
   live face is built). `MascotRig-body` and `MascotRig-head` need a redo, see section 1.
 - **Still open:** the clean app icon export (section 2), the 80 pantry photos (section 6), the 32 breakfast, lunch
-  and snack photos (section 7), and the `MascotRig-body` / `MascotRig-head` redo (section 1).
+  and snack photos (section 7), the 60 trending recipe photos (section 8), and the `MascotRig-body` / `MascotRig-head` redo (section 1).
 
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
@@ -280,3 +280,12 @@ natural light, no hands, no text, matching the title. File = `recipe-<id>`.
   A square PNG with a transparent background works best: it sits on a white circle. Without one, the
   coloured monogram is shown.
 - **Fake reviews or user photos** for the testimonial carousel.
+
+## 8. Trending recipe photos (60, Nov 2026)
+The "Going viral" set from `Tools/trending_recipes.py`: 30 dinners, 14 lunches, 8 breakfasts, 8 snacks.
+Same spec as section 3: square 1200×1200 JPG/PNG, opaque, top-down or 45°, warm neutral surface, natural light,
+no hands, no text. Asset name = `recipe-<id>`. These can be made in ChatGPT: the ready-to-paste prompt for
+every asset is in `Marketing/chatgpt-recipe-photo-prompts.md`.
+
+The vertical 1080×1920 slideshow images for TikTok / Reels are marketing only and never go into the app.
+Their prompts are in `Marketing/slideshows/<id>.md`.

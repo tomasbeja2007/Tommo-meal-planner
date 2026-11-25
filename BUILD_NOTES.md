@@ -257,3 +257,23 @@ offers breakfasts, Edit week's Breakfast tab saves without touching dinners, and
 ### Welcome phone artwork
 
 The Welcome screen uses the asset name `WelcomePlanScreenshot` for its native SwiftUI phone frame. Capture the real Forkcast Plan screen in the iOS Simulator with demo data and no personal details, then add the captured portrait image to `Forkcast/Resources/Assets.xcassets/WelcomePlanScreenshot.imageset`. The existing Chef Tomato composition appears until that image is present. Preview on compact and tall iPhones with Reduce Motion enabled and disabled.
+
+## 3d. Trending recipes and the slideshow kit (Nov 2026)
+
+- **60 recipes** in `Tools/trending_recipes.py` (30 dinners, 14 lunches, 8 breakfasts, 8 snacks): bowls, bakes, wraps and
+  snack hacks in the style of short-video food trends, all original. 5 new ingredients (cottage cheese, mango, grapes, nori,
+  rice paper). They plan, price and filter like every other recipe.
+- Each carries the tag `trending` (`Recipe.isTrending`, bundled recipes only). Discover shows them in a **Going viral** row
+  under "Your vibes", filtered by the same diet, allergy and meal-type rules.
+- **Slideshow kit**: `python3 Tools/generate_slideshows.py` writes `Marketing/slideshows/<id>.md` (7 slides: hook, ingredients,
+  3 steps, money shot, app CTA; caption; hashtags; a ChatGPT prompt per slide) and `Marketing/chatgpt-recipe-photo-prompts.md`
+  (the 60 in-app photos, `recipe-<id>`). Run it again after editing the recipes.
+
+- **Recipe rules for this audience** (busy, budget-focused people and families; goals "spend less", "save time", "feed the family";
+  obstacles "too tired", "food goes off"): dinners about 30 minutes (45 max, slow cooker 15 minutes hands-on), at most 10 non-staple
+  ingredients, at most 2 appliances, around $3.50 a serving (hard cap $5); lunches at most 9 ingredients and $3.75; breakfasts at most
+  6 ingredients and $2.75; snacks at most 6 ingredients and $1.75. No perishable ingredient bought for a spoonful, bouillon instead of
+  cartons of stock, plain rice instead of microwave pouches, frozen spinach for cooked dishes, salmon and shrimp stretched rather than
+  one fillet each. `stewing-beef` (beef chuck) exists for slow-cooked beef; never braise `beef-steak` (sirloin).
+- **More trending recipes** wait in `Prompts/` as Codex prompts (batches 1 to 6, 612 recipes), checked against these rules and the
+  library tests. Add them in order.

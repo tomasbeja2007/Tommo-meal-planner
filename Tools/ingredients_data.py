@@ -76,6 +76,7 @@ ROWS = [
   I("chicken-thighs","boneless chicken thighs","boneless chicken thighs",None,MF,[],M,(177,18,0,11,0),"g",{"piece":100},(500,"500 g pack","1 lb pack","pack","packs"),False,"🍗","chicken",prices=(4.49,3.60,4.99)),
   I("ground-beef","ground beef","ground beef","beef mince",MF,[],M,(215,18.6,0,15,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","beef",prices=(5.99,2.90,4.49)),
   I("beef-steak","sirloin steak","sirloin steaks",None,MF,[],M,(180,20,0,11,0),"g",{"piece":200},(400,"400 g pack","14 oz pack","pack","packs"),False,"🥩","beef",prices=(8.99,5.00,7.99)),
+  I("stewing-beef","beef chuck","beef chuck","stewing beef",MF,[],M,(176,19,0,11,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","beef",prices=(6.99,4.50,5.99)),
   I("ground-pork","ground pork","ground pork","pork mince",MF,[],M,(263,17,0,21,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","pork",prices=(4.99,2.50,3.99)),
   I("pork-tenderloin","pork tenderloin","pork tenderloins","pork fillet",MF,[],M,(120,21,0,3.5,0),"g",{"piece":400},(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","pork",prices=(6.99,4.00,5.99)),
   I("bacon","bacon","bacon","smoked bacon lardons",MF,[],M,(330,15,1,29,0),"g",{"slice":25},(200,"200 g pack","8 oz pack","pack","packs"),False,"🥓","pork",prices=(4.99,2.00,2.29)),
@@ -239,4 +240,11 @@ ROWS = [
   I("soy-milk","soy milk","soy milk",None,DE,["soy"],"",(54,3.3,6,1.8,0.6),"ml",{"cup":243,"tbsp":15},(1000,"1 L carton","32 fl oz carton","carton","cartons"),False,"🥛",prices=(2.99,1.20,1.49),gpm=1.01),
   I("rice-cakes","rice cakes","rice cakes",None,OT,[],"",(387,8,81,2.8,4.2),"g",{"piece":9},(130,"130 g pack","4.5 oz pack","pack","packs"),False,"🍘",prices=(2.49,1.00,1.29)),
   I("popcorn-kernels","popcorn kernels","popcorn kernels",None,OT,[],"",(387,13,78,4.5,15),"g",{"tbsp":12,"cup":200},(500,"500 g bag","16 oz bag","bag","bags"),False,"🍿",prices=(3.49,1.50,1.99)),
+
+  # ---------- Trending recipes (Nov 2026) ----------
+  I("cottage-cheese","cottage cheese","cottage cheese",None,DE,["dairy"],A,(98,11,3.4,4.3,0),"g",{"tbsp":15,"cup":225},(300,"300 g tub","10 oz tub","tub","tubs"),False,"🥣","cheese",prices=(2.99,1.20,1.49)),
+  I("mango","mango","mangoes",None,P,[],"",(60,0.8,15,0.4,1.6),"g",{"piece":200,"cup":165},(400,"2 mangoes","2 mangoes","pack","packs"),False,"🥭",prices=(2.49,1.50,1.99)),
+  I("grapes","grapes","grapes",None,P,[],"",(69,0.7,18,0.2,0.9),"g",{"cup":150},(500,"500 g punnet","1 lb bag","pack","packs"),False,"🍇",prices=(3.99,1.75,2.29)),
+  I("nori","nori sheets","nori sheets",None,OT,[],"",(290,41,40,2,36),"g",{"piece":2.5},(25,"10 sheets","10 sheets","pack","packs"),False,"🟩",prices=(3.49,2.00,2.49)),
+  I("rice-paper","rice paper wrappers","rice paper wrappers",None,OT,[],"",(333,6,80,0.5,1),"g",{"piece":9},(200,"200 g pack","7 oz pack","pack","packs"),False,"⚪",prices=(3.49,2.00,2.29)),
 ]

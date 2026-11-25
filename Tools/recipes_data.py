@@ -479,3 +479,6 @@ R("beef-kofta-pittas","Beef kofta pittas with garlic yogurt","🥙","Middle East
 
 from meal_recipes import BREAKFASTS, LUNCHES, SNACKS
 RECIPES += BREAKFASTS + LUNCHES + SNACKS
+
+from trending_recipes import TRENDING
+RECIPES += TRENDING
