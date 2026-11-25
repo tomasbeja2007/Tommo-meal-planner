@@ -536,3 +536,16 @@ RECIPES += [
           "Divide between bowls and scatter with the sliced scallion tops.",
       ]),
 ]
+
+# Preserve the original versions and artwork for the TikTok campaign dishes.
+VIRAL_DINNER_IDS = {
+    "baked-feta-penne", "crispy-salmon-rice-bowl", "garlic-chili-oil-noodles", "smash-burger-tacos",
+}
+for recipe in RECIPES:
+    if recipe["id"] in VIRAL_DINNER_IDS:
+        recipe["tags"] = ["trending"]
+
+from trending_recipes import TRENDING
+from trending_batch1 import TRENDING_BATCH1
+
+RECIPES += TRENDING + TRENDING_BATCH1

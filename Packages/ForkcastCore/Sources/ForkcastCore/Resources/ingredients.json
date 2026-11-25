@@ -1484,6 +1484,38 @@
   "proteinGroup": "beef"
  },
  {
+  "id": "stewing-beef",
+  "name": "beef chuck",
+  "pluralName": "beef chuck",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 176,
+   "protein": 19,
+   "carbs": 0,
+   "fat": 11,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "ukName": "stewing beef",
+  "proteinGroup": "beef"
+ },
+ {
   "id": "ground-pork",
   "name": "ground pork",
   "pluralName": "ground pork",
@@ -6263,6 +6295,176 @@
   "gramsPerUnit": {
    "tbsp": 12,
    "cup": 200
+  }
+ },
+ {
+  "id": "cottage-cheese",
+  "name": "cottage cheese",
+  "pluralName": "cottage cheese",
+  "aisle": "Dairy & Eggs",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 98,
+   "protein": 11,
+   "carbs": 3.4,
+   "fat": 4.3,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 300,
+   "display": "300 g tub",
+   "displayImperial": "10 oz tub",
+   "noun": "tub",
+   "nounPlural": "tubs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥣",
+  "tags": [],
+  "gramsPerUnit": {
+   "tbsp": 15,
+   "cup": 225
+  },
+  "proteinGroup": "cheese"
+ },
+ {
+  "id": "mango",
+  "name": "mango",
+  "pluralName": "mangoes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 60,
+   "protein": 0.8,
+   "carbs": 15,
+   "fat": 0.4,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "2 mangoes",
+   "displayImperial": "2 mangoes",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥭",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 200,
+   "cup": 165
+  }
+ },
+ {
+  "id": "grapes",
+  "name": "grapes",
+  "pluralName": "grapes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 69,
+   "protein": 0.7,
+   "carbs": 18,
+   "fat": 0.2,
+   "fiber": 0.9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g punnet",
+   "displayImperial": "1 lb bag",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍇",
+  "tags": [],
+  "gramsPerUnit": {
+   "cup": 150
+  }
+ },
+ {
+  "id": "nori",
+  "name": "nori sheets",
+  "pluralName": "nori sheets",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 290,
+   "protein": 41,
+   "carbs": 40,
+   "fat": 2,
+   "fiber": 36
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 25,
+   "display": "10 sheets",
+   "displayImperial": "10 sheets",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🟩",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 2.5
+  }
+ },
+ {
+  "id": "rice-paper",
+  "name": "rice paper wrappers",
+  "pluralName": "rice paper wrappers",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 333,
+   "protein": 6,
+   "carbs": 80,
+   "fat": 0.5,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g pack",
+   "displayImperial": "7 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "⚪",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 9
   }
  }
 ]

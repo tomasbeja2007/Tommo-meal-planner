@@ -1,7 +1,7 @@
 import SwiftUI
 import ForkcastCore
 
-/// Search, "Your vibes", "Quick", and "Browse by cuisine". Hard filters always apply.
+/// Search, "Your vibes", "Going viral", "Quick", and "Browse by cuisine". Hard filters always apply.
 struct DiscoverView: View {
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(LibraryStore.self) private var library: LibraryStore
@@ -22,6 +22,10 @@ struct DiscoverView: View {
         return pool
             .filter { !Set($0.vibes).isDisjoint(with: vibes) }
             .sorted { Set($0.vibes).intersection(vibes).count > Set($1.vibes).intersection(vibes).count }
+    }
+
+    private var trending: [Recipe] {
+        pool.filter { $0.isTrending }
     }
 
     private var quick: [Recipe] {
@@ -65,6 +69,7 @@ struct DiscoverView: View {
                 }
                 if query.trimmingCharacters(in: .whitespaces).isEmpty {
                     RecipeCarousel(title: String(localized: "Your vibes"), recipes: vibeMatches)
+                    RecipeCarousel(title: String(localized: "Going viral"), recipes: trending)
                     RecipeCarousel(title: String(localized: "Quick (under 25 min)"), recipes: quick)
                     CuisineGrid(cuisines: cuisines, counts: Dictionary(grouping: pool, by: { $0.cuisine }).mapValues { $0.count })
                 } else if searchResults.isEmpty {
