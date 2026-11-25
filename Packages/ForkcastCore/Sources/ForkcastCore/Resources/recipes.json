@@ -49509,5 +49509,997 @@
   "isLeftoverFriendly": false,
   "mealType": "dinner",
   "tags": []
+ },
+ {
+  "id": "minced-beef-gravy-mash",
+  "title": "Minced beef and gravy with mash",
+  "emoji": "🥔",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 27,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 750,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 420,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 90,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Peel the potatoes and cut into chunks. Boil for about 15 minutes until soft.",
+   "While they cook, brown the mince in a wide pan, breaking it up. Add thinly sliced onion and cook until softened.",
+   "Sprinkle in the flour and stir for a minute. Pour in the stock gradually and add the Worcestershire sauce and pepper.",
+   "Simmer for 8–10 minutes until the gravy is thick and the mince is cooked through.",
+   "Drain the potatoes and mash with milk, butter and salt. Boil the peas in a small pan and drain.",
+   "Heap the mince and onion gravy over the mash and serve the peas alongside."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-caesar-pasta-salad",
+  "title": "Chicken Caesar pasta salad",
+  "emoji": "🥗",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 17,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rigatoni",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 470,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 65,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rigatoni, drain and rinse briefly under cold water. Shake it dry.",
+   "Slice the chicken into cutlets. Fry in half the oil until golden and 74°C (165°F) inside, then let it cool before slicing.",
+   "Cube the sourdough and toast it in the remaining oil. Chop the lettuce and shave the parmesan.",
+   "Whisk the yoghurt, mayonnaise, mustard, Worcestershire, lemon juice and pepper into a thick dressing.",
+   "Toss the pasta, chicken and lettuce with the dressing. Add the parmesan and croutons just before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "creamy-green-chile-chicken-pasta-bake",
+  "title": "Creamy chicken and green chile pasta bake",
+  "emoji": "🍝",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 37,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "penne",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 490,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "poblano-pepper",
+    "amount": 210,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 250,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Halve and deseed the poblanos and roast cut-side down for 15 minutes.",
+   "Cook the penne until just underdone. Slice the poblanos and dice the chicken.",
+   "Heat the oil in a frying pan and cook the chicken to 74°C (165°F). Add crushed garlic, cumin and salt.",
+   "Stir in the cream cheese and milk over low heat. Fold through the drained pasta, sliced poblanos and half the grated cheddar.",
+   "Spoon into a baking dish and scatter with the rest of the cheese. Bake for 15 minutes until bubbling and golden.",
+   "Scatter thinly sliced spring onions over the bake and rest for 3 minutes before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "buffalo-chicken-sliders",
+  "title": "Buffalo chicken sliders",
+  "emoji": "🍔",
+  "cuisine": "American",
+  "vibes": [
+   "fakeaway",
+   "highProtein",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 13,
+  "cookMinutes": 19,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 540,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "burger-buns",
+    "amount": 4,
+    "unit": "piece",
+    "note": "small"
+   },
+   {
+    "ingredientId": "hot-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 28,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Gently simmer the chicken in water until the middle reaches 74°C (165°F).",
+   "Finely shred the cabbage and toss it with mayonnaise, vinegar and half the salt.",
+   "Warm the butter, hot sauce, honey and the rest of the salt in a saucepan until combined.",
+   "Drain the chicken and shred it with two forks. Toss it in the warm Buffalo sauce.",
+   "Split and toast the buns in a dry frying pan.",
+   "Load the buns with the saucy shredded chicken and a small heap of the dressed cabbage."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "gochujang-coconut-chicken-rice",
+  "title": "Gochujang coconut chicken with rice",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 620,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 320,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and set it cooking. Dice the onion and cut the chicken into bite-size pieces.",
+   "Brown the chicken in the hot oil, then stir in the onion for 4 minutes.",
+   "Add the grated garlic, ginger and gochujang and cook briefly while stirring.",
+   "Pour in coconut milk. Simmer until the chicken reaches 74°C (165°F) and the sauce lightly coats a spoon.",
+   "Squeeze in lime juice and fluff the cooked rice.",
+   "Spoon the coconut chicken beside the rice and finish with spring onions and sesame seeds."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "soy-lime-turkey-mango-salad",
+  "title": "Turkey and mango salad with soy and lime",
+  "emoji": "🥭",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 10,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "turkey-breast",
+    "amount": 460,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mango",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "red-cabbage",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 8,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Thinly slice the turkey. Toss with half the soy sauce and the grated ginger.",
+   "Heat the vegetable oil in a hot pan. Sear the turkey strips until browned and 74°C (165°F) at the centre.",
+   "Cut the mango into chunks, slice the cucumber, finely shred the red cabbage and slice the spring onions.",
+   "Whisk the remaining soy with juice from one lime, sesame oil and honey.",
+   "Toss the salad in the dressing. Add the warm or cooled turkey and spring onions, then serve with wedges of the second lime."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "chicken-cracker-topped-casserole",
+  "title": "Creamy chicken casserole with cracker topping",
+  "emoji": "🍗",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 40,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 550,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 360,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 110,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "saltine-crackers",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Poach the chicken in gently simmering water until it reaches 74°C (165°F), then shred it.",
+   "Melt most of the butter in a saucepan and stir in the flour and thyme. Cook for a minute.",
+   "Gradually whisk in the milk and stock. Simmer until smooth and thick, then stir in the cream cheese and pepper.",
+   "Fold the chicken and frozen peas into the sauce. Pour into a shallow baking dish.",
+   "Crush the crackers roughly and toss with the rest of the melted butter. Scatter across the casserole.",
+   "Bake for 18–20 minutes until it is hot at the centre and the cracker crumbs turn golden."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sticky-five-spice-chicken",
+  "title": "Sticky five-spice chicken",
+  "emoji": "🍗",
+  "cuisine": "Chinese",
+  "vibes": [
+   "highProtein",
+   "fakeaway",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bok-choy",
+    "amount": 380,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "five-spice",
+    "amount": 1.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the rice following the packet. Pat the chicken thighs dry, leaving them whole.",
+   "Mix soy, honey, five-spice, garlic, ginger and vinegar with 50 ml water.",
+   "Heat the oil in a wide frying pan and brown the chicken on both sides.",
+   "Add the sauce and cover to cook the chicken through. Remove the lid and simmer until the glaze thickens and the meat reaches 74°C (165°F).",
+   "Quarter the pak choi and steam over boiling water for 3 minutes, until just tender.",
+   "Serve the chicken, pak choi and rice together. Spoon over the glaze and add sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "vietnamese-chicken-cabbage-salad",
+  "title": "Vietnamese chicken and cabbage salad",
+  "emoji": "🥗",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "healthyish",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 17,
+  "cookMinutes": 14,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 560,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-cabbage",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mint",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Poach the chicken gently until the middle reaches 74°C (165°F). Let it cool slightly and pull it into shreds.",
+   "Finely shred both kinds of cabbage and cut the carrot into thin matchsticks. Tear the mint leaves.",
+   "Toast the peanuts in a dry frying pan and crush them roughly.",
+   "Whisk juice from two limes with fish sauce, vinegar, sugar and crushed garlic.",
+   "Toss the shredded chicken and vegetables with the dressing and mint. Scatter with peanuts and serve with the remaining lime in wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "chicken-salami-pepperoncini-salad",
+  "title": "Chicken, salami and pepperoncini salad",
+  "emoji": "🥗",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 460,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salami",
+    "amount": 110,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pepperoncini",
+    "amount": 100,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "red-wine-vinegar",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Slice the chicken into cutlets and fry in a little of the olive oil until golden and 74°C (165°F) at the centre.",
+   "Chop the lettuce and halve the tomatoes. Dice the salami and thinly slice the drained peppers.",
+   "Whisk the rest of the oil with vinegar, mustard, oregano and pepper.",
+   "Let the cooked chicken rest for a few minutes, then cut it into bite-size pieces.",
+   "Toss the vegetables, chicken, salami and peppers with enough dressing to lightly coat each bite."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "salmon-stuffed-cucumber-boats",
+  "title": "Salmon-stuffed cucumber boats",
+  "emoji": "🥒",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 14,
+  "cookMinutes": 14,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "salmon-fillet",
+    "amount": 550,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Rub the salmon with oil and roast until it flakes and reaches 63°C (145°F).",
+   "Cool the salmon, remove any skin and flake it into a bowl. Slice the spring onions thinly.",
+   "Mix the yoghurt, mayo, mustard, lemon juice and half the spring onions. Fold through the salmon without breaking every piece.",
+   "Halve the cucumbers lengthwise and scoop out the soft seeds with a spoon to make boats.",
+   "Mound the salmon filling into the cucumbers and finish with black pepper and the remaining spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "chicken-summer-rolls-sriracha",
+  "title": "Chicken summer rolls with sriracha dip",
+  "emoji": "🥬",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 25,
+  "cookMinutes": 14,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-paper",
+    "amount": 12,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "red-cabbage",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mint",
+    "amount": 18,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 110,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Gently poach the chicken in water until it reaches 74°C (165°F). Let it cool, then shred it.",
+   "Very finely slice the red cabbage, cut the carrots into matchsticks and pick the mint leaves.",
+   "Mix the yoghurt, mayo, sriracha and lime juice into a smooth dip.",
+   "Dip a rice paper sheet briefly in water. Put the chicken, cabbage, carrot and two mint leaves in the middle.",
+   "Fold in both sides and roll snugly. Repeat and cut each roll in half on the diagonal. Serve with the dip."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
  }
 ]

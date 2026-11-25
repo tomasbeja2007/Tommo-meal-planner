@@ -38,6 +38,7 @@ ROWS = [
   I("celery","celery","celery",None,P,[],"",(16,0.7,3,0.2,1.6),"g",{"piece":40},(450,"1 head","1 bunch","head","heads"),False,"🥬",prices=(1.99,0.75,1.29)),
   I("potato","potato","potatoes",None,P,[],"",(77,2,17,0.1,2.2),"g",{"piece":200},(2000,"2 kg bag","5 lb bag","bag","bags"),False,"🥔",prices=(4.49,1.60,2.49)),
   I("sweet-potato","sweet potato","sweet potatoes",None,P,[],"",(86,1.6,20,0.1,3),"g",{"piece":250},(1000,"1 kg bag","2 lb bag","bag","bags"),False,"🍠",prices=(2.99,1.20,1.99)),
+  I("poblano-pepper","poblano pepper","poblano peppers","poblano chilli",P,[],"",(24,0.9,5.5,0.2,2),"g",{"piece":105},(210,"2 peppers","2 peppers","pack","packs"),False,"🫑",prices=(2.49,1.95,2.10)),
   I("bell-pepper","bell pepper","bell peppers","pepper",P,[],"",(31,1,6,0.3,2.1),"g",{"piece":150},(450,"3-pack","3-pack","pack","packs"),False,"🫑",prices=(3.49,1.60,1.99)),
   I("tomato","tomato","tomatoes",None,P,[],"",(18,0.9,3.9,0.2,1.2),"g",{"piece":120},(500,"500 g pack","1 lb pack","pack","packs"),False,"🍅",prices=(2.49,1.00,1.79)),
   I("cherry-tomatoes","cherry tomatoes","cherry tomatoes",None,P,[],"",(18,0.9,3.9,0.2,1.2),"g",{"piece":15,"cup":150},(250,"250 g punnet","10 oz pint","pack","packs"),False,"🍅",prices=(2.99,1.10,1.69)),
@@ -92,6 +93,7 @@ ROWS = [
   I("white-fish","cod fillet","cod fillets",None,MF,["fish"],F,(82,18,0,0.7,0),"g",{"piece":140},(280,"2 fillets","2 fillets","pack","packs"),False,"🐟","fish",prices=(7.99,4.50,5.99)),
   I("white-crabmeat","cooked white crabmeat","cooked white crabmeat",None,MF,["shellfish"],F,(97,19.4,0,1.5,0),"g",None,(150,"150 g tub","5 oz tub","tub","tubs"),False,"🦀","shellfish",prices=(8.99,4.50,6.25)),
   I("shrimp","raw shrimp","raw shrimp","raw king prawns",MF,["shellfish"],F,(85,20,0,0.5,0),"g",None,(300,"300 g pack","10 oz bag","pack","packs"),False,"🍤","shellfish",prices=(8.99,3.50,5.99)),
+  I("salami","cured salami","cured salami",None,MF,[],M,(407,22.6,1.6,33,0),"g",None,(125,"125 g pack","4.4 oz pack","pack","packs"),False,"🍖","pork",prices=(4.49,2.75,2.99)),
   I("ham","sliced ham","sliced ham",None,MF,[],M,(145,21,1.5,6,0),"g",{"slice":25},(150,"150 g pack","5 oz pack","pack","packs"),False,"🍖","pork",prices=(3.99,1.50,1.99)),
   I("lamb-mince","ground lamb","ground lamb","lamb mince",MF,[],M,(282,17,0,23,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","lamb",prices=(7.99,4.50,6.49)),
 
@@ -171,6 +173,7 @@ ROWS = [
   I("curry-paste","tikka curry paste","tikka curry paste",None,TJ,[],"",(300,4,15,25,4),"g",{"tbsp":15,"tsp":5},(280,"280 g jar","10 oz jar","jar","jars"),False,"🍛",prices=(2.99,1.50,1.99)),
   I("chipotles-in-adobo","chipotles in adobo","chipotles in adobo",None,TJ,[],"",(70,2,13,1.5,4),"g",None,(198,"198 g tin","7 oz can","tin","tins"),False,"🌶️",tags=["spicy"],prices=(2.69,2.25,2.79)),
   I("salsa","tomato salsa","tomato salsa",None,TJ,[],"",(36,1.5,7,0.2,1.8),"g",{"tbsp":16,"cup":260},(450,"450 g jar","16 oz jar","jar","jars"),False,"🍅",prices=(2.99,1.50,1.99)),
+  I("pepperoncini","pickled pepperoncini","pickled pepperoncini",None,TJ,[],"",(27,1,5.3,0.4,2),"g",None,(180,"300 g jar (180 g drained)","10.6 oz jar","jar","jars"),False,"🌶️",prices=(3.29,2.45,2.59)),
   I("roasted-peppers","roasted red peppers","roasted red peppers",None,TJ,[],"",(28,1,5,0.3,1.5),"g",{"piece":50},(290,"290 g jar","10 oz jar","jar","jars"),False,"🫑",prices=(3.49,1.30,1.79)),
   I("sweetcorn-tin","canned sweetcorn","canned sweetcorn","tinned sweetcorn",TJ,[],"",(81,2.7,16,1.2,2.4),"g",{"cup":165},(200,"200 g tin (drained)","8.5 oz can","tin","tins"),False,"🌽",prices=(1.19,0.60,0.89)),
   I("kimchi","kimchi","kimchi",None,TJ,["fish"],F,(15,1.1,2.4,0.5,1.6),"g",{"cup":150},(300,"300 g jar","10 oz jar","jar","jars"),False,"🥬",tags=["spicy"],prices=(5.99,3.00,3.99)),
@@ -254,6 +257,7 @@ ROWS = [
   I("hummus","hummus","hummus",None,DE,["sesame"],"",(166,7.9,14,9.6,6),"g",{"tbsp":15,"cup":246},(200,"200 g tub","8 oz tub","tub","tubs"),False,"🫘",prices=(2.99,1.20,1.79)),
   I("wholemeal-bread","whole wheat bread","whole wheat bread","wholemeal bread",BK,["gluten"],"",(247,13,41,3.4,7),"g",{"slice":40},(800,"800 g loaf","24 oz loaf","loaf","loaves"),False,"🍞",prices=(3.49,1.30,1.79)),
   I("soy-milk","soy milk","soy milk",None,DE,["soy"],"",(54,3.3,6,1.8,0.6),"ml",{"cup":243,"tbsp":15},(1000,"1 L carton","32 fl oz carton","carton","cartons"),False,"🥛",prices=(2.99,1.20,1.49),gpm=1.01),
+  I("saltine-crackers","saltine crackers","saltine crackers","cream crackers",BK,["gluten"],"",(421,9,74,9,2.8),"g",None,(200,"200 g pack","7 oz pack","pack","packs"),False,"🍘",prices=(2.69,1.25,1.79)),
   I("rice-cakes","rice cakes","rice cakes",None,OT,[],"",(387,8,81,2.8,4.2),"g",{"piece":9},(130,"130 g pack","4.5 oz pack","pack","packs"),False,"🍘",prices=(2.49,1.00,1.29)),
   I("popcorn-kernels","popcorn kernels","popcorn kernels",None,OT,[],"",(387,13,78,4.5,15),"g",{"tbsp":12,"cup":200},(500,"500 g bag","16 oz bag","bag","bags"),False,"🍿",prices=(3.49,1.50,1.99)),
 

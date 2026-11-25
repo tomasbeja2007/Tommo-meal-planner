@@ -268,6 +268,40 @@
   }
  },
  {
+  "id": "poblano-pepper",
+  "name": "poblano pepper",
+  "pluralName": "poblano peppers",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 24,
+   "protein": 0.9,
+   "carbs": 5.5,
+   "fat": 0.2,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 210,
+   "display": "2 peppers",
+   "displayImperial": "2 peppers",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫑",
+  "tags": [],
+  "ukName": "poblano chilli",
+  "gramsPerUnit": {
+   "piece": 105
+  }
+ },
+ {
   "id": "bell-pepper",
   "name": "bell pepper",
   "pluralName": "bell peppers",
@@ -1982,6 +2016,37 @@
   "tags": [],
   "ukName": "raw king prawns",
   "proteinGroup": "shellfish"
+ },
+ {
+  "id": "salami",
+  "name": "cured salami",
+  "pluralName": "cured salami",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 407,
+   "protein": 22.6,
+   "carbs": 1.6,
+   "fat": 33,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 125,
+   "display": "125 g pack",
+   "displayImperial": "4.4 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍖",
+  "tags": [],
+  "proteinGroup": "pork"
  },
  {
   "id": "ham",
@@ -4358,6 +4423,36 @@
   }
  },
  {
+  "id": "pepperoncini",
+  "name": "pickled pepperoncini",
+  "pluralName": "pickled pepperoncini",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 27,
+   "protein": 1,
+   "carbs": 5.3,
+   "fat": 0.4,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 180,
+   "display": "300 g jar (180 g drained)",
+   "displayImperial": "10.6 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": []
+ },
+ {
   "id": "roasted-peppers",
   "name": "roasted red peppers",
   "pluralName": "roasted red peppers",
@@ -6710,6 +6805,39 @@
    "tbsp": 15
   },
   "gramsPerMl": 1.01
+ },
+ {
+  "id": "saltine-crackers",
+  "name": "saltine crackers",
+  "pluralName": "saltine crackers",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 421,
+   "protein": 9,
+   "carbs": 74,
+   "fat": 9,
+   "fiber": 2.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g pack",
+   "displayImperial": "7 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍘",
+  "tags": [],
+  "ukName": "cream crackers"
  },
  {
   "id": "rice-cakes",
