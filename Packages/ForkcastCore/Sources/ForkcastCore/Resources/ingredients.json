@@ -1134,6 +1134,36 @@
   }
  },
  {
+  "id": "chives",
+  "name": "fresh chives",
+  "pluralName": "fresh chives",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 30,
+   "protein": 3.3,
+   "carbs": 4.4,
+   "fat": 0.7,
+   "fiber": 2.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 20,
+   "display": "20 g bunch",
+   "displayImperial": "0.7 oz bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": []
+ },
+ {
   "id": "spring-onion",
   "name": "scallion",
   "pluralName": "scallions",
@@ -1433,6 +1463,36 @@
   "gramsPerUnit": {
    "piece": 150
   }
+ },
+ {
+  "id": "strawberries",
+  "name": "strawberries",
+  "pluralName": "strawberries",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 32,
+   "protein": 0.7,
+   "carbs": 7.7,
+   "fat": 0.3,
+   "fiber": 2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 400,
+   "display": "400 g punnet",
+   "displayImperial": "14 oz punnet",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍓",
+  "tags": []
  },
  {
   "id": "apple",
@@ -2205,6 +2265,37 @@
   "proteinGroup": "pork"
  },
  {
+  "id": "prosciutto",
+  "name": "prosciutto",
+  "pluralName": "prosciutto",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 240,
+   "protein": 28,
+   "carbs": 1,
+   "fat": 14,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 85,
+   "display": "85 g pack",
+   "displayImperial": "3 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍖",
+  "tags": [],
+  "proteinGroup": "pork"
+ },
+ {
   "id": "salami",
   "name": "cured salami",
   "pluralName": "cured salami",
@@ -2972,6 +3063,39 @@
   "gramsPerUnit": {
    "piece": 26
   }
+ },
+ {
+  "id": "shortcrust-pastry",
+  "name": "ready-rolled shortcrust pastry",
+  "pluralName": "ready-rolled shortcrust pastry",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten",
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 387,
+   "protein": 5.6,
+   "carbs": 41,
+   "fat": 23,
+   "fiber": 2.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 320,
+   "display": "320 g roll",
+   "displayImperial": "11.3 oz roll",
+   "noun": "roll",
+   "nounPlural": "rolls"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥧",
+  "tags": []
  },
  {
   "id": "crescent-dough",
@@ -3952,6 +4076,37 @@
   }
  },
  {
+  "id": "yellow-split-peas",
+  "name": "dried yellow split peas",
+  "pluralName": "dried yellow split peas",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 341,
+   "protein": 24.5,
+   "carbs": 60,
+   "fat": 1.2,
+   "fiber": 25.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g bag",
+   "displayImperial": "1 lb bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "proteinGroup": "legume"
+ },
+ {
   "id": "red-lentils",
   "name": "red lentils",
   "pluralName": "red lentils",
@@ -4292,6 +4447,37 @@
   "gramsPerUnit": {
    "cup": 172
   },
+  "proteinGroup": "legume"
+ },
+ {
+  "id": "green-lentils-tin",
+  "name": "tinned green lentils",
+  "pluralName": "tinned green lentils",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 115,
+   "protein": 8.8,
+   "carbs": 20,
+   "fat": 0.4,
+   "fiber": 7.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "15 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
   "proteinGroup": "legume"
  },
  {
@@ -6264,8 +6450,9 @@
   "tags": [],
   "gramsPerUnit": {
    "tsp": 0.6,
-   "tbsp": 1.7999999999999998,
-   "pinch": 0.4
+   "tbsp": 1.8,
+   "pinch": 0.4,
+   "piece": 0.2
   }
  },
  {
@@ -7128,6 +7315,36 @@
   "emoji": "🟫",
   "tags": [],
   "proteinGroup": "tofu"
+ },
+ {
+  "id": "dried-apple",
+  "name": "dried apple pieces",
+  "pluralName": "dried apple pieces",
+  "aisle": "Other",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 243,
+   "protein": 0.9,
+   "carbs": 65,
+   "fat": 0.3,
+   "fiber": 8.7
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g bag",
+   "displayImperial": "3.5 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍎",
+  "tags": []
  },
  {
   "id": "raisins",

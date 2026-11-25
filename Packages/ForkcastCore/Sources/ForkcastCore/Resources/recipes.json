@@ -54558,5 +54558,1673 @@
   "isLeftoverFriendly": false,
   "mealType": "lunch",
   "tags": []
+ },
+ {
+  "id": "chicken-potato-gratin",
+  "title": "Chicken and potato gratin",
+  "emoji": "🥔",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 48,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 780,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 110,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 130,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F) and butter a small baking dish.",
+   "Poach the chicken until it reaches 74°C (165°F), then shred it. Thinly slice the potatoes.",
+   "Heat milk, cream, crushed garlic, thyme, salt and pepper in a wide pan. Add the sliced potatoes and simmer for 8 minutes.",
+   "Layer half the potatoes in the baking dish, followed by the chicken and half the cheddar. Cover with the remaining potatoes and their cream.",
+   "Scatter over the rest of the cheddar and bake for 25–30 minutes, until bubbling and a knife slips easily through the layers.",
+   "Rest for about 8 minutes, then slice into four squares."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "honey-chipotle-chicken-skewers",
+  "title": "Honey chipotle chicken skewers",
+  "emoji": "🍢",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 17,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 580,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "corn-on-cob",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chipotles-in-adobo",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Finely chop the chipotles and mix with honey, crushed garlic, paprika, salt and juice from two limes.",
+   "Cut the chicken into even pieces and coat them with the mixture. Thread the pieces onto metal skewers.",
+   "Heat an oiled griddle. Cook the corn cobs, turning occasionally until lightly charred, then set them aside.",
+   "Griddle the chicken, turning each skewer so it browns evenly. Cook until the largest piece reaches 74°C (165°F).",
+   "Let the skewers rest briefly. Cut the remaining lime into wedges.",
+   "Serve the chicken skewers alongside the charred corn with lime for squeezing."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "cheesy-prawn-quesadillas",
+  "title": "Prawn and cheese quesadillas",
+  "emoji": "🧀",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "quickEasy",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 11,
+  "cookMinutes": 13,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "shrimp",
+    "amount": 480,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 8,
+    "unit": "piece",
+    "note": "small"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "red"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Finely dice the pepper and fry it in the oil for 3 minutes. Add crushed garlic and paprika.",
+   "Add the prawns and stir-fry until pink and opaque. Chop any large pieces and squeeze lime juice over the filling.",
+   "Spread the prawns and grated cheese across four tortillas and top with the remaining tortillas.",
+   "Toast in a clean dry pan until golden on both sides and the cheese has melted.",
+   "Rest for a minute, cut into wedges and serve with salsa."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "prawn-avocado-rice-burritos",
+  "title": "Prawn and avocado rice burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 14,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "shrimp",
+    "amount": 500,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 190,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 14,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice and fluff with juice from one lime and chopped coriander.",
+   "Dice the tomato and slice the avocado. Squeeze half the remaining lime over the avocado.",
+   "Pat the prawns dry and toss with paprika and salt. Quickly fry them with the oil and crushed garlic until pink and opaque.",
+   "Turn the prawns through the juice from the last half lime. Warm the tortillas in a dry pan until flexible.",
+   "Fill each tortilla with rice, prawns, avocado and tomato, leaving the sides clear.",
+   "Fold the sides in and roll snugly. Toast in a dry pan until lightly browned, then slice across the middle."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "pork-pineapple-burritos",
+  "title": "Pork and pineapple burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "fakeaway",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "pork-tenderloin",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pineapple-tin",
+    "amount": 220,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "chipotles-in-adobo",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   }
+  ],
+  "steps": [
+   "Cook the rice. Cut the pork and pineapple into small pieces and dice the red onion.",
+   "Coat the pork with chopped chipotle, cumin, garlic and a little oil.",
+   "Sear the pork in batches until browned and at least 63°C (145°F) inside, then rest for at least 3 minutes.",
+   "Char the pineapple in the same hot pan, add the red onion briefly and squeeze over lime juice.",
+   "Lay rice, pork, pineapple and onion in a strip across each warm tortilla. Tuck in the sides and roll tightly.",
+   "Griddle seam-side down first, then turn to lightly brown both sides. Cut each burrito in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "baja-fish-burritos",
+  "title": "Baja fish burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "white-fish",
+    "amount": 530,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 185,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-cabbage",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice and thinly shred the cabbage. Stir lime juice and a pinch of salt into the yoghurt.",
+   "Cut the fish into thick strips and pat dry. Mix flour, baking powder, paprika and the remaining salt.",
+   "Add enough very cold water to make a thin batter. Heat the oil in a wide frying pan.",
+   "Dip the fish in the batter and fry in batches until golden and at least 63°C (145°F) inside. Drain on a rack.",
+   "Warm the tortillas and add cabbage, rice, battered fish and lime yoghurt.",
+   "Fold in the sides and roll up. Briefly toast in a dry pan, then cut in half just before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "cajun-prawn-rice",
+  "title": "Cajun prawn rice",
+  "emoji": "🍤",
+  "cuisine": "American",
+  "vibes": [
+   "onePan",
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "shrimp",
+    "amount": 520,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "red"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 610,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "tomato-paste",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Rinse the rice. Finely dice the celery, pepper and onion and slice the spring onions.",
+   "Soften the celery, pepper and onion in a lidded frying pan with the oil for 5 minutes.",
+   "Stir in tomato paste, paprika, thyme and chilli flakes. Add the rice and stir to coat it.",
+   "Pour in the stock, cover and cook on low for 14–16 minutes, until most of the liquid is absorbed.",
+   "Nestle the prawns into the almost cooked rice. Cover and cook until the prawns are pink and opaque and the rice tender.",
+   "Fluff gently and finish with lemon juice and sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "salmon-broccoli-fried-rice",
+  "title": "Salmon and broccoli fried rice",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "onePan",
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 11,
+  "cookMinutes": 17,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "salmon-fillet",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "microwave-rice",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Pat the salmon dry, cut the broccoli into very small florets and beat the eggs.",
+   "Sear the salmon in some vegetable oil until it flakes and reaches 63°C (145°F). Move it to a clean plate.",
+   "Add the eggs to the pan and stir into soft curds. Lift them out before they dry.",
+   "Stir-fry the florets and grated ginger in the remaining oil, then add the packet rice and cook until piping hot.",
+   "Remove skin from the salmon and flake it into large pieces. Fold through the rice with the egg, soy and sesame oil.",
+   "Scatter with sliced spring onion and serve straight away."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "teriyaki-turkey-edamame-rice",
+  "title": "Teriyaki turkey rice",
+  "emoji": "🍚",
+  "cuisine": "Japanese",
+  "vibes": [
+   "highProtein",
+   "quickEasy",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 19,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-turkey",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 255,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "edamame-frozen",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "mirin",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice. Briefly boil the edamame separately, then drain. Shred the cabbage and slice the spring onions.",
+   "Mix soy, mirin, honey, grated ginger and crushed garlic with a few spoonfuls of water.",
+   "Heat the oil in a wide pan and fry the mince, breaking it up until fully cooked to 74°C (165°F).",
+   "Pour in the sauce and cook until slightly sticky and glossy. Warm the cabbage through in the side of the pan.",
+   "Divide the rice into bowls. Add the glazed turkey and spoon the edamame and cabbage alongside.",
+   "Finish with sesame seeds and sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "filipino-chicken-adobo",
+  "title": "Filipino chicken adobo",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 37,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 640,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 6,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "bay-leaves",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Pat the chicken dry. Crush the garlic and stir soy sauce, vinegar, pepper and sugar together.",
+   "Heat the oil and brown the chicken on both sides. Scatter the garlic into the pan for 30 seconds.",
+   "Pour in the soy and vinegar mixture, add the bay leaves and enough water to come partway up the chicken.",
+   "Bring to the boil, then cover and simmer gently until the chicken reaches 74°C (165°F). Meanwhile cook the rice.",
+   "Uncover and reduce the sauce until glossy, turning the chicken so it picks up the glaze.",
+   "Leave the bay leaves in the pan and serve the chicken and sharp, savoury sauce beside the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-pineapple-fried-rice",
+  "title": "Chicken pineapple fried rice",
+  "emoji": "🍍",
+  "cuisine": "Thai",
+  "vibes": [
+   "onePan",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 13,
+  "cookMinutes": 16,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "microwave-rice",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pineapple-tin",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cashews",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Dice the chicken, drain the pineapple and slice the spring onions. Beat the eggs.",
+   "Toast the cashews briefly in a dry pan and set them aside. Pour a little oil into the pan and scramble the eggs, then lift them out.",
+   "Fry the chicken in the remaining oil until browned and 74°C (165°F) inside. Add spring-onion whites and pineapple until lightly coloured.",
+   "Scatter in curry powder and packet rice. Stir-fry over high heat until the rice is loose and piping hot.",
+   "Add soy and fish sauce and fold through the cooked egg.",
+   "Top with toasted cashews and spring-onion greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "thai-red-chicken-curry-rice",
+  "title": "Thai red chicken curry with rice",
+  "emoji": "🍛",
+  "cuisine": "Thai",
+  "vibes": [
+   "highProtein",
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 580,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "thai-curry-paste",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "red"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 22,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it according to the packet. Thinly slice the chicken and red peppers.",
+   "Heat the oil and fry the red curry paste for a minute. Stir in a ladle of coconut milk until smooth.",
+   "Add the chicken and turn it briefly in the sauce, then stir in the remaining coconut milk.",
+   "Simmer for 8 minutes. Add the peppers and cook until tender and the chicken reaches 74°C (165°F).",
+   "Stir in the fish sauce, sugar and a squeeze of lime. Take off the heat and fold through most of the basil.",
+   "Spoon beside the cooked rice and scatter the remaining basil on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "green-lentil-roast-veg-rice-bowls",
+  "title": "Green lentil and vegetable rice bowls",
+  "emoji": "🥕",
+  "cuisine": "Other",
+  "vibes": [
+   "fiberForward",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "green-lentils-tin",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 360,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "zucchini",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 18,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Cut the carrots and courgettes into bite-size pieces.",
+   "Toss the vegetables in half the oil with cumin and salt. Roast in one layer for 20–25 minutes, turning once.",
+   "Cook the rice according to the packet. Rinse and drain the lentils.",
+   "Warm the lentils in a small pan with the rest of the oil and a splash of water. Add lemon juice to taste.",
+   "Finely chop the parsley and mix some through the warm lentils. Fluff the rice with a fork.",
+   "Divide rice, lentils and the roasted vegetables between bowls. Finish with the remaining parsley and lemon wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "cinnamon-fruit-nut-mix",
+  "title": "Cinnamon-spiced fruit and nut mix",
+  "emoji": "🥜",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 6,
+  "cookMinutes": 13,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "walnuts",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cashews",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-apple",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 170°C (340°F). Toss walnuts and cashews with maple syrup, oil, cinnamon and salt.",
+   "Spread in a thin layer and bake for 10–13 minutes until the nuts smell toasted, stirring halfway.",
+   "Let the nuts cool completely on the tray. Chop the dried apple and add it with the raisins.",
+   "Stir and divide into four small snack portions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": []
+ },
+ {
+  "id": "split-pea-spinach-curry",
+  "title": "Split pea and spinach curry",
+  "emoji": "🍛",
+  "cuisine": "Indian",
+  "vibes": [
+   "fiberForward",
+   "batchFriendly",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 55,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "yellow-split-peas",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 14,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 800,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Rinse the split peas and pick out any discoloured pieces. Finely dice the onion and grate the garlic and ginger.",
+   "Heat the oil in a deep pan and soften the onion. Add garlic, ginger, cumin and turmeric for a minute.",
+   "Add split peas and stock. Simmer gently until very tender, 40–50 minutes, adding water if the pan starts looking dry.",
+   "Cook the rice according to the packet while the peas finish. Wash and chop the spinach.",
+   "Stir spinach and garam masala into the cooked peas. Rest for a few minutes and add a squeeze of lemon.",
+   "Serve beside fluffy rice and top with chopped coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "japanese-bbq-minced-chicken-rice",
+  "title": "Japanese BBQ minced chicken rice bowls",
+  "emoji": "🍚",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 19,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g",
+    "note": "minced or finely chopped"
+   },
+   {
+    "ingredientId": "sushi-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "miso-paste",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "mirin",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cook the sushi rice. Cut the carrot into thin matchsticks and slice the spring onions.",
+   "Whisk the miso, soy, mirin, sesame oil and grated ginger together with a few spoonfuls of water.",
+   "Heat vegetable oil in a frying pan. Add the chicken and break it into small chunks, cooking through to 74°C (165°F).",
+   "Add carrot for a couple of minutes and pour in the sauce. Toss until it thickens enough to cling.",
+   "Spoon the rice and miso-glazed chicken into bowls.",
+   "Scatter with spring onions and sesame seeds. If packing ahead, chill the rice and chicken promptly in shallow containers."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "strawberry-almond-baked-oats",
+  "title": "Strawberry and almond baked oats",
+  "emoji": "🍓",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "fiberForward",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 8,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "strawberries",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "almonds",
+    "amount": 50,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 350,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 8,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Butter a shallow baking dish and halve the strawberries.",
+   "Whisk the milk, eggs and maple syrup. Stir in oats, baking powder, cinnamon and half the flaked almonds.",
+   "Fold in most of the strawberries and tip into the dish. Place the remaining berries on top and scatter with the rest of the almonds.",
+   "Bake for 24–28 minutes until the middle sets and the almond flakes turn golden. Let it settle for 5 minutes before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "herb-prosciutto-frittata",
+  "title": "Herb and prosciutto frittata",
+  "emoji": "🍳",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 8,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "prosciutto",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chives",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Tear the prosciutto into ribbons and roughly chop the herbs.",
+   "Beat the eggs with most of the herbs, grated parmesan and pepper. Warm oil in a small ovenproof frying pan.",
+   "Add the egg mixture and lay the prosciutto ribbons on top. Cook gently until the sides start to set.",
+   "Bake for 6–8 minutes until the centre is set. Scatter with the reserved herbs and cut into wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "meat-lovers-breakfast-skillet",
+  "title": "Meat lovers' breakfast skillet",
+  "emoji": "🍳",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 540,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sausages",
+    "amount": 170,
+    "unit": "g",
+    "note": "skins removed"
+   },
+   {
+    "ingredientId": "bacon",
+    "amount": 85,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 110,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cut the potatoes into small cubes and boil for 6 minutes. Drain well. Dice the onion and cut the bacon and ham into pieces.",
+   "Fry the sausage, breaking it into crumbles. Add the bacon and cook until the sausage is cooked through and the bacon crisps. Lift onto a clean plate.",
+   "Heat a little oil in the same pan, toss in the potatoes and onion and fry until browned. Stir in paprika, pepper, diced ham and the cooked meats.",
+   "Reduce the heat and make wells in the hash. Crack in the eggs, working in two batches if necessary, and cook until the whites set.",
+   "Serve each portion with two fried eggs over the crisp potato and meat mixture."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "roasted-red-pepper-egg-bites",
+  "title": "Roasted red pepper egg bites",
+  "emoji": "🫑",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 9,
+  "cookMinutes": 21,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "roasted-peppers",
+    "amount": 180,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 180°C (350°F). Brush a 12-hole muffin tin with oil.",
+   "Drain the peppers thoroughly and dice them. Beat the eggs and yoghurt with black pepper until just combined.",
+   "Divide pepper and crumbled feta among the holes and pour the egg mixture in, leaving space at the top.",
+   "Bake for 17–21 minutes until the bites puff and the middle sets. Cool for 5 minutes before lifting out."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "ham-cheddar-quiche-cups",
+  "title": "Ham and cheese quiche cups",
+  "emoji": "🥚",
+  "cuisine": "British",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 14,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "shortcrust-pastry",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 95,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 120,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Unroll the pastry and cut 12 circles to fit a muffin tin.",
+   "Press the pastry circles into the holes. Prick the bottoms with a fork and bake for 6 minutes.",
+   "Dice the ham, grate the cheddar and beat milk, eggs, pepper and mustard together.",
+   "Put ham and cheese in the pastry cups and pour in the egg mixture. Bake for another 14–17 minutes, until the centres set.",
+   "Cool for a few minutes before lifting the quiche cups from the tin."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": []
  }
 ]

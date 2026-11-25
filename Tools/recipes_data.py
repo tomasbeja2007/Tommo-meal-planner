@@ -596,3 +596,11 @@ RECIPES += build_brief_batch10(R)
 from recipe_brief_batch11 import build_recipes as build_brief_batch11
 
 RECIPES += build_brief_batch11(R)
+
+from recipe_brief_batch12 import build_recipes as build_brief_batch12
+
+RECIPES += build_brief_batch12(R)
+
+from recipe_brief_batch13 import build_recipes as build_brief_batch13
+
+RECIPES += build_brief_batch13(R)
