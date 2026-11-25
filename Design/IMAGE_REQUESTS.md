@@ -9,10 +9,11 @@ with no code changes.
 - **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), 454 of 544 recipe photos, all 187 ingredient
   cut-outs (this covers the pantry photos of section 6), the goal / diet / appliance tile illustrations (section 4),
   and the splash pieces (section 5, no longer used by the app).
+- **Ready-to-send PDF for ChatGPT** (glyphs, tiles, Tommo face layers, kitchen): `Design/Tommo-image-prompts.pdf`.
 - **Still open, in priority order:**
   1. **90 recipe photos** (section 7): every recipe without a photo still shows an emoji tile on the Plan tab,
      the reveal and the recipe pages.
-  2. **Clean app icon export** (section 2).
+  2. ~~Clean app icon export~~: done by the owner.
   3. **31 tile illustrations, round 2** (section 8): obstacles, vibes, allergies, cook time. The app is already
      wired for them and keeps its emoji / symbol until each file exists.
   4. **`MascotRig-body` / `MascotRig-head` redo** (section 1), needed before Chef Tommo can blink and look around.
