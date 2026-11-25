@@ -33,15 +33,6 @@ struct CreateRecipeView: View {
     var body: some View {
         NavigationStack {
             Form {
-                if let note = draft.importNote {
-                    Section {
-                        HStack(alignment: .top, spacing: Theme.Spacing.m) {
-                            MascotView(size: 44, mood: .idle)
-                            Text(note).font(.subheadline).foregroundStyle(Theme.aubergine)
-                        }
-                    }
-                    .listRowBackground(Theme.saffronSoft)
-                }
                 BasicsSection(draft: $draft, showErrors: showErrors) { isEmojiPickerShown = true }
                 TagsSection(tags: $draft.tags)
                 IngredientsEditorSection(draft: $draft, showErrors: showErrors, unitSystem: profileStore.unitSystem)

@@ -15,7 +15,6 @@ project.yml                  XcodeGen spec (app, widget, share extension, StoreK
 Packages/ForkcastCore/       Pure-Foundation logic + bundled JSON + 53 unit tests
 Forkcast/                    The app (App, Theme, Features, Services, Persistence, Resources)
 ForkcastWidget/              "Tonight's dinner" widget (reads an App Group JSON snapshot)
-ForkcastShare/               Share Extension for TikTok / Instagram / text imports
 Design/                      Mascot source art + IMAGE_REQUESTS.md (art still to make)
 Tools/                       Catalog and marketing generators
 ```
@@ -92,16 +91,9 @@ packs/rounding, unit conversion + fractions, the caption parser on 5 samples, an
 **Widget**: run the app once (it writes `widget-snapshot.json` to the App Group whenever the plan changes),
 then add "Tonight's dinner" (small/medium). Tap → `forkcast://recipe/<id>`.
 
-**Share Extension**: in Safari or TikTok, Share → Forkcast (may be under "More"). It saves
-`pending-import.json` to the App Group and tries to open `forkcast://import`. Next time Forkcast becomes
-active it opens the import screen pre-filled.
-- TikTok links: the caption comes from the public oEmbed endpoint (`https://www.tiktok.com/oembed?url=…`).
-- Instagram links: captions can't be read, so the user is asked to paste the caption.
+**Importing recipes** from other apps (share extension, TikTok/Instagram, pasted text) was removed in Nov 2026.
 
-**Foundation Models**: only on an iOS 26 device with Apple Intelligence enabled, built with Xcode 26.
-Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heuristic parser is used.
-
-**Deep links**: `forkcast://recipe/<id>`, `forkcast://import`, `forkcast://plan`, `forkcast://groceries`.
+**Deep links**: `forkcast://recipe/<id>`, `forkcast://plan`, `forkcast://groceries`.
 
 **Motion (rossark-motion-skill)**: installed in `.agents/skills/rossark-motion-skill` (pinned in
 `skills-lock.json`; `.claude/skills` links to it so Claude Code finds it). Demo videos are not committed; reinstall with
@@ -284,8 +276,6 @@ its plans and feedback still appear. Deploy the updated CloudKit schema before t
    two products listed above. Takes 2 minutes.
 9. **`SubscriptionManager`**: `transaction.offerType` is deprecated in iOS 17.2 (warning only). Introductory-offer
    eligibility is checked on the yearly product.
-10. **Share Extension** opening the host app uses the responder chain (`openURL:`). iOS 18 may ignore it; the user
-    then sees "open the app to finish", and the import is picked up when the app becomes active.
 11. **`project.yml`**: XcodeGen generates the Info.plists and entitlements. If a key isn't applied, check the
     `info:` / `entitlements:` blocks; `CODE_SIGN_ENTITLEMENTS` is set explicitly for every target.
 12. **`Theme/Components/MascotView.swift`**: the `Canvas` sparkle field (`context.resolve(Image(systemName:))`,

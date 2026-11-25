@@ -374,9 +374,6 @@ public enum ProteinGroup: String, Codable, CaseIterable, Hashable, Sendable {
 public enum RecipeSourceKind: String, Codable, CaseIterable, Hashable, Sendable {
     case bundled
     case manual
-    case tiktok
-    case instagram
-    case pasted
 }
 
 public enum FeedbackRating: String, Codable, Hashable, Sendable {

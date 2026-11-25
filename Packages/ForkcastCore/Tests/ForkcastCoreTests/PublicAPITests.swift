@@ -36,10 +36,6 @@ final class PublicAPITests: XCTestCase {
         _ = StepIngredientMatcher.ingredients(in: recipe.steps[0], recipe: recipe, catalog: catalog)
         _ = IngredientMatcher.suggestions(for: "oni", in: catalog, limit: 4)
         _ = IngredientMatcher.bestMatch(for: "onion", in: catalog)
-        let parsed: ParsedRecipe = RecipeTextParser.parse("Soup\n1 onion\nCook it.")
-        _ = parsed.hasContent
-        _ = ParsedIngredient(amount: 1, unit: .g, name: "x")
-        _ = ParsedRecipe(title: "t", servings: 2, minutes: 10, ingredients: [], steps: [])
 
         // Dislikes / vibes / enums used in UI
         for option in DislikeCatalog.commonPicks { _ = (option.id, option.label, option.emoji) }
@@ -100,7 +96,6 @@ final class PublicAPITests: XCTestCase {
         let day = WidgetSnapshot.Day(date: Date(), recipeId: nil, title: nil, emoji: nil, colorHex: nil, minutes: nil, servings: nil, macrosLine: nil)
         _ = WidgetSnapshot(generatedAt: Date(), days: [day]).day(for: Date())
         _ = WidgetSnapshot.empty
-        _ = PendingImport(url: nil, text: "x")
         _ = Macros.zero
     }
 }

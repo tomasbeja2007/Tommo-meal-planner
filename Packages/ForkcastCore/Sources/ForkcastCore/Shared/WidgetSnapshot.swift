@@ -68,33 +68,3 @@ public struct WidgetSnapshot: Codable, Hashable, Sendable {
         try data.write(to: url, options: [.atomic])
     }
 }
-
-/// Payload the Share Extension leaves for the main app.
-public struct PendingImport: Codable, Hashable, Sendable {
-    public let url: String?
-    public let text: String?
-    public let createdAt: Date
-
-    public init(url: String?, text: String?, createdAt: Date = Date()) {
-        self.url = url
-        self.text = text
-        self.createdAt = createdAt
-    }
-
-    public static func fileURL(in directory: URL? = SharedConstants.appGroupContainerURL()) -> URL? {
-        directory?.appendingPathComponent(SharedConstants.pendingImportFileName)
-    }
-
-    public func write(to directory: URL? = SharedConstants.appGroupContainerURL()) throws {
-        guard let url = PendingImport.fileURL(in: directory) else { return }
-        let data: Data = try WidgetSnapshot.encoder().encode(self)
-        try data.write(to: url, options: [.atomic])
-    }
-
-    /// Reads and deletes the pending import, if any.
-    public static func consume(from directory: URL? = SharedConstants.appGroupContainerURL()) -> PendingImport? {
-        guard let url = fileURL(in: directory), let data = try? Data(contentsOf: url) else { return nil }
-        try? FileManager.default.removeItem(at: url)
-        return try? WidgetSnapshot.decoder().decode(PendingImport.self, from: data)
-    }
-}

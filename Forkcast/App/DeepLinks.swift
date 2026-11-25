@@ -1,10 +1,9 @@
 import Foundation
 import ForkcastCore
 
-/// forkcast://recipe/<id>, forkcast://import, forkcast://plan, forkcast://groceries
+/// forkcast://recipe/<id>, forkcast://plan, forkcast://groceries
 enum DeepLink: Equatable {
     case recipe(String)
-    case importRecipe
     case plan
     case groceries
 
@@ -16,8 +15,6 @@ enum DeepLink: Equatable {
         case "recipe":
             guard let id = parts.first, !id.isEmpty else { return nil }
             self = .recipe(id.removingPercentEncoding ?? id)
-        case "import":
-            self = .importRecipe
         case "plan":
             self = .plan
         case "groceries":

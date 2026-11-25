@@ -7,7 +7,6 @@ public enum SharedConstants {
     public static let cloudKitContainerId: String = "iCloud.com.tomasbeja.tommo"
     public static let urlScheme: String = "forkcast"
     public static let widgetSnapshotFileName: String = "widget-snapshot.json"
-    public static let pendingImportFileName: String = "pending-import.json"
     public static let widgetKind: String = "TonightsDinnerWidget"
 
     /// The shared App Group container, or nil when the entitlement is missing

@@ -24,7 +24,6 @@ struct RootView: View {
         .animation(.easeInOut(duration: 0.35), value: profileStore.hasCompletedOnboarding)
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
-                checkPendingImport()
                 repository.refresh()
                 planStore.reload()
             }

@@ -20,10 +20,13 @@ enum FeatureFlags {
     }
 }
 
-/// Placeholder links: replace before launch.
+/// Public pages (GitHub Pages, served from /docs in this repo).
 enum AppLinks {
-    static let privacyPolicy: URL = URL(string: "https://forkcast.app/privacy")!
-    static let terms: URL = URL(string: "https://forkcast.app/terms")!
+    static let website: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/")!
+    static let privacyPolicy: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/privacy.html")!
+    static let terms: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/terms.html")!
+    static let support: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/support.html")!
+    /// Placeholder: replace with the real support inbox before launch.
     static let supportEmail: String = "hello@forkcast.app"
 
     static func mail(subject: String) -> URL? {

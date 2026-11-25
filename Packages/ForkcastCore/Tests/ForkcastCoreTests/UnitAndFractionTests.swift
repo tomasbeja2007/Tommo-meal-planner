@@ -187,9 +187,5 @@ final class UnitAndFractionTests: XCTestCase {
         let loaded = WidgetSnapshot.load(from: dir)
         XCTAssertEqual(loaded?.days.first?.recipeId, "shakshuka")
         XCTAssertNotNil(loaded?.day(for: TestSupport.monday))
-
-        try PendingImport(url: "https://www.tiktok.com/@x/video/1", text: nil).write(to: dir)
-        XCTAssertEqual(PendingImport.consume(from: dir)?.url, "https://www.tiktok.com/@x/video/1")
-        XCTAssertNil(PendingImport.consume(from: dir), "consumed once")
     }
 }

@@ -35,11 +35,6 @@ final class AppRouter {
     var showPlanReveal: Bool = false
     /// Recipe opened from a deep link (widget tap).
     var deepLinkRecipeId: String? = nil
-    /// Pre-filled create screen from an import.
-    var importDraft: RecipeDraft? = nil
-    /// Opens the import screen (from the share extension or "Import" buttons).
-    var isImportPresented: Bool = false
-    var pendingImportText: String? = nil
 
     /// Runs `action` if the user has Pro, otherwise shows the paywall.
     func gate(isPro: Bool, _ action: () -> Void) {
@@ -64,9 +59,6 @@ final class AppRouter {
         case .recipe(let id):
             selectedTab = .plan
             deepLinkRecipeId = id
-        case .importRecipe:
-            // Importing from other apps was removed; old links just open the cookbook.
-            selectedTab = .recipes
         case .plan:
             selectedTab = .plan
         case .groceries:

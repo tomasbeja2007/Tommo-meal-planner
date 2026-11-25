@@ -52,7 +52,6 @@ struct RecipeDraft: Identifiable, Hashable {
     var sourceURL: String = ""
     var sourceKind: RecipeSourceKind = .manual
     /// Shown above the form after an import ("this one's recipe is probably spoken in the video").
-    var importNote: String? = nil
     /// The model being edited, if any.
     var editingRecipeId: String? = nil
 
@@ -101,28 +100,6 @@ struct RecipeDraft: Identifiable, Hashable {
         sourceURL = model.sourceURL ?? ""
         sourceKind = model.sourceKind
         editingRecipeId = model.recipeId
-    }
-
-    /// Pre-fill from parsed text, auto-linking ingredients to the catalog.
-    init(parsed: ParsedRecipe, sourceURL: String?, kind: RecipeSourceKind, catalog: FoodCatalog) {
-        title = parsed.title ?? ""
-        servings = parsed.servings ?? 2
-        totalMinutes = parsed.minutes ?? 30
-        ingredients = parsed.ingredients.map { item in
-            let match: Ingredient? = IngredientMatcher.bestMatch(for: item.name, in: catalog)
-            let amountText: String = item.amount.map { FractionFormatter.string($0, maxFractionValue: 1000) } ?? ""
-            let unit: MeasureUnit = item.unit ?? (item.amount == nil ? .toTaste : .piece)
-            return DraftIngredient(amountText: amountText, unit: unit, name: item.name, ingredientId: match?.id)
-        }
-        if ingredients.isEmpty { ingredients = [DraftIngredient()] }
-        steps = parsed.steps.map { DraftStep(text: $0) }
-        if steps.isEmpty { steps = [DraftStep()] }
-        self.sourceURL = sourceURL ?? ""
-        sourceKind = kind
-        emoji = RecipeDraft.guessEmoji(for: title)
-        if !parsed.hasContent {
-            importNote = String(localized: "this one's recipe is probably spoken in the video. Add the ingredients and we'll do the rest.")
-        }
     }
 
     static func guessEmoji(for title: String) -> String {

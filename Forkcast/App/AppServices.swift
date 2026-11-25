@@ -53,7 +53,7 @@ final class AppServices {
     func deleteAllData() {
         PersistenceController.deleteAll(in: container.mainContext)
         if let directory = SharedConstants.appGroupContainerURL() {
-            for name in [SharedConstants.widgetSnapshotFileName, SharedConstants.pendingImportFileName] {
+            for name in [SharedConstants.widgetSnapshotFileName, "pending-import.json"] {  // also clears any file left by the old share extension
                 try? FileManager.default.removeItem(at: directory.appendingPathComponent(name))
             }
         }
