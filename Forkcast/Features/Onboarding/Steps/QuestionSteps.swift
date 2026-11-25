@@ -45,7 +45,7 @@ struct ObstaclesStepView: View {
         ) {
             VStack(spacing: Theme.Spacing.m) {
                 ForEach(OnboardingObstacle.allCases) { obstacle in
-                    OptionTile(title: obstacle.title, emoji: obstacle.emoji, isSelected: state.obstacles.contains(obstacle)) {
+                    OptionTile(title: obstacle.title, emoji: obstacle.emoji, illustration: "obstacle-\(obstacle.rawValue)", isSelected: state.obstacles.contains(obstacle)) {
                         if state.obstacles.contains(obstacle) {
                             state.obstacles.remove(obstacle)
                         } else {

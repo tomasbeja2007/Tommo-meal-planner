@@ -5,13 +5,19 @@ fallback. Drop a finished PNG into `Forkcast/Resources/Assets.xcassets` as an
 **Image Set with exactly the name given** and the app picks it up automatically,
 with no code changes.
 
-## Status (Nov 2026)
-- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3),
-  the onboarding illustrations (section 4), and the six splash pieces (section 5).
-- **MascotRig, round 1:** arms and both mouths are good and kept in `Design/MascotRig/` (not in the app until the
-  live face is built). `MascotRig-body` and `MascotRig-head` need a redo, see section 1.
-- **Still open:** the clean app icon export (section 2), the 80 pantry photos (section 6), the 32 breakfast, lunch
-  and snack photos (section 7), and the `MascotRig-body` / `MascotRig-head` redo (section 1).
+## Status (25 Nov 2026)
+- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), 454 of 544 recipe photos, all 187 ingredient
+  cut-outs (this covers the pantry photos of section 6), the goal / diet / appliance tile illustrations (section 4),
+  and the splash pieces (section 5, no longer used by the app).
+- **Still open, in priority order:**
+  1. **90 recipe photos** (section 7): every recipe without a photo still shows an emoji tile on the Plan tab,
+     the reveal and the recipe pages.
+  2. **Clean app icon export** (section 2).
+  3. **31 tile illustrations, round 2** (section 8): obstacles, vibes, allergies, cook time. The app is already
+     wired for them and keeps its emoji / symbol until each file exists.
+  4. **`MascotRig-body` / `MascotRig-head` redo** (section 1), needed before Chef Tommo can blink and look around.
+  5. *Optional:* the kitchen scene for the appliance picker (section 9).
+- **Never generate:** supermarket logos, fake reviews or user photos (see "Do NOT generate").
 
 ## Shared style brief (give this to the agent with every request)
 - Character: **Chef Tommo** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
@@ -232,9 +238,11 @@ ingredients, so the list covers every ingredient it can show.
 | `ingredient-salsa` | Chunky tomato salsa in a small bowl |
 | `ingredient-passata` | Passata in a small glass jug |
 
-## 7. Breakfast, lunch and snack photos (32)
-Same brief as the recipe photos in section 3: square **1200×1200** JPG, top-down or 45°, warm neutral surface,
-natural light, no hands, no text, matching the title. File = `recipe-<id>`.
+## 7. Recipe photos still missing (90)
+Same brief as the recipe photos in section 3: square **1200×1200** JPG, **opaque**, top-down or 45°, warm neutral
+surface (cream linen, light wood, stoneware), natural daylight, no hands, no text, no brand packaging, the dish
+exactly as titled and plated for one or two. File = `recipe-<id>` (drop in as an Image Set with that exact name).
+28 dinners, 26 lunches, 20 breakfasts, 16 snacks:
 
 | File | Dish | Meal |
 |---|---|---|
@@ -250,6 +258,14 @@ natural light, no hands, no text, matching the title. File = `recipe-<id>`.
 | `recipe-cinnamon-french-toast` | Cinnamon French toast with berries | Breakfast |
 | `recipe-turmeric-tofu-scramble` | Turmeric tofu scramble | Breakfast |
 | `recipe-ham-cheese-omelette` | Ham & cheese omelette | Breakfast |
+| `recipe-berry-baked-oats` | Blended berry baked oats | Breakfast |
+| `recipe-cottage-cheese-egg-bites` | Cottage cheese egg bites | Breakfast |
+| `recipe-chocolate-pb-overnight-oats` | Chocolate peanut butter overnight oats | Breakfast |
+| `recipe-mango-coconut-chia-pudding` | Mango coconut chia pudding | Breakfast |
+| `recipe-banana-oat-pancakes` | Three-ingredient banana oat pancakes | Breakfast |
+| `recipe-feta-egg-wrap` | Crispy feta egg wrap | Breakfast |
+| `recipe-berry-smoothie-bowl` | Thick berry smoothie bowl | Breakfast |
+| `recipe-savory-cottage-cheese-toast` | Savory cottage cheese toast | Breakfast |
 | `recipe-chicken-hummus-wraps` | Chicken, hummus & spinach wraps | Lunch |
 | `recipe-tuna-sweetcorn-sandwiches` | Tuna & sweetcorn sandwiches | Lunch |
 | `recipe-greek-chickpea-salad` | Greek salad with feta & chickpeas | Lunch |
@@ -262,6 +278,48 @@ natural light, no hands, no text, matching the title. File = `recipe-<id>`.
 | `recipe-cheesy-bean-jacket-potatoes` | Microwave jacket potatoes with cheesy beans | Lunch |
 | `recipe-tuna-white-bean-salad` | Tuna & white bean salad | Lunch |
 | `recipe-sweet-potato-bean-quesadillas` | Sweet potato & black bean quesadillas | Lunch |
+| `recipe-smashed-cucumber-edamame-rice` | Smashed cucumber salad with edamame rice | Lunch |
+| `recipe-chopped-italian-sandwich` | Chopped Italian-style sandwich | Lunch |
+| `recipe-green-goddess-salad` | Green goddess salad with pita chips | Lunch |
+| `recipe-dense-bean-salad` | Dense bean salad | Lunch |
+| `recipe-cottage-cheese-flatbread-wrap` | Cottage cheese flatbread wrap | Lunch |
+| `recipe-tuna-protein-pasta-salad` | High-protein tuna pasta salad | Lunch |
+| `recipe-tofu-rice-paper-rolls` | Rice paper rolls with peanut dip | Lunch |
+| `recipe-chicken-caesar-wrap` | Crispy chicken Caesar wrap | Lunch |
+| `recipe-crispy-halloumi-salad-bowl` | Crispy halloumi couscous salad | Lunch |
+| `recipe-caprese-orzo-salad` | Caprese orzo salad | Lunch |
+| `recipe-buffalo-chicken-lettuce-wraps` | Buffalo chicken lettuce wraps | Lunch |
+| `recipe-roasted-pepper-feta-soup` | Roasted red pepper soup with feta toast | Lunch |
+| `recipe-peanut-sesame-noodle-salad` | Peanut noodle salad | Lunch |
+| `recipe-mediterranean-quinoa-bowl` | Mediterranean chickpea quinoa bowl | Lunch |
+| `recipe-spicy-tuna-crispy-rice-bowl` | Spicy tuna crispy rice bowl | Dinner |
+| `recipe-chicken-burrito-bowl` | Chicken burrito bowl with lime rice | Dinner |
+| `recipe-greek-chicken-bowl` | Greek chicken bowl with tzatziki | Dinner |
+| `recipe-spicy-pork-gochujang-bowl` | Korean-style spicy pork rice bowl | Dinner |
+| `recipe-cajun-chicken-corn-bowl` | Cajun chicken rice bowl with corn & lime yogurt | Dinner |
+| `recipe-crispy-tofu-poke-bowl` | Crispy tofu poke-style bowl | Dinner |
+| `recipe-baked-falafel-hummus-bowl` | Baked falafel hummus bowl | Dinner |
+| `recipe-smoky-chickpea-sweet-potato-bowl` | Smoky chickpea & sweet potato bowl | Dinner |
+| `recipe-salmon-sushi-bake` | Salmon sushi bake | Dinner |
+| `recipe-sheet-pan-gnocchi` | Sheet-pan crispy gnocchi with peppers | Dinner |
+| `recipe-popcorn-chicken-rice-bowl` | Air-fryer popcorn chicken rice bowl | Dinner |
+| `recipe-hot-honey-chicken-bowl` | Hot honey chicken & sweet potato bowl | Dinner |
+| `recipe-creamy-tuscan-chicken-orzo` | Creamy Tuscan-style chicken orzo | Dinner |
+| `recipe-butter-chicken-meal-prep-bowl` | Butter chicken meal-prep bowl | Dinner |
+| `recipe-spicy-shrimp-taco-bowl` | Spicy shrimp taco bowl | Dinner |
+| `recipe-burger-bowl-special-sauce` | Burger bowl with special sauce | Dinner |
+| `recipe-turkey-sweet-potato-bowl` | Turkey taco sweet potato bowl | Dinner |
+| `recipe-thai-peanut-chicken-bowl` | Thai peanut chicken bowl | Dinner |
+| `recipe-crispy-fish-taco-bowl` | Air-fryer crispy fish taco bowl | Dinner |
+| `recipe-crispy-pesto-gnocchi` | Crispy pesto gnocchi with peas | Dinner |
+| `recipe-chickpea-shawarma-bowl` | Sheet-pan chickpea shawarma bowl | Dinner |
+| `recipe-kimchi-fried-rice` | Kimchi fried rice with a jammy egg | Dinner |
+| `recipe-black-bean-enchilada-skillet` | Black bean enchilada skillet | Dinner |
+| `recipe-spicy-creamy-tomato-pasta` | Spicy creamy tomato pasta | Dinner |
+| `recipe-egg-roll-in-a-bowl` | Egg roll in a bowl | Dinner |
+| `recipe-garlic-butter-noodles-chicken` | Garlic butter noodles with crispy chicken | Dinner |
+| `recipe-lemon-garlic-salmon-orzo` | One-pan lemon salmon & pea orzo | Dinner |
+| `recipe-tofu-satay-noodle-bowl` | Crispy tofu satay noodle bowl | Dinner |
 | `recipe-hummus-veg-sticks` | Hummus with veg sticks | Snack |
 | `recipe-apple-peanut-butter` | Apple slices with peanut butter | Snack |
 | `recipe-paprika-popcorn` | Stovetop paprika popcorn | Snack |
@@ -270,6 +328,37 @@ natural light, no hands, no text, matching the title. File = `recipe-<id>`.
 | `recipe-avocado-rice-cakes` | Rice cakes with avocado & chilli | Snack |
 | `recipe-crispy-spiced-chickpeas` | Crispy spiced chickpeas | Snack |
 | `recipe-devilled-eggs` | Devilled eggs | Snack |
+| `recipe-frozen-yogurt-bark` | Frozen yogurt berry bark | Snack |
+| `recipe-frozen-lime-grapes` | Frozen lime grapes | Snack |
+| `recipe-cucumber-tuna-bites` | Cucumber tuna sushi bites | Snack |
+| `recipe-cottage-cheese-chocolate-mousse` | Two-minute chocolate cottage cheese mousse | Snack |
+| `recipe-banana-pb-sushi` | Banana peanut butter sushi | Snack |
+| `recipe-air-fryer-apple-chips` | Air-fryer cinnamon apple chips | Snack |
+| `recipe-chili-garlic-edamame` | Chili garlic edamame | Snack |
+| `recipe-chili-lime-mango` | Chili lime mango | Snack |
+
+## 8. Tile illustrations, round 2 (31)
+Same brief as section 4: **512×512 transparent PNG**, small object-style 3D clay illustrations, soft studio light,
+the palette in the shared brief, **no mascot, no text, no faces on objects**, the object centred filling ~75%.
+The app shows them on the option tiles (32 pt in rows, 56 pt in grids) instead of today's emoji / SF Symbol.
+
+| Asset names | What to draw |
+|---|---|
+| `obstacle-overspend` · `obstacle-dontKnowWhat` · `obstacle-planningTakesLong` · `obstacle-tooTired` | A receipt curling up with a coin flying off · an empty plate with a question mark above it · an hourglass beside a notepad · a mug of tea next to a sleeping pillow |
+| `obstacle-foodGoesOff` · `obstacle-noList` · `obstacle-messyRecipes` · `obstacle-sameMeals` | A wilted lettuce leaf · a crumpled, blank shopping list · a messy pile of recipe cards · a pan with a looping arrow |
+| `vibe-quickEasy` · `vibe-highProtein` · `vibe-comfort` · `vibe-healthyish` · `vibe-family` | A lightning-shaped noodle bowl · a chicken drumstick next to an egg · a steaming bowl of stew · a salad bowl · a big sharing dish with three forks |
+| `vibe-fakeaway` · `vibe-lowCalorie` · `vibe-onePan` · `vibe-batchFriendly` · `vibe-fiberForward` | A takeaway box with chopsticks · a light, leafy plate · one frying pan with a full meal in it · three stacked meal-prep boxes · a bowl of beans and grains |
+| `allergen-gluten` · `allergen-dairy` · `allergen-egg` · `allergen-peanut` · `allergen-treeNut` | A wheat sheaf · a milk bottle · a brown egg · a peanut in its shell · a walnut and an almond |
+| `allergen-soy` · `allergen-fish` · `allergen-shellfish` · `allergen-sesame` | A soy bean pod · a whole fish · a prawn · a small dish of sesame seeds |
+| `cooktime-quick` · `cooktime-medium` · `cooktime-relaxed` · `cooktime-dontMind` | A kitchen timer at 15 min · a timer at 30 min · a timer at 45 min next to a wooden spoon · a relaxed timer with a little heart |
+
+## 9. Optional: kitchen scene for the appliance picker
+If wanted, the appliance step can show one kitchen where tapping an appliance makes it glow.
+- `KitchenScene`: 1200×900 PNG, opaque (cream `#FBF6EE` wall), a cosy front-on home kitchen in the clay style, with
+  an oven and a stovetop, a microwave, an air fryer, a slow cooker and a blender, each clearly separated. Tomato and
+  saffron accents, warm wood counter, no text, no logos, no dominant green.
+- `KitchenHighlight-oven`, `-stovetop`, `-microwave`, `-airFryer`, `-slowCooker`, `-blender`: 1200×900 transparent PNG
+  each, the same framing, only that appliance's soft tomato outline glow, so it lines up on top of the scene.
 
 ## Do NOT generate
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:

@@ -11,6 +11,7 @@ struct CookTimePicker: View {
                     title: option.title,
                     subtitle: option.subtitle,
                     systemImage: option.systemImage,
+                    illustration: "cooktime-\(String(describing: option))",
                     isSelected: maxMinutes == option.rawValue
                 ) {
                     maxMinutes = option.rawValue

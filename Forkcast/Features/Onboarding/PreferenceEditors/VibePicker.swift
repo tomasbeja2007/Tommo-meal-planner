@@ -39,6 +39,7 @@ struct VibePicker: View {
                         title: title,
                         subtitle: subtitle.isEmpty ? nil : subtitle,
                         systemImage: icon,
+                        illustration: "vibe-\(vibe.rawValue)",
                         iconTint: Color(hexString: vibe.tintHex),
                         isSelected: selection.contains(vibe),
                         layout: .grid,

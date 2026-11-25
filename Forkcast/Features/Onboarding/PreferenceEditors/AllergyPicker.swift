@@ -19,7 +19,7 @@ struct AllergyPicker: View {
             }
             LazyVGrid(columns: columns, spacing: Theme.Spacing.m) {
                 ForEach(Allergen.allCases, id: \.self) { allergen in
-                    OptionTile(title: allergen.displayName, emoji: allergen.emoji, isSelected: selection.contains(allergen)) {
+                    OptionTile(title: allergen.displayName, emoji: allergen.emoji, illustration: "allergen-\(allergen.rawValue)", isSelected: selection.contains(allergen)) {
                         noAllergies = false
                         if selection.contains(allergen) {
                             selection.remove(allergen)
