@@ -479,3 +479,60 @@ R("beef-kofta-pittas","Beef kofta pittas with garlic yogurt","🥙","Middle East
 
 from meal_recipes import BREAKFASTS, LUNCHES, SNACKS
 RECIPES += BREAKFASTS + LUNCHES + SNACKS
+
+# Tommo versions of widely shared short-form recipe formats.
+RECIPES += [
+    R("baked-feta-penne", "Burst tomato baked feta pasta", "🍝", "Mediterranean",
+      ["quickEasy", "comfort"], ["oven", "stovetop"], 5, 25, 2, True,
+      [("penne", 160, "g"), ("cherry-tomatoes", 300, "g"), ("feta", 120, "g"),
+       ("olive-oil", 1, "tbsp"), ("garlic", 2, "clove", "crushed"),
+       ("black-pepper", 0.25, "tsp"), ("basil", 8, "g")],
+      [
+          "Heat the oven to 220°C (425°F).",
+          "Put the cherry tomatoes in a small baking dish. Toss them with the olive oil, crushed garlic and black pepper.",
+          "Nestle the feta in the middle. Bake for 22 to 25 minutes, until the tomatoes burst and the feta is soft.",
+          "While the feta bakes, cook the penne according to the pack directions. Save a mug of pasta water before draining.",
+          "Mash the feta and tomatoes together in the baking dish. Stir in the penne and add pasta water a tablespoon at a time until the sauce coats it.",
+          "Tear the basil over the pasta and serve warm.",
+      ]),
+    R("crispy-salmon-rice-bowl", "Crispy salmon rice bowls", "🍚", "Japanese",
+      ["quickEasy", "highProtein", "healthyish"], ["stovetop"], 10, 15, 2, False,
+      [("salmon-fillet", 260, "g", "skin removed"), ("long-grain-rice", 120, "g"),
+       ("cucumber", 0.5, "piece"), ("avocado", 1, "piece"), ("spring-onion", 2, "piece"),
+       ("vegetable-oil", 2, "tsp"), ("soy-sauce", 1, "tbsp"),
+       ("mayonnaise", 20, "g"), ("sriracha", 2, "tsp")],
+      [
+          "Cook the rice according to the pack directions. Keep it covered while you prepare the toppings.",
+          "Slice the cucumber and avocado, and thinly slice the scallions.",
+          "Mix the mayonnaise and sriracha in a small bowl.",
+          "Pat the salmon dry and cut it into bite-size cubes. Heat the vegetable oil in a skillet over medium-high heat.",
+          "Add the salmon in a single layer. Sear, turning to brown the sides, until the thickest piece reaches 63°C (145°F). Toss with the soy sauce off the heat.",
+          "Divide the rice between bowls. Add the salmon, cucumber and avocado. Drizzle with the sauce and scatter with scallions.",
+      ]),
+    R("smash-burger-tacos", "Smash burger tacos", "🌮", "American",
+      ["quickEasy", "onePan", "family"], ["stovetop"], 10, 10, 2, False,
+      [("ground-beef", 240, "g"), ("tortillas", 4, "piece", "small"), ("cheddar", 60, "g", "thinly sliced"),
+       ("lettuce", 60, "g", "shredded"), ("mayonnaise", 25, "g"), ("ketchup", 15, "g"),
+       ("dijon-mustard", 1, "tsp"), ("salt", 0.25, "tsp"), ("black-pepper", 0.25, "tsp")],
+      [
+          "Mix the mayonnaise, ketchup and mustard to make the burger sauce. Shred the lettuce.",
+          "Divide the beef into four portions. Press each portion into a thin, even layer on one side of a tortilla.",
+          "Season the beef with the salt and black pepper. Heat a heavy skillet over medium-high heat.",
+          "Cook the tortillas in batches, meat-side down, pressing briefly with a spatula. Cook until the beef is browned and reaches 71°C (160°F).",
+          "Flip each taco, add the cheddar and cook briefly to melt the cheese and toast the tortilla.",
+          "Top with shredded lettuce and burger sauce. Fold and serve warm.",
+      ]),
+    R("garlic-chili-oil-noodles", "Garlic chili oil udon", "🍜", "Other",
+      ["quickEasy", "onePan", "comfort"], ["stovetop"], 8, 7, 2, True,
+      [("udon-noodles", 400, "g"), ("vegetable-oil", 2, "tbsp"), ("garlic", 3, "clove", "minced"),
+       ("spring-onion", 3, "piece", "sliced"), ("chili-flakes", 1, "tsp"),
+       ("soy-sauce", 2, "tbsp"), ("rice-vinegar", 1, "tbsp"), ("sesame-seeds", 2, "tsp")],
+      [
+          "Cook the udon according to the pack directions, then drain well.",
+          "Mince the garlic and slice the scallions. Keep the green tops for serving.",
+          "Dry the pan, add the vegetable oil and warm it over medium heat.",
+          "Add the garlic and pale scallion slices. Stir for about 30 seconds, until fragrant. Take the pan off the heat and stir in the chili flakes and sesame seeds.",
+          "Add the udon, soy sauce and rice vinegar to the pan. Toss until the noodles are glossy and well coated.",
+          "Divide between bowls and scatter with the sliced scallion tops.",
+      ]),
+]

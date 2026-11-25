@@ -5396,5 +5396,297 @@
   "imageName": null,
   "isLeftoverFriendly": false,
   "mealType": "snack"
+ },
+ {
+  "id": "baked-feta-penne",
+  "title": "Burst tomato baked feta pasta",
+  "emoji": "🍝",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "quickEasy",
+   "comfort"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "penne",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.25,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 8,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F).",
+   "Put the cherry tomatoes in a small baking dish. Toss them with the olive oil, crushed garlic and black pepper.",
+   "Nestle the feta in the middle. Bake for 22 to 25 minutes, until the tomatoes burst and the feta is soft.",
+   "While the feta bakes, cook the penne according to the pack directions. Save a mug of pasta water before draining.",
+   "Mash the feta and tomatoes together in the baking dish. Stir in the penne and add pasta water a tablespoon at a time until the sauce coats it.",
+   "Tear the basil over the pasta and serve warm."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
+ },
+ {
+  "id": "crispy-salmon-rice-bowl",
+  "title": "Crispy salmon rice bowls",
+  "emoji": "🍚",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "salmon-fillet",
+    "amount": 260,
+    "unit": "g",
+    "note": "skin removed"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice according to the pack directions. Keep it covered while you prepare the toppings.",
+   "Slice the cucumber and avocado, and thinly slice the scallions.",
+   "Mix the mayonnaise and sriracha in a small bowl.",
+   "Pat the salmon dry and cut it into bite-size cubes. Heat the vegetable oil in a skillet over medium-high heat.",
+   "Add the salmon in a single layer. Sear, turning to brown the sides, until the thickest piece reaches 63°C (145°F). Toss with the soy sauce off the heat.",
+   "Divide the rice between bowls. Add the salmon, cucumber and avocado. Drizzle with the sauce and scatter with scallions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
+ },
+ {
+  "id": "smash-burger-tacos",
+  "title": "Smash burger tacos",
+  "emoji": "🌮",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "onePan",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "small"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 60,
+    "unit": "g",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 60,
+    "unit": "g",
+    "note": "shredded"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.25,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.25,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Mix the mayonnaise, ketchup and mustard to make the burger sauce. Shred the lettuce.",
+   "Divide the beef into four portions. Press each portion into a thin, even layer on one side of a tortilla.",
+   "Season the beef with the salt and black pepper. Heat a heavy skillet over medium-high heat.",
+   "Cook the tortillas in batches, meat-side down, pressing briefly with a spatula. Cook until the beef is browned and reaches 71°C (160°F).",
+   "Flip each taco, add the cheddar and cook briefly to melt the cheese and toast the tortilla.",
+   "Top with shredded lettuce and burger sauce. Fold and serve warm."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner"
+ },
+ {
+  "id": "garlic-chili-oil-noodles",
+  "title": "Garlic chili oil udon",
+  "emoji": "🍜",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "onePan",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 8,
+  "cookMinutes": 7,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "udon-noodles",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "minced"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the udon according to the pack directions, then drain well.",
+   "Mince the garlic and slice the scallions. Keep the green tops for serving.",
+   "Dry the pan, add the vegetable oil and warm it over medium heat.",
+   "Add the garlic and pale scallion slices. Stir for about 30 seconds, until fragrant. Take the pan off the heat and stir in the chili flakes and sesame seeds.",
+   "Add the udon, soy sauce and rice vinegar to the pan. Toss until the noodles are glossy and well coated.",
+   "Divide between bowls and scatter with the sliced scallion tops."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner"
  }
 ]
