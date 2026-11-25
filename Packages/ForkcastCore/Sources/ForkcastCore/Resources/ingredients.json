@@ -1015,6 +1015,36 @@
   }
  },
  {
+  "id": "pumpkin",
+  "name": "cooking pumpkin",
+  "pluralName": "cooking pumpkins",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 26,
+   "protein": 1,
+   "carbs": 6.5,
+   "fat": 0.1,
+   "fiber": 0.5
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 750,
+   "display": "750 g pack",
+   "displayImperial": "1.65 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🎃",
+  "tags": []
+ },
+ {
   "id": "butternut-squash",
   "name": "butternut squash",
   "pluralName": "butternut squashes",
@@ -1348,6 +1378,71 @@
   "gramsPerUnit": {
    "piece": 150
   }
+ },
+ {
+  "id": "whole-chicken",
+  "name": "whole chicken",
+  "pluralName": "whole chickens",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 215,
+   "protein": 18.6,
+   "carbs": 0,
+   "fat": 15.1,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 975,
+   "display": "1 small whole chicken",
+   "displayImperial": "1 small whole chicken",
+   "noun": "chicken",
+   "nounPlural": "chickens"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍗",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 975
+  },
+  "proteinGroup": "chicken"
+ },
+ {
+  "id": "turkey-breast",
+  "name": "boneless turkey breast",
+  "pluralName": "boneless turkey breasts",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 114,
+   "protein": 23.7,
+   "carbs": 0,
+   "fat": 1.5,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 800,
+   "display": "800 g turkey breast joint",
+   "displayImperial": "1.75 lb turkey breast",
+   "noun": "joint",
+   "nounPlural": "joints"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍗",
+  "tags": [],
+  "proteinGroup": "turkey"
  },
  {
   "id": "chicken-breast",

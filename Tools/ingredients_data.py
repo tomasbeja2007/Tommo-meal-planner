@@ -60,6 +60,7 @@ ROWS = [
   I("spring-onion","scallion","scallions","spring onion",P,[],"",(32,1.8,7.3,0.2,2.6),"g",{"piece":15},(100,"1 bunch","1 bunch","bunch","bunches"),False,"🧅",prices=(0.99,0.55,0.79)),
   I("chili-fresh","fresh chili","fresh chilies","fresh chilli",P,[],"",(40,1.9,9,0.4,1.5),"g",{"piece":10},(50,"50 g pack","2 oz pack","pack","packs"),False,"🌶️",tags=["spicy"],prices=(0.99,0.60,0.79)),
   I("cabbage","cabbage","cabbages",None,P,[],"",(25,1.3,5.8,0.1,2.5),"g",{"piece":900,"cup":70},(900,"1 head","1 head","head","heads"),False,"🥬",prices=(1.99,0.70,1.19)),
+  I("pumpkin","cooking pumpkin","cooking pumpkins",None,P,[],"",(26,1,6.5,0.1,0.5),"g",None,(750,"750 g pack","1.65 lb pack","pack","packs"),False,"🎃",prices=(4.49,2.50,2.99)),
   I("butternut-squash","butternut squash","butternut squashes",None,P,[],"",(45,1,12,0.1,2),"g",{"piece":1000},(1000,"1 squash","1 squash","squash","squashes"),False,"🎃",prices=(3.49,1.20,1.99)),
   I("bean-sprouts","bean sprouts","bean sprouts",None,P,[],"",(30,3,6,0.2,1.8),"g",{"cup":100},(300,"300 g bag","10 oz bag","bag","bags"),False,"🌱",prices=(2.29,0.80,1.29)),
   I("bok-choy","bok choy","bok choy","pak choi",P,[],"",(13,1.5,2.2,0.2,1),"g",{"piece":125},(250,"250 g pack","9 oz pack","pack","packs"),False,"🥬",prices=(2.49,1.10,1.49)),
@@ -72,6 +73,9 @@ ROWS = [
   I("corn-on-cob","corn on the cob","corn cobs","corn on the cob",P,[],"",(86,3.3,19,1.4,2),"g",{"piece":150},(300,"2 cobs","2 ears","pack","packs"),False,"🌽",prices=(1.49,1.25,1.49)),
 
   # ---------- Meat & Fish ----------
+  # A 1.4 kg bone-in bird has roughly 975 g of edible raw meat and skin.
+  I("whole-chicken","whole chicken","whole chickens",None,MF,[],M,(215,18.6,0,15.1,0),"g",{"piece":975},(975,"1 small whole chicken","1 small whole chicken","chicken","chickens"),False,"🍗","chicken",prices=(8.99,4.79,6.49)),
+  I("turkey-breast","boneless turkey breast","boneless turkey breasts",None,MF,[],M,(114,23.7,0,1.5,0),"g",None,(800,"800 g turkey breast joint","1.75 lb turkey breast","joint","joints"),False,"🍗","turkey",prices=(12.99,8.50,10.99)),
   I("chicken-breast","chicken breast","chicken breasts",None,MF,[],M,(120,22.5,0,2.6,0),"g",{"piece":180},(500,"500 g pack","1 lb pack","pack","packs"),False,"🍗","chicken",prices=(4.99,3.90,5.49)),
   I("chicken-thighs","boneless chicken thighs","boneless chicken thighs",None,MF,[],M,(177,18,0,11,0),"g",{"piece":100},(500,"500 g pack","1 lb pack","pack","packs"),False,"🍗","chicken",prices=(4.49,3.60,4.99)),
   I("ground-beef","ground beef","ground beef","beef mince",MF,[],M,(215,18.6,0,15,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","beef",prices=(5.99,2.90,4.49)),

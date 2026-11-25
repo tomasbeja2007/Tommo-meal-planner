@@ -552,3 +552,11 @@ from trending_batch3 import TRENDING_BATCH3
 from trending_batch4 import TRENDING_BATCH4
 
 RECIPES += TRENDING + TRENDING_BATCH1 + TRENDING_BATCH2 + TRENDING_BATCH3 + TRENDING_BATCH4
+
+from recipe_brief_batch1 import build_recipes as build_brief_batch1
+
+RECIPES += build_brief_batch1(R)
+
+from recipe_brief_batch2 import build_recipes as build_brief_batch2
+
+RECIPES += build_brief_batch2(R)
