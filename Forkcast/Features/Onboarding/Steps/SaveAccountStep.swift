@@ -9,14 +9,15 @@ struct SaveAccountStep: View {
 
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(AppleSignInManager.self) private var appleSignIn: AppleSignInManager
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var agreed: Bool = false
 
     private var isSignedIn: Bool { profileStore.profile?.appleUserId != nil }
 
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "save your plan"),
-            subtitle: String(localized: "keep your week, likes and lists safe, and on all your devices"),
+            title: String(localized: "Save your planned meals"),
+            subtitle: String(localized: "Use your Apple Account with Tommo. Your plan is available on this device either way."),
             buttonTitle: String(localized: "Continue"),
             showsButton: isSignedIn,
             onContinue: onContinue
@@ -30,25 +31,26 @@ struct SaveAccountStep: View {
                 } else {
                     VStack(spacing: Theme.Spacing.m) {
                         TermsCheckbox(isOn: $agreed)
-                        SignInWithAppleButton(.continue) { request in
+                        SignInWithAppleButton(.signIn) { request in
                             appleSignIn.configure(request)
                         } onCompletion: { result in
-                            guard let signedIn = appleSignIn.handle(result), let profile = profileStore.profile else { return }
-                            profile.appleUserId = signedIn.userId
-                            if profile.name.isEmpty, let given = signedIn.givenName { profile.name = given }
-                            profileStore.save()
+                            guard let signedIn = appleSignIn.handle(result), profileStore.profile != nil else { return }
+                            profileStore.attachAppleAccount(userId: signedIn.userId, givenName: signedIn.givenName, email: signedIn.email)
                             onContinue()
                         }
                         .signInWithAppleButtonStyle(.black)
                         .frame(height: 56)
                         .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous))
-                        .disabled(!agreed)
+                        .disabled(!agreed || appleSignIn.isSigningIn)
                         .opacity(agreed ? 1 : 0.4)
+                        .animation(reduceMotion ? nil : .easeOut(duration: 0.16), value: agreed)
+                        if appleSignIn.isSigningIn { ProgressView("Signing in with Apple…") }
                         if let error = appleSignIn.lastError {
                             Text(error).font(.caption).foregroundStyle(Theme.tomatoDeep)
                         }
                         Button(String(localized: "Maybe later"), action: onContinue)
                             .buttonStyle(QuietButtonStyle())
+                            .disabled(appleSignIn.isSigningIn)
                     }
                 }
             }
@@ -56,7 +58,7 @@ struct SaveAccountStep: View {
     }
 }
 
-private struct TermsCheckbox: View {
+struct TermsCheckbox: View {
     @Binding var isOn: Bool
 
     var body: some View {
@@ -84,23 +86,40 @@ private struct TermsCheckbox: View {
 
     /// Markdown is parsed after the URLs are filled in, so both links are tappable.
     private var termsText: AttributedString {
-        let markdown: String = String(localized: "I agree to the [Terms](\(AppLinks.terms.absoluteString)) and [Privacy Policy](\(AppLinks.privacyPolicy.absoluteString)).")
+        let markdown: String = String(localized: "I agree to the [Terms of Service](\(AppLinks.terms.absoluteString)) and [Privacy Policy](\(AppLinks.privacyPolicy.absoluteString)).")
         return (try? AttributedString(markdown: markdown)) ?? AttributedString(markdown)
     }
 }
 
-/// `illustration-cloudSync` if it exists (see Design/IMAGE_REQUESTS.md), otherwise Chef Tomato.
+/// The plan, connecting path and cloud appear in sequence.
 private struct CloudSyncArt: View {
+    @State private var appeared = false
+
     var body: some View {
-        if AssetImage.exists("illustration-cloudSync") {
-            Image("illustration-cloudSync")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 180, height: 180)
-                .accessibilityHidden(true)
-        } else {
-            MascotView(size: 140, mood: .idle)
+        OneShotClock(duration: 560, play: appeared) { time in
+            HStack(spacing: Theme.Spacing.s) {
+                ZStack {
+                    Image(systemName: "iphone").font(.system(size: 79, weight: .medium))
+                        .foregroundStyle(Theme.aubergine)
+                    Image(systemName: "checkmark.circle.fill").font(.system(size: 27, weight: .semibold))
+                        .foregroundStyle(Theme.herb)
+                        .opacity(min(1, time / 180))
+                }
+                Capsule()
+                    .strokeBorder(Theme.tomato.opacity(0.44), style: StrokeStyle(lineWidth: 2, dash: [4, 5]))
+                    .frame(width: 44, height: 5)
+                    .opacity(min(1, max(0, time - 130) / 160))
+                Image(systemName: "checkmark.icloud.fill")
+                    .font(.system(size: 54, weight: .medium))
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .opacity(min(1, max(0, time - 285) / 275))
+            }
+            .padding(Theme.Spacing.xl)
+            .frame(maxWidth: .infinity)
+            .background(Theme.tomatoSoft, in: RoundedRectangle(cornerRadius: Theme.Radius.card))
+            .accessibilityHidden(true)
         }
+        .onAppear { appeared = true }
     }
 }
 

@@ -1,72 +1,89 @@
 import SwiftUI
 import ForkcastCore
 
-/// Compact, quiet nutrition card: big kcal, then three slim proportional bars.
 struct MacrosCard: View {
     let macros: Macros
-    var caption: String = String(localized: "per serving · estimated")
+    var caption: String = String(localized: "Per serving · estimated")
     var note: String? = nil
+    var title: String = String(localized: "Macros · your portion")
+    var goal: Int? = nil
 
-    private var totalGrams: Double {
-        max(1, macros.protein + macros.carbs + macros.fat)
+    private var segments: [(label: String, grams: Double, calories: Double, color: Color)] {
+        [
+            (String(localized: "Protein"), macros.protein, max(0, macros.protein * 4), Theme.macroProtein),
+            (String(localized: "Carbs"), macros.carbs, max(0, macros.carbs * 4), Theme.macroCarbs),
+            (String(localized: "Fat"), macros.fat, max(0, macros.fat * 9), Theme.macroFat)
+        ]
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Text("\(Int(macros.kcal.rounded()))")
-                    .font(.system(.title, design: .rounded).weight(.bold))
-                    .monospacedDigit()
-                    .foregroundStyle(Theme.aubergine)
-                    .contentTransition(.numericText())
-                Text("kcal")
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(Theme.aubergineMuted)
-                Spacer()
-                Text(caption)
-                    .font(.caption)
-                    .foregroundStyle(Theme.aubergineFaint)
+            Text(title)
+                .font(.caption.weight(.bold))
+                .textCase(.uppercase)
+                .foregroundStyle(Theme.aubergineMuted)
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .firstTextBaseline) { calories; Spacer(); summary }
+                VStack(alignment: .leading, spacing: Theme.Spacing.xs) { calories; summary }
             }
-            MacroBarRow(label: String(localized: "Protein"), grams: macros.protein, fraction: macros.protein / totalGrams, tint: Theme.macroProtein, delay: 0)
-            MacroBarRow(label: String(localized: "Carbs"), grams: macros.carbs, fraction: macros.carbs / totalGrams, tint: Theme.macroCarbs, delay: Theme.Motion.stagger)
-            MacroBarRow(label: String(localized: "Fat"), grams: macros.fat, fraction: macros.fat / totalGrams, tint: Theme.macroFat, delay: 2 * Theme.Motion.stagger)
+            GeometryReader { proxy in
+                let total = segments.reduce(0) { $0 + $1.calories }
+                HStack(spacing: 0) {
+                    ForEach(segments, id: \.label) { segment in
+                        Rectangle()
+                            .fill(segment.color)
+                            .frame(width: total > 0 ? proxy.size.width * segment.calories / total : 0)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .background(Theme.creamDeep)
+                .clipShape(Capsule())
+            }
+            .frame(height: 8)
+            .accessibilityHidden(true)
+            FlowLayout(spacing: Theme.Spacing.m) {
+                ForEach(segments, id: \.label) { segment in
+                    HStack(spacing: Theme.Spacing.xs) {
+                        Circle().fill(segment.color).frame(width: 7, height: 7)
+                        Text("\(Int(segment.grams.rounded())) g \(segment.label)")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Theme.aubergine)
+                    }
+                }
+            }
             if let note {
-                Text(note)
-                    .font(.caption)
-                    .foregroundStyle(Theme.aubergineFaint)
+                Text(note).font(.caption).foregroundStyle(Theme.aubergineMuted)
             }
         }
         .cardStyle()
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(MacrosText.spoken(macros) + ", " + caption))
+        .accessibilityElement(children: .combine)
     }
-}
 
-private struct MacroBarRow: View {
-    let label: String
-    let grams: Double
-    let fraction: Double
-    let tint: Color
-    /// Draw-on stagger, in seconds.
-    let delay: Double
-
-    var body: some View {
-        HStack(spacing: Theme.Spacing.m) {
-            Text(label)
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(Theme.aubergineMuted)
-                .frame(width: 58, alignment: .leading)
-            ProgressBar(value: fraction, tint: tint, height: 6, drawOnDelay: delay)
-            Text("\(Int(grams.rounded())) g")
-                .font(.caption)
+    private var calories: some View {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.xs) {
+            Text(Int(macros.kcal.rounded()).formatted())
+                .font(.system(.title, design: .rounded).weight(.bold))
                 .monospacedDigit()
-                .foregroundStyle(Theme.aubergineMuted)
-                .frame(minWidth: 40, alignment: .trailing)
+                .foregroundStyle(Theme.aubergine)
+                .contentTransition(.numericText())
+            if let goal {
+                Text("/ \(goal.formatted()) kcal")
+            } else {
+                Text("kcal")
+            }
         }
+        .fixedSize(horizontal: true, vertical: false)
+        .foregroundStyle(Theme.aubergineMuted)
+    }
+
+    private var summary: some View {
+        Text(caption)
+            .font(.caption)
+            .foregroundStyle(Theme.aubergineMuted)
     }
 }
 
-#Preview("Macros card") {
+#Preview {
     MacrosCard(macros: Macros(kcal: 540, protein: 34, carbs: 52, fat: 19, fiber: 7))
         .padding()
         .creamBackground()

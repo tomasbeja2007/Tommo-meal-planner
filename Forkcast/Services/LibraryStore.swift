@@ -10,6 +10,9 @@ final class LibraryStore {
     let context: ModelContext
     private(set) var savedIds: [String] = []
     private(set) var ratings: [String: FeedbackRating] = [:]
+    private(set) var cookedIds: Set<String> = []
+    private(set) var favorites: Set<String> = []
+    private(set) var collections: [RecipeCollection] = []
     private(set) var stars: [String: Int] = [:]
 
     init(context: ModelContext) {
@@ -28,13 +31,21 @@ final class LibraryStore {
         let feedback: [RecipeFeedback] = (try? context.fetch(FetchDescriptor<RecipeFeedback>(sortBy: [SortDescriptor(\RecipeFeedback.date, order: .forward)]))) ?? []
         var newRatings: [String: FeedbackRating] = [:]
         var newStars: [String: Int] = [:]
+        var newFavorites: Set<String> = []
         for item in feedback {
             // Latest wins.
-            if let rating = item.rating { newRatings[item.recipeId] = rating }
-            if item.stars > 0 { newStars[item.recipeId] = item.stars }
+            newRatings[item.recipeId] = item.rating
+            newStars[item.recipeId] = item.stars > 0 ? item.stars : nil
+            if item.isFavorite { newFavorites.insert(item.recipeId) }
+            else { newFavorites.remove(item.recipeId) }
         }
         ratings = newRatings
         stars = newStars
+        favorites = newFavorites
+        cookedIds = Set(feedback.filter { $0.cookedAt != nil }.map(\.recipeId))
+        collections = (try? context.fetch(FetchDescriptor<RecipeCollection>(
+            sortBy: [SortDescriptor(\.createdAt)]
+        ))) ?? []
     }
 
     var summary: FeedbackSummary {
@@ -59,6 +70,59 @@ final class LibraryStore {
             for item in existing { context.delete(item) }
             RecipeBehaviorLog.record(.unsaved, recipeId: recipeId, in: context)
         }
+        persist()
+    }
+
+    func recordCooked(_ recipeId: String) {
+        let record = feedbackRecord(for: recipeId)
+        record.cookedAt = Date()
+        record.date = Date()
+        persist()
+    }
+
+    func photo(for recipeId: String) -> Data? {
+        fetchFeedback(recipeId)?.photoData
+    }
+
+    func savePhoto(_ photo: Data?, for recipeId: String) throws {
+        let record = feedbackRecord(for: recipeId)
+        let previous = record.photoData
+        record.photoData = photo
+        do {
+            try context.save()
+        } catch {
+            record.photoData = previous
+            throw error
+        }
+    }
+
+    func toggleFavorite(_ recipeId: String) {
+        let record = feedbackRecord(for: recipeId)
+        record.isFavorite.toggle()
+        record.date = Date()
+        persist()
+    }
+
+    func createCollection(_ title: String) -> String? {
+        let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { return nil }
+        let collection = RecipeCollection(title: name)
+        context.insert(collection)
+        do {
+            try context.save()
+        } catch {
+            context.delete(collection)
+            return nil
+        }
+        reload()
+        return collection.id
+    }
+
+    func toggleRecipe(_ recipeId: String, in collection: RecipeCollection) {
+        var ids = collection.recipeIDs
+        if let index = ids.firstIndex(of: recipeId) { ids.remove(at: index) }
+        else { ids.append(recipeId) }
+        collection.recipeIDs = ids
         persist()
     }
 
@@ -89,13 +153,19 @@ final class LibraryStore {
     }
 
     private func feedbackRecord(for recipeId: String) -> RecipeFeedback {
-        let descriptor = FetchDescriptor<RecipeFeedback>(predicate: #Predicate<RecipeFeedback> { item in item.recipeId == recipeId })
-        if let existing = (try? context.fetch(descriptor))?.first {
-            return existing
-        }
+        if let existing = fetchFeedback(recipeId) { return existing }
         let created = RecipeFeedback(recipeId: recipeId, rating: nil)
         context.insert(created)
         return created
+    }
+
+    private func fetchFeedback(_ recipeId: String) -> RecipeFeedback? {
+        var descriptor = FetchDescriptor<RecipeFeedback>(
+            predicate: #Predicate<RecipeFeedback> { item in item.recipeId == recipeId },
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
+        descriptor.fetchLimit = 1
+        return (try? context.fetch(descriptor))?.first
     }
 
     private func fetchSaved(_ recipeId: String) -> [SavedRecipe] {

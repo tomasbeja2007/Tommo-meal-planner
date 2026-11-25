@@ -11,6 +11,7 @@ struct ProfileView: View {
     @Environment(AppRouter.self) private var router: AppRouter
     @Environment(\.requestReview) private var requestReview: RequestReviewAction
 
+    @State private var showsPantry = false
     @State private var editing: PreferenceKind? = nil
     @State private var isManageShown: Bool = false
     @State private var isRedeemShown: Bool = false
@@ -46,8 +47,34 @@ struct ProfileView: View {
                 subscriptionSection
                 if let profile = profileStore.profile {
                     PreferencesSection(profile: profile) { editing = $0 }
+                    Section {
+                        Button { showsPantry = true } label: {
+                            Label("Select ingredients", systemImage: "basket")
+                        }
+                    } header: {
+                        Text("Pantry")
+                    } footer: {
+                        Text("Ingredients you have are excluded from this week's grocery list.")
+                    }
+                    .listRowBackground(Theme.card)
                     NotificationsSection(profile: profile)
                 }
+                Section("Meal plan") {
+                    Button("Plan my week", systemImage: "calendar") {
+                        router.selectedTab = .plan
+                        router.planPath = NavigationPath()
+                        if planStore.hasPlan {
+                            router.gate(isPro: subscriptions.hasProAccess) { router.isWeekEditorPresented = true }
+                        } else {
+                            Task { await planStore.generatePlan() }
+                        }
+                    }
+                    Button(role: .destructive) { confirm = .resetPlan } label: {
+                        Label("Reset my current meal plan", systemImage: "trash")
+                    }
+                        .disabled(!planStore.hasPlan)
+                }
+                .listRowBackground(Theme.card)
                 supportSection
                 legalSection
                 dangerSection
@@ -56,8 +83,9 @@ struct ProfileView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Theme.cream.ignoresSafeArea())
-            .navigationTitle(String(localized: "You"))
+            .navigationTitle(String(localized: "Profile"))
         }
+        .sheet(isPresented: $showsPantry) { PantryEditorSheet(initial: planStore.currentOnHand) }
         .sheet(item: $editing) { kind in
             PreferenceEditorSheet(kind: kind)
         }
@@ -153,7 +181,6 @@ struct ProfileView: View {
 
     private var dangerSection: some View {
         Section {
-            Button(String(localized: "Reset this week's plan")) { confirm = .resetPlan }
             Button(String(localized: "Start over")) { confirm = .startOver }
             Button(String(localized: "Delete all my data"), role: .destructive) { confirm = .deleteAll }
         } header: {
@@ -217,6 +244,12 @@ private struct ProfileCard: View {
                     .foregroundStyle(Theme.aubergine)
                     .submitLabel(.done)
                     .onSubmit { profileStore.save() }
+                if let email = profile.appleEmail {
+                    Text(email)
+                        .font(.subheadline)
+                        .foregroundStyle(Theme.aubergineMuted)
+                        .textSelection(.enabled)
+                }
                 Text("shopping at \(profileStore.storeName)")
                     .font(.subheadline)
                     .foregroundStyle(Theme.aubergineMuted)
@@ -259,3 +292,36 @@ private struct FooterView: View {
 }
 
 #Preview { ProfileView().previewEnvironment() }
+
+struct PantryEditorSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(PlanStore.self) private var planStore: PlanStore
+    @Environment(ProfileStore.self) private var profileStore: ProfileStore
+    @State private var selection: Set<String>
+
+    init(initial: Set<String>) {
+        _selection = State(initialValue: initial)
+    }
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                PantryPicker(selection: $selection, unitSystem: profileStore.unitSystem)
+                    .padding(Theme.Spacing.gutter)
+            }
+            .scrollDismissesKeyboard(.interactively)
+            .background(Theme.cream.ignoresSafeArea())
+            .navigationTitle("Pantry")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") {
+                        planStore.updatePantry(selection)
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}

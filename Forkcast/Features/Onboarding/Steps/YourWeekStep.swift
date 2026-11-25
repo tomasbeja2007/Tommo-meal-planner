@@ -6,28 +6,29 @@ import ForkcastCore
 struct YourWeekStep: View {
     @Bindable var state: OnboardingState
     let onContinue: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "your week"),
-            subtitle: String(localized: "which meals and which days should we plan?"),
+            title: String(localized: "Which days are you cooking?"),
+            subtitle: String(localized: "We'll only plan meals for the days you pick."),
+            buttonTitle: String(localized: "Next"),
             isButtonEnabled: !state.cookingDays.isEmpty && !state.mealTypes.isEmpty,
             onContinue: onContinue
         ) {
             VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+                CookingDaysEditor(days: $state.cookingDays, showsSummary: false, showsConnectors: state.mealPrepMode, prepEdges: $state.mealPrepEdges)
+                Text(daysLine)
+                    .font(.system(.subheadline, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .contentTransition(.numericText())
+                    .animation(reduceMotion ? nil : Theme.Motion.update, value: state.cookingDays.count)
+                    .frame(maxWidth: .infinity)
+                MealPrepToggle(isOn: $state.mealPrepMode)
                 section(String(localized: "Meals")) {
                     MealTypePicker(selection: $state.mealTypes)
                         .onChange(of: state.mealTypes) { _, _ in state.refreshSuggestedBudget(catalog: .bundled) }
                 }
-                section(String(localized: "Days")) {
-                    CookingDaysEditor(days: $state.cookingDays, showsSummary: false)
-                }
-                Text(mealsLine)
-                    .font(.system(.title3, design: .rounded).weight(.bold))
-                    .foregroundStyle(Theme.aubergine)
-                    .contentTransition(.numericText())
-                    .animation(Theme.spring, value: state.mealsPerWeek)
-                    .frame(maxWidth: .infinity)
                 section(String(localized: "Weeknight cooking time")) {
                     FlowLayout(spacing: 8) {
                         ForEach(CookTimeOption.allCases) { option in
@@ -37,18 +38,14 @@ struct YourWeekStep: View {
                         }
                     }
                 }
-                MealPrepToggle(isOn: $state.mealPrepMode)
             }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: state.mealPrepMode)
         }
     }
 
-    /// "That's 10 meals a week" (or "5 dinners a week" when it's dinners only).
-    private var mealsLine: String {
-        let count: Int = state.mealsPerWeek
-        if state.mealTypes == [.dinner] {
-            return count == 1 ? String(localized: "That's 1 dinner a week") : String(localized: "That's \(count) dinners a week")
-        }
-        return count == 1 ? String(localized: "That's 1 meal a week") : String(localized: "That's \(count) meals a week")
+    private var daysLine: String {
+        let count = state.cookingDays.count
+        return count == 1 ? String(localized: "Planning 1 day this week") : String(localized: "Planning \(count) days this week")
     }
 
     private func section<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
@@ -61,20 +58,19 @@ struct YourWeekStep: View {
     }
 }
 
-/// "Meal prep mode" with a NEW badge: leans the plan towards dinners that keep well.
-private struct MealPrepToggle: View {
+/// Explains how adjacent cooking days can share a batch.
+struct MealPrepToggle: View {
     @Binding var isOn: Bool
 
     var body: some View {
         Toggle(isOn: $isOn) {
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: Theme.Spacing.s) {
-                    Text("Meal prep mode")
+                    Label("Meal Prep Mode", systemImage: "frying.pan")
                         .font(.system(.body, design: .rounded).weight(.semibold))
                         .foregroundStyle(Theme.aubergine)
-                    TagLabel(text: String(localized: "NEW"), tint: Color.white, fill: Theme.tomato)
                 }
-                Text("Cook once, eat twice. We'll favour dinners that keep well.")
+                Text(isOn ? "Tap + between days to share meals. Tap a link to split them. Up to 5 days." : "Cook once, eat it for 2–5 days.")
                     .font(.subheadline)
                     .foregroundStyle(Theme.aubergineMuted)
                     .fixedSize(horizontal: false, vertical: true)

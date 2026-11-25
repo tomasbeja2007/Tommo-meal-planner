@@ -1,18 +1,23 @@
+import ForkcastCore
 import SwiftUI
 
 /// User-added items at the top of the list.
 struct ExtrasSection: View {
-    let onAdd: () -> Void
+    var listID: String? = nil
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(PlanStore.self) private var planStore: PlanStore
 
     var body: some View {
         Section {
-            ForEach(planStore.extras) { extra in
+            ForEach(planStore.extras(for: listID)) { extra in
                 Button {
-                    withAnimation(Theme.spring) { planStore.toggleExtra(extra) }
+                    withAnimation(Theme.motion(reduceMotion)) { planStore.toggleExtra(extra) }
                 } label: {
                     HStack(spacing: Theme.Spacing.m) {
                         CheckCircle(isChecked: extra.isChecked)
+                        if let ingredientID = extra.ingredientID {
+                            IngredientThumbnail(ingredientID: ingredientID, showsBackground: false)
+                        }
                         VStack(alignment: .leading, spacing: 2) {
                             Text(extra.name)
                                 .font(.system(.body, design: .rounded).weight(.semibold))
@@ -29,6 +34,8 @@ struct ExtrasSection: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+                .sensoryFeedback(.selection, trigger: extra.isChecked)
+                .accessibilityAddTraits(extra.isChecked ? .isSelected : [])
                 .listRowBackground(Theme.card)
                 .swipeActions {
                     Button(role: .destructive) {
@@ -38,15 +45,8 @@ struct ExtrasSection: View {
                     }
                 }
             }
-            Button(action: onAdd) {
-                Label(String(localized: "Add item"), systemImage: "plus")
-                    .font(.system(.body, design: .rounded).weight(.semibold))
-                    .foregroundStyle(Theme.tomato)
-                    .frame(minHeight: 44)
-            }
-            .listRowBackground(Theme.card)
         } header: {
-            Text("Extras")
+            Text(listID == nil ? "Extras" : "Items")
                 .font(.system(.subheadline, design: .rounded).weight(.bold))
                 .foregroundStyle(Theme.aubergine)
                 .textCase(nil)
@@ -56,6 +56,7 @@ struct ExtrasSection: View {
 
 /// Name + optional quantity.
 struct AddExtraSheet: View {
+    var listID: String? = nil
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(\.dismiss) private var dismiss: DismissAction
     @State private var name: String = ""
@@ -90,7 +91,7 @@ struct AddExtraSheet: View {
 
     private func save() {
         guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-        planStore.addExtra(name: name, quantity: quantity)
+        planStore.addExtra(name: name, quantity: quantity, to: listID)
         dismiss()
     }
 }

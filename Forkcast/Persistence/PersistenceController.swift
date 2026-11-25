@@ -12,9 +12,11 @@ enum PersistenceController {
         PlannedMeal.self,
         GroceryCheck.self,
         ExtraGroceryItem.self,
+        GroceryCollection.self,
         RecipeFeedback.self,
         RecipeBehavior.self,
         SavedRecipe.self,
+        RecipeCollection.self,
         UserRecipe.self,
         UserRecipeIngredient.self
     ])
@@ -76,9 +78,11 @@ enum PersistenceController {
             try context.delete(model: GroceryCheck.self)
             try context.delete(model: WeekPlan.self)
             try context.delete(model: ExtraGroceryItem.self)
+            try context.delete(model: GroceryCollection.self)
             try context.delete(model: RecipeBehavior.self)
             try context.delete(model: RecipeFeedback.self)
             try context.delete(model: SavedRecipe.self)
+            try context.delete(model: RecipeCollection.self)
             try context.delete(model: UserRecipeIngredient.self)
             try context.delete(model: UserRecipe.self)
             try context.delete(model: UserProfile.self)

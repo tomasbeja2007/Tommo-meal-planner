@@ -20,7 +20,7 @@ struct AddToPlanSheet: View {
                 let existing: PlannedMeal? = planStore.meal(on: day, type: recipe.mealType)
                 Button {
                     if let existing {
-                        planStore.swap(existing, to: recipe.id)
+                        planStore.swap(existing, to: recipe.id, servings: servings)
                     } else {
                         planStore.addMeal(recipeId: recipe.id, on: day, servings: servings)
                     }

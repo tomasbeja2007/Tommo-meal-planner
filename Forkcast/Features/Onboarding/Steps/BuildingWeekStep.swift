@@ -89,6 +89,9 @@ struct BuildingWeekStep: View {
         started = true
         profileStore.createProfile(from: state, markComplete: false)
         await planStore.generatePlan()
+        if planStore.currentPlanIsSaved, let plan = planStore.currentPlan {
+            profileStore.recordOnboardingPlan(plan)
+        }
         guard !Task.isCancelled else { return }
         notifications.apply(profile: profileStore.profile)
         onFinished()

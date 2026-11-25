@@ -33,11 +33,22 @@ final class PlanStore {
     let profileStore: ProfileStore
 
     private(set) var currentPlan: WeekPlan?
+    private(set) var currentPlanIsSaved = false
     private(set) var groceryList: GroceryList = .empty
     /// Cost per meal, aligned with `meals`.
     private(set) var mealCosts: [Double] = []
     private(set) var checkedKeys: Set<String> = []
-    private(set) var extras: [ExtraGroceryItem] = []
+    static let usualsListID = "usuals"
+    private var allExtras: [ExtraGroceryItem] = []
+    private(set) var groceryCollections: [GroceryCollection] = []
+    private var basketPortions: [MealPortion] = []
+    private(set) var recipesByGroceryKey: [String: [Recipe]] = [:]
+
+    var extras: [ExtraGroceryItem] { extras(for: nil) }
+
+    func extras(for listID: String?) -> [ExtraGroceryItem] {
+        allExtras.filter { $0.listID == listID }
+    }
     private(set) var isGenerating: Bool = false
     /// Bumped on every change so views can animate.
     private(set) var revision: Int = 0
@@ -55,11 +66,15 @@ final class PlanStore {
     // MARK: - Loading
 
     func reload() {
-        var descriptor = FetchDescriptor<WeekPlan>(sortBy: [SortDescriptor(\WeekPlan.weekStartDate, order: .reverse)])
+        var descriptor = FetchDescriptor<WeekPlan>(sortBy: [SortDescriptor(\WeekPlan.weekStartDate, order: .reverse), SortDescriptor(\WeekPlan.createdAt, order: .reverse)])
         descriptor.fetchLimit = 1
         currentPlan = (try? context.fetch(descriptor))?.first
+        currentPlanIsSaved = currentPlan != nil
         let extrasDescriptor = FetchDescriptor<ExtraGroceryItem>(sortBy: [SortDescriptor(\ExtraGroceryItem.createdAt, order: .forward)])
-        extras = (try? context.fetch(extrasDescriptor)) ?? []
+        allExtras = (try? context.fetch(extrasDescriptor)) ?? []
+        groceryCollections = (try? context.fetch(FetchDescriptor<GroceryCollection>(
+            sortBy: [SortDescriptor(\.createdAt)]
+        ))) ?? []
         recompute()
     }
 
@@ -91,7 +106,7 @@ final class PlanStore {
 
     /// The meals of one type on a day (usually one).
     func meals(on date: Date, type: MealType) -> [PlannedMeal] {
-        meals(on: date).filter { $0.mealType == type }
+        meals(on: date).filter { !$0.isSide && $0.mealType == type }
     }
 
     /// The first meal of a type on a day (dinner by default).
@@ -101,7 +116,7 @@ final class PlanStore {
 
     /// Meal types the Plan tab shows: the ones the user plans, plus any already in this week's plan.
     var plannedMealTypes: [MealType] {
-        MealType.ordered(profileStore.mealTypes.union(meals.map { $0.mealType }))
+        MealType.ordered(profileStore.mealTypes.union(meals.filter { !$0.isSide }.map(\.mealType)))
     }
 
     /// True when only dinners are planned (the Plan tab then shows one card per day, as before).
@@ -128,6 +143,14 @@ final class PlanStore {
                                         batchWithMealIndex: batchIndex))
             indexMap.append(index)
         }
+        basketPortions = portions
+        var associations: [String: [Recipe]] = [:]
+        var seenRecipes: Set<String> = []
+        for portion in portions where seenRecipes.insert(portion.recipe.id).inserted {
+            let keys = Set(portion.recipe.ingredients.map { GroceryAggregator.ingredientKey($0, catalog: catalog) })
+            for key in keys { associations[key, default: []].append(portion.recipe) }
+        }
+        recipesByGroceryKey = associations
         let list: GroceryList = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem, onHand: currentOnHand)
         var costs: [Double] = Array(repeating: 0, count: current.count)
         for (position, index) in indexMap.enumerated() where position < list.mealCosts.count {
@@ -141,6 +164,23 @@ final class PlanStore {
         }
         checkedKeys = checked
         revision += 1
+    }
+
+    /// Store comparisons use the same recipes, portions, and pantry as the main list.
+    func estimatedBasket(for store: Store) -> GroceryEstimate? {
+        let priced = GroceryAggregator.aggregate(
+            meals: basketPortions, catalog: catalog, pricing: PriceContext(country: profileStore.country, store: store),
+            unitSystem: profileStore.unitSystem, onHand: currentOnHand
+        )
+        return completeEstimate(for: priced)
+    }
+
+    var basketEstimate: GroceryEstimate? { completeEstimate(for: groceryList) }
+
+    private func completeEstimate(for list: GroceryList) -> GroceryEstimate? {
+        guard !basketPortions.isEmpty, list.allItems.allSatisfy(\.hasPrice),
+              list.pantryStaples.allSatisfy({ $0.hasPrice || $0.cost == 0 }) else { return nil }
+        return GroceryEstimate(list.total)
     }
 
     // MARK: - Generating
@@ -173,7 +213,17 @@ final class PlanStore {
         return Set(answers.pantry)
     }
 
-    private var currentOnHand: Set<String> {
+    func updatePantry(_ ingredients: Set<String>) {
+        guard let profile = profileStore.profile else { return }
+        var answers = profile.onboardingAnswers
+        answers.pantry = ingredients.sorted()
+        answers.pantryWeekStart = ingredients.isEmpty ? nil : currentPlan?.weekStartDate ?? WeekMath.gregorian.startOfDay(for: Date())
+        profile.onboardingAnswers = answers
+        profileStore.save()
+        recompute()
+    }
+
+    var currentOnHand: Set<String> {
         onHand(forWeekStarting: currentPlan?.weekStartDate ?? Date())
     }
 
@@ -260,7 +310,7 @@ final class PlanStore {
         let liked: Set<String> = library.summary.liked
         var locked: [Int: LockedMeal] = [:]
         var keepMeals: [PlannedMeal] = []
-        for meal in plan.sortedMeals {
+        for meal in plan.sortedMeals where !meal.isSide {
             let keep: Bool = keepCookedAndLiked && (meal.isCooked || liked.contains(meal.recipeId))
             if keep, let slot = slots.first(where: { WeekMath.gregorian.isDate($0.date, inSameDayAs: meal.date) && $0.mealType == meal.mealType && locked[$0.index] == nil }) {
                 locked[slot.index] = LockedMeal(recipeId: meal.recipeId, servings: meal.servings)
@@ -295,7 +345,11 @@ final class PlanStore {
                   let recipe = recipe(for: meal) else { return false }
             return planner.passesHardFilters(recipe, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: true)
         }
-        let keepIds = Set(keptBySlot.values.map(\.persistentModelID)).union(offSchedule.map(\.persistentModelID))
+        let sides = (plan.meals ?? []).filter { meal in
+            guard meal.isSide, let recipe = recipe(for: meal) else { return false }
+            return planner.passesHardFilters(recipe, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: true)
+        }
+        let keepIds = Set((Array(keptBySlot.values) + offSchedule + sides).map(\.persistentModelID))
         for meal in plan.meals ?? [] where !keepIds.contains(meal.persistentModelID) {
             unlinkBatch(containing: meal)
             context.delete(meal)
@@ -338,9 +392,8 @@ final class PlanStore {
         guard let sourceId = meal.leftoversFromMealID else { return nil }
         return (meal.weekPlan?.meals ?? []).first {
             let calendar = WeekMath.gregorian
-            guard $0.plannerMealID == sourceId, $0.recipeId == meal.recipeId,
-                  let next = calendar.date(byAdding: .day, value: 1, to: $0.date) else { return false }
-            return calendar.isDate(next, inSameDayAs: meal.date)
+            return $0.plannerMealID == sourceId && $0.recipeId == meal.recipeId && $0.mealType == meal.mealType
+                && (1...4).contains(calendar.dateComponents([.day], from: $0.date, to: meal.date).day ?? 0)
         }
     }
 
@@ -399,8 +452,14 @@ final class PlanStore {
         return newTotal - total
     }
 
-    func swap(_ meal: PlannedMeal, to recipeId: String) {
-        guard meal.recipeId != recipeId else { return }
+    func swap(_ meal: PlannedMeal, to recipeId: String, servings: Double? = nil) {
+        if meal.recipeId == recipeId {
+            guard let servings, servings != meal.servings else { return }
+            unlinkBatch(containing: meal)
+            meal.servings = servings
+            saveAndRefresh()
+            return
+        }
         let id = meal.ensurePlannerMealID()
         RecipeBehaviorLog.record(.swappedAway, recipeId: meal.recipeId, in: context, mealID: id)
         RecipeBehaviorLog.record(.chosenAsSwap, recipeId: recipeId, in: context, mealID: id)
@@ -409,6 +468,7 @@ final class PlanStore {
         meal.plannerMealID = nil
         RecipeBehaviorLog.record(.planned, recipeId: recipeId, in: context, mealID: meal.ensurePlannerMealID())
         meal.recipeId = recipeId
+        if let servings { meal.servings = servings }
         meal.userRecipe = repository.userRecipeModel(id: recipeId)
         meal.isCooked = false
         meal.cookedAt = nil
@@ -416,11 +476,12 @@ final class PlanStore {
     }
 
     /// Adds a meal to a day. The meal type defaults to the recipe's own (a breakfast recipe lands as breakfast).
-    func addMeal(recipeId: String, on date: Date, servings: Double? = nil, mealType: MealType? = nil) {
+    func addMeal(recipeId: String, on date: Date, servings: Double? = nil, mealType: MealType? = nil, isSide: Bool = false) {
         guard let plan = currentPlan ?? createEmptyPlan() else { return }
         let type: MealType = mealType ?? repository.recipe(id: recipeId)?.mealType ?? .dinner
         let meal = PlannedMeal(date: WeekMath.gregorian.startOfDay(for: date), recipeId: recipeId, servings: servings ?? profileStore.defaultServings, orderIndex: meals.count, mealType: type)
         meal.userRecipe = repository.userRecipeModel(id: recipeId)
+        meal.isSide = isSide
         meal.weekPlan = plan
         context.insert(meal)
         RecipeBehaviorLog.record(.planned, recipeId: meal.recipeId, in: context, mealID: meal.ensurePlannerMealID())
@@ -498,7 +559,7 @@ final class PlanStore {
     func applyEdit(rows: [EditableMeal?], for type: MealType = .dinner) {
         guard let plan = currentPlan else { return }
         let days: [Date] = weekDays
-        let existing = (plan.meals ?? []).filter { $0.mealType == type }
+        let existing = (plan.meals ?? []).filter { !$0.isSide && $0.mealType == type }
         var byID: [UUID: PlannedMeal] = [:]
         for meal in existing { byID[meal.ensurePlannerMealID()] = meal }
         var retained: Set<UUID> = []
@@ -586,12 +647,27 @@ final class PlanStore {
         return !items.isEmpty && items.allSatisfy { checkedKeys.contains($0.key) } && extras.allSatisfy { $0.isChecked }
     }
 
-    func addExtra(name: String, quantity: String) {
+    func addExtra(name: String, quantity: String, to listID: String? = nil) {
         let trimmed: String = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
-        context.insert(ExtraGroceryItem(name: trimmed, quantityText: quantity.trimmingCharacters(in: .whitespacesAndNewlines)))
+        context.insert(ExtraGroceryItem(name: trimmed, quantityText: quantity.trimmingCharacters(in: .whitespacesAndNewlines), listID: listID))
         try? context.save()
         reload()
+    }
+
+    func createGroceryCollection(_ title: String) -> String? {
+        let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { return nil }
+        let collection = GroceryCollection(title: name)
+        context.insert(collection)
+        do {
+            try context.save()
+        } catch {
+            context.delete(collection)
+            return nil
+        }
+        reload()
+        return collection.id
     }
 
     func toggleExtra(_ item: ExtraGroceryItem) {
@@ -606,25 +682,27 @@ final class PlanStore {
     }
 
     /// Adds every ingredient of a recipe (not in the plan) to Extras.
-    func addRecipeToExtras(_ recipe: Recipe, servings: Double) {
+    func addRecipeToExtras(_ recipe: Recipe, servings: Double, to listID: String? = nil) {
         let scale: Double = servings / Double(max(1, recipe.baseServings))
         for item in recipe.ingredients {
             let ingredient: Ingredient? = item.ingredientId.flatMap { catalog.ingredient(id: $0) }
-            if ingredient?.isPantryStaple == true { continue }
+            if listID == nil, let ingredient, ingredient.isPantryStaple || currentOnHand.contains(ingredient.id) { continue }
             let name: String = ingredient?.displayName(for: profileStore.unitSystem) ?? item.name ?? ""
             let quantity: String = QuantityFormatter.string(amount: item.amount * scale, unit: item.unit, system: profileStore.unitSystem, ingredient: ingredient)
-            context.insert(ExtraGroceryItem(name: name.capitalizedFirst, quantityText: quantity))
+            guard !name.isEmpty else { continue }
+            context.insert(ExtraGroceryItem(name: name.capitalizedFirst, quantityText: quantity, listID: listID, ingredientID: ingredient?.id))
         }
         try? context.save()
         reload()
     }
 
-    func shareText(title: String) -> String {
+    func shareText(title: String, listID: String? = nil) -> String {
         GroceryTextExporter.plainText(
-            list: groceryList,
+            list: listID == nil ? groceryList : .empty,
             title: title,
-            checkedKeys: checkedKeys,
-            extras: extras.map { (name: $0.name, quantity: $0.quantityText, checked: $0.isChecked) },
+            checkedKeys: listID == nil ? checkedKeys : [],
+            extras: extras(for: listID).map { (name: $0.name, quantity: $0.quantityText, checked: $0.isChecked) },
+            includesEstimate: listID == nil && basketEstimate != nil,
             formatMoney: { [profileStore] amount in profileStore.formatMoney(amount) }
         )
     }
@@ -634,7 +712,9 @@ final class PlanStore {
     func saveAndRefresh(widget: Bool = true) {
         do {
             try context.save()
+            currentPlanIsSaved = currentPlan != nil
         } catch {
+            currentPlanIsSaved = false
             PersistenceController.logger.error("Plan save failed: \(String(describing: error), privacy: .public)")
         }
         recompute()

@@ -8,6 +8,7 @@ struct PreferenceEditorSheet: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(\.dismiss) private var dismiss: DismissAction
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var state: OnboardingState = OnboardingState()
     @State private var unitChoice: String = "auto"
@@ -61,7 +62,11 @@ struct PreferenceEditorSheet: View {
             QuestionHeader(title: String(localized: "which meals should we plan?"), subtitle: String(localized: "on every cooking day. Your budget covers them all."))
             MealTypePicker(selection: $state.mealTypes)
         case .cookingDays:
-            CookingDaysEditor(days: $state.cookingDays)
+            VStack(spacing: Theme.Spacing.l) {
+                CookingDaysEditor(days: $state.cookingDays, showsSummary: false, showsConnectors: state.mealPrepMode, prepEdges: $state.mealPrepEdges)
+                MealPrepToggle(isOn: $state.mealPrepMode)
+            }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: state.mealPrepMode)
         case .budget:
             BudgetEditor(budget: $state.budget, country: state.country(in: FoodCatalog.bundled), portions: state.portions, days: state.cookingDays.count, mealTypes: state.mealTypes)
         case .vibes:
@@ -71,7 +76,7 @@ struct PreferenceEditorSheet: View {
         case .nutrition:
             NutritionTargetEditor(target: $state.nutritionTarget)
         case .allergies:
-            QuestionHeader(title: String(localized: "any allergies?"), subtitle: String(localized: "we'll never include these, and that includes hidden sources."))
+            QuestionHeader(title: String(localized: "any allergies?"), subtitle: String(localized: "Exclude recipes tagged with the allergens you select."))
             AllergyPicker(selection: $state.allergens, noAllergies: $state.noAllergies)
         case .dislikes:
             DislikesPicker(selection: $state.dislikes, unitSystem: profileStore.unitSystem)
@@ -112,7 +117,7 @@ struct PreferenceEditorSheet: View {
                 // Shops from another country no longer apply; `apply` falls back to "My local store".
                 state.keepOnlyStores(availableIn: state.countryId, catalog: FoodCatalog.bundled)
             }
-            state.apply(to: profile)
+            state.apply(to: profile, updateMealPrep: kind == .cookingDays)
         }
         profileStore.save()
         planStore.recompute()

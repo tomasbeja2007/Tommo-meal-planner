@@ -20,6 +20,17 @@ final class AppRouter {
     var youPath = NavigationPath()
 
     var isPaywallPresented: Bool = false
+    var isWeekEditorPresented = false
+
+    var isAtTabRoot: Bool {
+        switch selectedTab {
+        case .plan: return planPath.isEmpty
+        case .groceries: return groceriesPath.isEmpty
+        case .recipes: return recipesPath.isEmpty
+        case .you: return youPath.isEmpty
+        }
+    }
+
     /// Shown once, when the user lands on their first plan.
     var showPlanReveal: Bool = false
     /// Recipe opened from a deep link (widget tap).

@@ -119,7 +119,8 @@ final class ProfileStore {
             preferredCuisines: answers.preferredCuisines,
             goals: Set(profile.goals.compactMap(PlannerGoal.init(rawValue:))),
             obstacles: Set(answers.obstacles.compactMap(PlannerObstacle.init(rawValue:))),
-            children: profile.householdKids
+            children: profile.householdKids,
+            mealPrepEdges: answers.mealPrepEdges.map { answers.mealPrepMode ? Set($0) : [] }
         )
     }
 
@@ -138,13 +139,21 @@ final class ProfileStore {
             target = UserProfile()
             context.insert(target)
         }
-        state.apply(to: target)
+        state.apply(to: target, updatePantry: true, updateMealPrep: true)
         if markComplete {
             target.onboardingCompletedAt = Date()
         }
         save()
         profile = target
         return target
+    }
+
+    func attachAppleAccount(userId: String, givenName: String?, email: String?) {
+        guard let profile else { return }
+        if profile.appleUserId != userId || email != nil { profile.appleEmail = email }
+        profile.appleUserId = userId
+        if profile.name.isEmpty, let givenName { profile.name = givenName }
+        save()
     }
 
     func save() {
@@ -155,7 +164,15 @@ final class ProfileStore {
         }
     }
 
-    /// Called when the "building your week" loader finishes.
+    func recordOnboardingPlan(_ plan: WeekPlan) {
+        guard let profile else { return }
+        var answers = profile.onboardingAnswers
+        answers.generatedPlanCreatedAt = plan.createdAt
+        profile.onboardingAnswers = answers
+        save()
+    }
+
+    /// Called when the user leaves the welcome summary.
     func completeOnboarding() {
         profile?.onboardingCompletedAt = Date()
         save()
@@ -163,7 +180,11 @@ final class ProfileStore {
 
     /// "Start over": re-run onboarding, keep everything else.
     func resetOnboarding() {
-        profile?.onboardingCompletedAt = nil
+        guard let profile else { return }
+        var answers = profile.onboardingAnswers
+        answers.generatedPlanCreatedAt = nil
+        profile.onboardingAnswers = answers
+        profile.onboardingCompletedAt = nil
         save()
     }
 

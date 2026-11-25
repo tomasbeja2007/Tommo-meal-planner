@@ -76,6 +76,7 @@ struct QuestionHeader: View {
 /// Back chevron + spring progress bar + optional "Skip", above every question.
 struct OnboardingTopBar: View {
     let progress: Double
+    var stepDescription: String? = nil
     let canGoBack: Bool
     var onSkip: (() -> Void)? = nil
     let onBack: () -> Void
@@ -95,8 +96,10 @@ struct OnboardingTopBar: View {
             .opacity(canGoBack ? 1 : 0)
             .disabled(!canGoBack)
             .accessibilityLabel(Text("Back"))
-            ProgressBar(value: progress, tint: Theme.tomato, height: 8)
-                .animation(Theme.motion(reduceMotion), value: progress)
+            ProgressBar(value: progress, tint: Theme.tomato, height: 6)
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.24), value: progress)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text(stepDescription ?? String(localized: "Progress")))
             if let onSkip {
                 Button(String(localized: "Skip"), action: onSkip)
                     .buttonStyle(QuietButtonStyle())

@@ -43,6 +43,7 @@ final class UserProfile {
     var weeklyReminderHour: Int = 10
     var trialReminderDaysBefore: Int = 1
     var appleUserId: String? = nil
+    var appleEmail: String? = nil
     var includeUserRecipesInPlans: Bool = true
     /// `OnboardingAnswers` as JSON (obstacles, pantry, meal prep, extra diets…).
     var onboardingAnswersJSON: String = ""
@@ -163,6 +164,7 @@ final class WeekPlan {
             let lhsDay: Date = calendar.startOfDay(for: lhs.date)
             let rhsDay: Date = calendar.startOfDay(for: rhs.date)
             if lhsDay != rhsDay { return lhsDay < rhsDay }
+            if lhs.isSide != rhs.isSide { return !lhs.isSide }
             if lhs.mealType != rhs.mealType { return lhs.mealType < rhs.mealType }
             return lhs.orderIndex < rhs.orderIndex
         }
@@ -180,6 +182,7 @@ final class PlannedMeal {
     var recipeId: String = ""
     var servings: Double = 2
     var orderIndex: Int = 0
+    var isSide: Bool = false
     var isCooked: Bool = false
     var cookedAt: Date? = nil
     var weekPlan: WeekPlan? = nil
@@ -225,15 +228,28 @@ final class GroceryCheck {
 }
 
 @Model
+final class GroceryCollection {
+    var id: String = UUID().uuidString
+    var title: String = ""
+    var createdAt: Date = Date()
+
+    init(title: String) { self.title = title }
+}
+
+@Model
 final class ExtraGroceryItem {
     var name: String = ""
     var quantityText: String = ""
+    var listID: String? = nil
+    var ingredientID: String? = nil
     var isChecked: Bool = false
     var createdAt: Date = Date()
 
-    init(name: String, quantityText: String) {
+    init(name: String, quantityText: String, listID: String? = nil, ingredientID: String? = nil) {
         self.name = name
         self.quantityText = quantityText
+        self.listID = listID
+        self.ingredientID = ingredientID
         self.createdAt = Date()
     }
 }
@@ -245,6 +261,9 @@ final class RecipeFeedback {
     var ratingRaw: String? = nil
     /// 0 = no stars, otherwise 1...5.
     var stars: Int = 0
+    var isFavorite: Bool = false
+    var cookedAt: Date? = nil
+    @Attribute(.externalStorage) var photoData: Data? = nil
     var date: Date = Date()
 
     init(recipeId: String, rating: FeedbackRating?, stars: Int = 0) {
@@ -257,6 +276,24 @@ final class RecipeFeedback {
     var rating: FeedbackRating? {
         get { ratingRaw.flatMap { FeedbackRating(rawValue: $0) } }
         set { ratingRaw = newValue?.rawValue }
+    }
+}
+
+@Model
+final class RecipeCollection {
+    var id: String = UUID().uuidString
+    var title: String = ""
+    var recipeIDsJSON: String = "[]"
+    var createdAt: Date = Date()
+
+    init(title: String) { self.title = title }
+
+    var recipeIDs: [String] {
+        get { (try? JSONDecoder().decode([String].self, from: Data(recipeIDsJSON.utf8))) ?? [] }
+        set {
+            guard let data = try? JSONEncoder().encode(newValue) else { return }
+            recipeIDsJSON = String(decoding: data, as: UTF8.self)
+        }
     }
 }
 

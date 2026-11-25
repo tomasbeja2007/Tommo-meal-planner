@@ -34,6 +34,7 @@ final class OnboardingState {
     /// Meals to plan on every chosen day. Dinner is preselected; at least one is required.
     var mealTypes: Set<MealType> = [.dinner]
     var mealPrepMode: Bool = false
+    var mealPrepEdges: Set<Int> = []
     var extraDiets: Set<ExtraDiet> = []
     var pantry: Set<String> = []
     var requestedStore: String = ""
@@ -70,6 +71,7 @@ final class OnboardingState {
         obstacles = Set(answers.obstacles.compactMap { OnboardingObstacle(rawValue: $0) })
         mealTypes = profile.mealTypes
         mealPrepMode = answers.mealPrepMode
+        mealPrepEdges = Set(answers.mealPrepEdges ?? [])
         extraDiets = Set(answers.extraDiets.compactMap { ExtraDiet(rawValue: $0) })
         pantry = Set(answers.pantry)
         requestedStore = answers.requestedStore ?? ""
@@ -106,7 +108,7 @@ final class OnboardingState {
         budget = BudgetMath.defaultBudget(region: country.regionPriceKey, portions: portions, days: cookingDays.count, multiplier: country.priceMultiplier, mealTypes: mealTypes)
     }
 
-    func apply(to profile: UserProfile) {
+    func apply(to profile: UserProfile, updatePantry: Bool = false, updateMealPrep: Bool = false) {
         profile.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
         profile.goals = goals.sorted()
         profile.maxCookMinutes = maxCookMinutes
@@ -126,10 +128,12 @@ final class OnboardingState {
         profile.trialReminderDaysBefore = trialReminderDaysBefore
         var answers: OnboardingAnswers = profile.onboardingAnswers
         answers.obstacles = OnboardingObstacle.allCases.filter { obstacles.contains($0) }.map { $0.rawValue }
-        answers.mealPrepMode = mealPrepMode
+        if updateMealPrep {
+            answers.mealPrepMode = mealPrepMode
+            answers.mealPrepEdges = mealPrepMode ? mealPrepEdges.sorted() : []
+        }
         answers.extraDiets = ExtraDiet.allCases.filter { extraDiets.contains($0) }.map { $0.rawValue }
-        if answers.pantry.sorted() != pantry.sorted() {
-            // A new pantry answer applies to the week that starts today.
+        if updatePantry {
             answers.pantry = pantry.sorted()
             answers.pantryWeekStart = pantry.isEmpty ? nil : WeekMath.gregorian.startOfDay(for: Date())
         }
@@ -153,22 +157,24 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case dislikes
     case vibes
     case kitchen
+    case store
     case budget
     case pantry
-    case store
+    case savings
+    case catalog
+    case reminders
+    case subscriptions
     // The week
     case building
     case reveal
     // Wrap-up
-    case reminders
-    case trial
     case savePlan
     case home
 
     /// Steps with the top bar (back, progress, skip).
     var showsTopBar: Bool {
         switch self {
-        case .welcome, .building, .reveal, .home: return false
+        case .welcome, .subscriptions, .building, .reveal, .home: return false
         default: return true
         }
     }
@@ -184,16 +190,9 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     /// Once the week is built there's no going back into the questions.
     var canGoBack: Bool {
         switch self {
-        case .welcome, .goals, .building, .reveal, .reminders, .home: return false
+        case .welcome, .building, .reveal, .savePlan, .home: return false
         default: return true
         }
-    }
-
-    /// 0...1 across every step with a top bar.
-    var progress: Double {
-        let counted: [OnboardingStep] = OnboardingStep.allCases.filter { $0.showsTopBar }
-        guard let index = counted.firstIndex(of: self) else { return self.rawValue > OnboardingStep.store.rawValue ? 1 : 0 }
-        return Double(index + 1) / Double(counted.count)
     }
 
     var next: OnboardingStep? { OnboardingStep(rawValue: rawValue + 1) }

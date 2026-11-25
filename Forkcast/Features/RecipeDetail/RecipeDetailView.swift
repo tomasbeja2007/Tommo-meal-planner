@@ -1,4 +1,7 @@
 import SwiftUI
+import PhotosUI
+import ImageIO
+import UIKit
 import ForkcastCore
 
 struct RecipeDetailView: View {
@@ -12,6 +15,7 @@ struct RecipeDetailView: View {
     var body: some View {
         if let recipe = repository.recipe(id: recipeId) {
             RecipeDetailContent(recipe: recipe, plannedMeal: planStore.plannedMeal(for: recipeId, id: plannedMealID))
+                .toolbar(.hidden, for: .tabBar)
         } else {
             EmptyState(title: String(localized: "recipe not found"), message: String(localized: "it may have been deleted."), showsMascot: true)
                 .creamBackground()
@@ -36,7 +40,13 @@ private struct RecipeDetailContent: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(LibraryStore.self) private var library: LibraryStore
 
-    @State private var servings: Int = 2
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var showsListPicker = false
+    @State private var photoItem: PhotosPickerItem?
+    @State private var personalPhoto: UIImage?
+    @State private var photoError = false
+    @State private var loadingPhoto = false
+    @State private var servings: Double = 2
     @State private var showNutritionTotal = false
     @State private var tab: DetailTab = .ingredients
     @State private var displayUnits: UnitSystem?
@@ -48,8 +58,7 @@ private struct RecipeDetailContent: View {
     @State private var isSwapShown: Bool = false
     @State private var isAddToPlanShown: Bool = false
     @State private var isEditShown: Bool = false
-    @State private var isStarsShown: Bool = false
-    @State private var addedToList: Bool = false
+    @State private var addedLists: Set<String> = []
     @State private var didSetServings: Bool = false
 
     private var nutrition: NutritionResult { repository.nutrition(for: recipe) }
@@ -60,9 +69,10 @@ private struct RecipeDetailContent: View {
 
     private var nutritionCaption: String {
         if showNutritionTotal {
+            let count = FractionFormatter.string(servings)
             return nutrition.isManualOverride
-                ? String(localized: "total for \(servings) · based on your entry")
-                : String(localized: "total for \(servings) · estimated")
+                ? String(localized: "total for \(count) · based on your entry")
+                : String(localized: "total for \(count) · estimated")
         }
         return nutrition.isManualOverride
             ? String(localized: "per serving · entered by you")
@@ -72,9 +82,10 @@ private struct RecipeDetailContent: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                DishHeroView(recipe: recipe, height: 260)
+                hero
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    DetailHeader(recipe: recipe, servings: Double(servings), costPerServing: repository.costPerServing(recipe, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem), currencyCode: profileStore.currencyCode, profile: repository.profile(for: recipe))
+                    DetailHeader(recipe: recipe, servings: servings, costPerServing: repository.costPerServing(recipe, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem), currencyCode: profileStore.currencyCode, profile: repository.profile(for: recipe))
+                    actionBar
                     VStack(alignment: .leading, spacing: Theme.Spacing.s) {
                         Picker(String(localized: "Nutrition amounts"), selection: $showNutritionTotal) {
                             Text("Per serving").tag(false)
@@ -82,14 +93,16 @@ private struct RecipeDetailContent: View {
                         }
                         .pickerStyle(.segmented)
                         MacrosCard(
-                            macros: nutrition.macros.scaled(by: showNutritionTotal ? Double(servings) : 1),
+                            macros: nutrition.macros.scaled(by: showNutritionTotal ? servings : 1),
                             caption: nutritionCaption,
-                            note: nutrition.hasIncompleteData ? String(localized: "some ingredients have no nutrition data") : nil
+                            note: nutrition.hasIncompleteData ? String(localized: "Some ingredients have no nutrition data") : nil,
+                            title: showNutritionTotal ? String(localized: "Macros · selected servings") : String(localized: "Macros · your portion")
                         )
                     }
+                    recipeNotes
                     HStack(spacing: 0) {
                         ForEach(DetailTab.allCases) { item in
-                            Button { tab = item } label: {
+                            Button { withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.19)) { tab = item } } label: {
                                 Text(item.title)
                                     .font(.system(.subheadline, design: .rounded).weight(tab == item ? .bold : .medium))
                                     .foregroundStyle(tab == item ? Theme.aubergine : Theme.aubergineMuted)
@@ -109,26 +122,16 @@ private struct RecipeDetailContent: View {
                         IngredientsSection(
                             recipe: recipe,
                             servings: $servings,
-                            maxServings: max(12, Int(plannedServings.rounded(.up))),
+                            maxServings: max(12, plannedServings.rounded(.up)),
                             system: unitSystem,
                             onChangeUnits: { displayUnits = $0 },
-                            isInPlan: plannedMeal != nil,
-                            addedToList: addedToList,
-                            onAddToList: {
-                                planStore.addRecipeToExtras(recipe, servings: Double(servings))
-                                addedToList = true
-                            }
+                            addedToList: !addedLists.isEmpty,
+                            onAddToList: { showsListPicker = true }
                         )
                     } else {
-                        MethodSection(recipe: recipe, servings: Double(servings), system: unitSystem, timer: timer) { isCookModeShown = true }
+                        MethodSection(recipe: recipe, servings: servings, system: unitSystem, timer: timer) { isCookModeShown = true }
                     }
-                    DetailFooter(
-                        recipe: recipe,
-                        plannedMeal: plannedMeal,
-                        onMarkCooked: { isStarsShown = true },
-                        onSwap: { isSwapShown = true },
-                        onAddToPlan: { isAddToPlanShown = true }
-                    )
+                    RecipeVote(recipeID: recipe.id)
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
                 .padding(.top, Theme.Spacing.l)
@@ -148,12 +151,29 @@ private struct RecipeDetailContent: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .animation(Theme.spring, value: timer.isActive)
+        .animation(Theme.motion(reduceMotion), value: timer.isActive)
         .fullScreenCover(isPresented: $isCookModeShown) {
-            CookModeView(recipe: recipe, servings: Double(servings), system: unitSystem, index: $cookStep, timer: timer, isPlanned: plannedMeal != nil) { stars in
+            CookModeView(recipe: recipe, servings: servings, system: unitSystem, index: $cookStep, timer: timer, isPlanned: plannedMeal != nil) { stars in
                 markCooked(stars: stars)
                 cookStep = 0
             }
+        }
+        .confirmationDialog("Add to groceries", isPresented: $showsListPicker, titleVisibility: .visible) {
+            Button(plannedMeal == nil ? "Main list" : "Main list · already planned") { addToGroceries(nil) }
+                .disabled(plannedMeal != nil || addedLists.contains(""))
+            Button("Usuals") { addToGroceries(PlanStore.usualsListID) }
+                .disabled(addedLists.contains(PlanStore.usualsListID))
+            ForEach(planStore.groceryCollections, id: \.id) { list in
+                Button(list.title) { addToGroceries(list.id) }
+                    .disabled(addedLists.contains(list.id))
+            }
+        }
+        .alert("Couldn’t update the recipe photo", isPresented: $photoError) {
+            Button("OK", role: .cancel) {}
+        }
+        .task(id: photoItem) {
+            guard let photoItem else { return }
+            await selectPhoto(photoItem)
         }
         .sheet(isPresented: $isSwapShown) {
             if let plannedMeal {
@@ -161,14 +181,8 @@ private struct RecipeDetailContent: View {
             }
         }
         .sheet(isPresented: $isAddToPlanShown) {
-            AddToPlanSheet(recipe: recipe, servings: Double(servings))
+            AddToPlanSheet(recipe: recipe, servings: servings)
                 .presentationDetents([.medium])
-        }
-        .sheet(isPresented: $isStarsShown) {
-            CookedRatingSheet(recipe: recipe) { stars in
-                markCooked(stars: stars)
-            }
-            .presentationDetents([.height(340)])
         }
         .sheet(isPresented: $isEditShown) {
             if let model = repository.userRecipeModel(id: recipe.id) {
@@ -178,7 +192,8 @@ private struct RecipeDetailContent: View {
         .onAppear {
             guard !didSetServings else { return }
             didSetServings = true
-            servings = max(1, Int(plannedServings.rounded()))
+            personalPhoto = library.photo(for: recipe.id).flatMap { UIImage(data: $0) }
+            servings = max(1, plannedServings)
         }
     }
 
@@ -191,23 +206,175 @@ private struct RecipeDetailContent: View {
                     .tint(Theme.card)
                     .foregroundStyle(Theme.aubergine)
             }
-            Button {
-                library.toggleSaved(recipe.id)
+            Menu {
+                if plannedMeal != nil {
+                    Button("Swap this meal", systemImage: "arrow.triangle.2.circlepath") { isSwapShown = true }
+                }
+                if !library.collections.isEmpty {
+                    Menu("Cookbooks", systemImage: "book.closed") {
+                        ForEach(library.collections, id: \.id) { collection in
+                            Button(collection.title, systemImage: collection.recipeIDs.contains(recipe.id) ? "checkmark" : "plus") {
+                                library.toggleRecipe(recipe.id, in: collection)
+                            }
+                        }
+                    }
+                }
+                if personalPhoto != nil {
+                    Button(role: .destructive) { updatePhoto(nil) } label: {
+                        Label("Remove my photo", systemImage: "trash")
+                    }
+                }
+                ShareLink(item: shareText) { Label("Share recipe", systemImage: "square.and.arrow.up") }
             } label: {
-                Image(systemName: library.isSaved(recipe.id) ? "heart.fill" : "heart")
-                    .foregroundStyle(Theme.tomato)
-                    .frame(width: 36, height: 36)
-                    .background(Circle().fill(Theme.card))
-            }
-            .sensoryFeedback(.selection, trigger: library.isSaved(recipe.id))
-            .accessibilityLabel(Text(library.isSaved(recipe.id) ? "Remove from saved" : "Save recipe"))
-            ShareLink(item: RecipeShareText.make(recipe: recipe, servings: Double(servings), catalog: repository.catalog, system: unitSystem)) {
-                Image(systemName: "square.and.arrow.up")
+                Image(systemName: "ellipsis")
                     .foregroundStyle(Theme.aubergine)
                     .frame(width: 36, height: 36)
-                    .background(Circle().fill(Theme.card))
+                    .background(Theme.card, in: Circle())
             }
-            .accessibilityLabel(Text("Share recipe"))
+            .accessibilityLabel(Text("More recipe actions"))
+        }
+    }
+
+    private var hero: some View {
+        Group {
+            if let personalPhoto {
+                GeometryReader { proxy in
+                    Image(uiImage: personalPhoto).resizable().scaledToFill()
+                        .frame(width: proxy.size.width, height: 260)
+                        .clipped()
+                        .accessibilityLabel(Text("Your recipe photo"))
+                }
+                .frame(height: 260)
+            } else {
+                DishHeroView(recipe: recipe, height: 260)
+            }
+        }
+        .overlay(alignment: .bottomLeading) {
+            HStack(spacing: Theme.Spacing.s) {
+                Button { library.toggleFavorite(recipe.id) } label: {
+                    photoAction(library.favorites.contains(recipe.id) ? "heart.fill" : "heart")
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(library.favorites.contains(recipe.id) ? Text("Remove favorite") : Text("Favorite recipe"))
+                .sensoryFeedback(.selection, trigger: library.favorites.contains(recipe.id))
+                PhotosPicker(selection: $photoItem, matching: .images) {
+                    if loadingPhoto {
+                        ProgressView().frame(width: 46, height: 46).background(Theme.card, in: Circle())
+                    } else {
+                        photoAction("camera")
+                    }
+                }
+                .buttonStyle(.plain)
+                .disabled(loadingPhoto)
+                .accessibilityLabel(Text("Choose a personal photo"))
+            }
+            .padding(Theme.Spacing.m)
+        }
+    }
+
+    private func photoAction(_ icon: String) -> some View {
+        Image(systemName: icon)
+            .font(.headline)
+            .foregroundStyle(Theme.tomatoDeep)
+            .frame(width: 46, height: 46)
+            .background(Theme.card, in: Circle())
+    }
+
+    private var shareText: String {
+        RecipeShareText.make(recipe: recipe, servings: servings, catalog: repository.catalog, system: unitSystem)
+    }
+
+    private var actionBar: some View {
+        FlowLayout(spacing: Theme.Spacing.s) {
+            Button { library.toggleSaved(recipe.id) } label: {
+                actionLabel(library.isSaved(recipe.id) ? "Saved" : "Save",
+                            icon: library.isSaved(recipe.id) ? "bookmark.fill" : "bookmark")
+            }
+            .sensoryFeedback(.selection, trigger: library.isSaved(recipe.id))
+            Button { isAddToPlanShown = true } label: { actionLabel("Meal Plan", icon: "calendar.badge.plus") }
+            Button { showsListPicker = true } label: { actionLabel("Groceries", icon: "cart") }
+            ShareLink(item: shareText) { actionLabel("Share", icon: "square.and.arrow.up") }
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
+        VStack(spacing: Theme.Spacing.xs) {
+            Image(systemName: icon).font(.headline).foregroundStyle(Theme.tomatoDeep)
+                .accessibilityHidden(true)
+            Text(title).font(.caption.weight(.semibold)).foregroundStyle(Theme.aubergine)
+        }
+        .padding(.horizontal, Theme.Spacing.s)
+        .frame(minWidth: 68, minHeight: 52)
+        .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.Radius.button))
+    }
+
+    private var recipeNotes: some View {
+        let cooked = plannedMeal?.isCooked ?? library.cookedIds.contains(recipe.id)
+        return VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+            Text("Recipe notes")
+                .textCase(.uppercase)
+                .font(.caption.weight(.bold))
+                .foregroundStyle(Theme.aubergineMuted)
+            FlowLayout(spacing: Theme.Spacing.m) {
+                Label("Prep: \(recipe.prepMinutes) min", systemImage: "knife")
+                Label("Cook: \(recipe.cookMinutes) min", systemImage: "clock")
+            }
+            .font(.subheadline)
+            if let note = recipe.notes, !note.isEmpty {
+                Text(note).font(.subheadline).foregroundStyle(Theme.aubergineMuted)
+            }
+            Divider()
+            Button { markCooked(stars: 0) } label: {
+                Label(cooked ? "Cooked" : "Mark as cooked", systemImage: cooked ? "checkmark.circle.fill" : "checkmark.circle")
+            }
+            .buttonStyle(SecondaryButtonStyle(outlined: true))
+            .disabled(cooked)
+            Text("Your rating").font(.subheadline.weight(.semibold))
+            StarPicker(stars: Binding(
+                get: { library.stars[recipe.id] ?? 0 },
+                set: { library.setStars($0, for: recipe.id) }
+            ))
+        }
+        .foregroundStyle(Theme.aubergine)
+        .cardStyle(padding: Theme.Spacing.m)
+    }
+
+    private func addToGroceries(_ id: String?) {
+        planStore.addRecipeToExtras(recipe, servings: servings, to: id)
+        addedLists.insert(id ?? "")
+        Haptics.success()
+    }
+
+    private func selectPhoto(_ item: PhotosPickerItem) async {
+        loadingPhoto = true
+        defer { loadingPhoto = false }
+        do {
+            guard let data = try await item.loadTransferable(type: Data.self),
+                  let source = CGImageSourceCreateWithData(data as CFData, nil),
+                  let thumbnail = CGImageSourceCreateThumbnailAtIndex(source, 0, [
+                      kCGImageSourceCreateThumbnailFromImageAlways: true,
+                      kCGImageSourceCreateThumbnailWithTransform: true,
+                      kCGImageSourceThumbnailMaxPixelSize: 1200
+                  ] as CFDictionary),
+                  let photo = UIImage(cgImage: thumbnail).jpegData(compressionQuality: 0.82) else {
+                if !Task.isCancelled { photoError = true }
+                return
+            }
+            guard !Task.isCancelled else { return }
+            updatePhoto(photo)
+        } catch {
+            if !Task.isCancelled { photoError = true }
+        }
+    }
+
+    private func updatePhoto(_ data: Data?) {
+        do {
+            try library.savePhoto(data, for: recipe.id)
+            personalPhoto = data.flatMap { UIImage(data: $0) }
+            if data == nil { photoItem = nil }
+        } catch {
+            photoError = true
         }
     }
 
@@ -215,6 +382,7 @@ private struct RecipeDetailContent: View {
         if stars > 0 {
             library.setStars(stars, for: recipe.id)
         }
+        library.recordCooked(recipe.id)
         planStore.markCooked(recipeId: recipe.id, meal: plannedMeal)
         Haptics.success()
     }
@@ -263,17 +431,16 @@ private struct DetailHeader: View {
 
 private struct IngredientsSection: View {
     let recipe: Recipe
-    @Binding var servings: Int
-    let maxServings: Int
+    @Binding var servings: Double
+    let maxServings: Double
     let system: UnitSystem
     let onChangeUnits: (UnitSystem) -> Void
-    let isInPlan: Bool
     let addedToList: Bool
     let onAddToList: () -> Void
 
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     var body: some View {
-        let lines: [IngredientLine] = IngredientLine.lines(for: recipe, servings: Double(servings), catalog: repository.catalog, system: system)
+        let lines: [IngredientLine] = IngredientLine.lines(for: recipe, servings: servings, catalog: repository.catalog, system: system)
         let main: [IngredientLine] = lines.filter { !$0.isPantryStaple }
         let staples: [IngredientLine] = lines.filter { $0.isPantryStaple }
         VStack(alignment: .leading, spacing: Theme.Spacing.m) {
@@ -282,7 +449,15 @@ private struct IngredientsSection: View {
                     .font(.system(.headline, design: .rounded))
                     .foregroundStyle(Theme.aubergine)
                 Spacer()
-                RoundStepper(value: $servings, range: 1...maxServings)
+                HStack(spacing: Theme.Spacing.s) {
+                    portionButton("minus", label: "Fewer servings", delta: -0.5, disabled: servings <= 1)
+                    Text(servings == 1 ? String(localized: "1 person") : String(localized: "\(FractionFormatter.string(servings)) portions"))
+                        .monospacedDigit()
+                        .foregroundStyle(Theme.aubergine)
+                        .fixedSize(horizontal: true, vertical: false)
+                    portionButton("plus", label: "More servings", delta: 0.5, disabled: servings >= maxServings)
+                }
+                .sensoryFeedback(.selection, trigger: servings)
             }
             .cardStyle(padding: Theme.Spacing.m)
             Menu {
@@ -297,7 +472,8 @@ private struct IngredientsSection: View {
                     Label("Imperial", systemImage: system == .imperial ? "checkmark" : "scalemass")
                 }
             } label: {
-                Label(system == .metric ? String(localized: "Units: Metric") : String(localized: "Units: Imperial"), systemImage: "arrow.left.arrow.right")
+                Label("Convert", systemImage: "arrow.left.arrow.right")
+                    .accessibilityValue(system == .metric ? Text("Metric") : Text("Imperial"))
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(Theme.tomatoDeep)
                     .frame(minHeight: 44)
@@ -320,16 +496,29 @@ private struct IngredientsSection: View {
                 }
                 .cardStyle(padding: Theme.Spacing.m)
             }
-            if !isInPlan {
-                Button(action: onAddToList) {
-                    Label(addedToList ? String(localized: "Added to Extras") : String(localized: "Add to grocery list"), systemImage: addedToList ? "checkmark" : "cart.badge.plus")
-                }
-                .buttonStyle(SecondaryButtonStyle(outlined: true))
-                .disabled(addedToList)
-                .sensoryFeedback(.success, trigger: addedToList)
+            Button(action: onAddToList) {
+                Label(addedToList ? String(localized: "Add to another list") : String(localized: "Add to groceries"), systemImage: "cart.badge.plus")
             }
+            .buttonStyle(SecondaryButtonStyle(outlined: true))
         }
     }
+
+    private func portionButton(_ icon: String, label: LocalizedStringKey, delta: Double, disabled: Bool) -> some View {
+        Button {
+            servings = min(max(servings + delta, 1), maxServings)
+        } label: {
+            Image(systemName: icon)
+                .font(.subheadline.weight(.bold))
+                .frame(width: 44, height: 44)
+                .foregroundStyle(Theme.tomatoDeep)
+                .background(Theme.tomatoSoft, in: Circle())
+                .opacity(disabled ? 0.45 : 1)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(label))
+        .disabled(disabled)
+    }
+
 }
 
 private struct IngredientRow: View {
@@ -376,8 +565,25 @@ private struct MethodSection: View {
             if recipe.steps.isEmpty {
                 Text("no steps yet").foregroundStyle(Theme.aubergineMuted)
             }
-            ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
-                StepRow(number: index + 1, text: step, recipe: recipe, servings: servings, system: system, timer: timer)
+            if !recipe.steps.isEmpty {
+                HStack {
+                    Text("Method").font(.caption.weight(.bold)).textCase(.uppercase)
+                    Spacer()
+                    Text(recipe.steps.count == 1 ? String(localized: "1 step") : String(localized: "\(recipe.steps.count) steps"))
+                        .font(.caption)
+                }
+                .foregroundStyle(Theme.aubergineMuted)
+                VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                    ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
+                        StepRow(number: index + 1, text: step, recipe: recipe, servings: servings, system: system, timer: timer)
+                    }
+                }
+                .background(alignment: .topLeading) {
+                    Rectangle().fill(Theme.line).frame(width: 1)
+                        .padding(.leading, 14)
+                        .padding(.bottom, 24)
+                        .accessibilityHidden(true)
+                }
             }
         }
     }
@@ -540,48 +746,26 @@ struct TimerPill: View {
     }
 }
 
-/// Like / Not for me, Mark as cooked, Swap or Add to plan.
-private struct DetailFooter: View {
-    let recipe: Recipe
-    let plannedMeal: PlannedMeal?
-    let onMarkCooked: () -> Void
-    let onSwap: () -> Void
-    let onAddToPlan: () -> Void
-
-    @Environment(LibraryStore.self) private var library: LibraryStore
+private struct RecipeVote: View {
+    let recipeID: String
+    @Environment(LibraryStore.self) private var library
 
     var body: some View {
-        VStack(spacing: Theme.Spacing.m) {
-            Divider().overlay(Theme.line).padding(.vertical, Theme.Spacing.s)
-            HStack(spacing: Theme.Spacing.m) {
-                PillToggle(title: String(localized: "Like"), systemImage: "heart", isOn: library.rating(for: recipe.id) == .like) {
-                    library.setRating(.like, for: recipe.id)
+        let rating = library.rating(for: recipeID)
+        VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+            Text("Was this recipe good?")
+                .font(.headline)
+                .foregroundStyle(Theme.aubergine)
+            HStack(spacing: Theme.Spacing.s) {
+                PillToggle(title: String(localized: "Yes"), systemImage: "hand.thumbsup", isOn: rating == .like) {
+                    library.setRating(.like, for: recipeID)
                 }
-                PillToggle(title: String(localized: "Not for me"), systemImage: "hand.thumbsdown", isOn: library.rating(for: recipe.id) == .notForMe) {
-                    library.setRating(.notForMe, for: recipe.id)
+                PillToggle(title: String(localized: "Not for me"), systemImage: "hand.thumbsdown", isOn: rating == .notForMe) {
+                    library.setRating(.notForMe, for: recipeID)
                 }
-            }
-            if let plannedMeal {
-                Button(action: onMarkCooked) {
-                    Label(plannedMeal.isCooked ? String(localized: "Cooked") : String(localized: "Mark as cooked"), systemImage: plannedMeal.isCooked ? "checkmark.circle.fill" : "checkmark.circle")
-                }
-                .buttonStyle(SecondaryButtonStyle(outlined: false))
-                .disabled(plannedMeal.isCooked)
-                Button(action: onSwap) {
-                    Label(String(localized: "Swap this meal"), systemImage: "arrow.triangle.2.circlepath")
-                }
-                .buttonStyle(SecondaryButtonStyle(outlined: true))
-            } else {
-                Button(action: onMarkCooked) {
-                    Label(String(localized: "Mark as cooked"), systemImage: "checkmark.circle")
-                }
-                .buttonStyle(SecondaryButtonStyle(outlined: false))
-                Button(action: onAddToPlan) {
-                    Label(String(localized: "Add to plan"), systemImage: "calendar.badge.plus")
-                }
-                .buttonStyle(SecondaryButtonStyle(outlined: true))
             }
         }
+        .cardStyle()
     }
 }
 

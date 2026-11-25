@@ -102,7 +102,7 @@ struct VibesStepView: View {
 
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "what's your vibe?"),
+            title: String(localized: "What kind of vibe?"),
             subtitle: String(localized: "pick up to 3, we'll lean that way"),
             buttonTitle: continueTitle(selected: state.vibes.count),
             isButtonEnabled: !state.vibes.isEmpty,
@@ -261,6 +261,7 @@ struct StoreStepView: View {
             set: { newValue in
                 guard newValue != state.countryId else { return }
                 state.countryId = newValue
+                state.budgetTouched = false
                 // Shops from another country no longer apply.
                 state.keepOnlyStores(availableIn: newValue, catalog: FoodCatalog.bundled)
                 state.refreshSuggestedBudget(catalog: FoodCatalog.bundled)

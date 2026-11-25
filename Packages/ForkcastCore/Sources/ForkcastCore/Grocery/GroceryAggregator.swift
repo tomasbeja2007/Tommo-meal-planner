@@ -69,10 +69,42 @@ public struct GroceryList: Hashable, Sendable {
     public var savingsFromSharing: Double { max(0, standaloneTotal - total) }
 }
 
+/// Published grocery estimates use two decimal places. Compare their rounded values.
+public struct GroceryEstimate: Comparable, Sendable {
+    private let cents: Int
+
+    public init?(_ amount: Double) {
+        guard let cents = Int(exactly: (amount * 100).rounded()), cents >= 0 else { return nil }
+        self.cents = cents
+    }
+
+    public var amount: Double { Double(cents) / 100 }
+
+    public func difference(from other: Self) -> Double {
+        Double(cents - other.cents) / 100
+    }
+
+    public func relativeDifference(from other: Self) -> Double? {
+        guard other.cents > 0 else { return nil }
+        return Double(cents - other.cents) / Double(other.cents)
+    }
+
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.cents < rhs.cents
+    }
+}
+
 public enum GroceryAggregator {
     /// Amortised weekly cost of a pantry staple: a small slice of a pack.
     public static func pantryCost(packPrice: Double) -> Double {
         min(max(packPrice * 0.08, 0.05), 0.6)
+    }
+
+    /// The persisted check key and the link from a list row back to its recipes.
+    public static func ingredientKey(_ item: RecipeIngredient, catalog: FoodCatalog) -> String {
+        if let id = item.ingredientId, catalog.ingredient(id: id) != nil { return id }
+        let name = (item.name ?? "item").trimmingCharacters(in: .whitespacesAndNewlines)
+        return "custom:" + name.lowercased() + "|" + item.unit.rawValue
     }
 
     static func packCount(for packsNeeded: Double) -> Int {
@@ -112,7 +144,7 @@ public enum GroceryAggregator {
                     linked[id] = acc
                 } else {
                     let rawName: String = (item.name ?? "item").trimmingCharacters(in: .whitespacesAndNewlines)
-                    let key: String = "custom:" + rawName.lowercased() + "|" + item.unit.rawValue
+                    let key: String = ingredientKey(item, catalog: catalog)
                     var acc: CustomAccumulator = custom[key] ?? CustomAccumulator(name: rawName, unit: item.unit)
                     acc.amount += scaledAmount
                     acc.weekdays.insert(meal.weekday)
@@ -285,6 +317,7 @@ public enum GroceryTextExporter {
         title: String,
         checkedKeys: Set<String>,
         extras: [(name: String, quantity: String, checked: Bool)] = [],
+        includesEstimate: Bool = true,
         formatMoney: (Double) -> String
     ) -> String {
         var lines: [String] = [title, ""]
@@ -312,7 +345,7 @@ public enum GroceryTextExporter {
             }
             lines.append("")
         }
-        lines.append("Approx. total: \(formatMoney(list.total))")
+        if includesEstimate { lines.append("Approx. total: \(formatMoney(list.total))") }
         lines.append("Planned with Tommo")
         return lines.joined(separator: "\n")
     }

@@ -15,19 +15,22 @@ public struct PlannerProfile: Hashable, Sendable {
     public var onHand: Set<String>
     /// "Meal prep mode": lean towards dinners that keep well as leftovers.
     public var prefersMealPrep: Bool
+    /// ISO weekday edges between each day and the next. Nil preserves automatic pairing.
+    public var mealPrepEdges: Set<Int>?
     /// Cuisines the user leans towards (e.g. "Mediterranean" from the diet screen). A soft preference.
     public var preferredCuisines: Set<Cuisine>
     public var goals: Set<PlannerGoal>
     public var obstacles: Set<PlannerObstacle>
     public var children: Int
 
-    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = [], goals: Set<PlannerGoal> = [], obstacles: Set<PlannerObstacle> = [], children: Int = 0) {
+    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = [], goals: Set<PlannerGoal> = [], obstacles: Set<PlannerObstacle> = [], children: Int = 0, mealPrepEdges: Set<Int>? = nil) {
         self.goals = goals
         self.obstacles = obstacles
         self.children = children
         self.preferredCuisines = preferredCuisines
         self.onHand = onHand
         self.prefersMealPrep = prefersMealPrep
+        self.mealPrepEdges = mealPrepEdges
         self.allergens = allergens
         self.diet = diet
         self.dislikes = dislikes

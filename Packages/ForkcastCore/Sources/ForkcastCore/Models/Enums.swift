@@ -153,6 +153,7 @@ public enum Vibe: String, Codable, CaseIterable, Hashable, Sendable {
     case lowCalorie
     case onePan
     case batchFriendly
+    case fiberForward
 
     public var displayName: String {
         switch self {
@@ -165,6 +166,7 @@ public enum Vibe: String, Codable, CaseIterable, Hashable, Sendable {
         case .lowCalorie: return "Low calorie"
         case .onePan: return "One-pan"
         case .batchFriendly: return "Batch-friendly"
+        case .fiberForward: return "Fiber-forward"
         }
     }
 
@@ -179,6 +181,7 @@ public enum Vibe: String, Codable, CaseIterable, Hashable, Sendable {
         case .lowCalorie: return "flame"
         case .onePan: return "frying.pan.fill"
         case .batchFriendly: return "square.stack.3d.up.fill"
+        case .fiberForward: return "leaf"
         }
     }
 
@@ -194,6 +197,7 @@ public enum Vibe: String, Codable, CaseIterable, Hashable, Sendable {
         case .lowCalorie: return "#B5754C"
         case .onePan: return "#A8435E"
         case .batchFriendly: return "#6E5F6B"
+        case .fiberForward: return "#637044"
         }
     }
 }

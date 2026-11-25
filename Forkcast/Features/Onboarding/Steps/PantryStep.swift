@@ -7,44 +7,69 @@ struct PantryStep: View {
     @Bindable var state: OnboardingState
     let onContinue: () -> Void
 
-    @State private var tab: PantryTab = .all
-
-    private let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: Theme.Spacing.s), count: 3)
-
-    private var items: [Ingredient] { PantryTab.items(for: tab) }
-
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "what do you already have?"),
-            subtitle: String(localized: "we'll leave these off this week's list"),
-            buttonTitle: state.pantry.isEmpty ? String(localized: "Skip") : continueTitle(selected: state.pantry.count),
+            title: String(localized: "What do you already have?"),
+            subtitle: String(localized: "We'll leave these off this week's list."),
+            buttonTitle: state.pantry.isEmpty ? String(localized: "Skip for now") : continueTitle(selected: state.pantry.count),
             onContinue: onContinue
         ) {
-            VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: Theme.Spacing.s) {
-                        ForEach(PantryTab.allCases) { option in
-                            Chip(title: option.title, isSelected: tab == option) { tab = option }
-                        }
-                    }
+            PantryPicker(selection: $state.pantry, unitSystem: state.country(in: .bundled).unitSystem)
+        }
+    }
+}
+
+struct PantryPicker: View {
+    @Binding var selection: Set<String>
+    let unitSystem: UnitSystem
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var tab: PantryTab = .all
+    @State private var query = ""
+
+    private var items: [Ingredient] {
+        let search = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        return PantryTab.ranked.filter { item in
+            tab.contains(item.aisle) && (search.isEmpty || item.displayName(for: unitSystem).localizedStandardContains(search)
+                || item.name.localizedStandardContains(search))
+        }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+            HStack(spacing: Theme.Spacing.s) {
+                Image(systemName: "magnifyingglass").accessibilityHidden(true)
+                TextField("Search foods", text: $query)
+                    .autocorrectionDisabled()
+                if !query.isEmpty {
+                    Button { query = "" } label: { Image(systemName: "xmark.circle.fill") }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(Text("Clear search"))
                 }
-                LazyVGrid(columns: columns, spacing: Theme.Spacing.s) {
-                    ForEach(items) { ingredient in
-                        PantryTile(
-                            ingredient: ingredient,
-                            unitSystem: state.country(in: FoodCatalog.bundled).unitSystem,
-                            isSelected: state.pantry.contains(ingredient.id)
-                        ) {
-                            if state.pantry.contains(ingredient.id) {
-                                state.pantry.remove(ingredient.id)
-                            } else {
-                                state.pantry.insert(ingredient.id)
-                            }
-                        }
-                    }
-                }
-                .animation(Theme.spring, value: tab)
             }
+            .foregroundStyle(Theme.aubergine)
+            .padding(Theme.Spacing.m)
+            .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.Radius.button))
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Theme.Spacing.s) {
+                    ForEach(PantryTab.allCases) { option in
+                        Chip(title: option.title, isSelected: tab == option) { tab = option }
+                    }
+                }
+            }
+            if items.isEmpty {
+                Text("No foods found").foregroundStyle(Theme.aubergineMuted)
+            }
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: typeSize.isAccessibilitySize ? 136 : 74), spacing: Theme.Spacing.s)], spacing: Theme.Spacing.s) {
+                ForEach(items) { ingredient in
+                    PantryTile(ingredient: ingredient, unitSystem: unitSystem, isSelected: selection.contains(ingredient.id)) {
+                        if selection.contains(ingredient.id) { selection.remove(ingredient.id) }
+                        else { selection.insert(ingredient.id) }
+                    }
+                }
+            }
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: tab)
         }
     }
 }
@@ -54,31 +79,31 @@ private struct PantryTile: View {
     let unitSystem: UnitSystem
     let isSelected: Bool
     let action: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: 6) {
-                IngredientPhoto(ingredient: ingredient)
+                IngredientPhoto(ingredient: ingredient, side: 48)
                 Text(ingredient.displayName(for: unitSystem, plural: ingredient.baseUnit == .piece).capitalizedFirst)
                     .font(.system(.caption, design: .rounded).weight(.semibold))
                     .foregroundStyle(Theme.aubergine)
                     .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.85)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(Theme.Spacing.s)
-            .frame(maxWidth: .infinity, minHeight: 112)
+            .frame(maxWidth: .infinity, minHeight: 100)
             .background(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous).fill(isSelected ? Theme.tomatoSoft : Theme.creamDeep))
             .overlay(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous).stroke(isSelected ? Theme.tomato : Color.clear, lineWidth: 2))
             .overlay(alignment: .topTrailing) {
                 if isSelected {
-                    CheckBadge().padding(6).transition(.scale(scale: 0.6).combined(with: .opacity))
+                    CheckBadge().padding(6).transition(reduceMotion ? .opacity : .scale(scale: 0.6).combined(with: .opacity))
                 }
             }
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .animation(Theme.spring, value: isSelected)
+        .animation(Theme.motion(reduceMotion), value: isSelected)
         .sensoryFeedback(.impact(weight: .light), trigger: isSelected)
         .accessibilityLabel(Text(ingredient.displayName(for: unitSystem).capitalizedFirst))
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
@@ -115,6 +140,7 @@ struct IngredientPhoto: View {
 enum PantryTab: String, CaseIterable, Identifiable {
     case all
     case fresh
+    case meat
     case fridge
     case pantry
 
@@ -124,6 +150,7 @@ enum PantryTab: String, CaseIterable, Identifiable {
         switch self {
         case .all: return String(localized: "All")
         case .fresh: return String(localized: "Fresh")
+        case .meat: return String(localized: "Meat")
         case .fridge: return String(localized: "Fridge")
         case .pantry: return String(localized: "Pantry")
         }
@@ -133,14 +160,14 @@ enum PantryTab: String, CaseIterable, Identifiable {
         switch self {
         case .all: return true
         case .fresh: return aisle == .produce || aisle == .bakery
-        case .fridge: return aisle == .dairyEggs || aisle == .meatFish || aisle == .frozen
+        case .meat: return aisle == .meatFish
+        case .fridge: return aisle == .dairyEggs || aisle == .frozen
         case .pantry: return ![Aisle.produce, .bakery, .dairyEggs, .meatFish, .frozen].contains(aisle)
         }
     }
 
-    /// Ingredients the bundled recipes use most (pantry staples are left out: they cost
-    /// pennies and are already on the "check you have" list).
-    private static let ranked: [Ingredient] = {
+    /// Common ingredients first, with the full catalog available through search.
+    static let ranked: [Ingredient] = {
         let catalog: FoodCatalog = .bundled
         var uses: [String: Int] = [:]
         for recipe in catalog.recipes {
@@ -148,14 +175,13 @@ enum PantryTab: String, CaseIterable, Identifiable {
                 if let id = item.ingredientId { uses[id, default: 0] += 1 }
             }
         }
-        return catalog.ingredients
-            .filter { !$0.isPantryStaple && (uses[$0.id] ?? 0) > 0 }
-            .sorted { (uses[$0.id] ?? 0, $1.name) > (uses[$1.id] ?? 0, $0.name) }
+        return catalog.ingredients.sorted { first, second in
+            let left = uses[first.id, default: 0]
+            let right = uses[second.id, default: 0]
+            return left == right ? first.name < second.name : left > right
+        }
     }()
 
-    static func items(for tab: PantryTab) -> [Ingredient] {
-        Array(ranked.filter { tab.contains($0.aisle) }.prefix(tab == .all ? 36 : 24))
-    }
 }
 
 #Preview {

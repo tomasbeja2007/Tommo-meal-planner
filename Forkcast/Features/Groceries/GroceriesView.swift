@@ -19,30 +19,39 @@ struct GroceriesView: View {
     @State private var sortMode: SortMode = .aisle
     @State private var showsPantry: Bool = false
     @State private var isAddingExtra: Bool = false
+    @State private var activeListID: String?
+    @State private var showsCompare = false
+    @AccessibilityFocusState private var compareFocused: Bool
+    @State private var isCreatingList = false
+    @State private var listName = ""
     @State private var showDoneToast: Bool = false
 
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.groceriesPath) {
-            Group {
-                if planStore.groceryList.itemCount == 0 && planStore.extras.isEmpty {
-                    EmptyState(
-                        title: String(localized: "your list is empty"),
-                        message: String(localized: "plan a few meals and your groceries appear here, grouped by aisle."),
-                        actionTitle: String(localized: "Go to my plan")
-                    ) {
-                        router.selectedTab = .plan
-                    }
-                    .frame(maxHeight: .infinity)
-                } else {
+            VStack(spacing: 0) {
+                listSelectors
+                if activeListID == nil {
                     listContent
+                } else {
+                    List {
+                        if planStore.extras(for: activeListID).isEmpty {
+                            Text("Add items to start this list.")
+                                .foregroundStyle(Theme.aubergineMuted)
+                                .listRowBackground(Theme.card)
+                        } else {
+                            ExtrasSection(listID: activeListID)
+                        }
+                        addRow
+                    }
+                    .scrollContentBackground(.hidden)
                 }
             }
             .background(Theme.cream.ignoresSafeArea())
-            .navigationTitle(String(localized: "Grocery list"))
+            .navigationTitle(String(localized: "Groceries"))
             .toolbar { toolbarContent }
             .overlay(alignment: .bottom) {
-                if showDoneToast && planStore.allGroceriesChecked {
+                if activeListID == nil && showDoneToast && planStore.allGroceriesChecked {
                     ShopDoneToast()
                         .padding(.bottom, Theme.Spacing.l)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -50,8 +59,21 @@ struct GroceriesView: View {
             }
         }
         .sheet(isPresented: $isAddingExtra) {
-            AddExtraSheet()
-                .presentationDetents([.height(320)])
+            AddExtraSheet(listID: activeListID)
+                .presentationDetents([.medium, .large])
+        }
+        .sheet(isPresented: $showsCompare, onDismiss: { compareFocused = true }) {
+            StoreComparisonSheet()
+                .presentationDetents([.fraction(0.62), .large])
+                .presentationDragIndicator(.visible)
+        }
+        .alert("New grocery list", isPresented: $isCreatingList) {
+            TextField("List name", text: $listName)
+            Button("Cancel", role: .cancel) {}
+            Button("Create") {
+                if let id = planStore.createGroceryCollection(listName) { activeListID = id }
+            }
+            .disabled(listName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .onChange(of: planStore.allGroceriesChecked) { _, allDone in
             if allDone { Haptics.success() }
@@ -66,10 +88,40 @@ struct GroceriesView: View {
         .onDisappear { showDoneToast = false }
     }
 
+    private var listSelectors: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: Theme.Spacing.s) {
+                Chip(title: String(localized: "Main list"), isSelected: activeListID == nil) { activeListID = nil }
+                Chip(title: String(localized: "Usuals"), isSelected: activeListID == PlanStore.usualsListID) {
+                    activeListID = PlanStore.usualsListID
+                }
+                ForEach(planStore.groceryCollections, id: \.id) { list in
+                    Chip(title: list.title, isSelected: activeListID == list.id) { activeListID = list.id }
+                }
+                Chip(title: String(localized: "+ New"), isSelected: false) {
+                    listName = ""
+                    isCreatingList = true
+                }
+            }
+            .padding(.horizontal, Theme.Spacing.gutter)
+            .padding(.vertical, Theme.Spacing.s)
+        }
+    }
+
+    private var addRow: some View {
+        Button { isAddingExtra = true } label: {
+            Label("Add groceries", systemImage: "plus")
+                .font(.body.weight(.semibold))
+                .frame(minHeight: 44)
+        }
+        .foregroundStyle(Theme.tomatoDeep)
+        .listRowBackground(Theme.card)
+    }
+
     private var listContent: some View {
         List {
             Section {
-                GroceryHeader()
+                GroceryHeader(compareFocused: $compareFocused) { showsCompare = true }
                     .listRowBackground(Color.clear)
                     .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
                 Picker(String(localized: "Sort"), selection: $sortMode) {
@@ -81,7 +133,7 @@ struct GroceriesView: View {
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 8, trailing: 0))
             }
-            ExtrasSection { isAddingExtra = true }
+            if !planStore.extras.isEmpty { ExtrasSection() }
             if sortMode == .aisle {
                 ForEach(planStore.groceryList.sections) { section in
                     Section {
@@ -98,6 +150,11 @@ struct GroceriesView: View {
                         GroceryRow(item: item)
                     }
                 }
+            }
+            if planStore.groceryList.itemCount == 0 && planStore.extras.isEmpty {
+                Text("Plan a meal or add groceries to start your list.")
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .listRowBackground(Theme.card)
             }
             if !planStore.groceryList.pantryStaples.isEmpty {
                 Section {
@@ -119,6 +176,7 @@ struct GroceriesView: View {
                 }
                 .listRowBackground(Theme.card)
             }
+            Section { addRow }
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
@@ -135,13 +193,15 @@ struct GroceriesView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItemGroup(placement: .topBarTrailing) {
-            ShareLink(item: planStore.shareText(title: shareTitle)) {
+            ShareLink(item: planStore.shareText(title: shareTitle, listID: activeListID)) {
                 Image(systemName: "square.and.arrow.up")
             }
             .accessibilityLabel(Text("Share grocery list"))
             Menu {
-                Button(String(localized: "Uncheck all"), systemImage: "arrow.uturn.backward") {
-                    withAnimation(reduceMotion ? nil : Theme.Motion.update) { planStore.uncheckAll() }
+                if activeListID == nil {
+                    Button(String(localized: "Uncheck all"), systemImage: "arrow.uturn.backward") {
+                        withAnimation(reduceMotion ? nil : Theme.Motion.update) { planStore.uncheckAll() }
+                    }
                 }
                 Button(String(localized: "Add item"), systemImage: "plus") { isAddingExtra = true }
             } label: {
@@ -152,43 +212,150 @@ struct GroceriesView: View {
     }
 
     private var shareTitle: String {
-        String(localized: "Grocery list for \(profileStore.storeName)")
+        switch activeListID {
+        case nil: return String(localized: "Grocery list for \(profileStore.storeName)")
+        case PlanStore.usualsListID: return String(localized: "Usuals")
+        default: return planStore.groceryCollections.first { $0.id == activeListID }?.title ?? String(localized: "Groceries")
+        }
     }
 }
 
-/// Store, dates, total and progress ring.
 private struct GroceryHeader: View {
-    @Environment(PlanStore.self) private var planStore: PlanStore
-    @Environment(ProfileStore.self) private var profileStore: ProfileStore
+    let compareFocused: AccessibilityFocusState<Bool>.Binding
+    let onCompare: () -> Void
+    @Environment(PlanStore.self) private var planStore
+    @Environment(ProfileStore.self) private var profileStore
 
     var body: some View {
-        let total: Int = planStore.groceryList.itemCount
-        let done: Int = planStore.checkedCount
-        HStack(spacing: Theme.Spacing.l) {
-            ProgressRing(value: total > 0 ? Double(done) / Double(total) : 0, lineWidth: 7, tint: done == total && total > 0 ? Theme.herb : Theme.tomato, label: "\(done) / \(total)")
-                .frame(width: 72, height: 72)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(subtitle)
+        VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+            Text("Estimated total")
+                .font(.caption.weight(.bold))
+                .foregroundStyle(Theme.aubergineMuted)
+                .textCase(.uppercase)
+            if let estimate = planStore.basketEstimate {
+                MoneyText(amount: estimate.amount, currencyCode: profileStore.currencyCode, font: .system(.largeTitle, design: .rounded).weight(.bold))
+            } else {
+                Text(planStore.hasPlan ? "Full estimate unavailable" : "No planned groceries")
+                    .font(.headline)
+                    .foregroundStyle(Theme.aubergineMuted)
+            }
+            if let estimate = planStore.basketEstimate, let budget = GroceryEstimate(planStore.budget), budget.amount > 0 {
+                let difference = estimate.difference(from: budget)
+                let delta = profileStore.formatMoney(abs(difference))
+                Text("Your budget: \(profileStore.formatMoney(planStore.budget))")
                     .font(.subheadline)
                     .foregroundStyle(Theme.aubergineMuted)
-                    .fixedSize(horizontal: false, vertical: true)
-                MoneyText(amount: planStore.total, currencyCode: profileStore.currencyCode, font: .system(.title2, design: .rounded).weight(.bold), prefix: "~")
-                    .fixedSize()
-                Text("approx. total")
-                    .font(.caption)
-                    .foregroundStyle(Theme.aubergineFaint)
+                ProgressBar(value: min(estimate.amount / budget.amount, 1),
+                            tint: difference > 0 ? Theme.tomatoDeep : Theme.herb, height: 8)
+                Text(difference > 0 ? String(localized: "Over budget by \(delta)") :
+                    difference < 0 ? String(localized: "\(delta) under budget") : String(localized: "On budget"))
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(difference > 0 ? Theme.tomatoDeep : Theme.herb)
             }
-            Spacer(minLength: 0)
+            Divider()
+            ViewThatFits(in: .horizontal) {
+                HStack { storeLabel; Spacer(); compareButton }
+                VStack(alignment: .leading, spacing: Theme.Spacing.s) { storeLabel; compareButton }
+            }
+            if let plan = planStore.currentPlan {
+                let count = planStore.groceryList.itemCount + planStore.extras.count
+                let range = DateText.range(from: plan.weekStartDate, to: plan.weekEndDate)
+                Text("\(count) items · \(range)")
+                    .font(.caption)
+                    .foregroundStyle(Theme.aubergineMuted)
+            }
         }
         .cardStyle()
     }
 
-    private var subtitle: String {
-        var text: String = String(localized: "for \(profileStore.storeName)")
-        if let plan = planStore.currentPlan {
-            text += " · " + DateText.range(from: plan.weekStartDate, to: plan.weekEndDate)
+    private var storeLabel: some View {
+        Label("Shopping at \(profileStore.store?.name ?? profileStore.storeName)", systemImage: "storefront")
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(Theme.aubergine)
+    }
+
+    private var compareButton: some View {
+        Button("Compare", action: onCompare)
+            .buttonStyle(.borderless)
+            .font(.subheadline.weight(.bold))
+            .foregroundStyle(Theme.tomatoDeep)
+            .disabled(!planStore.hasPlan)
+            .accessibilityFocused(compareFocused)
+    }
+}
+
+private struct StoreComparisonSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(PlanStore.self) private var planStore
+    @Environment(ProfileStore.self) private var profileStore
+    @State private var estimates: [String: GroceryEstimate] = [:]
+
+    private var yourStores: [Store] { profileStore.stores }
+    private var otherStores: [Store] {
+        let selected = Set(yourStores.map(\.id))
+        return planStore.catalog.stores(forCountry: profileStore.country.id).filter { !selected.contains($0.id) }
+    }
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Text("Compare your weekly shop at your stores and other local options.")
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .listRowBackground(Color.clear)
+                if !yourStores.isEmpty {
+                    Section("Your stores") { ForEach(yourStores) { row($0) } }
+                }
+                if !otherStores.isEmpty {
+                    Section("Other stores") { ForEach(otherStores) { row($0) } }
+                }
+                Text("One store for your whole planned list. Unpriced extras are excluded from all estimates.")
+                    .font(.footnote)
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .listRowBackground(Color.clear)
+            }
+            .scrollContentBackground(.hidden)
+            .background(Theme.cream)
+            .navigationTitle("Compare stores")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
+            }
         }
-        return text
+        .task {
+            for store in yourStores + otherStores {
+                estimates[store.id] = planStore.estimatedBasket(for: store)
+            }
+        }
+    }
+
+    private func row(_ store: Store) -> some View {
+        HStack(spacing: Theme.Spacing.m) {
+            StoreMonogram(store: store, size: 36)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(store.name).font(.headline).foregroundStyle(Theme.aubergine)
+                if let price = estimates[store.id], let best = estimates.values.min() {
+                    let difference = price.difference(from: best)
+                    if difference == 0 {
+                        Label("Best price", systemImage: "checkmark")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Theme.herb)
+                    } else if let relative = price.relativeDifference(from: best) {
+                        let percent = relative.formatted(.percent.precision(.fractionLength(0)))
+                        Text("+\(profileStore.formatMoney(difference)) · \(percent) more")
+                            .font(.caption)
+                            .foregroundStyle(Theme.aubergineMuted)
+                    }
+                } else {
+                    Text("Full estimate unavailable").font(.caption).foregroundStyle(Theme.aubergineMuted)
+                }
+            }
+            Spacer(minLength: 4)
+            if let price = estimates[store.id] {
+                Text(profileStore.formatMoney(price.amount)).font(.subheadline.weight(.bold)).monospacedDigit()
+            }
+        }
+        .listRowBackground(Theme.card)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -240,6 +407,23 @@ struct GroceryRow: View {
                     Text(item.neededText)
                         .font(.caption)
                         .foregroundStyle(Theme.aubergineFaint)
+                    let recipes = planStore.recipesByGroceryKey[item.key] ?? []
+                    if !recipes.isEmpty {
+                        HStack(spacing: -5) {
+                            ForEach(recipes.prefix(3)) { recipe in
+                                DishTileView(recipe: recipe, size: 21)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().strokeBorder(Theme.card, lineWidth: 1))
+                            }
+                            if recipes.count > 3 {
+                                Text("+\(recipes.count - 3)")
+                                    .font(.caption2.weight(.semibold))
+                                    .padding(.leading, 8)
+                            }
+                        }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(Text(recipes.map(\.title).formatted(.list(type: .and))))
+                    }
                     if !item.usedOnWeekdays.isEmpty {
                         Text(DateText.usedOn(item.usedOnWeekdays))
                             .font(.caption)

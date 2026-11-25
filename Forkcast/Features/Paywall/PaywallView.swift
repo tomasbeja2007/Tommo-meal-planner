@@ -3,26 +3,30 @@ import StoreKit
 import ForkcastCore
 
 struct PaywallView: View {
+    var onBack: (() -> Void)? = nil
     let onClose: () -> Void
 
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @Environment(NotificationManager.self) private var notifications: NotificationManager
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var selectedId: String = SubscriptionManager.yearlyId
     @State private var isPurchasing: Bool = false
     @State private var errorMessage: String? = nil
     @State private var isRedeemShown: Bool = false
     @State private var purchased: Bool = false
+    @State private var revealedStage = 0
 
     private var selectedProduct: Product? {
         subscriptions.products.first { $0.id == selectedId } ?? subscriptions.products.first
     }
 
     private var trial: Product.SubscriptionOffer? {
-        guard selectedProduct?.id == SubscriptionManager.yearlyId, subscriptions.isEligibleForTrial else { return nil }
-        return selectedProduct?.subscription?.introductoryOffer
+        guard selectedProduct?.id == SubscriptionManager.yearlyId, subscriptions.isEligibleForTrial,
+              let offer = selectedProduct?.subscription?.introductoryOffer, offer.paymentMode == .freeTrial else { return nil }
+        return offer
     }
 
     private var offersTrial: Bool { trial != nil }
@@ -31,19 +35,24 @@ struct PaywallView: View {
         ZStack(alignment: .topLeading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    IngredientHero(height: 138)
-                    Text("Your entire week of meals, sorted.")
+                    Text(headline)
                         .font(.system(.largeTitle, design: .rounded).weight(.bold))
                         .foregroundStyle(Theme.aubergine)
                         .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
                     VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-                        PaywallBenefit(text: String(localized: "a costed week for your shop"))
-                        PaywallBenefit(text: String(localized: "one tidy grocery list"))
-                        PaywallBenefit(text: String(localized: "recipes that fit your rules, with macros"))
+                        PaywallBenefit(title: "Meals, planned your way", detail: "Recipes that fit your diet and kitchen.", continues: visible(2))
+                            .modifier(PaywallEntrance(visible: visible(1)))
+                        PaywallBenefit(title: "Plan around your budget", detail: "See estimated grocery costs before you shop.", continues: visible(3))
+                            .modifier(PaywallEntrance(visible: visible(2)))
+                        PaywallBenefit(title: "Shop once, waste less", detail: "One grocery list for the whole week.", featured: true)
+                            .modifier(PaywallEntrance(visible: visible(3)))
                     }
                     planSelector
+                        .modifier(PaywallEntrance(visible: visible(4)))
                     if let trial, let selectedProduct {
                         TrialTimeline(offer: trial, renewalPrice: selectedProduct.displayPrice, renewalPeriod: selectedProduct.subscription?.subscriptionPeriod)
+                            .modifier(PaywallEntrance(visible: visible(5)))
                     }
                     if let errorMessage {
                         Text(errorMessage)
@@ -53,23 +62,24 @@ struct PaywallView: View {
                     if dynamicTypeSize.isAccessibilitySize { bottomBar }
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
-                .padding(.top, Theme.Spacing.xxl)
+                .padding(.top, 64)
                 .padding(.bottom, Theme.Spacing.l)
             }
             .safeAreaInset(edge: .bottom) {
                 if !dynamicTypeSize.isAccessibilitySize { bottomBar }
             }
 
-            Button(action: onClose) {
-                Image(systemName: "xmark")
+            Button(action: onBack ?? onClose) {
+                Image(systemName: onBack == nil ? "xmark" : "chevron.left")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(Theme.aubergineMuted)
                     .frame(width: 44, height: 44)
                     .background(Circle().fill(Theme.card.opacity(0.9)))
             }
+            .disabled(isPurchasing)
             .padding(.leading, Theme.Spacing.m)
             .padding(.top, Theme.Spacing.s)
-            .accessibilityLabel(Text("Close"))
+            .accessibilityLabel(onBack == nil ? Text("Close") : Text("Back"))
         }
         .background(Theme.cream.ignoresSafeArea())
         .sensoryFeedback(.success, trigger: purchased)
@@ -79,9 +89,49 @@ struct PaywallView: View {
         .task {
             if subscriptions.products.isEmpty { await subscriptions.loadProducts() }
         }
-        .onChange(of: subscriptions.hasProAccess) { _, hasPro in
-            if hasPro { onClose() }
+        .task {
+            guard !reduceMotion else {
+                revealedStage = 6
+                return
+            }
+            for (index, delay) in [230, 420, 400, 350, 250, 150].enumerated() where index >= revealedStage {
+                do { try await Task.sleep(for: .milliseconds(delay)) }
+                catch { return }
+                withAnimation(.easeOut(duration: 0.21)) { revealedStage = index + 1 }
+            }
         }
+        .onChange(of: subscriptions.hasProAccess) { _, hasPro in
+            if hasPro && !isPurchasing { onClose() }
+        }
+    }
+
+    private func visible(_ stage: Int) -> Bool { reduceMotion || revealedStage >= stage }
+
+    private var trialDuration: String? {
+        guard let trial else { return nil }
+        let length = trial.period.value * trial.periodCount
+        let components: DateComponents
+        switch trial.period.unit {
+        case .day: components = DateComponents(day: length)
+        case .week: components = DateComponents(weekOfMonth: length)
+        case .month: components = DateComponents(month: length)
+        case .year: components = DateComponents(year: length)
+        @unknown default: return nil
+        }
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .weekOfMonth, .month, .year]
+        formatter.unitsStyle = .full
+        return formatter.string(from: components)
+    }
+
+    private var headline: String {
+        if let trialDuration { return String(localized: "Try Tommo free for \(trialDuration)") }
+        return String(localized: "Your entire week of meals, sorted.")
+    }
+
+    private var purchaseTitle: String {
+        if let trialDuration { return String(localized: "Start free trial · \(trialDuration)") }
+        return offersTrial ? String(localized: "Start free trial") : String(localized: "Subscribe")
     }
 
     // MARK: Plans
@@ -110,6 +160,7 @@ struct PaywallView: View {
                     PlanCard(
                         title: String(localized: "Yearly"),
                         badge: yearlyBadge,
+                        trialBadge: trialDuration.map { String(localized: "\($0) free") },
                         price: yearly.displayPrice + String(localized: "/year"),
                         detail: yearlyDetail(yearly),
                         isSelected: selectedProduct?.id == yearly.id
@@ -144,23 +195,33 @@ struct PaywallView: View {
 
     private var bottomBar: some View {
         VStack(spacing: Theme.Spacing.xs) {
+            if offersTrial {
+                Label("No payment due now", systemImage: "checkmark")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(Theme.herb)
+                    .modifier(PaywallEntrance(visible: visible(5)))
+            }
             Button(action: purchase) {
                 HStack(spacing: Theme.Spacing.s) {
                     if isPurchasing { ProgressView().tint(Color.white) }
-                    Text(offersTrial ? String(localized: "Start free trial") : String(localized: "Subscribe"))
+                    Text(purchaseTitle)
                 }
             }
             .buttonStyle(PrimaryButtonStyle())
             .disabled(isPurchasing || selectedProduct == nil)
-            if offersTrial {
-                Text("No payment due now")
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Theme.herb)
-            } else if selectedProduct != nil {
+            .modifier(PaywallEntrance(visible: visible(6)))
+            if !offersTrial, selectedProduct != nil {
                 Text("Renews automatically. Manage or cancel in Apple Subscriptions.")
                     .font(.footnote)
                     .foregroundStyle(Theme.aubergineMuted)
                     .multilineTextAlignment(.center)
+            }
+            if onBack != nil {
+                Button("Continue without a subscription", action: onClose)
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(Theme.aubergine)
+                    .frame(minHeight: 44)
+                    .disabled(isPurchasing)
             }
             FlowLayout(spacing: Theme.Spacing.m) {
                 Button(String(localized: "Restore")) {
@@ -171,7 +232,9 @@ struct PaywallView: View {
                         defer { isPurchasing = false }
                         do {
                             try await subscriptions.restore()
-                            if !subscriptions.isPro {
+                            if subscriptions.isPro {
+                                onClose()
+                            } else {
                                 errorMessage = String(localized: "No active subscription found for this Apple Account.")
                             }
                         } catch {
@@ -225,8 +288,23 @@ struct PaywallView: View {
     }
 }
 
+private struct PaywallEntrance: ViewModifier {
+    let visible: Bool
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(visible ? 1 : 0)
+            .offset(y: visible ? 0 : 7)
+            .allowsHitTesting(visible)
+            .accessibilityHidden(!visible)
+    }
+}
+
 private struct PaywallBenefit: View {
-    let text: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
+    var continues = false
+    var featured = false
 
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
@@ -234,12 +312,25 @@ private struct PaywallBenefit: View {
                 .font(.system(size: 13, weight: .heavy))
                 .foregroundStyle(Color.white)
                 .frame(width: 26, height: 26)
-                .background(Circle().fill(Theme.herb))
+                .background(featured ? Theme.tomatoDeep : Theme.herb, in: Circle())
+                .frame(maxHeight: .infinity, alignment: .top)
+                .background(alignment: .top) {
+                    Rectangle().fill(Theme.herb.opacity(0.35))
+                        .frame(width: 1)
+                        .padding(.bottom, -Theme.Spacing.l)
+                        .scaleEffect(y: continues ? 1 : 0, anchor: .top)
+                }
                 .accessibilityHidden(true)
-            Text(text)
-                .font(.system(.body, design: .rounded).weight(.semibold))
-                .foregroundStyle(Theme.aubergine)
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                Text(title).font(.system(.body, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                Text(detail).font(.subheadline)
+                    .foregroundStyle(Theme.aubergineMuted)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .fixedSize(horizontal: false, vertical: true)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -247,6 +338,7 @@ private struct PlanCard: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let title: String
     let badge: String?
+    var trialBadge: String? = nil
     let price: String
     let detail: String
     let isSelected: Bool
@@ -279,6 +371,11 @@ private struct PlanCard: View {
                                 planTitle
                                 planPrice
                             }
+                        }
+                        if let trialBadge {
+                            Text(trialBadge)
+                                .font(.caption.weight(.bold))
+                                .foregroundStyle(Theme.tomatoDeep)
                         }
                         Text(detail)
                             .font(.subheadline)

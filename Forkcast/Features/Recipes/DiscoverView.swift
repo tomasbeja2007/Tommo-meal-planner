@@ -6,89 +6,119 @@ struct DiscoverView: View {
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(LibraryStore.self) private var library: LibraryStore
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
-    @State private var query: String = ""
-    /// nil = every meal type.
-    @State private var mealFilter: MealType? = nil
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var query = ""
+    @State private var filter: Filter = .all
+    @State private var limit = 24
+
+    private enum Filter: Hashable {
+        case all, mealPrep, viral, quick, family, type(MealType)
+
+        static let options: [Self] = [.all, .mealPrep, .viral, .type(.dinner), .type(.lunch), .type(.breakfast), .type(.snack), .family, .quick]
+
+        var title: String {
+            switch self {
+            case .all: return String(localized: "All")
+            case .mealPrep: return String(localized: "Meal prep")
+            case .viral: return String(localized: "Going viral")
+            case .quick: return String(localized: "Under 25 min")
+            case .family: return String(localized: "Family")
+            case .type(let meal): return meal.title
+            }
+        }
+
+        func includes(_ recipe: Recipe) -> Bool {
+            switch self {
+            case .all: return true
+            case .mealPrep: return recipe.isLeftoverFriendly && recipe.vibes.contains(.batchFriendly)
+            case .viral: return recipe.isTrending
+            case .quick: return recipe.totalMinutes < 25
+            case .family: return recipe.vibes.contains(.family)
+            case .type(let type): return recipe.mealType == type
+            }
+        }
+    }
 
     private var pool: [Recipe] {
-        let all: [Recipe] = repository.browsable(rules: profileStore.plannerProfile, notForMe: library.notForMeIds)
-        guard let mealFilter else { return all }
-        return all.filter { $0.mealType == mealFilter }
+        repository.browsable(rules: profileStore.plannerProfile, notForMe: library.notForMeIds)
     }
 
-    private var vibeMatches: [Recipe] {
-        let vibes: Set<Vibe> = Set(profileStore.profile?.vibes ?? [])
-        guard !vibes.isEmpty else { return Array(pool.prefix(10)) }
-        return pool
-            .filter { !Set($0.vibes).isDisjoint(with: vibes) }
-            .sorted { Set($0.vibes).intersection(vibes).count > Set($1.vibes).intersection(vibes).count }
-    }
-
-    private var trending: [Recipe] {
-        pool.filter { $0.isTrending }
-    }
-
-    private var quick: [Recipe] {
-        pool.filter { $0.totalMinutes < 25 }.sorted { $0.totalMinutes < $1.totalMinutes }
-    }
-
-    private var cuisines: [Cuisine] {
-        let present: Set<Cuisine> = Set(pool.map { $0.cuisine })
-        return Cuisine.allCases.filter { present.contains($0) && $0 != .other }
-    }
-
-    private var searchResults: [Recipe] {
-        let trimmed: String = query.trimmingCharacters(in: .whitespaces)
-        return pool.filter { recipe in
-            recipe.title.localizedCaseInsensitiveContains(trimmed)
-                || recipe.cuisine.rawValue.localizedCaseInsensitiveContains(trimmed)
-                || recipe.vibes.contains { $0.displayName.localizedCaseInsensitiveContains(trimmed) }
+    private func matching(_ recipes: [Recipe]) -> [Recipe] {
+        let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        return recipes.filter { recipe in
+            filter.includes(recipe) && (text.isEmpty || recipe.title.localizedStandardContains(text)
+                || recipe.cuisine.displayName.localizedStandardContains(text)
+                || recipe.vibes.contains { $0.displayName.localizedStandardContains(text) })
         }
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
-                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                    SearchField(text: $query, prompt: String(localized: "Search recipes"))
-                    Label(String(localized: "only showing recipes that fit your diet and allergies"), systemImage: "checkmark.shield")
-                        .font(.caption)
-                        .foregroundStyle(Theme.aubergineMuted)
+        let all = pool
+        let matches = matching(all)
+        VStack(spacing: 0) {
+            SearchField(text: $query, prompt: String(localized: "Search recipes"))
+                .padding(.horizontal, Theme.Spacing.gutter)
+                .padding(.top, Theme.Spacing.s)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Theme.Spacing.s) {
+                    ForEach(Filter.options, id: \.self) { item in
+                        Chip(title: item.title, systemImage: item == .mealPrep ? "square.stack" : nil, isSelected: item == filter) {
+                            filter = item
+                        }
+                    }
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: Theme.Spacing.s) {
-                        Chip(title: String(localized: "All"), isSelected: mealFilter == nil) { mealFilter = nil }
-                        ForEach(MealType.allCases) { type in
-                            Chip(title: "\(type.emoji) \(type.title)", isSelected: mealFilter == type) {
-                                mealFilter = mealFilter == type ? nil : type
+                .padding(.vertical, Theme.Spacing.s)
+            }
+            ScrollViewReader { scroll in
+                ScrollView {
+                    LazyVStack(spacing: Theme.Spacing.l) {
+                        Color.clear.frame(height: 0).id("discover-start").accessibilityHidden(true)
+                        if filter == .all && query.isEmpty {
+                            RecipeCarousel(title: String(localized: "Going viral"), recipes: Array(all.filter(\.isTrending).prefix(12)))
+                            let grouped = Dictionary(grouping: all, by: \.cuisine)
+                            CuisineGrid(cuisines: Cuisine.allCases.filter { grouped[$0] != nil && $0 != .other }, counts: grouped.mapValues(\.count))
+                        }
+                        if matches.isEmpty {
+                            EmptyState(title: String(localized: "No matches"), message: String(localized: "Try another search or filter."), showsMascot: false)
+                                .padding(.horizontal, Theme.Spacing.gutter)
+                        } else {
+                            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: Theme.Spacing.m),
+                                                     count: typeSize.isAccessibilitySize ? 1 : 2), spacing: Theme.Spacing.m) {
+                                ForEach(matches.prefix(limit)) { recipe in
+                                    NavigationLink(value: RecipeRoute(recipeId: recipe.id)) {
+                                        RecipeCard(recipe: recipe)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                            .padding(.horizontal, Theme.Spacing.gutter)
+                            if matches.count > limit {
+                                Button {
+                                    withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { limit += 24 }
+                                } label: {
+                                    Label("View more recipes", systemImage: "chevron.down")
+                                }
+                                .buttonStyle(SecondaryButtonStyle(outlined: true))
+                                .padding(.horizontal, Theme.Spacing.gutter)
                             }
                         }
                     }
-                    .padding(.horizontal, Theme.Spacing.gutter)
+                    .padding(.bottom, Theme.Spacing.xxl)
                 }
-                if query.trimmingCharacters(in: .whitespaces).isEmpty {
-                    RecipeCarousel(title: String(localized: "Your vibes"), recipes: vibeMatches)
-                    RecipeCarousel(title: String(localized: "Going viral"), recipes: trending)
-                    RecipeCarousel(title: String(localized: "Quick (under 25 min)"), recipes: quick)
-                    CuisineGrid(cuisines: cuisines, counts: Dictionary(grouping: pool, by: { $0.cuisine }).mapValues { $0.count })
-                } else if searchResults.isEmpty {
-                    EmptyState(title: String(localized: "no matches"), message: String(localized: "try a dish, a cuisine or a vibe"), showsMascot: false)
-                } else {
-                    LazyVStack(spacing: Theme.Spacing.m) {
-                        ForEach(searchResults) { recipe in
-                            NavigationLink(value: RecipeRoute(recipeId: recipe.id)) {
-                                RecipeRow(recipe: recipe)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                    .padding(.horizontal, Theme.Spacing.gutter)
+                .scrollDismissesKeyboard(.interactively)
+                .onChange(of: filter) { _, _ in
+                    limit = 24
+                    scroll.scrollTo("discover-start", anchor: .top)
+                }
+                .onChange(of: query) { _, _ in
+                    limit = 24
+                    scroll.scrollTo("discover-start", anchor: .top)
                 }
             }
-            .padding(.bottom, Theme.Spacing.xxl)
         }
-        .scrollDismissesKeyboard(.interactively)
+        .background(Theme.cream.ignoresSafeArea())
     }
 }
 

@@ -9,7 +9,7 @@ struct EatingStep: View {
     var body: some View {
         QuestionScaffold(
             title: String(localized: "how do you eat?"),
-            subtitle: String(localized: "we'll never include an allergen, and that includes hidden sources"),
+            subtitle: String(localized: "Choose your eating style and any allergens to exclude."),
             onContinue: onContinue
         ) {
             VStack(alignment: .leading, spacing: Theme.Spacing.xl) {

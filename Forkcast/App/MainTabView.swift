@@ -6,22 +6,35 @@ import ForkcastCore
 struct MainTabView: View {
     @Environment(AppRouter.self) private var router: AppRouter
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
+    @Environment(PlanStore.self) private var planStore
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AccessibilityFocusState private var quickActionFocused: Bool
+    @State private var showsActions = false
+    @State private var showsPantry = false
 
     var body: some View {
         @Bindable var router = router
         TabView(selection: tabSelection) {
             PlanView()
-                .tabItem { Label(String(localized: "Plan"), systemImage: "calendar") }
+                .tabItem { Label(String(localized: "Meal Plan"), systemImage: "calendar") }
                 .tag(AppRouter.Tab.plan)
             GroceriesView()
                 .tabItem { Label(String(localized: "Groceries"), systemImage: "cart") }
                 .tag(AppRouter.Tab.groceries)
             RecipesView()
-                .tabItem { Label(String(localized: "Recipes"), systemImage: "book") }
+                .tabItem { Label(String(localized: "Cookbook"), systemImage: "book") }
                 .tag(AppRouter.Tab.recipes)
             ProfileView()
-                .tabItem { Label(String(localized: "You"), systemImage: "person.crop.circle") }
+                .tabItem { Label(String(localized: "Profile"), systemImage: "person.crop.circle") }
                 .tag(AppRouter.Tab.you)
+        }
+        .accessibilityHidden(showsActions)
+        .overlay(alignment: .bottomTrailing) {
+            if router.isAtTabRoot { quickActions }
+        }
+        .onChange(of: router.selectedTab) { _, _ in showsActions = false }
+        .onChange(of: router.isAtTabRoot) { _, atRoot in
+            if !atRoot { showsActions = false }
         }
         .tint(Theme.tomato)
         .toolbarBackground(Theme.card, for: .tabBar)
@@ -29,9 +42,99 @@ struct MainTabView: View {
         .fullScreenCover(isPresented: $router.isPaywallPresented) {
             PaywallFlow()
         }
+        .sheet(isPresented: $showsPantry) { PantryEditorSheet(initial: planStore.currentOnHand) }
         .sheet(isPresented: $router.isImportPresented) {
             ImportRecipeView(initialText: router.pendingImportText)
         }
+    }
+
+    private var quickActions: some View {
+        ZStack(alignment: .bottomTrailing) {
+            if showsActions {
+                Color.black.opacity(0.28)
+                    .ignoresSafeArea()
+                    .onTapGesture { setActions(false) }
+                    .accessibilityHidden(true)
+                    .transition(.opacity)
+            }
+            VStack(alignment: .trailing, spacing: Theme.Spacing.s) {
+                if showsActions {
+                    VStack(spacing: 0) {
+                        actionRow("Select ingredients", detail: "Cook with what you have", icon: "basket") {
+                            showsPantry = true
+                        }
+                        Divider()
+                        actionRow("Import recipe", detail: "From a link or recipe text", icon: "square.and.arrow.down") {
+                            router.gate(isPro: subscriptions.hasProAccess) {
+                                router.pendingImportText = nil
+                                router.isImportPresented = true
+                            }
+                        }
+                        Divider()
+                        actionRow("Plan my week", detail: "Days, budget & servings", icon: "calendar") {
+                            if planStore.hasPlan {
+                                router.gate(isPro: subscriptions.hasProAccess) {
+                                    router.selectedTab = .plan
+                                    router.isWeekEditorPresented = true
+                                }
+                            } else if !planStore.isGenerating {
+                                router.selectedTab = .plan
+                                Task { await planStore.generatePlan() }
+                            }
+                        }
+                    }
+                    .cardStyle()
+                    .frame(maxWidth: 320)
+                    .transition(reduceMotion ? .opacity : .scale(scale: 0.92, anchor: .bottomTrailing)
+                        .combined(with: .offset(y: 8)).combined(with: .opacity))
+                }
+                Button { setActions(!showsActions) } label: {
+                    Image(systemName: "plus")
+                        .font(.system(size: 21, weight: .bold))
+                        .rotationEffect(.degrees(showsActions ? 45 : 0))
+                        .foregroundStyle(.white)
+                        .frame(width: 51, height: 51)
+                        .background(Theme.tomatoDeep, in: Circle())
+                        .shadow(color: .black.opacity(0.15), radius: 9, y: 4)
+                }
+                .buttonStyle(.plain)
+                .sensoryFeedback(.selection, trigger: showsActions)
+                .accessibilityLabel(showsActions ? Text("Close quick actions") : Text("Quick actions"))
+                .accessibilityFocused($quickActionFocused)
+            }
+            .padding(.trailing, Theme.Spacing.m)
+            .padding(.leading, Theme.Spacing.m)
+            .padding(.bottom, 56)
+        }
+        .accessibilityAction(.escape) { setActions(false) }
+    }
+
+    private func actionRow(_ title: LocalizedStringKey, detail: LocalizedStringKey, icon: String, action: @escaping () -> Void) -> some View {
+        Button {
+            setActions(false)
+            action()
+        } label: {
+            HStack(spacing: Theme.Spacing.m) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                    Text(title).font(.headline).foregroundStyle(Theme.aubergine)
+                    Text(detail).font(.subheadline).foregroundStyle(Theme.aubergineMuted)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: icon)
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .accessibilityHidden(true)
+            }
+            .padding(.vertical, Theme.Spacing.s)
+            .frame(minHeight: 48)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+    }
+
+    private func setActions(_ open: Bool) {
+        withAnimation(.easeOut(duration: reduceMotion ? 0.12 : 0.21)) { showsActions = open }
+        if !open { quickActionFocused = true }
     }
 
     private var tabSelection: Binding<AppRouter.Tab> {

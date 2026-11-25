@@ -214,6 +214,35 @@ final class PlannerTests: XCTestCase {
         XCTAssertEqual(planner.score(catalog.recipe(id: "chickpea-spinach-curry")!, request: normal), 0)
     }
 
+    func testExplicitMealPrepLinksShareOneBatchAndCountEveryPortion() throws {
+        let profile = PlannerProfile(prefersMealPrep: true, mealPrepEdges: [1, 2, 3, 4, 5])
+        let request = TestSupport.request(profile: profile, days: [1, 2, 3, 4, 5, 6], servings: 2, budget: 55)
+        let result = planner.plan(request)
+        XCTAssertEqual(result.meals.count, 6)
+        let source = try XCTUnwrap(result.meals.first)
+        let batch = result.meals.filter { $0.leftoversFromSlotIndex == source.slotIndex }
+        XCTAssertEqual(batch.map(\.weekday), [2, 3, 4, 5])
+        XCTAssertTrue(batch.allSatisfy { $0.recipeId == source.recipeId })
+        XCTAssertNil(result.meals.last?.leftoversFromSlotIndex)
+        let portions = try result.meals.map { draft in
+            try MealPortion(recipe: XCTUnwrap(catalog.recipe(id: draft.recipeId)),
+                            servings: draft.servings, weekday: draft.weekday)
+        }
+        let unbatched = GroceryAggregator.aggregate(meals: portions, catalog: catalog,
+                                                     pricing: request.pricing, unitSystem: request.unitSystem)
+        let batchQuantities = result.groceryList.allItems.map(\.neededBase)
+        XCTAssertEqual(batchQuantities, unbatched.allItems.map(\.neededBase))
+        XCTAssertEqual(result.estimatedTotal, unbatched.total, accuracy: 0.001)
+        XCTAssertEqual(result.meals.reduce(0) { $0 + $1.allocatedCost }, result.estimatedTotal, accuracy: 0.001)
+    }
+
+    func testExplicitMealPrepWithNoLinksLeavesEvenAdjacentDaysIndependent() {
+        let profile = PlannerProfile(prefersMealPrep: true, obstacles: [.tooTired], mealPrepEdges: [])
+        let result = planner.plan(TestSupport.request(profile: profile, days: [1, 2, 3]))
+        XCTAssertEqual(result.meals.count, 3)
+        XCTAssertTrue(result.meals.allSatisfy { $0.leftoversFromSlotIndex == nil })
+    }
+
     func testPreferredCuisineScoresHigher() {
         let request = TestSupport.request(profile: PlannerProfile(preferredCuisines: [.mediterranean]))
         let mediterranean = catalog.recipes.first { $0.cuisine == .mediterranean && !$0.isLeftoverFriendly }!

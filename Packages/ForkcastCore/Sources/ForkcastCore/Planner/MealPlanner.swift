@@ -49,6 +49,9 @@ public struct MealPlanner: Sendable {
         var value: Double = 0
         let vibeMatches: Int = Set(recipe.vibes).intersection(request.profile.vibes).count
         value += 3 * Double(vibeMatches)
+        if request.profile.vibes.contains(.fiberForward), !recipe.vibes.contains(.fiberForward) {
+            value += min(3, max(0, NutritionCalculator.perServing(recipe, catalog: catalog).macros.fiber) / max(1, 3 * recipe.mealType.budgetWeight))
+        }
         if request.feedback.liked.contains(recipe.id) { value += 4 }
         if let stars = request.feedback.stars[recipe.id], stars > 3 { value += Double(stars - 3) }
         if let weeksAgo = request.history[recipe.id] {
@@ -155,7 +158,8 @@ public struct MealPlanner: Sendable {
                   let meal = assignment[slot.index], let batch = assignment[source],
                   meal.candidate.recipe.id == batch.candidate.recipe.id,
                   let sourceSlot = slots.first(where: { $0.index == source }),
-                  isNextDay(slot.date, after: sourceSlot.date) else { continue }
+                  sourceSlot.mealType == slot.mealType,
+                  (1...4).contains(WeekMath.gregorian.dateComponents([.day], from: sourceSlot.date, to: slot.date).day ?? 0) else { continue }
             assignment[slot.index]?.leftoversFrom = source
             paired = true
         }
@@ -172,22 +176,29 @@ public struct MealPlanner: Sendable {
                 let quick = eligible.filter { $0.recipe.handsOnMinutes <= busyLimit }
                 if !quick.isEmpty { eligible = quick }
             }
-            let nextDinner = slots.dropFirst(dayIndex + 1).first { $0.mealType == .dinner }
-            var partner: PlanSlot?
-            if slot.mealType == .dinner, options.weights.pairsLeftovers, !paired,
-               let nextDinner, assignment[nextDinner.index] == nil,
-               isNextDay(nextDinner.date, after: slot.date) {
-                let batch = eligible.filter { $0.recipe.isLeftoverFriendly && $0.traits.batchFriendly }
-                if !batch.isEmpty {
-                    eligible = batch
-                    partner = nextDinner
+            let laterSlots = slots.dropFirst(dayIndex + 1)
+            let requestedPartners = request.profile.mealPrepEdges.map { edges in
+                linkedPartners(after: slot, candidates: laterSlots, edges: edges, occupied: Set(assignment.keys))
+            }
+            var partners = requestedPartners ?? []
+            if requestedPartners == nil, slot.mealType == .dinner, options.weights.pairsLeftovers, !paired,
+               let nextDinner = laterSlots.first(where: { $0.mealType == .dinner }),
+               assignment[nextDinner.index] == nil, isNextDay(nextDinner.date, after: slot.date) {
+                partners = [nextDinner]
+            }
+            if !partners.isEmpty {
+                let batch = eligible.filter {
+                    $0.recipe.isLeftoverFriendly && (requestedPartners != nil || $0.traits.batchFriendly)
                 }
+                if batch.isEmpty { partners = [] }
+                else { eligible = batch }
             }
 
-            let reference = slot.mealType == .dinner && !explored && partner == nil
+            let reference = slot.mealType == .dinner && !explored && partners.isEmpty
                 ? explorationReference(in: options, request: request) : nil
-            let units = partner == nil ? request.servings : 2 * request.servings
-            let allowance = max(0.01, target * slot.mealType.budgetWeight * (partner == nil ? 1 : 2))
+            let groupSize = Double(partners.count + 1)
+            let units = groupSize * request.servings
+            let allowance = max(0.01, target * slot.mealType.budgetWeight * groupSize)
             let weekPosition = min(6, slot.date.timeIntervalSince(slots.first?.date ?? slot.date) / 86_400)
             var best: Candidate?
             var highest = -Double.infinity
@@ -204,8 +215,8 @@ public struct MealPlanner: Sendable {
             let why = reason(for: chosen, slot: slot, basket: basket, allowance: allowance, servings: request.servings,
                              weights: options.weights, similarTo: isExploration ? reference?.recipe.id : nil)
             explored = explored || isExploration
-            assignment[slot.index] = Selection(candidate: chosen, servings: request.servings, reason: partner == nil ? why : .batchCooking)
-            if let partner {
+            assignment[slot.index] = Selection(candidate: chosen, servings: request.servings, reason: partners.isEmpty ? why : .batchCooking)
+            for partner in partners {
                 assignment[partner.index] = Selection(candidate: chosen, servings: request.servings,
                                                       leftoversFrom: slot.index, reason: .plannedLeftovers)
                 paired = true
@@ -226,6 +237,18 @@ public struct MealPlanner: Sendable {
         }
         return PlanResult(meals: meals, estimatedTotal: grocery.total, budget: request.budget,
                           overBudgetBy: max(0, grocery.total - request.budget), relaxedTimeLimit: options.relaxedTime, groceryList: grocery)
+    }
+
+    private func linkedPartners(after slot: PlanSlot, candidates: ArraySlice<PlanSlot>, edges: Set<Int>, occupied: Set<Int>) -> [PlanSlot] {
+        var previous = slot
+        var partners: [PlanSlot] = []
+        for candidate in candidates where candidate.mealType == slot.mealType {
+            guard partners.count < 4, previous.weekday < 7, edges.contains(previous.weekday),
+                  !occupied.contains(candidate.index), isNextDay(candidate.date, after: previous.date) else { break }
+            partners.append(candidate)
+            previous = candidate
+        }
+        return partners
     }
 
     func isNextDay(_ date: Date, after previous: Date) -> Bool {
@@ -334,22 +357,20 @@ public struct MealPlanner: Sendable {
             }
             guard full.total > request.budget + 0.01 else { break }
 
-            var best: (slot: Int, partner: Int?, replacement: Candidate, merit: Double)?
+            var best: (slot: Int, partners: [Int], replacement: Candidate, merit: Double)?
             for slot in slots where !locked.contains(slot.index) {
                 guard let current = assignment[slot.index], current.leftoversFrom == nil else { continue }
-                let partner = slots.first { assignment[$0.index]?.leftoversFrom == slot.index }
-                let servings = current.servings + (partner.flatMap { assignment[$0.index]?.servings } ?? 0)
+                let partners = slots.filter { assignment[$0.index]?.leftoversFrom == slot.index }.map(\.index)
+                guard partners.allSatisfy({ !locked.contains($0) }) else { continue }
+                let servings = partners.reduce(current.servings) { $0 + (assignment[$1]?.servings ?? 0) }
                 var rest = full
-                rest.add(current.candidate.analysis.ingredients, servings: current.servings, removing: true)
-                if let partner, let portion = assignment[partner.index] {
-                    rest.add(portion.candidate.analysis.ingredients, servings: portion.servings, removing: true)
-                }
+                rest.add(current.candidate.analysis.ingredients, servings: servings, removing: true)
                 let old = rest.addition(current.candidate.analysis.ingredients, servings: servings).cost
                 let peers = selections(in: assignment, slots: slots, of: slot.mealType, excluding: slot.index)
                 let used = Set(peers.map { $0.recipe.id })
                 let candidates = options.byType[slot.mealType, default: []].filter {
                     $0.recipe.id != current.candidate.recipe.id && !used.contains($0.recipe.id)
-                        && (partner == nil || $0.recipe.isLeftoverFriendly)
+                        && (partners.isEmpty || $0.recipe.isLeftoverFriendly)
                 }
                 var eligible = eligibleOptions(candidates, peers: peers, type: slot.mealType, family: options.weights.family > 0)
                 if slot.weekday <= 4, options.weights.effort > 2, let limit = request.profile.maxCookMinutes,
@@ -361,14 +382,14 @@ public struct MealPlanner: Sendable {
                     guard savings > 0.01 else { continue }
                     let merit = savings - 0.22 * max(0, current.candidate.score - replacement.score)
                     if merit > (best?.merit ?? -.infinity) {
-                        best = (slot.index, partner?.index, replacement, merit)
+                        best = (slot.index, partners, replacement, merit)
                     }
                 }
             }
             guard let best else { break }
             assignment[best.slot]?.candidate = best.replacement
-            assignment[best.slot]?.reason = best.partner == nil ? .lowerCost : .batchCooking
-            if let partner = best.partner { assignment[partner]?.candidate = best.replacement }
+            assignment[best.slot]?.reason = best.partners.isEmpty ? .lowerCost : .batchCooking
+            for partner in best.partners { assignment[partner]?.candidate = best.replacement }
         }
     }
 

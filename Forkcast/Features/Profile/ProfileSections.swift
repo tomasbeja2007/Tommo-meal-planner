@@ -24,16 +24,16 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
     var title: String {
         switch self {
         case .country: return String(localized: "Country")
-        case .store: return String(localized: "Store")
+        case .store: return String(localized: "Shopping at")
         case .household: return String(localized: "Household")
         case .meals: return String(localized: "Meals")
         case .cookingDays: return String(localized: "Cooking days")
         case .budget: return String(localized: "Weekly budget")
-        case .vibes: return String(localized: "Vibes")
+        case .vibes: return String(localized: "What kind of vibe?")
         case .diet: return String(localized: "Diet")
-        case .nutrition: return String(localized: "Calorie target")
+        case .nutrition: return String(localized: "Nutrition goals")
         case .allergies: return String(localized: "Allergies")
-        case .dislikes: return String(localized: "Dislikes")
+        case .dislikes: return String(localized: "Foods to skip")
         case .appliances: return String(localized: "Appliances")
         case .cookTime: return String(localized: "Max cook time")
         case .units: return String(localized: "Units")
@@ -137,7 +137,8 @@ struct PreferencesSection: View {
         case .diet: return profile.diet.displayName
         case .nutrition:
             guard let target = profile.nutritionTarget else { return String(localized: "No target") }
-            return String(localized: "\(target.calories.formatted()) kcal/day")
+            let macros = target.grams
+            return String(localized: "\(target.calories.formatted()) kcal · \(macros.protein) g protein · \(macros.carbs) g carbs · \(macros.fat) g fat")
         case .allergies: return profile.allergens.isEmpty ? String(localized: "None") : profile.allergens.map { $0.displayName }.sorted().joined(separator: ", ")
         case .dislikes: return profile.dislikedIngredientIds.isEmpty ? String(localized: "None") : "\(profile.dislikedIngredientIds.count)"
         case .appliances: return "\(profile.appliances.count)"
@@ -233,20 +234,24 @@ struct AccountSection: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(AppleSignInManager.self) private var appleSignIn: AppleSignInManager
 
+    @State private var agreed = false
+
     var body: some View {
         Section {
             if profile.appleUserId == nil {
+                TermsCheckbox(isOn: $agreed)
                 SignInWithAppleButton(.signIn) { request in
                     appleSignIn.configure(request)
                 } onCompletion: { result in
                     if let signedIn = appleSignIn.handle(result) {
-                        profile.appleUserId = signedIn.userId
-                        if profile.name.isEmpty, let given = signedIn.givenName { profile.name = given }
-                        profileStore.save()
+                        profileStore.attachAppleAccount(userId: signedIn.userId, givenName: signedIn.givenName, email: signedIn.email)
                     }
                 }
                 .signInWithAppleButtonStyle(.black)
                 .frame(height: 48)
+                .disabled(!agreed || appleSignIn.isSigningIn)
+                .opacity(agreed ? 1 : 0.4)
+                if appleSignIn.isSigningIn { ProgressView("Signing in with Apple…") }
                 if let error = appleSignIn.lastError {
                     Text(error).font(.caption).foregroundStyle(Theme.tomatoDeep)
                 }
@@ -255,6 +260,8 @@ struct AccountSection: View {
                     .foregroundStyle(Theme.herb)
                 Button(String(localized: "Sign out")) {
                     profile.appleUserId = nil
+                    profile.appleEmail = nil
+                    agreed = false
                     profileStore.save()
                 }
                 .foregroundStyle(Theme.tomatoDeep)
@@ -262,7 +269,7 @@ struct AccountSection: View {
         } header: {
             Text("Account")
         } footer: {
-            Text("Optional: back up your preferences to your Apple ID. iCloud sync works without it.")
+            Text("You can keep using Tommo without signing in.")
         }
         .listRowBackground(Theme.card)
     }

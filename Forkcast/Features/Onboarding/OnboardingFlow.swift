@@ -1,11 +1,12 @@
 import SwiftUI
 import ForkcastCore
 
-/// Splash → welcome → questions → building → plan reveal → reminders → trial → save → home.
+/// Questions → savings → catalog → reminders → subscriptions → plan → account.
 /// Answers live in `OnboardingState`; they're written to `UserProfile` when the week is built,
 /// and onboarding is marked complete on the last screen.
 struct OnboardingFlow: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
+    @Environment(PlanStore.self) private var planStore
     @Environment(AppRouter.self) private var router: AppRouter
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
@@ -13,15 +14,28 @@ struct OnboardingFlow: View {
     @State private var state: OnboardingState = OnboardingState()
     @State private var step: OnboardingStep = .welcome
     @State private var goingForward: Bool = true
+    @State private var crossDissolve = false
     @State private var didLoadExisting: Bool = false
-    @State private var isPaywallPresented: Bool = false
+
+    private var visibleSteps: [OnboardingStep] {
+        OnboardingStep.allCases.filter { $0.showsTopBar && shouldShow($0) }
+    }
+
+    private var stepNumber: Int { (visibleSteps.firstIndex(of: step) ?? 0) + 1 }
+
+    private var progress: Double {
+        let questions = visibleSteps.filter { $0.rawValue <= OnboardingStep.savings.rawValue }
+        guard let index = questions.firstIndex(of: step) else { return 1 }
+        return Double(index + 1) / Double(questions.count)
+    }
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 if step.showsTopBar {
                     OnboardingTopBar(
-                        progress: step.progress,
+                        progress: progress,
+                        stepDescription: String(localized: "Step \(stepNumber) of \(visibleSteps.count)"),
                         canGoBack: step.canGoBack,
                         onSkip: step.isSkippable ? { skip() } : nil
                     ) { back() }
@@ -38,13 +52,11 @@ struct OnboardingFlow: View {
             .toolbar(.hidden, for: .navigationBar)
         }
         .onAppear(perform: loadExisting)
-        .fullScreenCover(isPresented: $isPaywallPresented, onDismiss: { advance() }) {
-            PaywallView { isPaywallPresented = false }
-        }
+
     }
 
     private var transition: AnyTransition {
-        if reduceMotion { return .opacity }
+        if reduceMotion || crossDissolve { return .opacity }
         let insertion: Edge = goingForward ? .trailing : .leading
         let removal: Edge = goingForward ? .leading : .trailing
         return .asymmetric(
@@ -86,26 +98,32 @@ struct OnboardingFlow: View {
             PantryStep(state: state) { advance() }
         case .store:
             StoreStepView(state: state) { advance() }
+        case .savings:
+            SavingsStep { advance() }
+        case .catalog:
+            CatalogPreviewStep { advance() }
         case .building:
             BuildingWeekStep(state: state) { advance() }
         case .reveal:
             PlanRevealStep(state: state) { advance() }
         case .reminders:
             StayOnTrackStep { advance() }
-        case .trial:
-            TrialTimelineStep(onStartTrial: { isPaywallPresented = true }, onNotNow: { advance() })
+        case .subscriptions:
+            PaywallView(onBack: { back() }, onClose: {
+                if step == .subscriptions { advance() }
+            })
         case .savePlan:
             SaveAccountStep { advance() }
         case .home:
-            WelcomeHomeStep(state: state) { finish() }
+            WelcomeHomeStep { finish() }
         }
     }
 
     // MARK: Navigation
 
-    /// The trial screen only makes sense for people who can still start a trial.
+    /// Subscribers go directly to their plan.
     private func shouldShow(_ candidate: OnboardingStep) -> Bool {
-        if candidate == .trial { return subscriptions.isEligibleForTrial && !subscriptions.isPro }
+        if candidate == .subscriptions { return !subscriptions.isPro }
         return true
     }
 
@@ -113,15 +131,22 @@ struct OnboardingFlow: View {
         guard var next = step.next else { return }
         while !shouldShow(next), let after = next.next { next = after }
         if next == .budget { state.refreshSuggestedBudget(catalog: FoodCatalog.bundled) }
-        goingForward = true
-        withAnimation(Theme.motion(reduceMotion)) { step = next }
+        navigate(to: next, forward: true)
     }
 
     private func back() {
         guard step.canGoBack, var previous = step.previous else { return }
         while !shouldShow(previous), let before = previous.previous { previous = before }
-        goingForward = false
-        withAnimation(Theme.motion(reduceMotion)) { step = previous }
+        navigate(to: previous, forward: false)
+    }
+
+    private func navigate(to destination: OnboardingStep, forward: Bool) {
+        goingForward = forward
+        let dissolveSteps: Set<OnboardingStep> = [.savings, .catalog, .subscriptions]
+        crossDissolve = dissolveSteps.contains(step) || dissolveSteps.contains(destination)
+        withAnimation(reduceMotion ? .easeOut(duration: 0.14) : .easeInOut(duration: 0.24)) {
+            step = destination
+        }
     }
 
     /// "Skip" on optional steps clears that answer and moves on.
@@ -138,6 +163,7 @@ struct OnboardingFlow: View {
         if let profile = profileStore.profile {
             var answers: OnboardingAnswers = profile.onboardingAnswers
             answers.completedAt = Date()
+            answers.generatedPlanCreatedAt = nil
             profile.onboardingAnswers = answers
         }
         router.showPlanReveal = false
@@ -151,6 +177,10 @@ struct OnboardingFlow: View {
         didLoadExisting = true
         if let profile = profileStore.profile {
             state = OnboardingState(profile: profile)
+            if let readyPlan = profile.onboardingAnswers.generatedPlanCreatedAt,
+               planStore.currentPlan?.createdAt == readyPlan {
+                step = profile.appleUserId == nil ? .savePlan : .home
+            }
         }
     }
 }

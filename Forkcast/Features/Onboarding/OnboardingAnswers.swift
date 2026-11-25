@@ -11,6 +11,7 @@ struct OnboardingAnswers: Codable, Hashable {
     /// `OnboardingObstacle` raw values.
     var obstacles: [String] = []
     var mealPrepMode: Bool = false
+    var mealPrepEdges: [Int]? = nil
     /// `ExtraDiet` raw values.
     var extraDiets: [String] = []
     /// Ingredient ids the user already has at home.
@@ -20,6 +21,7 @@ struct OnboardingAnswers: Codable, Hashable {
     /// Free text from "Request your store".
     var requestedStore: String? = nil
     var completedAt: Date? = nil
+    var generatedPlanCreatedAt: Date? = nil
 
     static func decode(_ json: String) -> OnboardingAnswers {
         guard !json.isEmpty, let data = json.data(using: .utf8),

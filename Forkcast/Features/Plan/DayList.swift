@@ -7,30 +7,43 @@ import ForkcastCore
 struct DayList: View {
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
+    var day: Date? = nil
     let onOpen: (PlannedMeal) -> Void
     let onSwap: (PlannedMeal) -> Void
     let onAdd: (Date, MealType) -> Void
 
     var body: some View {
         LazyVStack(spacing: Theme.Spacing.m) {
-            ForEach(planStore.weekDays, id: \.self) { day in
-                if planStore.isDinnersOnly {
-                    slot(day: day, type: .dinner, header: DateText.dayLabel(day))
-                } else {
-                    VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-                        Text(DateText.dayLabel(day))
-                            .font(.system(.subheadline, design: .rounded).weight(.bold))
-                            .foregroundStyle(Theme.aubergine)
-                            .padding(.top, Theme.Spacing.s)
-                            .accessibilityAddTraits(.isHeader)
-                        ForEach(planStore.plannedMealTypes) { type in
-                            slot(day: day, type: type, header: type.title)
-                        }
-                    }
+            if let day {
+                ForEach(MealType.ordered(Set(MealType.allCases))) { type in
+                    slot(day: day, type: type, header: "\(DateText.shortWeekday(day).uppercased()) · \(type.title)")
                 }
+                mealCards(planStore.meals(on: day).filter(\.isSide), day: day, header: String(localized: "Side or extra"))
+            } else {
+                allDays
             }
         }
         .animation(Theme.motion(reduceMotion), value: planStore.revision)
+    }
+
+    private var allDays: some View {
+        ForEach(planStore.weekDays, id: \.self) { day in
+            if planStore.isDinnersOnly {
+                slot(day: day, type: .dinner, header: DateText.dayLabel(day))
+            } else {
+                VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                    Text(DateText.dayLabel(day))
+                        .font(.system(.subheadline, design: .rounded).weight(.bold))
+                        .foregroundStyle(Theme.aubergine)
+                        .padding(.top, Theme.Spacing.s)
+                        .accessibilityAddTraits(.isHeader)
+                    ForEach(planStore.plannedMealTypes) { type in
+                        slot(day: day, type: type, header: type.title)
+                    }
+                }
+            }
+            mealCards(planStore.meals(on: day).filter(\.isSide), day: day, header: String(localized: "Side or extra"))
+        }
     }
 
     @ViewBuilder
@@ -39,20 +52,18 @@ struct DayList: View {
         if meals.isEmpty {
             EmptyDayRow(day: day, label: header, mealType: type) { onAdd(day, type) }
         } else {
-            ForEach(meals, id: \.persistentModelID) { meal in
-                if let recipe = planStore.recipe(for: meal) {
-                    MealCard(
-                        day: day,
-                        header: header,
-                        meal: meal,
-                        recipe: recipe,
-                        cost: planStore.cost(for: meal),
-                        onOpen: { onOpen(meal) },
-                        onSwap: { onSwap(meal) }
-                    )
-                    .id("\(meal.recipeId)-\(type.rawValue)-\(day.timeIntervalSince1970)")
-                    .transition(.asymmetric(insertion: .scale(scale: 0.96).combined(with: .opacity), removal: .opacity))
-                }
+            mealCards(meals, day: day, header: header)
+        }
+    }
+
+    private func mealCards(_ meals: [PlannedMeal], day: Date, header: String) -> some View {
+        ForEach(meals, id: \.persistentModelID) { meal in
+            if let recipe = planStore.recipe(for: meal) {
+                MealCard(
+                    day: day, header: header, meal: meal, recipe: recipe, cost: planStore.cost(for: meal),
+                    onOpen: { onOpen(meal) }, onSwap: { onSwap(meal) }
+                )
+                .transition(.asymmetric(insertion: reduceMotion ? .opacity : .scale(scale: 0.96).combined(with: .opacity), removal: .opacity))
             }
         }
     }
@@ -197,11 +208,11 @@ struct EmptyDayRow: View {
                 Text(label ?? DateText.dayLabel(day))
                     .font(.caption.weight(.bold))
                     .foregroundStyle(Theme.aubergineFaint)
-                Text("no \(mealType.noun) planned")
+                Text("Add \(mealType.noun)")
                     .font(.subheadline)
                     .foregroundStyle(Theme.aubergineFaint)
                 Spacer()
-                Label(String(localized: "add one"), systemImage: "plus")
+                Image(systemName: "plus").accessibilityHidden(true)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(Theme.tomato)
             }

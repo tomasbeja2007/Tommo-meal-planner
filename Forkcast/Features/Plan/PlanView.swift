@@ -11,18 +11,12 @@ struct PlanView: View {
 
     @State private var swapTarget: PlannedMeal? = nil
     @State private var addTarget: AddMealTarget? = nil
-    @State private var isEditingWeek: Bool = false
     @State private var isWhyCheaperShown: Bool = false
     @State private var isFeedbackShown: Bool = false
     @State private var isRegenerateConfirmShown: Bool = false
-    @State private var showsQuickActions = false
-    @State private var pendingQuickAction: QuickAction?
-    @AccessibilityFocusState private var quickActionsFocused: Bool
-
-    private enum QuickAction {
-        case importRecipe
-        case planWeek
-    }
+    @State private var showsNotifications = false
+    @State private var selectedDate: Date?
+    @State private var expandsCalendar = true
 
     @State private var didAutoShowFeedback: Bool = false
 
@@ -31,26 +25,42 @@ struct PlanView: View {
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.planPath) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    HStack(alignment: .top, spacing: Theme.Spacing.m) {
-                        PlanHeader(name: profileStore.name, storeName: profileStore.storeName, store: profileStore.store)
-                        quickActions.padding(.top, Theme.Spacing.l)
+            VStack(spacing: 0) {
+                HStack(alignment: .top, spacing: Theme.Spacing.m) {
+                    PlanHeader(name: profileStore.name, storeName: profileStore.storeName, store: profileStore.store)
+                    Button { showsNotifications = true } label: {
+                        Image(systemName: "bell")
+                            .font(.headline)
+                            .foregroundStyle(Theme.tomatoDeep)
+                            .frame(width: 44, height: 44)
+                            .background(Theme.tomatoSoft, in: Circle())
                     }
-                    if planStore.hasPlan {
-                        planContent
-                    } else {
-                        EmptyState(
-                            title: String(localized: "no plan this week yet"),
-                            message: profileStore.mealTypes == [.dinner] ? String(localized: "we'll build a costed week of dinners for your shop.") : String(localized: "we'll build a costed week of meals for your shop."),
-                            actionTitle: String(localized: "Build my week")
-                        ) {
-                            Task { await planStore.generatePlan() }
-                        }
-                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text("Reminders"))
+                    .padding(.top, Theme.Spacing.l)
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
-                .padding(.bottom, Theme.Spacing.xxl)
+                if planStore.hasPlan, let activeDate {
+                    calendarStrip(active: activeDate)
+                }
+                ScrollView {
+                    VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                        if planStore.hasPlan {
+                            planContent
+                        } else {
+                            EmptyState(
+                                title: String(localized: "No plan this week yet"),
+                                message: String(localized: "We'll build a week of meals with estimated costs for your shop."),
+                                actionTitle: String(localized: "Build my week")
+                            ) {
+                                guard !planStore.isGenerating else { return }
+                                Task { await planStore.generatePlan() }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, Theme.Spacing.gutter)
+                    .padding(.bottom, 78)
+                }
             }
             .background(Theme.cream.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
@@ -72,36 +82,32 @@ struct PlanView: View {
             }
             .animation(reduceMotion ? nil : Theme.Motion.fadeIn, value: planStore.isGenerating)
         }
-        .sheet(isPresented: $showsQuickActions, onDismiss: openQuickAction) {
+        .sheet(isPresented: $showsNotifications) {
             NavigationStack {
                 List {
-                    quickActionRow("Import recipe", detail: "Bring a recipe into Tommo.", icon: "square.and.arrow.down", action: .importRecipe)
-                    quickActionRow(planStore.hasPlan ? "Edit week" : "Build my week", detail: "Choose dinners and servings.", icon: "calendar", action: .planWeek)
+                    if let profile = profileStore.profile { NotificationsSection(profile: profile) }
                 }
-                .scrollContentBackground(.hidden)
-                .background(Theme.cream.ignoresSafeArea())
-                .navigationTitle("Quick actions")
+                .navigationTitle("Reminders")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Close") { showsQuickActions = false }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Done") { showsNotifications = false }
                     }
                 }
             }
-            .presentationDetents([.medium, .large])
-            .presentationDragIndicator(.visible)
         }
         .sheet(item: $swapTarget) { meal in
             SwapSheet(meal: meal)
                 .presentationDetents([.large, .medium])
         }
         .sheet(item: $addTarget) { target in
-            RecipePickerSheet(title: String(localized: "add a \(target.mealType.noun)"), mealType: target.mealType) { recipeId in
-                planStore.addMeal(recipeId: recipeId, on: target.date, mealType: target.mealType)
+            let title = target.mealType.map { String(localized: "Add \($0.noun)") } ?? String(localized: "Add a side or extra")
+            RecipePickerSheet(title: title, mealType: target.mealType) { recipeId in
+                planStore.addMeal(recipeId: recipeId, on: target.date, mealType: target.mealType, isSide: target.mealType == nil)
                 addTarget = nil
             }
         }
-        .fullScreenCover(isPresented: $isEditingWeek) {
+        .fullScreenCover(isPresented: $router.isWeekEditorPresented) {
             EditWeekSheet()
         }
         .sheet(isPresented: $isWhyCheaperShown) {
@@ -137,55 +143,77 @@ struct PlanView: View {
         }
     }
 
-    private var quickActions: some View {
-        Button { showsQuickActions = true } label: {
-            Image(systemName: "plus")
-                .font(.system(size: 17, weight: .bold))
-                .foregroundStyle(Theme.tomatoDeep)
-                .frame(width: 44, height: 44)
-                .background(Theme.tomatoSoft, in: Circle())
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(Text("Quick actions"))
-        .accessibilityFocused($quickActionsFocused)
+    private var activeDate: Date? {
+        let days = planStore.weekDays
+        if let selectedDate, days.contains(selectedDate) { return selectedDate }
+        return days.first { Calendar.current.isDateInToday($0) } ?? days.first
     }
 
-    private func quickActionRow(_ title: LocalizedStringKey, detail: LocalizedStringKey, icon: String, action: QuickAction) -> some View {
-        Button {
-            pendingQuickAction = action
-            showsQuickActions = false
-        } label: {
-            Label {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title).font(.headline)
-                    Text(detail).font(.subheadline).foregroundStyle(Theme.aubergineMuted)
+    private func calendarStrip(active: Date) -> some View {
+        HStack(alignment: .top, spacing: Theme.Spacing.xs) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 4) {
+                    ForEach(planStore.weekDays, id: \.self) { day in
+                        let meals = planStore.meals(on: day)
+                        let selected = day == active
+                        Button {
+                            withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { selectedDate = day }
+                        } label: {
+                            VStack(spacing: 4) {
+                                VStack(spacing: 2) {
+                                    Text(DateText.shortWeekday(day).prefix(1))
+                                        .font(.caption2.weight(.bold))
+                                    Text(day.formatted(.dateTime.day()))
+                                        .font(.subheadline.weight(.bold))
+                                    Circle()
+                                        .fill(selected ? Color.white : Theme.tomato)
+                                        .frame(width: 4, height: 4)
+                                        .opacity(meals.isEmpty ? 0 : 1)
+                                }
+                                .frame(width: 44, height: 52)
+                                .background(selected ? Theme.tomatoDeep : Theme.card, in: RoundedRectangle(cornerRadius: 14))
+                                if expandsCalendar {
+                                    Group {
+                                        if let meal = meals.first, let recipe = planStore.recipe(for: meal) {
+                                            DishTileView(recipe: recipe, size: 38, cornerRadius: 10)
+                                        } else {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Theme.creamDeep)
+                                                .frame(width: 38, height: 38)
+                                        }
+                                    }
+                                    .transition(.opacity)
+                                }
+                            }
+                            .foregroundStyle(selected ? Color.white : Theme.aubergine)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(Text(day.formatted(.dateTime.weekday(.wide).day().month(.wide))))
+                        .accessibilityValue(Text("\(meals.count) meals"))
+                        .accessibilityAddTraits(selected ? .isSelected : [])
+                    }
                 }
-            } icon: {
-                Image(systemName: icon)
-                    .foregroundStyle(Theme.tomatoDeep)
             }
-            .frame(minHeight: 52)
+            Button {
+                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { expandsCalendar.toggle() }
+            } label: {
+                Image(systemName: expandsCalendar ? "chevron.up" : "chevron.down")
+                    .font(.caption.weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .frame(width: 44, height: 48)
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(expandsCalendar ? Text("Hide meal previews") : Text("Show meal previews"))
         }
-        .foregroundStyle(Theme.aubergine)
+        .padding(.horizontal, Theme.Spacing.m)
+        .padding(.vertical, Theme.Spacing.s)
+        .background(Theme.cream)
     }
 
-    private func openQuickAction() {
-        let action = pendingQuickAction
-        pendingQuickAction = nil
-        switch action {
-        case .importRecipe:
-            router.gate(isPro: isPro) {
-                router.pendingImportText = nil
-                router.isImportPresented = true
-            }
-        case .planWeek:
-            if planStore.hasPlan {
-                router.gate(isPro: isPro) { isEditingWeek = true }
-            } else if !planStore.isGenerating {
-                Task { await planStore.generatePlan() }
-            }
-        case nil:
-            quickActionsFocused = true
+    private func dayMacros(_ date: Date) -> Macros {
+        planStore.meals(on: date).reduce(.zero) { total, meal in
+            guard let recipe = planStore.recipe(for: meal) else { return total }
+            return total + planStore.repository.nutrition(for: recipe).macros
         }
     }
 
@@ -200,32 +228,44 @@ struct PlanView: View {
             currencyCode: profileStore.currencyCode,
             onInfo: { isWhyCheaperShown = true }
         )
-        GroceryShortcutCard(itemCount: planStore.groceryList.itemCount, checkedCount: planStore.checkedCount) {
+        if let day = activeDate {
+            let date = day.formatted(.dateTime.weekday(.wide).month(.abbreviated).day())
+            let count = planStore.meals(on: day).count
+            SectionHeader(
+                title: Calendar.current.isDateInToday(day) ? String(localized: "\(date) · today") : date,
+                subtitle: count == 1 ? String(localized: "1 meal") : String(localized: "\(count) meals")
+            )
+            DayList(
+                day: day,
+                onOpen: { meal in
+                    router.gate(isPro: isPro) { router.planPath.append(RecipeRoute(recipeId: meal.recipeId, plannedMealID: meal.ensurePlannerMealID())) }
+                },
+                onSwap: { meal in router.gate(isPro: isPro) { swapTarget = meal } },
+                onAdd: { date, type in
+                    router.gate(isPro: isPro) { addTarget = AddMealTarget(date: date, mealType: type) }
+                }
+            )
+            Button {
+                router.gate(isPro: isPro) { addTarget = AddMealTarget(date: day, mealType: nil) }
+            } label: {
+                Label("Add a side or extra", systemImage: "plus")
+            }
+            .buttonStyle(SecondaryButtonStyle(outlined: true))
+            MacrosCard(macros: dayMacros(day), caption: String(localized: "Planned · per person"),
+                       title: String(localized: "Macros · your day"), goal: profileStore.profile?.nutritionTarget?.calories)
+        }
+        GroceryShortcutCard(
+            itemCount: planStore.groceryList.itemCount + planStore.extras.count,
+            checkedCount: planStore.checkedCount + planStore.extras.filter { $0.isChecked }.count,
+            estimate: planStore.basketEstimate.map { profileStore.formatMoney($0.amount) }
+        ) {
             router.gate(isPro: isPro) { router.selectedTab = .groceries }
         }
-        SectionHeader(title: planStore.isDinnersOnly ? String(localized: "dinners") : String(localized: "meals"), subtitle: dinnersSubtitle)
-            .padding(.top, Theme.Spacing.s)
-        DayList(
-            onOpen: { meal in
-                router.gate(isPro: isPro) { router.planPath.append(RecipeRoute(recipeId: meal.recipeId, plannedMealID: meal.ensurePlannerMealID())) }
-            },
-            onSwap: { meal in
-                router.gate(isPro: isPro) { swapTarget = meal }
-            },
-            onAdd: { date, type in
-                router.gate(isPro: isPro) { addTarget = AddMealTarget(date: date, mealType: type) }
-            }
-        )
         PlanActions(
-            onEdit: { router.gate(isPro: isPro) { isEditingWeek = true } },
+            onEdit: { router.gate(isPro: isPro) { router.isWeekEditorPresented = true } },
             onRegenerate: { router.gate(isPro: isPro) { isRegenerateConfirmShown = true } }
         )
         .padding(.top, Theme.Spacing.s)
-    }
-
-    private var dinnersSubtitle: String? {
-        guard let plan = planStore.currentPlan else { return nil }
-        return DateText.range(from: plan.weekStartDate, to: plan.weekEndDate)
     }
 
     private func openDeepLink(_ id: String?) {
@@ -247,8 +287,8 @@ struct PlanView: View {
 /// A day and meal type to add a recipe to (drives the add-a-meal sheet).
 struct AddMealTarget: Identifiable, Hashable {
     let date: Date
-    let mealType: MealType
-    var id: String { "\(date.timeIntervalSince1970)-\(mealType.rawValue)" }
+    let mealType: MealType?
+    var id: String { "\(date.timeIntervalSince1970)-\(mealType?.rawValue ?? "side")" }
 }
 
 /// "Hi Sam" + "this week" + store pill.
@@ -262,7 +302,7 @@ struct PlanHeader: View {
             Text(name.isEmpty ? String(localized: "Hi there") : String(localized: "Hi \(name)"))
                 .font(.system(.subheadline, design: .rounded).weight(.semibold))
                 .foregroundStyle(Theme.aubergineMuted)
-            Text("this week")
+            Text("Meal Plan")
                 .font(.system(.largeTitle, design: .rounded).weight(.bold))
                 .foregroundStyle(Theme.aubergine)
                 .accessibilityAddTraits(.isHeader)

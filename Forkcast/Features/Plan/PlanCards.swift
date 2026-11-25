@@ -62,6 +62,7 @@ struct BudgetCard: View {
 struct GroceryShortcutCard: View {
     let itemCount: Int
     let checkedCount: Int
+    var estimate: String? = nil
     let action: () -> Void
 
     var body: some View {
@@ -80,6 +81,11 @@ struct GroceryShortcutCard: View {
                         .font(.subheadline)
                         .monospacedDigit()
                         .foregroundStyle(Theme.aubergineMuted)
+                    if let estimate {
+                        Text("Estimated total: \(estimate)")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Theme.tomatoDeep)
+                    }
                 }
                 Spacer()
                 Image(systemName: "chevron.right")

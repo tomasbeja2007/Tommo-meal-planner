@@ -6,6 +6,19 @@ final class GroceryTests: XCTestCase {
 
     func recipe(_ id: String) -> Recipe { catalog.recipe(id: id)! }
 
+    func testStoreComparisonUsesRoundedBasketAmounts() throws {
+        let best = try XCTUnwrap(GroceryEstimate(58.55))
+        let second = try XCTUnwrap(GroceryEstimate(62.53))
+        let third = try XCTUnwrap(GroceryEstimate(66.47))
+        XCTAssertEqual([third, second, best].min(), best)
+        XCTAssertEqual(second.difference(from: best), 3.98, accuracy: 0.0001)
+        XCTAssertEqual(third.difference(from: best), 7.92, accuracy: 0.0001)
+        XCTAssertEqual((try XCTUnwrap(second.relativeDifference(from: best)) * 100).rounded(), 7)
+        XCTAssertEqual((try XCTUnwrap(third.relativeDifference(from: best)) * 100).rounded(), 14)
+        XCTAssertNil(GroceryEstimate(.nan))
+        XCTAssertNil(second.relativeDifference(from: try XCTUnwrap(GroceryEstimate(0))))
+    }
+
     func testSharedIngredientIsOneLineWithBothDays() {
         // Both use onion.
         let meals = [
