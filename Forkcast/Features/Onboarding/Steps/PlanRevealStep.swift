@@ -223,8 +223,8 @@ private struct RevealDayCard: View {
     PlanRevealStep(state: OnboardingState()) {}.previewEnvironment().creamBackground()
 }
 
-/// An illustrative savings example in the user's own currency, drawn as their next year:
-/// 52 squares, one per week, filling in while the yearly figure counts up. One timeline (1.9 s).
+/// An illustrative savings example in the user's own currency, drawn as their next twelve months:
+/// cumulative bars stack up while the yearly figure counts up and lands with the last bar. One timeline (2 s).
 struct SavingsStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
@@ -234,16 +234,16 @@ struct SavingsStep: View {
     private let weeks = 52
     private var currency: String { state.country(in: FoodCatalog.bundled).currencyCode }
 
-    /// Grid timing (ms): the squares fill alongside the count-up.
-    private let fillStart: Double = 560
-    private let fillStagger: Double = 14
-    private let fillMs: Double = 240
+    /// Chart timing (ms): bars grow alongside the count-up, which lands with the last bar.
+    private let barStart: Double = 560
+    private let barStagger: Double = 60
+    private let barGrowMs: Double = 420
 
     var body: some View {
-        OneShotClock(duration: 1_900, play: appeared) { time in
+        OneShotClock(duration: 2_000, play: appeared) { time in
             ScrollView {
                 VStack(spacing: Theme.Spacing.m) {
-                    MascotReaction(mood: .cheer, size: 104)
+                    MascotReaction(mood: .cheer, size: 96)
                         .opacity(phase(time, from: 0, to: 260))
                         .scaleEffect(0.9 + 0.1 * seg(phase(time, from: 0, to: 420), 0, 1))
                     VStack(spacing: Theme.Spacing.xs) {
@@ -258,9 +258,9 @@ struct SavingsStep: View {
                         annualFigure(at: time)
                         Text("a year")
                             .font(.title2.weight(.semibold))
-                            .opacity(phase(time, from: 1_300, to: 1_560))
+                            .opacity(phase(time, from: 1_500, to: 1_760))
                     }
-                    yearGrid(at: time)
+                    savingsChart(at: time)
                         .padding(.top, Theme.Spacing.s)
                 }
                 .foregroundStyle(Theme.aubergine)
@@ -287,42 +287,57 @@ struct SavingsStep: View {
         .onAppear { appeared = true }
     }
 
-    /// The next 52 weeks from today, 13 across: each square opens from 60% (never 0) and turns tomato.
-    private func yearGrid(at time: Double) -> some View {
-        let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 13)
+    /// The next twelve months as cumulative bars: each month stands on the last, so the saving visibly
+    /// stacks up to the yearly figure. A one-shot draw-on, bars staggered 60 ms, early months lighter.
+    private func savingsChart(at time: Double) -> some View {
+        let months = 12
+        let calendar = Calendar.current
         let today = Date()
-        let end = Calendar.current.date(byAdding: .weekOfYear, value: weeks - 1, to: today) ?? today
-        return VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            LazyVGrid(columns: columns, spacing: 6) {
-                ForEach(0..<weeks, id: \.self) { week in
-                    let start = fillStart + Double(week) * fillStagger
-                    let fill = seg(time, start, start + fillMs)
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5, style: .continuous).fill(Theme.creamDeep)
-                        RoundedRectangle(cornerRadius: 5, style: .continuous)
-                            .fill(week == 0 ? Theme.tomatoDeep : Theme.tomato)
-                            .scaleEffect(0.6 + 0.4 * fill)
-                            .opacity(fill)
+        let chartHeight: CGFloat = 132
+        return VStack(spacing: Theme.Spacing.s) {
+            HStack(alignment: .bottom, spacing: 6) {
+                ForEach(0..<months, id: \.self) { month in
+                    let start = barStart + Double(month) * barStagger
+                    let grow = seg(time, start, start + barGrowMs)
+                    let share = Double(month + 1) / Double(months)
+                    let isLast = month == months - 1
+                    let isHalf = month == months / 2 - 1
+                    VStack(spacing: 4) {
+                        if isLast || isHalf {
+                            Text(money(Int((Double(weekly * weeks) * share).rounded())))
+                                .font(.system(.caption2, design: .rounded).weight(.bold))
+                                .monospacedDigit()
+                                .foregroundStyle(isLast ? Theme.tomatoDeep : Theme.aubergineMuted)
+                                .fixedSize()
+                                .opacity(seg(time, start + barGrowMs * 0.6, start + barGrowMs + 160))
+                        }
+                        UnevenRoundedRectangle(topLeadingRadius: 6, bottomLeadingRadius: 2, bottomTrailingRadius: 2, topTrailingRadius: 6, style: .continuous)
+                            .fill(isLast ? Theme.tomatoDeep : Theme.tomato.opacity(0.28 + 0.62 * share))
+                            .frame(height: max(3, chartHeight * CGFloat(share * grow)))
                     }
-                    .aspectRatio(1, contentMode: .fit)
+                    .frame(maxWidth: .infinity, maxHeight: chartHeight + 20, alignment: .bottom)
                 }
             }
-            HStack {
-                Text("This week")
-                Spacer()
-                Text(end.formatted(.dateTime.month(.abbreviated).year()))
+            Rectangle().fill(Theme.line).frame(height: 1)
+            HStack(spacing: 6) {
+                ForEach(0..<months, id: \.self) { month in
+                    let date = calendar.date(byAdding: .month, value: month, to: today) ?? today
+                    Text(date.formatted(.dateTime.month(.narrow)))
+                        .font(.caption2.weight(month == 0 ? .bold : .medium))
+                        .foregroundStyle(month == 0 ? Theme.tomatoDeep : Theme.aubergineFaint)
+                        .frame(maxWidth: .infinity)
+                }
             }
-            .font(.caption.weight(.semibold))
-            .foregroundStyle(Theme.aubergineMuted)
         }
         .padding(Theme.Spacing.l)
         .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
         .opacity(phase(time, from: 380, to: 620))
         .offset(y: 12 * (1 - seg(phase(time, from: 380, to: 760), 0, 1)))
+        .accessibilityHidden(true)
     }
 
     private func annualFigure(at time: Double) -> some View {
-        let reveal = phase(time, from: 560, to: 1_400)
+        let reveal = phase(time, from: barStart, to: barStart + 11 * barStagger + barGrowMs)
         let ring = phase(time, from: 700, to: 1_500)
         let value = Int((Double(weekly * weeks) * (1 - pow(1 - reveal, 3))).rounded(.down))
         return Text(money(value))
