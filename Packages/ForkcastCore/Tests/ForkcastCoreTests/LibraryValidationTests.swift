@@ -6,11 +6,11 @@ final class LibraryValidationTests: XCTestCase {
 
     func testCatalogLoads() throws {
         let loaded = try FoodCatalog.loadBundled()
-        XCTAssertEqual(loaded.recipes.count, 283)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 141)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .breakfast }.count, 45)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .lunch }.count, 56)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .snack }.count, 41)
+        XCTAssertEqual(loaded.recipes.count, 384)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 187)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .breakfast }.count, 65)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .lunch }.count, 76)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .snack }.count, 56)
         XCTAssertGreaterThanOrEqual(loaded.ingredients.count, 140)
         XCTAssertEqual(loaded.countries.first?.id, "us", "United States must be first in every list")
         XCTAssertEqual(loaded.countries[1].id, "gb", "then the United Kingdom")
@@ -19,8 +19,8 @@ final class LibraryValidationTests: XCTestCase {
     /// The trending set (Tools/trending_recipes.py) feeds Discover's "Going viral" row and the slideshow kit.
     func testTrendingRecipes() {
         let trending: [Recipe] = catalog.recipes.filter { $0.isTrending }
-        XCTAssertEqual(trending.count, 211)
-        XCTAssertEqual(trending.filter { $0.mealType == .dinner }.count, 101)
+        XCTAssertEqual(trending.count, 312)
+        XCTAssertEqual(trending.filter { $0.mealType == .dinner }.count, 147)
         for id in ["smash-burger-tacos", "garlic-chili-oil-noodles", "baked-feta-penne", "crispy-salmon-rice-bowl"] {
             XCTAssertEqual(catalog.recipe(id: id)?.isTrending, true, id)
         }

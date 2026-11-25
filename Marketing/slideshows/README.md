@@ -1,6 +1,6 @@
 # Slideshow kit: trending recipes
 
-211 easy, healthy-ish recipes for TikTok / Instagram photo slideshows. Every one is also in the app
+312 easy, healthy-ish recipes for TikTok / Instagram photo slideshows. Every one is also in the app
 (Discover → **Going viral**), so the call to action is real: people can search the title in Tommo.
 
 ## How to make one post
@@ -240,3 +240,104 @@ I'm making a set of matching photos of one dish for a recipe slideshow. Keep the
 | [Peanut butter yogurt dip with apple](peanut-butter-yogurt-dip.md) | snack | 5 min | 270 | 11 g |
 | [Puffed rice paper chips](rice-paper-chips.md) | snack | 7 min | 160 | 2 g |
 | [Two-ingredient banana oat cookies](banana-oat-cookies.md) | snack | 20 min | 180 | 4 g |
+| [Crispy rice paper dumplings](crispy-rice-paper-dumplings.md) | dinner | 32 min | 670 | 25 g |
+| [Greek-style sheet-pan nachos](greek-sheet-pan-nachos.md) | dinner | 30 min | 490 | 34 g |
+| [Slow-cooker shredded beef tacos](slow-cooker-shredded-beef-tacos.md) | dinner | 435 min | 560 | 41 g |
+| [Hot honey halloumi tacos](hot-honey-halloumi-tacos.md) | dinner | 20 min | 540 | 23 g |
+| [Sheet-pan chicken quesadilla](sheet-pan-chicken-quesadilla.md) | dinner | 40 min | 660 | 42 g |
+| [French onion pasta](french-onion-pasta.md) | dinner | 45 min | 600 | 25 g |
+| [Baked garlic & herb cream cheese pasta](baked-herby-cream-cheese-pasta.md) | dinner | 35 min | 550 | 16 g |
+| [Mongolian-style beef with rice](mongolian-style-beef.md) | dinner | 22 min | 650 | 39 g |
+| [General Tso-style crispy tofu](general-tso-style-tofu.md) | dinner | 25 min | 680 | 40 g |
+| [Kung pao chicken](kung-pao-chicken.md) | dinner | 20 min | 620 | 32 g |
+| [Chicken chow mein](chicken-chow-mein.md) | dinner | 20 min | 480 | 33 g |
+| [Pad Thai-style shrimp noodles](pad-thai-style-noodles.md) | dinner | 20 min | 620 | 30 g |
+| [Slow-cooker massaman-style beef curry](slow-cooker-massaman-beef.md) | dinner | 375 min | 930 | 43 g |
+| [Goan-style coconut fish curry](goan-style-fish-curry.md) | dinner | 30 min | 610 | 29 g |
+| [Mild chicken korma](mild-chicken-korma.md) | dinner | 35 min | 840 | 39 g |
+| [Lamb keema with peas](lamb-keema-peas.md) | dinner | 30 min | 740 | 37 g |
+| [Aloo gobi with naan](aloo-gobi.md) | dinner | 35 min | 560 | 18 g |
+| [One-pot chicken biryani-style rice](one-pot-chicken-biryani.md) | dinner | 40 min | 670 | 35 g |
+| [Japanese-style chicken curry](japanese-chicken-curry.md) | dinner | 40 min | 680 | 31 g |
+| [Air-fryer chicken katsu bowl](air-fryer-chicken-katsu-bowl.md) | dinner | 35 min | 550 | 41 g |
+| [Okonomiyaki-style cabbage pancakes](okonomiyaki-cabbage-pancakes.md) | dinner | 25 min | 690 | 26 g |
+| [Oyakodon chicken & egg rice bowl](oyakodon.md) | dinner | 20 min | 690 | 41 g |
+| [Beef bibimbap bowl](bibimbap-bowl.md) | dinner | 35 min | 640 | 33 g |
+| [Air-fryer Korean-style fried cauliflower](korean-fried-cauliflower.md) | dinner | 35 min | 420 | 11 g |
+| [Bulgogi-style pork lettuce wraps](bulgogi-pork-lettuce-wraps.md) | dinner | 25 min | 630 | 28 g |
+| [Spanish garlic shrimp & white beans](spanish-garlic-shrimp.md) | dinner | 17 min | 530 | 26 g |
+| [Portuguese-style piri-piri chicken & rice](piri-piri-chicken-rice.md) | dinner | 45 min | 670 | 40 g |
+| [Greek green bean & potato stew with feta](greek-green-bean-potato-stew.md) | dinner | 40 min | 590 | 18 g |
+| [Shrimp saganaki-style orzo](shrimp-saganaki-orzo.md) | dinner | 25 min | 560 | 33 g |
+| [Moussaka-style lamb & eggplant skillet](moussaka-skillet.md) | dinner | 40 min | 630 | 34 g |
+| [Turkey stuffed zucchini boats](turkey-zucchini-boats.md) | dinner | 40 min | 540 | 45 g |
+| [Easy eggplant parmesan bake](easy-eggplant-parmesan.md) | dinner | 40 min | 620 | 33 g |
+| [Sausage, kale & chili penne](sausage-kale-chili-penne.md) | dinner | 20 min | 760 | 32 g |
+| [Aglio e olio with broccoli & white beans](aglio-olio-broccoli-beans.md) | dinner | 17 min | 590 | 20 g |
+| [One-pan skillet lasagne](skillet-lasagne.md) | dinner | 35 min | 620 | 46 g |
+| [One-pan Mexican quinoa](one-pan-mexican-quinoa.md) | dinner | 30 min | 530 | 24 g |
+| [Chicken tinga tostadas](chicken-tinga-tostadas.md) | dinner | 35 min | 590 | 45 g |
+| [Chicken & shrimp jambalaya](chicken-shrimp-jambalaya.md) | dinner | 40 min | 640 | 40 g |
+| [Philly cheesesteak-style sandwiches](philly-cheesesteak-sandwiches.md) | dinner | 25 min | 680 | 41 g |
+| [Turkey sloppy joes](turkey-sloppy-joes.md) | dinner | 25 min | 460 | 32 g |
+| [BBQ chicken stuffed sweet potatoes](bbq-chicken-stuffed-sweet-potatoes.md) | dinner | 25 min | 500 | 32 g |
+| [Cottage pie with sweet potato mash](sweet-potato-cottage-pie.md) | dinner | 45 min | 630 | 34 g |
+| [Creamy chicken & leek pie with mash](chicken-leek-mash-pie.md) | dinner | 45 min | 670 | 38 g |
+| [Toad in the hole with onion gravy](toad-in-the-hole.md) | dinner | 45 min | 800 | 31 g |
+| [Creamy chicken, leek & mustard one-pot](chicken-leek-mustard-one-pot.md) | dinner | 35 min | 610 | 36 g |
+| [Crispy chili beef rice bowl](crispy-chili-beef-bowl.md) | dinner | 25 min | 600 | 26 g |
+| [Cowboy caviar with tortilla chips](cowboy-caviar.md) | lunch | 23 min | 400 | 16 g |
+| [Crispy rice salad](crispy-rice-salad.md) | lunch | 25 min | 440 | 9 g |
+| [Chicken, grape & walnut salad cups](chicken-grape-walnut-salad-cups.md) | lunch | 22 min | 320 | 28 g |
+| [Tuna niçoise salad](tuna-nicoise-salad.md) | lunch | 25 min | 480 | 32 g |
+| [Panzanella bread salad](panzanella.md) | lunch | 25 min | 500 | 18 g |
+| [Fattoush salad with crispy chickpeas](fattoush-salad-chickpeas.md) | lunch | 30 min | 500 | 15 g |
+| [Make-ahead chicken noodle soup jars](diy-chicken-noodle-jars.md) | lunch | 15 min | 310 | 26 g |
+| [Spinach & feta quesadilla](spinach-feta-quesadilla.md) | lunch | 13 min | 350 | 21 g |
+| [BLT pasta salad](blt-pasta-salad.md) | lunch | 22 min | 450 | 17 g |
+| [Soy butter egg rice bowl](japanese-egg-rice-bowl.md) | lunch | 17 min | 610 | 22 g |
+| [Gazpacho with garlic croutons](gazpacho-with-croutons.md) | lunch | 20 min | 370 | 12 g |
+| [Quick minestrone](minestrone.md) | lunch | 35 min | 310 | 14 g |
+| [Sweetcorn & potato chowder](sweetcorn-chowder.md) | lunch | 30 min | 430 | 15 g |
+| [Pea & ham soup](pea-ham-soup.md) | lunch | 20 min | 390 | 23 g |
+| [Chicken mulligatawny soup](chicken-mulligatawny.md) | lunch | 35 min | 400 | 29 g |
+| [Roast veg & hummus pittas](roast-veg-hummus-flatbread.md) | lunch | 35 min | 450 | 15 g |
+| [Pizza pasta salad](pizza-pasta-salad.md) | lunch | 22 min | 490 | 23 g |
+| [Korean-style tuna mayo rice bowl](tuna-mayo-rice-bowl.md) | lunch | 8 min | 410 | 26 g |
+| [Banh mi-style tofu sandwich](banh-mi-tofu-sandwich.md) | lunch | 25 min | 600 | 29 g |
+| [Halloumi & roasted pepper baguette](halloumi-pepper-sandwich.md) | lunch | 11 min | 530 | 25 g |
+| [Dutch baby pancake with berries](dutch-baby-pancake.md) | breakfast | 25 min | 440 | 20 g |
+| [Crispy potato & egg breakfast tacos](potato-egg-breakfast-tacos.md) | breakfast | 20 min | 530 | 24 g |
+| [Huevos rancheros](huevos-rancheros.md) | breakfast | 20 min | 480 | 25 g |
+| [Turkish-style menemen](menemen.md) | breakfast | 17 min | 410 | 22 g |
+| [Masala omelette](masala-omelette.md) | breakfast | 11 min | 360 | 22 g |
+| [Savory rice congee with jammy egg](savory-congee-jammy-egg.md) | breakfast | 30 min | 300 | 13 g |
+| [Bacon, egg & cheese toastie](bacon-egg-cheese-toastie.md) | breakfast | 15 min | 460 | 26 g |
+| [Zucchini fritters with yogurt](zucchini-fritters-yogurt.md) | breakfast | 20 min | 440 | 20 g |
+| [Cinnamon roll baked oats](cinnamon-roll-baked-oats.md) | breakfast | 30 min | 450 | 14 g |
+| [Banana oat breakfast muffins](banana-oat-muffins.md) | breakfast | 32 min | 380 | 13 g |
+| [Savory cottage cheese breakfast bowl](savory-cottage-cheese-bowl.md) | breakfast | 5 min | 250 | 16 g |
+| [Kimchi cheese omelette](kimchi-cheese-omelette.md) | breakfast | 9 min | 420 | 27 g |
+| [Apple cinnamon pancakes](apple-cinnamon-pancakes.md) | breakfast | 22 min | 410 | 16 g |
+| [Green spinach banana pancakes](green-spinach-pancakes.md) | breakfast | 15 min | 380 | 19 g |
+| [Warm berry crumble yogurt bowl](berry-crumble-yogurt-bowl.md) | breakfast | 13 min | 320 | 15 g |
+| [Baked avocado egg boats](baked-avocado-egg-boats.md) | breakfast | 20 min | 520 | 23 g |
+| [PB & J overnight oats](pbj-overnight-oats.md) | breakfast | 10 min | 450 | 19 g |
+| [Tortilla breakfast pizza](tortilla-breakfast-pizza.md) | breakfast | 15 min | 350 | 25 g |
+| [Breakfast pita pockets with eggs & hummus](breakfast-pita-pockets.md) | breakfast | 11 min | 390 | 21 g |
+| [Tropical mango coconut overnight oats](tropical-overnight-oats.md) | breakfast | 5 min | 480 | 15 g |
+| [Frozen yogurt peanut caramel bites](frozen-yogurt-peanut-bites.md) | snack | 10 min | 220 | 9 g |
+| [Baked cinnamon apples with oat crumble](baked-cinnamon-apples.md) | snack | 30 min | 250 | 6 g |
+| [Banana chocolate mug cake](banana-chocolate-mug-cake.md) | snack | 5 min | 220 | 7 g |
+| [Cottage cheese pepper boats](cottage-cheese-pepper-boats.md) | snack | 5 min | 110 | 9 g |
+| [Air-fryer mozzarella bites](air-fryer-mozzarella-bites.md) | snack | 16 min | 150 | 12 g |
+| [Air-fryer pizza rice cakes](pizza-rice-cakes.md) | snack | 7 min | 180 | 11 g |
+| [Everything-seasoning boiled eggs](everything-seasoning-eggs.md) | snack | 10 min | 160 | 13 g |
+| [Quick cucumber kimchi](quick-cucumber-kimchi.md) | snack | 10 min | 120 | 4 g |
+| [Marinated feta & olives](marinated-feta-olives.md) | snack | 10 min | 210 | 5 g |
+| [Grape & cheddar skewers](grape-cheddar-skewers.md) | snack | 5 min | 210 | 9 g |
+| [Crunchy parmesan crisps](parmesan-crisps.md) | snack | 10 min | 110 | 10 g |
+| [Air-fryer sweet potato rounds with yogurt dip](sweet-potato-rounds-dip.md) | snack | 20 min | 170 | 6 g |
+| [Chocolate-dipped frozen grapes](chocolate-frozen-grapes.md) | snack | 10 min | 160 | 2 g |
+| [Hummus cucumber cups](hummus-cucumber-cups.md) | snack | 10 min | 130 | 5 g |
+| [Spicy sesame cucumber salad](spicy-sesame-cucumber-snack.md) | snack | 10 min | 120 | 3 g |
