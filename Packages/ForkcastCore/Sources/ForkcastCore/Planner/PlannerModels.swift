@@ -22,8 +22,11 @@ public struct PlannerProfile: Hashable, Sendable {
     public var goals: Set<PlannerGoal>
     public var obstacles: Set<PlannerObstacle>
     public var children: Int
+    /// Daily calories per adult the plan should land near (nil = no target). Portions are sized per day.
+    public var dailyCalories: Int?
 
-    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = [], goals: Set<PlannerGoal> = [], obstacles: Set<PlannerObstacle> = [], children: Int = 0, mealPrepEdges: Set<Int>? = nil) {
+    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = [], goals: Set<PlannerGoal> = [], obstacles: Set<PlannerObstacle> = [], children: Int = 0, mealPrepEdges: Set<Int>? = nil, dailyCalories: Int? = nil) {
+        self.dailyCalories = dailyCalories
         self.goals = goals
         self.obstacles = obstacles
         self.children = children

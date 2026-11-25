@@ -78,7 +78,7 @@ public struct MealPlanner: Sendable {
 
     struct Selection {
         var candidate: Candidate
-        let servings: Double
+        var servings: Double
         var leftoversFrom: Int? = nil
         var reason: PlannedMealReason = .everyday
     }
@@ -194,6 +194,7 @@ public struct MealPlanner: Sendable {
                 else { eligible = batch }
             }
 
+            let slotCalories = calorieGoal(for: slot.mealType, request: request)
             let reference = slot.mealType == .dinner && !explored && partners.isEmpty
                 ? explorationReference(in: options, request: request) : nil
             let groupSize = Double(partners.count + 1)
@@ -204,7 +205,8 @@ public struct MealPlanner: Sendable {
             var highest = -Double.infinity
             for item in eligible {
                 let value = rank(item, slot: slot, weekPosition: weekPosition, peers: peers, basket: basket,
-                                 units: units, allowance: allowance, weights: options.weights, reference: reference, known: known)
+                                 units: units, allowance: allowance, weights: options.weights, reference: reference, known: known,
+                                 calorieGoal: slotCalories)
                 if value > highest {
                     highest = value
                     best = item
@@ -224,7 +226,11 @@ public struct MealPlanner: Sendable {
             basket.add(chosen.analysis.ingredients, servings: units)
         }
 
+        // Portions are sized before the budget repair (so it prices what will really be cooked) and again
+        // after it, because a cheaper swap can change a day's calories.
+        sizePortions(&assignment, slots: slots, locked: locked, request: request)
         repairBudget(&assignment, slots: slots, locked: locked, options: options, request: request)
+        sizePortions(&assignment, slots: slots, locked: locked, request: request)
         let grocery = groceryList(assignment, slots: slots, request: request)
         var meals: [PlannedMealDraft] = []
         for slot in slots {
@@ -289,7 +295,8 @@ public struct MealPlanner: Sendable {
     }
 
     func rank(_ item: Candidate, slot: PlanSlot, weekPosition: Double, peers: [Candidate], basket: IncrementalBasket,
-              units: Double, allowance: Double, weights: TailoringWeights, reference: Candidate?, known: Set<String>) -> Double {
+              units: Double, allowance: Double, weights: TailoringWeights, reference: Candidate?, known: Set<String>,
+              calorieGoal: Double? = nil) -> Double {
         let traits = item.traits
         let shopping = basket.addition(item.analysis.ingredients, servings: units)
         let ratio = shopping.cost / allowance
@@ -302,10 +309,68 @@ public struct MealPlanner: Sendable {
         let reuse = weights.reuse * (savedFresh + sharedFresh)
         let familiarCuisine = peers.contains { $0.recipe.cuisine == item.recipe.cuisine }
         let exploration = reference.map { isNovel(item, relativeTo: $0, known: known) ? weights.novelty + 0.7 : 0 } ?? 0
+        // With a calorie target, lean towards recipes whose serving suits this meal's share of the day
+        // (portions are sized afterwards, so this only nudges; a log ratio treats too small and too big alike).
+        let calorieFit = calorieGoal.map { goal in
+            Self.calorieFitWeight * min(1.2, abs(log(max(60, item.analysis.kcal) / max(60, goal))))
+        } ?? 0
         return item.score - spend - dayEffort * traits.effort + freshTiming
             + reuse
             + min(shopping.shared, 3) * 0.18 + exploration
             + (familiarCuisine ? 0 : weights.novelty * 0.45)
+            - calorieFit
+    }
+
+    // MARK: - Calorie target
+
+    public static let calorieFitWeight: Double = 1.4
+    /// Portions never shrink below ¾ or grow beyond double a standard serving.
+    public static let portionScaleRange: ClosedRange<Double> = 0.75...2.0
+    /// Share of the day's calories each meal aims for (normalised over the meals actually planned).
+    static func calorieShare(_ type: MealType) -> Double {
+        switch type {
+        case .breakfast: return 0.25
+        case .lunch: return 0.32
+        case .dinner: return 0.35
+        case .snack: return 0.10
+        }
+    }
+
+    /// Calories one serving of this meal type should roughly carry, or nil without a target.
+    func calorieGoal(for type: MealType, request: PlannerRequest) -> Double? {
+        guard let daily = request.profile.dailyCalories, daily > 0 else { return nil }
+        let planned = Set(request.slots.map(\.mealType))
+        let total = planned.reduce(0) { $0 + Self.calorieShare($1) }
+        guard total > 0 else { return nil }
+        return Double(daily) * Self.calorieShare(type) / total
+    }
+
+    /// The portion multiplier that brings a day's planned calories to the goal, in quarter steps.
+    public static func portionScale(goal: Double, planned: Double) -> Double {
+        guard goal > 0, planned > 0 else { return 1 }
+        let raw = min(portionScaleRange.upperBound, max(portionScaleRange.lowerBound, goal / planned))
+        return (raw * 4).rounded() / 4
+    }
+
+    /// Sizes each day's portions so one adult's day lands near the calorie target. Kept (locked) meals
+    /// keep their portions and count towards the day; the rest share what's left.
+    func sizePortions(_ assignment: inout [Int: Selection], slots: [PlanSlot], locked: Set<Int>, request: PlannerRequest) {
+        guard let daily = request.profile.dailyCalories, daily > 0, request.servings > 0 else { return }
+        let days = Dictionary(grouping: slots) { WeekMath.gregorian.startOfDay(for: $0.date) }
+        for daySlots in days.values {
+            var fixed = 0.0, flexible = 0.0
+            for slot in daySlots {
+                guard let selection = assignment[slot.index] else { continue }
+                let perPerson = selection.candidate.analysis.kcal
+                if locked.contains(slot.index) { fixed += perPerson * selection.servings / request.servings }
+                else { flexible += perPerson }
+            }
+            guard flexible > 0 else { continue }
+            let scale = Self.portionScale(goal: max(0, Double(daily) - fixed), planned: flexible)
+            for slot in daySlots where !locked.contains(slot.index) && assignment[slot.index] != nil {
+                assignment[slot.index]?.servings = request.servings * scale
+            }
+        }
     }
 
     func explorationReference(in options: Options, request: PlannerRequest) -> Candidate? {

@@ -110,7 +110,10 @@ final class OnboardingState {
     func refreshSuggestedBudget(catalog: FoodCatalog) {
         guard !budgetTouched else { return }
         let country: Country = country(in: catalog)
-        budget = BudgetMath.defaultBudget(region: country.regionPriceKey, portions: portions, days: cookingDays.count, multiplier: country.priceMultiplier, mealTypes: mealTypes)
+        // A calorie target changes how much food the week needs (portions are sized to it), so the
+        // suggestion follows it, against a ~2,000 kcal standard day.
+        let appetite = nutritionTarget.map { min(2, max(0.75, Double($0.calories) / 2_000)) } ?? 1
+        budget = BudgetMath.defaultBudget(region: country.regionPriceKey, portions: portions * appetite, days: cookingDays.count, multiplier: country.priceMultiplier, mealTypes: mealTypes)
     }
 
     func apply(to profile: UserProfile, updatePantry: Bool = false, updateMealPrep: Bool = false) {

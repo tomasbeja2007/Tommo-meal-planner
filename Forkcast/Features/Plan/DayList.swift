@@ -106,7 +106,8 @@ struct MealCard: View {
                                         .transition(.scale(scale: 0.9).combined(with: .opacity))
                                 }
                             }
-                        MealCardText(recipe: recipe, meal: meal, cost: cost, currencyCode: profileStore.currencyCode, macros: repository.nutrition(for: recipe).macros)
+                        MealCardText(recipe: recipe, meal: meal, cost: cost, currencyCode: profileStore.currencyCode,
+                                     macros: repository.nutrition(for: recipe).macros.scaled(by: meal.servings / max(1, profileStore.defaultServings)))
                         Spacer(minLength: 0)
                     }
                     .contentShape(Rectangle())

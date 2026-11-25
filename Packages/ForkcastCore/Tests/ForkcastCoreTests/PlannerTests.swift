@@ -315,4 +315,39 @@ final class PlannerTests: XCTestCase {
         let everything = BudgetMath.defaultBudget(region: .US, portions: 2, days: 5, mealTypes: Set(MealType.allCases))
         XCTAssertGreaterThan(everything, dinners * 2)
     }
+
+    // MARK: Calorie target
+
+    func testPortionScaleSteps() {
+        XCTAssertEqual(MealPlanner.portionScale(goal: 3_000, planned: 1_590), 2.0)
+        XCTAssertEqual(MealPlanner.portionScale(goal: 2_000, planned: 1_600), 1.25)
+        XCTAssertEqual(MealPlanner.portionScale(goal: 1_000, planned: 2_500), 0.75)
+        XCTAssertEqual(MealPlanner.portionScale(goal: 2_000, planned: 0), 1)
+    }
+
+    func testNoCalorieTargetKeepsStandardPortions() {
+        let request = TestSupport.request(mealTypes: [.breakfast, .lunch, .dinner, .snack], servings: 1)
+        let result = planner.plan(request)
+        XCTAssertFalse(result.meals.isEmpty)
+        XCTAssertTrue(result.meals.allSatisfy { $0.servings == 1 })
+    }
+
+    func testCalorieTargetSizesEachDay() {
+        var profile = PlannerProfile()
+        profile.dailyCalories = 3_000
+        let request = TestSupport.request(profile: profile, days: [1, 2, 3, 4, 5, 6, 7],
+                                          mealTypes: [.breakfast, .lunch, .dinner, .snack], servings: 1, budget: 5_000)
+        let result = planner.plan(request)
+        let days = Dictionary(grouping: result.meals) { WeekMath.gregorian.startOfDay(for: $0.date) }
+        XCTAssertEqual(days.count, 7)
+        for (day, meals) in days {
+            let kcal = meals.reduce(0.0) { total, meal in
+                guard let recipe = catalog.recipe(id: meal.recipeId) else { return total }
+                return total + NutritionCalculator.perServing(recipe, catalog: catalog).macros.kcal * meal.servings
+            }
+            let atMaximum = meals.allSatisfy { $0.servings >= MealPlanner.portionScaleRange.upperBound }
+            XCTAssertTrue(atMaximum || abs(kcal - 3_000) <= 3_000 * 0.15, "\(day): \(Int(kcal)) kcal")
+            XCTAssertTrue(meals.allSatisfy { $0.servings >= 1 }, "a 3,000 kcal day never shrinks portions")
+        }
+    }
 }

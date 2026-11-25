@@ -142,7 +142,10 @@
   apart, 420 ms each, ease-out; the yearly figure counts up in step and lands with the last bar.
 - **Catalog ("N recipes fit you"):** two rows of the user's matching dishes drift in opposite directions
   (linear, 60 s loop, edge-faded); three stat tiles count up with ease-out, 80 ms apart.
-- **Plan reveal:** day cards deal in (rise 18 pt + fade, 70 ms apart); budget bar draws on; basket counts up.
+- **Plan reveal:** one card per day (dinner as the hero, the rest of the day as small photos); cards deal in
+  (rise 18 pt + fade, 70 ms apart); budget bar draws on; basket counts up.
+- **Save your week:** three of their dishes fan out like dealt cards (±11°, 62 pt, ease-out, 90 ms apart) on a
+  tomato disc, then sway 1.2° around their bottom edge on seeded 2/4/8 s phases; the lock badge lands last.
 - **Name step:** the underline fills tomato from the left (ease-out 0.35 s) once a name is typed; the corner
   mascot swaps to `.cheer`.
 - **Time saved:** one 1.9 s timeline; the short "with Tommo" bar lands first (tomato), the tall "without a plan"

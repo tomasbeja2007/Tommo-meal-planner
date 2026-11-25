@@ -228,7 +228,9 @@ struct PlanView: View {
     private func dayMacros(_ date: Date) -> Macros {
         planStore.meals(on: date).reduce(.zero) { total, meal in
             guard let recipe = planStore.recipe(for: meal) else { return total }
-            return total + planStore.repository.nutrition(for: recipe).macros
+            // Per person: one serving scaled by this meal's portion (portions follow the calorie target).
+            let portion = meal.servings / max(1, profileStore.defaultServings)
+            return total + planStore.repository.nutrition(for: recipe).macros.scaled(by: portion)
         }
     }
 

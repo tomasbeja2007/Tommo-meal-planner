@@ -69,23 +69,39 @@ struct PlanRevealStep: View {
 
     // MARK: Day cards
 
+    /// One card per day: the day's dinner as the hero (or its first meal), the rest of the day as small
+    /// photos underneath, and the day's cost.
     private var dayStrip: some View {
         let meals = planStore.meals
+        let calendar = Calendar.current
+        var days: [(date: Date, items: [(meal: PlannedMeal, recipe: Recipe, cost: Double)])] = []
+        for (index, meal) in meals.enumerated() where !meal.isSide {
+            guard let recipe = repository.recipe(id: meal.recipeId) else { continue }
+            let cost = index < planStore.mealCosts.count ? planStore.mealCosts[index] : 0
+            if let last = days.indices.last, calendar.isDate(days[last].date, inSameDayAs: meal.date) {
+                days[last].items.append((meal, recipe, cost))
+            } else {
+                days.append((meal.date, [(meal, recipe, cost)]))
+            }
+        }
+        let dinnersOnly = state.mealTypes == [.dinner]
         return ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: Theme.Spacing.m) {
-                ForEach(Array(meals.enumerated()), id: \.offset) { index, meal in
-                    if let recipe = repository.recipe(id: meal.recipeId) {
-                        RevealDayCard(
-                            dayLabel: dayLabel(meal.date),
-                            mealLabel: state.mealTypes == [.dinner] ? nil : meal.mealType.title,
-                            recipe: recipe,
-                            costText: index < planStore.mealCosts.count ? MoneyFormat.string(planStore.mealCosts[index], currencyCode: currency) : nil,
-                            leftoversFrom: leftoverSource(of: meal, in: meals),
-                            isTonight: Calendar.current.isDateInToday(meal.date),
-                            order: index,
-                            play: appeared
-                        )
-                    }
+                ForEach(Array(days.enumerated()), id: \.offset) { order, day in
+                    let hero = day.items.first(where: { $0.meal.mealType == .dinner }) ?? day.items[0]
+                    let others = day.items.filter { $0.meal !== hero.meal }
+                    RevealDayCard(
+                        dayLabel: dayLabel(day.date, dinnersOnly: dinnersOnly),
+                        isToday: calendar.isDateInToday(day.date),
+                        recipe: hero.recipe,
+                        heroMeal: dinnersOnly ? nil : hero.meal.mealType.title,
+                        others: others.map(\.recipe),
+                        otherMeals: others.map { $0.meal.mealType.noun },
+                        costText: MoneyFormat.string(day.items.reduce(0) { $0 + $1.cost }, currencyCode: currency),
+                        leftoversFrom: leftoverSource(of: hero.meal, in: meals),
+                        order: order,
+                        play: appeared
+                    )
                 }
             }
             .padding(.horizontal, Theme.Spacing.gutter)
@@ -93,9 +109,9 @@ struct PlanRevealStep: View {
         }
     }
 
-    /// "Tonight", "Tomorrow", then "Fri 28".
-    private func dayLabel(_ date: Date) -> String {
-        if Calendar.current.isDateInToday(date) { return String(localized: "Tonight") }
+    /// "Tonight" (dinners-only plans) or "Today", then "Tomorrow", then "Fri 28".
+    private func dayLabel(_ date: Date, dinnersOnly: Bool) -> String {
+        if Calendar.current.isDateInToday(date) { return dinnersOnly ? String(localized: "Tonight") : String(localized: "Today") }
         if Calendar.current.isDateInTomorrow(date) { return String(localized: "Tomorrow") }
         return date.formatted(.dateTime.weekday(.abbreviated).day())
     }
@@ -156,15 +172,19 @@ struct PlanRevealStep: View {
 }
 
 private struct RevealDayCard: View {
-    /// "Tonight", "Tomorrow", "Fri 28".
+    /// "Today", "Tomorrow", "Fri 28" ("Tonight" on dinners-only plans).
     let dayLabel: String
-    /// "Lunch" etc. when the plan has more than dinners.
-    let mealLabel: String?
+    let isToday: Bool
     let recipe: Recipe
-    let costText: String?
-    /// Weekday the leftovers come from ("Wed"), if this meal is leftovers.
+    /// "Dinner" when the plan has more than dinners.
+    let heroMeal: String?
+    /// The rest of the day (breakfast, lunch, snack) as small photos.
+    let others: [Recipe]
+    let otherMeals: [String]
+    /// The whole day's cost.
+    let costText: String
+    /// Weekday the leftovers come from ("Wed"), if the hero is leftovers.
     let leftoversFrom: String?
-    let isTonight: Bool
     /// Position in the strip: cards deal in one after another, 70 ms apart.
     let order: Int
     let play: Bool
@@ -181,16 +201,15 @@ private struct RevealDayCard: View {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            HStack(spacing: 4) {
-                Text(mealLabel.map { "\(dayLabel) · \($0)" } ?? dayLabel)
-                    .font(.system(.caption, design: .rounded).weight(.bold))
-                    .textCase(.uppercase)
-                    .foregroundStyle(isTonight ? Color.white : Theme.tomatoDeep)
-                    .padding(.horizontal, isTonight ? 8 : 0)
-                    .padding(.vertical, isTonight ? 3 : 0)
-                    .background { if isTonight { Capsule().fill(Theme.tomatoDeep) } }
-            }
-            DishTileView(recipe: recipe, size: 128, height: 112, cornerRadius: 14)
+            Text(dayLabel)
+                .font(.system(.caption, design: .rounded).weight(.bold))
+                .textCase(.uppercase)
+                .lineLimit(1)
+                .foregroundStyle(isToday ? Color.white : Theme.tomatoDeep)
+                .padding(.horizontal, isToday ? 8 : 0)
+                .padding(.vertical, isToday ? 3 : 0)
+                .background { if isToday { Capsule().fill(Theme.tomatoDeep) } }
+            DishTileView(recipe: recipe, size: 136, height: 112, cornerRadius: 14)
                 .overlay(alignment: .topLeading) {
                     if let leftoversFrom {
                         Label("Leftovers from \(leftoversFrom)", systemImage: "arrow.uturn.backward")
@@ -203,15 +222,36 @@ private struct RevealDayCard: View {
                             .padding(6)
                     }
                 }
-            Text(recipe.title)
-                .font(.system(.subheadline, design: .rounded).weight(.semibold))
-                .foregroundStyle(Theme.aubergine)
-                .lineLimit(2, reservesSpace: true)
+            VStack(alignment: .leading, spacing: 2) {
+                if let heroMeal {
+                    Text(heroMeal)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(Theme.aubergineMuted)
+                }
+                Text(recipe.title)
+                    .font(.system(.subheadline, design: .rounded).weight(.semibold))
+                    .foregroundStyle(Theme.aubergine)
+                    .lineLimit(2, reservesSpace: true)
+            }
+            if !others.isEmpty {
+                HStack(spacing: 6) {
+                    HStack(spacing: -6) {
+                        ForEach(Array(others.prefix(3).enumerated()), id: \.offset) { _, other in
+                            DishTileView(recipe: other, size: 24)
+                                .clipShape(Circle())
+                                .overlay(Circle().strokeBorder(Theme.card, lineWidth: 1.5))
+                        }
+                    }
+                    Text("+ \(otherMeals.formatted(.list(type: .and)))")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(Theme.aubergineMuted)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
             HStack(spacing: Theme.Spacing.s) {
                 Label("\(recipe.totalMinutes) min", systemImage: "clock")
-                if let costText {
-                    Text(leftoversFrom == nil ? costText : String(localized: "cooked already"))
-                }
+                Text(leftoversFrom == nil || !others.isEmpty ? costText : String(localized: "cooked already"))
             }
             .font(.caption.weight(.semibold))
             .labelStyle(CompactLabelStyle())
@@ -219,11 +259,11 @@ private struct RevealDayCard: View {
             .foregroundStyle(Theme.aubergineMuted)
             .lineLimit(1)
         }
-        .frame(width: 128)
+        .frame(width: 136)
         .padding(Theme.Spacing.m)
         .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
         .overlay {
-            if isTonight {
+            if isToday {
                 RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous)
                     .strokeBorder(Theme.tomato.opacity(0.35), lineWidth: 1.5)
             }

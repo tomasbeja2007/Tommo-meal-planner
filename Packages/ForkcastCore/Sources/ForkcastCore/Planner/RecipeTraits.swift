@@ -43,6 +43,8 @@ struct RecipeAnalysis: Sendable {
     let kidFriendly: Double
     let healthiness: Double
     let protein: Double
+    /// Calories in one serving (drives portion sizing against a daily target).
+    let kcal: Double
     let leftoverValue: Double
     let batchFriendly: Bool
     let onePan: Bool
@@ -93,6 +95,7 @@ struct RecipeAnalysis: Sendable {
 
         let macros = NutritionCalculator.perServing(recipe, catalog: catalog).macros
         protein = macros.protein
+        kcal = macros.kcal
         let energyFit = macros.kcal > 0 ? unit(1 - abs(macros.kcal - 550 * recipe.mealType.budgetWeight) / 650) : 0
         healthiness = unit(0.42 * unit(macros.protein / max(macros.kcal, 100) * 15)
             + 0.31 * unit(macros.fiber / (8 * recipe.mealType.budgetWeight))

@@ -120,7 +120,8 @@ final class ProfileStore {
             goals: Set(profile.goals.compactMap(PlannerGoal.init(rawValue:))),
             obstacles: Set(answers.obstacles.compactMap(PlannerObstacle.init(rawValue:))),
             children: profile.householdKids,
-            mealPrepEdges: answers.mealPrepEdges.map { answers.mealPrepMode ? Set($0) : [] }
+            mealPrepEdges: answers.mealPrepEdges.map { answers.mealPrepMode ? Set($0) : [] },
+            dailyCalories: profile.nutritionTarget?.calories
         )
     }
 
