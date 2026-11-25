@@ -201,6 +201,37 @@
   }
  },
  {
+  "id": "daikon",
+  "name": "daikon radish",
+  "pluralName": "daikon radishes",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 18,
+   "protein": 0.6,
+   "carbs": 4.1,
+   "fat": 0.1,
+   "fiber": 1.6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 450,
+   "display": "1 medium radish",
+   "displayImperial": "1 medium radish",
+   "noun": "radish",
+   "nounPlural": "radishes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥕",
+  "tags": [],
+  "ukName": "mooli"
+ },
+ {
   "id": "carrot",
   "name": "carrot",
   "pluralName": "carrots",
@@ -2203,6 +2234,37 @@
   "emoji": "🍖",
   "tags": [],
   "proteinGroup": "pork"
+ },
+ {
+  "id": "deli-roast-beef",
+  "name": "sliced cooked roast beef",
+  "pluralName": "sliced cooked roast beef",
+  "aisle": "Meat & Fish",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": true,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 166,
+   "protein": 26,
+   "carbs": 1,
+   "fat": 6,
+   "fiber": 0
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 150,
+   "display": "150 g pack",
+   "displayImperial": "5 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥩",
+  "tags": [],
+  "proteinGroup": "beef"
  },
  {
   "id": "ham",
@@ -4676,6 +4738,36 @@
   }
  },
  {
+  "id": "pickled-red-ginger",
+  "name": "red pickled ginger",
+  "pluralName": "red pickled ginger",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 35,
+   "protein": 0.5,
+   "carbs": 8,
+   "fat": 0.1,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g jar",
+   "displayImperial": "3.5 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫚",
+  "tags": []
+ },
+ {
   "id": "pepperoncini",
   "name": "pickled pepperoncini",
   "pluralName": "pickled pepperoncini",
@@ -4937,6 +5029,37 @@
    "cup": 240
   },
   "gramsPerMl": 1.0
+ },
+ {
+  "id": "mirin",
+  "name": "mirin",
+  "pluralName": "mirin",
+  "aisle": "Sauces & Condiments",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 240,
+   "protein": 0,
+   "carbs": 43,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 250,
+   "display": "250 ml bottle",
+   "displayImperial": "8.5 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": true,
+  "emoji": "🍶",
+  "tags": [],
+  "gramsPerMl": 1.03
  },
  {
   "id": "soy-sauce",
@@ -6393,6 +6516,38 @@
    "tsp": 5
   },
   "gramsPerMl": 1.0
+ },
+ {
+  "id": "apple-cider-vinegar",
+  "name": "apple cider vinegar",
+  "pluralName": "apple cider vinegar",
+  "aisle": "Oils & Vinegars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 21,
+   "protein": 0,
+   "carbs": 0.9,
+   "fat": 0,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 473,
+   "display": "473 ml bottle",
+   "displayImperial": "16 fl oz bottle",
+   "noun": "bottle",
+   "nounPlural": "bottles"
+  },
+  "isPantryStaple": true,
+  "emoji": "🍎",
+  "tags": [],
+  "ukName": "cider vinegar",
+  "gramsPerMl": 1.01
  },
  {
   "id": "red-wine-vinegar",

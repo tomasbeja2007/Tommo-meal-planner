@@ -145,8 +145,12 @@ final class TailoringTests: XCTestCase {
         printMetrics("Gym-goer", plan: plan, request: request)
     }
 
-    func testFoodGoesOffIncreasesFreshReuse() {
-        var request = TestSupport.request(budget: 75, seed: 62)
+    func testFoodGoesOffIncreasesFreshReuse() throws {
+        // The comparison with the previous planner used the catalog through this recipe.
+        // Keep the same input pool when adding new batches.
+        let end = try XCTUnwrap(catalog.recipes.firstIndex { $0.id == "mango-lassi-pops" })
+        let benchmarkRecipes = Array(catalog.recipes[...end])
+        var request = TestSupport.request(budget: 75, seed: 62, recipes: benchmarkRecipes)
         let withoutPreference = planner.plan(request)
         request.profile.obstacles = [.foodGoesOff]
         let withPreference = planner.plan(request)

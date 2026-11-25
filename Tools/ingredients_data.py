@@ -36,6 +36,7 @@ ROWS = [
   I("garlic","garlic","garlic",None,P,[],"",(149,6.4,33,0.5,2.1),"g",{"clove":5,"piece":50,"tsp":3},(50,"1 bulb","1 bulb","bulb","bulbs"),False,"🧄",prices=(0.69,0.35,0.45)),
   I("lemongrass","lemongrass","lemongrass",None,P,[],"",(99,1.8,25.3,0.5,2),"g",None,(40,"40 g pack","1.4 oz pack","pack","packs"),False,"🌿",prices=(2.49,1.35,1.59)),
   I("ginger","fresh ginger","fresh ginger",None,P,[],"",(80,1.8,18,0.8,2),"g",{"piece":15,"tsp":2,"tbsp":6},(100,"100 g piece","3.5 oz piece","piece","pieces"),False,"🫚",prices=(0.99,0.50,0.70)),
+  I("daikon","daikon radish","daikon radishes","mooli",P,[],"",(18,0.6,4.1,0.1,1.6),"g",None,(450,"1 medium radish","1 medium radish","radish","radishes"),False,"🥕",prices=(2.29,1.95,2.19)),
   I("carrot","carrot","carrots",None,P,[],"",(41,0.9,10,0.2,2.8),"g",{"piece":70},(1000,"1 kg bag","2 lb bag","bag","bags"),False,"🥕",prices=(1.49,0.70,0.99)),
   I("celery","celery","celery",None,P,[],"",(16,0.7,3,0.2,1.6),"g",{"piece":40},(450,"1 head","1 bunch","head","heads"),False,"🥬",prices=(1.99,0.75,1.29)),
   I("potato","potato","potatoes",None,P,[],"",(77,2,17,0.1,2.2),"g",{"piece":200},(2000,"2 kg bag","5 lb bag","bag","bags"),False,"🥔",prices=(4.49,1.60,2.49)),
@@ -99,6 +100,7 @@ ROWS = [
   I("shrimp","raw shrimp","raw shrimp","raw king prawns",MF,["shellfish"],F,(85,20,0,0.5,0),"g",None,(300,"300 g pack","10 oz bag","pack","packs"),False,"🍤","shellfish",prices=(8.99,3.50,5.99)),
   I("pepperoni","sliced pepperoni","sliced pepperoni",None,MF,[],M,(494,22,1,44,0),"g",None,(100,"100 g pack","3.5 oz pack","pack","packs"),False,"🍕","pork",prices=(3.49,1.85,2.29)),
   I("salami","cured salami","cured salami",None,MF,[],M,(407,22.6,1.6,33,0),"g",None,(125,"125 g pack","4.4 oz pack","pack","packs"),False,"🍖","pork",prices=(4.49,2.75,2.99)),
+  I("deli-roast-beef","sliced cooked roast beef","sliced cooked roast beef",None,MF,[],M,(166,26,1,6,0),"g",None,(150,"150 g pack","5 oz pack","pack","packs"),False,"🥩","beef",prices=(5.49,3.25,3.79)),
   I("ham","sliced ham","sliced ham",None,MF,[],M,(145,21,1.5,6,0),"g",{"slice":25},(150,"150 g pack","5 oz pack","pack","packs"),False,"🍖","pork",prices=(3.99,1.50,1.99)),
   I("lamb-mince","ground lamb","ground lamb","lamb mince",MF,[],M,(282,17,0,23,0),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥩","lamb",prices=(7.99,4.50,6.49)),
 
@@ -181,6 +183,7 @@ ROWS = [
   I("curry-paste","tikka curry paste","tikka curry paste",None,TJ,[],"",(300,4,15,25,4),"g",{"tbsp":15,"tsp":5},(280,"280 g jar","10 oz jar","jar","jars"),False,"🍛",prices=(2.99,1.50,1.99)),
   I("chipotles-in-adobo","chipotles in adobo","chipotles in adobo",None,TJ,[],"",(70,2,13,1.5,4),"g",None,(198,"198 g tin","7 oz can","tin","tins"),False,"🌶️",tags=["spicy"],prices=(2.69,2.25,2.79)),
   I("salsa","tomato salsa","tomato salsa",None,TJ,[],"",(36,1.5,7,0.2,1.8),"g",{"tbsp":16,"cup":260},(450,"450 g jar","16 oz jar","jar","jars"),False,"🍅",prices=(2.99,1.50,1.99)),
+  I("pickled-red-ginger","red pickled ginger","red pickled ginger",None,TJ,[],"",(35,0.5,8,0.1,1),"g",None,(100,"100 g jar","3.5 oz jar","jar","jars"),False,"🫚",prices=(2.89,2.25,2.39)),
   I("pepperoncini","pickled pepperoncini","pickled pepperoncini",None,TJ,[],"",(27,1,5.3,0.4,2),"g",None,(180,"300 g jar (180 g drained)","10.6 oz jar","jar","jars"),False,"🌶️",prices=(3.29,2.45,2.59)),
   I("artichoke-hearts","artichoke hearts in water","artichoke hearts in water",None,TJ,[],"",(47,3.3,10.5,0.2,5.4),"g",None,(240,"400 g tin (240 g drained)","14 oz can","tin","tins"),False,"🌿",prices=(3.29,1.95,2.49)),
   I("dill-pickles","dill pickles","dill pickles","dill pickled cucumbers",TJ,[],"",(12,0.5,2.3,0.3,1),"g",None,(250,"500 g jar (250 g drained)","17.6 oz jar","jar","jars"),False,"🥒",prices=(2.99,1.60,1.89)),
@@ -193,6 +196,7 @@ ROWS = [
   I("chicken-stock","chicken stock","chicken stock",None,SC,[],M,(7,0.6,0.4,0.2,0),"ml",{"cup":240},(1000,"1 litre carton","32 fl oz carton","carton","cartons"),False,"🥣",prices=(2.49,1.20,1.49),gpm=1.0),
 
   # ---------- Sauces & condiments ----------
+  I("mirin","mirin","mirin",None,SC,[],"",(240,0,43,0,0),"ml",None,(250,"250 ml bottle","8.5 fl oz bottle","bottle","bottles"),True,"🍶",prices=(4.49,2.75,3.29),gpm=1.03),
   I("soy-sauce","soy sauce","soy sauce",None,SC,["soy","gluten"],"",(53,8,4.9,0.6,0.8),"ml",{"tbsp":16,"tsp":5.3},(150,"150 ml bottle","5 fl oz bottle","bottle","bottles"),False,"🍶",prices=(2.49,1.30,1.79),gpm=1.07),
   I("honey","honey","honey",None,SC,[],A,(304,0.3,82,0,0.2),"g",{"tbsp":21,"tsp":7},(340,"340 g jar","12 oz jar","jar","jars"),False,"🍯",prices=(4.99,1.60,2.49)),
   I("maple-syrup","maple syrup","maple syrup",None,SC,[],"",(260,0,67,0.1,0),"ml",{"tbsp":20,"tsp":7},(250,"250 ml bottle","8 fl oz bottle","bottle","bottles"),False,"🍁",prices=(7.99,3.50,4.99),gpm=1.32),
@@ -238,6 +242,7 @@ ROWS = [
   I("sesame-oil","toasted sesame oil","toasted sesame oil",None,OV,["sesame"],"",(884,0,0,100,0),"ml",{"tbsp":13.6,"tsp":4.5},(150,"150 ml bottle","5 fl oz bottle","bottle","bottles"),False,"🫙",prices=(3.99,2.00,2.49),gpm=0.92),
   I("balsamic-vinegar","balsamic vinegar","balsamic vinegar",None,OV,[],"",(88,0.5,17,0,0),"ml",{"tbsp":16,"tsp":5},(250,"250 ml bottle","8.5 fl oz bottle","bottle","bottles"),False,"🍶",prices=(3.49,1.50,1.99),gpm=1.06),
   I("rice-vinegar","rice vinegar","rice vinegar",None,OV,[],"",(18,0,0.5,0,0),"ml",{"tbsp":15,"tsp":5},(300,"300 ml bottle","10 fl oz bottle","bottle","bottles"),False,"🍶",prices=(2.99,1.50,1.99),gpm=1.0),
+  I("apple-cider-vinegar","apple cider vinegar","apple cider vinegar","cider vinegar",OV,[],"",(21,0,0.9,0,0),"ml",None,(473,"473 ml bottle","16 fl oz bottle","bottle","bottles"),True,"🍎",prices=(3.29,1.65,1.89),gpm=1.01),
   I("red-wine-vinegar","red wine vinegar","red wine vinegar",None,OV,[],"",(19,0,0.3,0,0),"ml",{"tbsp":15,"tsp":5},(500,"500 ml bottle","16 fl oz bottle","bottle","bottles"),True,"🍷",prices=(2.99,1.00,1.29),gpm=1.0),
 
   # ---------- Frozen ----------
