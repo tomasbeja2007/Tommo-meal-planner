@@ -80,6 +80,23 @@ struct PaywallView: View {
             .padding(.leading, Theme.Spacing.m)
             .padding(.top, Theme.Spacing.s)
             .accessibilityLabel(onBack == nil ? Text("Close") : Text("Back"))
+
+            // The paywall can always be closed (App Review). In onboarding the back arrow sits
+            // on the left, so the close button goes top right.
+            if onBack != nil {
+                Button(action: onClose) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundStyle(Theme.aubergineMuted)
+                        .frame(width: 44, height: 44)
+                        .background(Circle().fill(Theme.card.opacity(0.9)))
+                }
+                .disabled(isPurchasing)
+                .padding(.trailing, Theme.Spacing.m)
+                .padding(.top, Theme.Spacing.s)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .accessibilityLabel(Text("Close"))
+            }
         }
         .background(Theme.cream.ignoresSafeArea())
         .sensoryFeedback(.success, trigger: purchased)
