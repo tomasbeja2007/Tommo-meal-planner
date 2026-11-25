@@ -7,7 +7,7 @@ struct MealTypePicker: View {
     @Binding var selection: Set<MealType>
 
     var body: some View {
-        FlowLayout(spacing: 8) {
+        FlowLayout(spacing: Theme.Spacing.s) {
             ForEach(MealType.allCases) { meal in
                 MealTypeChip(meal: meal, isOn: selection.contains(meal)) {
                     toggle(meal)
@@ -34,7 +34,7 @@ private struct MealTypeChip: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 6) {
+            HStack(spacing: Theme.Spacing.inline) {
                 Text(meal.emoji)
                 Text(meal.title)
                     .font(.system(.subheadline, design: .rounded).weight(.semibold))

@@ -75,7 +75,7 @@ struct TrialReminderView: View {
                                 .font(.subheadline.weight(.semibold))
                                 .foregroundStyle(Theme.tomatoDeep)
                             Button(String(localized: "Open Settings")) { notifications.openSystemSettings() }
-                                .buttonStyle(QuietButtonStyle(color: Theme.tomato))
+                                .buttonStyle(QuietButtonStyle(color: Theme.tomatoDeep))
                         }
                     }
                 }

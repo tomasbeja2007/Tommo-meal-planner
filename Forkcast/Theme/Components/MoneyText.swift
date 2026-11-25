@@ -87,7 +87,7 @@ enum MoneyFormat {
 }
 
 #Preview("Money") {
-    VStack(spacing: 12) {
+    VStack(spacing: Theme.Spacing.m) {
         MoneyText(amount: 71.4, currencyCode: "USD", prefix: "~", countUp: true)
         MoneyText(amount: 52, currencyCode: "GBP", font: .headline)
         MoneyText(amount: 64.2, currencyCode: "EUR", font: .headline, color: Theme.herb)

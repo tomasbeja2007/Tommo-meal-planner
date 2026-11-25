@@ -132,7 +132,7 @@ struct LocatingStep: View {
     private func atmosphere(_ t: Double, _ l: Double) -> some View {
         let flash = bell(seg(t, GlobeMotion.landMs, GlobeMotion.landMs + 800, easeOut: false))
         return Circle()
-            .fill(RadialGradient(colors: [Color(hex: 0x9CC8F5).opacity(0.55 + 0.25 * flash), Color(hex: 0x9CC8F5).opacity(0)],
+            .fill(RadialGradient(colors: [Theme.Illustration.atmosphere.opacity(0.55 + 0.25 * flash), Theme.Illustration.atmosphere.opacity(0)],
                                  center: .center, startRadius: globe * 0.46, endRadius: globe * 0.72))
             .frame(width: globe * 1.5, height: globe * 1.5)
             .scaleEffect((0.9 + 0.1 * seg(t, 0, GlobeMotion.enterMs)) * (1 + 0.02 * wave(l, period: GlobeMotion.idlePeriod / 2)))
@@ -223,7 +223,7 @@ struct GlobeView: View {
             let c = CGPoint(x: size.width / 2, y: size.height / 2)
             let rect = CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)
             let disc = Path(ellipseIn: rect)
-            ctx.fill(disc, with: .radialGradient(Gradient(colors: [Color(hex: 0x5B9CE8), Color(hex: 0x1D4E9E)]),
+            ctx.fill(disc, with: .radialGradient(Gradient(colors: [Theme.Illustration.oceanLight, Theme.Illustration.oceanDeep]),
                                                  center: CGPoint(x: c.x - r * 0.35, y: c.y - r * 0.4),
                                                  startRadius: 0, endRadius: r * 1.6))
             var land = Path()
@@ -240,10 +240,10 @@ struct GlobeView: View {
             // Faint meridians and parallels: they make the turning readable even over open ocean.
             inside.stroke(GlobeView.graticule(l0: l0, sinP0: sinP0, cosP0: cosP0, centre: c, radius: r),
                           with: .color(Color.white.opacity(0.13)), lineWidth: 0.7)
-            inside.fill(land, with: .radialGradient(Gradient(colors: [Color(hex: 0x9AD872), Color(hex: 0x4F9A43)]),
+            inside.fill(land, with: .radialGradient(Gradient(colors: [Theme.Illustration.landLight, Theme.Illustration.landDeep]),
                                                     center: CGPoint(x: c.x - r * 0.35, y: c.y - r * 0.4),
                                                     startRadius: 0, endRadius: r * 1.6))
-            inside.stroke(land, with: .color(Color(hex: 0x3D7F34).opacity(0.45)), lineWidth: 0.6)
+            inside.stroke(land, with: .color(Theme.Illustration.coast.opacity(0.45)), lineWidth: 0.6)
             // Light from the top left: a soft specular bloom, then the far edge falling into shadow.
             inside.fill(disc, with: .radialGradient(Gradient(colors: [Color.white.opacity(0.32), Color.white.opacity(0)]),
                                                     center: CGPoint(x: c.x - r * 0.38, y: c.y - r * 0.42),
@@ -400,7 +400,7 @@ enum GlobeData {
 struct StepDashes: View {
     let active: Int
     var body: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: Theme.Spacing.inline) {
             ForEach(0..<3, id: \.self) { index in
                 Capsule()
                     .fill(index == active ? Theme.aubergine : Theme.aubergineFaint.opacity(0.5))

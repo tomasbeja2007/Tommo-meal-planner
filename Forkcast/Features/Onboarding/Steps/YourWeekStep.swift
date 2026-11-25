@@ -30,7 +30,7 @@ struct YourWeekStep: View {
                         .onChange(of: state.mealTypes) { _, _ in state.refreshSuggestedBudget(catalog: .bundled) }
                 }
                 section(String(localized: "Weeknight cooking time")) {
-                    FlowLayout(spacing: 8) {
+                    FlowLayout(spacing: Theme.Spacing.s) {
                         ForEach(CookTimeOption.allCases) { option in
                             Chip(title: option.title, isSelected: state.maxCookMinutes == option.rawValue) {
                                 state.maxCookMinutes = option.rawValue
@@ -64,7 +64,7 @@ struct MealPrepToggle: View {
 
     var body: some View {
         Toggle(isOn: $isOn) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                 HStack(spacing: Theme.Spacing.s) {
                     Label("Meal Prep Mode", systemImage: "frying.pan")
                         .font(.system(.body, design: .rounded).weight(.semibold))

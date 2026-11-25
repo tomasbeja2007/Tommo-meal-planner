@@ -31,7 +31,7 @@ struct BudgetCard: View {
                 }
                 .accessibilityLabel(Text("Why is the list cheaper than the meals added up?"))
             }
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.xs) {
                 MoneyText(amount: total, currencyCode: currencyCode, font: .system(size: 34, weight: .bold, design: .rounded), countUp: true)
                     .fixedSize()
                 Text("/ \(MoneyFormat.string(budget, currencyCode: currencyCode, fractionDigits: 0))")
@@ -73,7 +73,7 @@ struct GroceryShortcutCard: View {
                     .foregroundStyle(Color.white)
                     .frame(width: 44, height: 44)
                     .background(Circle().fill(Theme.tomato))
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                     Text("Grocery list")
                         .font(.system(.headline, design: .rounded))
                         .foregroundStyle(Theme.aubergine)
@@ -107,7 +107,7 @@ struct FeedbackPromptCard: View {
         Button(action: action) {
             HStack(spacing: Theme.Spacing.m) {
                 MascotView(size: 52, mood: .idle)
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                     Text("how was this week?")
                         .font(.system(.headline, design: .rounded))
                         .foregroundStyle(Theme.aubergine)
@@ -154,7 +154,7 @@ struct PlanRevealToast: View {
 
 #Preview("Plan cards") {
     ScrollView {
-        VStack(spacing: 16) {
+        VStack(spacing: Theme.Spacing.l) {
             BudgetCard(total: 71.4, budget: 85, currencyCode: "USD") {}
             BudgetCard(total: 89.2, budget: 85, currencyCode: "USD") {}
             GroceryShortcutCard(itemCount: 31, checkedCount: 4) {}

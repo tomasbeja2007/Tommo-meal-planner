@@ -45,7 +45,7 @@ struct DislikesPicker: View {
             if !selection.isEmpty {
                 VStack(alignment: .leading, spacing: Theme.Spacing.s) {
                     Text("Not for you").font(.subheadline.weight(.semibold)).foregroundStyle(Theme.aubergineMuted)
-                    FlowLayout(spacing: 8) {
+                    FlowLayout(spacing: Theme.Spacing.s) {
                         ForEach(selection.sorted(), id: \.self) { id in
                             Chip(title: DislikeCatalog.label(for: id, catalog: catalog, system: unitSystem), isSelected: true, showsRemove: true) {
                                 selection.remove(id)
@@ -58,7 +58,7 @@ struct DislikesPicker: View {
 
             VStack(alignment: .leading, spacing: Theme.Spacing.s) {
                 Text("Common picks").font(.subheadline.weight(.semibold)).foregroundStyle(Theme.aubergineMuted)
-                FlowLayout(spacing: 8) {
+                FlowLayout(spacing: Theme.Spacing.s) {
                     ForEach(DislikeCatalog.commonPicks) { pick in
                         DislikeChip(emoji: pick.emoji, title: pick.label, isStruck: selection.contains(pick.id)) {
                             if selection.contains(pick.id) {
@@ -85,7 +85,7 @@ struct DislikeChip: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 6) {
+            HStack(spacing: Theme.Spacing.inline) {
                 Text(emoji)
                 Text(title)
                     .font(.system(.subheadline, design: .rounded).weight(.medium))

@@ -238,7 +238,7 @@ private struct ProfileCard: View {
                 .frame(width: 60, height: 60)
                 .background(Circle().fill(Theme.tomato))
                 .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                 TextField(String(localized: "Your name"), text: $profile.name)
                     .font(.system(.title3, design: .rounded).weight(.bold))
                     .foregroundStyle(Theme.aubergine)

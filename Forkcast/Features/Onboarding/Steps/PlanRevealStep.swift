@@ -209,7 +209,7 @@ private struct RevealDayCard: View {
                 .padding(.horizontal, isToday ? 8 : 0)
                 .padding(.vertical, isToday ? 3 : 0)
                 .background { if isToday { Capsule().fill(Theme.tomatoDeep) } }
-            DishTileView(recipe: recipe, size: 136, height: 112, cornerRadius: 14)
+            DishTileView(recipe: recipe, size: 136, height: 112, cornerRadius: Theme.Radius.medium)
                 .overlay(alignment: .topLeading) {
                     if let leftoversFrom {
                         Label("Leftovers from \(leftoversFrom)", systemImage: "arrow.uturn.backward")
@@ -222,7 +222,7 @@ private struct RevealDayCard: View {
                             .padding(6)
                     }
                 }
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                 if let heroMeal {
                     Text(heroMeal)
                         .font(.caption.weight(.semibold))
@@ -234,7 +234,7 @@ private struct RevealDayCard: View {
                     .lineLimit(2, reservesSpace: true)
             }
             if !others.isEmpty {
-                HStack(spacing: 6) {
+                HStack(spacing: Theme.Spacing.inline) {
                     HStack(spacing: -6) {
                         ForEach(Array(others.prefix(3).enumerated()), id: \.offset) { _, other in
                             DishTileView(recipe: other, size: 24)
@@ -555,7 +555,7 @@ private struct MatchingLoader: View {
                         .stroke(Theme.tomato, style: StrokeStyle(lineWidth: 12, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                         .frame(width: ring, height: ring)
-                    VStack(spacing: 2) {
+                    VStack(spacing: Theme.Spacing.xxs) {
                         let checked = Int((Double(total) * seg(t, 0, 2_300, easeOut: false)).rounded())
                         let settle = seg(t, 2_350, 2_700)
                         Text((settle > 0.5 ? fit : checked).formatted())
@@ -659,7 +659,7 @@ private struct DishRivers: View {
                             HStack(spacing: gap) {
                                 ForEach(0..<3, id: \.self) { _ in
                                     ForEach(row) { recipe in
-                                        DishTileView(recipe: recipe, size: tile, cornerRadius: 22)
+                                        DishTileView(recipe: recipe, size: tile, cornerRadius: Theme.Radius.large)
                                             .shadow(color: Theme.aubergine.opacity(0.08), radius: 6, y: 4)
                                     }
                                 }

@@ -114,7 +114,7 @@ private struct SwapRow: View {
         Button(action: action) {
             HStack(spacing: Theme.Spacing.m) {
                 DishTileView(recipe: recipe, size: 56)
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                     Text(recipe.title)
                         .font(.system(.subheadline, design: .rounded).weight(.semibold))
                         .foregroundStyle(Theme.aubergine)

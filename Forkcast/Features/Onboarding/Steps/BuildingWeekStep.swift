@@ -114,8 +114,8 @@ struct BuildingWeekStep: View {
         let recipes = plannedRecipes()
         return OneShotClock(duration: fillMs, play: filling) { t in
             LoopClock(period: 1_600, paused: filling) { l in
-                VStack(spacing: 6) {
-                    HStack(spacing: 6) {
+                VStack(spacing: Theme.Spacing.inline) {
+                    HStack(spacing: Theme.Spacing.inline) {
                         if types.count > 1 { Color.clear.frame(width: 14, height: 1) }
                         ForEach(days.indices, id: \.self) { column in
                             let today = calendar.isDateInToday(days[column])
@@ -126,7 +126,7 @@ struct BuildingWeekStep: View {
                         }
                     }
                     ForEach(types.indices, id: \.self) { row in
-                        HStack(spacing: 6) {
+                        HStack(spacing: Theme.Spacing.inline) {
                             if types.count > 1 {
                                 Text(types[row].title.prefix(1))
                                     .font(.caption2.weight(.bold))

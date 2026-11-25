@@ -82,7 +82,7 @@ struct ProgressRing: View {
 }
 
 #Preview("Progress") {
-    VStack(spacing: 24) {
+    VStack(spacing: Theme.Spacing.xl) {
         ProgressBar(value: 0.4)
         ProgressBar(value: 0.95, tint: Theme.saffron)
         ProgressRing(value: 12.0 / 31.0, label: "12 / 31").frame(width: 64, height: 64)

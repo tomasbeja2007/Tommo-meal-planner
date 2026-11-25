@@ -16,7 +16,7 @@ struct WeeklyFeedbackSheet: View {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
                     HStack(spacing: Theme.Spacing.m) {
                         MascotView(size: 72, mood: .idle)
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                             Text("how was this week?")
                                 .font(.system(.title2, design: .rounded).weight(.bold))
                                 .foregroundStyle(Theme.aubergine)
@@ -91,7 +91,7 @@ private struct FeedbackRow: View {
                 .font(.caption.weight(.bold))
                 .foregroundStyle(Color.white)
                 .frame(width: 44, height: 32)
-                .background(RoundedRectangle(cornerRadius: 9, style: .continuous).fill(Theme.tomato))
+                .background(RoundedRectangle(cornerRadius: Theme.Radius.small, style: .continuous).fill(Theme.tomato))
             Text(recipe.emoji)
             Text(recipe.title)
                 .font(.system(.subheadline, design: .rounded).weight(.semibold))

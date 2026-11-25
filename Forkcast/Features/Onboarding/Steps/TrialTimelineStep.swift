@@ -57,7 +57,7 @@ struct TrialTimeline: View {
 
     private func timelineRow(title: String, amount: String, symbol: String) -> some View {
         Label {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                 Text(title)
                 Text(amount)
                     .fontWeight(.bold)

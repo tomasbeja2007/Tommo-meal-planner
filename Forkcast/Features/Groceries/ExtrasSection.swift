@@ -18,7 +18,7 @@ struct ExtrasSection: View {
                         if let ingredientID = extra.ingredientID {
                             IngredientThumbnail(ingredientID: ingredientID, showsBackground: false)
                         }
-                        VStack(alignment: .leading, spacing: 2) {
+                        VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                             Text(extra.name)
                                 .font(.system(.body, design: .rounded).weight(.semibold))
                                 .strikethrough(extra.isChecked, color: Theme.aubergineFaint)

@@ -213,7 +213,7 @@ struct StoreStepView: View {
                         Text("Shopping in \(country.name)")
                             .foregroundStyle(Theme.aubergine)
                         Text("· change")
-                            .foregroundStyle(Theme.tomato)
+                            .foregroundStyle(Theme.tomatoDeep)
                     }
                     .font(.system(.subheadline, design: .rounded).weight(.semibold))
                     .frame(minHeight: 44)
@@ -226,7 +226,7 @@ struct StoreStepView: View {
                 } label: {
                     Label(state.requestedStore.isEmpty ? String(localized: "Request your store") : String(localized: "Requested: \(state.requestedStore)"), systemImage: "plus.bubble")
                 }
-                .buttonStyle(QuietButtonStyle(color: Theme.tomato))
+                .buttonStyle(QuietButtonStyle(color: Theme.tomatoDeep))
                 .frame(maxWidth: .infinity)
             }
         }
@@ -439,7 +439,7 @@ private struct NutritionTargetControls: View {
     }
 
     private func macroAmount(_ name: String, grams: Int, tint: Color) -> some View {
-        HStack(spacing: 4) {
+        HStack(spacing: Theme.Spacing.xs) {
             Circle().fill(tint).frame(width: 7, height: 7).accessibilityHidden(true)
             Text("\(grams) g").fontWeight(.bold).monospacedDigit()
             Text(name).foregroundStyle(Theme.aubergineMuted)

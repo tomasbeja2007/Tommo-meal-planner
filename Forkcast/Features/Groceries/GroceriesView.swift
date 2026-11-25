@@ -163,7 +163,7 @@ struct GroceriesView: View {
                             GroceryRow(item: item)
                         }
                     } label: {
-                        VStack(alignment: .leading, spacing: 2) {
+                        VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                             Text("Pantry staples")
                                 .font(.system(.headline, design: .rounded))
                                 .foregroundStyle(Theme.aubergine)
@@ -331,7 +331,7 @@ private struct StoreComparisonSheet: View {
     private func row(_ store: Store) -> some View {
         HStack(spacing: Theme.Spacing.m) {
             StoreMonogram(store: store, size: 36)
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                 Text(store.name).font(.headline).foregroundStyle(Theme.aubergine)
                 if let price = estimates[store.id], let best = estimates.values.min() {
                     let difference = price.difference(from: best)
@@ -394,7 +394,7 @@ struct GroceryRow: View {
             HStack(alignment: .top, spacing: Theme.Spacing.m) {
                 CheckCircle(isChecked: checked)
                 IngredientThumbnail(ingredientID: item.ingredientId, showsBackground: false)
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                     Text(item.name.capitalizedFirst)
                         .font(.system(.body, design: .rounded).weight(.semibold))
                         .strikethrough(checked, color: Theme.aubergineFaint)

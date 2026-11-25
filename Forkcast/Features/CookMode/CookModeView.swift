@@ -104,7 +104,7 @@ private struct CookModeHeader: View {
                     Spacer()
                 }
             }
-            HStack(spacing: 4) {
+            HStack(spacing: Theme.Spacing.xs) {
                 ForEach(0..<max(1, stepCount), id: \.self) { position in
                     Capsule()
                         .fill(position <= index ? Theme.tomato : Theme.creamDeep)

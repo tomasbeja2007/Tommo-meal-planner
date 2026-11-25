@@ -187,7 +187,7 @@ struct RecipesView: View {
                         .accessibilityHidden(true)
                 } else {
                     ForEach(recipes.prefix(2)) { recipe in
-                        DishTileView(recipe: recipe, size: 45, cornerRadius: 10)
+                        DishTileView(recipe: recipe, size: 45, cornerRadius: Theme.Radius.small)
                     }
                 }
             }
@@ -208,9 +208,9 @@ struct RecipeCard: View {
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: Theme.Spacing.inline) {
             GeometryReader { proxy in
-                DishTileView(recipe: recipe, size: proxy.size.width, height: 110, cornerRadius: 16)
+                DishTileView(recipe: recipe, size: proxy.size.width, height: 110, cornerRadius: Theme.Radius.button)
             }
             .frame(height: 110)
             Text(recipe.title)
@@ -242,7 +242,7 @@ struct RecipeRow: View {
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
             DishTileView(recipe: recipe, size: 60)
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                 Text(recipe.title)
                     .font(.system(.subheadline, design: .rounded).weight(.semibold))
                     .foregroundStyle(Theme.aubergine)

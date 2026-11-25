@@ -18,7 +18,7 @@ struct EatingStep: View {
                     Text("More")
                         .font(.system(.headline, design: .rounded))
                         .foregroundStyle(Theme.aubergine)
-                    FlowLayout(spacing: 8) {
+                    FlowLayout(spacing: Theme.Spacing.s) {
                         ForEach(ExtraDiet.allCases) { extra in
                             Chip(title: extra.title, isSelected: state.extraDiets.contains(extra)) {
                                 if state.extraDiets.contains(extra) {
@@ -48,7 +48,7 @@ struct AllergyChips: View {
     @Binding var noAllergies: Bool
 
     var body: some View {
-        FlowLayout(spacing: 8) {
+        FlowLayout(spacing: Theme.Spacing.s) {
             Chip(title: String(localized: "No allergies"), systemImage: "hand.thumbsup.fill", isSelected: noAllergies) {
                 noAllergies = true
                 selection.removeAll()

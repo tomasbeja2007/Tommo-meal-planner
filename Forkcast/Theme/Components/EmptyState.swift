@@ -21,7 +21,7 @@ struct EmptyState: View {
                     .background(Circle().fill(Theme.tomatoSoft))
                     .accessibilityHidden(true)
             }
-            VStack(spacing: 6) {
+            VStack(spacing: Theme.Spacing.inline) {
                 Text(title)
                     .font(.system(.title3, design: .rounded).weight(.bold))
                     .foregroundStyle(Theme.aubergine)

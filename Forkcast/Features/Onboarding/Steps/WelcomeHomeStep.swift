@@ -112,7 +112,7 @@ private struct HeroDishCelebration: View {
             }
             .frame(width: 280, height: 236)
             .accessibilityHidden(true)
-            VStack(spacing: 2) {
+            VStack(spacing: Theme.Spacing.xxs) {
                 Text("First up, \(DateText.weekdayName(day))")
                     .font(.caption.weight(.bold))
                     .textCase(.uppercase)
@@ -153,7 +153,7 @@ private struct HeroDishCelebration: View {
                     .offset(x: cos(angle) * HeroMotion.orbitX * radius,
                             y: sin(angle) * HeroMotion.orbitY * radius + HeroMotion.bob * bob)
             }
-            DishTileView(recipe: recipe, size: HeroMotion.dishSize, cornerRadius: 34)
+            DishTileView(recipe: recipe, size: HeroMotion.dishSize, cornerRadius: Theme.Radius.hero)
                 .shadow(color: Theme.tomatoDeep.opacity(0.18), radius: 14, y: 8)
                 .overlay(alignment: .bottomTrailing) {
                     let pop = seg(e, 700, 1_000)

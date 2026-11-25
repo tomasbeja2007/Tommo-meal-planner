@@ -411,7 +411,7 @@ private struct DetailHeader: View {
             .labelStyle(CompactLabelStyle())
             .foregroundStyle(Theme.aubergineMuted)
             .monospacedDigit()
-            FlowLayout(spacing: 6) {
+            FlowLayout(spacing: Theme.Spacing.inline) {
                 if profile.diet != .omnivore {
                     TagLabel(text: profile.diet.displayName, tint: Theme.herb, fill: Theme.herbSoft)
                 }
@@ -527,7 +527,7 @@ private struct IngredientRow: View {
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
             IngredientThumbnail(ingredientID: line.ingredientID, size: 44, showsBackground: false)
-            VStack(alignment: .leading, spacing: 1) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                 Text(line.name.capitalizedFirst)
                     .font(.body)
                     .foregroundStyle(Theme.aubergine)
@@ -634,14 +634,14 @@ struct StepChips: View {
                     Text("Amounts for the full recipe")
                         .font(.caption)
                         .foregroundStyle(Theme.aubergineMuted)
-                    FlowLayout(spacing: 6) {
+                    FlowLayout(spacing: Theme.Spacing.inline) {
                         ForEach(Array(used.enumerated()), id: \.offset) { _, item in
                             ingredientChip(item)
                         }
                     }
                 }
                 if !timers.isEmpty {
-                    FlowLayout(spacing: 6) {
+                    FlowLayout(spacing: Theme.Spacing.inline) {
                         ForEach(Array(timers.enumerated()), id: \.offset) { _, stepTimer in
                             let duration = TimerDetector.clock(stepTimer.seconds)
                             let label = stepTimer.usesUpperBound ? String(localized: "\(duration) timer (upper end)") : stepTimer.label
@@ -670,7 +670,7 @@ struct StepChips: View {
         let amount = item.amount * servings / Double(max(1, recipe.baseServings))
         let quantity = QuantityFormatter.string(amount: amount, unit: item.unit, system: system, ingredient: ingredient)
         let name = ingredient?.displayName(for: system) ?? item.name ?? String(localized: "Ingredient")
-        return HStack(spacing: 4) {
+        return HStack(spacing: Theme.Spacing.xs) {
             IngredientThumbnail(ingredientID: ingredient?.id, size: 24)
             Text(name.capitalizedFirst)
                 .font(.caption.weight(.semibold))

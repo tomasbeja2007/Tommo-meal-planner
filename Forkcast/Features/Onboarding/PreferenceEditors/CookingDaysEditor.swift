@@ -14,7 +14,7 @@ struct CookingDaysEditor: View {
     var body: some View {
         VStack(spacing: Theme.Spacing.xl) {
             VStack(spacing: 0) {
-                HStack(spacing: 2) {
+                HStack(spacing: Theme.Spacing.xxs) {
                     ForEach(1...7, id: \.self) { day in
                         DayToggle(
                             initial: String(DateText.isoShortWeekdays[day - 1].prefix(1)),

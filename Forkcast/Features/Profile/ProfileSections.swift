@@ -81,7 +81,7 @@ struct PreferencesSection: View {
                                 Spacer(minLength: Theme.Spacing.s)
                                 preferenceSummary(kind)
                             }
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                                 preferenceTitle(kind)
                                 preferenceSummary(kind)
                             }

@@ -20,7 +20,7 @@ struct Chip: View {
     }
 
     private var label: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: Theme.Spacing.inline) {
             if let systemImage {
                 Image(systemName: systemImage)
                     .font(.caption.weight(.semibold))
@@ -106,7 +106,7 @@ struct FlowLayout: Layout {
 }
 
 #Preview("Chips") {
-    FlowLayout(spacing: 8) {
+    FlowLayout(spacing: Theme.Spacing.s) {
         Chip(title: "Mushrooms", isSelected: true, showsRemove: true) {}
         Chip(title: "Olives") {}
         Chip(title: "Cilantro") {}

@@ -87,7 +87,7 @@ struct QuietButtonStyle: ButtonStyle {
 }
 
 #Preview("Buttons") {
-    VStack(spacing: 16) {
+    VStack(spacing: Theme.Spacing.l) {
         PrimaryButton("Build my week") {}
         PrimaryButton("Disabled") {}.disabled(true)
         Button("Edit week") {}.buttonStyle(SecondaryButtonStyle())

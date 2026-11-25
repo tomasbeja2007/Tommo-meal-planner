@@ -153,15 +153,15 @@ struct PlanView: View {
     private func calendarStrip(active: Date) -> some View {
         HStack(alignment: .top, spacing: Theme.Spacing.xs) {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 4) {
+                HStack(alignment: .top, spacing: Theme.Spacing.xs) {
                     ForEach(planStore.weekDays, id: \.self) { day in
                         let meals = planStore.meals(on: day)
                         let selected = day == active
                         Button {
                             withAnimation(Theme.motion(reduceMotion)) { selectedDate = day }
                         } label: {
-                            VStack(spacing: 4) {
-                                VStack(spacing: 2) {
+                            VStack(spacing: Theme.Spacing.xs) {
+                                VStack(spacing: Theme.Spacing.xxs) {
                                     Text(DateText.shortWeekday(day).prefix(1))
                                         .font(.caption2.weight(.bold))
                                     Text(day.formatted(.dateTime.day()))
@@ -175,9 +175,9 @@ struct PlanView: View {
                                 .background {
                                     // One pill travels between days instead of swapping colours in place.
                                     ZStack {
-                                        RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Theme.card)
+                                        RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous).fill(Theme.card)
                                         if selected {
-                                            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                            RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous)
                                                 .fill(Theme.tomatoDeep)
                                                 .shadow(color: Theme.tomatoDeep.opacity(0.25), radius: 6, y: 3)
                                                 .matchedGeometryEffect(id: "selectedDay", in: dayPill)
@@ -188,10 +188,10 @@ struct PlanView: View {
                                     Group {
                                         if let meal = meals.first(where: { !$0.isSide }) ?? meals.first,
                                            let recipe = planStore.recipe(for: meal) {
-                                            DishTileView(recipe: recipe, size: 38, cornerRadius: 10)
+                                            DishTileView(recipe: recipe, size: 38, cornerRadius: Theme.Radius.small)
                                                 .scaleEffect(selected ? 1.06 : 1)
                                         } else {
-                                            RoundedRectangle(cornerRadius: 10)
+                                            RoundedRectangle(cornerRadius: Theme.Radius.small)
                                                 .fill(Theme.creamDeep)
                                                 .frame(width: 38, height: 38)
                                         }
@@ -323,7 +323,7 @@ struct PlanHeader: View {
                 .font(.system(.largeTitle, design: .rounded).weight(.bold))
                 .foregroundStyle(Theme.aubergine)
                 .accessibilityAddTraits(.isHeader)
-            HStack(spacing: 6) {
+            HStack(spacing: Theme.Spacing.inline) {
                 if let store {
                     StoreMonogram(store: store, size: 20)
                 }

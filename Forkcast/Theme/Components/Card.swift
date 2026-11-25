@@ -13,7 +13,7 @@ struct Card<Content: View>: View {
 
 #Preview("Card") {
     Card {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: Theme.Spacing.inline) {
             Text("Grocery list").font(.headline)
             Text("31 items · 0 checked").font(.subheadline).foregroundStyle(Theme.aubergineMuted)
         }

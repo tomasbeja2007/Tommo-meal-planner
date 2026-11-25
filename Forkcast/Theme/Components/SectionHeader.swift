@@ -9,7 +9,7 @@ struct SectionHeader: View {
 
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                 Text(title)
                     .font(.system(.title3, design: .rounded).weight(.bold))
                     .foregroundStyle(Theme.aubergine)
@@ -23,7 +23,7 @@ struct SectionHeader: View {
             if let actionTitle, let action {
                 Button(actionTitle, action: action)
                     .font(.system(.subheadline, design: .rounded).weight(.semibold))
-                    .foregroundStyle(Theme.tomato)
+                    .foregroundStyle(Theme.tomatoDeep)
             }
         }
         .accessibilityElement(children: .contain)

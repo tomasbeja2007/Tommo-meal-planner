@@ -151,7 +151,7 @@ struct PaywallView: View {
                 Button(String(localized: "Try again")) {
                     Task { await subscriptions.loadProducts() }
                 }
-                .buttonStyle(QuietButtonStyle(color: Theme.tomato))
+                .buttonStyle(QuietButtonStyle(color: Theme.tomatoDeep))
             }
             .frame(maxWidth: .infinity, minHeight: 120)
         } else {
@@ -360,14 +360,14 @@ private struct PlanCard: View {
                     Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                         .font(.title2)
                         .foregroundStyle(isSelected ? Theme.tomato : Theme.aubergineFaint)
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                         ViewThatFits(in: .horizontal) {
                             HStack {
                                 planTitle
                                 Spacer()
                                 planPrice
                             }
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                                 planTitle
                                 planPrice
                             }

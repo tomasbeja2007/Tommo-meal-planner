@@ -60,7 +60,7 @@ struct OptionTile: View {
         case .row:
             HStack(spacing: Theme.Spacing.m) {
                 icon
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                     Text(title)
                         .font(.system(.body, design: .rounded).weight(.semibold))
                         .foregroundStyle(Theme.aubergine)
@@ -141,7 +141,7 @@ struct CheckBadge: View {
 }
 
 #Preview("Option tiles") {
-    VStack(spacing: 12) {
+    VStack(spacing: Theme.Spacing.m) {
         OptionTile(title: "Spend less on food", systemImage: "banknote", isSelected: true) {}
         OptionTile(title: "Eat healthier", subtitle: "more veg, less fuss", systemImage: "leaf", isSelected: false) {}
         HStack {

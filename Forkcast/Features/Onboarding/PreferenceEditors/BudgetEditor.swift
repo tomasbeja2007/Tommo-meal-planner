@@ -38,7 +38,7 @@ struct BudgetEditor: View {
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(Theme.aubergineMuted)
                 .frame(maxWidth: .infinity)
-            VStack(spacing: 2) {
+            VStack(spacing: Theme.Spacing.xxs) {
                 Text(MoneyFormat.string(budget, currencyCode: country.currencyCode, fractionDigits: 0))
                     .font(.system(size: 56, weight: .heavy, design: .rounded))
                     .monospacedDigit()
@@ -129,7 +129,7 @@ private struct VerdictCard: View {
             Image(systemName: verdict == .tight ? "exclamationmark.circle.fill" : "checkmark.circle.fill")
                 .font(.title3)
                 .foregroundStyle(tint)
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                 Text(verdict.title)
                     .font(.system(.headline, design: .rounded))
                     .foregroundStyle(verdict == .tight ? Theme.aubergine : Theme.herb)
@@ -151,7 +151,7 @@ struct StatTile: View {
     let label: String
 
     var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: Theme.Spacing.xxs) {
             Text(value)
                 .font(.system(.headline, design: .rounded).weight(.bold))
                 .monospacedDigit()

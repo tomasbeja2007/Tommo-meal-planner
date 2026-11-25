@@ -18,6 +18,8 @@ components, colours, fonts, and assets. Keep the existing design system. Do not 
 ## This codebase
 - Pure logic (planner, groceries, nutrition, units, parser, bundled JSON) lives in `Packages/ForkcastCore`
   (Foundation only, unit-tested). UI lives in `Forkcast/`. Read `BUILD_NOTES.md` first.
+- **Style guide: `Design/STYLE_GUIDE.md`** (colours and contrast, type scale, spacing, radii, elevation, components,
+  copy, accessibility, a checklist for every screen). Follow it; extend it before inventing anything new.
 - Design system: `Forkcast/Theme/Theme.swift` (tomato/cream palette, SF Pro Rounded, radii, `Theme.spring`)
   and `Forkcast/Theme/Components/` (PrimaryButton, OptionTile, Chip, Card, ProgressBar, MacrosLine, MacrosCard,
   DishTileView, MascotView, MoneyText, SectionHeader, EmptyState). Never use green as a brand colour.

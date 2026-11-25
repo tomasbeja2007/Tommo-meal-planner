@@ -123,10 +123,10 @@ private struct EditRowView: View {
                 .font(.system(.subheadline, design: .rounded).weight(.bold))
                 .foregroundStyle(Color.white)
                 .frame(width: 48, height: 36)
-                .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(meal == nil ? Theme.aubergineFaint : Theme.tomato))
+                .background(RoundedRectangle(cornerRadius: Theme.Radius.small, style: .continuous).fill(meal == nil ? Theme.aubergineFaint : Theme.tomato))
             if let meal, let recipe = repository.recipe(id: meal.recipeId) {
                 DishTileView(recipe: recipe, size: 52)
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.inline) {
                     Text(recipe.title)
                         .font(.system(.subheadline, design: .rounded).weight(.semibold))
                         .foregroundStyle(Theme.aubergine)

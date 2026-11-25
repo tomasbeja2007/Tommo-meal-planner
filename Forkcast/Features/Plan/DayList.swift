@@ -139,7 +139,7 @@ private struct MealCardText: View {
     let macros: Macros
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: Theme.Spacing.inline) {
             Text(recipe.title)
                 .font(.system(.headline, design: .rounded))
                 .foregroundStyle(Theme.aubergine)
@@ -150,7 +150,7 @@ private struct MealCardText: View {
                 MealMetaRow(minutes: recipe.totalMinutes, servings: nil, cost: cost, currencyCode: currencyCode)
             }
             if !recipe.vibes.isEmpty {
-                HStack(spacing: 4) {
+                HStack(spacing: Theme.Spacing.xs) {
                     ForEach(recipe.vibes.prefix(2), id: \.self) { vibe in
                         TagLabel(text: vibe.displayName)
                     }
@@ -186,7 +186,7 @@ struct MealMetaRow: View {
 /// Icon + text with a tight gap.
 struct CompactLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: 3) {
+        HStack(spacing: Theme.Spacing.xs) {
             configuration.icon
             configuration.title
         }

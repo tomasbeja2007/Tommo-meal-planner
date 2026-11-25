@@ -83,7 +83,7 @@ private struct PantryTile: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 6) {
+            VStack(spacing: Theme.Spacing.inline) {
                 IngredientPhoto(ingredient: ingredient, side: 48)
                 Text(ingredient.displayName(for: unitSystem, plural: ingredient.baseUnit == .piece).capitalizedFirst)
                     .font(.system(.caption, design: .rounded).weight(.semibold))
@@ -125,7 +125,7 @@ struct IngredientPhoto: View {
                 .interpolation(.high)
                 .scaledToFill()
                 .frame(width: side, height: side)
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous))
                 .accessibilityHidden(true)
         } else {
             Text(ingredient.emoji)

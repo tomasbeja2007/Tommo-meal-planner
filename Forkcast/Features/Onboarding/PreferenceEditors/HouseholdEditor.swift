@@ -48,7 +48,7 @@ struct CountStepperRow: View {
                     .foregroundStyle(Theme.tomato)
                     .frame(width: 32)
             }
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                 Text(title).font(.system(.body, design: .rounded).weight(.semibold)).foregroundStyle(Theme.aubergine)
                 if let subtitle {
                     Text(subtitle).font(.caption).foregroundStyle(Theme.aubergineMuted)

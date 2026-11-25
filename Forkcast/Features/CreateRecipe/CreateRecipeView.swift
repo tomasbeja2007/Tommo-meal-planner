@@ -124,11 +124,11 @@ private struct BasicsSection: View {
                     Text(draft.emoji)
                         .font(.system(size: 34))
                         .frame(width: 60, height: 60)
-                        .background(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Theme.creamDeep))
+                        .background(RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous).fill(Theme.creamDeep))
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(Text("Choose an emoji"))
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                     TextField(String(localized: "Recipe name"), text: $draft.title)
                         .font(.system(.title3, design: .rounded).weight(.semibold))
                     if showErrors, let error = draft.titleError {
@@ -170,7 +170,7 @@ private struct TagsSection: View {
 
     var body: some View {
         Section {
-            FlowLayout(spacing: 8) {
+            FlowLayout(spacing: Theme.Spacing.s) {
                 ForEach(allTags, id: \.self) { tag in
                     Chip(title: RecipeDraft.tagTitle(tag), isSelected: tags.contains(tag)) {
                         if tags.contains(tag) { tags.remove(tag) } else { tags.insert(tag) }
@@ -228,14 +228,14 @@ private struct IngredientEditorRow: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: Theme.Spacing.inline) {
             HStack(spacing: Theme.Spacing.s) {
                 TextField(String(localized: "1"), text: $item.amountText)
                     .keyboardType(.numbersAndPunctuation)
                     .multilineTextAlignment(.center)
                     .frame(width: 52)
                     .padding(.vertical, 8)
-                    .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Theme.creamDeep))
+                    .background(RoundedRectangle(cornerRadius: Theme.Radius.small, style: .continuous).fill(Theme.creamDeep))
                     .accessibilityLabel(Text("Amount"))
                 Menu {
                     ForEach(MeasureUnit.allCases, id: \.self) { unit in
@@ -248,7 +248,7 @@ private struct IngredientEditorRow: View {
                         .frame(minWidth: 56)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 6)
-                        .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(Theme.creamDeep))
+                        .background(RoundedRectangle(cornerRadius: Theme.Radius.small, style: .continuous).fill(Theme.creamDeep))
                 }
                 .accessibilityLabel(Text("Unit"))
                 TextField(String(localized: "Ingredient"), text: nameBinding)
@@ -268,7 +268,7 @@ private struct IngredientEditorRow: View {
             }
             if !suggestions.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 6) {
+                    HStack(spacing: Theme.Spacing.inline) {
                         ForEach(suggestions) { ingredient in
                             Button {
                                 item.name = ingredient.displayName(for: unitSystem)
@@ -427,11 +427,11 @@ struct EmojiPickerGrid: View {
         "🍄", "🥑", "🍅", "🧆", "🫘", "🍋"
     ]
 
-    private let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 8), count: 6)
+    private let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: Theme.Spacing.s), count: 6)
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 8) {
+            LazyVGrid(columns: columns, spacing: Theme.Spacing.s) {
                 ForEach(EmojiPickerGrid.emojis, id: \.self) { emoji in
                     Button {
                         selection = emoji
@@ -440,7 +440,7 @@ struct EmojiPickerGrid: View {
                         Text(emoji)
                             .font(.system(size: 30))
                             .frame(maxWidth: .infinity, minHeight: 52)
-                            .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(selection == emoji ? Theme.tomatoSoft : Theme.card))
+                            .background(RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous).fill(selection == emoji ? Theme.tomatoSoft : Theme.card))
                     }
                     .buttonStyle(.plain)
                 }

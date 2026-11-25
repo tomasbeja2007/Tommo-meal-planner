@@ -226,7 +226,7 @@ enum AssetImage {
 }
 
 #Preview("Mascot moods") {
-    HStack(spacing: 24) {
+    HStack(spacing: Theme.Spacing.xl) {
         MascotView(size: 90, mood: .idle)
         MascotView(size: 90, mood: .cheer)
         MascotView(size: 90, mood: .thinking)

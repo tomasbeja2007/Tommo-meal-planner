@@ -149,7 +149,7 @@ struct IngredientThumbnail: View {
 }
 
 #Preview("Dish tiles") {
-    HStack(spacing: 12) {
+    HStack(spacing: Theme.Spacing.m) {
         DishTileView(seed: "creamy-tomato-pasta", emoji: "🍝", size: 72)
         DishTileView(seed: "black-bean-tacos", emoji: "🌮", size: 72)
         DishTileView(seed: "chickpea-curry", emoji: "🍛", size: 72)
