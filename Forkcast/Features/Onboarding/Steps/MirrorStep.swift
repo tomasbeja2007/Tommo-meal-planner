@@ -9,6 +9,8 @@ struct MirrorStep: View {
 
     /// Milliseconds per character while typing: quick, and the whole sentence never takes longer than 1.6 s.
     private var msPerCharacter: Double { min(14, 1_600 / Double(max(1, characterCount))) }
+    /// How many characters the soft "ink" edge spans: each letter fades in over this many steps.
+    private let fadeCharacters: Double = 6
 
     private var pieces: [MirrorPiece] { MirrorPiece.build(goals: state.goals, obstacles: state.obstacles) }
     private var characterCount: Int { pieces.reduce(0) { $0 + $1.text.count } }
@@ -17,12 +19,10 @@ struct MirrorStep: View {
         VStack(spacing: Theme.Spacing.l) {
             Spacer(minLength: Theme.Spacing.m)
             SpeechBubble {
-                ZStack(alignment: .topLeading) {
-                    // The full text, invisible, reserves the bubble's final size so nothing jumps.
-                    MirrorPiece.text(pieces, upTo: characterCount).hidden()
-                    OneShotClock(duration: Double(characterCount) * msPerCharacter, play: true) { t in
-                        MirrorPiece.text(pieces, upTo: Int(t / msPerCharacter))
-                    }
+                // Every letter is always laid out (unwritten ones are transparent), so a word never
+                // starts on one line and jumps to the next: the writing flows line to line.
+                OneShotClock(duration: (Double(characterCount) + fadeCharacters) * msPerCharacter, play: true) { t in
+                    MirrorPiece.text(pieces, reveal: t / msPerCharacter, fade: fadeCharacters)
                 }
                 .font(.system(.title3, design: .rounded))
                 .foregroundStyle(Theme.aubergine)
@@ -74,15 +74,30 @@ struct MirrorPiece: Hashable {
         return out
     }
 
-    /// The first `count` characters of the sentence, keeping bold runs bold.
-    static func text(_ pieces: [MirrorPiece], upTo count: Int) -> Text {
-        var remaining: Int = max(0, count)
-        var result: Text = Text(verbatim: "")
-        for piece in pieces where remaining > 0 {
-            let shown: String = String(piece.text.prefix(remaining))
-            remaining -= shown.count
-            let run: Text = Text(verbatim: shown)
-            result = result + (piece.isBold ? run.bold().foregroundStyle(Theme.tomatoDeep) : run)
+    /// The whole sentence with letters up to `reveal` written in. Letters just behind the cursor fade
+    /// in over `fade` characters (a soft ink edge instead of a hard tick). Runs that are fully shown or
+    /// fully hidden stay as one `Text`, so only the few letters at the edge are split out.
+    static func text(_ pieces: [MirrorPiece], reveal: Double, fade: Double) -> Text {
+        var result = Text(verbatim: "")
+        var index = 0
+        for piece in pieces {
+            let color: Color = piece.isBold ? Theme.tomatoDeep : Theme.aubergine
+            var run = ""
+            var runOpacity = -1.0
+            func flush() {
+                guard !run.isEmpty else { return }
+                let t = Text(verbatim: run).foregroundStyle(color.opacity(runOpacity))
+                result = result + (piece.isBold ? t.bold() : t)
+                run = ""
+            }
+            for character in piece.text {
+                let o = min(1, max(0, (reveal - Double(index)) / fade))
+                let bucket = o >= 1 ? 1 : (o <= 0 ? 0 : (o * 8).rounded() / 8)
+                if bucket != runOpacity { flush(); runOpacity = bucket }
+                run.append(character)
+                index += 1
+            }
+            flush()
         }
         return result
     }

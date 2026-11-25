@@ -134,6 +134,12 @@
 - **Onboarding step change:** a 32 pt glide + fade in (ease-out 0.28 s), 20 pt + fade out (ease-in 0.16 s).
 - **Plan day strip:** one tomato pill travels between days (`matchedGeometryEffect`, `Theme.spring`), selection haptic.
 - **Grocery check:** fill opens from 70%, the tick draws on with ease-out; unchecking is quicker.
+- **Mirror typing:** every letter is always laid out (unwritten ones transparent) so words never jump lines;
+  letters fade in over a 6-letter soft edge; max 1.6 s.
+- **Savings:** one 1.9 s timeline; 52 week squares (13 across) fill from 60% scale, 14 ms apart, with the count-up.
+- **Catalog ("N recipes fit you"):** two rows of the user's matching dishes drift in opposite directions
+  (linear, 60 s loop, edge-faded); three stat tiles count up with ease-out, 80 ms apart.
+- **Plan reveal:** day cards deal in (rise 18 pt + fade, 70 ms apart); budget bar draws on; basket counts up.
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 

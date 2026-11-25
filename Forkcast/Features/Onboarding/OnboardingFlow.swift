@@ -102,9 +102,9 @@ struct OnboardingFlow: View {
         case .store:
             StoreStepView(state: state) { advance() }
         case .savings:
-            SavingsStep { advance() }
+            SavingsStep(state: state) { advance() }
         case .catalog:
-            CatalogPreviewStep { advance() }
+            CatalogPreviewStep(state: state) { advance() }
         case .building:
             BuildingWeekStep(state: state) { advance() }
         case .reveal:
