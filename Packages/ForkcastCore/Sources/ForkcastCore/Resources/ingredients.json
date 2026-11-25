@@ -771,6 +771,39 @@
   }
  },
  {
+  "id": "orange",
+  "name": "orange",
+  "pluralName": "oranges",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 47,
+   "protein": 0.9,
+   "carbs": 11.8,
+   "fat": 0.1,
+   "fiber": 2.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 520,
+   "display": "4-pack",
+   "displayImperial": "4-pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍊",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 130
+  }
+ },
+ {
   "id": "lemon",
   "name": "lemon",
   "pluralName": "lemons",
@@ -2658,6 +2691,40 @@
   }
  },
  {
+  "id": "crescent-dough",
+  "name": "crescent roll dough",
+  "pluralName": "crescent roll dough",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten",
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 340,
+   "protein": 6,
+   "carbs": 40,
+   "fat": 18,
+   "fiber": 1.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "240 g tube",
+   "displayImperial": "8.5 oz tube",
+   "noun": "tube",
+   "nounPlural": "tubes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥐",
+  "tags": [],
+  "ukName": "croissant dough"
+ },
+ {
   "id": "burger-buns",
   "name": "burger bun",
   "pluralName": "burger buns",
@@ -3308,6 +3375,36 @@
   }
  },
  {
+  "id": "sushi-rice",
+  "name": "short-grain sushi rice",
+  "pluralName": "short-grain sushi rice",
+  "aisle": "Rice & Grains",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 360,
+   "protein": 6.6,
+   "carbs": 80,
+   "fat": 0.5,
+   "fiber": 0.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍚",
+  "tags": []
+ },
+ {
   "id": "basmati-rice",
   "name": "basmati rice",
   "pluralName": "basmati rice",
@@ -3786,6 +3883,37 @@
   "proteinGroup": "legume"
  },
  {
+  "id": "pinto-beans",
+  "name": "pinto beans",
+  "pluralName": "pinto beans",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 143,
+   "protein": 9,
+   "carbs": 26,
+   "fat": 0.65,
+   "fiber": 9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "15 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🫘",
+  "tags": [],
+  "proteinGroup": "legume"
+ },
+ {
   "id": "kidney-beans",
   "name": "kidney beans",
   "pluralName": "kidney beans",
@@ -4100,6 +4228,38 @@
    "tbsp": 15,
    "tsp": 5
   }
+ },
+ {
+  "id": "chipotles-in-adobo",
+  "name": "chipotles in adobo",
+  "pluralName": "chipotles in adobo",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 70,
+   "protein": 2,
+   "carbs": 13,
+   "fat": 1.5,
+   "fiber": 4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 198,
+   "display": "198 g tin",
+   "displayImperial": "7 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌶️",
+  "tags": [
+   "spicy"
+  ]
  },
  {
   "id": "salsa",

@@ -53,6 +53,7 @@ ROWS = [
   I("green-beans","green beans","green beans",None,P,[],"",(31,1.8,7,0.2,2.7),"g",{"cup":100},(300,"300 g pack","10 oz bag","pack","packs"),False,"🫛",prices=(2.99,1.20,1.79)),
   I("avocado","avocado","avocados",None,P,[],"",(160,2,8.5,14.7,6.7),"g",{"piece":150},(150,"1 avocado","1 avocado","avocado","avocados"),False,"🥑",prices=(1.49,0.90,1.19)),
   I("lime","lime","limes",None,P,[],"",(30,0.7,10,0.2,2.8),"g",{"piece":65,"tbsp":15},(65,"1 lime","1 lime","lime","limes"),False,"🍋‍🟩",prices=(0.39,0.30,0.35)),
+  I("orange","orange","oranges",None,P,[],"",(47,0.9,11.8,0.1,2.4),"g",{"piece":130},(520,"4-pack","4-pack","pack","packs"),False,"🍊",prices=(3.49,1.30,1.69)),
   I("lemon","lemon","lemons",None,P,[],"",(29,1.1,9,0.3,2.8),"g",{"piece":100,"tbsp":15},(100,"1 lemon","1 lemon","lemon","lemons"),False,"🍋",prices=(0.69,0.35,0.45)),
   I("cilantro","cilantro","cilantro","coriander",P,[],"",(23,2.1,3.7,0.5,2.8),"g",{"bunch":25,"tbsp":1,"cup":16},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(0.99,0.70,0.89)),
   I("parsley","parsley","parsley",None,P,[],"",(36,3,6,0.8,3.3),"g",{"bunch":25,"tbsp":1,"cup":30},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(0.99,0.70,0.89)),
@@ -115,6 +116,7 @@ ROWS = [
   # ---------- Bakery ----------
   I("tortillas","flour tortilla","flour tortillas","tortilla wrap",BK,["gluten"],"",(312,8.3,52,8,3),"g",{"piece":45},(360,"8 wraps","8 tortillas","pack","packs"),False,"🫓",prices=(2.99,1.25,1.79)),
   I("corn-tortillas","corn tortilla","corn tortillas",None,BK,[],"",(218,5.7,45,2.9,6.3),"g",{"piece":26},(312,"12 tortillas","12 tortillas","pack","packs"),False,"🫓",prices=(2.49,2.00,2.49)),
+  I("crescent-dough","crescent roll dough","crescent roll dough","croissant dough",BK,["gluten","dairy"],A,(340,6,40,18,1.8),"g",None,(240,"240 g tube","8.5 oz tube","tube","tubes"),False,"🥐",prices=(3.79,2.25,2.69)),
   I("burger-buns","burger bun","burger buns",None,BK,["gluten","sesame"],"",(279,9.5,49,4.3,2.5),"g",{"piece":60},(240,"4 buns","4 buns","pack","packs"),False,"🍔",prices=(2.99,1.00,1.29)),
   I("naan","naan bread","naan breads",None,BK,["gluten","dairy"],A,(290,9,50,5.6,2.2),"g",{"piece":90},(180,"2 naans","2 naans","pack","packs"),False,"🫓",prices=(2.99,1.00,1.49)),
   I("baguette","baguette","baguettes",None,BK,["gluten"],"",(274,9,52,3,2.7),"g",{"piece":250,"slice":25},(250,"1 baguette","1 baguette","baguette","baguettes"),False,"🥖",prices=(2.49,0.75,0.99)),
@@ -138,6 +140,7 @@ ROWS = [
 
   # ---------- Rice & grains ----------
   I("long-grain-rice","long-grain rice","long-grain rice",None,RG,[],"",(365,7,80,0.7,1.3),"g",{"cup":185},(1000,"1 kg bag","2 lb bag","bag","bags"),False,"🍚",prices=(2.49,1.30,1.69)),
+  I("sushi-rice","short-grain sushi rice","short-grain sushi rice",None,RG,[],"",(360,6.6,80,0.5,0.8),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🍚",prices=(3.49,2.25,2.49)),
   I("basmati-rice","basmati rice","basmati rice",None,RG,[],"",(360,8,78,0.9,1.3),"g",{"cup":185},(1000,"1 kg bag","2 lb bag","bag","bags"),False,"🍚",prices=(3.99,2.20,2.49)),
   I("arborio-rice","arborio rice","arborio rice","risotto rice",RG,[],"",(350,6.5,79,0.6,1.5),"g",{"cup":200},(500,"500 g bag","1 lb bag","bag","bags"),False,"🍚",prices=(3.49,1.50,1.99)),
   I("microwave-rice","microwave rice pouch","microwave rice pouches",None,RG,[],"",(150,3,32,1.5,0.6),"g",{"piece":250},(250,"250 g pouch","8.8 oz pouch","pouch","pouches"),False,"🍚",prices=(1.99,1.00,1.29)),
@@ -154,6 +157,7 @@ ROWS = [
   I("coconut-milk","coconut milk","coconut milk",None,TJ,[],"",(197,2,2.8,21,0),"ml",{"cup":240,"tbsp":15},(400,"400 ml tin","13.5 oz can","tin","tins"),False,"🥥",prices=(2.49,1.20,1.49),gpm=1.0),
   I("chickpeas","chickpeas","chickpeas",None,TJ,[],"",(139,7.1,22.5,2.6,6.4),"g",{"cup":165},(240,"400 g tin (240 g drained)","15 oz can","tin","tins"),False,"🫘","legume",prices=(1.19,0.65,0.85)),
   I("black-beans","black beans","black beans",None,TJ,[],"",(132,8.9,23.7,0.5,8.7),"g",{"cup":172},(240,"400 g tin (240 g drained)","15 oz can","tin","tins"),False,"🫘","legume",prices=(1.19,0.80,1.19)),
+  I("pinto-beans","pinto beans","pinto beans",None,TJ,[],"",(143,9,26,0.65,9),"g",None,(240,"400 g tin (240 g drained)","15 oz can","tin","tins"),False,"🫘","legume",prices=(1.19,0.65,0.89)),
   I("kidney-beans","kidney beans","kidney beans",None,TJ,[],"",(127,8.7,22.8,0.5,6.4),"g",{"cup":177},(240,"400 g tin (240 g drained)","15 oz can","tin","tins"),False,"🫘","legume",prices=(1.19,0.55,0.89)),
   I("cannellini-beans","cannellini beans","cannellini beans",None,TJ,[],"",(114,7.6,20,0.4,6),"g",{"cup":180},(240,"400 g tin (240 g drained)","15 oz can","tin","tins"),False,"🫘","legume",prices=(1.29,0.65,0.89)),
   I("canned-tuna","canned tuna","canned tuna","tinned tuna",TJ,["fish"],F,(116,26,0,1,0),"g",None,(145,"145 g tin","5 oz can","tin","tins"),False,"🐟","fish",prices=(1.49,1.00,1.39)),
@@ -163,6 +167,7 @@ ROWS = [
   I("tahini","tahini","tahini",None,TJ,["sesame"],"",(595,17,21,54,9),"g",{"tbsp":15},(300,"300 g jar","10 oz jar","jar","jars"),False,"🫙",prices=(5.99,2.50,3.49)),
   I("thai-curry-paste","Thai red curry paste","Thai red curry paste",None,TJ,["shellfish"],F,(140,2,15,7,3),"g",{"tbsp":15,"tsp":5},(115,"115 g jar","4 oz jar","jar","jars"),False,"🌶️",tags=["spicy"],prices=(2.99,1.50,1.99)),
   I("curry-paste","tikka curry paste","tikka curry paste",None,TJ,[],"",(300,4,15,25,4),"g",{"tbsp":15,"tsp":5},(280,"280 g jar","10 oz jar","jar","jars"),False,"🍛",prices=(2.99,1.50,1.99)),
+  I("chipotles-in-adobo","chipotles in adobo","chipotles in adobo",None,TJ,[],"",(70,2,13,1.5,4),"g",None,(198,"198 g tin","7 oz can","tin","tins"),False,"🌶️",tags=["spicy"],prices=(2.69,2.25,2.79)),
   I("salsa","tomato salsa","tomato salsa",None,TJ,[],"",(36,1.5,7,0.2,1.8),"g",{"tbsp":16,"cup":260},(450,"450 g jar","16 oz jar","jar","jars"),False,"🍅",prices=(2.99,1.50,1.99)),
   I("roasted-peppers","roasted red peppers","roasted red peppers",None,TJ,[],"",(28,1,5,0.3,1.5),"g",{"piece":50},(290,"290 g jar","10 oz jar","jar","jars"),False,"🫑",prices=(3.49,1.30,1.79)),
   I("sweetcorn-tin","canned sweetcorn","canned sweetcorn","tinned sweetcorn",TJ,[],"",(81,2.7,16,1.2,2.4),"g",{"cup":165},(200,"200 g tin (drained)","8.5 oz can","tin","tins"),False,"🌽",prices=(1.19,0.60,0.89)),
