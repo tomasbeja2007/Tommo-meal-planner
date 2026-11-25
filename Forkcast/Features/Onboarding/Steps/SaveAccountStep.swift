@@ -1,5 +1,6 @@
 import SwiftUI
 import AuthenticationServices
+import ForkcastCore
 
 /// 17. Save your week: Sign in with Apple (the only account type until there's a backend).
 /// Leads with their own week (three of their dishes fanned out), says plainly what signing in gives,
