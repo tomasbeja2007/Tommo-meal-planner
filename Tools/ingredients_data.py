@@ -53,6 +53,7 @@ ROWS = [
   I("green-beans","green beans","green beans",None,P,[],"",(31,1.8,7,0.2,2.7),"g",{"cup":100},(300,"300 g pack","10 oz bag","pack","packs"),False,"🫛",prices=(2.99,1.20,1.79)),
   I("avocado","avocado","avocados",None,P,[],"",(160,2,8.5,14.7,6.7),"g",{"piece":150},(150,"1 avocado","1 avocado","avocado","avocados"),False,"🥑",prices=(1.49,0.90,1.19)),
   I("lime","lime","limes",None,P,[],"",(30,0.7,10,0.2,2.8),"g",{"piece":65,"tbsp":15},(65,"1 lime","1 lime","lime","limes"),False,"🍋‍🟩",prices=(0.39,0.30,0.35)),
+  I("orange","orange","oranges",None,P,[],"",(47,0.9,11.8,0.1,2.4),"g",{"piece":130},(520,"4-pack","4-pack","pack","packs"),False,"🍊",prices=(3.49,1.30,1.69)),
   I("lemon","lemon","lemons",None,P,[],"",(29,1.1,9,0.3,2.8),"g",{"piece":100,"tbsp":15},(100,"1 lemon","1 lemon","lemon","lemons"),False,"🍋",prices=(0.69,0.35,0.45)),
   I("cilantro","cilantro","cilantro","coriander",P,[],"",(23,2.1,3.7,0.5,2.8),"g",{"bunch":25,"tbsp":1,"cup":16},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(0.99,0.70,0.89)),
   I("parsley","parsley","parsley",None,P,[],"",(36,3,6,0.8,3.3),"g",{"bunch":25,"tbsp":1,"cup":30},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(0.99,0.70,0.89)),
@@ -115,6 +116,7 @@ ROWS = [
   # ---------- Bakery ----------
   I("tortillas","flour tortilla","flour tortillas","tortilla wrap",BK,["gluten"],"",(312,8.3,52,8,3),"g",{"piece":45},(360,"8 wraps","8 tortillas","pack","packs"),False,"🫓",prices=(2.99,1.25,1.79)),
   I("corn-tortillas","corn tortilla","corn tortillas",None,BK,[],"",(218,5.7,45,2.9,6.3),"g",{"piece":26},(312,"12 tortillas","12 tortillas","pack","packs"),False,"🫓",prices=(2.49,2.00,2.49)),
+  I("crescent-dough","crescent roll dough","crescent roll dough","croissant dough",BK,["gluten","dairy"],A,(340,6,40,18,1.8),"g",None,(240,"240 g tube","8.5 oz tube","tube","tubes"),False,"🥐",prices=(3.79,2.25,2.69)),
   I("burger-buns","burger bun","burger buns",None,BK,["gluten","sesame"],"",(279,9.5,49,4.3,2.5),"g",{"piece":60},(240,"4 buns","4 buns","pack","packs"),False,"🍔",prices=(2.99,1.00,1.29)),
   I("naan","naan bread","naan breads",None,BK,["gluten","dairy"],A,(290,9,50,5.6,2.2),"g",{"piece":90},(180,"2 naans","2 naans","pack","packs"),False,"🫓",prices=(2.99,1.00,1.49)),
   I("baguette","baguette","baguettes",None,BK,["gluten"],"",(274,9,52,3,2.7),"g",{"piece":250,"slice":25},(250,"1 baguette","1 baguette","baguette","baguettes"),False,"🥖",prices=(2.49,0.75,0.99)),

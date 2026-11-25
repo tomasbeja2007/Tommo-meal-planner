@@ -771,6 +771,39 @@
   }
  },
  {
+  "id": "orange",
+  "name": "orange",
+  "pluralName": "oranges",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 47,
+   "protein": 0.9,
+   "carbs": 11.8,
+   "fat": 0.1,
+   "fiber": 2.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 520,
+   "display": "4-pack",
+   "displayImperial": "4-pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍊",
+  "tags": [],
+  "gramsPerUnit": {
+   "piece": 130
+  }
+ },
+ {
   "id": "lemon",
   "name": "lemon",
   "pluralName": "lemons",
@@ -2656,6 +2689,40 @@
   "gramsPerUnit": {
    "piece": 26
   }
+ },
+ {
+  "id": "crescent-dough",
+  "name": "crescent roll dough",
+  "pluralName": "crescent roll dough",
+  "aisle": "Bakery",
+  "allergens": [
+   "gluten",
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 340,
+   "protein": 6,
+   "carbs": 40,
+   "fat": 18,
+   "fiber": 1.8
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "240 g tube",
+   "displayImperial": "8.5 oz tube",
+   "noun": "tube",
+   "nounPlural": "tubes"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥐",
+  "tags": [],
+  "ukName": "croissant dough"
  },
  {
   "id": "burger-buns",

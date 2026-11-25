@@ -46510,5 +46510,957 @@
   "isLeftoverFriendly": true,
   "mealType": "dinner",
   "tags": []
+ },
+ {
+  "id": "unstuffed-beef-pepper-skillet",
+  "title": "Unstuffed pepper skillet",
+  "emoji": "🫑",
+  "cuisine": "American",
+  "vibes": [
+   "onePan",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 3,
+    "unit": "piece",
+    "note": "red and green"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 450,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 90,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Dice the red and green peppers and onion. Rinse and drain the rice.",
+   "Heat the oil in a deep lidded frying pan. Brown the beef, breaking it up as it cooks.",
+   "Add the peppers and onions and cook for 5 minutes, then stir in the garlic, oregano and pepper.",
+   "Stir in the rice, tomatoes and stock. Bring to a simmer, cover and cook over low heat for 17–20 minutes.",
+   "Check that the rice is tender and stir gently. Add a little water and cook a few minutes longer if needed.",
+   "Sprinkle with cheddar and cover off the heat for 2 minutes to melt the cheese."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "ginger-brothy-beef-bowls",
+  "title": "Brothy ginger beef bowls",
+  "emoji": "🥣",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bok-choy",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 900,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Slice the ginger, garlic and spring onions.",
+   "Put the stock, ginger, garlic and spring-onion whites in a saucepan. Simmer gently for 10 minutes.",
+   "Pat the steak dry and sear it in the hot oil on both sides. For medium, take it off at 63°C (145°F) and rest it for at least 3 minutes.",
+   "Strain the broth if you prefer it clear. Stir in the soy and vinegar, and simmer the quartered pak choi for 3 minutes.",
+   "Slice the beef thinly across the grain while the greens cook.",
+   "Spoon rice into deep bowls, add the sliced steak and pak choi, then ladle over the broth and finish with spring-onion greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "cheesy-chicken-crescent-rolls",
+  "title": "Cheesy chicken crescent rolls",
+  "emoji": "🥐",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "crescent-dough",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 360,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 55,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F) and line a baking tray.",
+   "Gently simmer the chicken in water until it reaches 74°C (165°F). Drain, shred and let it cool briefly.",
+   "Mix the shredded chicken with cream cheese, grated cheddar, pepper and most of the finely sliced spring onions.",
+   "Separate the chilled dough into eight triangles. Put filling on the wide end of each triangle and roll it up.",
+   "Set seam-side down on the tray and bake for 13–17 minutes, until puffed and deeply golden.",
+   "Rest for 3 minutes. Cut one roll open for serving and scatter on the remaining spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "garlic-parmesan-cheeseburger-bombs",
+  "title": "Garlic parmesan cheeseburger bombs",
+  "emoji": "🧄",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family",
+   "fakeaway"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 22,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "flour",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 245,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 90,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 8,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F) and line a baking tray. Dice the onion finely.",
+   "Dry-fry the beef and onion until the beef is cooked. Break up the mince, drain any excess fat and spread it on a plate to cool.",
+   "Mix flour, baking powder, salt and yoghurt into a soft dough. Knead briefly and divide into eight balls.",
+   "Flatten each ball and fill with beef and a cube of cheddar. Pinch tightly shut and put seam-side down on the tray.",
+   "Bake for 15–18 minutes until golden and cooked through.",
+   "Melt the butter with crushed garlic. Brush it over the bread, then scatter with finely grated parmesan and parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-rice-paper-beef-burgers",
+  "title": "Crispy rice paper beef burgers",
+  "emoji": "🍔",
+  "cuisine": "Other",
+  "vibes": [
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rice-paper",
+    "amount": 12,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 190,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Shred the cabbage finely and slice the spring onions. Mix the beef with soy and pepper and shape into four thin patties.",
+   "Fry the patties in half the oil until browned and cooked to 71°C (160°F). Transfer to a clean plate.",
+   "Briefly dip rice-paper sheets in water, one at a time. Layer three sheets for each burger on a damp board.",
+   "Put a patty, cabbage and spring onion in the centre. Tuck in the sides and fold tightly to enclose it.",
+   "Fry the parcels in the remaining oil for 2–3 minutes on each side until crisp. Work in batches so they do not touch.",
+   "Set the parcels on a rack for a minute, then halve and serve with ketchup for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "hot-honey-crispy-chicken-burgers",
+  "title": "Hot honey crispy chicken burgers",
+  "emoji": "🍔",
+  "cuisine": "American",
+  "vibes": [
+   "fakeaway",
+   "highProtein",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "burger-buns",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 90,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "hot-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Slice the chicken into four even cutlets. Shred the cabbage finely and thinly slice the cucumber.",
+   "Toss the cabbage and cucumber with vinegar and salt and let them stand while you cook the chicken.",
+   "Coat the chicken with flour, beaten egg and then breadcrumbs, pressing the crumbs on.",
+   "Heat the oil in a wide frying pan and cook the cutlets in batches until crisp on both sides and 74°C (165°F) in the centre.",
+   "Warm the honey and hot sauce together in a small pan. Drain the cutlets on a rack, then brush them with the glaze.",
+   "Toast the buns, drain the cabbage and cucumber, and build each burger with the vegetables and a glazed chicken cutlet."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "bbq-cheeseburger-sliders",
+  "title": "BBQ cheeseburger sliders",
+  "emoji": "🍔",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "fakeaway",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "burger-buns",
+    "amount": 4,
+    "unit": "piece",
+    "note": "small buns"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 440,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bbq-sauce",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Thinly slice the onions. Melt butter with the oil in a pan and cook the onions gently until brown and soft.",
+   "Shape the meat into four small flat patties and season the outside with salt.",
+   "Open the buns and toast their cut sides in a clean hot pan.",
+   "Cook the patties in the hot pan until browned, turning once. Cook to 71°C (160°F) in the centre.",
+   "Top with sliced cheddar and cover the pan for a minute to melt it.",
+   "Spread barbecue sauce on the buns, then add the cheeseburger patties and a spoon of the caramelised onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-parmesan-sliders",
+  "title": "Chicken parmesan sliders",
+  "emoji": "🍔",
+  "cuisine": "Italian",
+  "vibes": [
+   "family",
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "burger-buns",
+    "amount": 4,
+    "unit": "piece",
+    "note": "small buns"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 440,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 90,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Cut the chicken into even pieces that will fit the buns.",
+   "Dip the chicken in beaten egg, then press it into breadcrumbs mixed with the grated parmesan.",
+   "Brush a tray and the chicken lightly with oil. Bake for 12–16 minutes, turning once, until golden and 74°C (165°F) in the centre.",
+   "Meanwhile, gently simmer the passata with crushed garlic for 8 minutes until thick enough to spoon.",
+   "Split the buns and top with the chicken, tomato sauce and torn mozzarella. Return to the oven until the cheese melts.",
+   "Tuck in basil leaves and close the buns just before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "ham-cheddar-sliders",
+  "title": "Ham and cheese sliders",
+  "emoji": "🥪",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 16,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "burger-buns",
+    "amount": 4,
+    "unit": "piece",
+    "note": "small buns"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F) and line a small baking dish.",
+   "Split the buns and arrange their bottom halves in the dish. Fold the ham onto them and top with slices of cheddar.",
+   "Set the tops in place. Melt the butter and stir in the mustard and onion powder. Brush the mixture over the buns.",
+   "Cover loosely and bake for 10 minutes, then uncover for 5–6 minutes, until the tops are golden and the cheese has melted."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "chicken-bacon-ranch-salad",
+  "title": "Chicken bacon ranch salad",
+  "emoji": "🥗",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bacon",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 50,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "onion-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Cook the bacon in a frying pan until crisp, then move it to kitchen paper to drain.",
+   "Slice the chicken into thin cutlets. Fry in the olive oil until golden and 74°C (165°F) in the centre, then set aside to rest.",
+   "For the ranch dressing, whisk the yoghurt, mayonnaise, thyme, garlic powder, onion powder, chopped parsley and lemon juice.",
+   "Chop the lettuce and cut the tomatoes into small wedges. Slice the rested chicken and crumble the cooked bacon.",
+   "Divide the lettuce and tomato into bowls. Add the chicken and bacon and drizzle with the ranch just before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "parmesan-crusted-chicken",
+  "title": "Parmesan-crusted chicken",
+  "emoji": "🍗",
+  "cuisine": "Italian",
+  "vibes": [
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 680,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 370,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 90,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 65,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Cut the potato into small chunks and toss with half the oil and salt.",
+   "Roast the potatoes for 20 minutes. Cut the broccoli into florets, toss lightly with oil and add it to the tray for another 12–15 minutes.",
+   "Slice the chicken into four even cutlets. Set out flour, beaten egg and breadcrumbs mixed with grated parmesan.",
+   "Coat each piece with flour, egg and the parmesan crumbs. Press the crumbs in gently so they stick.",
+   "Fry the cutlets in the remaining oil in batches until golden and 74°C (165°F) in the centre.",
+   "Serve the chicken beside the browned potatoes and broccoli, with lemon wedges for squeezing."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "yucatan-steak-tacos",
+  "title": "Yucatán steak tacos",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 12,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "orange",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Mix orange juice, juice from one lime, crushed garlic, paprika, oregano, cumin and half the salt in a shallow dish.",
+   "Coat the steak with the citrus mixture. Finely slice the red onion and toss with juice from the second lime and the remaining salt.",
+   "Heat the oil in a heavy frying pan. Lift the steak out of the marinade, blot it lightly and sear on both sides.",
+   "For medium, cook to at least 63°C (145°F). Transfer to a board and rest for at least 3 minutes.",
+   "Warm the tortillas one at a time in a dry pan. Keep them stacked under a clean cloth.",
+   "Slice the steak thinly across the grain and divide among the tortillas. Top with red onion and chopped coriander and serve with the last lime cut into wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
  }
 ]
