@@ -33,13 +33,4 @@ final class AppleSignInManager {
             return nil
         }
     }
-
-    /// Checks the credential is still valid (e.g. not revoked in Settings).
-    func isStillAuthorized(userId: String) async -> Bool {
-        await withCheckedContinuation { continuation in
-            ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userId) { state, _ in
-                continuation.resume(returning: state == .authorized)
-            }
-        }
-    }
 }

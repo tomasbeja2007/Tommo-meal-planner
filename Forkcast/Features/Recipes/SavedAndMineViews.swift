@@ -1,39 +1,6 @@
 import SwiftUI
 import ForkcastCore
 
-struct SavedRecipesView: View {
-    let onBrowse: () -> Void
-    @Environment(RecipeRepository.self) private var repository: RecipeRepository
-    @Environment(LibraryStore.self) private var library: LibraryStore
-
-    private let columns: [GridItem] = [GridItem(.flexible(), spacing: Theme.Spacing.m), GridItem(.flexible(), spacing: Theme.Spacing.m)]
-
-    var body: some View {
-        let saved: [Recipe] = library.savedIds.compactMap { repository.recipe(id: $0) }
-        if saved.isEmpty {
-            EmptyState(
-                title: String(localized: "no saved recipes yet"),
-                message: String(localized: "tap ♡ on any recipe to keep it here."),
-                actionTitle: String(localized: "Browse recipes"),
-                action: onBrowse
-            )
-            .frame(maxHeight: .infinity)
-        } else {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: Theme.Spacing.m) {
-                    ForEach(saved) { recipe in
-                        NavigationLink(value: RecipeRoute(recipeId: recipe.id)) {
-                            RecipeCard(recipe: recipe)
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-                .padding(Theme.Spacing.gutter)
-            }
-        }
-    }
-}
-
 struct MyRecipesView: View {
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(PlanStore.self) private var planStore: PlanStore

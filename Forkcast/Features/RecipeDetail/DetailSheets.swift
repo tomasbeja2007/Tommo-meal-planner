@@ -58,37 +58,6 @@ struct AddToPlanSheet: View {
     }
 }
 
-/// "Mark as cooked" with an optional 1–5 stars.
-struct CookedRatingSheet: View {
-    let recipe: Recipe
-    let onDone: (Int) -> Void
-
-    @Environment(LibraryStore.self) private var library: LibraryStore
-    @Environment(\.dismiss) private var dismiss: DismissAction
-    @State private var stars: Int = 0
-
-    var body: some View {
-        VStack(spacing: Theme.Spacing.l) {
-            Text("nice one! how was it?")
-                .font(.system(.title3, design: .rounded).weight(.bold))
-                .foregroundStyle(Theme.aubergine)
-                .padding(.top, Theme.Spacing.xl)
-            StarPicker(stars: $stars)
-            Text("optional, and it helps us plan better weeks")
-                .font(.caption)
-                .foregroundStyle(Theme.aubergineFaint)
-            PrimaryButton(String(localized: "Mark as cooked")) {
-                onDone(stars)
-                dismiss()
-            }
-            .padding(.horizontal, Theme.Spacing.gutter)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background(Theme.cream.ignoresSafeArea())
-        .onAppear { stars = library.stars[recipe.id] ?? 0 }
-    }
-}
-
 struct StarPicker: View {
     @Binding var stars: Int
 
@@ -111,8 +80,4 @@ struct StarPicker: View {
         .accessibilityElement(children: .contain)
         .accessibilityValue(Text("\(stars) of 5"))
     }
-}
-
-#Preview("Cooked rating") {
-    CookedRatingSheet(recipe: PreviewData.sampleRecipe) { _ in }.previewEnvironment()
 }

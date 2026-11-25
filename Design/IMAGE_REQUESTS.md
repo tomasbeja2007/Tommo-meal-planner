@@ -7,7 +7,7 @@ with no code changes.
 
 ## Status (Nov 2026)
 - **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 40 recipe photos (section 3),
-  all 25 onboarding illustrations (section 4), and the 6 splash pieces + `illustration-cloudSync` (section 5).
+  the onboarding illustrations (section 4), and the six splash pieces (section 5).
 - **MascotRig, round 1:** arms and both mouths are good and kept in `Design/MascotRig/` (not in the app until the
   live face is built). `MascotRig-body` and `MascotRig-head` need a redo, see section 1.
 - **Still open:** the clean app icon export (section 2), the 80 pantry photos (section 6), the 32 breakfast, lunch
@@ -118,7 +118,6 @@ no mascot. They replace the SF Symbol on the matching tile.
 | Asset names | What to draw |
 |---|---|
 | `appliance-oven`, `appliance-stovetop`, `appliance-microwave`, `appliance-airFryer`, `appliance-slowCooker`, `appliance-blender` | The appliance, cute and simplified |
-| `vibe-quickEasy`, `vibe-highProtein`, `vibe-comfort`, `vibe-healthyish`, `vibe-family`, `vibe-fakeaway`, `vibe-lowCalorie`, `vibe-onePan`, `vibe-batchFriendly` | Lightning bowl · dumbbell with steak · steaming stew pot · salad bowl · family dinner table · takeaway box · light salad with measuring tape · frying pan · stacked meal-prep boxes |
 | `diet-none`, `diet-vegetarian`, `diet-vegan`, `diet-pescatarian` | Plate with mixed food · carrot & cheese · sprouting leaf · fish |
 | `goal-spendLess`, `goal-stopWondering`, `goal-eatHealthier`, `goal-saveTime`, `goal-cookMore`, `goal-feedFamily` | Coin jar · question mark over a plate · apple · clock · pan on a hob · family of three at a table |
 
@@ -133,7 +132,6 @@ Same clay style and palette as section 4. The app works without them: missing pi
 | `splash-chilli` | 256×256 | transparent | A small red chilli, gentle curve |
 | `splash-lemon` | 256×256 | transparent | A lemon slice (saffron yellow), seen from the front |
 | `splash-pepper` | 256×256 | transparent | Three black peppercorns in a little cluster |
-| `illustration-cloudSync` | 512×512 | transparent | A soft cream cloud with a small tomato-red tick, a phone below it, no text |
 
 Style notes: each piece is a single object, centred, filling ~80% of the canvas, no shadow under it, no text,
 soft studio light from the top left. They float around Chef Tomato on the splash and welcome screens, so they

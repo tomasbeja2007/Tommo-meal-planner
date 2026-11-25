@@ -1,7 +1,7 @@
 # Trending recipes (Nov 2026): 60 easy, healthy-ish dishes (revised for budget, time and ingredient count) in the style of short-video food trends
 # (bowls, bakes, wraps, snack hacks). Original recipes: no creator names, nothing copied.
 # Every one carries the tag "trending" (Recipe.isTrending) for the "Going viral" row on Discover,
-# and each has a slideshow script in Marketing/slideshows/.
+# and Tools/generate_slideshows.py can generate a slideshow script for each.
 # Same rules as the rest of the library: ingredients from ingredients_data.py, oven / air-fryer
 # steps give °C and °F, limits per meal type live in MealType (ForkcastCore).
 from recipes_data import R

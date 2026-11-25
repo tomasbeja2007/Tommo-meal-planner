@@ -121,7 +121,7 @@
 - **Onboarding motion:** `WelcomeStep` (splash: `MascotRing` = mascot + ingredient pieces; one `LoopClock` for the
   idle drift, one `OneShotClock` for the burst; numbers in `enum RingMotion`), `ConfettiView` (one `Canvas`, one
   `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),
-  the trial bell (`RingingBell`: a damped swing around its top every 3.2 s), the mirror's typed text (`OneShotClock`),
+  the reminder bell (`StayOnTrackStep`: a one-shot swing around its top), the mirror's typed text (`OneShotClock`),
   `OptionTile`'s icon bounce (keyframes, off with Reduce Motion), the dislike strike-through and the vibe grid shake.
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.

@@ -17,9 +17,10 @@ Forkcast/                    The app (App, Theme, Features, Services, Persistenc
 ForkcastWidget/              "Tonight's dinner" widget (reads an App Group JSON snapshot)
 ForkcastShare/               Share Extension for TikTok / Instagram / text imports
 Design/                      Mascot source art + IMAGE_REQUESTS.md (art still to make)
-Tools/                       Python scripts used to bootstrap the JSON data
-reference-screens/           Competitor screenshots (reference only, not shipped)
+Tools/                       Catalog and marketing generators
 ```
+
+Run `python3 Tools/generate_slideshows.py` to export the slideshow scripts and photo prompts into the ignored `Marketing/` directory.
 
 ---
 
@@ -157,17 +158,17 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
 
 ## 3b. Onboarding (Nov 2026 rebuild)
 
-Order: splash → welcome → goal → what gets in the way → mirror → who's eating → your week → how do you eat →
-dislikes → vibe → kitchen → budget → pantry → shops → building → plan reveal → stay on track → trial → save your plan →
-welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `OnboardingStep` holds the order).
+Order: splash → welcome → goals → obstacles → mirror → household → cooking days → eating style →
+nutrition → dislikes → vibe → kitchen → shops → budget → pantry → savings example → catalog preview →
+reminders → subscriptions → build week → plan reveal → Sign in with Apple → welcome home.
+Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `OnboardingStep` holds the order).
 
 - **Answers**: the planner fields stay on `UserProfile`; everything else is `OnboardingAnswers` (Codable), stored as
   JSON in `UserProfile.onboardingAnswersJSON`. `ProfileStore.plannerProfile` merges both.
 - **Planner effects**: "High-protein" / "Lighter meals" add the matching vibe, "Mediterranean" adds a cuisine bonus,
   Meal prep mode favours leftover-friendly dinners, pantry items are left off the **first** week's list and total.
 - **Country** comes from the phone's region (falls back to the US) and can be changed on the shops screen.
-- **Trial** screen assumes the 3-day intro offer (`TrialTimelineStep.trialLengthDays`); it's skipped for people who
-  can't start a trial. "Start my free trial" opens the existing `PaywallView`.
+- **Subscriptions** use StoreKit pricing and trial eligibility. Existing subscribers skip this step, and other users can continue without a subscription.
 - **Debug**: You tab → long-press the version → *Reset onboarding*. The splash plays once per app launch.
 
 **What to check in the Simulator** (iPhone 16 and iPhone SE 3rd gen):
@@ -178,8 +179,8 @@ welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `O
 5. No allergies (preselected) vs peanuts + gluten (the "No allergies" chip clears, checklist "Avoiding peanuts…").
 6. Budget at the minimum and the maximum: corner mascot switches thinking / idle / cheer, verdict card updates.
 7. Pantry: tick 3 items, then check the first week's grocery list shows them under "check you have" at no cost.
-8. Plan reveal: confetti, day cards with photos and costs, the summary row adds up, the yearly number counts up.
-9. Trial: dates are real; the bell rings; "Not now" skips the paywall; a Pro or ineligible account never sees this screen.
+8. Savings and plan reveal: the hypothetical annual savings count up. The generated plan shows day cards and estimated costs.
+9. Reminders and subscriptions: check the system permission prompt, the current StoreKit offer, and "Continue without a subscription".
 10. Settings → Accessibility → Motion → **Reduce Motion ON**: no splash burst (cross-fade), no confetti, no shake or bounce, numbers show final values.
 11. iPhone SE: nothing clipped on the store, pantry and reveal screens; the welcome headline fits.
 
@@ -246,7 +247,7 @@ its plans and feedback still appear. Deploy the updated CloudKit schema before t
 
 - [ ] **Real reviews**: the social-proof screen was removed from onboarding (Nov 2026). Only bring it back with
       genuine App Store reviews. Never invent reviews, ratings or user counts.
-- [x] **Artwork**: mascot moods, 40 recipe photos and 25 onboarding illustrations are in the asset catalog.
+- [x] **Artwork**: mascot moods, recipe photos and onboarding illustrations are in the asset catalog.
       Still open (see `Design/IMAGE_REQUESTS.md`): the optional `MascotRig` layers and a clean app icon.
 - [ ] **App icon**: `AppIcon-1024.png` was cropped from the provided mascot art with the dark border removed.
       A clean 1024×1024 export (opaque, cream to the edges, no rounded corners) would look better.
