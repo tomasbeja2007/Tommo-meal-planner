@@ -447,16 +447,23 @@ private struct DishRivers: View {
                     let width = CGFloat(row.count) * (tile + gap)
                     let p = CGFloat(loop(t, period: period, phase: index == 0 ? 0 : 0.5))
                     let x = index == 0 ? -p * width : (p - 1) * width
-                    HStack(spacing: gap) {
-                        ForEach(0..<3, id: \.self) { _ in
-                            ForEach(row) { recipe in
-                                DishTileView(recipe: recipe, size: tile, cornerRadius: 22)
-                                    .shadow(color: Theme.aubergine.opacity(0.08), radius: 6, y: 4)
+                    // The strip is far wider than the screen (three copies for a seamless loop). It lives in an
+                    // overlay of a screen-wide clear row, so it can never widen the page around it.
+                    Color.clear
+                        .frame(maxWidth: .infinity)
+                        .frame(height: tile)
+                        .overlay(alignment: .leading) {
+                            HStack(spacing: gap) {
+                                ForEach(0..<3, id: \.self) { _ in
+                                    ForEach(row) { recipe in
+                                        DishTileView(recipe: recipe, size: tile, cornerRadius: 22)
+                                            .shadow(color: Theme.aubergine.opacity(0.08), radius: 6, y: 4)
+                                    }
+                                }
                             }
+                            .fixedSize()
+                            .offset(x: x)
                         }
-                    }
-                    .offset(x: x)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
             .padding(.vertical, 8)

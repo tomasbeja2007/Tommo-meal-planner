@@ -186,7 +186,7 @@ struct PlanView: View {
                                 }
                                 if expandsCalendar {
                                     Group {
-                                        if let meal = meals.first(where: { $0.mealType == .dinner && !$0.isSide }) ?? meals.first,
+                                        if let meal = meals.first(where: { !$0.isSide }) ?? meals.first,
                                            let recipe = planStore.recipe(for: meal) {
                                             DishTileView(recipe: recipe, size: 38, cornerRadius: 10)
                                                 .scaleEffect(selected ? 1.06 : 1)
