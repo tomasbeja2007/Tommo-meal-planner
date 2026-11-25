@@ -26,7 +26,7 @@ Run `python3 Tools/generate_slideshows.py` to export the slideshow scripts and p
 ## 1. First run on the Mac
 
 **Quick start:** from the repo folder run `./setup-mac.sh`. It installs XcodeGen with Homebrew if needed,
-generates `Forkcast.xcodeproj` and opens it. Then do step 3 (Team) below and press Run.
+generates `Tommo.xcodeproj` and opens it. Then do step 3 (Team) below and press Run.
 Run it again after pulling changes that add or remove files or touch `project.yml`, because the
 `.xcodeproj` is generated and not committed (it's in `.gitignore`).
 
@@ -39,7 +39,7 @@ Step by step:
    ```bash
    xcodegen generate
    ```
-2. Open `Forkcast.xcodeproj` (Xcode 16+; Xcode 26 if you want Foundation Models).
+2. Open `Tommo.xcodeproj` (Xcode 16+; Xcode 26 if you want Foundation Models).
 3. For **each target** (Forkcast, ForkcastWidget, ForkcastShare) → *Signing & Capabilities* → choose your **Team**.
    Or set `DEVELOPMENT_TEAM` once in `project.yml` and re-run `xcodegen generate`.
 4. **Bundle IDs**: change `BUNDLE_ID_PREFIX` in `project.yml` (one place). If you do, also update:
