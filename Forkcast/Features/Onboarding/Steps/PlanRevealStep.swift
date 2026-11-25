@@ -391,6 +391,7 @@ struct CatalogPreviewStep: View {
     init(state: OnboardingState, onContinue: @escaping () -> Void) {
         self.state = state
         self.onContinue = onContinue
+        _matched = State(initialValue: state.didMatchCatalog)
         let catalog = FoodCatalog.bundled
         let profile = PlannerProfile(allergens: state.effectiveAllergens, diet: state.diet, dislikes: state.dislikes,
                                      appliances: state.appliances, vibes: state.vibes)
@@ -425,20 +426,149 @@ struct CatalogPreviewStep: View {
         return String(localized: "Out of \(total.formatted()), filtered for \(parts.formatted(.list(type: .and))).")
     }
 
+    @State private var matched = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    /// The answers the loader ticks off, in their own words ("Avoiding peanuts", "Kitchen · oven + stovetop").
+    private var checks: [String] {
+        let catalog = FoodCatalog.bundled
+        let system = state.country(in: catalog).unitSystem
+        let allergens = Allergen.allCases.filter { state.effectiveAllergens.contains($0) }.prefix(2).map { $0.displayName.lowercased() }
+        let dislikes = state.dislikes.sorted().prefix(2).map { DislikeCatalog.label(for: $0, catalog: catalog, system: system).lowercased() }
+        let kitchen = Appliance.allCases.filter { state.appliances.contains($0) }.map { $0.displayName.lowercased() }
+        var lines: [String] = [
+            state.diet == .none ? String(localized: "Diet · anything goes") : String(localized: "Diet · \(state.diet.displayName.lowercased())"),
+            allergens.isEmpty ? String(localized: "No allergies to avoid") : String(localized: "Avoiding \(allergens.formatted(.list(type: .and)))"),
+            dislikes.isEmpty ? String(localized: "Nothing you won't eat") : String(localized: "Leaving out \(dislikes.formatted(.list(type: .and)))"),
+            kitchen.count >= Appliance.allCases.count ? String(localized: "Your whole kitchen") : String(localized: "Kitchen · \(kitchen.joined(separator: " + "))")
+        ]
+        if !state.vibes.isEmpty {
+            let vibes = Vibe.allCases.filter { state.vibes.contains($0) }.prefix(2).map { $0.displayName.lowercased() }
+            lines.append(String(localized: "Leaning \(vibes.formatted(.list(type: .and)))"))
+        }
+        return lines
+    }
+
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "\(fit.count.formatted()) recipes fit you"),
-            subtitle: subtitle,
+            title: matched ? String(localized: "\(fit.count.formatted()) recipes fit you") : String(localized: "matching recipes to you…"),
+            subtitle: matched ? subtitle : String(localized: "checking all \(total.formatted()) against your answers"),
+            isButtonEnabled: matched,
             onContinue: onContinue
         ) {
-            VStack(spacing: Theme.Spacing.l) {
-                DishRivers(rows: rows)
-                    .padding(.horizontal, -Theme.Spacing.gutter)
-                CountUpStats(stats: [
-                    (quick, String(localized: "ready in 20 min")),
-                    state.vibes.isEmpty ? (cuisines, String(localized: "cuisines")) : (vibeMatches, String(localized: "match your vibes")),
-                    (leftovers, String(localized: "great as leftovers"))
-                ])
+            if matched {
+                VStack(spacing: Theme.Spacing.l) {
+                    DishRivers(rows: rows)
+                        .padding(.horizontal, -Theme.Spacing.gutter)
+                    CountUpStats(stats: [
+                        (quick, String(localized: "ready in 20 min")),
+                        state.vibes.isEmpty ? (cuisines, String(localized: "cuisines")) : (vibeMatches, String(localized: "match your vibes")),
+                        (leftovers, String(localized: "great as leftovers"))
+                    ])
+                }
+                .transition(.opacity.combined(with: .offset(y: 16)))
+            } else {
+                MatchingLoader(total: total, fit: fit.count, checks: checks, dishes: Array(rows.joined().prefix(6))) {
+                    state.didMatchCatalog = true
+                    withAnimation(reduceMotion ? nil : Animation.open(0.5)) { matched = true }
+                }
+                .transition(.opacity)
+            }
+        }
+    }
+}
+
+/// "matching recipes to you": a ring draws round as every recipe is checked (the count inside climbs to
+/// the total, then settles on how many fit), six of their dishes circle the ring, and each of their
+/// answers ticks off below. The filtering is real (it already happened); this lets them see it happen.
+/// Timeline (ms): ring 0–2 300 · ticks every 420 from 400 · result 2 450 · done 2 900.
+private struct MatchingLoader: View {
+    let total: Int
+    let fit: Int
+    let checks: [String]
+    let dishes: [Recipe]
+    let onDone: () -> Void
+
+    @State private var play = false
+    @State private var finished = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    private let ring: CGFloat = 190
+
+    var body: some View {
+        OneShotClock(duration: 2_900, play: play) { t in
+            VStack(spacing: Theme.Spacing.xl) {
+                ZStack {
+                    orbit(t)
+                    Circle().stroke(Theme.creamDeep, lineWidth: 12)
+                        .frame(width: ring, height: ring)
+                    Circle()
+                        .trim(from: 0, to: seg(t, 0, 2_300, easeOut: false))
+                        .stroke(Theme.tomato, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                        .rotationEffect(.degrees(-90))
+                        .frame(width: ring, height: ring)
+                    VStack(spacing: 2) {
+                        let checked = Int((Double(total) * seg(t, 0, 2_300, easeOut: false)).rounded())
+                        let settle = seg(t, 2_350, 2_700)
+                        Text((settle > 0.5 ? fit : checked).formatted())
+                            .font(.system(size: 44, weight: .black, design: .rounded))
+                            .monospacedDigit()
+                            .foregroundStyle(settle > 0.5 ? Theme.tomatoDeep : Theme.aubergine)
+                            .contentTransition(.numericText())
+                        Text(settle > 0.5 ? String(localized: "fit you") : String(localized: "recipes checked"))
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Theme.aubergineMuted)
+                    }
+                    .animation(Theme.spring, value: seg(t, 2_350, 2_700) > 0.5)
+                }
+                .frame(width: ring + 96, height: ring + 96)
+                .frame(maxWidth: .infinity)
+                VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                    ForEach(Array(checks.enumerated()), id: \.offset) { index, line in
+                        let tickAt = 400 + Double(index) * 420
+                        HStack(spacing: Theme.Spacing.s) {
+                            CheckCircle(isChecked: t >= tickAt)
+                                .frame(width: 30, height: 30)
+                            Text(line)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(t >= tickAt - 420 ? Theme.aubergine : Theme.aubergineFaint)
+                            Spacer(minLength: 0)
+                        }
+                        .opacity(0.4 + 0.6 * seg(t, tickAt - 500, tickAt - 200))
+                    }
+                }
+                .padding(Theme.Spacing.l)
+                .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
+            }
+        }
+        .sensoryFeedback(.success, trigger: finished)
+        .onAppear { play = true }
+        .task {
+            try? await Task.sleep(for: .milliseconds(reduceMotion ? 600 : 2_900))
+            guard !Task.isCancelled, !finished else { return }
+            finished = true
+            onDone()
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Matching recipes to your answers"))
+    }
+
+    /// Their dishes ride round just outside the ring (one turn every 9 s, linear), each counter-rotated
+    /// so the photos stay upright, opening out from the ring as the loader starts.
+    private func orbit(_ t: Double) -> some View {
+        LoopClock(period: 9_000) { l in
+            ZStack {
+                ForEach(Array(dishes.enumerated()), id: \.offset) { index, recipe in
+                    let angle = 2 * Double.pi * (Double(index) / Double(max(1, dishes.count)) + loop(l, period: 9_000))
+                    let open = seg(t, Double(index) * 60, 400 + Double(index) * 60)
+                    let radius = Double(ring) / 2 + 30 * open
+                    DishTileView(recipe: recipe, size: 40, cornerRadius: 20)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Theme.card, lineWidth: 2))
+                        .shadow(color: Theme.aubergine.opacity(0.12), radius: 4, y: 2)
+                        .scaleEffect(0.8 + 0.2 * open)
+                        .opacity(open)
+                        .offset(x: cos(angle) * radius, y: sin(angle) * radius)
+                }
             }
         }
     }

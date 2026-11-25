@@ -58,13 +58,15 @@ struct StoreTile: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: Theme.Spacing.s) {
-                StoreMonogram(store: store, size: 52)
-                Text(store.name)
-                    .font(.system(.subheadline, design: .rounded).weight(.semibold))
-                    .foregroundStyle(Theme.aubergine)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
+                StoreLogo(store: store, height: 56)
+                if store.isLocalStore {
+                    Text(store.name)
+                        .font(.system(.subheadline, design: .rounded).weight(.semibold))
+                        .foregroundStyle(Theme.aubergine)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
                 if isMain {
                     Text("main shop")
                         .font(.caption2.weight(.bold))
@@ -132,4 +134,39 @@ struct StoreMonogram: View {
 
 #Preview {
     ScrollView { StorePicker(countryId: "us", selection: .constant(["kroger", "aldi"])).padding() }.creamBackground()
+}
+
+/// A wide logo tile for a supermarket: the real logo when the asset "store-<id>" exists
+/// (added once the retailer allows it), otherwise the store's name set in its brand colour,
+/// so every shop reads as a brand, never as a generic icon. The local-shop option keeps its basket.
+struct StoreLogo: View {
+    let store: Store
+    var height: CGFloat = 56
+
+    private var logoName: String { "store-" + store.id }
+
+    var body: some View {
+        Group {
+            if store.isLocalStore {
+                StoreMonogram(store: store, size: height)
+            } else if AssetImage.exists(logoName) {
+                Image(logoName)
+                    .resizable()
+                    .interpolation(.high)
+                    .scaledToFit()
+                    .padding(.horizontal, 6)
+                    .frame(maxWidth: .infinity, maxHeight: height)
+            } else {
+                Text(store.name)
+                    .font(.system(size: height * 0.34, weight: .black, design: .rounded))
+                    .foregroundStyle(Color(hexString: store.brandColorHex))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .padding(.horizontal, 8)
+                    .frame(maxWidth: .infinity, maxHeight: height)
+            }
+        }
+        .frame(height: height)
+        .accessibilityHidden(true)
+    }
 }

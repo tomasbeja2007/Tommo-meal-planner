@@ -275,6 +275,7 @@ natural light, no hands, no text, matching the title. File = `recipe-<id>`.
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:
   once a retailer gives permission (or you use their official press-kit file under its terms), add it as
   an Image Set named `store-<id>` (ids are in `ForkcastCore/Resources/stores.json`, e.g. `store-tesco`).
-  A square PNG with a transparent background works best: it sits on a white circle. Without one, the
-  coloured monogram is shown.
+  Use the official logo as a **wide transparent PNG (about 3:1, at least 600×200)**: it fills the store
+  tiles, the globe ring and the "built for the shops in …" wall. Without one, the store's name is set in its
+  brand colour (and the small round badges show the coloured monogram).
 - **Fake reviews or user photos** for the testimonial carousel.

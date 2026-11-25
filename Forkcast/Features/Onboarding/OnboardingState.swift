@@ -38,6 +38,8 @@ final class OnboardingState {
     var extraDiets: Set<ExtraDiet> = []
     var pantry: Set<String> = []
     var requestedStore: String = ""
+    /// The "matching recipes to you" loader plays once per onboarding, not on every visit back.
+    var didMatchCatalog = false
     /// "Where did you hear about us?" (`HeardAboutStep.Source` raw value).
     var referralSource: String?
 
@@ -163,12 +165,14 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case dislikes
     case vibes
     case kitchen
+    case locating
     case store
     case budget
     case pantry
     case heardAbout
     case savings
     case catalog
+    case shops
     case reminders
     case subscriptions
     // The week

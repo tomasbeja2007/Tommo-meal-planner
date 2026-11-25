@@ -103,6 +103,8 @@ struct OnboardingFlow: View {
             BudgetStepView(state: state) { advance() }
         case .pantry:
             PantryStep(state: state) { advance() }
+        case .locating:
+            LocatingStep(state: state) { advance() }
         case .store:
             StoreStepView(state: state) { advance() }
         case .heardAbout:
@@ -115,6 +117,8 @@ struct OnboardingFlow: View {
             BuildingWeekStep(state: state) { advance() }
         case .reveal:
             PlanRevealStep(state: state) { advance() }
+        case .shops:
+            ShopsStep(state: state) { advance() }
         case .reminders:
             StayOnTrackStep { advance() }
         case .subscriptions:
@@ -145,13 +149,14 @@ struct OnboardingFlow: View {
 
     private func back() {
         guard step.canGoBack, var previous = step.previous else { return }
-        while !shouldShow(previous), let before = previous.previous { previous = before }
+        // The globe is a moment, not a question: going back skips over it.
+        while !shouldShow(previous) || previous == .locating, let before = previous.previous { previous = before }
         navigate(to: previous, forward: false)
     }
 
     private func navigate(to destination: OnboardingStep, forward: Bool) {
         goingForward = forward
-        let dissolveSteps: Set<OnboardingStep> = [.timeSaved, .savings, .catalog, .subscriptions]
+        let dissolveSteps: Set<OnboardingStep> = [.timeSaved, .locating, .savings, .catalog, .subscriptions]
         crossDissolve = dissolveSteps.contains(step) || dissolveSteps.contains(destination)
         withAnimation(reduceMotion ? .easeOut(duration: 0.14) : .easeInOut(duration: 0.24)) {
             step = destination

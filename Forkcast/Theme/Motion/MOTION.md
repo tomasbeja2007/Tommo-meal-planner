@@ -151,6 +151,15 @@
   behind him in the top half and in front in the bottom half, shrinking/dimming at the back for depth, each rocking
   on a seeded 4/5/8 s period; they open out from 60% radius on appear. The 3-step checklist ticks with the grocery
   `CheckCircle` draw-on, paced 0.85 s apart; the last tick waits for the real plan (screen holds ≥ 2.4 s).
+- **Locating (globe):** a real MapKit globe (imagery, realistic elevation) travels from a third of the way round
+  the world to the user's country (ease-in-out 1.8 s); a drawn tomato pin falls the last 40 pt, squashes (0.8,
+  volume kept) and sends two ripples; the country's shop logos deal in round the globe 70 ms apart and bob on seeded
+  3/4/6 s phases; the halo breathes 2%. Captions step through three phases with `StepDashes`. Auto-advances at 3.9 s.
+  Apple's legal label is kept inside the round window with safe-area padding.
+- **Matching recipes (catalog):** a ring draws round over 2.3 s while the count inside climbs to the catalog size,
+  then settles on how many fit; six of their dishes orbit the ring (9 s a turn); their answers tick off 420 ms
+  apart. Plays once per onboarding.
+- **Shops wall:** logos deal in 55 ms apart from 88% scale; their main shop is lifted in tomato.
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 
