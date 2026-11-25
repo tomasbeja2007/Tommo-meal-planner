@@ -133,6 +133,13 @@ private struct RecipeDetailContent: View {
                     }
                     cookedCard
                     RecipeVote(recipeID: recipe.id)
+                    if isIllustrative {
+                        // Honest, but out of the way: the note lives at the foot of the page, not on the photo.
+                        Text("Photo shows how the dish can look.")
+                            .font(Theme.Typography.footnote)
+                            .foregroundStyle(Theme.aubergineMuted)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
                 .padding(.top, Theme.Spacing.xl)
@@ -284,17 +291,9 @@ private struct RecipeDetailContent: View {
         personalPhoto == nil && DishTileView(recipe: recipe).photoName?.hasPrefix("illustrative-recipe-") == true
     }
 
-    /// Frosted pills on the photo, just above the sheet: the "illustrative" note and the camera.
+    /// The camera, as a frosted button on the photo just above the sheet. Nothing else sits on the photo.
     private var photoControls: some View {
         HStack {
-            if isIllustrative {
-                Text("Illustrative photo")
-                    .font(Theme.Typography.caption.weight(.semibold))
-                    .foregroundStyle(Theme.aubergine)
-                    .padding(.horizontal, Theme.Spacing.m)
-                    .padding(.vertical, Theme.Spacing.inline)
-                    .background(.ultraThinMaterial, in: Capsule())
-            }
             Spacer()
             PhotosPicker(selection: $photoItem, matching: .images) {
                 Group {

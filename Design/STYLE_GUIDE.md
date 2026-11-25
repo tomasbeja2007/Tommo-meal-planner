@@ -162,7 +162,7 @@ Reuse these; don't rebuild them per screen (`Forkcast/Theme/Components/`).
   to the selected option; selected text aubergine bold, others muted semibold. Use instead of the system segmented
   picker.
 - **Detail pages** (the recipe page is the reference): full-bleed photo (stretch on pull, 35% parallax), a cream sheet
-  with 28 pt top corners rising over it, glass buttons in the navigation bar, frosted pills on the photo, a facts
+  with 28 pt top corners rising over it, glass buttons in the navigation bar, a frosted camera button on the photo (any "illustrative photo" note goes in a footnote at the end, never on the photo), a facts
   card, a row of round actions, and one pinned primary action ("Start cooking").
 - **Top bar (onboarding)**: 44 pt round white back button with a `line` stroke, 6 pt tomato progress bar, optional
   quiet "Skip".
