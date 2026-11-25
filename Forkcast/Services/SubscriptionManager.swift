@@ -7,8 +7,8 @@ import Observation
 @MainActor
 @Observable
 final class SubscriptionManager {
-    static let yearlyId: String = "com.forkcast.app.pro.yearly"
-    static let monthlyId: String = "com.forkcast.app.pro.monthly"
+    static let yearlyId: String = "com.tomasbeja.tommo.pro.yearly"
+    static let monthlyId: String = "com.tomasbeja.tommo.pro.monthly"
     static let productIds: [String] = [yearlyId, monthlyId]
 
     enum PurchaseOutcome {

@@ -1,5 +1,13 @@
 # Forkcast — build notes
 
+## Identifiers (renamed to Tommo, Nov 2026)
+
+Bundle ID `com.tomasbeja.tommo` (widget `.widget`, share extension `.share`), App Group `group.com.tomasbeja.tommo`,
+iCloud container `iCloud.com.tomasbeja.tommo`, products `com.tomasbeja.tommo.pro.yearly` / `.monthly` in group
+"Tommo Pro". Home-screen name "Tommo"; App Store name "Tommo: Meal Planner" (set in App Store Connect).
+Target, folder and package names (`Forkcast`, `ForkcastCore`), the SwiftData store name and the `forkcast://` URL
+scheme are intentionally unchanged.
+
 Native SwiftUI weekly meal planner for iPhone (iOS 17+). No backend, no third-party packages.
 
 ```
@@ -35,12 +43,12 @@ Step by step:
 3. For **each target** (Forkcast, ForkcastWidget, ForkcastShare) → *Signing & Capabilities* → choose your **Team**.
    Or set `DEVELOPMENT_TEAM` once in `project.yml` and re-run `xcodegen generate`.
 4. **Bundle IDs**: change `BUNDLE_ID_PREFIX` in `project.yml` (one place). If you do, also update:
-   - the App Group (`group.com.forkcast.app`) and iCloud container (`iCloud.com.forkcast.app`) in `project.yml` entitlements, **and**
+   - the App Group (`group.com.tomasbeja.tommo`) and iCloud container (`iCloud.com.tomasbeja.tommo`) in `project.yml` entitlements, **and**
    - `SharedConstants.appGroupId` / `cloudKitContainerId` in `Packages/ForkcastCore/Sources/ForkcastCore/Shared/SharedConstants.swift`.
 5. Capabilities (already declared in the generated entitlements; Xcode just needs to provision them):
-   - **iCloud** → CloudKit, container `iCloud.com.forkcast.app` (create it in the developer portal if Xcode doesn't).
+   - **iCloud** → CloudKit, container `iCloud.com.tomasbeja.tommo` (create it in the developer portal if Xcode doesn't).
    - **Push Notifications** (`aps-environment`, used by CloudKit sync) + Background Modes → Remote notifications.
-   - **App Groups** → `group.com.forkcast.app` on the app, widget **and** share extension.
+   - **App Groups** → `group.com.tomasbeja.tommo` on the app, widget **and** share extension.
    - **Sign in with Apple** on the app.
    - **In-App Purchase** (add it in Signing & Capabilities if Xcode asks).
 6. The `Forkcast` scheme already points at `Forkcast/Resources/Forkcast.storekit`
@@ -73,7 +81,7 @@ packs/rounding, unit conversion + fractions, the caption parser on 5 samples, an
 - Or set `FeatureFlags.bypassPaywall = true` in `Forkcast/App/FeatureFlags.swift` (DEBUG only).
 
 **Paywall / trial (StoreKit config):**
-- Products: `com.forkcast.app.pro.yearly` ($39.99/yr, 3-day free trial) and `com.forkcast.app.pro.monthly` ($9.99/mo), group "Forkcast Pro".
+- Products: `com.tomasbeja.tommo.pro.yearly` ($39.99/yr, 3-day free trial) and `com.tomasbeja.tommo.pro.monthly` ($9.99/mo), group "Tommo Pro".
 - After onboarding you land on the Plan tab in *preview* mode. Tapping a meal, swap, grocery card, Edit week,
   Regenerate, or the Groceries/Recipes tabs opens the paywall (reminder screen → plans).
 - Speed up time: Debug → StoreKit → Manage Transactions, or Editor → Subscription Renewal Rate in the `.storekit` file.

@@ -4,7 +4,7 @@ import OSLog
 import ForkcastCore
 
 enum PersistenceController {
-    static let logger = Logger(subsystem: "com.forkcast.app", category: "Persistence")
+    static let logger = Logger(subsystem: "com.tomasbeja.tommo", category: "Persistence")
 
     static let schema = Schema([
         UserProfile.self,
