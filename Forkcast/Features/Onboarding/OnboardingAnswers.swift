@@ -101,7 +101,7 @@ enum OnboardingObstacle: String, CaseIterable, Identifiable {
 }
 
 /// Display names for the core `MealType` (breakfast, lunch, dinner, snack).
-extension MealType: Identifiable {
+extension MealType: @retroactive Identifiable {
     public var id: String { rawValue }
 
     var title: String {
