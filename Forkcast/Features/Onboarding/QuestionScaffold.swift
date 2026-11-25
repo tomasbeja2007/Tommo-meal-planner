@@ -10,7 +10,7 @@ struct QuestionScaffold<Content: View>: View {
     var showsButton: Bool = true
     var secondaryTitle: String? = nil
     var secondaryAction: (() -> Void)? = nil
-    /// Small Chef Tomato in the top-right corner, reacting to the answers.
+    /// Small Chef Tommo in the top-right corner, reacting to the answers.
     var reaction: MascotView.Mood? = nil
     let onContinue: () -> Void
     @ViewBuilder let content: () -> Content
@@ -111,7 +111,7 @@ struct OnboardingTopBar: View {
     }
 }
 
-/// 48 pt Chef Tomato in a screen corner. A new mood swaps in with a quick spring.
+/// 48 pt Chef Tommo in a screen corner. A new mood swaps in with a quick spring.
 struct MascotReaction: View {
     let mood: MascotView.Mood
     var size: CGFloat = 48

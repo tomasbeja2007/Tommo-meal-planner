@@ -172,7 +172,7 @@ Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `OnboardingStep`
 - **Debug**: You tab → long-press the version → *Reset onboarding*. The splash plays once per app launch.
 
 **What to check in the Simulator** (iPhone 16 and iPhone SE 3rd gen):
-1. Cold launch: cream launch screen with Chef Tomato, no white flash; the splash pops, then hands off to Welcome. Tap during the splash skips it.
+1. Cold launch: cream launch screen with Chef Tommo, no white flash; the splash pops, then hands off to Welcome. Tap during the splash skips it.
 2. Every question screen: tile tick and bounce, light haptic, "Continue · N selected", Skip on obstacles / dislikes / pantry.
 3. Mirror: the sentence types in and echoes your picks; Continue works straight away.
 4. 0 kids vs 2 kids (portion line, checklist row "Matching 2 adults + 2 kids").
@@ -296,4 +296,4 @@ its plans and feedback still appear. Deploy the updated CloudKit schema before t
 
 ### Welcome phone artwork
 
-The Welcome screen uses the asset name `WelcomePlanScreenshot` for its native SwiftUI phone frame. Capture the real Forkcast Plan screen in the iOS Simulator with demo data and no personal details, then add the captured portrait image to `Forkcast/Resources/Assets.xcassets/WelcomePlanScreenshot.imageset`. The existing Chef Tomato composition appears until that image is present. Preview on compact and tall iPhones with Reduce Motion enabled and disabled.
+The Welcome screen uses the asset name `WelcomePlanScreenshot` for its native SwiftUI phone frame. Capture the real Forkcast Plan screen in the iOS Simulator with demo data and no personal details, then add the captured portrait image to `Forkcast/Resources/Assets.xcassets/WelcomePlanScreenshot.imageset`. The existing Chef Tommo composition appears until that image is present. Preview on compact and tall iPhones with Reduce Motion enabled and disabled.

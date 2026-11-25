@@ -109,7 +109,7 @@ private struct ReminderMascot: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 170, height: 170)
-                .accessibilityLabel(Text("Chef Tomato holding a bell"))
+                .accessibilityLabel(Text("Chef Tommo holding a bell"))
         } else {
             MascotView(size: 160, mood: .idle)
                 .overlay(alignment: .topTrailing) {

@@ -128,8 +128,6 @@ struct OnboardingFlow: View {
             BuildingWeekStep(state: state) { advance() }
         case .reveal:
             PlanRevealStep(state: state) { advance() }
-        case .shops:
-            ShopsStep(state: state) { advance() }
         case .reminders:
             StayOnTrackStep { advance() }
         case .subscriptions:

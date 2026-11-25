@@ -1,7 +1,7 @@
 import SwiftUI
 import ForkcastCore
 
-/// 3. Chef Tomato echoes the goals and obstacles back, typed into a speech bubble.
+/// 3. Chef Tommo echoes the goals and obstacles back, typed into a speech bubble.
 /// No input; the button is never held back by the typing.
 struct MirrorStep: View {
     let state: OnboardingState
@@ -104,7 +104,7 @@ struct MirrorPiece: Hashable {
     }
 }
 
-/// White card with a small tail pointing down at Chef Tomato.
+/// White card with a small tail pointing down at Chef Tommo.
 struct SpeechBubble<Content: View>: View {
     @ViewBuilder let content: () -> Content
 

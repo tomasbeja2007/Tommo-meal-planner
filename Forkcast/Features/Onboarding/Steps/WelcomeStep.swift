@@ -2,7 +2,7 @@ import SwiftUI
 import StoreKit
 
 /// The first screen. On a cold start it continues straight out of the launch screen:
-/// Chef Tomato glides from the launch spot (screen centre, 200 pt) into the hero, the ingredients
+/// Chef Tommo glides from the launch spot (screen centre, 200 pt) into the hero, the ingredients
 /// open out from behind it, then the words and the buttons rise in. One scene, nothing teleports.
 /// Numbers live in `WelcomeIntro`.
 struct WelcomeStep: View {
@@ -118,33 +118,12 @@ struct IngredientHero: View {
 
     @State private var isVisible = false
 
-    /// One ingredient in the still life. `x` is a fraction of the scene width; `floor` is where its base
-    /// rests, as an offset from the shared floor line (negative = further back); `size` is a fraction of the height.
-    private struct Prop: Identifiable {
-        let id: String
-        let x: CGFloat
-        let floor: CGFloat
-        let size: CGFloat
-        let tilt: Double
-        /// Rock around its base (degrees) and its period: leaves sway more than a lemon.
-        let rock: Double
-        let period: Double
-        /// When it settles in during the intro (0 first).
-        let order: Int
-    }
-
-    // A still life on one floor: two larger pieces tucked behind Chef Tomato, two anchoring the front
-    // corners, two small accents at the feet. Sizes step down front to back; tilts stay small.
-    private static let back: [Prop] = [
-        Prop(id: "broccoli", x: 0.27, floor: -0.13, size: 0.30, tilt: -6, rock: 1.2, period: 12_000, order: 2),
-        Prop(id: "cherry-tomatoes", x: 0.74, floor: -0.12, size: 0.26, tilt: 5, rock: 1.4, period: 15_000, order: 3)
-    ]
-    private static let front: [Prop] = [
-        Prop(id: "avocado", x: 0.17, floor: 0.04, size: 0.31, tilt: -7, rock: 0.8, period: 15_000, order: 0),
-        Prop(id: "garlic", x: 0.34, floor: 0.07, size: 0.15, tilt: 4, rock: 1, period: 10_000, order: 4),
-        Prop(id: "basil", x: 0.67, floor: 0.07, size: 0.15, tilt: -8, rock: 3, period: 6_000, order: 5),
-        Prop(id: "lemon", x: 0.84, floor: 0.04, size: 0.29, tilt: 6, rock: 0.8, period: 12_000, order: 1)
-    ]
+    /// Eight ingredients on one ring round Chef Tommo, evenly spaced, one size: a deliberate shape,
+    /// not a scatter. The ring is a tilted ellipse, so pieces pass behind him across the top (smaller,
+    /// slightly dimmer) and in front of him along the bottom.
+    private static let ring = ["avocado", "cherry-tomatoes", "lemon", "broccoli", "bell-pepper", "garlic", "basil", "eggplant"]
+    /// One turn every 30 s (divides the 60 s ambient loop, so the seam never jumps).
+    private static let orbitPeriod: Double = 30_000
 
     var body: some View {
         GeometryReader { proxy in
@@ -161,13 +140,15 @@ struct IngredientHero: View {
                     let floorY = 0.5 + mascotSize / height * 0.43
                     ZStack {
                         backdrop(width: side, floorY: floorY, at: time, intro: i)
-                        props(Self.back, width: side, floorY: floorY, at: time, intro: i)
+                        orbitPath(width: side, front: false, intro: i)
+                        orbit(width: side, front: false, at: time, intro: i)
                         if showsPlanPreview && AssetImage.exists("WelcomePlanScreenshot") {
                             phonePreview
                         } else {
                             mascot(size: mascotSize, intro: i, from: fromLaunch)
                         }
-                        props(Self.front, width: side, floorY: floorY, at: time, intro: i)
+                        orbit(width: side, front: true, at: time, intro: i)
+                        orbitPath(width: side, front: true, intro: i)
                     }
                     .frame(width: side, height: height)
                 }
@@ -218,7 +199,7 @@ struct IngredientHero: View {
             .shadow(color: Theme.aubergine.opacity(0.24), radius: 12, x: 3, y: 8)
     }
 
-    /// A soft tomato sun behind Chef Tomato and one shared floor shadow: the scene's ground.
+    /// A soft tomato sun behind Chef Tommo and one shared floor shadow: the scene's ground.
     /// The sun glows by 1.5% over 6 s; both grow in with the intro (from 90%, never from 0).
     private func backdrop(width: CGFloat, floorY: CGFloat, at time: Double, intro i: Double) -> some View {
         let open = seg(i, WelcomeIntro.landMs - 200, WelcomeIntro.landMs + 300)
@@ -233,40 +214,61 @@ struct IngredientHero: View {
                 .position(x: width / 2, y: height * (floorY - 0.36))
             Ellipse()
                 .fill(Theme.aubergine.opacity(0.07))
-                .frame(width: width * 0.86, height: height * 0.08)
+                .frame(width: width * 0.5, height: height * 0.07)
                 .blur(radius: 6)
                 .position(x: width / 2, y: height * (floorY + 0.06))
         }
         .opacity(open)
     }
 
-    /// Each piece rests on the floor with its own contact shadow, settles in from 14 pt above
-    /// (ease-out, staggered), then only rocks gently around its base. Nothing floats.
-    private func props(_ props: [Prop], width: CGFloat, floorY: CGFloat, at time: Double, intro i: Double) -> some View {
-        ZStack {
-            ForEach(props) { prop in
-                let start = WelcomeIntro.propsAt + Double(prop.order) * WelcomeIntro.propStagger
-                let settle = seg(i, start, start + WelcomeIntro.propOpenMs)
-                let side = height * prop.size
-                let base = height * (floorY + prop.floor)
-                let rock = prop.rock * wave(time, period: prop.period, phase: Double(prop.x))
-                ZStack(alignment: .bottom) {
-                    Ellipse()
-                        .fill(Theme.aubergine.opacity(0.12 * settle))
-                        .frame(width: side * 0.7, height: side * 0.12)
-                        .blur(radius: 2.5)
-                        .offset(y: side * 0.04)
-                    Image("ingredient-\(prop.id)")
+    /// The ring's geometry: centre a little below Tommo's middle, wide and shallow like a plate seen
+    /// from slightly above.
+    private func ringFrame(width: CGFloat) -> (centre: CGPoint, rx: CGFloat, ry: CGFloat) {
+        (CGPoint(x: width / 2, y: height * 0.57), width * 0.43, height * 0.25)
+    }
+
+    /// A faint dotted line along the ring (its back half behind Tommo, its front half in front), so the
+    /// orbit reads as a designed shape. It draws on with the ingredients.
+    private func orbitPath(width: CGFloat, front: Bool, intro i: Double) -> some View {
+        let g = ringFrame(width: width)
+        let draw = seg(i, WelcomeIntro.propsAt - 100, WelcomeIntro.propsAt + 500)
+        var arc = Path()
+        arc.addArc(center: .zero, radius: 1, startAngle: .degrees(front ? 0 : 180), endAngle: .degrees(front ? 180 : 360), clockwise: false)
+        let shape = arc.applying(CGAffineTransform(translationX: g.centre.x, y: g.centre.y).scaledBy(x: g.rx, y: g.ry))
+        return shape
+            .trim(from: 0, to: draw)
+            .stroke(Theme.tomato.opacity(0.22), style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [2, 6]))
+            .frame(width: width, height: height)
+    }
+
+    /// The ingredients ride the ring (linear, one turn every 30 s), each rocking on its own seeded period.
+    /// Pieces in the back half are drawn behind Tommo, smaller and a touch dimmer; the front half in front.
+    /// On the intro they open out from 35% of the ring, staggered, from 80% scale (never 0).
+    private func orbit(width: CGFloat, front: Bool, at time: Double, intro i: Double) -> some View {
+        let g = ringFrame(width: width)
+        let pieces = Self.ring
+        return ZStack {
+            ForEach(Array(pieces.enumerated()), id: \.offset) { index, id in
+                let angle = 2 * Double.pi * (Double(index) / Double(pieces.count) + loop(time, period: Self.orbitPeriod))
+                let depth = sin(angle)              // −1 at the back (top), 1 at the front (bottom)
+                if (depth >= 0) == front {
+                    let start = WelcomeIntro.propsAt + Double(index) * WelcomeIntro.propStagger
+                    let open = seg(i, start, start + WelcomeIntro.propOpenMs)
+                    let reach = 0.35 + 0.65 * open
+                    let near = (depth + 1) / 2
+                    let side = height * 0.17 * CGFloat(0.8 + 0.2 * near)
+                    let rock = 5 * wave(time, period: [4_000, 5_000, 6_000, 10_000][index % 4], phase: seeded(index))
+                    Image("ingredient-\(id)")
                         .resizable()
                         .scaledToFit()
                         .frame(width: side, height: side)
-                        .rotationEffect(.degrees(prop.tilt + rock), anchor: .bottom)
-                        .scaleEffect(0.92 + 0.08 * settle, anchor: .bottom)
-                        .offset(y: -14 * (1 - settle))
-                        .opacity(settle)
+                        .rotationEffect(.degrees(rock))
+                        .shadow(color: Theme.aubergine.opacity(0.1), radius: 4, y: 3)
+                        .scaleEffect(0.8 + 0.2 * open)
+                        .opacity(open * (0.82 + 0.18 * near))
+                        .position(x: g.centre.x + CGFloat(cos(angle)) * g.rx * CGFloat(reach),
+                                  y: g.centre.y + CGFloat(depth) * g.ry * CGFloat(reach))
                 }
-                .frame(width: side, height: side)
-                .position(x: width * prop.x, y: base - side / 2)
             }
         }
         .frame(width: width, height: height)

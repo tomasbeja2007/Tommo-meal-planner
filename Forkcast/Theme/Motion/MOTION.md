@@ -118,13 +118,14 @@
 - **Art:** `Forkcast/Resources/Assets.xcassets/Mascot.imageset` (source `Design/mascot-tomato-chef.png`).
   Mood art: `MascotIdle`, `MascotCheer`, `MascotThinking`, `MascotBell` (moods `.idle`, `.cheer`, `.thinking`, `.bell`).
   `LaunchMascot` is `MascotIdle` resized to 200 pt for the launch screen (same size and spot as the splash mascot).
-- **Onboarding motion:** `WelcomeStep` (one continuous intro out of the launch screen: Chef Tomato is drawn at the
+- **Onboarding motion:** `WelcomeStep` (one continuous intro out of the launch screen: Chef Tommo is drawn at the
   launch size, rests 160 ms, then glides on the travel curve from the window centre into the hero and settles with a
-  small volume-keeping squash; the scene is a still life on one floor: a soft tomato "sun" behind
-  Chef Tomato and a shared floor shadow grow in as he lands; six ingredients (two behind, two front corners, two
-  small accents at his feet) settle onto the floor from 14 pt above, staggered 70 ms, each with a contact shadow;
-  title, subtitle and buttons rise 14 pt in with ease-out at 0.62 / 0.72 / 0.86 s; light haptic on landing.
-  Idle: nothing floats. Pieces only rock around their base (0.8–1.4°, basil 3°), the sun glows 1.5% over 6 s.
+  small volume-keeping squash; the scene is a ring: a soft tomato "sun" behind
+  Chef Tommo and a floor shadow grow in as he lands; eight ingredients, one size, evenly spaced, open out onto a
+  tilted elliptical orbit (from 35% of the ring, 70 ms apart) and ride it linearly, one turn per 30 s, passing behind
+  him across the top (80% size, dimmer) and in front along the bottom; each rocks ±5° on a seeded 4/5/6/10 s period;
+  a faint dotted orbit line draws on with them. Title, subtitle and buttons rise 14 pt in with ease-out at
+  0.62 / 0.72 / 0.86 s; light haptic on landing.
   Plays once per launch. Numbers in `enum WelcomeIntro`), `ConfettiView` (one `Canvas`, one
   `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),
   the reminder bell (`StayOnTrackStep`: a one-shot swing around its top), the mirror's typed text (`OneShotClock`),
@@ -138,11 +139,12 @@
 - **Grocery check:** fill opens from 70%, the tick draws on with ease-out; unchecking is quicker.
 - **Mirror typing:** every letter is always laid out (unwritten ones transparent) so words never jump lines;
   letters fade in over a 6-letter soft edge; max 1.6 s.
-- **Savings:** the reference choreography the owner picked: Chef Tomato hops in alone (cheer), "you could save
-  around" fades up 8 pt at 0.35 s, the weekly amount rises 14 pt from 92% at 1.25 s with its caption, and "that's
-  1.040 € a year!" pops at 2.4 s (125% → 97% → 100% through `flow`). Haptics: light on the amount, medium on the pop.
+- **Savings:** Chef Tommo hops in alone (cheer), "you could save around" fades up at 0.3 s, "20 € every week"
+  rises in at 0.9 s (light haptic), then the yearly figure counts up big with ease-out (1.7–2.9 s, four selection
+  ticks slowing with it), lands with a pop (110% → 98% → 100% through `flow`), twelve tomato/saffron sparks burst
+  out, a saffron glow blooms and fades, confetti falls, success haptic; "a year!" settles under it.
 - **Catalog ("N recipes fit you"):** two rows of the user's matching dishes drift in opposite directions
-  (linear, 60 s loop, edge-faded); three stat tiles count up with ease-out, 80 ms apart.
+  (three rows, alternating direction, linear, 60 s loop, edge-faded); three stat tiles count up with ease-out, 80 ms apart.
 - **Plan reveal:** one card per day (dinner as the hero, the rest of the day as small photos); cards deal in
   (rise 18 pt + fade, 70 ms apart); budget bar draws on; basket counts up.
 - **Save your week:** three of their dishes fan out like dealt cards (±11°, 62 pt, ease-out, 90 ms apart) on a
@@ -171,7 +173,6 @@
 - **Matching recipes (catalog):** a ring draws round over 2.3 s while the count inside climbs to the catalog size,
   then settles on how many fit; six of their dishes orbit the ring (9 s a turn); their answers tick off 420 ms
   apart. Plays once per onboarding.
-- **Shops wall:** logos deal in 55 ms apart from 88% scale; their main shop is lifted in tomato.
 - **Haptics on the onboarding moments:** light impact when the globe's pin lands, selection when the shops arrive;
   selection per answer ticked on the matching loader, success when it resolves; light/medium on the time-saved bars
   and line; light when the main shop lifts on the logo wall; selection per building tick, success when the week is

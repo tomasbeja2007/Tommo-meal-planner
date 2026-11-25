@@ -37,7 +37,7 @@ struct ObstaclesStepView: View {
     var body: some View {
         QuestionScaffold(
             title: String(localized: "what gets in the way?"),
-            subtitle: String(localized: "be honest, Chef Tomato has heard it all"),
+            subtitle: String(localized: "be honest, Chef Tommo has heard it all"),
             buttonTitle: continueTitle(selected: state.obstacles.count),
             isButtonEnabled: !state.obstacles.isEmpty,
             reaction: state.obstacles.isEmpty ? .idle : .thinking,

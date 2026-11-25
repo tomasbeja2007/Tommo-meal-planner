@@ -184,7 +184,6 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case heardAbout
     case savings
     case catalog
-    case shops
     case reminders
     case subscriptions
     // The week

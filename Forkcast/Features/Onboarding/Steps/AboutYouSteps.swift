@@ -3,7 +3,7 @@ import ForkcastCore
 
 // MARK: Name
 
-/// "what should Chef Tomato call you?" The name personalises the mirror, the building screen and the reveal.
+/// "what should Chef Tommo call you?" The name personalises the mirror, the building screen and the reveal.
 /// Optional: "Skip" in the top bar, and Continue works with an empty field.
 struct NameStep: View {
     @Bindable var state: OnboardingState
@@ -14,7 +14,7 @@ struct NameStep: View {
 
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "first, what should Chef Tomato call you?"),
+            title: String(localized: "first, what should Chef Tommo call you?"),
             subtitle: String(localized: "just your first name is perfect"),
             buttonTitle: trimmed.isEmpty ? String(localized: "Continue") : String(localized: "Nice to meet you, \(trimmed)"),
             reaction: trimmed.isEmpty ? .idle : .cheer,

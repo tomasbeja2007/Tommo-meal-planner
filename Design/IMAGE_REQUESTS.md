@@ -14,14 +14,14 @@ with no code changes.
   and snack photos (section 7), and the `MascotRig-body` / `MascotRig-head` redo (section 1).
 
 ## Shared style brief (give this to the agent with every request)
-- Character: **Chef Tomato** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
+- Character: **Chef Tommo** (see `Design/mascot-tomato-chef.png`): glossy 3D tomato,
   white chef hat with a tomato-red band, green leaves, wooden spoon, friendly face.
 - Palette: cream `#FBF6EE`, tomato `#E8553D`, saffron `#F2B544`, aubergine `#2B1E2E`.
   **Avoid green as a dominant colour** (green leaves on the tomato are fine).
 - Soft 3D / clay render, gentle studio light, no text, no logos, no brand names.
 - **Transparent background** for character/illustration assets (PNG, sRGB).
 - **No baked ground shadow** under the mascot: the app draws its own floor shadow, which shrinks when
-  Chef Tomato hops (see `Forkcast/Theme/Motion/MOTION.md`).
+  Chef Tommo hops (see `Forkcast/Theme/Motion/MOTION.md`).
 
 ## 1. Mascot moods (highest impact)
 1024×1024 transparent PNG, character centred and filling about 85% of the canvas.
@@ -134,7 +134,7 @@ Same clay style and palette as section 4. The app works without them: missing pi
 | `splash-pepper` | 256×256 | transparent | Three black peppercorns in a little cluster |
 
 Style notes: each piece is a single object, centred, filling ~80% of the canvas, no shadow under it, no text,
-soft studio light from the top left. They float around Chef Tomato on the splash and welcome screens, so they
+soft studio light from the top left. They float around Chef Tommo on the splash and welcome screens, so they
 should read clearly at about 60 pt.
 
 ## 6. Pantry photos (80)

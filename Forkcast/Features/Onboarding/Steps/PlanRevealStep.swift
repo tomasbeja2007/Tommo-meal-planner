@@ -276,16 +276,17 @@ private struct RevealDayCard: View {
     PlanRevealStep(state: OnboardingState()) {}.previewEnvironment().creamBackground()
 }
 
-/// The savings moment, in the same choreography as the reference the owner picked: Chef Tomato hops in
-/// on his own, "you could save around" fades up, the weekly amount rises in big with "on your shopping
-/// every week" under it, and then "that's 1.040 € a year!" pops in large and settles. Each beat has its
-/// own haptic. An example in the user's currency (said so in the footnote), not a promise.
-/// One timeline (ms): 0 mascot · 350 first line · 1 250 amount · 2 400 yearly pop · 2 900 done.
+/// The savings moment, in the reference choreography the owner picked, with the yearly total as the
+/// "wow": Chef Tommo hops in alone, "you could save around" fades up, "20 € every week" rises in, then the
+/// yearly figure counts up big (with ticking haptics), lands with a pop, a burst of sparks, a warm glow and
+/// confetti. An example in the user's currency (said so in the footnote), not a promise.
+/// One timeline (ms): 0 mascot · 300 line · 900 weekly · 1 700–2 900 count-up · 2 900 land · 3 700 end.
 struct SavingsStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
     @State private var appeared = false
-    @State private var amountLanded = false
+    @State private var weeklyLanded = false
+    @State private var countTicks = 0
     @State private var yearLanded = false
 
     private let weekly = 20
@@ -293,80 +294,133 @@ struct SavingsStep: View {
     private var currency: String { state.country(in: FoodCatalog.bundled).currencyCode }
 
     private enum Beat {
-        static let line: Double = 350
-        static let amount: Double = 1_250
-        static let year: Double = 2_400
-        static let end: Double = 2_900
+        static let line: Double = 300
+        static let weekly: Double = 900
+        static let that: Double = 1_550
+        static let countFrom: Double = 1_700
+        static let land: Double = 2_900
+        static let end: Double = 3_700
     }
 
     var body: some View {
-        OneShotClock(duration: Beat.end, play: appeared) { t in
-            VStack(spacing: 0) {
-                Spacer(minLength: 0)
-                VStack(spacing: Theme.Spacing.l) {
-                    MascotView(size: 120, mood: .cheer)
-                        .scaleEffect(0.88 + 0.12 * seg(t, 0, 380))
-                        .opacity(seg(t, 0, 220))
-                    Text("you could save around")
-                        .font(.system(.title2, design: .rounded).weight(.bold))
-                        .foregroundStyle(Theme.aubergine)
-                        .opacity(seg(t, Beat.line, Beat.line + 300))
-                        .offset(y: 8 * (1 - seg(t, Beat.line, Beat.line + 300)))
-                    VStack(spacing: Theme.Spacing.xs) {
-                        Text(money(weekly))
-                            .font(.system(size: 64, weight: .black, design: .rounded))
-                            .monospacedDigit()
+        ZStack {
+            OneShotClock(duration: Beat.end, play: appeared) { t in
+                VStack(spacing: 0) {
+                    Spacer(minLength: 0)
+                    VStack(spacing: Theme.Spacing.m) {
+                        MascotView(size: 104, mood: .cheer)
+                            .scaleEffect(0.88 + 0.12 * seg(t, 0, 380))
+                            .opacity(seg(t, 0, 220))
+                        Text("you could save around")
+                            .font(.system(.title3, design: .rounded).weight(.bold))
+                            .foregroundStyle(Theme.aubergine)
+                            .opacity(seg(t, Beat.line, Beat.line + 300))
+                            .offset(y: 8 * (1 - seg(t, Beat.line, Beat.line + 300)))
+                        Text("\(money(weekly)) every week")
+                            .font(.system(.title, design: .rounded).weight(.heavy))
                             .foregroundStyle(Theme.tomatoDeep)
-                            .scaleEffect(0.92 + 0.08 * seg(t, Beat.amount, Beat.amount + 380))
-                            .opacity(seg(t, Beat.amount, Beat.amount + 260))
-                            .offset(y: 14 * (1 - seg(t, Beat.amount, Beat.amount + 380)))
-                        Text("on your shopping every week")
-                            .font(.subheadline.weight(.semibold))
+                            .scaleEffect(0.92 + 0.08 * seg(t, Beat.weekly, Beat.weekly + 380))
+                            .opacity(seg(t, Beat.weekly, Beat.weekly + 260))
+                            .offset(y: 12 * (1 - seg(t, Beat.weekly, Beat.weekly + 380)))
+                        Text("that's")
+                            .font(.system(.title3, design: .rounded).weight(.semibold))
                             .foregroundStyle(Theme.aubergineMuted)
-                            .opacity(seg(t, Beat.amount + 150, Beat.amount + 450))
+                            .opacity(seg(t, Beat.that, Beat.that + 250))
+                            .padding(.top, Theme.Spacing.s)
+                        yearly(t)
                     }
-                    Text("that's \(money(weekly * weeks)) a year!")
-                        .font(.system(.title, design: .rounded).weight(.heavy))
-                        .foregroundStyle(Theme.aubergine)
-                        .scaleEffect(yearScale(t))
-                        .opacity(seg(t, Beat.year, Beat.year + 120))
-                        .padding(.top, Theme.Spacing.s)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, Theme.Spacing.gutter)
+                    Spacer(minLength: 0)
+                    Spacer(minLength: 0)
                 }
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, Theme.Spacing.gutter)
-                Spacer(minLength: 0)
-                Spacer(minLength: 0)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text("You could save around \(money(weekly)) on your shopping every week. That's \(money(weekly * weeks)) a year."))
-            .safeAreaInset(edge: .bottom) {
-                VStack(spacing: Theme.Spacing.s) {
-                    PrimaryButton(String(localized: "Continue"), action: onContinue)
-                        .opacity(0.76 + 0.24 * seg(t, Beat.year, Beat.end))
-                    Text("Example based on saving \(money(weekly)) a week")
-                        .font(.footnote)
-                        .foregroundStyle(Theme.aubergineMuted)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("You could save around \(money(weekly)) every week. That's \(money(weekly * weeks)) a year."))
+                .safeAreaInset(edge: .bottom) {
+                    VStack(spacing: Theme.Spacing.s) {
+                        PrimaryButton(String(localized: "Continue"), action: onContinue)
+                            .opacity(0.76 + 0.24 * seg(t, Beat.land, Beat.end))
+                        Text("Example based on saving \(money(weekly)) a week")
+                            .font(.footnote)
+                            .foregroundStyle(Theme.aubergineMuted)
+                    }
+                    .padding(.horizontal, Theme.Spacing.gutter)
+                    .padding(.vertical, Theme.Spacing.s)
+                    .background(Theme.cream)
                 }
-                .padding(.horizontal, Theme.Spacing.gutter)
-                .padding(.vertical, Theme.Spacing.s)
-                .background(Theme.cream)
             }
+            ConfettiView(play: yearLanded)
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
         }
-        .sensoryFeedback(.impact(weight: .light), trigger: amountLanded)
-        .sensoryFeedback(.impact(weight: .medium), trigger: yearLanded)
+        .sensoryFeedback(.impact(weight: .light), trigger: weeklyLanded)
+        .sensoryFeedback(.selection, trigger: countTicks)
+        .sensoryFeedback(.success, trigger: yearLanded)
         .onAppear { appeared = true }
-        .task {
-            try? await Task.sleep(for: .milliseconds(Int(Beat.amount + 300)))
-            amountLanded = true
-            try? await Task.sleep(for: .milliseconds(Int(Beat.year - Beat.amount - 300 + 90)))
-            yearLanded = true
+        .task { await beats() }
+    }
+
+    /// The yearly figure: counts up with ease-out (so it races, then slows into the total), grows from
+    /// 90% while counting, then lands with a pop (110% → 98% → 100%), a burst of twelve sparks, and a warm
+    /// glow that blooms and fades. "a year!" settles under it.
+    private func yearly(_ t: Double) -> some View {
+        let count = seg(t, Beat.countFrom, Beat.land)
+        let value = Int((Double(weekly * weeks) * count).rounded())
+        let burst = seg(t, Beat.land, Beat.land + 650)
+        let pop = flow(t, [(0, 0.9), (Beat.countFrom, 0.9), (Beat.land, 1), (Beat.land + 130, 1.1), (Beat.land + 300, 0.98),
+                           (Beat.land + 440, 1), (Beat.end, 1)])
+        return VStack(spacing: 0) {
+            ZStack {
+                Circle()
+                    .fill(RadialGradient(colors: [Theme.saffronSoft, Theme.saffronSoft.opacity(0)], center: .center,
+                                         startRadius: 0, endRadius: 140))
+                    .frame(width: 280, height: 280)
+                    .scaleEffect(0.6 + 0.6 * burst)
+                    .opacity(bell(burst))
+                ForEach(0..<12, id: \.self) { i in
+                    let angle = Double(i) / 12 * 360 + 12 * (seeded(i) - 0.5)
+                    let reach = 64 + 70 * burst + 14 * seeded(i, salt: 2)
+                    Capsule()
+                        .fill(i.isMultiple(of: 2) ? Theme.tomato : Theme.saffron)
+                        .frame(width: 5, height: 6 + 16 * (1 - burst))
+                        .offset(y: -reach)
+                        .rotationEffect(.degrees(angle))
+                        .opacity(burst > 0 ? bell(burst) : 0)
+                }
+                Text(money(value))
+                    .font(.system(size: 72, weight: .black, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .scaleEffect(CGFloat(pop))
+                    .opacity(seg(t, Beat.countFrom, Beat.countFrom + 150))
+            }
+            .frame(height: 96)
+            Text("a year!")
+                .font(.system(.title2, design: .rounded).weight(.heavy))
+                .foregroundStyle(Theme.aubergine)
+                .opacity(seg(t, Beat.land + 60, Beat.land + 320))
+                .offset(y: 8 * (1 - seg(t, Beat.land + 60, Beat.land + 320)))
         }
     }
 
-    /// The pop: appears at 125%, overshoots to 97% and settles at 100% (a smooth path through the poses).
-    private func yearScale(_ t: Double) -> CGFloat {
-        CGFloat(flow(t, [(0, 1.25), (Beat.year, 1.25), (Beat.year + 170, 0.97), (Beat.year + 330, 1), (Beat.end, 1)]))
+    /// Haptics on the beats: a light tap as the weekly amount lands, four ticks while the yearly figure
+    /// counts (slowing like the number), and success when it lands.
+    private func beats() async {
+        try? await Task.sleep(for: .milliseconds(Int(Beat.weekly + 300)))
+        weeklyLanded = true
+        var elapsed = Beat.weekly + 300
+        for tick in [1_850.0, 2_100, 2_400, 2_700] {
+            try? await Task.sleep(for: .milliseconds(Int(tick - elapsed)))
+            elapsed = tick
+            guard !Task.isCancelled else { return }
+            countTicks += 1
+        }
+        try? await Task.sleep(for: .milliseconds(Int(Beat.land - elapsed)))
+        guard !Task.isCancelled else { return }
+        yearLanded = true
     }
 
     private func money(_ value: Int) -> String {
@@ -396,9 +450,9 @@ struct CatalogPreviewStep: View {
         let withPhotos = fit.filter { AssetImage.exists("recipe-\($0.id)") || $0.imageName.map(AssetImage.exists) == true }
         let pool = (withPhotos.count >= 12 ? withPhotos : fit)
             .sorted { Set($0.vibes).intersection(state.vibes).count > Set($1.vibes).intersection(state.vibes).count }
-        let picked = Array(pool.prefix(16))
-        self.rows = [picked.enumerated().filter { $0.offset % 2 == 0 }.map(\.element),
-                     picked.enumerated().filter { $0.offset % 2 == 1 }.map(\.element)]
+        // Three rivers fill the page down to the stats (two left a gap above the button).
+        let picked = Array(pool.prefix(24))
+        self.rows = (0..<3).map { row in picked.enumerated().filter { $0.offset % 3 == row }.map(\.element) }
     }
 
     private var quick: Int { fit.filter { $0.totalMinutes <= 20 }.count }
@@ -593,8 +647,9 @@ private struct DishRivers: View {
             VStack(spacing: gap) {
                 ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
                     let width = CGFloat(row.count) * (tile + gap)
-                    let p = CGFloat(loop(t, period: period, phase: index == 0 ? 0 : 0.5))
-                    let x = index == 0 ? -p * width : (p - 1) * width
+                    let leftward = index.isMultiple(of: 2)
+                    let p = CGFloat(loop(t, period: period, phase: Double(index) * 0.37))
+                    let x = leftward ? -p * width : (p - 1) * width
                     // The strip is far wider than the screen (three copies for a seamless loop). It lives in an
                     // overlay of a screen-wide clear row, so it can never widen the page around it.
                     Color.clear
@@ -616,7 +671,7 @@ private struct DishRivers: View {
             }
             .padding(.vertical, 8)
         }
-        .frame(height: tile * 2 + gap + 16)
+        .frame(height: tile * CGFloat(rows.count) + gap * CGFloat(max(0, rows.count - 1)) + 16)
         .clipped()
         .mask(LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.1),
                                      .init(color: .black, location: 0.9), .init(color: .clear, location: 1)],
