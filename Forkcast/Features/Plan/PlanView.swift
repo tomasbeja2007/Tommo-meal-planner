@@ -206,6 +206,11 @@ struct PlanView: View {
                         .accessibilityAddTraits(selected ? .isSelected : [])
                     }
                 }
+                // Room inside the scroll view so the first pill and its shadow aren't clipped,
+                // and the first day lines up with the title above.
+                .padding(.leading, Theme.Spacing.gutter)
+                .padding(.trailing, Theme.Spacing.xs)
+                .padding(.vertical, Theme.Spacing.s)
             }
             Button {
                 withAnimation(Theme.motion(reduceMotion)) { expandsCalendar.toggle() }
@@ -216,10 +221,10 @@ struct PlanView: View {
                     .frame(width: 44, height: 48)
             }
             .buttonStyle(.plain)
+            .padding(.top, Theme.Spacing.s)
             .accessibilityLabel(expandsCalendar ? Text("Hide meal previews") : Text("Show meal previews"))
         }
-        .padding(.horizontal, Theme.Spacing.m)
-        .padding(.vertical, Theme.Spacing.s)
+        .padding(.trailing, Theme.Spacing.m)
         .background(Theme.cream)
         .sensoryFeedback(.selection, trigger: selectedDate)
     }
