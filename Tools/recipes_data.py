@@ -549,5 +549,6 @@ from trending_recipes import TRENDING
 from trending_batch1 import TRENDING_BATCH1
 from trending_batch2 import TRENDING_BATCH2
 from trending_batch3 import TRENDING_BATCH3
+from trending_batch4 import TRENDING_BATCH4
 
-RECIPES += TRENDING + TRENDING_BATCH1 + TRENDING_BATCH2 + TRENDING_BATCH3
+RECIPES += TRENDING + TRENDING_BATCH1 + TRENDING_BATCH2 + TRENDING_BATCH3 + TRENDING_BATCH4

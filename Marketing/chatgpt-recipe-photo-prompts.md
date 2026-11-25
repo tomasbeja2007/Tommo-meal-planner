@@ -2890,3 +2890,423 @@ Air-fryer cinnamon banana chips
 ```text
 Square 1:1 photo (1024×1024) of Air-fryer cinnamon banana chips, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: banana, lemon. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
 ```
+
+## `recipe-unstuffed-cabbage-roll-skillet`
+Unstuffed cabbage roll skillet
+
+```text
+Square 1:1 photo (1024×1024) of Unstuffed cabbage roll skillet, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: ground beef, onion, tomato paste, diced tomatoes, long-grain rice. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-lasagne-roll-ups`
+Spinach & cheese lasagne roll-ups
+
+```text
+Square 1:1 photo (1024×1024) of Spinach & cheese lasagne roll-ups, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: lasagna sheets, tomato sauce (passata), cottage cheese, frozen spinach, parmesan. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-chicken-parmesan-meatballs`
+Chicken parmesan meatballs
+
+```text
+Square 1:1 photo (1024×1024) of Chicken parmesan meatballs, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chicken breast, panko breadcrumbs, parmesan, egg, tomato sauce (passata). Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-swedish-meatballs-mash`
+Swedish meatballs with mash & gravy
+
+```text
+Square 1:1 photo (1024×1024) of Swedish meatballs with mash & gravy, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: ground beef, onion, panko breadcrumbs, milk, egg. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-beef-stroganoff`
+Beef stroganoff with rice
+
+```text
+Square 1:1 photo (1024×1024) of Beef stroganoff with rice, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: sirloin steak, butter, onion, mushrooms, sour cream. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-air-fryer-steak-frites`
+Steak frites with garlic herb butter
+
+```text
+Square 1:1 photo (1024×1024) of Steak frites with garlic herb butter, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: sirloin steak, potato, butter, parsley, romaine lettuce. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-homemade-doner-kebab`
+Crispy doner-style lamb pittas
+
+```text
+Square 1:1 photo (1024×1024) of Crispy doner-style lamb pittas, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: ground lamb, pita bread, romaine lettuce, red onion, tomato. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-crispy-hoisin-pork-pancakes`
+Crispy hoisin pork pancakes
+
+```text
+Square 1:1 photo (1024×1024) of Crispy hoisin pork pancakes, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: ground pork, flour tortilla, cucumber, scallion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-cashew-chicken`
+Cashew chicken stir-fry
+
+```text
+Square 1:1 photo (1024×1024) of Cashew chicken stir-fry, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: boneless chicken thighs, cashews, bell pepper, onion, scallion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-firecracker-turkey-meatballs`
+Firecracker turkey meatballs
+
+```text
+Square 1:1 photo (1024×1024) of Firecracker turkey meatballs, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: ground turkey, panko breadcrumbs, egg, scallion, long-grain rice. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-hot-honey-chorizo-flatbread-pizza`
+Hot honey chorizo flatbread pizza
+
+```text
+Square 1:1 photo (1024×1024) of Hot honey chorizo flatbread pizza, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: plain Greek yogurt, tomato sauce (passata), mozzarella, chorizo, arugula. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-yogurt-dough-margherita`
+Two-ingredient dough margherita pizza
+
+```text
+Square 1:1 photo (1024×1024) of Two-ingredient dough margherita pizza, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: plain Greek yogurt, diced tomatoes, mozzarella, parmesan, basil. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-yogurt-dough-calzone`
+Ham, mushroom & cheese calzones
+
+```text
+Square 1:1 photo (1024×1024) of Ham, mushroom & cheese calzones, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: plain Greek yogurt, mushrooms, sliced ham, tomato sauce (passata), mozzarella. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-cheesy-chicken-broccoli-rice`
+Cheesy chicken & broccoli rice
+
+```text
+Square 1:1 photo (1024×1024) of Cheesy chicken & broccoli rice, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chicken breast, onion, long-grain rice, broccoli, cream cheese. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-chicken-fajita-pasta`
+Creamy chicken fajita pasta
+
+```text
+Square 1:1 photo (1024×1024) of Creamy chicken fajita pasta, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: penne, chicken breast, bell pepper, red onion, diced tomatoes. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-lemon-butter-salmon-pasta`
+Lemon garlic butter salmon pasta
+
+```text
+Square 1:1 photo (1024×1024) of Lemon garlic butter salmon pasta, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: spaghetti, salmon fillet, butter, lemon, frozen spinach. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-crispy-chicken-burgers`
+Air-fryer crispy chicken burgers with slaw
+
+```text
+Square 1:1 photo (1024×1024) of Air-fryer crispy chicken burgers with slaw, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chicken breast, plain Greek yogurt, panko breadcrumbs, burger bun, cabbage. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-halloumi-burgers`
+Halloumi burgers with sweet chili mayo
+
+```text
+Square 1:1 photo (1024×1024) of Halloumi burgers with sweet chili mayo, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: halloumi, burger bun, roasted red peppers, arugula, red onion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-steak-potato-foil-packets`
+Garlic butter steak & potato foil packets
+
+```text
+Square 1:1 photo (1024×1024) of Garlic butter steak & potato foil packets, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: sirloin steak, potato, green beans, butter. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-moroccan-lamb-meatballs`
+Moroccan lamb meatballs with couscous
+
+```text
+Square 1:1 photo (1024×1024) of Moroccan lamb meatballs with couscous, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: ground lamb, onion, diced tomatoes, chickpeas, couscous. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-cajun-shrimp-boil-traybake`
+Cajun shrimp boil traybake
+
+```text
+Square 1:1 photo (1024×1024) of Cajun shrimp boil traybake, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: potato, corn on the cob, pork sausages, raw shrimp, butter. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-no-stir-baked-mushroom-risotto`
+No-stir baked chicken & mushroom risotto
+
+```text
+Square 1:1 photo (1024×1024) of No-stir baked chicken & mushroom risotto, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: butter, boneless chicken thighs, mushrooms, onion, arborio rice. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-butternut-squash-mac-cheese`
+One-pot butternut squash mac & cheese
+
+```text
+Square 1:1 photo (1024×1024) of One-pot butternut squash mac & cheese, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: butternut squash, milk, penne, cheddar. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-butternut-chickpea-curry`
+Butternut squash & chickpea coconut curry
+
+```text
+Square 1:1 photo (1024×1024) of Butternut squash & chickpea coconut curry, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: onion, fresh ginger, butternut squash, chickpeas, diced tomatoes. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-peanut-chicken-mafe`
+West African-style peanut chicken stew
+
+```text
+Square 1:1 photo (1024×1024) of West African-style peanut chicken stew, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: boneless chicken thighs, onion, diced tomatoes, peanut butter, sweet potato. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-chicken-chorizo-potato-traybake`
+Chicken, chorizo & potato traybake
+
+```text
+Square 1:1 photo (1024×1024) of Chicken, chorizo & potato traybake, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: boneless chicken thighs, chorizo, potato, red onion, bell pepper. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-baked-orzo-zucchini-feta`
+Baked lemon orzo with zucchini & feta
+
+```text
+Square 1:1 photo (1024×1024) of Baked lemon orzo with zucchini & feta, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: orzo, zucchini, lemon, cherry tomatoes, feta. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-slow-cooker-chicken-sausage-cassoulet`
+Slow-cooker chicken & sausage cassoulet
+
+```text
+Square 1:1 photo (1024×1024) of Slow-cooker chicken & sausage cassoulet, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: boneless chicken thighs, pork sausages, onion, carrot, tomato paste. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-slow-cooker-beef-ragu`
+Slow-cooker beef ragù with penne
+
+```text
+Square 1:1 photo (1024×1024) of Slow-cooker beef ragù with penne, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: beef chuck, onion, carrot, celery, tomato paste. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-slow-cooker-thai-peanut-chicken`
+Slow-cooker Thai peanut chicken
+
+```text
+Square 1:1 photo (1024×1024) of Slow-cooker Thai peanut chicken, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: boneless chicken thighs, peanut butter, coconut milk, Thai red curry paste, bell pepper. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-folded-tortilla-wrap-hack`
+Folded tortilla wrap hack
+
+```text
+Square 1:1 photo (1024×1024) of Folded tortilla wrap hack, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: flour tortilla, sliced ham, cheddar, avocado, tomato. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-crispy-chickpea-caesar`
+Crispy chickpea Caesar salad
+
+```text
+Square 1:1 photo (1024×1024) of Crispy chickpea Caesar salad, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chickpeas, sourdough loaf, romaine lettuce, plain Greek yogurt, parmesan. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-khao-soi-style-chicken-soup`
+Khao soi-style curry noodle soup
+
+```text
+Square 1:1 photo (1024×1024) of Khao soi-style curry noodle soup, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: Thai red curry paste, coconut milk, boneless chicken thighs, egg noodles, red onion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-kimbap-rolls`
+Tuna & egg kimbap rolls
+
+```text
+Square 1:1 photo (1024×1024) of Tuna & egg kimbap rolls, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: microwave rice pouch, nori sheets, egg, canned tuna, carrot. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-butternut-red-pepper-soup`
+Butternut squash & red pepper soup
+
+```text
+Square 1:1 photo (1024×1024) of Butternut squash & red pepper soup, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: butternut squash, bell pepper, onion, sour cream, sourdough loaf. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-crispy-chicken-cheese-quesadillas`
+Crispy chicken & cheese quesadillas
+
+```text
+Square 1:1 photo (1024×1024) of Crispy chicken & cheese quesadillas, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chicken breast, flour tortilla, cheddar, scallion, tomato salsa. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-freezer-bean-cheese-burritos`
+Freezer bean & cheese burritos
+
+```text
+Square 1:1 photo (1024×1024) of Freezer bean & cheese burritos, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: black beans, onion, microwave rice pouch, tomato salsa, cheddar. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-thai-beef-salad`
+Thai beef & noodle salad
+
+```text
+Square 1:1 photo (1024×1024) of Thai beef & noodle salad, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: sirloin steak, rice noodles, cucumber, red onion, cilantro. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-antipasto-chickpea-salad`
+Antipasto chickpea salad
+
+```text
+Square 1:1 photo (1024×1024) of Antipasto chickpea salad, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chickpeas, roasted red peppers, black olives, mozzarella, sliced ham. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-miso-glazed-eggplant-bowl`
+Miso glazed eggplant rice bowl
+
+```text
+Square 1:1 photo (1024×1024) of Miso glazed eggplant rice bowl, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: eggplant, microwave rice pouch, frozen edamame, cucumber, scallion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-zucchini-corn-fritters`
+Zucchini & corn fritters with tomato salsa
+
+```text
+Square 1:1 photo (1024×1024) of Zucchini & corn fritters with tomato salsa, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: zucchini, frozen sweetcorn, egg, feta, scallion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-chicken-gyro-pitta-salad`
+Chicken gyro chopped salad with pitta croutons
+
+```text
+Square 1:1 photo (1024×1024) of Chicken gyro chopped salad with pitta croutons, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chicken breast, lemon, pita bread, cucumber, tomato. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-pesto-eggs-on-toast`
+Crispy pesto eggs on toast
+
+```text
+Square 1:1 photo (1024×1024) of Crispy pesto eggs on toast, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: basil pesto, egg, sourdough loaf. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-cheesy-egg-in-a-hole`
+Cheesy egg-in-a-hole toast
+
+```text
+Square 1:1 photo (1024×1024) of Cheesy egg-in-a-hole toast, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: sourdough loaf, butter, egg, cheddar, scallion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-mini-pancake-cereal`
+Mini pancake cereal
+
+```text
+Square 1:1 photo (1024×1024) of Mini pancake cereal, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: egg, milk, frozen mixed berries, plain Greek yogurt. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-sheet-pan-pancakes`
+Sheet-pan berry pancakes
+
+```text
+Square 1:1 photo (1024×1024) of Sheet-pan berry pancakes, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: egg, milk, butter, frozen mixed berries. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-breakfast-cookies`
+Peanut butter breakfast cookies
+
+```text
+Square 1:1 photo (1024×1024) of Peanut butter breakfast cookies, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: rolled oats, banana, peanut butter, egg, raisins. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-make-ahead-breakfast-strata`
+Make-ahead ham & cheese breakfast strata
+
+```text
+Square 1:1 photo (1024×1024) of Make-ahead ham & cheese breakfast strata, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: whole wheat bread, egg, milk, sliced ham, cheddar. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-honey-roasted-grape-yogurt-toast`
+Honey roasted grapes on yogurt toast
+
+```text
+Square 1:1 photo (1024×1024) of Honey roasted grapes on yogurt toast, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: grapes, sourdough loaf, plain Greek yogurt. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-avocado-egg-tostadas`
+Avocado & fried egg tostadas
+
+```text
+Square 1:1 photo (1024×1024) of Avocado & fried egg tostadas, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: corn tortilla, black beans, avocado, lime, egg. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-eggs-in-purgatory`
+Eggs in purgatory
+
+```text
+Square 1:1 photo (1024×1024) of Eggs in purgatory, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: diced tomatoes, egg, parmesan, whole wheat bread. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-sweet-potato-pancakes`
+Sweet potato cinnamon pancakes
+
+```text
+Square 1:1 photo (1024×1024) of Sweet potato cinnamon pancakes, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: sweet potato, egg, milk, butter, plain Greek yogurt. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-air-fryer-pasta-chips`
+Air-fryer pasta chips with marinara
+
+```text
+Square 1:1 photo (1024×1024) of Air-fryer pasta chips with marinara, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: penne, parmesan, tomato sauce (passata). Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-kimchi-pancake-bites`
+Crispy kimchi pancake bites
+
+```text
+Square 1:1 photo (1024×1024) of Crispy kimchi pancake bites, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: kimchi, scallion. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-cheesy-garlic-bread-bites`
+Cheesy garlic bread bites
+
+```text
+Square 1:1 photo (1024×1024) of Cheesy garlic bread bites, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: plain Greek yogurt, butter, parsley, mozzarella. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-tortilla-quiche-cups`
+Tortilla mini quiche cups
+
+```text
+Square 1:1 photo (1024×1024) of Tortilla mini quiche cups, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: flour tortilla, egg, milk, cheddar, spinach. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-pizza-pinwheels`
+Two-ingredient dough pizza pinwheels
+
+```text
+Square 1:1 photo (1024×1024) of Two-ingredient dough pizza pinwheels, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: plain Greek yogurt, tomato sauce (passata), sliced ham, mozzarella. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-chocolate-hummus-apple`
+Chocolate hummus with apple slices
+
+```text
+Square 1:1 photo (1024×1024) of Chocolate hummus with apple slices, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: chickpeas, dark chocolate, peanut butter, milk, apple. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-air-fryer-wedges-garlic-yogurt`
+Air-fryer potato wedges with garlic yogurt
+
+```text
+Square 1:1 photo (1024×1024) of Air-fryer potato wedges with garlic yogurt, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: potato, plain Greek yogurt. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```
+
+## `recipe-mango-lassi-pops`
+Frozen mango lassi pops
+
+```text
+Square 1:1 photo (1024×1024) of Frozen mango lassi pops, top-down or 45°, the whole dish in frame on a warm neutral surface, natural light, no hands, no text. Key ingredients visible: mango, plain Greek yogurt, lime. Realistic food photography, natural window light from the left, warm cream linen and light oak surface, soft shadows, shallow depth of field, appetising and a little messy (crumbs, drips), warm palette with tomato red #E8553D and saffron #F2B544 accents in props, no text, no logos, no brand packaging, no hands unless the prompt says so, no people's faces.
+```

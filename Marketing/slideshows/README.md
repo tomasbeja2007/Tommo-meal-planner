@@ -1,6 +1,6 @@
 # Slideshow kit: trending recipes
 
-412 easy, healthy-ish recipes for TikTok / Instagram photo slideshows. Every one is also in the app
+472 easy, healthy-ish recipes for TikTok / Instagram photo slideshows. Every one is also in the app
 (Discover → **Going viral**), so the call to action is real: people can search the title in Tommo.
 
 ## How to make one post
@@ -441,3 +441,63 @@ I'm making a set of matching photos of one dish for a recipe slideshow. Keep the
 | [Chocolate peanut rice cake bites](chocolate-rice-cake-bites.md) | snack | 6 min | 210 | 4 g |
 | [Smashed avocado & edamame rice cakes](avocado-edamame-rice-cakes.md) | snack | 9 min | 220 | 7 g |
 | [Air-fryer cinnamon banana chips](air-fryer-banana-chips.md) | snack | 20 min | 120 | 2 g |
+| [Unstuffed cabbage roll skillet](unstuffed-cabbage-roll-skillet.md) | dinner | 40 min | 590 | 31 g |
+| [Spinach & cheese lasagne roll-ups](lasagne-roll-ups.md) | dinner | 45 min | 500 | 33 g |
+| [Chicken parmesan meatballs](chicken-parmesan-meatballs.md) | dinner | 40 min | 740 | 60 g |
+| [Swedish meatballs with mash & gravy](swedish-meatballs-mash.md) | dinner | 40 min | 670 | 34 g |
+| [Beef stroganoff with rice](beef-stroganoff.md) | dinner | 30 min | 580 | 29 g |
+| [Steak frites with garlic herb butter](air-fryer-steak-frites.md) | dinner | 40 min | 590 | 27 g |
+| [Crispy doner-style lamb pittas](homemade-doner-kebab.md) | dinner | 25 min | 590 | 32 g |
+| [Crispy hoisin pork pancakes](crispy-hoisin-pork-pancakes.md) | dinner | 25 min | 730 | 31 g |
+| [Cashew chicken stir-fry](cashew-chicken.md) | dinner | 22 min | 630 | 32 g |
+| [Firecracker turkey meatballs](firecracker-turkey-meatballs.md) | dinner | 35 min | 590 | 36 g |
+| [Hot honey chorizo flatbread pizza](hot-honey-chorizo-flatbread-pizza.md) | dinner | 27 min | 600 | 35 g |
+| [Two-ingredient dough margherita pizza](yogurt-dough-margherita.md) | dinner | 27 min | 580 | 33 g |
+| [Ham, mushroom & cheese calzones](yogurt-dough-calzone.md) | dinner | 38 min | 570 | 34 g |
+| [Cheesy chicken & broccoli rice](cheesy-chicken-broccoli-rice.md) | dinner | 40 min | 590 | 38 g |
+| [Creamy chicken fajita pasta](chicken-fajita-pasta.md) | dinner | 25 min | 620 | 38 g |
+| [Lemon garlic butter salmon pasta](lemon-butter-salmon-pasta.md) | dinner | 20 min | 580 | 28 g |
+| [Air-fryer crispy chicken burgers with slaw](crispy-chicken-burgers.md) | dinner | 30 min | 480 | 32 g |
+| [Halloumi burgers with sweet chili mayo](halloumi-burgers.md) | dinner | 20 min | 740 | 35 g |
+| [Garlic butter steak & potato foil packets](steak-potato-foil-packets.md) | dinner | 40 min | 440 | 26 g |
+| [Moroccan lamb meatballs with couscous](moroccan-lamb-meatballs.md) | dinner | 40 min | 820 | 40 g |
+| [Cajun shrimp boil traybake](cajun-shrimp-boil-traybake.md) | dinner | 45 min | 570 | 29 g |
+| [No-stir baked chicken & mushroom risotto](no-stir-baked-mushroom-risotto.md) | dinner | 40 min | 650 | 34 g |
+| [One-pot butternut squash mac & cheese](butternut-squash-mac-cheese.md) | dinner | 35 min | 570 | 25 g |
+| [Butternut squash & chickpea coconut curry](butternut-chickpea-curry.md) | dinner | 45 min | 740 | 20 g |
+| [West African-style peanut chicken stew](peanut-chicken-mafe.md) | dinner | 45 min | 800 | 42 g |
+| [Chicken, chorizo & potato traybake](chicken-chorizo-potato-traybake.md) | dinner | 45 min | 700 | 45 g |
+| [Baked lemon orzo with zucchini & feta](baked-orzo-zucchini-feta.md) | dinner | 40 min | 530 | 20 g |
+| [Slow-cooker chicken & sausage cassoulet](slow-cooker-chicken-sausage-cassoulet.md) | dinner | 375 min | 910 | 52 g |
+| [Slow-cooker beef ragù with penne](slow-cooker-beef-ragu.md) | dinner | 435 min | 780 | 48 g |
+| [Slow-cooker Thai peanut chicken](slow-cooker-thai-peanut-chicken.md) | dinner | 250 min | 920 | 46 g |
+| [Folded tortilla wrap hack](folded-tortilla-wrap-hack.md) | lunch | 11 min | 520 | 24 g |
+| [Crispy chickpea Caesar salad](crispy-chickpea-caesar.md) | lunch | 30 min | 460 | 19 g |
+| [Khao soi-style curry noodle soup](khao-soi-style-chicken-soup.md) | lunch | 30 min | 690 | 31 g |
+| [Tuna & egg kimbap rolls](kimbap-rolls.md) | lunch | 28 min | 480 | 32 g |
+| [Butternut squash & red pepper soup](butternut-red-pepper-soup.md) | lunch | 35 min | 380 | 9 g |
+| [Crispy chicken & cheese quesadillas](crispy-chicken-cheese-quesadillas.md) | lunch | 22 min | 520 | 36 g |
+| [Freezer bean & cheese burritos](freezer-bean-cheese-burritos.md) | lunch | 25 min | 570 | 25 g |
+| [Thai beef & noodle salad](thai-beef-salad.md) | lunch | 23 min | 320 | 16 g |
+| [Antipasto chickpea salad](antipasto-chickpea-salad.md) | lunch | 15 min | 430 | 24 g |
+| [Miso glazed eggplant rice bowl](miso-glazed-eggplant-bowl.md) | lunch | 35 min | 440 | 14 g |
+| [Zucchini & corn fritters with tomato salsa](zucchini-corn-fritters.md) | lunch | 27 min | 480 | 18 g |
+| [Chicken gyro chopped salad with pitta croutons](chicken-gyro-pitta-salad.md) | lunch | 25 min | 430 | 31 g |
+| [Crispy pesto eggs on toast](pesto-eggs-on-toast.md) | breakfast | 7 min | 330 | 18 g |
+| [Cheesy egg-in-a-hole toast](cheesy-egg-in-a-hole.md) | breakfast | 8 min | 340 | 16 g |
+| [Mini pancake cereal](mini-pancake-cereal.md) | breakfast | 17 min | 410 | 15 g |
+| [Sheet-pan berry pancakes](sheet-pan-pancakes.md) | breakfast | 20 min | 430 | 13 g |
+| [Peanut butter breakfast cookies](breakfast-cookies.md) | breakfast | 24 min | 370 | 12 g |
+| [Make-ahead ham & cheese breakfast strata](make-ahead-breakfast-strata.md) | breakfast | 60 min | 460 | 32 g |
+| [Honey roasted grapes on yogurt toast](honey-roasted-grape-yogurt-toast.md) | breakfast | 20 min | 320 | 12 g |
+| [Avocado & fried egg tostadas](avocado-egg-tostadas.md) | breakfast | 15 min | 480 | 19 g |
+| [Eggs in purgatory](eggs-in-purgatory.md) | breakfast | 20 min | 400 | 23 g |
+| [Sweet potato cinnamon pancakes](sweet-potato-pancakes.md) | breakfast | 25 min | 380 | 17 g |
+| [Air-fryer pasta chips with marinara](air-fryer-pasta-chips.md) | snack | 25 min | 220 | 8 g |
+| [Crispy kimchi pancake bites](kimchi-pancake-bites.md) | snack | 15 min | 260 | 4 g |
+| [Cheesy garlic bread bites](cheesy-garlic-bread-bites.md) | snack | 25 min | 320 | 16 g |
+| [Tortilla mini quiche cups](tortilla-quiche-cups.md) | snack | 25 min | 200 | 11 g |
+| [Two-ingredient dough pizza pinwheels](pizza-pinwheels.md) | snack | 28 min | 290 | 19 g |
+| [Chocolate hummus with apple slices](chocolate-hummus-apple.md) | snack | 6 min | 240 | 6 g |
+| [Air-fryer potato wedges with garlic yogurt](air-fryer-wedges-garlic-yogurt.md) | snack | 25 min | 260 | 8 g |
+| [Frozen mango lassi pops](mango-lassi-pops.md) | snack | 10 min | 160 | 7 g |
