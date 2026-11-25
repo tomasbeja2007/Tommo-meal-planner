@@ -138,8 +138,9 @@
 - **Grocery check:** fill opens from 70%, the tick draws on with ease-out; unchecking is quicker.
 - **Mirror typing:** every letter is always laid out (unwritten ones transparent) so words never jump lines;
   letters fade in over a 6-letter soft edge; max 1.6 s.
-- **Savings:** one 2 s timeline; 12 cumulative monthly bars (real month initials) draw on from the baseline, 60 ms
-  apart, 420 ms each, ease-out; the yearly figure counts up in step and lands with the last bar.
+- **Savings:** the reference choreography the owner picked: Chef Tomato hops in alone (cheer), "you could save
+  around" fades up 8 pt at 0.35 s, the weekly amount rises 14 pt from 92% at 1.25 s with its caption, and "that's
+  1.040 € a year!" pops at 2.4 s (125% → 97% → 100% through `flow`). Haptics: light on the amount, medium on the pop.
 - **Catalog ("N recipes fit you"):** two rows of the user's matching dishes drift in opposite directions
   (linear, 60 s loop, edge-faded); three stat tiles count up with ease-out, 80 ms apart.
 - **Plan reveal:** one card per day (dinner as the hero, the rest of the day as small photos); cards deal in
@@ -171,6 +172,10 @@
   then settles on how many fit; six of their dishes orbit the ring (9 s a turn); their answers tick off 420 ms
   apart. Plays once per onboarding.
 - **Shops wall:** logos deal in 55 ms apart from 88% scale; their main shop is lifted in tomato.
+- **Haptics on the onboarding moments:** light impact when the globe's pin lands, selection when the shops arrive;
+  selection per answer ticked on the matching loader, success when it resolves; light/medium on the time-saved bars
+  and line; light when the main shop lifts on the logo wall; selection per building tick, success when the week is
+  ready; light when the welcome mascot lands.
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 

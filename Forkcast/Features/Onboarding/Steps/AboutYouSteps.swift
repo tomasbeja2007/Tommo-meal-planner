@@ -53,6 +53,9 @@ struct TimeSavedStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
     @State private var appeared = false
+    /// Haptic beats: the short bar lands, then the saving line.
+    @State private var barLanded = false
+    @State private var savedShown = false
 
     /// Example inputs, stated in the footnote.
     private let decidingPerDay = 10
@@ -108,6 +111,14 @@ struct TimeSavedStep: View {
             }
         }
         .onAppear { appeared = true }
+        .sensoryFeedback(.impact(weight: .light), trigger: barLanded)
+        .sensoryFeedback(.impact(weight: .medium), trigger: savedShown)
+        .task {
+            try? await Task.sleep(for: .milliseconds(760))
+            barLanded = true
+            try? await Task.sleep(for: .milliseconds(1_350 - 760))
+            savedShown = true
+        }
     }
 
     private var savedLine: String {

@@ -15,6 +15,7 @@ struct LocatingStep: View {
 
     @State private var play = false
     @State private var landed = false
+    @State private var shopsShown = false
     @State private var advanced = false
     private let globe: CGFloat = 236
 
@@ -64,6 +65,7 @@ struct LocatingStep: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Finding supermarkets in \(country.name)"))
         .sensoryFeedback(.impact(weight: .light), trigger: landed)
+        .sensoryFeedback(.selection, trigger: shopsShown)
         .task { await run() }
     }
 
@@ -111,7 +113,9 @@ struct LocatingStep: View {
         play = true
         try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.landMs)))
         landed = true
-        try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.duration - GlobeMotion.landMs)))
+        try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.captionTimes[2] - GlobeMotion.landMs)))
+        shopsShown = true
+        try? await Task.sleep(for: .milliseconds(Int(GlobeMotion.duration - GlobeMotion.captionTimes[2])))
         guard !Task.isCancelled else { return }
         advance()
     }
@@ -453,6 +457,7 @@ struct ShopsStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
     @State private var play = false
+    @State private var mainShown = false
 
     private var country: Country { state.country(in: FoodCatalog.bundled) }
     private var stores: [Store] { FoodCatalog.bundled.stores(forCountry: state.countryId).filter { !$0.isLocalStore } }
@@ -496,6 +501,11 @@ struct ShopsStep: View {
                 }
             }
             .onAppear { play = true }
+        }
+        .sensoryFeedback(.impact(weight: .light), trigger: mainShown)
+        .task {
+            try? await Task.sleep(for: .milliseconds(950))
+            mainShown = true
         }
     }
 }

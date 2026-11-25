@@ -276,58 +276,74 @@ private struct RevealDayCard: View {
     PlanRevealStep(state: OnboardingState()) {}.previewEnvironment().creamBackground()
 }
 
-/// An illustrative savings example in the user's own currency, drawn as their next twelve months:
-/// cumulative bars stack up while the yearly figure counts up and lands with the last bar. One timeline (2 s).
+/// The savings moment, in the same choreography as the reference the owner picked: Chef Tomato hops in
+/// on his own, "you could save around" fades up, the weekly amount rises in big with "on your shopping
+/// every week" under it, and then "that's 1.040 € a year!" pops in large and settles. Each beat has its
+/// own haptic. An example in the user's currency (said so in the footnote), not a promise.
+/// One timeline (ms): 0 mascot · 350 first line · 1 250 amount · 2 400 yearly pop · 2 900 done.
 struct SavingsStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
     @State private var appeared = false
+    @State private var amountLanded = false
+    @State private var yearLanded = false
 
     private let weekly = 20
     private let weeks = 52
     private var currency: String { state.country(in: FoodCatalog.bundled).currencyCode }
 
-    /// Chart timing (ms): bars grow alongside the count-up, which lands with the last bar.
-    private let barStart: Double = 560
-    private let barStagger: Double = 60
-    private let barGrowMs: Double = 420
+    private enum Beat {
+        static let line: Double = 350
+        static let amount: Double = 1_250
+        static let year: Double = 2_400
+        static let end: Double = 2_900
+    }
 
     var body: some View {
-        OneShotClock(duration: 2_000, play: appeared) { time in
-            ScrollView {
-                VStack(spacing: Theme.Spacing.m) {
-                    MascotReaction(mood: .cheer, size: 96)
-                        .opacity(phase(time, from: 0, to: 260))
-                        .scaleEffect(0.9 + 0.1 * seg(phase(time, from: 0, to: 420), 0, 1))
+        OneShotClock(duration: Beat.end, play: appeared) { t in
+            VStack(spacing: 0) {
+                Spacer(minLength: 0)
+                VStack(spacing: Theme.Spacing.l) {
+                    MascotView(size: 120, mood: .cheer)
+                        .scaleEffect(0.88 + 0.12 * seg(t, 0, 380))
+                        .opacity(seg(t, 0, 220))
+                    Text("you could save around")
+                        .font(.system(.title2, design: .rounded).weight(.bold))
+                        .foregroundStyle(Theme.aubergine)
+                        .opacity(seg(t, Beat.line, Beat.line + 300))
+                        .offset(y: 8 * (1 - seg(t, Beat.line, Beat.line + 300)))
                     VStack(spacing: Theme.Spacing.xs) {
-                        Text("If you save \(money(weekly)) on groceries each week,")
-                            .font(.title2.weight(.semibold))
-                            .opacity(phase(time, from: 80, to: 380))
-                            .offset(y: 10 * (1 - phase(time, from: 80, to: 380)))
-                        Text("that's")
-                            .font(.title3)
+                        Text(money(weekly))
+                            .font(.system(size: 64, weight: .black, design: .rounded))
+                            .monospacedDigit()
+                            .foregroundStyle(Theme.tomatoDeep)
+                            .scaleEffect(0.92 + 0.08 * seg(t, Beat.amount, Beat.amount + 380))
+                            .opacity(seg(t, Beat.amount, Beat.amount + 260))
+                            .offset(y: 14 * (1 - seg(t, Beat.amount, Beat.amount + 380)))
+                        Text("on your shopping every week")
+                            .font(.subheadline.weight(.semibold))
                             .foregroundStyle(Theme.aubergineMuted)
-                            .opacity(phase(time, from: 420, to: 640))
-                        annualFigure(at: time)
-                        Text("a year")
-                            .font(.title2.weight(.semibold))
-                            .opacity(phase(time, from: 1_500, to: 1_760))
+                            .opacity(seg(t, Beat.amount + 150, Beat.amount + 450))
                     }
-                    savingsChart(at: time)
+                    Text("that's \(money(weekly * weeks)) a year!")
+                        .font(.system(.title, design: .rounded).weight(.heavy))
+                        .foregroundStyle(Theme.aubergine)
+                        .scaleEffect(yearScale(t))
+                        .opacity(seg(t, Beat.year, Beat.year + 120))
                         .padding(.top, Theme.Spacing.s)
                 }
-                .foregroundStyle(Theme.aubergine)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
-                .padding(Theme.Spacing.gutter)
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(Text("If you save \(money(weekly)) on groceries each week, that's \(money(weekly * weeks)) a year."))
+                .padding(.horizontal, Theme.Spacing.gutter)
+                Spacer(minLength: 0)
+                Spacer(minLength: 0)
             }
-            .scrollBounceBehavior(.basedOnSize)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("You could save around \(money(weekly)) on your shopping every week. That's \(money(weekly * weeks)) a year."))
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: Theme.Spacing.s) {
                     PrimaryButton(String(localized: "Continue"), action: onContinue)
-                        .opacity(0.76 + 0.24 * phase(time, from: 1_400, to: 1_900))
+                        .opacity(0.76 + 0.24 * seg(t, Beat.year, Beat.end))
                     Text("Example based on saving \(money(weekly)) a week")
                         .font(.footnote)
                         .foregroundStyle(Theme.aubergineMuted)
@@ -337,80 +353,20 @@ struct SavingsStep: View {
                 .background(Theme.cream)
             }
         }
+        .sensoryFeedback(.impact(weight: .light), trigger: amountLanded)
+        .sensoryFeedback(.impact(weight: .medium), trigger: yearLanded)
         .onAppear { appeared = true }
-    }
-
-    /// The next twelve months as cumulative bars: each month stands on the last, so the saving visibly
-    /// stacks up to the yearly figure. A one-shot draw-on, bars staggered 60 ms, early months lighter.
-    private func savingsChart(at time: Double) -> some View {
-        let months = 12
-        let calendar = Calendar.current
-        let today = Date()
-        let chartHeight: CGFloat = 132
-        return VStack(spacing: Theme.Spacing.s) {
-            HStack(alignment: .bottom, spacing: 6) {
-                ForEach(0..<months, id: \.self) { month in
-                    let start = barStart + Double(month) * barStagger
-                    let grow = seg(time, start, start + barGrowMs)
-                    let share = Double(month + 1) / Double(months)
-                    let isLast = month == months - 1
-                    let isHalf = month == months / 2 - 1
-                    VStack(spacing: 4) {
-                        if isLast || isHalf {
-                            Text(money(Int((Double(weekly * weeks) * share).rounded())))
-                                .font(.system(.caption2, design: .rounded).weight(.bold))
-                                .monospacedDigit()
-                                .foregroundStyle(isLast ? Theme.tomatoDeep : Theme.aubergineMuted)
-                                .fixedSize()
-                                .opacity(seg(time, start + barGrowMs * 0.6, start + barGrowMs + 160))
-                        }
-                        UnevenRoundedRectangle(topLeadingRadius: 6, bottomLeadingRadius: 2, bottomTrailingRadius: 2, topTrailingRadius: 6, style: .continuous)
-                            .fill(isLast ? Theme.tomatoDeep : Theme.tomato.opacity(0.28 + 0.62 * share))
-                            .frame(height: max(3, chartHeight * CGFloat(share * grow)))
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: chartHeight + 20, alignment: .bottom)
-                }
-            }
-            Rectangle().fill(Theme.line).frame(height: 1)
-            HStack(spacing: 6) {
-                ForEach(0..<months, id: \.self) { month in
-                    let date = calendar.date(byAdding: .month, value: month, to: today) ?? today
-                    Text(date.formatted(.dateTime.month(.narrow)))
-                        .font(.caption2.weight(month == 0 ? .bold : .medium))
-                        .foregroundStyle(month == 0 ? Theme.tomatoDeep : Theme.aubergineFaint)
-                        .frame(maxWidth: .infinity)
-                }
-            }
+        .task {
+            try? await Task.sleep(for: .milliseconds(Int(Beat.amount + 300)))
+            amountLanded = true
+            try? await Task.sleep(for: .milliseconds(Int(Beat.year - Beat.amount - 300 + 90)))
+            yearLanded = true
         }
-        .padding(Theme.Spacing.l)
-        .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
-        .opacity(phase(time, from: 380, to: 620))
-        .offset(y: 12 * (1 - seg(phase(time, from: 380, to: 760), 0, 1)))
-        .accessibilityHidden(true)
     }
 
-    private func annualFigure(at time: Double) -> some View {
-        let reveal = phase(time, from: barStart, to: barStart + 11 * barStagger + barGrowMs)
-        let ring = phase(time, from: 700, to: 1_500)
-        let value = Int((Double(weekly * weeks) * (1 - pow(1 - reveal, 3))).rounded(.down))
-        return Text(money(value))
-            .font(.system(size: 52, weight: .black, design: .rounded))
-            .monospacedDigit()
-            .foregroundStyle(Theme.tomatoDeep)
-            .padding(.vertical, Theme.Spacing.xs)
-            .background {
-                Circle()
-                    .strokeBorder(Theme.tomato.opacity(0.25 * sin(ring * .pi)), lineWidth: 2)
-                    .frame(width: 92, height: 92)
-                    .scaleEffect(0.55 + ring * 0.8)
-                    .accessibilityHidden(true)
-            }
-            .scaleEffect(1.12 - 0.12 * seg(reveal, 0, 1))
-            .opacity(min(1, reveal * 5))
-    }
-
-    private func phase(_ time: Double, from start: Double, to end: Double) -> Double {
-        min(max((time - start) / (end - start), 0), 1)
+    /// The pop: appears at 125%, overshoots to 97% and settles at 100% (a smooth path through the poses).
+    private func yearScale(_ t: Double) -> CGFloat {
+        CGFloat(flow(t, [(0, 1.25), (Beat.year, 1.25), (Beat.year + 170, 0.97), (Beat.year + 330, 1), (Beat.end, 1)]))
     }
 
     private func money(_ value: Int) -> String {
@@ -528,6 +484,8 @@ private struct MatchingLoader: View {
 
     @State private var play = false
     @State private var finished = false
+    /// One selection tick per answer as it's checked off.
+    @State private var ticks = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private let ring: CGFloat = 190
 
@@ -578,7 +536,17 @@ private struct MatchingLoader: View {
             }
         }
         .sensoryFeedback(.success, trigger: finished)
+        .sensoryFeedback(.selection, trigger: ticks)
         .onAppear { play = true }
+        .task {
+            guard !reduceMotion else { return }
+            try? await Task.sleep(for: .milliseconds(400))
+            for index in checks.indices {
+                if index > 0 { try? await Task.sleep(for: .milliseconds(420)) }
+                guard !Task.isCancelled else { return }
+                ticks = index + 1
+            }
+        }
         .task {
             try? await Task.sleep(for: .milliseconds(reduceMotion ? 600 : 2_900))
             guard !Task.isCancelled, !finished else { return }
