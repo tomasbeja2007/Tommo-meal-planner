@@ -1,5 +1,4 @@
 import SwiftUI
-import StoreKit
 
 /// The first screen. On a cold start it continues straight out of the launch screen:
 /// Chef Tommo glides from the launch spot (screen centre, 200 pt) into the hero, the ingredients
@@ -13,9 +12,7 @@ struct WelcomeStep: View {
     @State private var playsIntro = !WelcomeStep.hasPlayedIntro
     @State private var landed = false
 
-    @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @ScaledMetric(relativeTo: .largeTitle) private var titleSize: CGFloat = 44
-    @State private var showsRedemption = false
 
     private var intro: Bool { playsIntro && !reduceMotion }
 
@@ -45,11 +42,7 @@ struct WelcomeStep: View {
             .scrollBounceBehavior(.basedOnSize)
         }
         .safeAreaInset(edge: .bottom) {
-            VStack(spacing: Theme.Spacing.xs) {
-                PrimaryButton(String(localized: "Get started"), action: onStart)
-                Button(String(localized: "I have a code")) { showsRedemption = true }
-                    .buttonStyle(QuietButtonStyle())
-            }
+            PrimaryButton(String(localized: "Get started"), action: onStart)
             .padding(.horizontal, Theme.Spacing.gutter)
             .padding(.vertical, Theme.Spacing.s)
             .background(Theme.cream)
@@ -61,9 +54,6 @@ struct WelcomeStep: View {
             guard intro else { return }
             try? await Task.sleep(for: .milliseconds(Int(WelcomeIntro.landMs)))
             landed = true
-        }
-        .offerCodeRedemption(isPresented: $showsRedemption) { _ in
-            Task { await subscriptions.refreshEntitlements() }
         }
     }
 }
