@@ -218,7 +218,8 @@ enum TabIcon {
 
     @MainActor
     static func image(_ name: String, selected: Bool, fallback: String) -> Image {
-        let candidates = selected ? [name + "-fill", name] : [name]
+        // Outline when not selected, filled when selected; either one stands in for the other if missing.
+        let candidates = selected ? [name + "-fill", name] : [name, name + "-fill"]
         for candidate in candidates {
             if let icon = rendered(candidate) { return Image(uiImage: icon) }
         }
