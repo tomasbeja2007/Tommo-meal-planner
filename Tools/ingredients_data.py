@@ -59,6 +59,7 @@ ROWS = [
   I("orange","orange","oranges",None,P,[],"",(47,0.9,11.8,0.1,2.4),"g",{"piece":130},(520,"4-pack","4-pack","pack","packs"),False,"🍊",prices=(3.49,1.30,1.69)),
   I("lemon","lemon","lemons",None,P,[],"",(29,1.1,9,0.3,2.8),"g",{"piece":100,"tbsp":15},(100,"1 lemon","1 lemon","lemon","lemons"),False,"🍋",prices=(0.69,0.35,0.45)),
   I("cilantro","cilantro","cilantro","coriander",P,[],"",(23,2.1,3.7,0.5,2.8),"g",{"bunch":25,"tbsp":1,"cup":16},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(0.99,0.70,0.89)),
+  I("fresh-dill","fresh dill","fresh dill",None,P,[],"",(43,3.5,7,1.1,2.1),"g",None,(20,"20 g bunch","0.7 oz bunch","bunch","bunches"),False,"🌿",prices=(1.49,0.80,0.99)),
   I("parsley","parsley","parsley",None,P,[],"",(36,3,6,0.8,3.3),"g",{"bunch":25,"tbsp":1,"cup":30},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(0.99,0.70,0.89)),
   I("curry-leaves","fresh curry leaves","fresh curry leaves",None,P,[],"",(108,6,19,1,6),"g",None,(15,"15 g bunch","0.5 oz bunch","bunch","bunches"),False,"🌿",prices=(2.49,1.59,1.89)),
   I("basil","basil","basil",None,P,[],"",(23,3.2,2.7,0.6,1.6),"g",{"bunch":25,"tbsp":1,"cup":20},(25,"1 bunch","1 bunch","bunch","bunches"),False,"🌿",prices=(2.49,0.85,1.29)),
@@ -139,6 +140,7 @@ ROWS = [
   I("spaghetti","spaghetti","spaghetti",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",None,(500,"500 g pack","1 lb box","pack","packs"),False,"🍝",prices=(1.49,0.75,0.99)),
   I("penne","penne","penne",None,PA,["gluten"],"",(371,13,75,1.5,3.2),"g",{"cup":100},(500,"500 g pack","1 lb box","pack","packs"),False,"🍝",prices=(1.49,0.75,0.99)),
   I("ramen-noodles","plain wheat ramen noodles","plain wheat ramen noodles",None,PA,["gluten"],"",(355,11,71,2,2.5),"g",None,(250,"250 g pack","9 oz pack","pack","packs"),False,"🍜",prices=(2.59,1.55,1.85)),
+  I("soba-noodles","buckwheat soba noodles","buckwheat soba noodles",None,PA,["gluten"],"",(336,14,72,2,3),"g",None,(280,"280 g pack","10 oz pack","pack","packs"),False,"🍜",prices=(3.69,2.15,2.79)),
   I("egg-noodles","egg noodles","egg noodles",None,PA,["gluten","egg"],A,(384,14,71,4.4,3.3),"g",{"piece":50},(300,"6 nests","10 oz pack","pack","packs"),False,"🍜",prices=(2.49,1.20,1.49)),
   I("rice-noodles","rice noodles","rice noodles",None,PA,[],"",(364,6,80,0.6,1.6),"g",None,(250,"250 g pack","9 oz pack","pack","packs"),False,"🍜",prices=(2.49,1.50,1.79)),
   I("gnocchi","gnocchi","gnocchi",None,PA,["gluten"],"",(133,3.3,28,0.4,1.4),"g",None,(500,"500 g pack","1 lb pack","pack","packs"),False,"🥟",prices=(2.99,1.00,1.49)),
@@ -181,6 +183,7 @@ ROWS = [
   I("salsa","tomato salsa","tomato salsa",None,TJ,[],"",(36,1.5,7,0.2,1.8),"g",{"tbsp":16,"cup":260},(450,"450 g jar","16 oz jar","jar","jars"),False,"🍅",prices=(2.99,1.50,1.99)),
   I("pepperoncini","pickled pepperoncini","pickled pepperoncini",None,TJ,[],"",(27,1,5.3,0.4,2),"g",None,(180,"300 g jar (180 g drained)","10.6 oz jar","jar","jars"),False,"🌶️",prices=(3.29,2.45,2.59)),
   I("artichoke-hearts","artichoke hearts in water","artichoke hearts in water",None,TJ,[],"",(47,3.3,10.5,0.2,5.4),"g",None,(240,"400 g tin (240 g drained)","14 oz can","tin","tins"),False,"🌿",prices=(3.29,1.95,2.49)),
+  I("dill-pickles","dill pickles","dill pickles","dill pickled cucumbers",TJ,[],"",(12,0.5,2.3,0.3,1),"g",None,(250,"500 g jar (250 g drained)","17.6 oz jar","jar","jars"),False,"🥒",prices=(2.99,1.60,1.89)),
   I("roasted-peppers","roasted red peppers","roasted red peppers",None,TJ,[],"",(28,1,5,0.3,1.5),"g",{"piece":50},(290,"290 g jar","10 oz jar","jar","jars"),False,"🫑",prices=(3.49,1.30,1.79)),
   I("sweetcorn-tin","canned sweetcorn","canned sweetcorn","tinned sweetcorn",TJ,[],"",(81,2.7,16,1.2,2.4),"g",{"cup":165},(200,"200 g tin (drained)","8.5 oz can","tin","tins"),False,"🌽",prices=(1.19,0.60,0.89)),
   I("kimchi","kimchi","kimchi",None,TJ,["fish"],F,(15,1.1,2.4,0.5,1.6),"g",{"cup":150},(300,"300 g jar","10 oz jar","jar","jars"),False,"🥬",tags=["spicy"],prices=(5.99,3.00,3.99)),
@@ -252,6 +255,7 @@ ROWS = [
   I("baking-powder","baking powder","baking powder",None,BA,[],"",(53,0,28,0,0.2),"g",{"tsp":4},(170,"170 g tub","6 oz can","tub","tubs"),True,"🧁",prices=(2.49,1.00,1.29)),
 
   # ---------- Other ----------
+  I("desiccated-coconut","unsweetened shredded coconut","unsweetened shredded coconut","desiccated coconut",BA,[],"",(660,6.9,24,64,16),"g",None,(200,"200 g bag","7 oz bag","bag","bags"),False,"🥥",prices=(3.49,1.70,2.19)),
   I("almonds","flaked almonds","flaked almonds","flaked almonds",OT,["treeNut"],"",(579,21,22,50,12),"g",None,(100,"100 g bag","3.5 oz bag","bag","bags"),False,"🥜",prices=(3.49,1.50,2.09)),
   I("peanuts","roasted peanuts","roasted peanuts",None,OT,["peanut"],"",(585,24,21,50,8),"g",{"tbsp":9,"cup":145},(200,"200 g bag","7 oz bag","bag","bags"),False,"🥜",prices=(2.99,1.20,1.49)),
   I("cashews","cashews","cashews",None,OT,["treeNut"],"",(553,18,30,44,3.3),"g",{"tbsp":9,"cup":130},(150,"150 g bag","5 oz bag","bag","bags"),False,"🌰",prices=(4.49,2.25,2.99)),

@@ -973,6 +973,36 @@
   }
  },
  {
+  "id": "fresh-dill",
+  "name": "fresh dill",
+  "pluralName": "fresh dill",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 43,
+   "protein": 3.5,
+   "carbs": 7,
+   "fat": 1.1,
+   "fiber": 2.1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 20,
+   "display": "20 g bunch",
+   "displayImperial": "0.7 oz bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": []
+ },
+ {
   "id": "parsley",
   "name": "parsley",
   "pluralName": "parsley",
@@ -3393,6 +3423,38 @@
   "tags": []
  },
  {
+  "id": "soba-noodles",
+  "name": "buckwheat soba noodles",
+  "pluralName": "buckwheat soba noodles",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 336,
+   "protein": 14,
+   "carbs": 72,
+   "fat": 2,
+   "fiber": 3
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 280,
+   "display": "280 g pack",
+   "displayImperial": "10 oz pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍜",
+  "tags": []
+ },
+ {
   "id": "egg-noodles",
   "name": "egg noodles",
   "pluralName": "egg noodles",
@@ -4672,6 +4734,37 @@
   "isPantryStaple": false,
   "emoji": "🌿",
   "tags": []
+ },
+ {
+  "id": "dill-pickles",
+  "name": "dill pickles",
+  "pluralName": "dill pickles",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 12,
+   "protein": 0.5,
+   "carbs": 2.3,
+   "fat": 0.3,
+   "fiber": 1
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 250,
+   "display": "500 g jar (250 g drained)",
+   "displayImperial": "17.6 oz jar",
+   "noun": "jar",
+   "nounPlural": "jars"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥒",
+  "tags": [],
+  "ukName": "dill pickled cucumbers"
  },
  {
   "id": "roasted-peppers",
@@ -6675,6 +6768,37 @@
   "gramsPerUnit": {
    "tsp": 4
   }
+ },
+ {
+  "id": "desiccated-coconut",
+  "name": "unsweetened shredded coconut",
+  "pluralName": "unsweetened shredded coconut",
+  "aisle": "Baking",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 660,
+   "protein": 6.9,
+   "carbs": 24,
+   "fat": 64,
+   "fiber": 16
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 200,
+   "display": "200 g bag",
+   "displayImperial": "7 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥥",
+  "tags": [],
+  "ukName": "desiccated coconut"
  },
  {
   "id": "almonds",

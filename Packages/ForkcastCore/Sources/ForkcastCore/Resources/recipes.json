@@ -52506,5 +52506,1036 @@
   "isLeftoverFriendly": false,
   "mealType": "lunch",
   "tags": []
+ },
+ {
+  "id": "dijon-chicken-smashed-potatoes",
+  "title": "Dijon chicken and smashed potatoes",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 40,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 620,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 800,
+    "unit": "g",
+    "note": "small"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 220,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 130,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 16,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 230°C (450°F) and boil the small potatoes until just tender.",
+   "Drain the potatoes and press them flat on a tray. Drizzle with half the oil and sprinkle with some salt.",
+   "Roast for 20–24 minutes until the rough edges brown. Season the chicken with the remaining salt and pepper.",
+   "Brown the thighs in a frying pan in the remaining oil. Add the garlic, mustard and stock and simmer until the chicken reaches 74°C (165°F).",
+   "Take off the heat and stir in the yoghurt gradually. Return briefly to very low heat if needed.",
+   "Spoon the Dijon sauce over the chicken. Serve with the crisp potatoes and chopped parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "smothered-chicken-mushroom-gravy",
+  "title": "Smothered chicken with mushroom gravy",
+  "emoji": "🍗",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 620,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 390,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice following the packet. Slice the onion and mushrooms.",
+   "Season the chicken with paprika, salt and pepper. Brown both sides in the oil and lift onto a plate.",
+   "Melt butter in the same pan. Fry the onion and mushrooms until the juices evaporate and the edges brown.",
+   "Stir in flour and thyme for a minute. Pour in the stock gradually, scraping up the browned bits.",
+   "Return the chicken and simmer gently until the gravy thickens and the chicken reaches 74°C (165°F).",
+   "Serve each thigh beside rice with a generous spoonful of mushroom and onion gravy."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "baked-miso-salmon-soba",
+  "title": "Baked miso salmon with soba noodles",
+  "emoji": "🐟",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "salmon-fillet",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soba-noodles",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "miso-paste",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Stir miso, honey, soy and grated ginger together.",
+   "Lay the salmon on a lined tray and brush the glaze over the top.",
+   "Bake for 10–14 minutes until the fish flakes easily and reaches 63°C (145°F).",
+   "Meanwhile, cook the soba. Add spinach for the last 30 seconds, then drain.",
+   "Toss the soba and greens with rice vinegar and sesame oil. Slice the spring onions on a long diagonal.",
+   "Pile noodles into bowls and set a salmon fillet on each. Scatter the spring onions and sesame over the fish and noodles."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "bistec-ranchero-potatoes",
+  "title": "Bistec ranchero with potatoes",
+  "emoji": "🥩",
+  "cuisine": "Mexican",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 620,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 1,
+    "unit": "piece",
+    "note": "green"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 130,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cut the potatoes into small cubes. Slice the beef thinly, slice the onion and chilli, and chop the tomatoes.",
+   "Heat half the oil in a wide pan and cook the potato cubes until golden on several sides. Lift them out.",
+   "Add the remaining oil and sear the beef briefly in batches. Lift it onto a separate plate.",
+   "Soften the onions and green chilli, then add garlic, cumin, salt, tomatoes and stock. Simmer until the tomatoes break down.",
+   "Return the potatoes and cover until tender. Add the meat and juices and simmer until the meat is cooked and the sauce thickens.",
+   "Serve the steak and potatoes with the red tomato sauce and chopped coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "lemon-salmon-prawns-asparagus",
+  "title": "Lemon salmon and prawns",
+  "emoji": "🍤",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "salmon-fillet",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "shrimp",
+    "amount": 350,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "asparagus",
+    "amount": 430,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Snap off the woody asparagus ends, toss the spears with oil and roast for 9–12 minutes.",
+   "Pat the salmon dry and season it. Thinly slice one lemon and juice the other.",
+   "Heat the remaining oil in a pan. Sear the salmon on both sides, working in batches if necessary, to 63°C (145°F).",
+   "Move the salmon to a plate. Add butter, garlic and prawns to the pan, then cook until the prawns turn pink and opaque.",
+   "Add lemon juice and chopped parsley to the pan, and warm the lemon slices in the sauce.",
+   "Serve the salmon and prawns beside roasted asparagus. Spoon over the lemon butter and add lemon rounds."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "minced-beef-potato-hash",
+  "title": "Minced beef and potato hash",
+  "emoji": "🥔",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "family",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 13,
+  "cookMinutes": 26,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 460,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 740,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "red"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 14,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cut the potatoes into small even cubes. Put them into boiling water for 5 minutes, then drain well.",
+   "Dice the red pepper and onion and crush the garlic.",
+   "Heat most of the oil in a large pan. Fry the potato cubes without stirring for a few minutes until they brown on the bottom.",
+   "Turn the cubes until crisp on several sides and set aside. Add the remaining oil, minced beef and onion to the same pan.",
+   "Cook through, breaking up the mince, then add pepper, garlic, paprika, salt and black pepper.",
+   "Return the potatoes and let them crisp again briefly. Scatter with chopped parsley and bring the skillet to the table."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sticky-beef-coconut-rice",
+  "title": "Sticky beef bowls with coconut rice",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 530,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 270,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 240,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 14,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Rinse the rice. Add coconut milk and enough water to match the packet's liquid measure, then cover and cook.",
+   "Slice the steak thinly across the grain. Whisk the soy, honey, ginger, garlic and half the vinegar together.",
+   "Thinly slice the cucumber and lightly dress it with the remaining vinegar.",
+   "Heat the oil until shimmering. Quickly brown the steak in batches, then return it all to the pan.",
+   "Pour the sauce over the steak and toss until it bubbles and coats the beef. Fluff the coconut rice.",
+   "Spoon the sticky strips over the rice, with cucumber slices, sesame seeds and sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-beef-bean-tortilla-pizzas",
+  "title": "Crispy beef and bean tortilla pizzas",
+  "emoji": "🍕",
+  "cuisine": "Mexican",
+  "vibes": [
+   "fakeaway",
+   "fiberForward",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 380,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 100,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Put the tortillas on trays and brush their edges with a little oil.",
+   "Bake for 4–5 minutes until just beginning to crisp.",
+   "Brown the beef in a pan, breaking it up and cooking it through. Add cumin, paprika and passata and simmer until thick.",
+   "Rinse and drain the beans and sweetcorn. Spoon the cooked beef onto each tortilla and scatter over the beans and corn.",
+   "Cover with grated cheddar and bake for 7–8 minutes until the cheese melts and the edges brown.",
+   "Scatter chopped coriander over the pizzas and cut into wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "steak-onion-gravy",
+  "title": "Steak with onion gravy",
+  "emoji": "🥩",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 560,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 420,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Toss chopped potatoes and carrots with most of the oil and roast until browned and tender.",
+   "Slice the onions. Melt butter in a pan and cook them on medium-low until soft and golden.",
+   "Stir in the flour, thyme and Worcestershire sauce. Add stock a little at a time, then simmer until thick.",
+   "Season the steaks and sear them in the remaining oil to at least 63°C (145°F).",
+   "Rest the steaks for 3 minutes or longer. Pour the resting juices into the onion gravy.",
+   "Slice the steak and spoon on the onion gravy. Serve the roast carrots and potatoes alongside."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "dill-pickle-ranch-chicken-salad",
+  "title": "Dill pickle ranch chicken salad",
+  "emoji": "🥗",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 14,
+  "cookMinutes": 14,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dill-pickles",
+    "amount": 150,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 170,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "fresh-dill",
+    "amount": 14,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "onion-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Poach the chicken gently until the centre reaches 74°C (165°F), then let it cool and dice it.",
+   "Slice the pickles, chop the romaine and finely chop the dill.",
+   "Whisk yoghurt, mayo, garlic and onion powder, lemon juice and pepper. Stir in most of the dill and a spoonful of pickle brine if needed.",
+   "Toast the thick sourdough slices in a dry pan. Toss the chicken and pickles in the dressing.",
+   "Top the toast with lettuce and the chicken salad. Finish with the remaining dill."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "creamy-chipotle-beef-corn-pasta",
+  "title": "Creamy chipotle beef and corn pasta",
+  "emoji": "🍝",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rigatoni",
+    "amount": 310,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 440,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 180,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "chipotles-in-adobo",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 130,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rigatoni until just firm, then drain and keep a cup of pasta water.",
+   "Dice the onion and finely chop the chipotles. Heat oil in a wide pan and brown the mince.",
+   "Add onion for 4 minutes, then add passata and chipotles. Simmer until the beef is cooked through.",
+   "Stir in the cream and drained sweetcorn. Bring the sauce back to a gentle simmer.",
+   "Fold through the rigatoni and a splash of cooking water until the sauce coats the pasta.",
+   "Serve with finely sliced spring onions on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "baked-coconut-chicken-strips",
+  "title": "Baked coconut chicken",
+  "emoji": "🥥",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 17,
+  "cookMinutes": 21,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 560,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "desiccated-coconut",
+    "amount": 75,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 55,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-cabbage",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pineapple-tin",
+    "amount": 180,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "sweet-chili-sauce",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Cut chicken into even strips and season with salt.",
+   "Dip in flour and beaten egg, then press into a mix of coconut and breadcrumbs.",
+   "Set the strips on a lined tray, brush lightly with oil and bake for 15–19 minutes, turning once, until golden and 74°C (165°F) inside.",
+   "Chop the pineapple very finely and simmer it with sweet chilli sauce and half the lime juice until it makes a spoonable dip.",
+   "Thinly shred both cabbages, grate the carrot and toss them with the remaining lime juice.",
+   "Serve the coconut chicken with the fresh slaw and a small dish of pineapple dip."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
  }
 ]

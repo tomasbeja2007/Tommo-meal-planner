@@ -6,10 +6,10 @@ final class LibraryValidationTests: XCTestCase {
 
     func testCatalogLoads() throws {
         let loaded = try FoodCatalog.loadBundled()
-        XCTAssertEqual(loaded.recipes.count, 655)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 351)
+        XCTAssertEqual(loaded.recipes.count, 667)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 362)
         XCTAssertEqual(loaded.recipes.filter { $0.mealType == .breakfast }.count, 101)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .lunch }.count, 121)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .lunch }.count, 122)
         XCTAssertEqual(loaded.recipes.filter { $0.mealType == .snack }.count, 82)
         XCTAssertGreaterThanOrEqual(loaded.ingredients.count, 140)
         XCTAssertEqual(loaded.countries.first?.id, "us", "United States must be first in every list")
