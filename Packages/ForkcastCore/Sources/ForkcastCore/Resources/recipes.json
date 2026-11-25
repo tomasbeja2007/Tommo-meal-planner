@@ -43397,5 +43397,3118 @@
   "tags": [
    "trending"
   ]
+ },
+ {
+  "id": "bbq-tofu-potato-wedges",
+  "title": "BBQ tofu with potato wedges",
+  "emoji": "🥔",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 40,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 900,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tofu",
+    "amount": 600,
+    "unit": "g",
+    "note": "firm"
+   },
+   {
+    "ingredientId": "bbq-sauce",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-wine-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Cut the potatoes into thick wedges, leaving the skins on.",
+   "Toss the wedges with half the oil, the paprika and half the salt. Spread them cut-side down on a tray.",
+   "Roast for 35–40 minutes, turning halfway, until browned and tender inside.",
+   "Pat the tofu dry and cut it into thick slabs. Heat the remaining oil in a frying pan and brown the slabs for 4 minutes on each side.",
+   "Lower the heat, brush both sides of the tofu with barbecue sauce and turn for another minute until the glaze clings.",
+   "Shred the cabbage finely and toss it with the vinegar and remaining salt. Serve beside the wedges and tofu."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sweet-potato-lentil-dhal",
+  "title": "Sweet potato and lentil dhal",
+  "emoji": "🍛",
+  "cuisine": "Indian",
+  "vibes": [
+   "comfort",
+   "fiberForward",
+   "batchFriendly",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "sweet-potato",
+    "amount": 600,
+    "unit": "g",
+    "note": "peeled and cubed"
+   },
+   {
+    "ingredientId": "red-lentils",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 550,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "coconut-yogurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Dice the onion and grate the garlic and ginger. Rinse the lentils until the water is mostly clear.",
+   "Warm the oil in a deep pan. Soften the onion for 5 minutes, then stir in the garlic, ginger, cumin and turmeric for 30 seconds.",
+   "Stir in the sweet potato, drained lentils, coconut milk and stock. Bring to a gentle bubble.",
+   "Simmer for 20–25 minutes, stirring the bottom regularly, until the lentils collapse and a knife slips through the sweet potato.",
+   "Mash a few pieces of sweet potato against the side of the pan to thicken the dhal. Stir in the spinach until wilted.",
+   "Squeeze in lemon to taste and spoon into bowls with a little coconut yoghurt on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chickpea-potato-curry-rice",
+  "title": "Chickpea and potato curry with rice",
+  "emoji": "🍛",
+  "cuisine": "Indian",
+  "vibes": [
+   "family",
+   "fiberForward",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 32,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ground-coriander",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 250,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Peel the potatoes and cut them into 2 cm pieces. Finely dice the onion and grate the garlic and ginger.",
+   "Heat the oil in a wide pan and cook the onion for 6 minutes until golden at the edges.",
+   "Add the garlic, ginger, garam masala and ground coriander. Stir for 30 seconds, then add the tomatoes and stock.",
+   "Tip in the potatoes, cover and simmer for 16–20 minutes. Cook the basmati in a separate pan following the packet.",
+   "Stir the drained chickpeas into the curry and simmer uncovered for 5 minutes, until the potatoes are tender and the sauce coats them.",
+   "Fluff the rice and share it between bowls. Ladle the curry alongside and scatter over chopped coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "vegetable-lentil-curry",
+  "title": "Lentil and vegetable curry",
+  "emoji": "🥦",
+  "cuisine": "Indian",
+  "vibes": [
+   "fiberForward",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "red-lentils",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cauliflower",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 8,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cut the cauliflower into small florets and slice the carrots thinly. Trim the beans and halve them crosswise.",
+   "Finely chop the onion and soften it in the oil over medium heat for 5 minutes. Stir in the curry powder until fragrant.",
+   "Add rinsed lentils, carrots, coconut milk and stock. Simmer for 10 minutes while the rice cooks in a separate pan.",
+   "Put in the cauliflower and cook for another 8 minutes, stirring occasionally.",
+   "Add the beans for the final 4 minutes so they keep some bite. Loosen the curry with a splash of water if it thickens too far.",
+   "Squeeze in the lime and serve the curry beside the fluffed rice with chopped coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "lentil-vegetable-rice-skillet",
+  "title": "Lentil and vegetable rice skillet",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "onePan",
+   "fiberForward",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-lentils",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mixed-veg-frozen",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 850,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Rinse the long-grain rice and lentils together in a fine sieve, then let them drain well.",
+   "Dice the onion and cook it in a lidded frying pan with the oil for 5 minutes. Stir in the crushed garlic and paprika.",
+   "Add the drained grains and stir for a minute so they take up the paprika oil.",
+   "Pour in the stock and bring to a simmer. Cover and cook on low for 14 minutes.",
+   "Scatter the frozen vegetables over the top. Cover for 5 minutes, then check that the rice is tender before resting off the heat for 3 minutes.",
+   "Fold the vegetables through the rice and finish with chopped parsley and lemon juice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "red-lentil-vegetable-stew",
+  "title": "Red lentil and vegetable stew",
+  "emoji": "🥣",
+  "cuisine": "Other",
+  "vibes": [
+   "onePan",
+   "comfort",
+   "fiberForward",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "red-lentils",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kale",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 650,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "red-wine-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Slice the carrots into thick coins. Chop the celery and onion, and crush the garlic.",
+   "Heat half the oil in a deep pan and cook the onion and celery for 5 minutes. Add the garlic and thyme for 30 seconds.",
+   "Add the carrots, drained rinsed lentils, tomatoes and stock. Bring to a simmer.",
+   "Cook for 20–25 minutes, stirring from the bottom every few minutes, until the carrots are soft and the lentils have thickened the broth.",
+   "Strip the kale from its stems, tear the leaves and stir them in for the final 4 minutes.",
+   "Finish with the vinegar. Divide into bowls and drizzle with the remaining olive oil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "kidney-bean-cabbage-stew",
+  "title": "Kidney bean and cabbage stew",
+  "emoji": "🥬",
+  "cuisine": "Other",
+  "vibes": [
+   "onePan",
+   "comfort",
+   "fiberForward",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "kidney-beans",
+    "amount": 520,
+    "unit": "g",
+    "note": "tinned, drained"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 550,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 650,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "red-wine-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Chop the onion and crush the garlic. Slice the cabbage into broad ribbons and cube the potatoes.",
+   "Warm the oil in a casserole and cook the onion for 5 minutes. Add the garlic and paprika for 30 seconds.",
+   "Add the potatoes, tomatoes and stock and simmer for 12 minutes.",
+   "Stir in the cabbage and drained, rinsed kidney beans. Cover and simmer for 12–15 minutes until the potatoes and cabbage are tender.",
+   "Crush a few of the potatoes against the side of the pan. Stir them back through to give the broth a little body.",
+   "Stir in the vinegar and ladle into bowls with roughly chopped parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "fruit-nut-snack-clusters",
+  "title": "Fruit and nut snack clusters",
+  "emoji": "🍫",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "microwave"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 2,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "dark-chocolate",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "walnuts",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cashews",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 50,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Roughly chop the nuts and raisins and line a tray that fits in the fridge with baking paper.",
+   "Break the chocolate into a heatproof bowl. Microwave in short bursts, stirring between each, until almost melted.",
+   "Stir until smooth, then fold in the nuts, raisins and a pinch of salt.",
+   "Drop 12 small mounds onto the tray. Chill for 20 minutes or until firm, then peel them off the paper. Three make one portion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": []
+ },
+ {
+  "id": "chickpea-avocado-mini-peppers",
+  "title": "Chickpea and avocado stuffed peppers",
+  "emoji": "🫑",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "healthyish",
+   "fiberForward"
+  ],
+  "appliances": [],
+  "prepMinutes": 15,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chickpeas",
+    "amount": 140,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "choose small red and yellow peppers"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 8,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Drain and rinse the chickpeas. Mash them with a fork until some split and others are still whole.",
+   "Scoop the avocado into the bowl, squeeze in half the lime and mash again. Fold in chopped coriander and a pinch of salt.",
+   "Quarter the peppers lengthways and remove the seeds and white ribs to make little boats.",
+   "Spoon the chickpea mixture into the pepper pieces just before serving. Squeeze the remaining lime over the top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": []
+ },
+ {
+  "id": "spicy-black-bean-corn-dip",
+  "title": "Spicy black bean and corn dip",
+  "emoji": "🌽",
+  "cuisine": "Mexican",
+  "vibes": [
+   "quickEasy",
+   "fiberForward"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 110,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 6,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Cut the tortillas into wedges and brush them lightly with half the oil.",
+   "Bake the wedges for 8–10 minutes, turning halfway, until crisp. Cool on the tray.",
+   "Pat the sweetcorn dry and cook it in a hot frying pan with the remaining oil for 4 minutes until it starts to char.",
+   "Mash the rinsed beans with lime juice, cumin, salt and enough water to make a thick dip.",
+   "Spoon over the charred corn and thinly sliced chilli, and scatter on chopped coriander. Serve with the tortilla wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": []
+ },
+ {
+  "id": "spicy-tofu-lentil-curry",
+  "title": "Spicy tofu and lentil curry",
+  "emoji": "🌶️",
+  "cuisine": "Indian",
+  "vibes": [
+   "highProtein",
+   "fiberForward",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tofu",
+    "amount": 600,
+    "unit": "g",
+    "note": "firm"
+   },
+   {
+    "ingredientId": "red-lentils",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 250,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 500,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Pat the tofu dry and cut it into bite-size cubes. Dice the onion, grate the garlic and ginger, and slice the chilli.",
+   "Heat half the oil in a frying pan. Brown the tofu on two sides for 6–8 minutes, then lift it onto a plate.",
+   "Add the rest of the oil and soften the onion for 5 minutes. Add the garlic, ginger, curry powder and half the chilli for 30 seconds.",
+   "Add rinsed lentils, coconut milk and stock. Simmer for about 18 minutes, stirring regularly, until the lentils are soft.",
+   "Fold the tofu into the curry and simmer for another 3 minutes. Add lime juice to brighten the sauce.",
+   "Divide into bowls and finish with chopped coriander and the remaining chilli."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "thai-basil-beef-bowls",
+  "title": "Thai basil beef bowls",
+  "emoji": "🍚",
+  "cuisine": "Thai",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 270,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Slice the pepper, chop the garlic and chilli, and pick the basil leaves.",
+   "Mix the soy sauce, fish sauce and sugar with 2 tablespoons of water and set it beside the hob.",
+   "Heat the oil in a wide frying pan until shimmering. Press the beef into the pan and leave it alone for 3 minutes so it browns.",
+   "Break up the beef and cook through. Push it aside, stir-fry the pepper for 2 minutes and add the garlic and chilli.",
+   "Pour in the sauce and toss over high heat until it glazes the beef. Take off the heat and fold in the basil until just wilted.",
+   "Spoon the beef and peppers over the rice and squeeze a little lime over each portion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "honey-sriracha-chicken-rice",
+  "title": "Honey sriracha chicken and rice bowls",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g",
+    "note": "minced or very finely chopped"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Thinly slice the cucumber and spring onions.",
+   "Stir the sriracha, honey, soy and vinegar together with 2 tablespoons of water. Crush the garlic separately.",
+   "Heat the oil in a wide pan. Spread the chicken loosely in the pan and let it brown for 2 minutes before breaking it up.",
+   "Stir-fry for 5–7 minutes, until the chicken reaches 74°C (165°F). Add the garlic and cook for 30 seconds.",
+   "Pour in the sauce and cook for a minute or two, until it forms a thin glaze on the chicken.",
+   "Pack the rice and chicken into shallow containers. Keep the cucumber and spring onions separate if chilling, and add them after reheating."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "honey-gochujang-chicken-rice",
+  "title": "Honey gochujang chicken rice bowls",
+  "emoji": "🍚",
+  "cuisine": "Korean",
+  "vibes": [
+   "highProtein",
+   "fakeaway",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 640,
+    "unit": "g",
+    "note": "boneless, skinless"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Rinse the rice and set it cooking in a pan following the packet.",
+   "Mix the gochujang, honey, soy, half the vinegar and the oil. Set a spoonful of the glaze aside before adding the chicken.",
+   "Cut the chicken into bite-size pieces, coat with the remaining glaze and spread on a lined baking tray.",
+   "Roast for 18–22 minutes, until browned and cooked to 74°C (165°F). Brush with the reserved glaze for the final 3 minutes.",
+   "Shred the cabbage finely and squeeze it briefly with the remaining vinegar and salt.",
+   "Divide the rice, roast chicken and cabbage into bowls. Scatter the sesame seeds over the chicken."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "minced-chicken-fried-rice",
+  "title": "Minced chicken fried rice",
+  "emoji": "🍳",
+  "cuisine": "Chinese",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 450,
+    "unit": "g",
+    "note": "minced or very finely chopped"
+   },
+   {
+    "ingredientId": "microwave-rice",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Dice the carrot small and slice the spring onions, keeping the green tops separate. Beat the eggs with a fork.",
+   "Heat a little vegetable oil in a wide pan. Scramble the eggs in large curds, then lift them onto a clean plate.",
+   "Add the remaining oil and fry the minced chicken until browned and cooked to 74°C (165°F), breaking it up as it cooks.",
+   "Add the carrot and spring-onion whites. After 3 minutes, stir in the garlic and peas.",
+   "Crumble in the packet rice and stir-fry for 3–4 minutes, until piping hot throughout. Add soy sauce and sesame oil.",
+   "Fold in the eggs, break up any large pieces and serve with spring-onion greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "teriyaki-minced-beef-bowls",
+  "title": "Teriyaki beef rice bowls",
+  "emoji": "🍚",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Cut the broccoli into small florets.",
+   "Grate the ginger and garlic. Mix them with the soy, honey, vinegar and 80 ml water.",
+   "Heat the oil in a frying pan and brown the beef, breaking it up as it cooks.",
+   "Add the broccoli and a spoonful of water, cover and cook for 3 minutes.",
+   "Whisk the cornflour into the sauce, pour it into the pan and toss until the beef is sizzling and glossy.",
+   "Spoon the beef and broccoli beside the rice and finish with sesame seeds and finely sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "roast-turkey-breast-gravy",
+  "title": "Roast turkey breast with gravy",
+  "emoji": "🍗",
+  "cuisine": "British",
+  "vibes": [
+   "highProtein",
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 18,
+  "cookMinutes": 65,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "turkey-breast",
+    "amount": 800,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 640,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 80,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 450,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Mash half the butter with garlic, thyme, pepper and half the salt. Spread it over the turkey.",
+   "Place the breast in a small roasting tin and roast for 45–60 minutes, until the centre registers 74°C (165°F).",
+   "Cut the carrots into batons, toss with oil and roast on a separate tray for the last 30 minutes.",
+   "Peel and cut the potatoes into large chunks. Boil for 15–18 minutes, drain and mash with the milk and remaining butter and salt.",
+   "Move the cooked turkey to a warm plate to rest. Whisk the flour into the cooking juices in a small saucepan over medium heat.",
+   "Gradually whisk in the stock and simmer until the gravy coats a spoon.",
+   "Carve the turkey across the grain. Serve with mash, carrots and a little gravy over each portion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "garlic-butter-roast-chicken",
+  "title": "Garlic butter roast chicken",
+  "emoji": "🍗",
+  "cuisine": "British",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 85,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "whole-chicken",
+    "amount": 1,
+    "unit": "piece",
+    "note": "choose a bird weighing around 1.4 kg bone-in"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 5,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F) and pat the chicken skin dry with kitchen paper.",
+   "Mash the butter with crushed garlic, lemon zest, thyme, salt and pepper. Rub it over the chicken and put the lemon halves inside.",
+   "Set the chicken in a roasting tin. Halve any large potatoes, toss them with the oil and spread them around the bird.",
+   "Roast for 70–85 minutes, turning the potatoes halfway through. The thickest parts of the breast and thigh should reach 74°C (165°F), away from bone.",
+   "Rest the chicken for 15 minutes. Boil the green beans for 4 minutes, drain and toss with a little of the cooking juices.",
+   "Put the rested chicken on a platter with the roast potatoes and green beans, then carve at the table."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "thai-red-pumpkin-curry",
+  "title": "Thai red pumpkin curry",
+  "emoji": "🎃",
+  "cuisine": "Thai",
+  "vibes": [
+   "family",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "pumpkin",
+    "amount": 750,
+    "unit": "g",
+    "note": "seeded, choose kabocha if leaving the skin on"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "thai-curry-paste",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 0.5,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cut the pumpkin into 3 cm chunks. Thinly slice the onion trim the green beans and slice the chilli.",
+   "Heat the oil in a wide pan and soften the onion for 5 minutes. Add the curry paste and cook for a minute.",
+   "Stir in a little coconut milk to loosen the paste. Add the pumpkin, remaining coconut milk and stock.",
+   "Simmer for about 14 minutes while you cook the rice in a separate pan following the packet.",
+   "Add the beans and chilli and simmer until the vegetables are tender. Squeeze in lime juice and stir in torn basil.",
+   "Spoon the curry into wide bowls and serve next to the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "ham-broccoli-egg-bake",
+  "title": "Ham and broccoli egg bake",
+  "emoji": "🥚",
+  "cuisine": "British",
+  "vibes": [
+   "highProtein",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 26,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 90,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 110,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F) and butter a small square baking dish.",
+   "Cut the broccoli into florets, blanch for 2 minutes in boiling water and drain thoroughly. Dice the ham.",
+   "Beat the eggs, milk and pepper with a fork. Grate the cheddar.",
+   "Spread the ham and broccoli in the dish and pour over the eggs. Sprinkle the top with cheddar.",
+   "Bake for 22–26 minutes until the middle is set and the cheese is golden. Rest for 5 minutes before cutting into four squares."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "bacon-asparagus-frittata",
+  "title": "Bacon and asparagus frittata",
+  "emoji": "🍳",
+  "cuisine": "Italian",
+  "vibes": [
+   "highProtein",
+   "quickEasy",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "asparagus",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bacon",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Snap the woody ends from the asparagus and cut the spears into short pieces.",
+   "Slice the bacon and fry it in a small ovenproof pan until lightly crisp. Add a little oil if the pan is dry.",
+   "Add the asparagus and cook for 3 minutes. Beat the eggs with pepper and the grated cheddar.",
+   "Pour the eggs over the bacon and asparagus. Let the edges set without stirring, then transfer the pan to the oven.",
+   "Bake for 6–8 minutes until the centre is just set. Let it settle for 2 minutes before cutting into wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "crustless-spinach-tomato-quiche",
+  "title": "Crustless spinach and tomato quiche",
+  "emoji": "🍅",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 7,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cottage-cheese",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Brush a shallow round dish with a little of the oil.",
+   "Warm the remaining oil in a pan. Stir in crushed garlic for 20 seconds, then wilt the spinach and squeeze out the excess liquid.",
+   "Beat the eggs with cottage cheese and pepper. Fold in the spinach and half the cheddar.",
+   "Pour into the dish and top with halved tomatoes, cut-side up, and the remaining cheddar.",
+   "Bake for 25–30 minutes until the middle is set. Rest for 5 minutes so you can lift out clean wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "korean-steamed-eggs-prawns",
+  "title": "Korean steamed eggs with prawns",
+  "emoji": "🥚",
+  "cuisine": "Korean",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 8,
+  "cookMinutes": 14,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "shrimp",
+    "amount": 160,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 180,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Thinly slice the spring onions, keeping the green tops separate. Pat the prawns dry.",
+   "Whisk the eggs with the stock, soy sauce and spring-onion whites until evenly mixed.",
+   "Pour into a heatproof bowl. Set the bowl above gently simmering water in a covered pan, keeping the water below the bowl.",
+   "Steam for 8 minutes until the edges begin to set. Nestle the prawns on top and cover again.",
+   "Steam for another 4–6 minutes until the prawns are pink and opaque and the eggs are set. Finish with spring-onion greens and sesame oil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "denver-scrambled-eggs-toast",
+  "title": "Denver scrambled eggs on toast",
+  "emoji": "🍳",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 8,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 75,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "green"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Finely dice the ham, green pepper and onion. Beat the eggs with pepper and grate the cheddar.",
+   "Toast the sourdough in a dry pan. Spread it with a little of the butter and keep it warm.",
+   "Melt the rest of the butter in a frying pan. Soften the onion and green pepper for 4 minutes, then add the ham for a minute.",
+   "Turn the heat to low, pour in the eggs and draw a spatula slowly across the pan to make soft curds.",
+   "Add the cheddar just before the eggs finish setting. Serve the scramble beside the toast."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "loaded-breakfast-burritos",
+  "title": "Loaded breakfast burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sausages",
+    "amount": 250,
+    "unit": "g",
+    "note": "skins removed"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 75,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Dice the potato into small cubes. Boil for 6 minutes, then drain well.",
+   "Heat half the oil in a frying pan and cook the potato until crisp and tender. Move it to a clean plate.",
+   "Fry the sausage in the same pan until fully cooked, breaking it into small pieces. Move it to the plate with the potato.",
+   "Beat the eggs with pepper and make soft scrambled eggs over low heat in the remaining oil.",
+   "Warm the tortillas and fill each with potato, sausage, eggs, grated cheddar and finely diced tomato.",
+   "Tuck the sides in, roll tightly and toast seam-side down in the dry pan. Cut in half before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": []
+ },
+ {
+  "id": "chicken-philly-cheesesteak",
+  "title": "Chicken Philly cheesesteak",
+  "emoji": "🥖",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "comfort",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "green"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Cut the baguette into four pieces and split each piece lengthways.",
+   "Thinly slice the chicken, peppers and onion. Toss the chicken with garlic powder, pepper and salt.",
+   "In a wide frying pan, soften the peppers and onion in half the oil for 6 minutes, then move them onto a plate.",
+   "Use the remaining oil to fry the chicken until it reaches 74°C (165°F). Stir the peppers and onion back in.",
+   "Pile the filling into the rolls and lay thin slices of mozzarella on top. Heat in the oven until the cheese has melted and the bread is crisp."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "chicken-butternut-squash-stew",
+  "title": "Chicken and butternut squash stew",
+  "emoji": "🥣",
+  "cuisine": "British",
+  "vibes": [
+   "onePan",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 550,
+    "unit": "g",
+    "note": "boneless, skinless"
+   },
+   {
+    "ingredientId": "butternut-squash",
+    "amount": 600,
+    "unit": "g",
+    "note": "peeled and seeded"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 260,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 550,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cut the chicken and squash into bite-size chunks. Dice the onion and crush the garlic.",
+   "Heat the oil in a heavy pan and brown the chicken. Lift it out onto a clean plate.",
+   "Soften the onion in the same pan for 5 minutes. Add the garlic, thyme and flour and stir for a minute.",
+   "Gradually stir in the stock. Return the chicken with the squash and cook at a gentle simmer for about 20 minutes.",
+   "Add the drained beans and simmer until the squash is tender and the chicken reaches 74°C (165°F).",
+   "Squeeze in lemon juice and add black pepper to taste. Spoon into bowls with plenty of the broth."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "ham-mac-and-cheese",
+  "title": "Mac and cheese with ham",
+  "emoji": "🧀",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 27,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "macaroni",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 500,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Dice the ham and grate the cheddar.",
+   "Cook the macaroni for 2 minutes less than the packet suggests. Drain well.",
+   "Melt the butter in a saucepan, stir in the flour and cook for a minute until it smells lightly toasted.",
+   "Add the milk gradually, whisking between additions. Simmer until thick, then take off the heat and stir in the mustard, seasoning and most of the cheese.",
+   "Fold the macaroni and diced ham through the sauce. Transfer to a baking dish and scatter the remaining cheese over it.",
+   "Bake for 12–15 minutes until bubbling with golden patches. Rest for 3 minutes before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crab-mac-and-cheese",
+  "title": "Crab mac and cheese",
+  "emoji": "🦀",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "macaroni",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "white-crabmeat",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 150,
+    "unit": "g",
+    "note": "mature white"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 470,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Cook the macaroni for a minute less than the packet suggests.",
+   "Pick through the crab for pieces of shell and tear any large lumps into bite-size pieces.",
+   "Melt the butter, stir in the flour and cook for a minute. Gradually whisk in the milk and simmer until it coats a spoon.",
+   "Take off the heat and stir in grated cheddar, pepper and a little lemon zest. Fold in the drained macaroni and crab, leaving some crab pieces intact.",
+   "Spoon into a baking dish and sprinkle with breadcrumbs. Bake for 10–12 minutes, until the edges bubble and the crumbs are lightly browned.",
+   "Scatter over chopped parsley and finish with a squeeze of lemon just before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "buffalo-chicken-mac-cheese",
+  "title": "Buffalo chicken mac and cheese",
+  "emoji": "🌶️",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "macaroni",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 420,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "hot-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Put the macaroni on to boil. In a second pan, cover the chicken with water and bring it to a gentle simmer.",
+   "Poach the chicken for 12–16 minutes until the thickest part reaches 74°C (165°F). Drain it and pull it into small shreds with forks.",
+   "Melt the butter in a saucepan and stir in the flour and garlic powder for 1 minute.",
+   "Gradually whisk in the milk. Simmer until smooth and thick, then take off the heat and stir in the grated cheddar and hot sauce.",
+   "Drain the macaroni and fold it into the sauce with the shredded chicken. Loosen with a splash of the pasta water if needed.",
+   "Divide into bowls and scatter with thinly sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "classic-glazed-beef-meatloaf",
+  "title": "Classic glazed beef meatloaf",
+  "emoji": "🍽️",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 60,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 600,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 65,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 100,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 85,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 680,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Grate the onion and soak the breadcrumbs in half the milk.",
+   "Mix the beef, breadcrumbs, onion, egg, Worcestershire sauce and half the salt with a fork or your hands. Stop once combined.",
+   "Shape into a low loaf on a lined baking tray. Mix the ketchup and mustard and spread half over the loaf.",
+   "Bake for 40–50 minutes until the centre reaches 71°C (160°F). Brush with the remaining glaze for the final 12 minutes.",
+   "Meanwhile, boil the peeled and chopped potatoes until soft. Drain and mash with butter, the rest of the milk and salt. Boil the peas for 3 minutes.",
+   "Rest the meatloaf for 10 minutes, then cut it into thick slices and serve beside the mash and peas."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "steamed-pork-dumpling-lasagne",
+  "title": "Steamed pork dumpling lasagne",
+  "emoji": "🥟",
+  "cuisine": "Chinese",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 20,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "wonton-wrappers",
+    "amount": 200,
+    "unit": "g",
+    "note": "use thin wheat-based wrappers"
+   },
+   {
+    "ingredientId": "ground-pork",
+    "amount": 470,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Very finely shred the cabbage, toss with salt and leave for 5 minutes. Squeeze it dry.",
+   "Mix the cabbage with minced pork, ginger, soy sauce, sesame oil and the sliced spring-onion whites.",
+   "Set four small heatproof dishes out. Cover the bases with wrappers, spread a thin layer of filling on top, then repeat and finish with wrappers.",
+   "Put the dishes in a covered steamer set over gently boiling water. Steam for 18–23 minutes until the centres reach 71°C (160°F).",
+   "Heat the vegetable oil in a small pan and pour it over the chilli flakes in a heatproof bowl. Let them sizzle and settle.",
+   "Run a knife around the edge of each dumpling stack and slide it onto a plate with a spatula. Scatter over the spring-onion greens and spoon on a little chilli oil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "spaghetti-alfredo",
+  "title": "Spaghetti Alfredo",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spaghetti",
+    "amount": 360,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Bring a pan of water to the boil, add salt and cook the spaghetti until just firm in the centre.",
+   "Grate the parmesan finely while the spaghetti cooks. Scoop out a mug of the pasta water before draining.",
+   "Warm the butter and cream in a wide pan over low heat until the butter melts. Avoid a hard boil.",
+   "Add the spaghetti and a splash of pasta water. Turn it through the warm cream with tongs.",
+   "Take the pan off the heat. Toss in most of the parmesan a little at a time until the sauce clings to the strands.",
+   "Add a final splash of pasta water if the sauce feels tight. Twist the spaghetti into bowls and finish with the remaining parmesan and cracked black pepper."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "french-onion-chicken-orzo",
+  "title": "French onion chicken orzo",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 47,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "orzo",
+    "amount": 280,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 750,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Thinly slice the onions. Heat the oven to 210°C (410°F) and season the chicken with salt and pepper.",
+   "Heat the oil in a wide ovenproof pan. Brown the thighs on both sides, then lift them onto a plate.",
+   "Melt the butter in the same pan and cook the onions on medium-low for about 20 minutes. Scrape the pan and add a splash of water when the onions catch.",
+   "Add the thyme, Worcestershire sauce, orzo and stock. Stir well and nestle the chicken and its juices into the orzo.",
+   "Bake for 14 minutes, then scatter torn mozzarella over the pan and bake until the orzo is tender and the chicken reaches 74°C (165°F).",
+   "Rest for 3 minutes, then serve each piece of chicken over orzo with the caramelised onions scooped on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "creamy-italian-sausage-pasta",
+  "title": "Creamy Italian sausage pasta",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rigatoni",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sausages",
+    "amount": 350,
+    "unit": "g",
+    "note": "skins removed"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 100,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 15,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Chop the onion and crush the garlic. Set the rigatoni cooking in a separate pan.",
+   "Heat the oil and pinch the sausage meat into small lumps. Leave them to brown before stirring.",
+   "Add the onion and cook until soft, then add the garlic and herbs for another minute.",
+   "Stir in the passata and simmer for 8–10 minutes until the sausage is cooked and the tomato tastes mellow.",
+   "Stir in the cream. Drain the rigatoni, keeping a cup of the cooking water, and fold the pasta through the sauce.",
+   "Loosen with pasta water as needed and serve with torn basil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "caramelised-cabbage-spaghetti",
+  "title": "Caramelised cabbage pasta",
+  "emoji": "🥬",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "fiberForward"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 24,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spaghetti",
+    "amount": 360,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Halve the cabbage and cut it into thin ribbons. Thinly slice the onion and crush the garlic.",
+   "Heat the oil and half of the butter in a wide pan. Fry the onion for 5 minutes over medium heat.",
+   "Add the cabbage and salt in two batches. Let it brown against the pan before tossing, then continue for about 12 minutes until tender.",
+   "Cook the spaghetti until just firm and reserve a mug of the cooking water. Stir the garlic into the cabbage.",
+   "Add the drained spaghetti, remaining butter and a splash of pasta water. Toss until the cabbage is distributed between the strands.",
+   "Squeeze over lemon, divide into bowls and finish with parsley and cracked pepper."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-mushroom-tetrazzini",
+  "title": "Chicken tetrazzini",
+  "emoji": "🍝",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 43,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spaghetti",
+    "amount": 290,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 260,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Simmer the chicken in water until the thickest part reaches 74°C (165°F), then shred it.",
+   "Cook the spaghetti for 2 minutes less than the packet suggests. Drain and set it aside.",
+   "Slice the mushrooms and onion. Fry them in half the butter until the water from the mushrooms evaporates.",
+   "Stir in the remaining butter, flour and thyme. Slowly whisk in the milk and stock. Simmer until the sauce thickens.",
+   "Add the pepper, spaghetti, chicken and half the parmesan. Tip into a baking dish and top with breadcrumbs and the remaining parmesan.",
+   "Bake for 15–18 minutes until bubbling at the sides and golden. Let it settle briefly before serving."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "meatball-stuffed-pasta-shells",
+  "title": "Meatball-stuffed pasta shells",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 23,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "jumbo-pasta-shells",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Lightly oil a baking tray and set a pan of water on to boil.",
+   "Mix the beef with breadcrumbs, egg, half the crushed garlic, half the herbs, salt and pepper. Roll into small meatballs.",
+   "Bake the meatballs for 12–15 minutes until brown and cooked to 71°C (160°F). Meanwhile, boil the shells for 2 minutes less than the packet says.",
+   "Stir the remaining garlic and herbs into the passata. Spread half of the sauce in a baking dish.",
+   "Set the shells in the dish, open side up, and tuck a small meatball into each. Spoon over the remaining sauce and scatter with torn mozzarella.",
+   "Bake for about 15 minutes until the sauce bubbles and the mozzarella turns golden in patches."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sausage-kale-zuppa-toscana",
+  "title": "Sausage and kale zuppa toscana",
+  "emoji": "🥣",
+  "cuisine": "Italian",
+  "vibes": [
+   "onePan",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "sausages",
+    "amount": 350,
+    "unit": "g",
+    "note": "skins removed"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 650,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kale",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 800,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 120,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Slice the potatoes into thin half-moons. Chop the onion and garlic and tear the kale from its stems.",
+   "Heat the oil in a deep pan. Crumble the sausage meat into it and cook until browned, breaking up large pieces.",
+   "Stir in the onion for 5 minutes, then add the garlic for 30 seconds.",
+   "Pour in the stock and add the sliced potatoes. Simmer for 12–15 minutes until the potatoes are tender and the sausage is cooked.",
+   "Stir in the torn kale and simmer for 3 minutes, then add the cream and warm it gently.",
+   "Taste, finish with pepper and ladle into bowls with an even share of sausage, potatoes and greens."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
  }
 ]

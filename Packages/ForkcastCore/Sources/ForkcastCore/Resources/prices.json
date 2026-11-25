@@ -149,6 +149,11 @@
   "UK": 0.7,
   "EU": 1.19
  },
+ "pumpkin": {
+  "US": 4.49,
+  "UK": 2.5,
+  "EU": 2.99
+ },
  "butternut-squash": {
   "US": 3.49,
   "UK": 1.2,
@@ -198,6 +203,16 @@
   "US": 1.49,
   "UK": 1.25,
   "EU": 1.49
+ },
+ "whole-chicken": {
+  "US": 8.99,
+  "UK": 4.79,
+  "EU": 6.49
+ },
+ "turkey-breast": {
+  "US": 12.99,
+  "UK": 8.5,
+  "EU": 10.99
  },
  "chicken-breast": {
   "US": 4.99,
@@ -263,6 +278,11 @@
   "US": 7.99,
   "UK": 4.5,
   "EU": 5.99
+ },
+ "white-crabmeat": {
+  "US": 8.99,
+  "UK": 4.5,
+  "EU": 6.25
  },
  "shrimp": {
   "US": 8.99,
@@ -397,6 +417,26 @@
  "sourdough": {
   "US": 4.99,
   "UK": 2.0,
+  "EU": 2.99
+ },
+ "rigatoni": {
+  "US": 1.79,
+  "UK": 0.85,
+  "EU": 1.19
+ },
+ "macaroni": {
+  "US": 1.69,
+  "UK": 0.85,
+  "EU": 1.19
+ },
+ "jumbo-pasta-shells": {
+  "US": 2.89,
+  "UK": 2.0,
+  "EU": 2.29
+ },
+ "wonton-wrappers": {
+  "US": 3.99,
+  "UK": 2.75,
   "EU": 2.99
  },
  "spaghetti": {
