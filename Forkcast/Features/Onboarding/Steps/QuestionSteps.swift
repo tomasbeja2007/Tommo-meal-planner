@@ -331,9 +331,11 @@ private struct NutritionTargetControls: View {
         VStack(alignment: .leading, spacing: Theme.Spacing.l) {
             ViewThatFits(in: .horizontal) {
                 HStack {
-                    Text("Daily calories").font(.headline)
+                    Text("Daily calories")
+                        .font(.headline)
+                        .fixedSize(horizontal: true, vertical: false)
                     Spacer(minLength: Theme.Spacing.s)
-                    calorieStepper
+                    calorieStepper.fixedSize(horizontal: true, vertical: false)
                 }
                 VStack(alignment: .leading, spacing: Theme.Spacing.s) {
                     Text("Daily calories").font(.headline)
@@ -380,6 +382,8 @@ private struct NutritionTargetControls: View {
 
     private var calorieStepper: some View {
         RoundStepper(value: $target.calories, range: NutritionTarget.calorieRange, suffix: " kcal", step: NutritionTarget.calorieStep)
+            .lineLimit(1)
+            .minimumScaleFactor(0.65)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text("Daily calorie target"))
             .accessibilityValue(Text("\(target.calories.formatted()) kilocalories"))
