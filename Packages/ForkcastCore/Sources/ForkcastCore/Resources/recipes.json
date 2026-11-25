@@ -50501,5 +50501,1023 @@
   "isLeftoverFriendly": false,
   "mealType": "lunch",
   "tags": []
+ },
+ {
+  "id": "sheet-pan-beef-kebabs",
+  "title": "Sheet-pan beef kebabs",
+  "emoji": "🍢",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 18,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "couscous",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 18,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 230°C (450°F) and line a tray. Cut the steak and peppers into even chunks and the onions into wedges.",
+   "Toss the beef and vegetables with oil, crushed garlic, paprika, cumin, lemon zest and salt.",
+   "Thread the beef, pepper and onion onto metal skewers and arrange on the tray.",
+   "Roast for about 10–13 minutes, turning once, until browned and the beef reaches at least 63°C (145°F). Rest for 3 minutes.",
+   "Meanwhile, cover the couscous with boiling water according to the packet. Fluff it with a fork and add chopped parsley and lemon juice.",
+   "Serve the skewers beside a mound of couscous."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "creamy-curry-chicken-pasta",
+  "title": "Creamy curry chicken pasta",
+  "emoji": "🍝",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 21,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "penne",
+    "amount": 310,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 470,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 150,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the penne until firm at the centre, keeping a cup of the cooking water when you drain it.",
+   "Thinly slice the chicken and chop the onion. Fry the chicken in the hot oil until coloured on both sides.",
+   "Add the onion and crushed garlic and cook until soft. Stir through the curry powder for 30 seconds.",
+   "Pour in the stock and cream. Simmer until the chicken reaches 74°C (165°F) and the sauce thickens.",
+   "Add the peas and penne and cook for a few minutes, adding a splash of pasta water to loosen the sauce.",
+   "Finish with lemon juice and chopped coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "turkey-cheeseburgers",
+  "title": "Turkey cheeseburgers",
+  "emoji": "🍔",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 16,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-turkey",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "burger-buns",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 95,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 55,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Mix the turkey with garlic powder, salt and pepper, and shape it into four patties without packing it tightly.",
+   "Tear the lettuce leaves, thickly slice the tomatoes and cut the cheese into thin slices.",
+   "Heat the oil in a frying pan and fry the patties on each side until brown and 74°C (165°F) in the middle.",
+   "Lay cheese on each patty, cover the pan for a minute and let it melt.",
+   "Toast the split buns and stir the mustard into the mayonnaise.",
+   "Spread sauce on each bun and build with lettuce, tomato and a turkey cheeseburger patty."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-lemon-chicken-cutlets",
+  "title": "Crispy lemon chicken cutlets",
+  "emoji": "🍋",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 17,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 560,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 85,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Split the chicken breasts horizontally and pound the pieces lightly so they are an even thickness. Trim the beans.",
+   "Mix flour with salt and pepper on a plate. Beat the egg in a bowl, then mix lemon zest through the breadcrumbs on another plate.",
+   "Coat each cutlet with flour, egg and breadcrumbs. Fry in hot oil until crisp and the centre reaches 74°C (165°F).",
+   "Cook the beans in boiling water for a few minutes and drain. Toss with butter and crushed garlic in the warm pan.",
+   "Drain the chicken on a rack so the crust stays crisp. Cut the remaining lemon into thin rounds.",
+   "Serve the cutlets beside the green beans with the lemon rounds for squeezing."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "turkey-carrot-almond-pilaf",
+  "title": "Turkey and carrot pilaf",
+  "emoji": "🍚",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "highProtein",
+   "batchFriendly",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "turkey-breast",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "almonds",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 580,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 14,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Toast the flaked almonds in a dry lidded pan, then set them aside. Rinse the rice and grate the carrots coarsely.",
+   "Dice the turkey and onion. Heat the oil and brown the turkey, then add the onion for 4 minutes.",
+   "Add the cumin, turmeric, carrot and rice. Stir until the rice is coated with oil and spices.",
+   "Pour in the stock and bring to a simmer. Cover and cook on low for 15 minutes, until the rice is tender and the turkey reaches 74°C (165°F).",
+   "Rest covered for 4 minutes, then fluff the grains gently with a fork.",
+   "Fold in chopped parsley and lemon juice. Scatter the toasted almonds over each bowl."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "korean-beef-kebab-tortillas",
+  "title": "Korean-style beef kebab tortillas",
+  "emoji": "🌮",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 18,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 530,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 8,
+    "unit": "piece",
+    "note": "small"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Slice the beef into bite-size pieces. Mix soy, gochujang, honey, crushed garlic and grated ginger, then coat the meat.",
+   "Shred the cabbage and cut the cucumber into sticks. Dress with vinegar and sesame oil.",
+   "Thread the beef onto metal skewers. Heat a griddle pan and brush it lightly with vegetable oil.",
+   "Griddle on all sides, until browned and at least 63°C (145°F) in the centre. Rest for 3 minutes.",
+   "Warm the tortillas in a dry pan. Slide the beef off the skewers.",
+   "Fill each tortilla with beef, cabbage and cucumber, and finish with sesame seeds."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "spicy-peanut-chicken-noodles",
+  "title": "Spicy peanut chicken noodles",
+  "emoji": "🥜",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "egg-noodles",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 490,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "red"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 85,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the noodles according to the packet. Scoop out a mug of cooking water before draining.",
+   "Whisk the peanut butter, sriracha, soy and lime juice with about 100 ml of the hot noodle water.",
+   "Slice the chicken into even cutlets. Slice the pepper and cut the carrot into matchsticks.",
+   "Sear the chicken cutlets until the centre reaches 74°C (165°F) and lift onto a clean board. Add the pepper and carrot and stir-fry for 3 minutes.",
+   "Add the noodles and peanut sauce and toss briefly, loosening with more cooking water if needed.",
+   "Slice the cooked chicken and lay it over the sauced noodles. Top with chopped peanuts and finely sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "bbq-chicken-pineapple-toast",
+  "title": "Barbecue chicken and pineapple toast",
+  "emoji": "🍍",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "sourdough",
+    "amount": 8,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 440,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bbq-sauce",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pineapple-tin",
+    "amount": 180,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 110,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Poach the chicken until the centre reaches 74°C (165°F).",
+   "Lift the chicken onto a clean plate and pull it into shreds. Toss it with barbecue sauce.",
+   "Brush the bread lightly with oil and toast for a few minutes. Drain the pineapple thoroughly and cut into smaller pieces.",
+   "Top the toast with the barbecue chicken, pineapple and grated cheddar. Return to the oven for 5–7 minutes until bubbling.",
+   "Scatter over sliced spring onions and serve the open toasts immediately."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "chipotle-chicken-corn-wraps",
+  "title": "Chipotle chicken wraps",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 13,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 180,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 130,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chipotles-in-adobo",
+    "amount": 28,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Finely chop the chipotles. Stir half into the yoghurt with a squeeze of lime.",
+   "Cut the chicken into strips and toss with the remaining chipotle, cumin, salt and oil.",
+   "Sear in a hot skillet until browned and the centre reaches 74°C (165°F). Squeeze the rest of the lime over it.",
+   "Warm the tortillas. Chop the lettuce and drain the corn thoroughly.",
+   "Spread the yoghurt on the wraps and add lettuce, corn and chicken. Roll firmly, toast the filled wraps briefly in a dry pan and cut them in half on the diagonal."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": []
+ },
+ {
+  "id": "beef-sweet-potato-herby-bowls",
+  "title": "Beef and sweet potato bowls with herby yoghurt",
+  "emoji": "🍠",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 470,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweet-potato",
+    "amount": 750,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 16,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mint",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F) and cut the sweet potato into small cubes.",
+   "Toss the cubes with most of the oil, half the paprika and some salt. Roast for 22–26 minutes, turning once.",
+   "Heat the remaining oil in a frying pan and break up the beef as it browns.",
+   "Season with the remaining paprika, cumin and salt and cook through. Cut the cucumber into small cubes.",
+   "Whisk the yoghurt with chopped mint, parsley and lemon juice.",
+   "Pile the sweet potato, beef and cucumber into bowls, and spoon over the herby yoghurt."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "malaysian-curry-leaf-chicken",
+  "title": "Malaysian creamy curry leaf chicken",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 14,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 55,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "evaporated-milk",
+    "amount": 270,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 28,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "curry-leaves",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and set it on to cook. Dice the chicken, slice the chilli and crush the garlic.",
+   "Toss the chicken in cornflour and salt. Shallow-fry in a hot pan in batches until golden and 74°C (165°F).",
+   "Drain the chicken on a rack. Melt the butter in a clean frying pan and add the garlic, curry leaves and sliced chilli.",
+   "When the leaves sizzle, stir in the evaporated milk and sugar. Simmer gently until the sauce thickens enough to lightly coat a spoon.",
+   "Tip in the crispy chicken and turn it through the sauce just before serving.",
+   "Spoon alongside rice and make sure each serving gets a few curry leaves."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "spinach-artichoke-chicken-skillet",
+  "title": "Spinach and artichoke chicken",
+  "emoji": "🍗",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 11,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 550,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "artichoke-hearts",
+    "amount": 260,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 190,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 250,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Slice the chicken into four even cutlets. Drain and quarter the artichokes and crush the garlic.",
+   "Heat the oil in a skillet and brown the chicken on both sides. Lift it onto a clean plate.",
+   "Stir the garlic into the pan briefly and pour in the stock. Scrape up the browned bits, then stir in cream cheese.",
+   "Return the chicken along with the artichokes and simmer until the chicken reaches 74°C (165°F).",
+   "Fold in spinach and grated parmesan. Let the spinach wilt, then add lemon juice and cracked pepper.",
+   "Serve the chicken with plenty of the spinach and artichoke sauce and slices of lightly toasted baguette to mop it up."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
  }
 ]

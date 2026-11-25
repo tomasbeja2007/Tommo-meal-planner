@@ -943,6 +943,36 @@
   }
  },
  {
+  "id": "curry-leaves",
+  "name": "fresh curry leaves",
+  "pluralName": "fresh curry leaves",
+  "aisle": "Produce",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 108,
+   "protein": 6,
+   "carbs": 19,
+   "fat": 1,
+   "fiber": 6
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 15,
+   "display": "15 g bunch",
+   "displayImperial": "0.5 oz bunch",
+   "noun": "bunch",
+   "nounPlural": "bunches"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
+  "tags": []
+ },
+ {
   "id": "basil",
   "name": "basil",
   "pluralName": "basil",
@@ -3877,6 +3907,39 @@
   }
  },
  {
+  "id": "evaporated-milk",
+  "name": "evaporated milk",
+  "pluralName": "evaporated milk",
+  "aisle": "Tins & Jars",
+  "allergens": [
+   "dairy"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": true
+  },
+  "per100g": {
+   "kcal": 134,
+   "protein": 6.8,
+   "carbs": 10,
+   "fat": 7.6,
+   "fiber": 0
+  },
+  "baseUnit": "ml",
+  "pack": {
+   "amount": 354,
+   "display": "354 ml tin",
+   "displayImperial": "12 fl oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥛",
+  "tags": [],
+  "gramsPerMl": 1.05
+ },
+ {
   "id": "coconut-milk",
   "name": "coconut milk",
   "pluralName": "coconut milk",
@@ -4450,6 +4513,36 @@
   },
   "isPantryStaple": false,
   "emoji": "🌶️",
+  "tags": []
+ },
+ {
+  "id": "artichoke-hearts",
+  "name": "artichoke hearts in water",
+  "pluralName": "artichoke hearts in water",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 47,
+   "protein": 3.3,
+   "carbs": 10.5,
+   "fat": 0.2,
+   "fiber": 5.4
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 240,
+   "display": "400 g tin (240 g drained)",
+   "displayImperial": "14 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🌿",
   "tags": []
  },
  {
@@ -6386,6 +6479,39 @@
   "gramsPerUnit": {
    "tsp": 4
   }
+ },
+ {
+  "id": "almonds",
+  "name": "flaked almonds",
+  "pluralName": "flaked almonds",
+  "aisle": "Other",
+  "allergens": [
+   "treeNut"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 579,
+   "protein": 21,
+   "carbs": 22,
+   "fat": 50,
+   "fiber": 12
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 100,
+   "display": "100 g bag",
+   "displayImperial": "3.5 oz bag",
+   "noun": "bag",
+   "nounPlural": "bags"
+  },
+  "isPantryStaple": false,
+  "emoji": "🥜",
+  "tags": [],
+  "ukName": "flaked almonds"
  },
  {
   "id": "peanuts",
