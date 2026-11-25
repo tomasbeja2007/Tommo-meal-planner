@@ -216,13 +216,6 @@ struct PaywallView: View {
                     .foregroundStyle(Theme.aubergineMuted)
                     .multilineTextAlignment(.center)
             }
-            if onBack != nil {
-                Button("Continue without a subscription", action: onClose)
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Theme.aubergine)
-                    .frame(minHeight: 44)
-                    .disabled(isPurchasing)
-            }
             FlowLayout(spacing: Theme.Spacing.m) {
                 Button(String(localized: "Restore")) {
                     guard !isPurchasing else { return }
