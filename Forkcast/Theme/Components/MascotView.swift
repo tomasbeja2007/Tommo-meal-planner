@@ -58,7 +58,7 @@ struct MascotView: View {
         .onAppear { isVisible = true }
         .onDisappear { isVisible = false }
         .accessibilityElement()
-        .accessibilityLabel(Text("Chef Tomato, the Forkcast mascot"))
+        .accessibilityLabel(Text("Chef Tomato, the Tommo mascot"))
         .accessibilityAddTraits(.isImage)
     }
 }

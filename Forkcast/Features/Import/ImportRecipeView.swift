@@ -20,7 +20,7 @@ struct ImportRecipeView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    Text("Paste a TikTok or Instagram link, or the recipe text itself. You can also share straight to Forkcast from those apps.")
+                    Text("Paste a TikTok or Instagram link, or the recipe text itself. You can also share straight to Tommo from those apps.")
                         .font(.subheadline)
                         .foregroundStyle(Theme.aubergineMuted)
                         .fixedSize(horizontal: false, vertical: true)
@@ -58,7 +58,7 @@ struct ImportRecipeView: View {
                             .font(.system(.headline, design: .rounded))
                             .foregroundStyle(Theme.aubergine)
                         ImportStepRow(number: 1, text: String(localized: "Open the recipe video"))
-                        ImportStepRow(number: 2, text: String(localized: "Tap Share, then Forkcast (you may need to tap More first)"))
+                        ImportStepRow(number: 2, text: String(localized: "Tap Share, then Tommo (you may need to tap More first)"))
                         ImportStepRow(number: 3, text: String(localized: "Come back here to check and save it"))
                     }
                     .cardStyle()

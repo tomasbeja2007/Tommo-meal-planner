@@ -143,8 +143,8 @@ struct ShareConfirmationView: View {
 
     private var title: String {
         switch state.status {
-        case .working: return "Sending to Forkcast…"
-        case .saved: return "sent to Forkcast, open the app to finish"
+        case .working: return "Sending to Tommo…"
+        case .saved: return "sent to Tommo, open the app to finish"
         case .nothing: return "Nothing to import here. Try sharing a link or the caption text."
         }
     }

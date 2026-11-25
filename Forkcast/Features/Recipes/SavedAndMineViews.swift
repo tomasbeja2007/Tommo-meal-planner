@@ -116,8 +116,8 @@ private struct MyRecipesEmptyState: View {
                 .foregroundStyle(Theme.aubergine)
             VStack(alignment: .leading, spacing: Theme.Spacing.m) {
                 ImportStepRow(number: 1, text: String(localized: "Open a recipe video in TikTok or Instagram"))
-                ImportStepRow(number: 2, text: String(localized: "Tap Share, then choose Forkcast"))
-                ImportStepRow(number: 3, text: String(localized: "Open Forkcast to check it and save"))
+                ImportStepRow(number: 2, text: String(localized: "Tap Share, then choose Tommo"))
+                ImportStepRow(number: 3, text: String(localized: "Open Tommo to check it and save"))
             }
             .cardStyle()
         }

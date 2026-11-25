@@ -17,7 +17,7 @@ struct GoalsStepView: View {
 
     var body: some View {
         QuestionScaffold(
-            title: String(localized: "what would you like Forkcast to help with?"),
+            title: String(localized: "what would you like Tommo to help with?"),
             subtitle: String(localized: "pick as many as you like"),
             buttonTitle: continueTitle(selected: state.goals.count),
             isButtonEnabled: !state.goals.isEmpty,

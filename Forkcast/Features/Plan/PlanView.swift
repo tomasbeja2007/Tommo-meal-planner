@@ -75,7 +75,7 @@ struct PlanView: View {
         .sheet(isPresented: $showsQuickActions, onDismiss: openQuickAction) {
             NavigationStack {
                 List {
-                    quickActionRow("Import recipe", detail: "Bring a recipe into Forkcast.", icon: "square.and.arrow.down", action: .importRecipe)
+                    quickActionRow("Import recipe", detail: "Bring a recipe into Tommo.", icon: "square.and.arrow.down", action: .importRecipe)
                     quickActionRow(planStore.hasPlan ? "Edit week" : "Build my week", detail: "Choose dinners and servings.", icon: "calendar", action: .planWeek)
                 }
                 .scrollContentBackground(.hidden)

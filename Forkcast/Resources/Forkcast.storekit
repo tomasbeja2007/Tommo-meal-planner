@@ -22,7 +22,7 @@
       "localizations" : [
 
       ],
-      "name" : "Forkcast Pro",
+      "name" : "Tommo Pro",
       "subscriptions" : [
         {
           "adHocOffers" : [
@@ -44,7 +44,7 @@
           "localizations" : [
             {
               "description" : "A costed week of dinners, one grocery list, recipes that fit your rules.",
-              "displayName" : "Forkcast Pro (Yearly)",
+              "displayName" : "Tommo Pro (Yearly)",
               "locale" : "en_US"
             }
           ],
@@ -69,7 +69,7 @@
           "localizations" : [
             {
               "description" : "A costed week of dinners, one grocery list, recipes that fit your rules.",
-              "displayName" : "Forkcast Pro (Monthly)",
+              "displayName" : "Tommo Pro (Monthly)",
               "locale" : "en_US"
             }
           ],

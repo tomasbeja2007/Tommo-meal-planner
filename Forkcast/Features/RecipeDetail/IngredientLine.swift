@@ -50,7 +50,7 @@ enum RecipeShareText {
             lines.append("\(index + 1). \(step)")
         }
         lines.append("")
-        lines.append("Planned with Forkcast")
+        lines.append("Planned with Tommo")
         return lines.joined(separator: "\n")
     }
 }

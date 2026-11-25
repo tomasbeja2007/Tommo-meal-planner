@@ -70,7 +70,7 @@ final class NotificationManager {
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Trial reminder")
         let dateText: String = trialEnd.formatted(date: .abbreviated, time: .omitted)
-        content.body = String(localized: "heads-up: your Forkcast trial ends \(dateText). Cancel anytime in Settings.")
+        content.body = String(localized: "heads-up: your Tommo trial ends \(dateText). Cancel anytime in Settings.")
         content.sound = .default
         let components: DateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: fireDate)
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)

@@ -290,7 +290,7 @@ public enum GroceryTextExporter {
             lines.append("")
         }
         lines.append("Approx. total: \(formatMoney(list.total))")
-        lines.append("Planned with Forkcast")
+        lines.append("Planned with Tommo")
         return lines.joined(separator: "\n")
     }
 }

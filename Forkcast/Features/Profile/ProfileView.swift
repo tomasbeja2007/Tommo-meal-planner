@@ -121,9 +121,9 @@ struct ProfileView: View {
             Button {
                 requestReview()
             } label: {
-                Label(String(localized: "Rate Forkcast"), systemImage: "star")
+                Label(String(localized: "Rate Tommo"), systemImage: "star")
             }
-            if let contact = AppLinks.mail(subject: "Hello from Forkcast") {
+            if let contact = AppLinks.mail(subject: "Hello from Tommo") {
                 Link(destination: contact) {
                     Label(String(localized: "Contact us"), systemImage: "envelope")
                 }
@@ -244,7 +244,7 @@ private struct FooterView: View {
     var body: some View {
         VStack(spacing: Theme.Spacing.s) {
             MascotView(size: 56, mood: .idle)
-            Text("Forkcast v\(version) · made for busy weeknights")
+            Text("Tommo v\(version) · made for busy weeknights")
                 .font(.caption)
                 .foregroundStyle(Theme.aubergineFaint)
                 .onLongPressGesture(minimumDuration: 1.0) {

@@ -55,7 +55,7 @@ struct TrialReminderView: View {
                         .foregroundStyle(Theme.aubergine)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
-                    Text("If you start a trial and allow notifications, Forkcast can remind you before it ends.")
+                    Text("If you start a trial and allow notifications, Tommo can remind you before it ends.")
                         .font(.body)
                         .foregroundStyle(Theme.aubergineMuted)
                         .multilineTextAlignment(.center)
