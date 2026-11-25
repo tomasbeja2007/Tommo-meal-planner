@@ -118,8 +118,12 @@
 - **Art:** `Forkcast/Resources/Assets.xcassets/Mascot.imageset` (source `Design/mascot-tomato-chef.png`).
   Mood art: `MascotIdle`, `MascotCheer`, `MascotThinking`, `MascotBell` (moods `.idle`, `.cheer`, `.thinking`, `.bell`).
   `LaunchMascot` is `MascotIdle` resized to 200 pt for the launch screen (same size and spot as the splash mascot).
-- **Onboarding motion:** `WelcomeStep` (splash: `MascotRing` = mascot + ingredient pieces; one `LoopClock` for the
-  idle drift, one `OneShotClock` for the burst; numbers in `enum RingMotion`), `ConfettiView` (one `Canvas`, one
+- **Onboarding motion:** `WelcomeStep` (one continuous intro out of the launch screen: Chef Tomato is drawn at the
+  launch size, rests 160 ms, then glides on the travel curve from the window centre into the hero and settles with a
+  small volume-keeping squash; the six ingredients open out from behind it, staggered 70 ms, from 35% of the way and
+  75% scale; title, subtitle and buttons rise 14 pt in with ease-out at 0.62 / 0.72 / 0.86 s; light haptic on landing.
+  Idle drift is tiny: 1.2% bob, 2° rock, back layer at 60% for depth, periods 10/12/15 s inside the 60 s ambient loop.
+  Plays once per launch. Numbers in `enum WelcomeIntro`), `ConfettiView` (one `Canvas`, one
   `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),
   the reminder bell (`StayOnTrackStep`: a one-shot swing around its top), the mirror's typed text (`OneShotClock`),
   `OptionTile`'s icon bounce (keyframes, off with Reduce Motion), the dislike strike-through and the vibe grid shake.
@@ -144,7 +148,8 @@
 - Onboarding brief (Nov 2026) widens that for onboarding only: a 48 pt `MascotReaction` in the top-right of some
   question screens (obstacles, household, budget), the mirror, stay on track, trial (`.bell` mood) and welcome home.
   A mood change swaps in with a quick spring. Still never on the main tabs' everyday screens.
-- The splash pop (0.85 → 1) is the one place the mascot gets a spring WITH overshoot, because the brief asks for it.
+- The old splash (mascot ring, then a hard swap to the welcome layout) was replaced by the continuous intro above,
+  because the swap made the mascot jump. The splash-* ingredient pieces are no longer used.
 - Light mode only; never green as a brand colour (herb green only for success and checkmarks).
 
 ### Rig limits
