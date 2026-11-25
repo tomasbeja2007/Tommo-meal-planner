@@ -376,6 +376,29 @@ unselected tab, and solid filled (`tab-<name>-fill`) for the selected tab.
 | `tab-cookbook`, `tab-cookbook-fill` | A closed recipe book with a small chef's hat on the cover |
 | `tab-profile`, `tab-profile-fill` | A person's head and shoulders wearing a small chef's hat |
 
+## 11. Interface glyphs (16), same style as the tab icons
+Same spec as section 10: **300×300 transparent PNG**, one solid black shape, no colour, no shading, no text, bold
+rounded strokes matching the tab icons. Outline style unless noted. Utility symbols (plus, close, chevrons, check,
+trash, search) stay as Apple's SF Symbols on purpose.
+
+| File | What to draw | Where it shows |
+|---|---|---|
+| `glyph-save` | A recipe card with a small bookmark ribbon | Recipe page "Save" |
+| `glyph-add-to-plan` | A calendar page with a small plus | Recipe page "Meal Plan" |
+| `glyph-add-to-groceries` | A small basket with a plus | Recipe page "Groceries", add buttons |
+| `glyph-share` | A plate with an arrow rising out of it | Recipe page "Share" |
+| `glyph-time` | A round kitchen timer with a knob on top | Cook time on cards and recipe facts |
+| `glyph-calories` | A small flame | Calories |
+| `glyph-cost` | A coin with a fork engraved on it | Price per serving |
+| `glyph-servings` | Two plates side by side, seen from above | Servings |
+| `glyph-swap` | Two curved arrows chasing round a plate | Swap a meal |
+| `glyph-cook` | A frying pan with a little steam | "Start cooking" |
+| `glyph-step-timer` | An egg timer (hourglass) | Step timers in a recipe |
+| `glyph-reminder` | A bell with a small fork as the clapper | Reminders |
+| `glyph-pantry` | A jar with a lid and a leaf label | Pantry |
+| `glyph-store` | A small shop front with an awning | Shop on the plan header |
+| `glyph-favorite` / `glyph-favorite-fill` | A heart made of two leaves (outline / solid) | Favourite a recipe |
+
 ## Do NOT generate
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:
   once a retailer gives permission (or you use their official press-kit file under its terms), add it as
