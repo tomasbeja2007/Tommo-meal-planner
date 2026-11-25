@@ -61,7 +61,6 @@ struct PreferencesSection: View {
     @Bindable var profile: UserProfile
     let onEdit: (PreferenceKind) -> Void
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
-    @Environment(PlanStore.self) private var planStore: PlanStore
 
     var body: some View {
         Section {
@@ -69,18 +68,26 @@ struct PreferencesSection: View {
                 Button {
                     onEdit(kind)
                 } label: {
-                    HStack {
-                        Label(kind.title, systemImage: kind.systemImage)
-                            .foregroundStyle(Theme.aubergine)
-                        Spacer()
-                        Text(summary(kind))
-                            .font(.subheadline)
-                            .foregroundStyle(Theme.aubergineMuted)
-                            .lineLimit(1)
+                    HStack(spacing: Theme.Spacing.s) {
+                        ViewThatFits(in: .horizontal) {
+                            HStack {
+                                preferenceTitle(kind)
+                                Spacer(minLength: Theme.Spacing.s)
+                                preferenceSummary(kind)
+                            }
+                            VStack(alignment: .leading, spacing: 4) {
+                                preferenceTitle(kind)
+                                preferenceSummary(kind)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         Image(systemName: "chevron.right")
                             .font(.caption.weight(.bold))
                             .foregroundStyle(Theme.aubergineFaint)
+                            .accessibilityHidden(true)
                     }
+                    .frame(minHeight: 44)
+                    .contentShape(Rectangle())
                 }
             }
             Toggle(isOn: Binding<Bool>(
@@ -98,6 +105,17 @@ struct PreferencesSection: View {
             Text("Preferences")
         }
         .listRowBackground(Theme.card)
+    }
+
+    private func preferenceTitle(_ kind: PreferenceKind) -> some View {
+        Label(kind.title, systemImage: kind.systemImage)
+            .foregroundStyle(Theme.aubergine)
+    }
+
+    private func preferenceSummary(_ kind: PreferenceKind) -> some View {
+        Text(summary(kind))
+            .font(.subheadline)
+            .foregroundStyle(Theme.aubergineMuted)
     }
 
     private func summary(_ kind: PreferenceKind) -> String {

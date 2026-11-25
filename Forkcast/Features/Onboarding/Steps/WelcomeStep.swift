@@ -12,7 +12,7 @@ struct WelcomeStep: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: Theme.Spacing.xl) {
-                    IngredientHero(height: 236)
+                    IngredientHero(height: min(320, max(180, geometry.size.height * 0.54)), showsPlanPreview: true)
                     VStack(spacing: Theme.Spacing.s) {
                         Text("Forkcast")
                             .font(.system(size: titleSize, weight: .heavy, design: .rounded))
@@ -48,6 +48,7 @@ struct WelcomeStep: View {
 /// A single clock drives the ingredient layers. Text and controls sit outside the scene.
 struct IngredientHero: View {
     let height: CGFloat
+    var showsPlanPreview = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isVisible = false
@@ -79,7 +80,11 @@ struct IngredientHero: View {
             LoopClock(period: Theme.Motion.ambientDuration, paused: !isVisible) { time in
                 ZStack {
                     props(Self.back, width: side, at: time)
-                    MascotView(size: min(height * 0.65, side * 0.55), mood: .idle)
+                    if showsPlanPreview && AssetImage.exists("WelcomePlanScreenshot") {
+                        phonePreview
+                    } else {
+                        MascotView(size: min(height * 0.65, side * 0.55), mood: .idle)
+                    }
                     props(Self.front, width: side, at: time)
                 }
                 .frame(width: side, height: height)
@@ -95,6 +100,21 @@ struct IngredientHero: View {
         .onDisappear { isVisible = false }
         .accessibilityHidden(true)
         .allowsHitTesting(false)
+    }
+
+    private var phonePreview: some View {
+        let screenHeight = height * 0.82
+        let corners = RoundedRectangle(cornerRadius: height * 0.06, style: .continuous)
+        return Image("WelcomePlanScreenshot")
+            .resizable()
+            .scaledToFill()
+            .frame(width: screenHeight * 0.48, height: screenHeight)
+            .clipShape(corners)
+            .padding(5)
+            .background(Color(white: 0.14), in: corners)
+            .rotation3DEffect(.degrees(-9), axis: (x: 0, y: 1, z: 0), perspective: 0.5)
+            .rotationEffect(.degrees(-10))
+            .shadow(color: Theme.aubergine.opacity(0.24), radius: 12, x: 3, y: 8)
     }
 
     private func props(_ props: [Prop], width: CGFloat, at time: Double) -> some View {

@@ -38,6 +38,9 @@ private struct RecipeDetailContent: View {
     @State private var servings: Int = 2
     @State private var showNutritionTotal = false
     @State private var tab: DetailTab = .ingredients
+    @State private var displayUnits: UnitSystem?
+
+    private var unitSystem: UnitSystem { displayUnits ?? profileStore.unitSystem }
     @State private var timer: CountdownTimer = CountdownTimer()
     @State private var isCookModeShown: Bool = false
     @State private var cookStep = 0
@@ -79,16 +82,30 @@ private struct RecipeDetailContent: View {
                             note: nutrition.hasIncompleteData ? String(localized: "some ingredients have no nutrition data") : nil
                         )
                     }
-                    Picker(String(localized: "Section"), selection: $tab) {
+                    HStack(spacing: 0) {
                         ForEach(DetailTab.allCases) { item in
-                            Text(item.title).tag(item)
+                            Button { tab = item } label: {
+                                Text(item.title)
+                                    .font(.system(.subheadline, design: .rounded).weight(tab == item ? .bold : .medium))
+                                    .foregroundStyle(tab == item ? Theme.aubergine : Theme.aubergineMuted)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, Theme.Spacing.xs)
+                                    .frame(maxWidth: .infinity, minHeight: 44)
+                                    .overlay(alignment: .bottom) {
+                                        Capsule().fill(tab == item ? Theme.tomato : Theme.line).frame(height: 2)
+                                    }
+                                    .contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityAddTraits(tab == item ? .isSelected : [])
                         }
                     }
-                    .pickerStyle(.segmented)
                     if tab == .ingredients {
                         IngredientsSection(
                             recipe: recipe,
                             servings: $servings,
+                            system: unitSystem,
+                            onChangeUnits: { displayUnits = $0 },
                             isInPlan: plannedMeal != nil,
                             addedToList: addedToList,
                             onAddToList: {
@@ -97,7 +114,7 @@ private struct RecipeDetailContent: View {
                             }
                         )
                     } else {
-                        MethodSection(recipe: recipe, servings: Double(servings), timer: timer) { isCookModeShown = true }
+                        MethodSection(recipe: recipe, servings: Double(servings), system: unitSystem, timer: timer) { isCookModeShown = true }
                     }
                     DetailFooter(
                         recipe: recipe,
@@ -127,7 +144,7 @@ private struct RecipeDetailContent: View {
         }
         .animation(Theme.spring, value: timer.isActive)
         .fullScreenCover(isPresented: $isCookModeShown) {
-            CookModeView(recipe: recipe, servings: Double(servings), index: $cookStep, timer: timer, isPlanned: plannedMeal != nil) { stars in
+            CookModeView(recipe: recipe, servings: Double(servings), system: unitSystem, index: $cookStep, timer: timer, isPlanned: plannedMeal != nil) { stars in
                 markCooked(stars: stars)
                 cookStep = 0
             }
@@ -179,7 +196,7 @@ private struct RecipeDetailContent: View {
             }
             .sensoryFeedback(.selection, trigger: library.isSaved(recipe.id))
             .accessibilityLabel(Text(library.isSaved(recipe.id) ? "Remove from saved" : "Save recipe"))
-            ShareLink(item: RecipeShareText.make(recipe: recipe, servings: Double(servings), catalog: repository.catalog, system: profileStore.unitSystem)) {
+            ShareLink(item: RecipeShareText.make(recipe: recipe, servings: Double(servings), catalog: repository.catalog, system: unitSystem)) {
                 Image(systemName: "square.and.arrow.up")
                     .foregroundStyle(Theme.aubergine)
                     .frame(width: 36, height: 36)
@@ -244,15 +261,15 @@ private struct DetailHeader: View {
 private struct IngredientsSection: View {
     let recipe: Recipe
     @Binding var servings: Int
+    let system: UnitSystem
+    let onChangeUnits: (UnitSystem) -> Void
     let isInPlan: Bool
     let addedToList: Bool
     let onAddToList: () -> Void
 
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
-    @Environment(ProfileStore.self) private var profileStore: ProfileStore
-
     var body: some View {
-        let lines: [IngredientLine] = IngredientLine.lines(for: recipe, servings: Double(servings), catalog: repository.catalog, system: profileStore.unitSystem)
+        let lines: [IngredientLine] = IngredientLine.lines(for: recipe, servings: Double(servings), catalog: repository.catalog, system: system)
         let main: [IngredientLine] = lines.filter { !$0.isPantryStaple }
         let staples: [IngredientLine] = lines.filter { $0.isPantryStaple }
         VStack(alignment: .leading, spacing: Theme.Spacing.m) {
@@ -264,6 +281,23 @@ private struct IngredientsSection: View {
                 RoundStepper(value: $servings, range: 1...12)
             }
             .cardStyle(padding: Theme.Spacing.m)
+            Menu {
+                Button {
+                    onChangeUnits(.metric)
+                } label: {
+                    Label("Metric", systemImage: system == .metric ? "checkmark" : "scalemass")
+                }
+                Button {
+                    onChangeUnits(.imperial)
+                } label: {
+                    Label("Imperial", systemImage: system == .imperial ? "checkmark" : "scalemass")
+                }
+            } label: {
+                Label(system == .metric ? String(localized: "Units: Metric") : String(localized: "Units: Imperial"), systemImage: "arrow.left.arrow.right")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .frame(minHeight: 44)
+            }
             VStack(spacing: 0) {
                 ForEach(main) { line in
                     IngredientRow(line: line)
@@ -299,7 +333,7 @@ private struct IngredientRow: View {
 
     var body: some View {
         HStack(spacing: Theme.Spacing.m) {
-            IngredientThumbnail(ingredientID: line.ingredientID)
+            IngredientThumbnail(ingredientID: line.ingredientID, size: 44, showsBackground: false)
             VStack(alignment: .leading, spacing: 1) {
                 Text(line.name.capitalizedFirst)
                     .font(.body)
@@ -318,7 +352,8 @@ private struct IngredientRow: View {
                 .foregroundStyle(Theme.aubergine)
                 .multilineTextAlignment(.trailing)
         }
-        .padding(.vertical, 10)
+        .frame(minHeight: 46)
+        .padding(.vertical, Theme.Spacing.s)
         .accessibilityElement(children: .combine)
     }
 }
@@ -326,6 +361,7 @@ private struct IngredientRow: View {
 private struct MethodSection: View {
     let recipe: Recipe
     let servings: Double
+    let system: UnitSystem
     let timer: CountdownTimer
     let onCook: () -> Void
 
@@ -337,7 +373,7 @@ private struct MethodSection: View {
                 Text("no steps yet").foregroundStyle(Theme.aubergineMuted)
             }
             ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
-                StepRow(number: index + 1, text: step, recipe: recipe, servings: servings, timer: timer)
+                StepRow(number: index + 1, text: step, recipe: recipe, servings: servings, system: system, timer: timer)
             }
         }
     }
@@ -348,6 +384,7 @@ private struct StepRow: View {
     let text: String
     let recipe: Recipe
     let servings: Double
+    let system: UnitSystem
     let timer: CountdownTimer
 
     var body: some View {
@@ -362,7 +399,7 @@ private struct StepRow: View {
                     .font(.body)
                     .foregroundStyle(Theme.aubergine)
                     .fixedSize(horizontal: false, vertical: true)
-                StepChips(text: text, recipe: recipe, servings: servings, timer: timer)
+                StepChips(text: text, recipe: recipe, servings: servings, system: system, timer: timer)
             }
         }
     }
@@ -373,10 +410,10 @@ struct StepChips: View {
     let text: String
     let recipe: Recipe
     let servings: Double
+    let system: UnitSystem
     let timer: CountdownTimer
 
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
-    @Environment(ProfileStore.self) private var profileStore: ProfileStore
 
     var body: some View {
         let used = StepIngredientMatcher.ingredients(in: text, recipe: recipe, catalog: repository.catalog)
@@ -395,11 +432,13 @@ struct StepChips: View {
                 }
                 if !timers.isEmpty {
                     FlowLayout(spacing: 6) {
-                        ForEach(timers) { stepTimer in
+                        ForEach(Array(timers.enumerated()), id: \.offset) { _, stepTimer in
+                            let duration = TimerDetector.clock(stepTimer.seconds)
+                            let label = stepTimer.usesUpperBound ? String(localized: "\(duration) timer (upper end)") : stepTimer.label
                             Button {
-                                timer.start(label: stepTimer.label, seconds: stepTimer.seconds)
+                                timer.start(label: label, seconds: stepTimer.seconds)
                             } label: {
-                                Label(stepTimer.label, systemImage: "timer")
+                                Label(label, systemImage: "timer")
                                     .font(.caption.weight(.bold))
                                     .foregroundStyle(Theme.aubergine)
                                     .padding(.horizontal, 10)
@@ -408,7 +447,7 @@ struct StepChips: View {
                                     .overlay(Capsule().stroke(Theme.saffron, lineWidth: 1))
                             }
                             .buttonStyle(.plain)
-                            .accessibilityLabel(Text("Start a \(stepTimer.label) timer"))
+                            .accessibilityLabel(Text("Start timer: \(label)"))
                         }
                     }
                 }
@@ -418,7 +457,6 @@ struct StepChips: View {
 
     private func ingredientChip(_ item: RecipeIngredient) -> some View {
         let ingredient = item.ingredientId.flatMap { repository.catalog.ingredient(id: $0) }
-        let system = profileStore.unitSystem
         let amount = item.amount * servings / Double(max(1, recipe.baseServings))
         let quantity = QuantityFormatter.string(amount: amount, unit: item.unit, system: system, ingredient: ingredient)
         let name = ingredient?.displayName(for: system) ?? item.name ?? String(localized: "Ingredient")

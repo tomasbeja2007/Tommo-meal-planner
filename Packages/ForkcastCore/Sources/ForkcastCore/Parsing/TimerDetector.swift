@@ -4,6 +4,7 @@ public struct StepTimer: Hashable, Sendable, Identifiable {
     /// The matched text, e.g. "20 minutes".
     public let label: String
     public let seconds: Int
+    public let usesUpperBound: Bool
     public var id: String { "\(label)-\(seconds)" }
 }
 
@@ -19,9 +20,10 @@ public enum TimerDetector {
         for match in matches {
             let first: String = ns.substring(with: match.range(at: 1)).replacingOccurrences(of: ",", with: ".")
             var value: Double = Double(first) ?? 0
-            if match.range(at: 2).location != NSNotFound {
+            let isRange = match.range(at: 2).location != NSNotFound
+            if isRange {
                 let second: String = ns.substring(with: match.range(at: 2)).replacingOccurrences(of: ",", with: ".")
-                // Use the upper bound: better to check early than to undercook.
+                // The UI identifies the upper bound as the timer’s default.
                 value = max(value, Double(second) ?? value)
             }
             let unit: String = ns.substring(with: match.range(at: 3)).lowercased()
@@ -33,9 +35,8 @@ public enum TimerDetector {
             } else {
                 multiplier = 1
             }
-            let seconds: Int = Int((value * multiplier).rounded())
-            guard seconds > 0 else { continue }
-            result.append(StepTimer(label: ns.substring(with: match.range), seconds: seconds))
+            guard let seconds = Int(exactly: (value * multiplier).rounded()), seconds > 0 else { continue }
+            result.append(StepTimer(label: ns.substring(with: match.range), seconds: seconds, usesUpperBound: isRange))
         }
         return result
     }

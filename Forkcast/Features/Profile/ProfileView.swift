@@ -41,11 +41,13 @@ struct ProfileView: View {
                     ProfileCard(profile: profile)
                         .listRowBackground(Color.clear)
                         .listRowInsets(EdgeInsets())
-                    PreferencesSection(profile: profile) { editing = $0 }
-                    NotificationsSection(profile: profile)
                     AccountSection(profile: profile)
                 }
                 subscriptionSection
+                if let profile = profileStore.profile {
+                    PreferencesSection(profile: profile) { editing = $0 }
+                    NotificationsSection(profile: profile)
+                }
                 supportSection
                 legalSection
                 dangerSection

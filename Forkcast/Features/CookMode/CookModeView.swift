@@ -6,6 +6,7 @@ import ForkcastCore
 struct CookModeView: View {
     let recipe: Recipe
     let servings: Double
+    let system: UnitSystem
     @Binding var index: Int
     let timer: CountdownTimer
     let isPlanned: Bool
@@ -24,7 +25,7 @@ struct CookModeView: View {
             CookModeHeader(index: index, stepCount: stepCount) { dismiss() }
             TabView(selection: $index) {
                 ForEach(Array(recipe.steps.enumerated()), id: \.offset) { position, step in
-                    CookStepPage(number: position + 1, text: step, recipe: recipe, servings: servings, timer: timer)
+                    CookStepPage(number: position + 1, text: step, recipe: recipe, servings: servings, system: system, timer: timer)
                         .tag(position)
                 }
                 CookFinishedPage(stars: $stars, isPlanned: isPlanned) {
@@ -122,6 +123,7 @@ private struct CookStepPage: View {
     let text: String
     let recipe: Recipe
     let servings: Double
+    let system: UnitSystem
     let timer: CountdownTimer
 
     var body: some View {
@@ -138,7 +140,7 @@ private struct CookStepPage: View {
                     .foregroundStyle(Theme.aubergine)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
-                StepChips(text: text, recipe: recipe, servings: servings, timer: timer)
+                StepChips(text: text, recipe: recipe, servings: servings, system: system, timer: timer)
             }
             .padding(Theme.Spacing.xl)
             .frame(maxWidth: .infinity)
@@ -183,6 +185,6 @@ private struct CookFinishedPage: View {
 }
 
 #Preview {
-    CookModeView(recipe: PreviewData.sampleRecipe, servings: 2, index: .constant(0), timer: CountdownTimer(), isPlanned: true) { _ in }
+    CookModeView(recipe: PreviewData.sampleRecipe, servings: 2, system: .metric, index: .constant(0), timer: CountdownTimer(), isPlanned: true) { _ in }
         .previewEnvironment()
 }

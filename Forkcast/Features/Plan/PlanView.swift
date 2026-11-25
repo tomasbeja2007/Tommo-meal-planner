@@ -15,6 +15,15 @@ struct PlanView: View {
     @State private var isWhyCheaperShown: Bool = false
     @State private var isFeedbackShown: Bool = false
     @State private var isRegenerateConfirmShown: Bool = false
+    @State private var showsQuickActions = false
+    @State private var pendingQuickAction: QuickAction?
+    @AccessibilityFocusState private var quickActionsFocused: Bool
+
+    private enum QuickAction {
+        case importRecipe
+        case planWeek
+    }
+
     @State private var didAutoShowFeedback: Bool = false
 
     private var isPro: Bool { subscriptions.hasProAccess }
@@ -62,6 +71,25 @@ struct PlanView: View {
                 }
             }
             .animation(reduceMotion ? nil : Theme.Motion.fadeIn, value: planStore.isGenerating)
+        }
+        .sheet(isPresented: $showsQuickActions, onDismiss: openQuickAction) {
+            NavigationStack {
+                List {
+                    quickActionRow("Import recipe", detail: "Bring a recipe into Forkcast.", icon: "square.and.arrow.down", action: .importRecipe)
+                    quickActionRow(planStore.hasPlan ? "Edit week" : "Build my week", detail: "Choose dinners and servings.", icon: "calendar", action: .planWeek)
+                }
+                .scrollContentBackground(.hidden)
+                .background(Theme.cream.ignoresSafeArea())
+                .navigationTitle("Quick actions")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Close") { showsQuickActions = false }
+                    }
+                }
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
         .sheet(item: $swapTarget) { meal in
             SwapSheet(meal: meal)
@@ -112,32 +140,55 @@ struct PlanView: View {
     }
 
     private var quickActions: some View {
-        Menu {
-            Button {
-                router.gate(isPro: isPro) {
-                    router.pendingImportText = nil
-                    router.isImportPresented = true
-                }
-            } label: {
-                Label("Import recipe", systemImage: "square.and.arrow.down")
-            }
-            Button {
-                if planStore.hasPlan {
-                    router.gate(isPro: isPro) { isEditingWeek = true }
-                } else {
-                    Task { await planStore.generatePlan() }
-                }
-            } label: {
-                Label(planStore.hasPlan ? String(localized: "Edit week") : String(localized: "Build my week"), systemImage: "calendar")
-            }
-        } label: {
+        Button { showsQuickActions = true } label: {
             Image(systemName: "plus")
                 .font(.system(size: 17, weight: .bold))
                 .foregroundStyle(Theme.tomatoDeep)
                 .frame(width: 44, height: 44)
                 .background(Theme.tomatoSoft, in: Circle())
         }
+        .buttonStyle(.plain)
         .accessibilityLabel(Text("Quick actions"))
+        .accessibilityFocused($quickActionsFocused)
+    }
+
+    private func quickActionRow(_ title: LocalizedStringKey, detail: LocalizedStringKey, icon: String, action: QuickAction) -> some View {
+        Button {
+            pendingQuickAction = action
+            showsQuickActions = false
+        } label: {
+            Label {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title).font(.headline)
+                    Text(detail).font(.subheadline).foregroundStyle(Theme.aubergineMuted)
+                }
+            } icon: {
+                Image(systemName: icon)
+                    .foregroundStyle(Theme.tomatoDeep)
+            }
+            .frame(minHeight: 52)
+        }
+        .foregroundStyle(Theme.aubergine)
+    }
+
+    private func openQuickAction() {
+        let action = pendingQuickAction
+        pendingQuickAction = nil
+        switch action {
+        case .importRecipe:
+            router.gate(isPro: isPro) {
+                router.pendingImportText = nil
+                router.isImportPresented = true
+            }
+        case .planWeek:
+            if planStore.hasPlan {
+                router.gate(isPro: isPro) { isEditingWeek = true }
+            } else if !planStore.isGenerating {
+                Task { await planStore.generatePlan() }
+            }
+        case nil:
+            quickActionsFocused = true
+        }
     }
 
     @ViewBuilder

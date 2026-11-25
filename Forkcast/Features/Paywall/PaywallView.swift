@@ -8,6 +8,7 @@ struct PaywallView: View {
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @Environment(NotificationManager.self) private var notifications: NotificationManager
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @State private var selectedId: String = SubscriptionManager.yearlyId
     @State private var isPurchasing: Bool = false
@@ -42,19 +43,22 @@ struct PaywallView: View {
                     }
                     planSelector
                     if let trial, let selectedProduct {
-                        TrialTimeline(offer: trial, renewalPrice: selectedProduct.displayPrice)
+                        TrialTimeline(offer: trial, renewalPrice: selectedProduct.displayPrice, renewalPeriod: selectedProduct.subscription?.subscriptionPeriod)
                     }
                     if let errorMessage {
                         Text(errorMessage)
                             .font(.subheadline)
                             .foregroundStyle(Theme.tomatoDeep)
                     }
+                    if dynamicTypeSize.isAccessibilitySize { bottomBar }
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
                 .padding(.top, Theme.Spacing.xxl)
                 .padding(.bottom, Theme.Spacing.l)
             }
-            .safeAreaInset(edge: .bottom) { bottomBar }
+            .safeAreaInset(edge: .bottom) {
+                if !dynamicTypeSize.isAccessibilitySize { bottomBar }
+            }
 
             Button(action: onClose) {
                 Image(systemName: "xmark")
@@ -158,11 +162,12 @@ struct PaywallView: View {
                     .foregroundStyle(Theme.aubergineMuted)
                     .multilineTextAlignment(.center)
             }
-            HStack(spacing: Theme.Spacing.m) {
+            FlowLayout(spacing: Theme.Spacing.m) {
                 Button(String(localized: "Restore")) {
+                    guard !isPurchasing else { return }
+                    isPurchasing = true
+                    errorMessage = nil
                     Task {
-                        isPurchasing = true
-                        errorMessage = nil
                         defer { isPurchasing = false }
                         do {
                             try await subscriptions.restore()
@@ -180,6 +185,7 @@ struct PaywallView: View {
                 Button(String(localized: "Have a code?")) { isRedeemShown = true }
             }
             .font(.caption)
+            .frame(maxWidth: .infinity)
             .foregroundStyle(Theme.aubergineMuted)
             .buttonStyle(.plain)
         }
@@ -190,7 +196,7 @@ struct PaywallView: View {
     }
 
     private func purchase() {
-        guard let product = selectedProduct else { return }
+        guard !isPurchasing, let product = selectedProduct else { return }
         isPurchasing = true
         errorMessage = nil
         Task {
@@ -263,15 +269,16 @@ private struct PlanCard: View {
                         .font(.title2)
                         .foregroundStyle(isSelected ? Theme.tomato : Theme.aubergineFaint)
                     VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text(title)
-                                .font(.system(.title3, design: .rounded).weight(.bold))
-                                .foregroundStyle(Theme.aubergine)
-                            Spacer()
-                            Text(price)
-                                .font(.system(.headline, design: .rounded))
-                                .monospacedDigit()
-                                .foregroundStyle(Theme.aubergine)
+                        ViewThatFits(in: .horizontal) {
+                            HStack {
+                                planTitle
+                                Spacer()
+                                planPrice
+                            }
+                            VStack(alignment: .leading, spacing: 4) {
+                                planTitle
+                                planPrice
+                            }
                         }
                         Text(detail)
                             .font(.subheadline)
@@ -289,11 +296,42 @@ private struct PlanCard: View {
         .sensoryFeedback(.selection, trigger: isSelected)
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : [.isButton])
     }
+
+    private var planTitle: some View {
+        Text(title)
+            .font(.system(.title3, design: .rounded).weight(.bold))
+            .foregroundStyle(Theme.aubergine)
+    }
+
+    private var planPrice: some View {
+        Text(price)
+            .font(.system(.headline, design: .rounded))
+            .monospacedDigit()
+            .foregroundStyle(Theme.aubergine)
+    }
 }
 
 private struct TrialTimeline: View {
     let offer: Product.SubscriptionOffer
     let renewalPrice: String
+    let renewalPeriod: Product.SubscriptionPeriod?
+
+    private var renewalTerms: String {
+        guard let period = renewalPeriod else { return renewalPrice }
+        let components: DateComponents
+        switch period.unit {
+        case .day: components = DateComponents(day: period.value)
+        case .week: components = DateComponents(weekOfMonth: period.value)
+        case .month: components = DateComponents(month: period.value)
+        case .year: components = DateComponents(year: period.value)
+        @unknown default: return renewalPrice
+        }
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .weekOfMonth, .month, .year]
+        formatter.unitsStyle = .full
+        guard let interval = formatter.string(from: components) else { return renewalPrice }
+        return String(localized: "\(renewalPrice) every \(interval)")
+    }
 
     private var renewalDate: Date? {
         let component: Calendar.Component
@@ -309,12 +347,12 @@ private struct TrialTimeline: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-            Label("Today · Full access, no payment due", systemImage: "lock.open")
+            timelineRow(title: String(localized: "Due today"), amount: offer.displayPrice, symbol: "lock.open")
             if let renewalDate {
                 let date = renewalDate.formatted(date: .abbreviated, time: .omitted)
-                Label("Estimated first charge on \(date) · \(renewalPrice) per year", systemImage: "calendar")
+                timelineRow(title: String(localized: "Estimated charge on \(date)"), amount: renewalTerms, symbol: "calendar")
             } else {
-                Label("After the trial · \(renewalPrice) per year", systemImage: "calendar")
+                timelineRow(title: String(localized: "After the trial"), amount: renewalTerms, symbol: "calendar")
             }
             Text("Renews automatically. To avoid a charge, cancel in Apple Subscriptions before the trial ends.")
                 .font(.footnote)
@@ -324,6 +362,23 @@ private struct TrialTimeline: View {
         .foregroundStyle(Theme.aubergine)
         .frame(maxWidth: .infinity, alignment: .leading)
         .cardStyle()
+    }
+
+    private func timelineRow(title: String, amount: String, symbol: String) -> some View {
+        Label {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                Text(amount)
+                    .fontWeight(.bold)
+                    .monospacedDigit()
+            }
+        } icon: {
+            Image(systemName: symbol)
+                .frame(width: 30)
+                .foregroundStyle(Theme.tomatoDeep)
+                .accessibilityHidden(true)
+        }
+        .accessibilityElement(children: .combine)
     }
 }
 

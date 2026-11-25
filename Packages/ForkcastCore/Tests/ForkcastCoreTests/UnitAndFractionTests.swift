@@ -116,6 +116,9 @@ final class UnitAndFractionTests: XCTestCase {
     func testTimerDetection() {
         let timers = TimerDetector.timers(in: "Simmer for 20 minutes, then rest for 30 seconds.")
         XCTAssertEqual(timers.map { $0.seconds }, [1200, 30])
+        XCTAssertEqual(timers.map { $0.usesUpperBound }, [false, false])
+        XCTAssertEqual(TimerDetector.timers(in: "Cook for 10–12 min").first?.usesUpperBound, true)
+        XCTAssertTrue(TimerDetector.timers(in: "Cook for 9999999999999999999999999 hours").isEmpty)
         XCTAssertEqual(TimerDetector.timers(in: "Cook for 6 to 8 minutes").first?.seconds, 480)
         XCTAssertEqual(TimerDetector.timers(in: "Cook on low for 4 hours").first?.seconds, 14400)
         XCTAssertEqual(TimerDetector.timers(in: "Bake 12-15 mins").first?.seconds, 900)

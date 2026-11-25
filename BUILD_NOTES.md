@@ -184,3 +184,7 @@ Older SDKs compile the code out (`#if canImport(FoundationModels)`) and the heur
     with anything, rename it in `Motion.swift` (it's only used in `ProgressBar` and `MoneyText`).
 13. **SF Symbols**: all are iOS 16/17 symbols (`frying.pan`, `figure.2.and.child.holdinghands`, `oven`, `microwave`, `fan`…).
     Swap any that show as missing.
+
+### Welcome phone artwork
+
+The Welcome screen uses the asset name `WelcomePlanScreenshot` for its native SwiftUI phone frame. Capture the real Forkcast Plan screen in the iOS Simulator with demo data and no personal details, then add the captured portrait image to `Forkcast/Resources/Assets.xcassets/WelcomePlanScreenshot.imageset`. The existing Chef Tomato composition appears until that image is present. Preview on compact and tall iPhones with Reduce Motion enabled and disabled.
