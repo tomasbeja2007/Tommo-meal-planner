@@ -158,6 +158,12 @@ Reuse these; don't rebuild them per screen (`Forkcast/Theme/Components/`).
 - **DishTileView**: the only way to show a recipe image (photo `recipe-<id>` or the emoji fallback).
 - **StoreLogo / StoreMonogram**: the only way to show a shop (official logo asset `store-<id>` or brand-colour name).
 - **ProgressBar / ProgressRing, MacrosLine / MacrosCard, MoneyText, EmptyState, MascotView, CheckCircle**: as named.
+- **Segmented control** (`CapsuleSegments`): a `creamDeep` capsule with a white pill (`subtle` shadow) that slides
+  to the selected option; selected text aubergine bold, others muted semibold. Use instead of the system segmented
+  picker.
+- **Detail pages** (the recipe page is the reference): full-bleed photo (stretch on pull, 35% parallax), a cream sheet
+  with 28 pt top corners rising over it, glass buttons in the navigation bar, frosted pills on the photo, a facts
+  card, a row of round actions, and one pinned primary action ("Start cooking").
 - **Top bar (onboarding)**: 44 pt round white back button with a `line` stroke, 6 pt tomato progress bar, optional
   quiet "Skip".
 

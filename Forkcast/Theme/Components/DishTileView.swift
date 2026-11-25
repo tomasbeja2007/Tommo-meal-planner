@@ -38,7 +38,7 @@ struct DishTileView: View {
     private var resolvedHeight: CGFloat { height ?? size }
 
     /// Use supplied photography first, then bundled illustrative artwork.
-    fileprivate var photoName: String? {
+    var photoName: String? {
         if let imageName, AssetImage.exists(imageName) { return imageName }
         let conventional = "recipe-" + seed
         if AssetImage.exists(conventional) { return conventional }

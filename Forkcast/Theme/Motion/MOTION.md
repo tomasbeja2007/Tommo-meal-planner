@@ -177,6 +177,9 @@
   selection per answer ticked on the matching loader, success when it resolves; light/medium on the time-saved bars
   and line; light when the main shop lifts on the logo wall; selection per building tick, success when the week is
   ready; light when the welcome mascot lands.
+- **Recipe page:** the hero photo stretches when pulled down and moves at 65% of the scroll speed when scrolled
+  (no parallax with Reduce Motion); on open it eases from 106% to 100% and the cream sheet rises 14 pt and fades in
+  (ease-out 0.7 s); the tab and nutrition pills slide with `Theme.spring`; the timer slides up above "Start cooking".
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 

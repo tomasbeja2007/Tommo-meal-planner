@@ -60,6 +60,13 @@ private struct RecipeDetailContent: View {
     @State private var isEditShown: Bool = false
     @State private var addedLists: Set<String> = []
     @State private var didSetServings: Bool = false
+    /// The page settles in once: the photo eases from 106% to 100%, the sheet rises 14 pt.
+    @State private var appeared = false
+    @Namespace private var segmentPill
+
+    private let heroHeight: CGFloat = 380
+    /// How far the cream sheet rises over the photo.
+    private let sheetOverlap: CGFloat = 28
 
     private var nutrition: NutritionResult { repository.nutrition(for: recipe) }
 
@@ -83,15 +90,40 @@ private struct RecipeDetailContent: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 hero
-                VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                    DetailHeader(recipe: recipe, servings: servings, costPerServing: repository.costPerServing(recipe, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem), currencyCode: profileStore.currencyCode, profile: repository.profile(for: recipe))
+                VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+                    DetailHeader(recipe: recipe, profile: repository.profile(for: recipe))
+                    FactsStrip(
+                        recipe: recipe,
+                        kcal: nutrition.macros.kcal,
+                        costText: "~" + MoneyFormat.string(repository.costPerServing(recipe, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem), currencyCode: profileStore.currencyCode)
+                    )
                     actionBar
-                    VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-                        Picker(String(localized: "Nutrition amounts"), selection: $showNutritionTotal) {
-                            Text("Per serving").tag(false)
-                            Text("Selected servings").tag(true)
+                    VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                        CapsuleSegments(options: DetailTab.allCases, selection: $tab, title: { $0.title }, namespace: segmentPill, id: "tab")
+                        if tab == .ingredients {
+                            IngredientsSection(
+                                recipe: recipe,
+                                servings: $servings,
+                                maxServings: max(12, plannedServings.rounded(.up)),
+                                system: unitSystem,
+                                onChangeUnits: { displayUnits = $0 },
+                                addedToList: !addedLists.isEmpty,
+                                onAddToList: { showsListPicker = true }
+                            )
+                            .transition(.opacity)
+                        } else {
+                            MethodSection(recipe: recipe, servings: servings, system: unitSystem, timer: timer)
+                                .transition(.opacity)
                         }
-                        .pickerStyle(.segmented)
+                    }
+                    VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+                        Text("Nutrition")
+                            .font(Theme.Typography.title3)
+                            .foregroundStyle(Theme.aubergine)
+                            .accessibilityAddTraits(.isHeader)
+                        CapsuleSegments(options: [false, true], selection: $showNutritionTotal,
+                                        title: { $0 ? String(localized: "All \(FractionFormatter.string(servings)) servings") : String(localized: "Per serving") },
+                                        namespace: segmentPill, id: "nutrition")
                         MacrosCard(
                             macros: nutrition.macros.scaled(by: showNutritionTotal ? servings : 1),
                             caption: nutritionCaption,
@@ -99,58 +131,31 @@ private struct RecipeDetailContent: View {
                             title: showNutritionTotal ? String(localized: "Macros · selected servings") : String(localized: "Macros · your portion")
                         )
                     }
-                    recipeNotes
-                    HStack(spacing: 0) {
-                        ForEach(DetailTab.allCases) { item in
-                            Button { withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.19)) { tab = item } } label: {
-                                Text(item.title)
-                                    .font(.system(.subheadline, design: .rounded).weight(tab == item ? .bold : .medium))
-                                    .foregroundStyle(tab == item ? Theme.aubergine : Theme.aubergineMuted)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal, Theme.Spacing.xs)
-                                    .frame(maxWidth: .infinity, minHeight: 44)
-                                    .overlay(alignment: .bottom) {
-                                        Capsule().fill(tab == item ? Theme.tomato : Theme.line).frame(height: 2)
-                                    }
-                                    .contentShape(Rectangle())
-                            }
-                            .buttonStyle(.plain)
-                            .accessibilityAddTraits(tab == item ? .isSelected : [])
-                        }
-                    }
-                    if tab == .ingredients {
-                        IngredientsSection(
-                            recipe: recipe,
-                            servings: $servings,
-                            maxServings: max(12, plannedServings.rounded(.up)),
-                            system: unitSystem,
-                            onChangeUnits: { displayUnits = $0 },
-                            addedToList: !addedLists.isEmpty,
-                            onAddToList: { showsListPicker = true }
-                        )
-                    } else {
-                        MethodSection(recipe: recipe, servings: servings, system: unitSystem, timer: timer) { isCookModeShown = true }
-                    }
+                    cookedCard
                     RecipeVote(recipeID: recipe.id)
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
-                .padding(.top, Theme.Spacing.l)
-                .padding(.bottom, timer.isActive ? 100 : Theme.Spacing.xxl)
+                .padding(.top, Theme.Spacing.xl)
+                .padding(.bottom, Theme.Spacing.xxl)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    UnevenRoundedRectangle(topLeadingRadius: sheetOverlap, topTrailingRadius: sheetOverlap, style: .continuous)
+                        .fill(Theme.cream)
+                        .shadow(color: Theme.aubergine.opacity(0.06), radius: 10, y: -4)
+                )
+                .padding(.top, -sheetOverlap)
+                .opacity(appeared ? 1 : 0)
+                .offset(y: appeared ? 0 : 14)
             }
         }
+        .coordinateSpace(.named("detailScroll"))
+        .animation(Theme.motion(reduceMotion), value: tab)
         .background(Theme.cream.ignoresSafeArea())
         .ignoresSafeArea(edges: .top)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar { toolbarContent }
-        .overlay(alignment: .bottom) {
-            if timer.isActive {
-                TimerPill(timer: timer)
-                    .padding(.horizontal, Theme.Spacing.gutter)
-                    .padding(.bottom, Theme.Spacing.s)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
-        }
+        .safeAreaInset(edge: .bottom) { bottomBar }
         .animation(Theme.motion(reduceMotion), value: timer.isActive)
         .fullScreenCover(isPresented: $isCookModeShown) {
             CookModeView(recipe: recipe, servings: servings, system: unitSystem, index: $cookStep, timer: timer, isPlanned: plannedMeal != nil) { stars in
@@ -194,12 +199,19 @@ private struct RecipeDetailContent: View {
             didSetServings = true
             personalPhoto = library.photo(for: recipe.id).flatMap { UIImage(data: $0) }
             servings = max(1, plannedServings)
+            withAnimation(reduceMotion ? nil : Animation.open(0.7)) { appeared = true }
         }
     }
 
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItemGroup(placement: .topBarTrailing) {
+            Button { library.toggleFavorite(recipe.id) } label: {
+                Image(systemName: library.favorites.contains(recipe.id) ? "heart.fill" : "heart")
+                    .foregroundStyle(library.favorites.contains(recipe.id) ? Theme.tomato : Theme.aubergine)
+            }
+            .accessibilityLabel(library.favorites.contains(recipe.id) ? Text("Remove favorite") : Text("Favorite recipe"))
+            .sensoryFeedback(.selection, trigger: library.favorites.contains(recipe.id))
             if recipe.isUserRecipe {
                 Button(String(localized: "Edit")) { isEditShown = true }
                     .buttonStyle(.borderedProminent)
@@ -228,64 +240,105 @@ private struct RecipeDetailContent: View {
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundStyle(Theme.aubergine)
-                    .frame(width: 36, height: 36)
-                    .background(Theme.card, in: Circle())
             }
             .accessibilityLabel(Text("More recipe actions"))
         }
     }
 
+    /// Full-bleed photo. Pulling down stretches it (it stays pinned to the top); scrolling up moves it at
+    /// 65% of the page speed (parallax) while the cream sheet slides over it. On open it eases from 106%.
     private var hero: some View {
-        Group {
-            if let personalPhoto {
-                GeometryReader { proxy in
-                    Image(uiImage: personalPhoto).resizable().scaledToFill()
-                        .frame(width: proxy.size.width, height: 260)
-                        .clipped()
-                        .accessibilityLabel(Text("Your recipe photo"))
+        GeometryReader { proxy in
+            let minY = proxy.frame(in: .named("detailScroll")).minY
+            let stretch = max(0, minY)
+            let parallax = reduceMotion ? 0 : -min(0, minY) * 0.35
+            heroImage(width: proxy.size.width, height: heroHeight + stretch)
+                .scaleEffect(appeared || reduceMotion ? 1 : 1.06)
+                .overlay(alignment: .top) {
+                    // A soft scrim so the status bar and the glass buttons always read.
+                    LinearGradient(colors: [Color.black.opacity(0.28), .clear], startPoint: .top, endPoint: .bottom)
+                        .frame(height: 140)
+                        .allowsHitTesting(false)
                 }
-                .frame(height: 260)
-            } else {
-                DishHeroView(recipe: recipe, height: 260)
-            }
+                .clipped()
+                .offset(y: -stretch + parallax)
         }
-        .overlay(alignment: .bottomLeading) {
-            HStack(spacing: Theme.Spacing.s) {
-                Button { library.toggleFavorite(recipe.id) } label: {
-                    photoAction(library.favorites.contains(recipe.id) ? "heart.fill" : "heart")
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(library.favorites.contains(recipe.id) ? Text("Remove favorite") : Text("Favorite recipe"))
-                .sensoryFeedback(.selection, trigger: library.favorites.contains(recipe.id))
-                PhotosPicker(selection: $photoItem, matching: .images) {
-                    if loadingPhoto {
-                        ProgressView().frame(width: 46, height: 46).background(Theme.card, in: Circle())
-                    } else {
-                        photoAction("camera")
-                    }
-                }
-                .buttonStyle(.plain)
-                .disabled(loadingPhoto)
-                .accessibilityLabel(Text("Choose a personal photo"))
-            }
-            .padding(Theme.Spacing.m)
+        .frame(height: heroHeight)
+        .overlay(alignment: .bottom) { photoControls }
+    }
+
+    @ViewBuilder
+    private func heroImage(width: CGFloat, height: CGFloat) -> some View {
+        if let personalPhoto {
+            Image(uiImage: personalPhoto)
+                .resizable()
+                .scaledToFill()
+                .frame(width: width, height: height)
+                .accessibilityLabel(Text("Your recipe photo"))
+        } else {
+            DishTileView(recipe: recipe, size: width, height: height, cornerRadius: 0)
         }
     }
 
-    private func photoAction(_ icon: String) -> some View {
-        Image(systemName: icon)
-            .font(.headline)
-            .foregroundStyle(Theme.tomatoDeep)
-            .frame(width: 46, height: 46)
-            .background(Theme.card, in: Circle())
+    private var isIllustrative: Bool {
+        personalPhoto == nil && DishTileView(recipe: recipe).photoName?.hasPrefix("illustrative-recipe-") == true
+    }
+
+    /// Frosted pills on the photo, just above the sheet: the "illustrative" note and the camera.
+    private var photoControls: some View {
+        HStack {
+            if isIllustrative {
+                Text("Illustrative photo")
+                    .font(Theme.Typography.caption.weight(.semibold))
+                    .foregroundStyle(Theme.aubergine)
+                    .padding(.horizontal, Theme.Spacing.m)
+                    .padding(.vertical, Theme.Spacing.inline)
+                    .background(.ultraThinMaterial, in: Capsule())
+            }
+            Spacer()
+            PhotosPicker(selection: $photoItem, matching: .images) {
+                Group {
+                    if loadingPhoto {
+                        ProgressView()
+                    } else {
+                        Image(systemName: personalPhoto == nil ? "camera" : "camera.fill")
+                            .font(.headline)
+                            .foregroundStyle(Theme.aubergine)
+                    }
+                }
+                .frame(width: Theme.Size.iconButton, height: Theme.Size.iconButton)
+                .background(.ultraThinMaterial, in: Circle())
+            }
+            .buttonStyle(.plain)
+            .disabled(loadingPhoto)
+            .accessibilityLabel(Text("Choose a personal photo"))
+        }
+        .padding(.horizontal, Theme.Spacing.gutter)
+        .padding(.bottom, sheetOverlap + Theme.Spacing.m)
+    }
+
+    /// The pinned call to action, with the running timer floating just above it.
+    private var bottomBar: some View {
+        VStack(spacing: Theme.Spacing.s) {
+            if timer.isActive {
+                TimerPill(timer: timer)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+            PrimaryButton(String(localized: "Start cooking"), systemImage: "frying.pan") { isCookModeShown = true }
+                .disabled(recipe.steps.isEmpty)
+        }
+        .padding(.horizontal, Theme.Spacing.gutter)
+        .padding(.vertical, Theme.Spacing.s)
+        .background(Theme.cream.opacity(0.97).ignoresSafeArea())
     }
 
     private var shareText: String {
         RecipeShareText.make(recipe: recipe, servings: servings, catalog: repository.catalog, system: unitSystem)
     }
 
+    /// Four equal actions in one row: a tomato icon on a soft disc, a label underneath.
     private var actionBar: some View {
-        FlowLayout(spacing: Theme.Spacing.s) {
+        HStack(alignment: .top, spacing: Theme.Spacing.s) {
             Button { library.toggleSaved(recipe.id) } label: {
                 actionLabel(library.isSaved(recipe.id) ? "Saved" : "Save",
                             icon: library.isSaved(recipe.id) ? "bookmark.fill" : "bookmark")
@@ -299,45 +352,54 @@ private struct RecipeDetailContent: View {
     }
 
     private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
-        VStack(spacing: Theme.Spacing.xs) {
-            Image(systemName: icon).font(.headline).foregroundStyle(Theme.tomatoDeep)
+        VStack(spacing: Theme.Spacing.s) {
+            Image(systemName: icon)
+                .font(.headline)
+                .foregroundStyle(Theme.tomatoDeep)
+                .frame(width: 52, height: 52)
+                .background(Circle().fill(Theme.tomatoSoft))
                 .accessibilityHidden(true)
-            Text(title).font(.caption.weight(.semibold)).foregroundStyle(Theme.aubergine)
+            Text(title)
+                .font(Theme.Typography.caption.weight(.semibold))
+                .foregroundStyle(Theme.aubergine)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
-        .padding(.horizontal, Theme.Spacing.s)
-        .frame(minWidth: 68, minHeight: 52)
-        .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.Radius.button))
+        .frame(maxWidth: .infinity)
+        .contentShape(Rectangle())
     }
 
-    private var recipeNotes: some View {
+    /// After cooking: the recipe's own note (if any), "Mark as cooked" and a star rating.
+    private var cookedCard: some View {
         let cooked = plannedMeal?.isCooked ?? library.cookedIds.contains(recipe.id)
-        return VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            Text("Recipe notes")
-                .textCase(.uppercase)
-                .font(.caption.weight(.bold))
-                .foregroundStyle(Theme.aubergineMuted)
-            FlowLayout(spacing: Theme.Spacing.m) {
-                Label("Prep: \(recipe.prepMinutes) min", systemImage: "knife")
-                Label("Cook: \(recipe.cookMinutes) min", systemImage: "clock")
-            }
-            .font(.subheadline)
+        return VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+            Text("Cooked it?")
+                .font(Theme.Typography.title3)
+                .foregroundStyle(Theme.aubergine)
+                .accessibilityAddTraits(.isHeader)
             if let note = recipe.notes, !note.isEmpty {
-                Text(note).font(.subheadline).foregroundStyle(Theme.aubergineMuted)
+                Text(note)
+                    .font(Theme.Typography.subheadline)
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Divider()
             Button { markCooked(stars: 0) } label: {
                 Label(cooked ? "Cooked" : "Mark as cooked", systemImage: cooked ? "checkmark.circle.fill" : "checkmark.circle")
             }
             .buttonStyle(SecondaryButtonStyle(outlined: true))
             .disabled(cooked)
-            Text("Your rating").font(.subheadline.weight(.semibold))
-            StarPicker(stars: Binding(
-                get: { library.stars[recipe.id] ?? 0 },
-                set: { library.setStars($0, for: recipe.id) }
-            ))
+            HStack {
+                Text("Your rating")
+                    .font(Theme.Typography.subheadline.weight(.semibold))
+                    .foregroundStyle(Theme.aubergine)
+                Spacer()
+                StarPicker(stars: Binding(
+                    get: { library.stars[recipe.id] ?? 0 },
+                    set: { library.setStars($0, for: recipe.id) }
+                ))
+            }
         }
-        .foregroundStyle(Theme.aubergine)
-        .cardStyle(padding: Theme.Spacing.m)
+        .cardStyle()
     }
 
     private func addToGroceries(_ id: String?) {
@@ -388,32 +450,25 @@ private struct RecipeDetailContent: View {
     }
 }
 
+/// Eyebrow (cuisine · meal), the title, then calm tags (diet and free-froms neutral, vibes in soft tomato).
 private struct DetailHeader: View {
     let recipe: Recipe
-    let servings: Double
-    let costPerServing: Double
-    let currencyCode: String
     let profile: RecipeProfile
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+            Text("\(recipe.cuisine.rawValue) · \(recipe.mealType.title)")
+                .font(Theme.Typography.eyebrow)
+                .textCase(.uppercase)
+                .foregroundStyle(Theme.tomatoDeep)
             Text(recipe.title)
-                .font(.system(.title, design: .rounded).weight(.bold))
+                .font(Theme.Typography.title)
                 .foregroundStyle(Theme.aubergine)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
-            HStack(spacing: Theme.Spacing.m) {
-                Label("\(recipe.totalMinutes) min", systemImage: "clock")
-                Label(String(localized: "serves \(FractionFormatter.string(servings))"), systemImage: "person.2")
-                Label("~\(MoneyFormat.string(costPerServing, currencyCode: currencyCode)) / serving", systemImage: "tag")
-            }
-            .font(.subheadline)
-            .labelStyle(CompactLabelStyle())
-            .foregroundStyle(Theme.aubergineMuted)
-            .monospacedDigit()
             FlowLayout(spacing: Theme.Spacing.inline) {
                 if profile.diet != .omnivore {
-                    TagLabel(text: profile.diet.displayName, tint: Theme.herb, fill: Theme.herbSoft)
+                    TagLabel(text: profile.diet.displayName)
                 }
                 if profile.isGlutenFree {
                     TagLabel(text: String(localized: "Gluten-free"))
@@ -425,7 +480,95 @@ private struct DetailHeader: View {
                     TagLabel(text: vibe.displayName, tint: Theme.tomatoDeep, fill: Theme.tomatoSoft)
                 }
             }
+            .padding(.top, Theme.Spacing.xxs)
         }
+    }
+}
+
+/// Time, calories and cost in one card: three equal columns split by hairlines.
+private struct FactsStrip: View {
+    let recipe: Recipe
+    let kcal: Double
+    let costText: String
+
+    var body: some View {
+        HStack(spacing: 0) {
+            fact(icon: "clock", value: String(localized: "\(recipe.totalMinutes) min"),
+                 label: String(localized: "\(recipe.prepMinutes) prep · \(recipe.cookMinutes) cook"))
+            Rectangle().fill(Theme.line).frame(width: 1, height: 40)
+            fact(icon: "flame", value: String(localized: "\(Int(kcal.rounded())) kcal"), label: String(localized: "per serving"))
+            Rectangle().fill(Theme.line).frame(width: 1, height: 40)
+            fact(icon: "tag", value: costText, label: String(localized: "per serving"))
+        }
+        .padding(.vertical, Theme.Spacing.m)
+        .frame(maxWidth: .infinity)
+        .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
+        .elevation(Theme.Elevation.card)
+    }
+
+    private func fact(icon: String, value: String, label: String) -> some View {
+        VStack(spacing: Theme.Spacing.xxs) {
+            Image(systemName: icon)
+                .font(Theme.Typography.caption.weight(.bold))
+                .foregroundStyle(Theme.tomatoDeep)
+                .accessibilityHidden(true)
+            Text(value)
+                .font(Theme.Typography.headline)
+                .monospacedDigit()
+                .foregroundStyle(Theme.aubergine)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+            Text(label)
+                .font(Theme.Typography.caption)
+                .foregroundStyle(Theme.aubergineMuted)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+        }
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+/// A capsule segmented control: a white pill slides to the selected option (shared across the page's
+/// controls through `matchedGeometryEffect`, each with its own id).
+private struct CapsuleSegments<Option: Hashable>: View {
+    let options: [Option]
+    @Binding var selection: Option
+    let title: (Option) -> String
+    let namespace: Namespace.ID
+    let id: String
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(options, id: \.self) { option in
+                let selected = option == selection
+                Button {
+                    withAnimation(Theme.motion(reduceMotion)) { selection = option }
+                } label: {
+                    Text(title(option))
+                        .font(Theme.Typography.subheadline.weight(selected ? .bold : .semibold))
+                        .foregroundStyle(selected ? Theme.aubergine : Theme.aubergineMuted)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.85)
+                        .frame(maxWidth: .infinity, minHeight: 40)
+                        .background {
+                            if selected {
+                                Capsule()
+                                    .fill(Theme.card)
+                                    .elevation(Theme.Elevation.subtle)
+                                    .matchedGeometryEffect(id: id, in: namespace)
+                            }
+                        }
+                        .contentShape(Capsule())
+                }
+                .buttonStyle(.plain)
+                .accessibilityAddTraits(selected ? .isSelected : [])
+            }
+        }
+        .padding(Theme.Spacing.xs)
+        .background(Capsule().fill(Theme.creamDeep))
+        .sensoryFeedback(.selection, trigger: selection)
     }
 }
 
@@ -556,12 +699,9 @@ private struct MethodSection: View {
     let servings: Double
     let system: UnitSystem
     let timer: CountdownTimer
-    let onCook: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-            PrimaryButton(String(localized: "Cook step by step"), systemImage: "play.fill", action: onCook)
-                .disabled(recipe.steps.isEmpty)
             if recipe.steps.isEmpty {
                 Text("no steps yet").foregroundStyle(Theme.aubergineMuted)
             }
