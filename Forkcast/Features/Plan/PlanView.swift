@@ -30,8 +30,7 @@ struct PlanView: View {
                 HStack(alignment: .top, spacing: Theme.Spacing.m) {
                     PlanHeader(name: profileStore.name, storeName: profileStore.storeName, store: profileStore.store)
                     Button { showsNotifications = true } label: {
-                        Image(systemName: "bell")
-                            .font(.headline)
+                        Glyph(name: "glyph-reminder", size: 22)
                             .foregroundStyle(Theme.tomatoDeep)
                             .frame(width: 44, height: 44)
                             .background(Theme.tomatoSoft, in: Circle())

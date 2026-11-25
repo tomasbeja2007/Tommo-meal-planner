@@ -214,7 +214,7 @@ private struct RecipeDetailContent: View {
     private var toolbarContent: some ToolbarContent {
         ToolbarItemGroup(placement: .topBarTrailing) {
             Button { library.toggleFavorite(recipe.id) } label: {
-                Image(systemName: library.favorites.contains(recipe.id) ? "heart.fill" : "heart")
+                Glyph(name: library.favorites.contains(recipe.id) ? "glyph-favorite-fill" : "glyph-favorite", size: 20)
                     .foregroundStyle(library.favorites.contains(recipe.id) ? Theme.tomato : Theme.aubergine)
             }
             .accessibilityLabel(library.favorites.contains(recipe.id) ? Text("Remove favorite") : Text("Favorite recipe"))
@@ -323,7 +323,7 @@ private struct RecipeDetailContent: View {
                 TimerPill(timer: timer)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
-            PrimaryButton(String(localized: "Start cooking"), systemImage: "frying.pan") { isCookModeShown = true }
+            PrimaryButton(String(localized: "Start cooking"), systemImage: "glyph-cook") { isCookModeShown = true }
                 .disabled(recipe.steps.isEmpty)
         }
         .padding(.horizontal, Theme.Spacing.gutter)
@@ -339,21 +339,19 @@ private struct RecipeDetailContent: View {
     private var actionBar: some View {
         HStack(alignment: .top, spacing: Theme.Spacing.s) {
             Button { library.toggleSaved(recipe.id) } label: {
-                actionLabel(library.isSaved(recipe.id) ? "Saved" : "Save",
-                            icon: library.isSaved(recipe.id) ? "bookmark.fill" : "bookmark")
+                actionLabel(library.isSaved(recipe.id) ? "Saved" : "Save", glyph: "glyph-save")
             }
             .sensoryFeedback(.selection, trigger: library.isSaved(recipe.id))
-            Button { isAddToPlanShown = true } label: { actionLabel("Meal Plan", icon: "calendar.badge.plus") }
-            Button { showsListPicker = true } label: { actionLabel("Groceries", icon: "cart") }
-            ShareLink(item: shareText) { actionLabel("Share", icon: "square.and.arrow.up") }
+            Button { isAddToPlanShown = true } label: { actionLabel("Meal Plan", glyph: "glyph-add-to-plan") }
+            Button { showsListPicker = true } label: { actionLabel("Groceries", glyph: "glyph-add-to-groceries") }
+            ShareLink(item: shareText) { actionLabel("Share", glyph: "glyph-share") }
         }
         .buttonStyle(.plain)
     }
 
-    private func actionLabel(_ title: LocalizedStringKey, icon: String) -> some View {
+    private func actionLabel(_ title: LocalizedStringKey, glyph: String) -> some View {
         VStack(spacing: Theme.Spacing.s) {
-            Image(systemName: icon)
-                .font(.headline)
+            Glyph(name: glyph, size: 24)
                 .foregroundStyle(Theme.tomatoDeep)
                 .frame(width: 52, height: 52)
                 .background(Circle().fill(Theme.tomatoSoft))
@@ -492,12 +490,12 @@ private struct FactsStrip: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            fact(icon: "clock", value: String(localized: "\(recipe.totalMinutes) min"),
+            fact(icon: "glyph-time", value: String(localized: "\(recipe.totalMinutes) min"),
                  label: String(localized: "\(recipe.prepMinutes) prep · \(recipe.cookMinutes) cook"))
             Rectangle().fill(Theme.line).frame(width: 1, height: 40)
-            fact(icon: "flame", value: String(localized: "\(Int(kcal.rounded())) kcal"), label: String(localized: "per serving"))
+            fact(icon: "glyph-calories", value: String(localized: "\(Int(kcal.rounded())) kcal"), label: String(localized: "per serving"))
             Rectangle().fill(Theme.line).frame(width: 1, height: 40)
-            fact(icon: "tag", value: costText, label: String(localized: "per serving"))
+            fact(icon: "glyph-cost", value: costText, label: String(localized: "per serving"))
         }
         .padding(.vertical, Theme.Spacing.m)
         .frame(maxWidth: .infinity)
@@ -507,10 +505,8 @@ private struct FactsStrip: View {
 
     private func fact(icon: String, value: String, label: String) -> some View {
         VStack(spacing: Theme.Spacing.xxs) {
-            Image(systemName: icon)
-                .font(Theme.Typography.caption.weight(.bold))
+            Glyph(name: icon, size: 16)
                 .foregroundStyle(Theme.tomatoDeep)
-                .accessibilityHidden(true)
             Text(value)
                 .font(Theme.Typography.headline)
                 .monospacedDigit()
@@ -787,7 +783,7 @@ struct StepChips: View {
                             Button {
                                 timer.start(label: label, seconds: stepTimer.seconds)
                             } label: {
-                                Label(label, systemImage: "timer")
+                                Label { Text(label) } icon: { Glyph(name: "glyph-step-timer", size: 14) }
                                     .font(.caption.weight(.bold))
                                     .foregroundStyle(Theme.aubergine)
                                     .padding(.horizontal, 10)

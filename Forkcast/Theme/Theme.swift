@@ -199,3 +199,39 @@ extension View {
         background(Theme.cream.ignoresSafeArea())
     }
 }
+
+// MARK: - Glyphs
+
+/// Tommo's own icon set (`glyph-*` in Assets, single-colour template images that take `foregroundStyle`).
+/// Falls back to the SF Symbol it replaces, so a missing file never leaves a hole. Size in points.
+struct Glyph: View {
+    let name: String
+    var size: CGFloat = 18
+
+    var body: some View {
+        Group {
+            if AssetImage.exists(name) {
+                Image(name)
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                Image(systemName: Glyph.fallback[name] ?? "circle")
+                    .resizable()
+                    .scaledToFit()
+                    .fontWeight(.semibold)
+            }
+        }
+        .frame(width: size, height: size)
+        .accessibilityHidden(true)
+    }
+
+    /// The SF Symbol each glyph stands in for.
+    static let fallback: [String: String] = [
+        "glyph-save": "bookmark", "glyph-add-to-plan": "calendar.badge.plus", "glyph-add-to-groceries": "cart.badge.plus",
+        "glyph-share": "square.and.arrow.up", "glyph-time": "clock", "glyph-calories": "flame", "glyph-cost": "tag",
+        "glyph-servings": "person.2", "glyph-swap": "arrow.triangle.2.circlepath", "glyph-cook": "frying.pan",
+        "glyph-step-timer": "timer", "glyph-reminder": "bell", "glyph-pantry": "basket", "glyph-store": "storefront",
+        "glyph-favorite": "heart", "glyph-favorite-fill": "heart.fill"
+    ]
+}

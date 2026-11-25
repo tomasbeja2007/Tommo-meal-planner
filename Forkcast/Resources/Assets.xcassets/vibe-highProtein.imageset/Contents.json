@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "vibe-highProtein.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

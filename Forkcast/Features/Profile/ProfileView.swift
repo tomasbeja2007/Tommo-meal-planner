@@ -49,7 +49,7 @@ struct ProfileView: View {
                     PreferencesSection(profile: profile) { editing = $0 }
                     Section {
                         Button { showsPantry = true } label: {
-                            Label("Select ingredients", systemImage: "basket")
+                            Label { Text("Select ingredients") } icon: { Glyph(name: "glyph-pantry", size: 18) }
                         }
                     } header: {
                         Text("Pantry")

@@ -250,7 +250,7 @@ private struct RevealDayCard: View {
                 }
             }
             HStack(spacing: Theme.Spacing.s) {
-                Label("\(recipe.totalMinutes) min", systemImage: "clock")
+                Label { Text("\(recipe.totalMinutes) min") } icon: { Glyph(name: "glyph-time", size: 13) }
                 Text(leftoversFrom == nil || !others.isEmpty ? costText : String(localized: "cooked already"))
             }
             .font(.caption.weight(.semibold))

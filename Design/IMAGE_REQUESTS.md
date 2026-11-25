@@ -9,6 +9,8 @@ with no code changes.
 - **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), 454 of 544 recipe photos, all 187 ingredient
   cut-outs (this covers the pantry photos of section 6), the goal / diet / appliance tile illustrations (section 4),
   and the splash pieces (section 5, no longer used by the app).
+- **25 Nov:** 16 glyphs and 30 clay tiles (no `allergen-sesame` yet) installed, cut from the owner's contact sheet; ask for the
+  full-size originals to replace them when convenient (they were cut at ~100 px). Tab outlines and Tommo face layers still to come.
 - **Ready-to-send PDF for ChatGPT** (glyphs, tiles, Tommo face layers, kitchen): `Design/Tommo-image-prompts.pdf`.
 - **Still open, in priority order:**
   1. **90 recipe photos** (section 7): every recipe without a photo still shows an emoji tile on the Plan tab,

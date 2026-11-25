@@ -64,7 +64,11 @@ struct PrimaryButton: View {
         Button(action: action) {
             HStack(spacing: Theme.Spacing.s) {
                 if let systemImage {
-                    Image(systemName: systemImage)
+                    if systemImage.hasPrefix("glyph-") {
+                        Glyph(name: systemImage, size: 20)
+                    } else {
+                        Image(systemName: systemImage)
+                    }
                 }
                 Text(title)
             }

@@ -115,8 +115,7 @@ struct MealCard: View {
                 .buttonStyle(.plain)
                 .accessibilityHint(Text("Opens the recipe"))
                 Button(action: onSwap) {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                        .font(.system(size: 15, weight: .bold))
+                    Glyph(name: "glyph-swap", size: 20)
                         .foregroundStyle(Theme.tomato)
                         .frame(width: 44, height: 44)
                         .background(Circle().fill(Theme.tomatoSoft))
@@ -169,9 +168,9 @@ struct MealMetaRow: View {
 
     var body: some View {
         HStack(spacing: Theme.Spacing.s) {
-            Label("\(minutes) min", systemImage: "clock")
+            Label { Text("\(minutes) min") } icon: { Glyph(name: "glyph-time", size: 13) }
             if let servings {
-                Label(FractionFormatter.string(servings), systemImage: "person.2")
+                Label { Text(FractionFormatter.string(servings)) } icon: { Glyph(name: "glyph-servings", size: 14) }
             }
             Text("~" + MoneyFormat.string(cost, currencyCode: currencyCode))
         }

@@ -269,7 +269,7 @@ private struct GroceryHeader: View {
     }
 
     private var storeLabel: some View {
-        Label("Shopping at \(profileStore.store?.name ?? profileStore.storeName)", systemImage: "storefront")
+        Label { Text("Shopping at \(profileStore.store?.name ?? profileStore.storeName)") } icon: { Glyph(name: "glyph-store", size: 16) }
             .font(.subheadline.weight(.semibold))
             .foregroundStyle(Theme.aubergine)
     }

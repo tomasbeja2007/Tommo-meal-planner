@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "allergen-soy.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

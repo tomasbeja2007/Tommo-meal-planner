@@ -77,7 +77,7 @@ struct MainTabView: View {
             VStack(alignment: .trailing, spacing: Theme.Spacing.s) {
                 if showsActions {
                     VStack(spacing: 0) {
-                        actionRow("Select ingredients", detail: "Cook with what you have", icon: "basket") {
+                        actionRow("Select ingredients", detail: "Cook with what you have", icon: "glyph-pantry") {
                             showsPantry = true
                         }
                         Divider()
@@ -137,9 +137,11 @@ struct MainTabView: View {
                     Text(detail).font(.subheadline).foregroundStyle(Theme.aubergineMuted)
                 }
                 Spacer(minLength: 0)
-                Image(systemName: icon)
-                    .foregroundStyle(Theme.tomatoDeep)
-                    .accessibilityHidden(true)
+                Group {
+                    if icon.hasPrefix("glyph-") { Glyph(name: icon, size: 22) } else { Image(systemName: icon) }
+                }
+                .foregroundStyle(Theme.tomatoDeep)
+                .accessibilityHidden(true)
             }
             .padding(.vertical, Theme.Spacing.s)
             .frame(minHeight: 48)

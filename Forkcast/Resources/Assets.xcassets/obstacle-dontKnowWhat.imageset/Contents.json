@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "obstacle-dontKnowWhat.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
