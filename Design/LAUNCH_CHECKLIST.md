@@ -17,7 +17,7 @@ Identifiers are hard-coded in the app: use them exactly.
 ## 2. App Store Connect (appstoreconnect.apple.com)
 - [ ] **Agreements, Tax and Banking**: sign the **Paid Apps** agreement, add bank and tax details
       (subscriptions don't load in TestFlight or the App Store without it).
-- [ ] **New app**: name "Tommo" (fallback "Tommo: Meal Planner"), bundle ID `com.tomasbeja.tommo`, SKU `tommo-ios`,
+- [ ] **New app**: name "Tommo" (fallback "Tommo: Meal Planner"), bundle ID `com.tomasbeja.tommo`, SKU `tommo-meal-planner`,
       primary language English (U.K.).
 - [ ] **Subscription group** "Tommo Pro" with:
   - [ ] `com.tomasbeja.tommo.pro.yearly`, 1 year, 39.99 USD point, 3-day free trial for new subscribers.

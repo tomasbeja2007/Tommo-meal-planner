@@ -40,7 +40,7 @@ Signing certificates and provisioning profiles: none needed by hand; Xcode's aut
 - Name: **Tommo** (if that name is taken, use **Tommo: Meal Planner** and tell me)
 - Primary language: **English (U.K.)**
 - Bundle ID: **com.tomasbeja.tommo** (pick it from the list; it appears after Part A)
-- SKU: **tommo-ios**
+- SKU: **tommo-meal-planner**
 - User access: Full Access
 
 ## Part C · In the new app → Monetization → Subscriptions
