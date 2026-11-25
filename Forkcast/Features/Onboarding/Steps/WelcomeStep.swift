@@ -172,11 +172,16 @@ struct IngredientHero: View {
         let scale = startScale + (endScale - startScale) * move
         let land = WelcomeIntro.landMs
         let settle = from == .zero ? 1 : flow(i, [(0, 1), (land - 40, 1), (land + 90, 0.96), (land + 260, 1.01), (land + 420, 1), (WelcomeIntro.duration, 1)])
+        // Optical centring: the art's box includes the tall hat and the spoon on the right, so its middle
+        // isn't where the eye lands. Nudging him right and up puts his face, not his box, in the centre of
+        // the circle. Applied as he travels, so the hand-off from the launch screen stays exact.
+        let optical = CGSize(width: size * 0.05, height: -size * 0.08)
         return MascotView(size: WelcomeIntro.launchSize, mood: .idle)
             .scaleEffect(x: 1 / pow(settle, 0.6), y: settle, anchor: .bottom)
             .scaleEffect(scale)
             .frame(width: size, height: size)
-            .offset(x: from.width * (1 - move), y: from.height * (1 - move))
+            .offset(x: from.width * (1 - move) + optical.width * move,
+                    y: from.height * (1 - move) + optical.height * move)
     }
 
     private var phonePreview: some View {

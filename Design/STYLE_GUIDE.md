@@ -171,6 +171,8 @@ Reuse these; don't rebuild them per screen (`Forkcast/Theme/Components/`).
 
 - SF Symbols, `.semibold` (bold for chevrons and checkmarks), sized with text styles where they sit next to text.
 - Icon on its own: tomato on a `tomatoSoft` disc (36–44 pt), or aubergine on white with a `line` stroke.
+- Tab bar: Tommo's own glyphs (`tab-<name>` / `tab-<name>-fill`, template images tinted tomato when selected, see
+  `Design/IMAGE_REQUESTS.md` §10), falling back to SF Symbols until they exist.
 - Never build a screen out of stock symbols alone: pair them with real food photos, ingredient cut-outs or
   Chef Tommo.
 

@@ -16,7 +16,8 @@ with no code changes.
   3. **31 tile illustrations, round 2** (section 8): obstacles, vibes, allergies, cook time. The app is already
      wired for them and keeps its emoji / symbol until each file exists.
   4. **`MascotRig-body` / `MascotRig-head` redo** (section 1), needed before Chef Tommo can blink and look around.
-  5. *Optional:* the kitchen scene for the appliance picker (section 9).
+  5. **8 tab bar icons** (section 10): the app is wired for them and keeps the system icons until they exist.
+  6. *Optional:* the kitchen scene for the appliance picker (section 9).
 - **Never generate:** supermarket logos, fake reviews or user photos (see "Do NOT generate").
 
 ## Shared style brief (give this to the agent with every request)
@@ -359,6 +360,21 @@ If wanted, the appliance step can show one kitchen where tapping an appliance ma
   saffron accents, warm wood counter, no text, no logos, no dominant green.
 - `KitchenHighlight-oven`, `-stovetop`, `-microwave`, `-airFryer`, `-slowCooker`, `-blender`: 1200×900 transparent PNG
   each, the same framing, only that appliance's soft tomato outline glow, so it lines up on top of the scene.
+
+## 10. Tab bar icons (8)
+Custom glyphs for the four tabs, so the bar feels like Tommo's own. The app draws them as **template images**
+(one colour, tinted tomato when selected, grey when not), so each file must be a **single solid black shape on a
+transparent background**: no colour, no shading, no gradients, no text, no fine detail (it shows at 26 pt).
+**300×300 transparent PNG**, the glyph centred with ~10% padding, bold rounded strokes that match SF Pro Rounded
+semibold (stroke about 9% of the canvas, round caps and joins). Two versions each: outline (`tab-<name>`) for the
+unselected tab, and solid filled (`tab-<name>-fill`) for the selected tab.
+
+| Files | What to draw |
+|---|---|
+| `tab-plan`, `tab-plan-fill` | A calendar page with a small fork and knife crossed on it |
+| `tab-groceries`, `tab-groceries-fill` | A rounded shopping basket with a leafy carrot and a baguette poking out |
+| `tab-cookbook`, `tab-cookbook-fill` | A closed recipe book with a small chef's hat on the cover |
+| `tab-profile`, `tab-profile-fill` | A person's head and shoulders wearing a small chef's hat |
 
 ## Do NOT generate
 - **Supermarket logos.** Never have Grok draw or imitate them. The store tiles are logo-ready:

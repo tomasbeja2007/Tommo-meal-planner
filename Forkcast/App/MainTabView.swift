@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import ForkcastCore
 
 /// Plan · Groceries · Recipes · You. Groceries and Recipes are Pro-only:
@@ -16,16 +17,32 @@ struct MainTabView: View {
         @Bindable var router = router
         TabView(selection: tabSelection) {
             PlanView()
-                .tabItem { Label(String(localized: "Meal Plan"), systemImage: "calendar") }
+                .tabItem {
+                    Label { Text(String(localized: "Meal Plan")) } icon: {
+                        TabIcon.image("tab-plan", selected: router.selectedTab == .plan, fallback: "calendar")
+                    }
+                }
                 .tag(AppRouter.Tab.plan)
             GroceriesView()
-                .tabItem { Label(String(localized: "Groceries"), systemImage: "cart") }
+                .tabItem {
+                    Label { Text(String(localized: "Groceries")) } icon: {
+                        TabIcon.image("tab-groceries", selected: router.selectedTab == .groceries, fallback: "cart")
+                    }
+                }
                 .tag(AppRouter.Tab.groceries)
             RecipesView()
-                .tabItem { Label(String(localized: "Cookbook"), systemImage: "book") }
+                .tabItem {
+                    Label { Text(String(localized: "Cookbook")) } icon: {
+                        TabIcon.image("tab-cookbook", selected: router.selectedTab == .recipes, fallback: "book")
+                    }
+                }
                 .tag(AppRouter.Tab.recipes)
             ProfileView()
-                .tabItem { Label(String(localized: "Profile"), systemImage: "person.crop.circle") }
+                .tabItem {
+                    Label { Text(String(localized: "Profile")) } icon: {
+                        TabIcon.image("tab-profile", selected: router.selectedTab == .you, fallback: "person.crop.circle")
+                    }
+                }
                 .tag(AppRouter.Tab.you)
         }
         .accessibilityHidden(showsActions)
@@ -192,3 +209,33 @@ enum DateText {
 }
 
 #Preview { MainTabView().previewEnvironment() }
+
+/// Custom tab bar icons (`tab-<name>` outline, `tab-<name>-fill` when selected), drawn as template images
+/// at the tab bar's 26 pt so they take the tab tint like system symbols. Falls back to the SF Symbol until
+/// the art exists. Rendered once per name and cached.
+enum TabIcon {
+    @MainActor private static var cache: [String: UIImage] = [:]
+
+    @MainActor
+    static func image(_ name: String, selected: Bool, fallback: String) -> Image {
+        let candidates = selected ? [name + "-fill", name] : [name]
+        for candidate in candidates {
+            if let icon = rendered(candidate) { return Image(uiImage: icon) }
+        }
+        return Image(systemName: fallback)
+    }
+
+    @MainActor
+    private static func rendered(_ name: String) -> UIImage? {
+        if let cached = cache[name] { return cached }
+        guard let source = UIImage(named: name) else { return nil }
+        let side: CGFloat = 26
+        let aspect = source.size.height > 0 ? source.size.width / source.size.height : 1
+        let size = aspect >= 1 ? CGSize(width: side, height: side / aspect) : CGSize(width: side * aspect, height: side)
+        let icon = UIGraphicsImageRenderer(size: size).image { _ in
+            source.draw(in: CGRect(origin: .zero, size: size))
+        }.withRenderingMode(.alwaysTemplate)
+        cache[name] = icon
+        return icon
+    }
+}
