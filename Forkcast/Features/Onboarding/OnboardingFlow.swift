@@ -57,11 +57,14 @@ struct OnboardingFlow: View {
 
     private var transition: AnyTransition {
         if reduceMotion || crossDissolve { return .opacity }
-        let insertion: Edge = goingForward ? .trailing : .leading
-        let removal: Edge = goingForward ? .leading : .trailing
+        // A short glide instead of a full-screen slide: the next question arrives from 32 pt
+        // in the direction of travel and the old one leaves 20 pt the other way, a little faster.
+        let direction: CGFloat = goingForward ? 1 : -1
         return .asymmetric(
-            insertion: .move(edge: insertion).combined(with: .opacity),
-            removal: .move(edge: removal).combined(with: .opacity)
+            insertion: .offset(x: 32 * direction).combined(with: .opacity)
+                .animation(Animation.open(0.28)),
+            removal: .offset(x: -20 * direction).combined(with: .opacity)
+                .animation(.easeIn(duration: 0.16))
         )
     }
 

@@ -19,6 +19,7 @@ struct PlanView: View {
     @State private var expandsCalendar = true
 
     @State private var didAutoShowFeedback: Bool = false
+    @Namespace private var dayPill
 
     private var isPro: Bool { subscriptions.hasProAccess }
 
@@ -157,7 +158,7 @@ struct PlanView: View {
                         let meals = planStore.meals(on: day)
                         let selected = day == active
                         Button {
-                            withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { selectedDate = day }
+                            withAnimation(Theme.motion(reduceMotion)) { selectedDate = day }
                         } label: {
                             VStack(spacing: 4) {
                                 VStack(spacing: 2) {
@@ -171,11 +172,24 @@ struct PlanView: View {
                                         .opacity(meals.isEmpty ? 0 : 1)
                                 }
                                 .frame(width: 44, height: 52)
-                                .background(selected ? Theme.tomatoDeep : Theme.card, in: RoundedRectangle(cornerRadius: 14))
+                                .background {
+                                    // One pill travels between days instead of swapping colours in place.
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Theme.card)
+                                        if selected {
+                                            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                                .fill(Theme.tomatoDeep)
+                                                .shadow(color: Theme.tomatoDeep.opacity(0.25), radius: 6, y: 3)
+                                                .matchedGeometryEffect(id: "selectedDay", in: dayPill)
+                                        }
+                                    }
+                                }
                                 if expandsCalendar {
                                     Group {
-                                        if let meal = meals.first, let recipe = planStore.recipe(for: meal) {
+                                        if let meal = meals.first(where: { $0.mealType == .dinner && !$0.isSide }) ?? meals.first,
+                                           let recipe = planStore.recipe(for: meal) {
                                             DishTileView(recipe: recipe, size: 38, cornerRadius: 10)
+                                                .scaleEffect(selected ? 1.06 : 1)
                                         } else {
                                             RoundedRectangle(cornerRadius: 10)
                                                 .fill(Theme.creamDeep)
@@ -195,7 +209,7 @@ struct PlanView: View {
                 }
             }
             Button {
-                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { expandsCalendar.toggle() }
+                withAnimation(Theme.motion(reduceMotion)) { expandsCalendar.toggle() }
             } label: {
                 Image(systemName: expandsCalendar ? "chevron.up" : "chevron.down")
                     .font(.caption.weight(.bold))
@@ -208,6 +222,7 @@ struct PlanView: View {
         .padding(.horizontal, Theme.Spacing.m)
         .padding(.vertical, Theme.Spacing.s)
         .background(Theme.cream)
+        .sensoryFeedback(.selection, trigger: selectedDate)
     }
 
     private func dayMacros(_ date: Date) -> Macros {

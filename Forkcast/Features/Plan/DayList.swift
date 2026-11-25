@@ -15,16 +15,28 @@ struct DayList: View {
     var body: some View {
         LazyVStack(spacing: Theme.Spacing.m) {
             if let day {
-                ForEach(MealType.ordered(Set(MealType.allCases))) { type in
+                // Planned meals lead (dinner first, it's the meal the week is built around),
+                // then sides, then the empty slots as quiet "add" rows at the end.
+                let order = Self.dinnerFirst
+                let filled = order.filter { !planStore.meals(on: day, type: $0).isEmpty }
+                let empty = order.filter { planStore.meals(on: day, type: $0).isEmpty }
+                ForEach(filled) { type in
                     slot(day: day, type: type, header: "\(DateText.shortWeekday(day).uppercased()) · \(type.title)")
                 }
                 mealCards(planStore.meals(on: day).filter(\.isSide), day: day, header: String(localized: "Side or extra"))
+                ForEach(empty) { type in
+                    slot(day: day, type: type, header: "\(DateText.shortWeekday(day).uppercased()) · \(type.title)")
+                        .transition(.opacity)
+                }
             } else {
                 allDays
             }
         }
         .animation(Theme.motion(reduceMotion), value: planStore.revision)
     }
+
+    /// Dinner, then the rest of the day in its usual order.
+    private static let dinnerFirst: [MealType] = [.dinner] + MealType.ordered(Set(MealType.allCases)).filter { $0 != .dinner }
 
     private var allDays: some View {
         ForEach(planStore.weekDays, id: \.self) { day in

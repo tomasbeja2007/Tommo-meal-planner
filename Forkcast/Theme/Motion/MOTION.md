@@ -123,6 +123,13 @@
   `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),
   the reminder bell (`StayOnTrackStep`: a one-shot swing around its top), the mirror's typed text (`OneShotClock`),
   `OptionTile`'s icon bounce (keyframes, off with Reduce Motion), the dislike strike-through and the vibe grid shake.
+- **Welcome home (end of onboarding):** `HeroDishCelebration` leads with the week's first dinner. One `OneShotClock`
+  (1.1 s: dish rises 18 pt from 0.92, ingredients open out staggered 55 ms, herb check pops last) wrapping one
+  `LoopClock` (9.6 s: dish breathing ±1.2% and sway 1.6° around its base, ingredients bob and rock on seeded phases).
+  Every idle period divides 9.6 s so the seam never jumps. Numbers in `enum HeroMotion`.
+- **Onboarding step change:** a 32 pt glide + fade in (ease-out 0.28 s), 20 pt + fade out (ease-in 0.16 s).
+- **Plan day strip:** one tomato pill travels between days (`matchedGeometryEffect`, `Theme.spring`), selection haptic.
+- **Grocery check:** fill opens from 70%, the tick draws on with ease-out; unchecking is quicker.
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 

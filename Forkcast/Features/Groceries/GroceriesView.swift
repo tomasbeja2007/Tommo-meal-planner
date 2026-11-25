@@ -452,24 +452,41 @@ struct GroceryRow: View {
 }
 
 /// Herb-filled circle with a white check when done.
+/// Checking: the fill opens out from 70% (never from 0) and the tick draws itself on with ease-out.
+/// Unchecking is faster than checking (exits are faster than entrances). Reduce Motion: instant.
 struct CheckCircle: View {
     let isChecked: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion: Bool
 
     var body: some View {
         ZStack {
             Circle()
                 .stroke(isChecked ? Theme.herb : Theme.aubergineFaint, lineWidth: 2)
-            if isChecked {
-                Circle().fill(Theme.herb)
-                Image(systemName: "checkmark")
-                    .font(.system(size: 12, weight: .heavy))
-                    .foregroundStyle(Color.white)
-                    .transition(.scale(scale: 0.9).combined(with: .opacity))
-            }
+            Circle()
+                .fill(Theme.herb)
+                .scaleEffect(isChecked ? 1 : 0.7)
+                .opacity(isChecked ? 1 : 0)
+            TickShape()
+                .trim(from: 0, to: isChecked ? 1 : 0)
+                .stroke(Color.white, style: StrokeStyle(lineWidth: 2.6, lineCap: .round, lineJoin: .round))
+                .frame(width: 12, height: 10)
+                .animation(reduceMotion ? nil : (isChecked ? Animation.open(0.26).delay(0.06) : .easeIn(duration: 0.12)), value: isChecked)
         }
+        .animation(reduceMotion ? nil : (isChecked ? Animation.open(0.22) : .easeIn(duration: 0.14)), value: isChecked)
         .frame(width: 26, height: 26)
         .frame(width: 30, height: 44)
         .accessibilityHidden(true)
+    }
+}
+
+/// A hand-drawn-feeling tick, drawn from the short stroke into the long one so `trim` reads as writing.
+private struct TickShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: rect.minX, y: rect.midY + rect.height * 0.05))
+        p.addLine(to: CGPoint(x: rect.minX + rect.width * 0.36, y: rect.maxY))
+        p.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+        return p
     }
 }
 
