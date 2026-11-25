@@ -82,9 +82,6 @@ enum WelcomeIntro {
     static let titleAt: Double = 0.62
     static let subtitleAt: Double = 0.72
     static let buttonsAt: Double = 0.86
-    /// Idle drift of the ingredients: barely there (front layer; the back layer moves 60% of this).
-    static let bob: Double = 0.012
-    static let rock: Double = 2
 }
 
 private extension View {
@@ -121,32 +118,38 @@ struct IngredientHero: View {
 
     @State private var isVisible = false
 
+    /// One ingredient in the still life. `x` is a fraction of the scene width; `floor` is where its base
+    /// rests, as an offset from the shared floor line (negative = further back); `size` is a fraction of the height.
     private struct Prop: Identifiable {
         let id: String
         let x: CGFloat
-        let y: CGFloat
+        let floor: CGFloat
         let size: CGFloat
         let tilt: Double
+        /// Rock around its base (degrees) and its period: leaves sway more than a lemon.
+        let rock: Double
         let period: Double
-        /// When it opens out during the intro (0 first).
+        /// When it settles in during the intro (0 first).
         let order: Int
     }
 
+    // A still life on one floor: two larger pieces tucked behind Chef Tomato, two anchoring the front
+    // corners, two small accents at the feet. Sizes step down front to back; tilts stay small.
     private static let back: [Prop] = [
-        Prop(id: "broccoli", x: 0.25, y: 0.25, size: 0.28, tilt: -14, period: 12_000, order: 1),
-        Prop(id: "cherry-tomatoes", x: 0.77, y: 0.24, size: 0.27, tilt: 10, period: 15_000, order: 3),
-        Prop(id: "basil", x: 0.86, y: 0.53, size: 0.23, tilt: 14, period: 10_000, order: 5)
+        Prop(id: "broccoli", x: 0.27, floor: -0.13, size: 0.30, tilt: -6, rock: 1.2, period: 12_000, order: 2),
+        Prop(id: "cherry-tomatoes", x: 0.74, floor: -0.12, size: 0.26, tilt: 5, rock: 1.4, period: 15_000, order: 3)
     ]
     private static let front: [Prop] = [
-        Prop(id: "avocado", x: 0.20, y: 0.75, size: 0.34, tilt: -12, period: 15_000, order: 0),
-        Prop(id: "lemon", x: 0.78, y: 0.77, size: 0.32, tilt: 10, period: 12_000, order: 2),
-        Prop(id: "garlic", x: 0.35, y: 0.91, size: 0.19, tilt: 8, period: 10_000, order: 4)
+        Prop(id: "avocado", x: 0.17, floor: 0.04, size: 0.31, tilt: -7, rock: 0.8, period: 15_000, order: 0),
+        Prop(id: "garlic", x: 0.34, floor: 0.07, size: 0.15, tilt: 4, rock: 1, period: 10_000, order: 4),
+        Prop(id: "basil", x: 0.67, floor: 0.07, size: 0.15, tilt: -8, rock: 3, period: 6_000, order: 5),
+        Prop(id: "lemon", x: 0.84, floor: 0.04, size: 0.29, tilt: 6, rock: 0.8, period: 12_000, order: 1)
     ]
 
     var body: some View {
         GeometryReader { proxy in
             let side = min(proxy.size.width, height * 1.48)
-            let mascotSize = min(height * 0.65, side * 0.55)
+            let mascotSize = min(height * 0.62, side * 0.52)
             let global = proxy.frame(in: .global)
             // How far the launch mascot sits from the hero's centre (window coordinates).
             let fromLaunch: CGSize = playsIntro
@@ -155,14 +158,16 @@ struct IngredientHero: View {
             OneShotClock(duration: WelcomeIntro.duration, play: isVisible && playsIntro) { e in
                 LoopClock(period: Theme.Motion.ambientDuration, paused: !isVisible) { time in
                     let i = playsIntro ? e : WelcomeIntro.duration
+                    let floorY = 0.5 + mascotSize / height * 0.43
                     ZStack {
-                        props(Self.back, width: side, at: time, intro: i, depth: 0.6)
+                        backdrop(width: side, floorY: floorY, at: time, intro: i)
+                        props(Self.back, width: side, floorY: floorY, at: time, intro: i)
                         if showsPlanPreview && AssetImage.exists("WelcomePlanScreenshot") {
                             phonePreview
                         } else {
                             mascot(size: mascotSize, intro: i, from: fromLaunch)
                         }
-                        props(Self.front, width: side, at: time, intro: i, depth: 1)
+                        props(Self.front, width: side, floorY: floorY, at: time, intro: i)
                     }
                     .frame(width: side, height: height)
                 }
@@ -213,28 +218,55 @@ struct IngredientHero: View {
             .shadow(color: Theme.aubergine.opacity(0.24), radius: 12, x: 3, y: 8)
     }
 
-    /// Ingredients open out from behind the mascot (from 35% of the way, never from scale 0),
-    /// staggered, then drift very slowly; the back layer moves less than the front (depth).
-    private func props(_ props: [Prop], width: CGFloat, at time: Double, intro i: Double, depth: Double) -> some View {
+    /// A soft tomato sun behind Chef Tomato and one shared floor shadow: the scene's ground.
+    /// The sun glows by 1.5% over 6 s; both grow in with the intro (from 90%, never from 0).
+    private func backdrop(width: CGFloat, floorY: CGFloat, at time: Double, intro i: Double) -> some View {
+        let open = seg(i, WelcomeIntro.landMs - 200, WelcomeIntro.landMs + 300)
+        let glow = 1 + 0.015 * wave(time, period: 6_000)
+        let sun = height * 0.80
+        return ZStack {
+            Circle()
+                .fill(RadialGradient(colors: [Theme.tomatoSoft, Theme.tomatoSoft.opacity(0.55)],
+                                     center: .center, startRadius: 0, endRadius: sun / 2))
+                .frame(width: sun, height: sun)
+                .scaleEffect((0.9 + 0.1 * open) * glow)
+                .position(x: width / 2, y: height * (floorY - 0.36))
+            Ellipse()
+                .fill(Theme.aubergine.opacity(0.07))
+                .frame(width: width * 0.86, height: height * 0.08)
+                .blur(radius: 6)
+                .position(x: width / 2, y: height * (floorY + 0.06))
+        }
+        .opacity(open)
+    }
+
+    /// Each piece rests on the floor with its own contact shadow, settles in from 14 pt above
+    /// (ease-out, staggered), then only rocks gently around its base. Nothing floats.
+    private func props(_ props: [Prop], width: CGFloat, floorY: CGFloat, at time: Double, intro i: Double) -> some View {
         ZStack {
             ForEach(props) { prop in
                 let start = WelcomeIntro.propsAt + Double(prop.order) * WelcomeIntro.propStagger
-                let open = seg(i, start, start + WelcomeIntro.propOpenMs)
-                let reach = 0.35 + 0.65 * open
-                let phase = Double(prop.x)
-                let drift = wave(time, period: prop.period, phase: phase)
-                let lag = wave(time, period: prop.period, phase: phase - 0.06)
-                let x = 0.5 + (Double(prop.x) - 0.5) * reach
-                let y = 0.5 + (Double(prop.y) - 0.5) * reach + drift * WelcomeIntro.bob * depth
-                Image("ingredient-\(prop.id)")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: height * prop.size, height: height * prop.size)
-                    .shadow(color: Theme.aubergine.opacity(0.08 + 0.04 * open), radius: 6, x: 0, y: 5)
-                    .rotationEffect(.degrees(prop.tilt * (0.6 + 0.4 * open) + WelcomeIntro.rock * depth * lag))
-                    .scaleEffect(0.75 + 0.25 * open)
-                    .opacity(open)
-                    .position(x: width * x, y: height * y)
+                let settle = seg(i, start, start + WelcomeIntro.propOpenMs)
+                let side = height * prop.size
+                let base = height * (floorY + prop.floor)
+                let rock = prop.rock * wave(time, period: prop.period, phase: Double(prop.x))
+                ZStack(alignment: .bottom) {
+                    Ellipse()
+                        .fill(Theme.aubergine.opacity(0.12 * settle))
+                        .frame(width: side * 0.7, height: side * 0.12)
+                        .blur(radius: 2.5)
+                        .offset(y: side * 0.04)
+                    Image("ingredient-\(prop.id)")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: side, height: side)
+                        .rotationEffect(.degrees(prop.tilt + rock), anchor: .bottom)
+                        .scaleEffect(0.92 + 0.08 * settle, anchor: .bottom)
+                        .offset(y: -14 * (1 - settle))
+                        .opacity(settle)
+                }
+                .frame(width: side, height: side)
+                .position(x: width * prop.x, y: base - side / 2)
             }
         }
         .frame(width: width, height: height)

@@ -120,9 +120,11 @@
   `LaunchMascot` is `MascotIdle` resized to 200 pt for the launch screen (same size and spot as the splash mascot).
 - **Onboarding motion:** `WelcomeStep` (one continuous intro out of the launch screen: Chef Tomato is drawn at the
   launch size, rests 160 ms, then glides on the travel curve from the window centre into the hero and settles with a
-  small volume-keeping squash; the six ingredients open out from behind it, staggered 70 ms, from 35% of the way and
-  75% scale; title, subtitle and buttons rise 14 pt in with ease-out at 0.62 / 0.72 / 0.86 s; light haptic on landing.
-  Idle drift is tiny: 1.2% bob, 2° rock, back layer at 60% for depth, periods 10/12/15 s inside the 60 s ambient loop.
+  small volume-keeping squash; the scene is a still life on one floor: a soft tomato "sun" behind
+  Chef Tomato and a shared floor shadow grow in as he lands; six ingredients (two behind, two front corners, two
+  small accents at his feet) settle onto the floor from 14 pt above, staggered 70 ms, each with a contact shadow;
+  title, subtitle and buttons rise 14 pt in with ease-out at 0.62 / 0.72 / 0.86 s; light haptic on landing.
+  Idle: nothing floats. Pieces only rock around their base (0.8–1.4°, basil 3°), the sun glows 1.5% over 6 s.
   Plays once per launch. Numbers in `enum WelcomeIntro`), `ConfettiView` (one `Canvas`, one
   `OneShotClock`, seeded pieces, gravity, empty last frame so Reduce Motion shows none; numbers in `ConfettiMotion`),
   the reminder bell (`StayOnTrackStep`: a one-shot swing around its top), the mirror's typed text (`OneShotClock`),
