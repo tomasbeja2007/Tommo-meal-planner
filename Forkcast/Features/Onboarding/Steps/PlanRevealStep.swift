@@ -144,7 +144,8 @@ private struct RevealDayCard: View {
     PlanRevealStep(state: OnboardingState()) {}.previewEnvironment().creamBackground()
 }
 
-/// An illustrative savings example. The artwork is animated as a single timeline.
+/// An illustrative savings example. The artwork is animated as a single timeline (1.9 s):
+/// mascot and first line straight away, the yearly figure counts up from 0.56 s, "a year" lands at 1.3 s.
 struct SavingsStep: View {
     let onContinue: () -> Void
     @State private var appeared = false
@@ -153,22 +154,23 @@ struct SavingsStep: View {
     private let weeks = 52
 
     var body: some View {
-        OneShotClock(duration: 6_300, play: appeared) { time in
+        OneShotClock(duration: 1_900, play: appeared) { time in
             ScrollView {
                 VStack(spacing: Theme.Spacing.m) {
                     MascotReaction(mood: .cheer, size: 112)
-                        .opacity(phase(time, from: 3_950, to: 4_400))
-                        .scaleEffect(0.8 + 0.2 * phase(time, from: 3_950, to: 4_400))
+                        .opacity(phase(time, from: 0, to: 260))
+                        .scaleEffect(0.9 + 0.1 * seg(phase(time, from: 0, to: 420), 0, 1))
                     Text("If you save \(money(weekly)) on groceries each week,")
                         .font(.title2.weight(.semibold))
-                        .opacity(phase(time, from: 80, to: 490))
+                        .opacity(phase(time, from: 80, to: 380))
+                        .offset(y: 10 * (1 - phase(time, from: 80, to: 380)))
                     Text("that's")
                         .font(.title3)
-                        .opacity(phase(time, from: 4_000, to: 4_350))
+                        .opacity(phase(time, from: 420, to: 640))
                     annualFigure(at: time)
                     Text("a year")
                         .font(.title2.weight(.semibold))
-                        .opacity(phase(time, from: 5_350, to: 5_700))
+                        .opacity(phase(time, from: 1_300, to: 1_560))
                 }
                 .foregroundStyle(Theme.aubergine)
                 .multilineTextAlignment(.center)
@@ -180,7 +182,7 @@ struct SavingsStep: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: Theme.Spacing.s) {
                     PrimaryButton(String(localized: "Continue"), action: onContinue)
-                        .opacity(0.76 + 0.24 * phase(time, from: 5_700, to: 6_300))
+                        .opacity(0.76 + 0.24 * phase(time, from: 1_400, to: 1_900))
                     Text("Example based on saving \(money(weekly)) a week")
                         .font(.footnote)
                         .foregroundStyle(Theme.aubergineMuted)
@@ -194,8 +196,8 @@ struct SavingsStep: View {
     }
 
     private func annualFigure(at time: Double) -> some View {
-        let reveal = phase(time, from: 4_000, to: 5_000)
-        let ring = phase(time, from: 4_200, to: 5_050)
+        let reveal = phase(time, from: 560, to: 1_400)
+        let ring = phase(time, from: 700, to: 1_500)
         let value = Int((Double(weekly * weeks) * (1 - pow(1 - reveal, 3))).rounded(.down))
         return Text(money(value))
             .font(.system(.largeTitle, design: .rounded, weight: .black))
@@ -209,7 +211,7 @@ struct SavingsStep: View {
                     .scaleEffect(0.55 + ring * 0.8)
                     .accessibilityHidden(true)
             }
-            .scaleEffect(1.24 - 0.24 * reveal)
+            .scaleEffect(1.12 - 0.12 * seg(reveal, 0, 1))
             .opacity(min(1, reveal * 5))
     }
 
@@ -283,3 +285,4 @@ struct CatalogPreviewStep: View {
         }
     }
 }
+

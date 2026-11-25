@@ -7,8 +7,8 @@ struct MirrorStep: View {
     let state: OnboardingState
     let onContinue: () -> Void
 
-    /// Milliseconds per character while typing.
-    private let msPerCharacter: Double = 26
+    /// Milliseconds per character while typing: quick, and the whole sentence never takes longer than 1.6 s.
+    private var msPerCharacter: Double { min(14, 1_600 / Double(max(1, characterCount))) }
 
     private var pieces: [MirrorPiece] { MirrorPiece.build(goals: state.goals, obstacles: state.obstacles) }
     private var characterCount: Int { pieces.reduce(0) { $0 + $1.text.count } }
