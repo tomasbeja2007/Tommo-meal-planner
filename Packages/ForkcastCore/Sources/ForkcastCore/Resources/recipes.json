@@ -48467,5 +48467,1047 @@
   "isLeftoverFriendly": false,
   "mealType": "dinner",
   "tags": []
+ },
+ {
+  "id": "chinese-pepper-steak",
+  "title": "Chinese pepper steak",
+  "emoji": "🥩",
+  "cuisine": "Chinese",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "red and green"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice following the packet. Slice the beef into thin strips across the grain.",
+   "Cut the peppers and onion into thick strips. Stir the soy, ginger, garlic, cornflour, pepper, sugar and vinegar into 100 ml water.",
+   "Heat half the oil in a wide frying pan and brown the beef quickly in batches. Transfer to a clean plate.",
+   "Add the rest of the oil and stir-fry the peppers and onion until browned at the edges.",
+   "Return the beef to the pan. Stir up the sauce, pour it in and cook until it thickens and the beef is cooked to your liking.",
+   "Divide the plain rice between bowls and spoon the steak and peppers beside it."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "honey-garlic-prawn-stir-fry",
+  "title": "Honey garlic prawn stir-fry",
+  "emoji": "🍤",
+  "cuisine": "Chinese",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 17,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "shrimp",
+    "amount": 520,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 130,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "red"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Cut the broccoli and pepper into bite-size pieces.",
+   "Whisk the honey, soy, vinegar, cornflour and crushed garlic with 60 ml water.",
+   "Pat the prawns dry. Heat half the oil in a pan and cook the prawns until pink and opaque. Lift them onto a clean plate.",
+   "Add the remaining oil and stir-fry the broccoli and pepper for a few minutes. Add the peas and a splash of water.",
+   "Pour in the sauce and bubble until it coats the vegetables. Return the prawns and toss until glossy and hot.",
+   "Spoon the stir-fry and its sauce over the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "korean-bbq-meatball-rice",
+  "title": "Korean BBQ meatball rice bowls",
+  "emoji": "🍚",
+  "cuisine": "Korean",
+  "vibes": [
+   "highProtein",
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 18,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 14,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Set the rice cooking following the packet.",
+   "Mix the beef, egg, breadcrumbs, crushed garlic, grated ginger and half the soy. Form 16 small meatballs.",
+   "Spread on a lined tray and roast for 14–17 minutes, until cooked to 71°C (160°F).",
+   "Slice the cucumber and toss with half the vinegar. Heat the gochujang, honey, sesame oil, remaining soy and vinegar in a pan.",
+   "Bubble until lightly syrupy, then roll the roasted meatballs in the glaze.",
+   "Serve the glazed meatballs over rice with cucumber slices and a sprinkling of sesame seeds."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "spicy-mayo-steak-rice-bowls",
+  "title": "Steak rice bowls with spicy mayo",
+  "emoji": "🥩",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 220,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook and fluff the rice. Cut the carrots into fine matchsticks and slice the spring onions.",
+   "Toss the carrots in half the lime juice. Stir the other half into the mayo with sriracha.",
+   "Pat the steak dry, season it with salt and heat the oil in a heavy frying pan.",
+   "Sear the steak on both sides to at least 63°C (145°F), then rest for at least 3 minutes.",
+   "Slice across the grain and toss the meat with its juices and the soy sauce.",
+   "Divide the rice, steak and carrots into bowls. Drizzle over the spicy mayo and add spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-chicken-rice-paper-bites",
+  "title": "Chicken rice paper bites",
+  "emoji": "🥟",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 21,
+  "cookMinutes": 19,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 540,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-paper",
+    "amount": 16,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 16,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Dice the chicken finely, shred the cabbage and grate the ginger. Slice the spring onions.",
+   "Fry the chicken in a little vegetable oil until it reaches 74°C (165°F). Stir in cabbage, ginger, onions and half the soy and cook until dry enough to mound.",
+   "Let the filling cool on a clean plate. Dip a sheet of rice paper into water briefly and lay it flat.",
+   "Put two spoonfuls of filling in the middle. Fold each side over, then fold the ends tight to form a parcel. Repeat.",
+   "Heat the remaining oil and fry the parcels in batches, leaving space between them, until golden on both sides.",
+   "Mix the remaining soy with vinegar and sesame oil. Serve alongside the bites for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "bang-bang-crispy-chicken-bowls",
+  "title": "Bang bang chicken bowls",
+  "emoji": "🍚",
+  "cuisine": "American",
+  "vibes": [
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 510,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweet-chili-sauce",
+    "amount": 45,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Rinse the rice and put it on to cook.",
+   "Cut the chicken into bite-size pieces and coat in beaten egg, then breadcrumbs.",
+   "Spread the chicken on a lined tray and brush lightly with oil. Bake for 14–18 minutes, turning once, until crisp and 74°C (165°F).",
+   "Mix the mayo, sweet chilli sauce and sriracha until pale pink. Shred the cabbage and slice the cucumber and spring onions.",
+   "Toss the hot crispy chicken with just enough sauce to lightly coat each bite.",
+   "Pile the chicken over rice with the cabbage and cucumber. Add spring onions and serve with the remaining sauce."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "sweet-sour-pork-pineapple",
+  "title": "Sweet and sour pork with pineapple",
+  "emoji": "🥢",
+  "cuisine": "Chinese",
+  "vibes": [
+   "family",
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "pork-tenderloin",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "red and green"
+   },
+   {
+    "ingredientId": "pineapple-tin",
+    "amount": 230,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 240,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 55,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Rinse and cook the rice. Cube the pork and slice the peppers into squares.",
+   "Whisk ketchup, vinegar, soy, sugar, a teaspoon of cornflour and 100 ml water into a sauce.",
+   "Toss the pork in the remaining cornflour. Fry in hot oil until browned all over and 63°C (145°F) inside.",
+   "Move the pork to a clean plate to rest for at least 3 minutes. Stir-fry the peppers for 3 minutes.",
+   "Add the drained pineapple and the sauce. Bubble until thick enough to coat the back of a spoon.",
+   "Return the pork to the pan, toss to coat and serve over the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "cajun-prawn-alfredo",
+  "title": "Cajun prawn Alfredo",
+  "emoji": "🍤",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 18,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "fettuccine",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "shrimp",
+    "amount": 490,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 190,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 65,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 25,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Boil the fettuccine until just firm, then drain it, keeping a cup of the cooking water.",
+   "Pat the prawns dry and toss with paprika, oregano, chilli and pepper.",
+   "Heat half the butter and fry the prawns until pink and opaque. Lift them onto a clean plate.",
+   "Melt the rest of the butter in the same pan and cook the garlic for 30 seconds. Add the cream and stir up the browned seasoning.",
+   "Toss in the pasta with some cooking water and grated parmesan. Return the prawns and warm through.",
+   "Finish with lemon juice and chopped parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "beef-meatballs-parmesan-orzo",
+  "title": "Beef meatballs with creamy parmesan orzo",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 16,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "orzo",
+    "amount": 290,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 750,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 85,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 22,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 12,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Mix beef, beaten egg, breadcrumbs, herbs, half the garlic and salt.",
+   "Roll into 16 meatballs and bake on a lined tray until browned and 71°C (160°F) at the centre.",
+   "Melt the butter in a saucepan and stir in the remaining garlic. Add the orzo and toast briefly.",
+   "Pour in the stock and simmer, stirring every few minutes until the orzo is tender and creamy.",
+   "Stir in most of the grated parmesan off the heat. Loosen with a splash of hot water if needed.",
+   "Spoon the orzo into bowls, add the browned meatballs and finish with the remaining parmesan, cracked pepper and parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "prawn-vegetable-yakisoba",
+  "title": "Prawn and vegetable yakisoba",
+  "emoji": "🍜",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "egg-noodles",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "shrimp",
+    "amount": 480,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 270,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 35,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cook the noodles a minute short of the packet timing and drain well. Slice the cabbage and carrot thinly.",
+   "Mix soy, Worcestershire sauce, ketchup and sugar. Finely grate the ginger.",
+   "Fry the prawns in half the oil until pink and opaque. Lift them onto a clean plate.",
+   "Add the remaining oil, ginger, cabbage and carrot. Stir-fry until the vegetables soften slightly.",
+   "Add noodles and sauce. Let the noodles sit for a minute to develop browned edges, then toss with the prawns.",
+   "Serve immediately with plenty of finely sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "new-orleans-bbq-prawns",
+  "title": "New Orleans BBQ prawns with bread",
+  "emoji": "🍤",
+  "cuisine": "American",
+  "vibes": [
+   "quickEasy",
+   "highProtein",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "shrimp",
+    "amount": 600,
+    "unit": "g",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 75,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 5,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 120,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "hot-sauce",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Slice the bread into generous pieces. Pat the prawns dry and mince the garlic.",
+   "Melt a little of the butter in a wide pan. Stir in garlic, paprika and pepper until fragrant.",
+   "Add the stock, Worcestershire sauce, hot sauce and lemon juice. Bubble until reduced a little.",
+   "Add the prawns and simmer gently, turning once, until pink and opaque.",
+   "Take the pan off the heat and whisk in the remaining cold butter a piece at a time. Stir in chopped parsley.",
+   "Divide the prawns and peppery sauce into bowls with slices of bread for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-fried-chicken-milk-gravy",
+  "title": "Chicken-fried chicken with milk gravy",
+  "emoji": "🍗",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 18,
+  "cookMinutes": 26,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 550,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 420,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 620,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 32,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.75,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Peel and cube the potatoes. Boil until soft and add the peas to a separate pan for their last few minutes.",
+   "Slice the chicken into four even cutlets. Reserve 2 tablespoons of flour for the gravy and mix the rest with garlic powder, half the salt and half the pepper.",
+   "Beat the eggs with a little of the milk. Coat the cutlets in the flour, then egg and then flour again to make a craggy coating.",
+   "Fry in hot oil until golden and 74°C (165°F) in the centre. Rest on a rack and carefully pour off most of the oil.",
+   "Whisk the reserved flour into the drippings, then slowly add most of the remaining milk. Simmer until it coats a spoon and add the remaining pepper.",
+   "Mash the potatoes with butter, salt and the last splash of milk. Put the chicken beside the mash and peas and spoon its gravy over one end."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
  }
 ]

@@ -3071,6 +3071,38 @@
   "tags": []
  },
  {
+  "id": "fettuccine",
+  "name": "fettuccine",
+  "pluralName": "fettuccine",
+  "aisle": "Pasta",
+  "allergens": [
+   "gluten"
+  ],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 371,
+   "protein": 13,
+   "carbs": 75,
+   "fat": 1.5,
+   "fiber": 3.2
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 500,
+   "display": "500 g pack",
+   "displayImperial": "1 lb pack",
+   "noun": "pack",
+   "nounPlural": "packs"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍝",
+  "tags": []
+ },
+ {
   "id": "spaghetti",
   "name": "spaghetti",
   "pluralName": "spaghetti",
@@ -3912,6 +3944,36 @@
   "emoji": "🫘",
   "tags": [],
   "proteinGroup": "legume"
+ },
+ {
+  "id": "pineapple-tin",
+  "name": "pineapple chunks in juice",
+  "pluralName": "pineapple chunks in juice",
+  "aisle": "Tins & Jars",
+  "allergens": [],
+  "dietFlags": {
+   "isMeat": false,
+   "isFish": false,
+   "isAnimalProduct": false
+  },
+  "per100g": {
+   "kcal": 60,
+   "protein": 0.4,
+   "carbs": 15,
+   "fat": 0.1,
+   "fiber": 0.9
+  },
+  "baseUnit": "g",
+  "pack": {
+   "amount": 230,
+   "display": "400 g tin (230 g drained)",
+   "displayImperial": "14 oz can",
+   "noun": "tin",
+   "nounPlural": "tins"
+  },
+  "isPantryStaple": false,
+  "emoji": "🍍",
+  "tags": []
  },
  {
   "id": "kidney-beans",
