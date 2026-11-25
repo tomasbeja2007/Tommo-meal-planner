@@ -6,8 +6,8 @@ final class LibraryValidationTests: XCTestCase {
 
     func testCatalogLoads() throws {
         let loaded = try FoodCatalog.loadBundled()
-        XCTAssertEqual(loaded.recipes.count, 595)
-        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 301)
+        XCTAssertEqual(loaded.recipes.count, 607)
+        XCTAssertEqual(loaded.recipes.filter { $0.mealType == .dinner }.count, 313)
         XCTAssertEqual(loaded.recipes.filter { $0.mealType == .breakfast }.count, 101)
         XCTAssertEqual(loaded.recipes.filter { $0.mealType == .lunch }.count, 111)
         XCTAssertEqual(loaded.recipes.filter { $0.mealType == .snack }.count, 82)

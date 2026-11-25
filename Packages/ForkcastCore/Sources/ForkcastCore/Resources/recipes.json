@@ -47462,5 +47462,1010 @@
   "isLeftoverFriendly": false,
   "mealType": "dinner",
   "tags": []
+ },
+ {
+  "id": "salmon-sushi-tacos",
+  "title": "Salmon sushi tacos",
+  "emoji": "🌮",
+  "cuisine": "Japanese",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 18,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "nori",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sushi-rice",
+    "amount": 230,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salmon-fillet",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 210°C (410°F). Rinse the sushi rice and cook it following the packet.",
+   "Brush the tortillas lightly with oil and drape them over an ovenproof rack to make taco shells. Bake for 6–8 minutes until firm and lightly golden.",
+   "Brush the salmon with soy sauce and bake on a separate tray until it flakes easily and reaches 63°C (145°F).",
+   "Mix vinegar and sugar. Fold them through the hot rice and spread the rice out for a few minutes to cool.",
+   "Slice the avocado, cut the cucumber into thin sticks and flake the cooked salmon into chunks.",
+   "Cut the nori into half sheets and press one into each shell. Fill with the rice, salmon, avocado and cucumber, then sprinkle with sesame."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-chipotle-beef-tacos",
+  "title": "Cheesy chipotle beef tacos",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 460,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 12,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 140,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chipotles-in-adobo",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 160,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Dice the onion and finely chop the chipotles. Grate the cheese and slice the spring onions.",
+   "Fry the onion in half the oil for 4 minutes. Brown the mince in the same pan, breaking it into small pieces.",
+   "Stir in the chipotles, cumin and passata. Simmer until the mince is cooked and the sauce thick enough to sit on a spoon.",
+   "Warm the tortillas in a clean dry pan until flexible. Put a little grated cheese and some beef on one half of each.",
+   "Fold the tortillas over. Brush lightly with the remaining oil and fry on both sides until browned and crisp at the edges.",
+   "Scatter over the spring onions and serve with lime wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-rice-burritos",
+  "title": "Chicken and rice burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 210,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 130,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook it following the packet. Drain the beans, rinse them and warm them with a spoonful of water.",
+   "Cut the chicken into bite-size pieces and toss with lime zest, paprika, cumin and salt.",
+   "Heat the oil in a frying pan and cook the chicken until golden and 74°C (165°F) in the centre.",
+   "Squeeze the lime over the chicken and toss. Warm the tortillas briefly in a clean pan.",
+   "Lay out the rice in a strip down the middle of each tortilla. Top with the black beans, chicken and salsa.",
+   "Fold in both sides and roll up snugly. Toast in a dry pan until lightly marked on both sides, then slice across the middle."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "crispy-beef-bean-burritos",
+  "title": "Crispy beef burritos",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "comfort",
+   "fakeaway",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 420,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kidney-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "tinned, drained"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "roasted-peppers",
+    "amount": 150,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "tomato-paste",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Dice the onion and roast peppers. Grate the cheddar and rinse the kidney beans.",
+   "Heat a little oil in a skillet and brown the beef, using a spoon to break it up.",
+   "Add the onion, paprika, cumin and tomato paste. Cook until the onion softens and the beef is fully cooked.",
+   "Fold in the beans and sliced peppers. Simmer briefly until the filling is thick and almost dry.",
+   "Put a quarter of the filling and cheese on each tortilla. Fold in the sides and roll tightly.",
+   "Brush the skillet with the remaining oil and griddle the burritos seam-side down first. Turn until crisp, then halve to serve."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "oven-crisp-chicken-chimichangas",
+  "title": "Oven-crisp chicken chimichangas",
+  "emoji": "🌯",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 28,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "large"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sour-cream",
+    "amount": 100,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F) and line a baking tray.",
+   "Poach the chicken in gently simmering water until it reaches 74°C (165°F). Let it cool slightly before shredding.",
+   "Slice the peppers and onion. Fry them in half the oil for about 6 minutes until soft and browned at the edges.",
+   "Stir the shredded chicken, salsa, paprika and cumin into the peppers. Cook until the filling is thick rather than wet.",
+   "Fill the tortillas, tuck in the sides and roll tightly. Brush with the remaining oil and bake seam-side down for 12–15 minutes.",
+   "Cut each chimichanga in half on the diagonal and serve with sour cream alongside."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "honey-lime-chicken-enchiladas",
+  "title": "Honey lime chicken enchiladas",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 17,
+  "cookMinutes": 36,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 530,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 450,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). In a saucepan, bring enough water to cover the chicken to a gentle simmer.",
+   "Poach the thighs until they reach 74°C (165°F). Drain and shred them, then toss with honey and juice from one lime.",
+   "Fry the crushed garlic in the oil for 30 seconds. Add the passata, paprika and cumin and simmer for 5 minutes.",
+   "Warm the tortillas to make them flexible. Spoon a little tomato sauce into a baking dish and roll a portion of chicken into each tortilla.",
+   "Set the rolls seam-side down. Spoon the remaining red sauce over them and scatter over the cheese. Bake for 15–18 minutes until bubbling.",
+   "Finish with chopped coriander and serve with wedges of the remaining lime."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "white-cheese-chicken-enchiladas",
+  "title": "White chicken and cheese enchiladas",
+  "emoji": "🧀",
+  "cuisine": "Mexican",
+  "vibes": [
+   "comfort",
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 40,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 480,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tortillas",
+    "amount": 8,
+    "unit": "piece",
+    "note": "small"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 170,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 450,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "sour-cream",
+    "amount": 130,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Poach the chicken in gently simmering water until it reaches 74°C (165°F).",
+   "Shred the chicken and toss it with the cumin, pepper and half the chopped spring onions.",
+   "Melt the butter in a saucepan. Stir in the flour for a minute, then slowly whisk in the stock until the sauce thickens.",
+   "Take off the heat and stir in the sour cream. Spread a little of the white sauce in a baking dish.",
+   "Fill each tortilla with chicken, roll it up and set it in the dish. Cover with the remaining sauce and scatter on the torn mozzarella.",
+   "Bake for 15–20 minutes, until bubbling and lightly browned. Finish with the remaining spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "fideo-loco-beef-bean-soup",
+  "title": "Beef and bean fideo loco",
+  "emoji": "🥣",
+  "cuisine": "Mexican",
+  "vibes": [
+   "comfort",
+   "onePan",
+   "fiberForward"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 12,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spaghetti",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 370,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pinto-beans",
+    "amount": 260,
+    "unit": "g",
+    "note": "tinned, drained"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 850,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 12,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Snap the spaghetti into short lengths. Heat half the oil in a deep pan and toast the pasta until lightly golden. Scoop it out.",
+   "Add the remaining oil and brown the beef, breaking it up with a spoon.",
+   "Dice the onion and stir it into the beef for 5 minutes. Add crushed garlic and cumin and stir until fragrant.",
+   "Pour in the passata and stock and return the toasted pasta to the pan.",
+   "Simmer until the pasta is soft, then stir in the rinsed pinto beans and warm them through.",
+   "Serve in bowls with plenty of red broth and a small handful of chopped coriander."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "beef-taco-salad",
+  "title": "Beef taco salad",
+  "emoji": "🥗",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 440,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 380,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 150,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 70,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 80,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Slice the tortillas into thin strips and toss with half the oil.",
+   "Bake the strips in a single layer for 8–10 minutes, turning once, until crisp.",
+   "Fry the beef in the remaining oil. Add cumin and paprika, breaking up the mince until it is cooked through.",
+   "Chop the lettuce and tomatoes. Drain the sweetcorn, grate the cheddar and mix the salsa with juice from one lime.",
+   "Heap the lettuce and tomatoes into bowls, top with beef and sweetcorn and spoon over the dressing.",
+   "Scatter the cheddar and tortilla strips on top. Serve with the remaining lime cut into wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "korean-fried-chicken",
+  "title": "Korean fried chicken",
+  "emoji": "🍗",
+  "cuisine": "Korean",
+  "vibes": [
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 650,
+    "unit": "g",
+    "note": "boneless"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 95,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cut the chicken into even bites and pat them dry. Whisk the egg in a bowl and spread the cornflour on a plate.",
+   "Dip the chicken pieces in egg and coat all over in cornflour. Shake off loose flour.",
+   "Heat most of the oil in a frying pan. Fry in small batches until cooked to 74°C (165°F), then transfer to a rack.",
+   "Heat the rest of the oil and briefly fry the cooked chicken again until the coating turns extra crisp.",
+   "In a small pan, stir together the gochujang, honey, soy, vinegar and grated ginger. Bubble for a minute.",
+   "Toss the chicken in the glaze just before serving and scatter over sesame and sliced spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "orange-glazed-crispy-chicken",
+  "title": "Orange chicken",
+  "emoji": "🍊",
+  "cuisine": "Chinese",
+  "vibes": [
+   "fakeaway",
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 23,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 520,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 260,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "orange",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1.5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove"
+   }
+  ],
+  "steps": [
+   "Rinse the rice and cook following the packet. Finely cut a few strips of orange zest and juice both oranges.",
+   "Mix the juice with soy sauce, vinegar, sugar, ginger, garlic and a teaspoon of cornflour.",
+   "Dice the chicken, toss it in beaten egg and coat in the remaining cornflour.",
+   "Fry the chicken in the hot oil in batches until crisp and 74°C (165°F) at the centre. Transfer to a rack.",
+   "Tip off the excess oil. Add the juice mixture and orange zest to the pan and bring to a bubble until it turns glossy.",
+   "Toss the chicken in the thick glaze and immediately serve alongside the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
+ },
+ {
+  "id": "chicken-pad-see-ew",
+  "title": "Chicken pad see ew",
+  "emoji": "🍜",
+  "cuisine": "Thai",
+  "vibes": [
+   "highProtein",
+   "quickEasy",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 13,
+  "cookMinutes": 14,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rice-noodles",
+    "amount": 300,
+    "unit": "g",
+    "note": "choose wide, flat noodles"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 440,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 320,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Soften the wide noodles according to the packet, then drain them very well. Thinly slice the chicken and cut the broccoli into small florets.",
+   "Mix the soy, fish sauce, sugar and vinegar. Crush the garlic.",
+   "Heat half the oil in a wide pan and fry the chicken until fully cooked, then briefly stir-fry the broccoli and garlic.",
+   "Push the chicken and broccoli aside. Add the beaten eggs to the empty space and stir into loose curds.",
+   "Add the remaining oil, sauce and noodles. Let the underside of the noodles catch against the hot pan for a minute before tossing.",
+   "Toss until the noodles are dark and glossy and the egg and chicken are evenly mixed through. Serve hot."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": []
  }
 ]
