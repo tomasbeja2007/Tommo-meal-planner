@@ -6,7 +6,7 @@ fallback. Drop a finished PNG into `Forkcast/Resources/Assets.xcassets` as an
 with no code changes.
 
 ## Status (25 Nov 2026)
-- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), 454 of 544 recipe photos, all 187 ingredient
+- **Done and in `Assets.xcassets`:** the 4 mascot moods (section 1), all 700 recipe photos, all 187 ingredient
   cut-outs (this covers the pantry photos of section 6), the goal / diet / appliance tile illustrations (section 4),
   and the splash pieces (section 5, no longer used by the app).
 - **25 Nov:** 16 glyphs and 30 clay tiles (no `allergen-sesame` yet) installed, cut from the owner's contact sheet; ask for the
