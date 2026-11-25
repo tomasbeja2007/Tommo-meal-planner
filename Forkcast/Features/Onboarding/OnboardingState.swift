@@ -38,6 +38,8 @@ final class OnboardingState {
     var extraDiets: Set<ExtraDiet> = []
     var pantry: Set<String> = []
     var requestedStore: String = ""
+    /// "Where did you hear about us?" (`HeardAboutStep.Source` raw value).
+    var referralSource: String?
 
     init() {}
 
@@ -50,6 +52,7 @@ final class OnboardingState {
     /// Pre-fill from an existing profile ("Start over" keeps the old answers).
     init(profile: UserProfile) {
         name = profile.name
+        referralSource = profile.referralSource
         goals = Set(profile.goals)
         maxCookMinutes = profile.maxCookMinutes
         countryId = profile.countryId
@@ -110,6 +113,7 @@ final class OnboardingState {
 
     func apply(to profile: UserProfile, updatePantry: Bool = false, updateMealPrep: Bool = false) {
         profile.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let referralSource { profile.referralSource = referralSource }
         profile.goals = goals.sorted()
         profile.maxCookMinutes = maxCookMinutes
         profile.countryId = countryId
@@ -147,11 +151,13 @@ final class OnboardingState {
 enum OnboardingStep: Int, CaseIterable, Hashable {
     case welcome
     // Questions
+    case name
     case goals
     case obstacles
     case mirror
     case household
     case yourWeek
+    case timeSaved
     case eating
     case nutrition
     case dislikes
@@ -160,6 +166,7 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case store
     case budget
     case pantry
+    case heardAbout
     case savings
     case catalog
     case reminders
@@ -182,7 +189,7 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     /// Optional steps offer "Skip" in the top bar.
     var isSkippable: Bool {
         switch self {
-        case .obstacles, .dislikes, .pantry: return true
+        case .name, .obstacles, .dislikes, .pantry, .heardAbout: return true
         default: return false
         }
     }

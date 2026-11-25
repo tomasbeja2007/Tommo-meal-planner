@@ -143,6 +143,14 @@
 - **Catalog ("N recipes fit you"):** two rows of the user's matching dishes drift in opposite directions
   (linear, 60 s loop, edge-faded); three stat tiles count up with ease-out, 80 ms apart.
 - **Plan reveal:** day cards deal in (rise 18 pt + fade, 70 ms apart); budget bar draws on; basket counts up.
+- **Name step:** the underline fills tomato from the left (ease-out 0.35 s) once a name is typed; the corner
+  mascot swaps to `.cheer`.
+- **Time saved:** one 1.9 s timeline; the short "with Tommo" bar lands first (tomato), the tall "without a plan"
+  bar keeps growing after it (cream), both minute labels count up; the "save about an hour" line rises in last.
+- **Building your week:** `IngredientOrbit`: eight ingredients circle Chef Tomato (40 s a turn, linear), drawn
+  behind him in the top half and in front in the bottom half, shrinking/dimming at the back for depth, each rocking
+  on a seeded 4/5/8 s period; they open out from 60% radius on appear. The 3-step checklist ticks with the grocery
+  `CheckCircle` draw-on, paced 0.85 s apart; the last tick waits for the real plan (screen holds ≥ 2.4 s).
 - **Other motion:** `ProgressBar` / `ProgressRing` (one-shot draw-on with ease-out, staggered macro bars in `MacrosCard`),
   `MoneyText` (count-up with ease-out), `PrimaryButtonStyle` (0.97 press scale + light haptic), the sparkle field inside `MascotView`.
 

@@ -12,7 +12,7 @@ struct MirrorStep: View {
     /// How many characters the soft "ink" edge spans: each letter fades in over this many steps.
     private let fadeCharacters: Double = 6
 
-    private var pieces: [MirrorPiece] { MirrorPiece.build(goals: state.goals, obstacles: state.obstacles) }
+    private var pieces: [MirrorPiece] { MirrorPiece.build(name: state.name, goals: state.goals, obstacles: state.obstacles) }
     private var characterCount: Int { pieces.reduce(0) { $0 + $1.text.count } }
 
     var body: some View {
@@ -47,14 +47,15 @@ struct MirrorPiece: Hashable {
 
     /// "So you want to **spend less** and **save time**, but **food goes off** and
     /// **planning takes forever**. That's exactly what I fix."
-    static func build(goals: Set<String>, obstacles: Set<OnboardingObstacle>) -> [MirrorPiece] {
+    static func build(name: String = "", goals: Set<String>, obstacles: Set<OnboardingObstacle>) -> [MirrorPiece] {
+        let name = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let goalPhrases: [String] = OnboardingGoal.allCases.filter { goals.contains($0.rawValue) }.prefix(2).map { $0.mirrorPhrase }
         let obstaclePhrases: [String] = OnboardingObstacle.allCases.filter { obstacles.contains($0) }.prefix(2).map { $0.mirrorPhrase }
         var pieces: [MirrorPiece] = []
         if goalPhrases.isEmpty {
-            pieces.append(MirrorPiece(text: String(localized: "So you want dinner sorted"), isBold: false))
+            pieces.append(MirrorPiece(text: name.isEmpty ? String(localized: "So you want dinner sorted") : String(localized: "\(name), so you want dinner sorted"), isBold: false))
         } else {
-            pieces.append(MirrorPiece(text: String(localized: "So you want to "), isBold: false))
+            pieces.append(MirrorPiece(text: name.isEmpty ? String(localized: "So you want to ") : String(localized: "\(name), so you want to "), isBold: false))
             pieces += joined(goalPhrases)
         }
         if !obstaclePhrases.isEmpty {

@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 import ForkcastCore
 
 /// A first look at the generated week and the estimated grocery basket.
@@ -10,6 +11,10 @@ struct PlanRevealStep: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @State private var appeared: Bool = false
+    @Environment(\.requestReview) private var requestReview: RequestReviewAction
+    /// Ask for a rating once, at the happiest moment of onboarding (the week just landed). The system
+    /// decides whether the prompt actually shows; we never gate anything on it.
+    @AppStorage("onboarding.didAskForReview") private var didAskForReview = false
 
     private var currency: String { profileStore.currencyCode }
 
@@ -47,6 +52,14 @@ struct PlanRevealStep: View {
         }
         .sensoryFeedback(.success, trigger: appeared)
         .onAppear { appeared = true }
+        .task {
+            guard !didAskForReview else { return }
+            // After the cards have dealt in and the confetti has settled.
+            try? await Task.sleep(for: .milliseconds(2_200))
+            guard !Task.isCancelled else { return }
+            didAskForReview = true
+            requestReview()
+        }
     }
 
     private var headline: String {

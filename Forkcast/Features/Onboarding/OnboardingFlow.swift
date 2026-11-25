@@ -75,6 +75,8 @@ struct OnboardingFlow: View {
         switch step {
         case .welcome:
             WelcomeStep { advance() }
+        case .name:
+            NameStep(state: state) { advance() }
         case .goals:
             GoalsStepView(state: state) { advance() }
         case .obstacles:
@@ -85,6 +87,8 @@ struct OnboardingFlow: View {
             HouseholdStepView(state: state) { advance() }
         case .yourWeek:
             YourWeekStep(state: state) { advance() }
+        case .timeSaved:
+            TimeSavedStep(state: state) { advance() }
         case .eating:
             EatingStep(state: state) { advance() }
         case .nutrition:
@@ -101,6 +105,8 @@ struct OnboardingFlow: View {
             PantryStep(state: state) { advance() }
         case .store:
             StoreStepView(state: state) { advance() }
+        case .heardAbout:
+            HeardAboutStep(state: state) { advance() }
         case .savings:
             SavingsStep(state: state) { advance() }
         case .catalog:
@@ -145,7 +151,7 @@ struct OnboardingFlow: View {
 
     private func navigate(to destination: OnboardingStep, forward: Bool) {
         goingForward = forward
-        let dissolveSteps: Set<OnboardingStep> = [.savings, .catalog, .subscriptions]
+        let dissolveSteps: Set<OnboardingStep> = [.timeSaved, .savings, .catalog, .subscriptions]
         crossDissolve = dissolveSteps.contains(step) || dissolveSteps.contains(destination)
         withAnimation(reduceMotion ? .easeOut(duration: 0.14) : .easeInOut(duration: 0.24)) {
             step = destination
@@ -157,6 +163,7 @@ struct OnboardingFlow: View {
         switch step {
         case .obstacles: state.obstacles.removeAll()
         case .pantry: state.pantry.removeAll()
+        case .heardAbout: state.referralSource = nil
         default: break
         }
         advance()
