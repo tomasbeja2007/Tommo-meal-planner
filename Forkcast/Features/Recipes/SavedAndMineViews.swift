@@ -10,14 +10,8 @@ struct MyRecipesView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-                HStack(spacing: Theme.Spacing.m) {
-                    BigActionButton(title: String(localized: "Create a recipe"), systemImage: "square.and.pencil") {
-                        newDraft = RecipeDraft()
-                    }
-                    BigActionButton(title: String(localized: "Import from TikTok / Instagram"), systemImage: "square.and.arrow.down") {
-                        router.pendingImportText = nil
-                        router.isImportPresented = true
-                    }
+                BigActionButton(title: String(localized: "Create a recipe"), systemImage: "square.and.pencil") {
+                    newDraft = RecipeDraft()
                 }
                 if repository.userRecipes.isEmpty {
                     MyRecipesEmptyState()
@@ -82,9 +76,9 @@ private struct MyRecipesEmptyState: View {
                 .font(.system(.title3, design: .rounded).weight(.bold))
                 .foregroundStyle(Theme.aubergine)
             VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-                ImportStepRow(number: 1, text: String(localized: "Open a recipe video in TikTok or Instagram"))
-                ImportStepRow(number: 2, text: String(localized: "Tap Share, then choose Tommo"))
-                ImportStepRow(number: 3, text: String(localized: "Open Tommo to check it and save"))
+                ImportStepRow(number: 1, text: String(localized: "Tap Create a recipe"))
+                ImportStepRow(number: 2, text: String(localized: "Add the ingredients and the steps"))
+                ImportStepRow(number: 3, text: String(localized: "Plan it into any week, like any other recipe"))
             }
             .cardStyle()
         }

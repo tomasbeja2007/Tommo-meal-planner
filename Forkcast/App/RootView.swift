@@ -29,14 +29,5 @@ struct RootView: View {
                 planStore.reload()
             }
         }
-        .onAppear { checkPendingImport() }
-    }
-
-    /// Picks up a payload left by the Share Extension.
-    private func checkPendingImport() {
-        guard profileStore.hasCompletedOnboarding, let pending = PendingImport.consume() else { return }
-        router.pendingImportText = pending.url ?? pending.text
-        router.selectedTab = .recipes
-        router.isImportPresented = true
     }
 }

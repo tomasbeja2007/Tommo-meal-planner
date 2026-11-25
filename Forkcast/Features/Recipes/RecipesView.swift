@@ -76,14 +76,6 @@ struct RecipesView: View {
             .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle("Cookbooks")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Import", systemImage: "plus") {
-                        router.pendingImportText = nil
-                        router.isImportPresented = true
-                    }
-                }
-            }
             .navigationDestination(for: RecipeRoute.self) { route in
                 RecipeDetailView(recipeId: route.recipeId)
             }

@@ -260,7 +260,6 @@ private struct RecipeDetailContent: View {
             let stretch = max(0, minY)
             let parallax = reduceMotion ? 0 : -min(0, minY) * 0.35
             heroImage(width: proxy.size.width, height: heroHeight + stretch)
-                .scaleEffect(appeared || reduceMotion ? 1 : 1.06)
                 .overlay(alignment: .top) {
                     // A soft scrim so the status bar and the glass buttons always read.
                     LinearGradient(colors: [Color.black.opacity(0.28), .clear], startPoint: .top, endPoint: .bottom)
@@ -282,9 +281,40 @@ private struct RecipeDetailContent: View {
                 .scaledToFill()
                 .frame(width: width, height: height)
                 .accessibilityLabel(Text("Your recipe photo"))
+        } else if let small = smallPhoto {
+            // Small images (most illustrative ones are 418 px) go soft when stretched across the screen.
+            // Show them at a size they hold sharply, as a plate on a blurred backdrop of the same image.
+            let plate = min(width * 0.64, small.pixelWidth / 2)
+            ZStack {
+                Image(small.name)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: width, height: height)
+                    .blur(radius: 28, opaque: true)
+                    .overlay(Theme.cream.opacity(0.25))
+                Image(small.name)
+                    .resizable()
+                    .interpolation(.high)
+                    .scaledToFill()
+                    .frame(width: plate, height: plate)
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.hero, style: .continuous))
+                    .overlay(RoundedRectangle(cornerRadius: Theme.Radius.hero, style: .continuous).strokeBorder(Color.white.opacity(0.6), lineWidth: 3))
+                    .elevation(Theme.Elevation.lifted)
+                    .offset(y: -sheetOverlap / 2 + 18)
+            }
+            .frame(width: width, height: height)
+            .clipped()
+            .accessibilityHidden(true)
         } else {
             DishTileView(recipe: recipe, size: width, height: height, cornerRadius: 0)
         }
+    }
+
+    /// The bundled image when it's too small to fill the screen sharply (under ~900 px wide), else nil.
+    private var smallPhoto: (name: String, pixelWidth: CGFloat)? {
+        guard let name = DishTileView(recipe: recipe).photoName, let image = UIImage(named: name) else { return nil }
+        let pixels = image.size.width * image.scale
+        return pixels < 900 ? (name, pixels) : nil
     }
 
     private var isIllustrative: Bool {

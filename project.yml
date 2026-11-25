@@ -56,8 +56,6 @@ targets:
       - package: ForkcastCore
       - target: ForkcastWidget
         embed: true
-      - target: ForkcastShare
-        embed: true
       - sdk: StoreKit.framework
       - sdk: WidgetKit.framework
       - sdk: AuthenticationServices.framework
@@ -141,42 +139,6 @@ targets:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
       path: ForkcastWidget/ForkcastWidget.entitlements
-      properties:
-        com.apple.security.application-groups:
-          - group.com.tomasbeja.tommo
-
-  ForkcastShare:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: ForkcastShare
-        excludes:
-          - "Info.plist"
-          - "ForkcastShare.entitlements"
-    dependencies:
-      - package: ForkcastCore
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_ID_PREFIX).share
-        PRODUCT_NAME: ForkcastShare
-        SKIP_INSTALL: YES
-        APPLICATION_EXTENSION_API_ONLY: YES
-        CODE_SIGN_ENTITLEMENTS: ForkcastShare/ForkcastShare.entitlements
-    info:
-      path: ForkcastShare/Info.plist
-      properties:
-        CFBundleDisplayName: Tommo
-        CFBundleShortVersionString: $(MARKETING_VERSION)
-        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        NSExtension:
-          NSExtensionPointIdentifier: com.apple.share-services
-          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
-          NSExtensionAttributes:
-            NSExtensionActivationRule:
-              NSExtensionActivationSupportsWebURLWithMaxCount: 1
-              NSExtensionActivationSupportsText: true
-    entitlements:
-      path: ForkcastShare/ForkcastShare.entitlements
       properties:
         com.apple.security.application-groups:
           - group.com.tomasbeja.tommo

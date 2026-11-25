@@ -65,8 +65,8 @@ final class AppRouter {
             selectedTab = .plan
             deepLinkRecipeId = id
         case .importRecipe:
+            // Importing from other apps was removed; old links just open the cookbook.
             selectedTab = .recipes
-            isImportPresented = true
         case .plan:
             selectedTab = .plan
         case .groceries:

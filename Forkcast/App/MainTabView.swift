@@ -60,9 +60,6 @@ struct MainTabView: View {
             PaywallFlow()
         }
         .sheet(isPresented: $showsPantry) { PantryEditorSheet(initial: planStore.currentOnHand) }
-        .sheet(isPresented: $router.isImportPresented) {
-            ImportRecipeView(initialText: router.pendingImportText)
-        }
     }
 
     private var quickActions: some View {
@@ -79,13 +76,6 @@ struct MainTabView: View {
                     VStack(spacing: 0) {
                         actionRow("Select ingredients", detail: "Cook with what you have", icon: "glyph-pantry") {
                             showsPantry = true
-                        }
-                        Divider()
-                        actionRow("Import recipe", detail: "From a link or recipe text", icon: "square.and.arrow.down") {
-                            router.gate(isPro: subscriptions.hasProAccess) {
-                                router.pendingImportText = nil
-                                router.isImportPresented = true
-                            }
                         }
                         Divider()
                         actionRow("Plan my week", detail: "Days, budget & servings", icon: "calendar") {

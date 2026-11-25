@@ -32,11 +32,6 @@ Create these in this order (the App ID capabilities point at the first two).
    - Bundle ID (Explicit): `com.tomasbeja.tommo.widget`
    - Capabilities: **App Groups** → `group.com.tomasbeja.tommo`
 
-5. **App ID for the share extension** ("Share to Tommo" from Safari / Notes)
-   - Description: `Tommo Share`
-   - Bundle ID (Explicit): `com.tomasbeja.tommo.share`
-   - Capabilities: **App Groups** → `group.com.tomasbeja.tommo`
-
 Signing certificates and provisioning profiles: none needed by hand; Xcode's automatic signing creates them.
 
 ## Part B · appstoreconnect.apple.com → Apps → "+" → New App
