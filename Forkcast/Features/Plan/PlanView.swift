@@ -55,7 +55,7 @@ struct PlanView: View {
             .background(Theme.cream.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: RecipeRoute.self) { route in
-                RecipeDetailView(recipeId: route.recipeId)
+                RecipeDetailView(recipeId: route.recipeId, plannedMealID: route.plannedMealID)
             }
             .overlay(alignment: .top) {
                 if router.showPlanReveal {
@@ -207,7 +207,7 @@ struct PlanView: View {
             .padding(.top, Theme.Spacing.s)
         DayList(
             onOpen: { meal in
-                router.gate(isPro: isPro) { router.planPath.append(RecipeRoute(recipeId: meal.recipeId)) }
+                router.gate(isPro: isPro) { router.planPath.append(RecipeRoute(recipeId: meal.recipeId, plannedMealID: meal.ensurePlannerMealID())) }
             },
             onSwap: { meal in
                 router.gate(isPro: isPro) { swapTarget = meal }

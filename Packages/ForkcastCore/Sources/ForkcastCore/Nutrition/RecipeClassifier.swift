@@ -67,9 +67,12 @@ public enum RecipeClassifier {
         let priority: [ProteinGroup] = [.chicken, .beef, .pork, .turkey, .lamb, .fish, .shellfish]
         var main: ProteinGroup = .veg
         let animal = proteinGrams.filter { priority.contains($0.key) }
-        if let best = animal.max(by: { $0.value < $1.value }) {
+        let byProteinAmount: ((key: ProteinGroup, value: Double), (key: ProteinGroup, value: Double)) -> Bool = { lhs, rhs in
+            lhs.value == rhs.value ? lhs.key.rawValue > rhs.key.rawValue : lhs.value < rhs.value
+        }
+        if let best = animal.max(by: byProteinAmount) {
             main = best.key
-        } else if let best = proteinGrams.max(by: { $0.value < $1.value }) {
+        } else if let best = proteinGrams.max(by: byProteinAmount) {
             main = best.key
         }
 

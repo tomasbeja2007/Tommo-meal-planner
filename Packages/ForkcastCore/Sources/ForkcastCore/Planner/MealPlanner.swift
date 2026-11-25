@@ -4,13 +4,15 @@ import Foundation
 ///
 /// 1. Hard filters (never broken): allergens, diet, dislikes, appliances,
 ///    time (the only rule that may be relaxed), "not for me".
-/// 2. Score: vibes, likes, stars, recency, user recipes, seeded jitter.
-/// 3. Greedy week, slot by slot: each slot only takes recipes of its meal type. Lunches and dinners
-///    follow the variety rules; a breakfast or snack may appear up to `MealType.maxUsesPerWeek` times.
-///    Ingredient overlap across the whole week earns a bonus.
-/// 4. Budget pass: swap expensive meals for cheaper good ones of the same meal type.
+/// 2. Rank safe options by onboarding choices, taste, schedule and incremental basket cost.
+/// 3. Fill by meal type and variety, then repair expensive choices if needed.
 public struct MealPlanner: Sendable {
     public let catalog: FoodCatalog
+    let analysisCache = RecipeAnalysisCache()
+
+    public func traits(for recipe: Recipe, pricing: PriceContext) -> RecipeTraits {
+        analysisCache.analyze([recipe], catalog: catalog, pricing: pricing).0[0].1
+    }
 
     public static let maxBudgetIterations: Int = 20
     public static let maxSameProtein: Int = 2
@@ -42,37 +44,6 @@ public struct MealPlanner: Sendable {
         recipes.filter { passesHardFilters($0, profile: profile, notForMe: notForMe, ignoreTime: true) }
     }
 
-    struct Candidate {
-        let recipe: Recipe
-        let profile: RecipeProfile
-        let baseScore: Double
-    }
-
-    /// Hard-filtered, scored candidates. Relaxes the time rule if too few remain.
-    func candidates(for request: PlannerRequest, rng: inout SeededRandom) -> (candidates: [Candidate], relaxedTime: Bool) {
-        let profiles: [(Recipe, RecipeProfile)] = request.recipes.map { ($0, RecipeClassifier.profile(for: $0, catalog: catalog)) }
-        var relaxed: Bool = false
-        var passing: [(Recipe, RecipeProfile)] = profiles.filter {
-            passesHardFilters($0.0, recipeProfile: $0.1, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: false)
-        }
-        // Relax the time rule if any meal type has fewer than 2 options per slot.
-        let slotsByType: [MealType: Int] = Dictionary(grouping: request.slots, by: { $0.mealType }).mapValues { $0.count }
-        let shortOfOptions: Bool = slotsByType.contains { type, count in
-            passing.filter { $0.0.mealType == type }.count < max(1, count) * 2
-        }
-        if shortOfOptions && request.profile.maxCookMinutes != nil {
-            passing = profiles.filter {
-                passesHardFilters($0.0, recipeProfile: $0.1, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: true)
-            }
-            relaxed = true
-        }
-        let scored: [Candidate] = passing.map { pair in
-            let jitter: Double = rng.nextUnit() * 0.9
-            return Candidate(recipe: pair.0, profile: pair.1, baseScore: score(pair.0, request: request) + jitter)
-        }
-        return (scored, relaxed)
-    }
-
     /// Score without jitter or overlap.
     public func score(_ recipe: Recipe, request: PlannerRequest) -> Double {
         var value: Double = 0
@@ -93,211 +64,346 @@ public struct MealPlanner: Sendable {
         return value
     }
 
-    // MARK: - Plan
+    struct Candidate {
+        let recipe: Recipe
+        let analysis: RecipeAnalysis
+        let traits: RecipeTraits
+        let score: Double
+
+        var profile: RecipeProfile { analysis.profile }
+    }
+
+    struct Selection {
+        var candidate: Candidate
+        let servings: Double
+        var leftoversFrom: Int? = nil
+        var reason: PlannedMealReason = .everyday
+    }
+
+    struct Options {
+        let byType: [MealType: [Candidate]]
+        let byID: [String: Candidate]
+        let prices: [String: Double]
+        let weights: TailoringWeights
+        let taste: TasteProfile
+        let relaxedTime: Bool
+    }
+
+    func options(for request: PlannerRequest, seed: UInt64, allowAllUserRecipes: Bool = false) -> Options {
+        var seen: Set<String> = []
+        let recipes = (request.recipes + request.tasteRecipes).filter { seen.insert($0.id).inserted }
+        let (analyzed, prices) = analysisCache.analyze(recipes, catalog: catalog, pricing: request.pricing)
+        let asOf = request.tasteAsOf ?? request.slots.map(\.date).min() ?? Date(timeIntervalSince1970: 0)
+        let taste = TasteProfile(events: request.tasteEvents, recipes: recipes, analyzed: analyzed, asOf: asOf)
+        let weights = TailoringWeights(profile: request.profile)
+        let poolIDs = Set(request.recipes.map(\.id))
+        let counts = Dictionary(grouping: request.slots, by: \.mealType).mapValues(\.count)
+        var rng = SeededRandom(seed: seed)
+        var indexed: [Candidate] = []
+        for (recipe, data) in zip(recipes, analyzed) {
+            let (analysis, traits) = data
+            let proteinTarget = 30 * recipe.mealType.budgetWeight
+            let learned = taste.score(recipe: recipe, profile: analysis.profile, traits: traits)
+            let saved = request.savedRecipeIds.contains(recipe.id) ? weights.saved : 0
+            var rank = score(recipe, request: request) + learned + saved + rng.nextUnit() * 0.9
+            rank += weights.everyday * traits.everyday + weights.health * traits.healthiness
+            rank += weights.protein * unit(traits.proteinPerServing / proteinTarget)
+            rank += weights.family * traits.kidFriendly
+            if traits.onePan { rank += weights.onePan }
+            if weights.pairsLeftovers { rank += traits.leftoverValue }
+            indexed.append(Candidate(recipe: recipe, analysis: analysis, traits: traits, score: rank))
+        }
+        var safe: [MealType: [Candidate]] = [:]
+        for item in indexed {
+            let type = item.recipe.mealType
+            guard poolIDs.contains(item.recipe.id), counts[type] != nil,
+                  !item.recipe.isUserRecipe || request.profile.includeUserRecipes || allowAllUserRecipes,
+                  passesHardFilters(item.recipe, recipeProfile: item.profile, profile: request.profile,
+                                    notForMe: request.feedback.notForMe, ignoreTime: true) else { continue }
+            safe[type, default: []].append(item)
+        }
+        var timed = safe
+        var relaxed = false
+        if let limit = request.profile.maxCookMinutes {
+            timed = safe.mapValues { $0.filter { $0.recipe.handsOnMinutes <= limit + 10 } }
+            relaxed = counts.contains { type, count in timed[type, default: []].count < count * 2 }
+            if relaxed { timed = safe }
+        }
+        return Options(byType: timed, byID: Dictionary(uniqueKeysWithValues: indexed.map { ($0.recipe.id, $0) }),
+                       prices: prices, weights: weights, taste: taste, relaxedTime: relaxed)
+    }
 
     public func plan(_ request: PlannerRequest) -> PlanResult {
-        var rng = SeededRandom(seed: request.seed)
-        let pool = candidates(for: request, rng: &rng)
-        let candidates: [Candidate] = pool.candidates
+        let options = options(for: request, seed: request.seed)
+        let slots = request.slots.sorted { $0.date == $1.date ? $0.index < $1.index : $0.date < $1.date }
+        let target = request.budget / max(0.01, slots.reduce(0) { $0 + $1.mealType.budgetWeight })
+        var assignment: [Int: Selection] = [:]
+        var basket = IncrementalBasket(prices: options.prices, onHand: request.profile.onHand)
+        for slot in slots {
+            guard let locked = request.locked[slot.index],
+                  let item = options.byID[locked.recipeId] ?? catalog.recipe(id: locked.recipeId).map({ cachedCandidate($0, request: request) }),
+                  item.recipe.mealType == slot.mealType,
+                  passesHardFilters(item.recipe, recipeProfile: item.profile, profile: request.profile,
+                                    notForMe: request.feedback.notForMe, ignoreTime: true) else { continue }
+            assignment[slot.index] = Selection(candidate: item, servings: locked.servings, reason: .kept)
+            basket.add(item.analysis.ingredients, servings: locked.servings)
+        }
+        let locked = Set(assignment.keys)
+        var paired = false
+        for slot in slots {
+            guard let source = request.locked[slot.index]?.leftoversFromSlotIndex,
+                  let meal = assignment[slot.index], let batch = assignment[source],
+                  meal.candidate.recipe.id == batch.candidate.recipe.id,
+                  let sourceSlot = slots.first(where: { $0.index == source }),
+                  isNextDay(slot.date, after: sourceSlot.date) else { continue }
+            assignment[slot.index]?.leftoversFrom = source
+            paired = true
+        }
+        var explored = false
+        let known = options.taste.knownRecipeIds.union(request.history.keys).union(request.feedback.liked).union(request.savedRecipeIds)
+        for (dayIndex, slot) in slots.enumerated() where assignment[slot.index] == nil {
+            let peers = selections(in: assignment, slots: slots, of: slot.mealType)
+            let available = options.byType[slot.mealType, default: []]
+            var eligible = eligibleOptions(available, peers: peers, type: slot.mealType, family: options.weights.family > 0)
+            guard !eligible.isEmpty else { continue }
 
-        // Start with locked meals.
-        var assignment: [Int: Candidate] = [:]
-        var servingsBySlot: [Int: Double] = [:]
-        for slot in request.slots {
-            servingsBySlot[slot.index] = request.servings
-            if let locked = request.locked[slot.index] {
-                if let recipe = request.recipes.first(where: { $0.id == locked.recipeId }) ?? catalog.recipe(id: locked.recipeId) {
-                    assignment[slot.index] = Candidate(recipe: recipe, profile: RecipeClassifier.profile(for: recipe, catalog: catalog), baseScore: 0)
-                    servingsBySlot[slot.index] = locked.servings
+            let busyLimit = slot.weekday <= 4 && options.weights.effort > 2 ? request.profile.maxCookMinutes : nil
+            if let busyLimit {
+                let quick = eligible.filter { $0.recipe.handsOnMinutes <= busyLimit }
+                if !quick.isEmpty { eligible = quick }
+            }
+            let nextDinner = slots.dropFirst(dayIndex + 1).first { $0.mealType == .dinner }
+            var partner: PlanSlot?
+            if slot.mealType == .dinner, options.weights.pairsLeftovers, !paired,
+               let nextDinner, assignment[nextDinner.index] == nil,
+               isNextDay(nextDinner.date, after: slot.date) {
+                let batch = eligible.filter { $0.recipe.isLeftoverFriendly && $0.traits.batchFriendly }
+                if !batch.isEmpty {
+                    eligible = batch
+                    partner = nextDinner
                 }
             }
-        }
-        let lockedSlots: Set<Int> = Set(assignment.keys)
 
-        // Greedy fill, slot by slot, from recipes of the slot's meal type.
-        let typeBySlot: [Int: MealType] = Dictionary(uniqueKeysWithValues: request.slots.map { ($0.index, $0.mealType) })
-        for slot in request.slots where assignment[slot.index] == nil {
-            let typed: [Candidate] = candidates.filter { $0.recipe.mealType == slot.mealType }
-            if let pick = bestCandidate(from: typed, chosen: chosen(in: assignment, ofType: slot.mealType, typeBySlot: typeBySlot), weekSoFar: Array(assignment.values), mealType: slot.mealType) {
-                assignment[slot.index] = pick
+            let reference = slot.mealType == .dinner && !explored && partner == nil
+                ? explorationReference(in: options, request: request) : nil
+            let units = partner == nil ? request.servings : 2 * request.servings
+            let allowance = max(0.01, target * slot.mealType.budgetWeight * (partner == nil ? 1 : 2))
+            let weekPosition = min(6, slot.date.timeIntervalSince(slots.first?.date ?? slot.date) / 86_400)
+            var best: Candidate?
+            var highest = -Double.infinity
+            for item in eligible {
+                let value = rank(item, slot: slot, weekPosition: weekPosition, peers: peers, basket: basket,
+                                 units: units, allowance: allowance, weights: options.weights, reference: reference, known: known)
+                if value > highest {
+                    highest = value
+                    best = item
+                }
             }
+            guard let chosen = best else { continue }
+            let isExploration = reference.map { isNovel(chosen, relativeTo: $0, known: known) } ?? false
+            let why = reason(for: chosen, slot: slot, basket: basket, allowance: allowance, servings: request.servings,
+                             weights: options.weights, similarTo: isExploration ? reference?.recipe.id : nil)
+            explored = explored || isExploration
+            assignment[slot.index] = Selection(candidate: chosen, servings: request.servings, reason: partner == nil ? why : .batchCooking)
+            if let partner {
+                assignment[partner.index] = Selection(candidate: chosen, servings: request.servings,
+                                                      leftoversFrom: slot.index, reason: .plannedLeftovers)
+                paired = true
+            }
+            basket.add(chosen.analysis.ingredients, servings: units)
         }
 
-        // Budget pass.
-        var total: Double = basket(for: assignment, servings: servingsBySlot, slots: request.slots, request: request).total
-        var iterations: Int = 0
-        while total > request.budget && iterations < MealPlanner.maxBudgetIterations {
-            iterations += 1
-            let list: GroceryList = basket(for: assignment, servings: servingsBySlot, slots: request.slots, request: request)
-            let ordered: [PlanSlot] = orderedSlots(request.slots, assignment: assignment)
-            let costs: [Int: Double] = mealCostsBySlot(list: list, ordered: ordered)
-            let expensiveFirst: [Int] = costs.keys
-                .filter { !lockedSlots.contains($0) }
-                .sorted { (costs[$0] ?? 0) > (costs[$1] ?? 0) }
-            var improved: Bool = false
-            for slotIndex in expensiveFirst {
-                let mealType: MealType = typeBySlot[slotIndex] ?? .dinner
-                var others: [Candidate] = []
-                for (key, value) in assignment where key != slotIndex && typeBySlot[key] == mealType { others.append(value) }
-                let usedIds: Set<String> = Set(assignment.values.map { $0.recipe.id })
-                let options: [Candidate] = candidates
-                    .filter { $0.recipe.mealType == mealType && !usedIds.contains($0.recipe.id) }
-                    .sorted { $0.baseScore + overlapBonus($0, chosen: others) > $1.baseScore + overlapBonus($1, chosen: others) }
-                var bestSwap: (Candidate, Double)? = nil
-                for option in options {
-                    var trial: [Int: Candidate] = assignment
-                    trial[slotIndex] = option
-                    let trialTotal: Double = basket(for: trial, servings: servingsBySlot, slots: request.slots, request: request).total
-                    if trialTotal < total - 0.01 {
-                        let respectsVariety: Bool = !mealType.usesVarietyRules || varietyOK(option, chosen: others)
-                        if respectsVariety {
-                            bestSwap = (option, trialTotal)
-                            break
-                        } else if bestSwap == nil {
-                            bestSwap = (option, trialTotal)
-                        }
+        repairBudget(&assignment, slots: slots, locked: locked, options: options, request: request)
+        let grocery = groceryList(assignment, slots: slots, request: request)
+        var meals: [PlannedMealDraft] = []
+        for slot in slots {
+            guard let selection = assignment[slot.index] else { continue }
+            let draft = PlannedMealDraft(slotIndex: slot.index, date: slot.date, weekday: slot.weekday, mealType: slot.mealType,
+                                        recipeId: selection.candidate.recipe.id, servings: selection.servings,
+                                        allocatedCost: grocery.mealCosts[meals.count], reason: selection.reason,
+                                        leftoversFromSlotIndex: selection.leftoversFrom)
+            meals.append(draft)
+        }
+        return PlanResult(meals: meals, estimatedTotal: grocery.total, budget: request.budget,
+                          overBudgetBy: max(0, grocery.total - request.budget), relaxedTimeLimit: options.relaxedTime, groceryList: grocery)
+    }
+
+    func isNextDay(_ date: Date, after previous: Date) -> Bool {
+        let calendar = WeekMath.gregorian
+        guard let next = calendar.date(byAdding: .day, value: 1, to: previous) else { return false }
+        return calendar.isDate(date, inSameDayAs: next)
+    }
+
+    func cachedCandidate(_ recipe: Recipe, request: PlannerRequest) -> Candidate {
+        let (analysis, traits) = analysisCache.analyze([recipe], catalog: catalog, pricing: request.pricing).0[0]
+        return Candidate(recipe: recipe, analysis: analysis, traits: traits, score: score(recipe, request: request))
+    }
+
+    func selections(in assignment: [Int: Selection], slots: [PlanSlot], of type: MealType, excluding: Int? = nil) -> [Candidate] {
+        slots.compactMap { slot in
+            guard slot.mealType == type, slot.index != excluding, let selection = assignment[slot.index],
+                  selection.leftoversFrom == nil else { return nil }
+            return selection.candidate
+        }
+    }
+
+    func eligibleOptions(_ candidates: [Candidate], peers: [Candidate], type: MealType, family: Bool) -> [Candidate] {
+        let uses = Dictionary(grouping: peers, by: { $0.recipe.id }).mapValues(\.count)
+        let protein = Dictionary(grouping: peers, by: { $0.profile.mainProtein }).mapValues(\.count)
+        let cuisines = Dictionary(grouping: peers, by: { $0.recipe.cuisine }).mapValues(\.count)
+        let mild = family ? candidates.filter { !$0.profile.isSpicy } : candidates
+        for pool in [mild, candidates] where !pool.isEmpty {
+            let fresh = pool.filter { uses[$0.recipe.id] == nil }
+            let strict = type.usesVarietyRules ? fresh.filter {
+                protein[$0.profile.mainProtein, default: 0] < Self.maxSameProtein
+                    && cuisines[$0.recipe.cuisine, default: 0] < Self.maxSameCuisine
+            } : fresh
+            if !strict.isEmpty { return strict }
+            if !fresh.isEmpty && (!family || mild.count == candidates.count) { return fresh }
+        }
+        let repeatable = candidates.filter { uses[$0.recipe.id, default: 0] < type.maxUsesPerWeek }
+        return repeatable.isEmpty ? candidates : repeatable
+    }
+
+    func rank(_ item: Candidate, slot: PlanSlot, weekPosition: Double, peers: [Candidate], basket: IncrementalBasket,
+              units: Double, allowance: Double, weights: TailoringWeights, reference: Candidate?, known: Set<String>) -> Double {
+        let traits = item.traits
+        let shopping = basket.addition(item.analysis.ingredients, servings: units)
+        let ratio = shopping.cost / allowance
+        let spend = weights.cheapness * min(ratio, 4) + 2 * max(0, min(6, ratio - 1))
+        let dayEffort = weights.effort * (slot.weekday <= 4 ? 1.3 : 0.55)
+        let freshTiming = weights.perishability * traits.perishability * (1 - weekPosition / 3)
+        let reuseScale = weights.perishability > 1 ? max(1, allowance * 0.18) : allowance
+        let savedFresh = min(shopping.freshReuse / reuseScale, 1.5)
+        let sharedFresh = weights.perishability > 1 ? min(3, shopping.freshShared) * 0.18 : 0
+        let reuse = weights.reuse * (savedFresh + sharedFresh)
+        let familiarCuisine = peers.contains { $0.recipe.cuisine == item.recipe.cuisine }
+        let exploration = reference.map { isNovel(item, relativeTo: $0, known: known) ? weights.novelty + 0.7 : 0 } ?? 0
+        return item.score - spend - dayEffort * traits.effort + freshTiming
+            + reuse
+            + min(shopping.shared, 3) * 0.18 + exploration
+            + (familiarCuisine ? 0 : weights.novelty * 0.45)
+    }
+
+    func explorationReference(in options: Options, request: PlannerRequest) -> Candidate? {
+        let ids = options.taste.positiveRecipeIds.union(request.feedback.liked)
+        return ids.sorted().compactMap { options.byID[$0] }.max { $0.score < $1.score }
+    }
+
+    func isNovel(_ candidate: Candidate, relativeTo reference: Candidate, known: Set<String>) -> Bool {
+        !known.contains(candidate.recipe.id) && candidate.traits.everyday >= 0.48
+            && (candidate.recipe.cuisine == reference.recipe.cuisine
+                || candidate.profile.keyIngredientIds.intersection(reference.profile.keyIngredientIds).count >= 2)
+    }
+
+    func reason(for item: Candidate, slot: PlanSlot, basket: IncrementalBasket, allowance: Double,
+                servings: Double, weights: TailoringWeights, similarTo: String?) -> PlannedMealReason {
+        if let similarTo { return .similarTo(recipeId: similarTo) }
+        let addition = basket.addition(item.analysis.ingredients, servings: servings)
+        if let used = addition.freshIngredient {
+            return .usesPerishable(ingredientId: used)
+        }
+        if weights.family > 0 && item.traits.kidFriendly >= 0.65 { return .familyFriendly }
+        if slot.weekday <= 4 && item.traits.effort < 0.35 { return .quick(weekday: slot.weekday) }
+        if addition.cost <= allowance { return .underBudget }
+        return .everyday
+    }
+
+    func groceryList(_ assignment: [Int: Selection], slots: [PlanSlot], request: PlannerRequest) -> GroceryList {
+        let weekdays = Dictionary(uniqueKeysWithValues: slots.map { ($0.index, $0.weekday) })
+        var positions: [Int: Int] = [:]
+        var portions: [MealPortion] = []
+        for slot in slots {
+            guard let selection = assignment[slot.index] else { continue }
+            let weekday = selection.leftoversFrom.flatMap { weekdays[$0] } ?? slot.weekday
+            let source = selection.leftoversFrom.flatMap { positions[$0] }
+            positions[slot.index] = portions.count
+            portions.append(MealPortion(recipe: selection.candidate.recipe, servings: selection.servings, weekday: weekday,
+                                        batchWithMealIndex: source))
+        }
+        return GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: request.pricing,
+                                           unitSystem: request.unitSystem, onHand: request.profile.onHand)
+    }
+
+    func repairBudget(_ assignment: inout [Int: Selection], slots: [PlanSlot], locked: Set<Int>, options: Options, request: PlannerRequest) {
+        for _ in 0..<Self.maxBudgetIterations {
+            var full = IncrementalBasket(prices: options.prices, onHand: request.profile.onHand)
+            for slot in slots {
+                guard let selection = assignment[slot.index] else { continue }
+                full.add(selection.candidate.analysis.ingredients, servings: selection.servings)
+            }
+            guard full.total > request.budget + 0.01 else { break }
+
+            var best: (slot: Int, partner: Int?, replacement: Candidate, merit: Double)?
+            for slot in slots where !locked.contains(slot.index) {
+                guard let current = assignment[slot.index], current.leftoversFrom == nil else { continue }
+                let partner = slots.first { assignment[$0.index]?.leftoversFrom == slot.index }
+                let servings = current.servings + (partner.flatMap { assignment[$0.index]?.servings } ?? 0)
+                var rest = full
+                rest.add(current.candidate.analysis.ingredients, servings: current.servings, removing: true)
+                if let partner, let portion = assignment[partner.index] {
+                    rest.add(portion.candidate.analysis.ingredients, servings: portion.servings, removing: true)
+                }
+                let old = rest.addition(current.candidate.analysis.ingredients, servings: servings).cost
+                let peers = selections(in: assignment, slots: slots, of: slot.mealType, excluding: slot.index)
+                let used = Set(peers.map { $0.recipe.id })
+                let candidates = options.byType[slot.mealType, default: []].filter {
+                    $0.recipe.id != current.candidate.recipe.id && !used.contains($0.recipe.id)
+                        && (partner == nil || $0.recipe.isLeftoverFriendly)
+                }
+                var eligible = eligibleOptions(candidates, peers: peers, type: slot.mealType, family: options.weights.family > 0)
+                if slot.weekday <= 4, options.weights.effort > 2, let limit = request.profile.maxCookMinutes,
+                   current.candidate.recipe.handsOnMinutes <= limit {
+                    eligible = eligible.filter { $0.recipe.handsOnMinutes <= limit }
+                }
+                for replacement in eligible {
+                    let savings = old - rest.addition(replacement.analysis.ingredients, servings: servings).cost
+                    guard savings > 0.01 else { continue }
+                    let merit = savings - 0.22 * max(0, current.candidate.score - replacement.score)
+                    if merit > (best?.merit ?? -.infinity) {
+                        best = (slot.index, partner?.index, replacement, merit)
                     }
                 }
-                if let swap = bestSwap {
-                    assignment[slotIndex] = swap.0
-                    total = swap.1
-                    improved = true
-                    break
-                }
             }
-            if !improved { break }
+            guard let best else { break }
+            assignment[best.slot]?.candidate = best.replacement
+            assignment[best.slot]?.reason = best.partner == nil ? .lowerCost : .batchCooking
+            if let partner = best.partner { assignment[partner]?.candidate = best.replacement }
         }
-
-        // Final basket and drafts.
-        let ordered: [PlanSlot] = orderedSlots(request.slots, assignment: assignment)
-        let finalList: GroceryList = basket(for: assignment, servings: servingsBySlot, slots: request.slots, request: request)
-        var drafts: [PlannedMealDraft] = []
-        for (position, slot) in ordered.enumerated() {
-            guard let candidate = assignment[slot.index] else { continue }
-            let cost: Double = position < finalList.mealCosts.count ? finalList.mealCosts[position] : 0
-            drafts.append(PlannedMealDraft(
-                slotIndex: slot.index,
-                date: slot.date,
-                weekday: slot.weekday,
-                mealType: slot.mealType,
-                recipeId: candidate.recipe.id,
-                servings: servingsBySlot[slot.index] ?? request.servings,
-                allocatedCost: cost
-            ))
-        }
-        return PlanResult(
-            meals: drafts,
-            estimatedTotal: finalList.total,
-            budget: request.budget,
-            overBudgetBy: max(0, finalList.total - request.budget),
-            relaxedTimeLimit: pool.relaxedTime,
-            groceryList: finalList
-        )
     }
 
-    // MARK: - Alternatives
-
-    /// Top 3 swaps for a slot that keep every rule, with their cost change.
-    /// `current` maps slot index -> (recipe, servings) for the whole week.
     public func alternatives(for slotIndex: Int, current: [Int: LockedMeal], request: PlannerRequest, limit: Int = 3) -> [SwapSuggestion] {
-        var rng = SeededRandom(seed: request.seed &+ UInt64(slotIndex) &+ 7)
-        let pool: [Candidate] = candidates(for: request, rng: &rng).candidates
-        var assignment: [Int: Candidate] = [:]
-        var servings: [Int: Double] = [:]
-        for (index, meal) in current {
-            guard let recipe = request.recipes.first(where: { $0.id == meal.recipeId }) ?? catalog.recipe(id: meal.recipeId) else { continue }
-            assignment[index] = Candidate(recipe: recipe, profile: RecipeClassifier.profile(for: recipe, catalog: catalog), baseScore: 0)
-            servings[index] = meal.servings
+        guard limit > 0 else { return [] }
+        let options = options(for: request, seed: request.seed &+ UInt64(truncatingIfNeeded: slotIndex) &+ 7, allowAllUserRecipes: true)
+        let slots = request.slots.sorted { $0.index < $1.index }
+        guard let slot = slots.first(where: { $0.index == slotIndex }) else { return [] }
+        var assignment: [Int: Selection] = [:]
+        var basket = IncrementalBasket(prices: options.prices, onHand: request.profile.onHand)
+        for other in slots {
+            guard let locked = current[other.index],
+                  let item = options.byID[locked.recipeId] ?? catalog.recipe(id: locked.recipeId).map({ cachedCandidate($0, request: request) }) else { continue }
+            let source = locked.leftoversFromSlotIndex == slotIndex ? nil : locked.leftoversFromSlotIndex
+            assignment[other.index] = Selection(candidate: item, servings: locked.servings, leftoversFrom: source)
+            if other.index != slotIndex { basket.add(item.analysis.ingredients, servings: locked.servings) }
         }
-        if servings[slotIndex] == nil { servings[slotIndex] = request.servings }
-        let slots: [PlanSlot] = request.slots
-        let mealType: MealType = slots.first { $0.index == slotIndex }?.mealType ?? .dinner
-        let typeBySlot: [Int: MealType] = Dictionary(uniqueKeysWithValues: slots.map { ($0.index, $0.mealType) })
-        let baseTotal: Double = basket(for: assignment, servings: servings, slots: slots, request: request).total
-        var others: [Candidate] = []
-        for (key, value) in assignment where key != slotIndex && (typeBySlot[key] ?? .dinner) == mealType { others.append(value) }
-        let usedIds: Set<String> = Set(assignment.values.map { $0.recipe.id })
-        let typed: [Candidate] = pool.filter { $0.recipe.mealType == mealType }
-
-        var options: [Candidate] = typed.filter { !usedIds.contains($0.recipe.id) && (!mealType.usesVarietyRules || varietyOK($0, chosen: others)) }
-        if options.count < limit {
-            options = typed.filter { !usedIds.contains($0.recipe.id) }
+        let servings = current[slotIndex]?.servings ?? request.servings
+        let original = assignment[slotIndex].map { basket.addition($0.candidate.analysis.ingredients, servings: servings).cost } ?? 0
+        let used = Set(assignment.values.map { $0.candidate.recipe.id })
+        let available = options.byType[slot.mealType, default: []].filter { !used.contains($0.recipe.id) }
+        let peers = selections(in: assignment, slots: slots, of: slot.mealType, excluding: slotIndex)
+        let strict = eligibleOptions(available, peers: peers, type: slot.mealType, family: options.weights.family > 0)
+        let allowance = max(0.01, request.budget * slot.mealType.budgetWeight / max(0.01, slots.reduce(0) { $0 + $1.mealType.budgetWeight }))
+        var ranked: [SwapSuggestion] = []
+        for item in strict.count >= limit ? strict : available {
+            let delta = basket.addition(item.analysis.ingredients, servings: servings).cost - original
+            let value = rank(item, slot: slot, weekPosition: 0, peers: peers, basket: basket, units: servings,
+                             allowance: allowance, weights: options.weights, reference: nil, known: [])
+            ranked.append(SwapSuggestion(recipeId: item.recipe.id, costDelta: delta, score: value))
         }
-        let ranked: [Candidate] = options.sorted {
-            $0.baseScore + overlapBonus($0, chosen: others) > $1.baseScore + overlapBonus($1, chosen: others)
+        ranked.sort { lhs, rhs in
+            if lhs.score == rhs.score { return lhs.recipeId < rhs.recipeId }
+            return lhs.score > rhs.score
         }
-        return ranked.prefix(limit).map { option in
-            var trial: [Int: Candidate] = assignment
-            trial[slotIndex] = option
-            let newTotal: Double = basket(for: trial, servings: servings, slots: slots, request: request).total
-            return SwapSuggestion(recipeId: option.recipe.id, costDelta: newTotal - baseTotal, score: option.baseScore + overlapBonus(option, chosen: others))
-        }
-    }
-
-    // MARK: - Helpers
-
-    /// Meals already placed in slots of `type`.
-    func chosen(in assignment: [Int: Candidate], ofType type: MealType, typeBySlot: [Int: MealType]) -> [Candidate] {
-        assignment.compactMap { (typeBySlot[$0.key] ?? .dinner) == type ? $0.value : nil }
-    }
-
-    /// The best pick for one slot. `candidates` are already this meal type; `chosen` are the meals of the
-    /// same type so far (for variety and repeats); `weekSoFar` is every meal (for the overlap bonus).
-    func bestCandidate(from candidates: [Candidate], chosen: [Candidate], weekSoFar: [Candidate], mealType: MealType = .dinner) -> Candidate? {
-        var uses: [String: Int] = [:]
-        for meal in chosen { uses[meal.recipe.id, default: 0] += 1 }
-        let fresh: [Candidate] = candidates.filter { (uses[$0.recipe.id] ?? 0) == 0 }
-        let repeatable: [Candidate] = candidates.filter { (uses[$0.recipe.id] ?? 0) < mealType.maxUsesPerWeek }
-        let strict: [Candidate] = mealType.usesVarietyRules ? fresh.filter { varietyOK($0, chosen: chosen) } : fresh
-        let pool: [Candidate]
-        if !strict.isEmpty {
-            pool = strict
-        } else if !fresh.isEmpty {
-            pool = fresh
-        } else if !repeatable.isEmpty {
-            pool = repeatable
-        } else {
-            // Last resort: repeat a recipe rather than leave a meal empty.
-            pool = candidates
-        }
-        return pool.max { lhs, rhs in
-            lhs.baseScore + overlapBonus(lhs, chosen: weekSoFar) < rhs.baseScore + overlapBonus(rhs, chosen: weekSoFar)
-        }
-    }
-
-    func varietyOK(_ candidate: Candidate, chosen: [Candidate]) -> Bool {
-        let sameProtein: Int = chosen.filter { $0.profile.mainProtein == candidate.profile.mainProtein }.count
-        let sameCuisine: Int = chosen.filter { $0.recipe.cuisine == candidate.recipe.cuisine }.count
-        return sameProtein < MealPlanner.maxSameProtein && sameCuisine < MealPlanner.maxSameCuisine
-    }
-
-    func overlapBonus(_ candidate: Candidate, chosen: [Candidate]) -> Double {
-        var shared: Set<String> = []
-        for other in chosen {
-            shared.formUnion(candidate.profile.keyIngredientIds.intersection(other.profile.keyIngredientIds))
-        }
-        return Double(min(3, shared.count))
-    }
-
-    func orderedSlots(_ slots: [PlanSlot], assignment: [Int: Candidate]) -> [PlanSlot] {
-        slots.filter { assignment[$0.index] != nil }.sorted { $0.index < $1.index }
-    }
-
-    func mealCostsBySlot(list: GroceryList, ordered: [PlanSlot]) -> [Int: Double] {
-        var result: [Int: Double] = [:]
-        for (position, slot) in ordered.enumerated() where position < list.mealCosts.count {
-            result[slot.index] = list.mealCosts[position]
-        }
-        return result
-    }
-
-    func basket(for assignment: [Int: Candidate], servings: [Int: Double], slots: [PlanSlot], request: PlannerRequest) -> GroceryList {
-        let ordered: [PlanSlot] = orderedSlots(slots, assignment: assignment)
-        var portions: [MealPortion] = []
-        for slot in ordered {
-            guard let candidate = assignment[slot.index] else { continue }
-            portions.append(MealPortion(recipe: candidate.recipe, servings: servings[slot.index] ?? request.servings, weekday: slot.weekday))
-        }
-        return GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: request.pricing, unitSystem: request.unitSystem, onHand: request.profile.onHand)
+        return Array(ranked.prefix(limit))
     }
 }

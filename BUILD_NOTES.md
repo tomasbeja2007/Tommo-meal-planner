@@ -203,6 +203,45 @@ welcome home. Code: `Features/Onboarding/` (`OnboardingFlow.swift` drives it, `O
 Breakfast + Dinner in onboarding, check the budget suggestion rises, the plan shows both per day, swapping a breakfast only
 offers breakfasts, Edit week's Breakfast tab saves without touching dinners, and the widget shows the dinner.
 
+## 3d. On-device recipe tailoring
+
+`RecipeTraits` derives recipe effort, everyday appeal, family fit, nutrition, cost, freshness and batch suitability
+from the catalog. The planner caches classifications and traits by recipe value and pricing context. Cost bands
+use the region's meal-size reference price. Cheap means below 65% of that reference and treat means above 110%.
+The basket uses whole packs, the main shop's price tier and the first week's pantry answers.
+
+`TailoringWeights` maps onboarding answers to soft points. Matching signals on the same row use the strongest value.
+
+| Signal | Default weights | Onboarding adjustment |
+| --- | --- | --- |
+| Everyday effort and one-pan | 2.0 everyday, 1.2 effort, 0.25 one-pan | Save time, planning takes too long or too tired raises them to 4.0, 4.0 and 1.2. The planner prefers meals within the stated time Monday through Thursday. |
+| Confidence cooking | 2.0 everyday, 0.65 novelty | Stop wondering, don’t know what to cook or cook more raises them to 3.0 and 1.2. |
+| Cost and sharing | 1.15 cheapness, 0.9 reuse | Spend less or overspend raises them to 4.0 and 2.3. Shopping without a list raises reuse to 2.3. The planner compares incremental pack cost against a meal-weighted budget from the first slot. |
+| Family | 0 | Feed my family adds 4.0. Children raise it to 7.0. Mild recipes get first preference when available. |
+| Nutrition | 0.55 health, 0 protein | Eat healthier or lighter raises health to 2.8. High protein adds 5.0, scaled to 30 g per dinner-equivalent. Mediterranean still prefers its cuisine. |
+| Perishable ingredients | 0.7 fresh timing, 0.9 reuse | Food goes off raises them to 4.0 and 7.0. Fresh ingredients influence early slots and the planner rewards using the unspent part of a pack. |
+| Rotation and saved recipes | 0.65 novelty, 0.35 saved | Same meals every week raises novelty to 2.0. Saved recipes are a mess raises the saved bonus to 1.1. |
+| Batch cooking | Off | Meal prep or too tired enables one batch pair when a suitable recipe and consecutive dinner slots are available. Both portions count toward shopping once for that cook. |
+
+Monday through Thursday get a larger effort penalty. The planner uses the existing hard filters and time relaxation rules,
+and applies variety limits to distinct cooks. Leftovers stay within the next day. The first dinner in a batch opens with
+both portions selected in recipe detail. Moving, removing or swapping either meal clears the pairing. Plan explanations
+are typed data stored with drafts and planned meals.
+
+`RecipeBehavior` stores dated cook, plan, swap, save and feedback observations in the existing SwiftData store. On the
+first planning request after a week ends, unfinished meals in that week are recorded once. The core ignores exposures
+when calculating affinity, halves evidence every four weeks, caps evidence per recipe, and bounds the contribution of
+each affinity. Explicit likes, exclusions and stars have higher weights than cooking and swaps. Learning can nominate
+one unfamiliar recipe close to positive feedback. The latest explicit exclusion remains a hard rule.
+
+On Linux run `swift test` in `Packages/ForkcastCore` with the documented Swift 5.10 toolchain.
+On a Mac, run `xcodegen generate` and use the iPhone Simulator to verify a tired-parent week, scaled batch ingredient
+quantities and both meals' grocery allocations. Swap or move a batch meal and verify the pair clears. Mark a cook,
+undo it, rate a meal, save a recipe and generate a fresh week. Open a copy of a pre-change SwiftData store and verify
+its plans and feedback still appear. Deploy the updated CloudKit schema before testing the new records in production.
+
+---
+
 ## 4. TODO before launch
 
 - [ ] **Real reviews**: the social-proof screen was removed from onboarding (Nov 2026). Only bring it back with

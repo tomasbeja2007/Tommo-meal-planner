@@ -116,7 +116,10 @@ final class ProfileStore {
             vibes: Set(profile.vibes).union(answers.impliedVibes),
             includeUserRecipes: profile.includeUserRecipesInPlans,
             prefersMealPrep: answers.mealPrepMode,
-            preferredCuisines: answers.preferredCuisines
+            preferredCuisines: answers.preferredCuisines,
+            goals: Set(profile.goals.compactMap(PlannerGoal.init(rawValue:))),
+            obstacles: Set(answers.obstacles.compactMap(PlannerObstacle.init(rawValue:))),
+            children: profile.householdKids
         )
     }
 

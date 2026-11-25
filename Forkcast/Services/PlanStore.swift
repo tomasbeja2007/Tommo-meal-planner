@@ -27,6 +27,7 @@ struct EditableMeal: Identifiable, Hashable {
 final class PlanStore {
     let context: ModelContext
     let catalog: FoodCatalog
+    private let planner: MealPlanner
     let repository: RecipeRepository
     let library: LibraryStore
     let profileStore: ProfileStore
@@ -44,6 +45,7 @@ final class PlanStore {
     init(context: ModelContext, catalog: FoodCatalog, repository: RecipeRepository, library: LibraryStore, profileStore: ProfileStore) {
         self.context = context
         self.catalog = catalog
+        self.planner = MealPlanner(catalog: catalog)
         self.repository = repository
         self.library = library
         self.profileStore = profileStore
@@ -115,9 +117,15 @@ final class PlanStore {
         let current: [PlannedMeal] = meals
         var portions: [MealPortion] = []
         var indexMap: [Int] = []
+        var portionPositions: [PersistentIdentifier: Int] = [:]
         for (index, meal) in current.enumerated() {
             guard let recipe = repository.recipe(id: meal.recipeId) else { continue }
-            portions.append(MealPortion(recipe: recipe, servings: meal.servings, weekday: WeekMath.isoWeekday(meal.date)))
+            let source = leftoversSource(for: meal)
+            let cookDate = source?.date ?? meal.date
+            let batchIndex = source.flatMap { portionPositions[$0.persistentModelID] }
+            portionPositions[meal.persistentModelID] = portions.count
+            portions.append(MealPortion(recipe: recipe, servings: meal.servings, weekday: WeekMath.isoWeekday(cookDate),
+                                        batchWithMealIndex: batchIndex))
             indexMap.append(index)
         }
         let list: GroceryList = GroceryAggregator.aggregate(meals: portions, catalog: catalog, pricing: profileStore.pricing, unitSystem: profileStore.unitSystem, onHand: currentOnHand)
@@ -172,6 +180,7 @@ final class PlanStore {
     func makeRequest(slots: [PlanSlot], seed: UInt64, locked: [Int: LockedMeal], start: Date, plan: WeekPlan?, recipes: [Recipe]? = nil) -> PlannerRequest {
         var rules: PlannerProfile = profileStore.plannerProfile
         rules.onHand = onHand(forWeekStarting: start)
+        let now = Date()
         return PlannerRequest(
             profile: rules,
             recipes: recipes ?? autoPlanPool(),
@@ -183,12 +192,16 @@ final class PlanStore {
             pricing: profileStore.pricing,
             unitSystem: profileStore.unitSystem,
             seed: seed,
-            locked: locked
+            locked: locked,
+            tasteEvents: RecipeBehaviorLog.events(in: context, asOf: now),
+            tasteRecipes: repository.userRecipes,
+            tasteAsOf: now,
+            savedRecipeIds: Set(library.savedIds)
         )
     }
 
     private func runPlanner(_ request: PlannerRequest) async -> PlanResult {
-        let planner = MealPlanner(catalog: catalog)
+        let planner = self.planner
         return await Task.detached(priority: .userInitiated) {
             planner.plan(request)
         }.value
@@ -212,19 +225,14 @@ final class PlanStore {
         let weekStart: Date = WeekMath.gregorian.startOfDay(for: start)
         let slots: [PlanSlot] = WeekMath.slots(from: weekStart, cookingDays: profileStore.cookingDays, mealTypes: profileStore.mealTypes)
         let request: PlannerRequest = makeRequest(slots: slots, seed: SeededRandom.seed(weekStart: weekStart, regeneration: 0), locked: [:], start: weekStart, plan: nil)
-        let result: PlanResult = MealPlanner(catalog: catalog).plan(request)
+        let result: PlanResult = planner.plan(request)
         applyNewPlan(result, weekStart: weekStart)
     }
 
     private func applyNewPlan(_ result: PlanResult, weekStart: Date) {
         let plan = WeekPlan(weekStartDate: weekStart, storeIdSnapshot: profileStore.profile?.storeId ?? "", budgetSnapshot: profileStore.weeklyBudget)
         context.insert(plan)
-        for (index, draft) in result.meals.enumerated() {
-            let meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index, mealType: draft.mealType)
-            meal.userRecipe = repository.userRecipeModel(id: draft.recipeId)
-            meal.weekPlan = plan
-            context.insert(meal)
-        }
+        insertDrafts(result.meals, into: plan, keeping: [:])
         currentPlan = plan
         saveAndRefresh()
     }
@@ -261,21 +269,95 @@ final class PlanStore {
                 keepMeals.append(meal)
             }
         }
+        for meal in keepMeals {
+            guard let source = leftoversSource(for: meal),
+                  let servingSlot = slots.first(where: { $0.date == meal.date && $0.mealType == meal.mealType }),
+                  let sourceSlot = slots.first(where: { $0.date == source.date && $0.mealType == source.mealType }),
+                  let existing = locked[servingSlot.index], locked[sourceSlot.index]?.recipeId == source.recipeId else { continue }
+            locked[servingSlot.index] = LockedMeal(recipeId: existing.recipeId, servings: existing.servings,
+                                                   leftoversFromSlotIndex: sourceSlot.index)
+        }
         let seed: UInt64 = SeededRandom.seed(weekStart: plan.weekStartDate, regeneration: plan.regenerationCount)
         let request: PlannerRequest = makeRequest(slots: slots, seed: seed, locked: locked, start: plan.weekStartDate, plan: plan)
         let result: PlanResult = await runPlanner(request)
 
-        let keepIds: Set<PersistentIdentifier> = Set(keepMeals.map { $0.persistentModelID })
+        let keptSlots = Set(result.meals.filter { $0.reason == .kept }.map(\.slotIndex))
+        var keptBySlot: [Int: PlannedMeal] = [:]
+        for meal in keepMeals {
+            if let slot = slots.first(where: { $0.mealType == meal.mealType && $0.date == meal.date }),
+               keptSlots.contains(slot.index), keptBySlot[slot.index] == nil,
+               locked[slot.index]?.recipeId == meal.recipeId {
+                keptBySlot[slot.index] = meal
+            }
+        }
+        let offSchedule = keepMeals.filter { meal in
+            guard !slots.contains(where: { $0.mealType == meal.mealType && $0.date == meal.date }),
+                  let recipe = recipe(for: meal) else { return false }
+            return planner.passesHardFilters(recipe, profile: request.profile, notForMe: request.feedback.notForMe, ignoreTime: true)
+        }
+        let keepIds = Set(keptBySlot.values.map(\.persistentModelID)).union(offSchedule.map(\.persistentModelID))
         for meal in plan.meals ?? [] where !keepIds.contains(meal.persistentModelID) {
+            unlinkBatch(containing: meal)
             context.delete(meal)
         }
-        for (index, draft) in result.meals.enumerated() where locked[draft.slotIndex] == nil {
-            let meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index, mealType: draft.mealType)
-            meal.userRecipe = repository.userRecipeModel(id: draft.recipeId)
-            meal.weekPlan = plan
-            context.insert(meal)
-        }
+        insertDrafts(result.meals, into: plan, keeping: keptBySlot)
         saveAndRefresh()
+    }
+
+    private func insertDrafts(_ drafts: [PlannedMealDraft], into plan: WeekPlan, keeping kept: [Int: PlannedMeal]) {
+        var models = kept
+        let batchSlots = Set(drafts.compactMap(\.leftoversFromSlotIndex))
+        for (index, draft) in drafts.enumerated() {
+            let meal: PlannedMeal
+            if let existing = models[draft.slotIndex] {
+                meal = existing
+            } else {
+                meal = PlannedMeal(date: draft.date, recipeId: draft.recipeId, servings: draft.servings, orderIndex: index, mealType: draft.mealType)
+                meal.userRecipe = repository.userRecipeModel(id: draft.recipeId)
+                meal.weekPlan = plan
+                context.insert(meal)
+                RecipeBehaviorLog.record(.planned, recipeId: meal.recipeId, in: context, mealID: meal.ensurePlannerMealID())
+                models[draft.slotIndex] = meal
+            }
+            let reason: PlannedMealReason
+            if draft.leftoversFromSlotIndex != nil {
+                reason = .plannedLeftovers
+            } else if batchSlots.contains(draft.slotIndex) {
+                reason = .batchCooking
+            } else {
+                reason = draft.reason
+            }
+            meal.planningReasonData = try? JSONEncoder().encode(reason)
+        }
+        for draft in drafts {
+            models[draft.slotIndex]?.leftoversFromMealID = draft.leftoversFromSlotIndex.flatMap { models[$0]?.ensurePlannerMealID() }
+        }
+    }
+
+    private func leftoversSource(for meal: PlannedMeal) -> PlannedMeal? {
+        guard let sourceId = meal.leftoversFromMealID else { return nil }
+        return (meal.weekPlan?.meals ?? []).first {
+            let calendar = WeekMath.gregorian
+            guard $0.plannerMealID == sourceId, $0.recipeId == meal.recipeId,
+                  let next = calendar.date(byAdding: .day, value: 1, to: $0.date) else { return false }
+            return calendar.isDate(next, inSameDayAs: meal.date)
+        }
+    }
+
+    func servingsToCook(for meal: PlannedMeal) -> Double {
+        (meal.weekPlan?.meals ?? []).reduce(meal.servings) { total, other in
+            leftoversSource(for: other)?.persistentModelID == meal.persistentModelID ? total + other.servings : total
+        }
+    }
+
+    private func unlinkBatch(containing meal: PlannedMeal) {
+        meal.leftoversFromMealID = nil
+        meal.planningReasonData = nil
+        guard let id = meal.plannerMealID else { return }
+        for other in meal.weekPlan?.meals ?? [] where other.leftoversFromMealID == id {
+            other.leftoversFromMealID = nil
+            other.planningReasonData = nil
+        }
     }
 
     // MARK: - Swaps and edits
@@ -288,13 +370,16 @@ final class PlanStore {
         var assignment: [Int: LockedMeal] = [:]
         for (index, item) in current.enumerated() {
             slots.append(PlanSlot(index: index, date: item.date, weekday: WeekMath.isoWeekday(item.date), mealType: item.mealType))
-            assignment[index] = LockedMeal(recipeId: item.recipeId, servings: item.servings)
+            let source = leftoversSource(for: item).flatMap { batch in
+                current.firstIndex { $0.persistentModelID == batch.persistentModelID }
+            }
+            assignment[index] = LockedMeal(recipeId: item.recipeId, servings: item.servings, leftoversFromSlotIndex: source)
         }
         let start: Date = currentPlan?.weekStartDate ?? Date()
         let seed: UInt64 = SeededRandom.seed(weekStart: start, regeneration: (currentPlan?.regenerationCount ?? 0) + 101)
         // Swaps may use any of the user's own recipes.
         let request: PlannerRequest = makeRequest(slots: slots, seed: seed, locked: [:], start: start, plan: currentPlan, recipes: repository.allRecipes)
-        let planner = MealPlanner(catalog: catalog)
+        let planner = self.planner
         let index: Int = targetIndex
         return await Task.detached(priority: .userInitiated) {
             planner.alternatives(for: index, current: assignment, request: request)
@@ -315,6 +400,14 @@ final class PlanStore {
     }
 
     func swap(_ meal: PlannedMeal, to recipeId: String) {
+        guard meal.recipeId != recipeId else { return }
+        let id = meal.ensurePlannerMealID()
+        RecipeBehaviorLog.record(.swappedAway, recipeId: meal.recipeId, in: context, mealID: id)
+        RecipeBehaviorLog.record(.chosenAsSwap, recipeId: recipeId, in: context, mealID: id)
+        unlinkBatch(containing: meal)
+        // A replacement is a new exposure and gets its own skip/cook identity.
+        meal.plannerMealID = nil
+        RecipeBehaviorLog.record(.planned, recipeId: recipeId, in: context, mealID: meal.ensurePlannerMealID())
         meal.recipeId = recipeId
         meal.userRecipe = repository.userRecipeModel(id: recipeId)
         meal.isCooked = false
@@ -330,6 +423,7 @@ final class PlanStore {
         meal.userRecipe = repository.userRecipeModel(id: recipeId)
         meal.weekPlan = plan
         context.insert(meal)
+        RecipeBehaviorLog.record(.planned, recipeId: meal.recipeId, in: context, mealID: meal.ensurePlannerMealID())
         saveAndRefresh()
     }
 
@@ -342,6 +436,7 @@ final class PlanStore {
     }
 
     func removeMeal(_ meal: PlannedMeal) {
+        unlinkBatch(containing: meal)
         context.delete(meal)
         saveAndRefresh()
     }
@@ -352,15 +447,32 @@ final class PlanStore {
     }
 
     func setCooked(_ meal: PlannedMeal, cooked: Bool) {
+        guard meal.isCooked != cooked else { return }
+        let now = Date()
         meal.isCooked = cooked
-        meal.cookedAt = cooked ? Date() : nil
+        meal.cookedAt = cooked ? now : nil
+        if leftoversSource(for: meal) == nil {
+            let id = meal.ensurePlannerMealID()
+            for row in RecipeBehaviorLog.matchingMeal(id, in: context) {
+                let kind = row.event?.kind
+                if kind == .skipped || (!cooked && (kind == .cooked || kind == .cookedAgain)) {
+                    context.delete(row)
+                }
+            }
+            if cooked {
+                RecipeBehaviorLog.recordCook(recipeId: meal.recipeId, in: context, date: now, mealID: id)
+            }
+        }
         saveAndRefresh()
     }
 
-    /// Mark the plan's meal for this recipe as cooked (from recipe detail / cook mode).
-    func markCooked(recipeId: String) {
-        if let meal = meals.first(where: { $0.recipeId == recipeId && !$0.isCooked }) ?? meals.first(where: { $0.recipeId == recipeId }) {
+    /// An explicit cook from the recipe screen can also happen outside a plan.
+    func markCooked(recipeId: String, meal: PlannedMeal?) {
+        if let meal, !meal.isCooked {
             setCooked(meal, cooked: true)
+        } else if meal.flatMap({ leftoversSource(for: $0) }) == nil {
+            RecipeBehaviorLog.recordCook(recipeId: recipeId, in: context, date: Date(), mealID: nil)
+            try? context.save()
         }
     }
 
@@ -368,15 +480,16 @@ final class PlanStore {
         meals.contains { $0.recipeId == recipeId }
     }
 
-    func plannedMeal(for recipeId: String) -> PlannedMeal? {
-        meals.first { $0.recipeId == recipeId }
+    func plannedMeal(for recipeId: String, id: UUID? = nil) -> PlannedMeal? {
+        if let id { return meals.first { $0.plannerMealID == id && $0.recipeId == recipeId } }
+        return meals.first { $0.recipeId == recipeId && !$0.isCooked } ?? meals.first { $0.recipeId == recipeId }
     }
 
     /// Rows for the Edit week sheet: one per day of the plan window, for one meal type.
     func editRows(for type: MealType = .dinner) -> [EditableMeal?] {
         weekDays.map { day in
             guard let meal = meal(on: day, type: type) else { return nil }
-            return EditableMeal(recipeId: meal.recipeId, servings: meal.servings, isCooked: meal.isCooked, cookedAt: meal.cookedAt)
+            return EditableMeal(id: meal.ensurePlannerMealID(), recipeId: meal.recipeId, servings: meal.servings, isCooked: meal.isCooked, cookedAt: meal.cookedAt)
         }
     }
 
@@ -385,17 +498,31 @@ final class PlanStore {
     func applyEdit(rows: [EditableMeal?], for type: MealType = .dinner) {
         guard let plan = currentPlan else { return }
         let days: [Date] = weekDays
-        for meal in plan.meals ?? [] where meal.mealType == type {
-            context.delete(meal)
-        }
+        let existing = (plan.meals ?? []).filter { $0.mealType == type }
+        var byID: [UUID: PlannedMeal] = [:]
+        for meal in existing { byID[meal.ensurePlannerMealID()] = meal }
+        var retained: Set<UUID> = []
         for (index, row) in rows.enumerated() where index < days.count {
             guard let row else { continue }
-            let meal = PlannedMeal(date: days[index], recipeId: row.recipeId, servings: row.servings, orderIndex: index, mealType: type)
-            meal.isCooked = row.isCooked
-            meal.cookedAt = row.cookedAt
-            meal.userRecipe = repository.userRecipeModel(id: row.recipeId)
-            meal.weekPlan = plan
-            context.insert(meal)
+            if let meal = byID[row.id], meal.recipeId == row.recipeId {
+                if meal.date != days[index] { unlinkBatch(containing: meal) }
+                meal.date = days[index]
+                meal.orderIndex = index
+                meal.servings = row.servings
+                retained.insert(row.id)
+            } else {
+                let meal = PlannedMeal(date: days[index], recipeId: row.recipeId, servings: row.servings, orderIndex: index, mealType: type)
+                meal.isCooked = row.isCooked
+                meal.cookedAt = row.cookedAt
+                meal.userRecipe = repository.userRecipeModel(id: row.recipeId)
+                meal.weekPlan = plan
+                context.insert(meal)
+                RecipeBehaviorLog.record(.planned, recipeId: meal.recipeId, in: context, mealID: meal.ensurePlannerMealID())
+            }
+        }
+        for (id, meal) in byID where !retained.contains(id) {
+            unlinkBatch(containing: meal)
+            context.delete(meal)
         }
         saveAndRefresh()
     }

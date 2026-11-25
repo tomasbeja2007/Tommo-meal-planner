@@ -187,6 +187,16 @@ final class PlannedMeal {
     var userRecipe: UserRecipe? = nil
     /// `MealType` raw value. Meals saved before meal types existed are dinners.
     var mealTypeRaw: String = "dinner"
+    var plannerMealID: UUID? = nil
+    var leftoversFromMealID: UUID? = nil
+    var planningReasonData: Data? = nil
+
+    func ensurePlannerMealID() -> UUID {
+        if let plannerMealID { return plannerMealID }
+        let id = UUID()
+        plannerMealID = id
+        return id
+    }
 
     init(date: Date, recipeId: String, servings: Double, orderIndex: Int, mealType: MealType = .dinner) {
         self.date = date

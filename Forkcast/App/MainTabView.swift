@@ -45,6 +45,7 @@ struct MainTabView: View {
 /// Route for pushing a recipe detail onto any NavigationStack.
 struct RecipeRoute: Hashable {
     let recipeId: String
+    var plannedMealID: UUID? = nil
 }
 
 /// Shared date strings.

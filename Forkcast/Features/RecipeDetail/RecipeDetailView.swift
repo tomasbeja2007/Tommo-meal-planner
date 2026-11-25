@@ -3,6 +3,7 @@ import ForkcastCore
 
 struct RecipeDetailView: View {
     let recipeId: String
+    var plannedMealID: UUID? = nil
 
     @Environment(RecipeRepository.self) private var repository: RecipeRepository
     @Environment(PlanStore.self) private var planStore: PlanStore
@@ -10,7 +11,7 @@ struct RecipeDetailView: View {
 
     var body: some View {
         if let recipe = repository.recipe(id: recipeId) {
-            RecipeDetailContent(recipe: recipe, plannedMeal: planStore.plannedMeal(for: recipeId))
+            RecipeDetailContent(recipe: recipe, plannedMeal: planStore.plannedMeal(for: recipeId, id: plannedMealID))
         } else {
             EmptyState(title: String(localized: "recipe not found"), message: String(localized: "it may have been deleted."), showsMascot: true)
                 .creamBackground()
@@ -52,6 +53,10 @@ private struct RecipeDetailContent: View {
     @State private var didSetServings: Bool = false
 
     private var nutrition: NutritionResult { repository.nutrition(for: recipe) }
+
+    private var plannedServings: Double {
+        plannedMeal.map { planStore.servingsToCook(for: $0) } ?? profileStore.defaultServings
+    }
 
     private var nutritionCaption: String {
         if showNutritionTotal {
@@ -104,6 +109,7 @@ private struct RecipeDetailContent: View {
                         IngredientsSection(
                             recipe: recipe,
                             servings: $servings,
+                            maxServings: max(12, Int(plannedServings.rounded(.up))),
                             system: unitSystem,
                             onChangeUnits: { displayUnits = $0 },
                             isInPlan: plannedMeal != nil,
@@ -172,8 +178,7 @@ private struct RecipeDetailContent: View {
         .onAppear {
             guard !didSetServings else { return }
             didSetServings = true
-            let planned: Double = plannedMeal?.servings ?? profileStore.defaultServings
-            servings = max(1, Int(planned.rounded()))
+            servings = max(1, Int(plannedServings.rounded()))
         }
     }
 
@@ -210,9 +215,7 @@ private struct RecipeDetailContent: View {
         if stars > 0 {
             library.setStars(stars, for: recipe.id)
         }
-        if plannedMeal != nil {
-            planStore.markCooked(recipeId: recipe.id)
-        }
+        planStore.markCooked(recipeId: recipe.id, meal: plannedMeal)
         Haptics.success()
     }
 }
@@ -261,6 +264,7 @@ private struct DetailHeader: View {
 private struct IngredientsSection: View {
     let recipe: Recipe
     @Binding var servings: Int
+    let maxServings: Int
     let system: UnitSystem
     let onChangeUnits: (UnitSystem) -> Void
     let isInPlan: Bool
@@ -278,7 +282,7 @@ private struct IngredientsSection: View {
                     .font(.system(.headline, design: .rounded))
                     .foregroundStyle(Theme.aubergine)
                 Spacer()
-                RoundStepper(value: $servings, range: 1...12)
+                RoundStepper(value: $servings, range: 1...maxServings)
             }
             .cardStyle(padding: Theme.Spacing.m)
             Menu {

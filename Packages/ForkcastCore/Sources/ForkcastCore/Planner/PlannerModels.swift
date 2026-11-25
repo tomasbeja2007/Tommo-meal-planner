@@ -17,8 +17,14 @@ public struct PlannerProfile: Hashable, Sendable {
     public var prefersMealPrep: Bool
     /// Cuisines the user leans towards (e.g. "Mediterranean" from the diet screen). A soft preference.
     public var preferredCuisines: Set<Cuisine>
+    public var goals: Set<PlannerGoal>
+    public var obstacles: Set<PlannerObstacle>
+    public var children: Int
 
-    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = []) {
+    public init(allergens: Set<Allergen> = [], diet: Diet = .none, dislikes: Set<String> = [], appliances: Set<Appliance> = Set(Appliance.allCases), maxCookMinutes: Int? = nil, vibes: Set<Vibe> = [], includeUserRecipes: Bool = true, onHand: Set<String> = [], prefersMealPrep: Bool = false, preferredCuisines: Set<Cuisine> = [], goals: Set<PlannerGoal> = [], obstacles: Set<PlannerObstacle> = [], children: Int = 0) {
+        self.goals = goals
+        self.obstacles = obstacles
+        self.children = children
         self.preferredCuisines = preferredCuisines
         self.onHand = onHand
         self.prefersMealPrep = prefersMealPrep
@@ -65,9 +71,12 @@ public struct LockedMeal: Hashable, Sendable {
     public let recipeId: String
     public let servings: Double
 
-    public init(recipeId: String, servings: Double) {
+    public let leftoversFromSlotIndex: Int?
+
+    public init(recipeId: String, servings: Double, leftoversFromSlotIndex: Int? = nil) {
         self.recipeId = recipeId
         self.servings = servings
+        self.leftoversFromSlotIndex = leftoversFromSlotIndex
     }
 }
 
@@ -87,8 +96,16 @@ public struct PlannerRequest: Sendable {
     public var seed: UInt64
     /// Slot index -> meal to keep (cooked or liked meals on regenerate).
     public var locked: [Int: LockedMeal]
+    public var tasteEvents: [TasteEvent]
+    public var tasteRecipes: [Recipe]
+    public var tasteAsOf: Date?
+    public var savedRecipeIds: Set<String>
 
-    public init(profile: PlannerProfile, recipes: [Recipe], feedback: FeedbackSummary = FeedbackSummary(), history: [String: Int] = [:], slots: [PlanSlot], servings: Double, budget: Double, pricing: PriceContext, unitSystem: UnitSystem = .metric, seed: UInt64 = 1, locked: [Int: LockedMeal] = [:]) {
+    public init(profile: PlannerProfile, recipes: [Recipe], feedback: FeedbackSummary = FeedbackSummary(), history: [String: Int] = [:], slots: [PlanSlot], servings: Double, budget: Double, pricing: PriceContext, unitSystem: UnitSystem = .metric, seed: UInt64 = 1, locked: [Int: LockedMeal] = [:], tasteEvents: [TasteEvent] = [], tasteRecipes: [Recipe] = [], tasteAsOf: Date? = nil, savedRecipeIds: Set<String> = []) {
+        self.tasteEvents = tasteEvents
+        self.tasteRecipes = tasteRecipes
+        self.tasteAsOf = tasteAsOf
+        self.savedRecipeIds = savedRecipeIds
         self.profile = profile
         self.recipes = recipes
         self.feedback = feedback
@@ -103,6 +120,19 @@ public struct PlannerRequest: Sendable {
     }
 }
 
+public enum PlannedMealReason: Codable, Hashable, Sendable {
+    case quick(weekday: Int)
+    case usesPerishable(ingredientId: String)
+    case familyFriendly
+    case underBudget
+    case lowerCost
+    case similarTo(recipeId: String)
+    case batchCooking
+    case plannedLeftovers
+    case everyday
+    case kept
+}
+
 public struct PlannedMealDraft: Hashable, Sendable {
     public let slotIndex: Int
     public let date: Date
@@ -112,6 +142,8 @@ public struct PlannedMealDraft: Hashable, Sendable {
     public let servings: Double
     /// This meal's share of the basket.
     public let allocatedCost: Double
+    public let reason: PlannedMealReason
+    public let leftoversFromSlotIndex: Int?
 }
 
 public struct PlanResult: Sendable {

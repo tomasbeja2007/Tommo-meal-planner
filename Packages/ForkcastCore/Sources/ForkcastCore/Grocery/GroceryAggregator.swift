@@ -7,10 +7,14 @@ public struct MealPortion: Hashable, Sendable {
     /// ISO weekday, 1 = Monday ... 7 = Sunday.
     public let weekday: Int
 
-    public init(recipe: Recipe, servings: Double, weekday: Int) {
+    /// Earlier input index when this portion uses the same batch.
+    public let batchWithMealIndex: Int?
+
+    public init(recipe: Recipe, servings: Double, weekday: Int, batchWithMealIndex: Int? = nil) {
         self.recipe = recipe
         self.servings = servings
         self.weekday = weekday
+        self.batchWithMealIndex = batchWithMealIndex
     }
 
     public var scale: Double { servings / Double(max(1, recipe.baseServings)) }
@@ -71,6 +75,10 @@ public enum GroceryAggregator {
         min(max(packPrice * 0.08, 0.05), 0.6)
     }
 
+    static func packCount(for packsNeeded: Double) -> Int {
+        max(1, Int((packsNeeded - 0.02).rounded(.up)))
+    }
+
     private struct Accumulator {
         var needed: Double = 0
         var weekdays: Set<Int> = []
@@ -88,6 +96,9 @@ public enum GroceryAggregator {
     public static func aggregate(meals: [MealPortion], catalog: FoodCatalog, pricing: PriceContext, unitSystem: UnitSystem, onHand: Set<String> = []) -> GroceryList {
         var linked: [String: Accumulator] = [:]
         var custom: [String: CustomAccumulator] = [:]
+        let shoppingGroups = meals.enumerated().map { index, meal in
+            meal.batchWithMealIndex.flatMap { (0..<index).contains($0) ? $0 : nil } ?? index
+        }
 
         for (mealIndex, meal) in meals.enumerated() {
             for item in meal.recipe.ingredients {
@@ -116,7 +127,8 @@ public enum GroceryAggregator {
         var standalone: [Double] = Array(repeating: 0, count: meals.count)
         var total: Double = 0
 
-        for (id, acc) in linked {
+        for id in linked.keys.sorted() {
+            guard let acc = linked[id] else { continue }
             guard let ingredient = catalog.ingredient(id: id) else { continue }
             let packPrice: Double? = catalog.packPrice(ingredientId: id, context: pricing)
             let name: String = ingredient.displayName(for: unitSystem, plural: acc.needed > 1.0001 && ingredient.baseUnit == .piece)
@@ -146,9 +158,10 @@ public enum GroceryAggregator {
                 total += cost
                 // Split the staple's small cost evenly across the meals using it.
                 let users: [Int] = acc.perMeal.keys.sorted()
+                let batches = Dictionary(grouping: users) { shoppingGroups[$0] }
                 for index in users {
                     mealCosts[index] += cost / Double(max(1, users.count))
-                    standalone[index] += cost
+                    standalone[index] += cost / Double(batches[shoppingGroups[index]]?.count ?? 1)
                 }
                 staples.append(GroceryItem(
                     key: id,
@@ -170,14 +183,20 @@ public enum GroceryAggregator {
 
             let packAmount: Double = max(ingredient.pack.amount, 0.0001)
             // Small tolerance so 400.0001 g doesn't buy a second tin.
-            let packs: Int = max(1, Int((acc.needed / packAmount - 0.02).rounded(.up)))
+            let packs: Int = packCount(for: acc.needed / packAmount)
             let cost: Double = Double(packs) * (packPrice ?? 0)
             total += cost
-            for (index, amount) in acc.perMeal {
-                let share: Double = acc.needed > 0 ? amount / acc.needed : 0
-                mealCosts[index] += cost * share
-                let ownPacks: Int = max(1, Int((amount / packAmount - 0.02).rounded(.up)))
-                standalone[index] += Double(ownPacks) * (packPrice ?? 0)
+            let users = acc.perMeal.keys.sorted()
+            let batches = Dictionary(grouping: users) { shoppingGroups[$0] }
+            for group in batches.values {
+                let needed = group.reduce(0.0) { $0 + acc.perMeal[$1, default: 0] }
+                let standaloneCost = Double(packCount(for: needed / packAmount)) * (packPrice ?? 0)
+                for index in group {
+                    let amount = acc.perMeal[index, default: 0]
+                    let share = acc.needed > 0 ? amount / acc.needed : 0
+                    mealCosts[index] += cost * share
+                    standalone[index] += standaloneCost * (needed > 0 ? amount / needed : 1 / Double(group.count))
+                }
             }
             let packsNeeded: Double = acc.needed / packAmount
             var needed: String = "you need " + QuantityFormatter.baseString(acc.needed, ingredient: ingredient, system: unitSystem)
@@ -204,7 +223,8 @@ public enum GroceryAggregator {
             ))
         }
 
-        for (key, acc) in custom {
+        for key in custom.keys.sorted() {
+            guard let acc = custom[key] else { continue }
             let quantity: String = QuantityFormatter.string(amount: acc.amount, unit: acc.unit, system: unitSystem, ingredient: nil)
             items.append(GroceryItem(
                 key: key,
@@ -227,11 +247,14 @@ public enum GroceryAggregator {
         for item in items {
             grouped[item.aisle, default: []].append(item)
         }
-        let sections: [GrocerySection] = grouped.keys.sorted().map { aisle in
-            let sorted: [GroceryItem] = (grouped[aisle] ?? []).sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
-            return GrocerySection(aisle: aisle, items: sorted)
+        func byName(_ lhs: GroceryItem, _ rhs: GroceryItem) -> Bool {
+            let order = lhs.name.localizedCaseInsensitiveCompare(rhs.name)
+            return order == .orderedSame ? lhs.key < rhs.key : order == .orderedAscending
         }
-        let sortedStaples: [GroceryItem] = staples.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+        let sections: [GrocerySection] = grouped.keys.sorted().map { aisle in
+            GrocerySection(aisle: aisle, items: (grouped[aisle] ?? []).sorted(by: byName))
+        }
+        let sortedStaples = staples.sorted(by: byName)
 
         return GroceryList(
             sections: sections,

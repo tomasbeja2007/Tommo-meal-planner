@@ -180,6 +180,7 @@ struct RecipeDraft: Identifiable, Hashable {
         let model: UserRecipe = existing ?? UserRecipe(title: title)
         if existing == nil {
             context.insert(model)
+            RecipeBehaviorLog.record(.saved, recipeId: model.recipeId, in: context, date: model.createdAt)
         }
         model.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
         model.emoji = emoji

@@ -52,9 +52,12 @@ final class LibraryStore {
     func toggleSaved(_ recipeId: String) {
         let existing: [SavedRecipe] = fetchSaved(recipeId)
         if existing.isEmpty {
-            context.insert(SavedRecipe(recipeId: recipeId))
+            let item = SavedRecipe(recipeId: recipeId)
+            context.insert(item)
+            RecipeBehaviorLog.record(.saved, recipeId: recipeId, in: context, date: item.savedAt)
         } else {
             for item in existing { context.delete(item) }
+            RecipeBehaviorLog.record(.unsaved, recipeId: recipeId, in: context)
         }
         persist()
     }
@@ -67,6 +70,13 @@ final class LibraryStore {
         let record: RecipeFeedback = feedbackRecord(for: recipeId)
         record.rating = effective
         record.date = Date()
+        let kind: TasteEvent.Kind
+        switch effective {
+        case .like: kind = .liked
+        case .notForMe: kind = .notForMe
+        case nil: kind = .ratingCleared
+        }
+        RecipeBehaviorLog.record(kind, recipeId: recipeId, in: context, date: record.date)
         persist()
     }
 
@@ -74,6 +84,7 @@ final class LibraryStore {
         let record: RecipeFeedback = feedbackRecord(for: recipeId)
         record.stars = min(5, max(0, value))
         record.date = Date()
+        RecipeBehaviorLog.record(.stars, recipeId: recipeId, in: context, date: record.date, stars: record.stars)
         persist()
     }
 
