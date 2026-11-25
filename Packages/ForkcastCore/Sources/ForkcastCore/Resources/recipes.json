@@ -30237,5 +30237,8058 @@
   "tags": [
    "trending"
   ]
+ },
+ {
+  "id": "sticky-sesame-chicken",
+  "title": "Sticky sesame chicken",
+  "emoji": "🍗",
+  "cuisine": "Chinese",
+  "vibes": [
+   "fakeaway",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "cut into bite-size pieces"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "broccoli",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into florets"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, adding the broccoli for the last 4, then drain.",
+   "Toss the chicken in 2 tbsp cornstarch.",
+   "Fry in the oil over a medium-high heat for 8 minutes, turning, until crisp and cooked through. Set aside.",
+   "Whisk the soy sauce, honey, vinegar, sesame oil, garlic, the rest of the cornstarch and 3 tbsp water.",
+   "Pour into the pan and bubble for 1 minute until thick, then toss the chicken back in with most of the sesame seeds.",
+   "Serve over the rice and broccoli with spring onions and the rest of the sesame."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "mapo-style-tofu",
+  "title": "Mapo-style tofu with pork",
+  "emoji": "🌶️",
+  "cuisine": "Chinese",
+  "vibes": [
+   "fakeaway",
+   "comfort",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tofu",
+    "amount": 600,
+    "unit": "g",
+    "note": "cut into cubes"
+   },
+   {
+    "ingredientId": "ground-pork",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Brown the pork in the oil for 6 minutes until crisp.",
+   "Add the garlic, ginger, gochujang and chili flakes and fry for 1 minute.",
+   "Pour in the stock and soy sauce and bring to a simmer.",
+   "Slide in the tofu and simmer gently for 5 minutes without stirring too much.",
+   "Stir in the cornstarch mixed with 2 tbsp water until glossy, and serve over rice with spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "char-siu-style-pork-rice",
+  "title": "Char siu-style pork with rice & greens",
+  "emoji": "🐖",
+  "cuisine": "Chinese",
+  "vibes": [
+   "fakeaway",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "pork-tenderloin",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "hoisin-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "five-spice",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bok-choy",
+    "amount": 4,
+    "unit": "piece",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F).",
+   "Mix the hoisin, honey, soy sauce, five-spice and garlic and coat the pork, keeping 2 tbsp aside.",
+   "Roast on a lined tray for 22–25 minutes, brushing with the saved glaze halfway, until sticky and just cooked.",
+   "Meanwhile, cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Steam or boil the bok choy for 3 minutes and toss with the sesame oil.",
+   "Rest the pork for 5 minutes, slice and serve over rice with the greens, spooning over the tray juices."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "salt-pepper-chicken",
+  "title": "Salt & pepper chicken",
+  "emoji": "🧂",
+  "cuisine": "Chinese",
+  "vibes": [
+   "fakeaway",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 3,
+    "unit": "piece",
+    "note": "cut into strips"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "five-spice",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Mix the salt, pepper and five-spice.",
+   "Toss the chicken in the cornstarch and half the spice mix.",
+   "Fry in the oil over a high heat for 7 minutes until crisp and golden, then set aside.",
+   "Stir-fry the onion, peppers, garlic and chili for 3 minutes.",
+   "Toss the chicken back in with the rest of the spice mix and serve with the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "singapore-style-noodles",
+  "title": "Singapore-style noodles",
+  "emoji": "🍜",
+  "cuisine": "Other",
+  "vibes": [
+   "fakeaway",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rice-noodles",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "shrimp",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 4,
+    "unit": "slice",
+    "note": "cut into strips"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "bean-sprouts",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Soak the noodles in just-boiled water for 6 minutes, then drain.",
+   "Scramble the eggs in half the oil, then set aside.",
+   "Stir-fry the shrimp, pepper and onion in the rest of the oil for 3 minutes.",
+   "Add the curry powder and ham for 30 seconds.",
+   "Toss in the noodles, soy sauce and eggs until evenly yellow.",
+   "Add the bean sprouts and spring onions and toss for 1 minute."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "hainanese-style-chicken-rice",
+  "title": "Hainanese-style poached chicken rice",
+  "emoji": "🍚",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 40,
+    "unit": "g",
+    "note": "half sliced, half grated"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 4,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Simmer 1.2 litres water with the bouillon, sliced ginger and half the spring onions, add the chicken and poach gently for 15 minutes.",
+   "Lift out the chicken and keep 650 ml of the broth.",
+   "Fry the rice with half the garlic in 1 tbsp oil for 1 minute, add the saved broth, cover and cook on low for 15 minutes — the broth makes the rice the star.",
+   "Mix the grated ginger, the rest of the garlic and spring onions with a pinch of salt and 1 tbsp hot oil for a ginger sauce.",
+   "Mix the soy sauce, lime juice and chili.",
+   "Slice the chicken and serve on the rice with cucumber, both sauces and a cup of the hot broth."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "pad-prik-king-pork",
+  "title": "Red curry pork & green bean stir-fry",
+  "emoji": "🫘",
+  "cuisine": "Thai",
+  "vibes": [
+   "quickEasy",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-pork",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "thai-curry-paste",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 300,
+    "unit": "g",
+    "note": "cut into short lengths"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Fry the curry paste in the oil for 1 minute.",
+   "Add the pork and cook for 6 minutes, breaking it up, until crispy.",
+   "Add the green beans and a splash of water and stir-fry for 4 minutes until just tender.",
+   "Season with the fish sauce, sugar and lime juice and stir in the basil.",
+   "Fry the eggs until crispy at the edges and serve on top of the rice and pork."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "tom-kha-style-chicken-soup",
+  "title": "Tom kha-style coconut chicken soup",
+  "emoji": "🥥",
+  "cuisine": "Thai",
+  "vibes": [
+   "comfort",
+   "healthyish"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 30,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "thai-curry-paste",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 3,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 200,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "rice-noodles",
+    "amount": 150,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Simmer 800 ml water with the bouillon, ginger and curry paste for 5 minutes.",
+   "Add the coconut milk and bring back to a gentle simmer.",
+   "Add the chicken and mushrooms and simmer for 8 minutes until cooked.",
+   "Soak the noodles in just-boiled water for 8 minutes, then drain into bowls.",
+   "Season the soup with the fish sauce, lime juice and sugar — it should taste sour, salty and a little sweet.",
+   "Ladle over the noodles."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "vietnamese-caramel-pork",
+  "title": "Vietnamese-style caramel pork",
+  "emoji": "🍯",
+  "cuisine": "Other",
+  "vibes": [
+   "fakeaway",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "pork-tenderloin",
+    "amount": 1,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Melt the sugar in a dry deep pan over a medium heat until it turns a deep amber caramel.",
+   "Carefully add 4 tbsp water, the fish sauce and soy sauce and stir until smooth.",
+   "Add the oil, garlic, onion and pork and simmer for 15 minutes until the sauce is sticky.",
+   "Season with plenty of black pepper.",
+   "Serve over rice with cucumber, spring onions and chili."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "nasi-goreng",
+  "title": "Nasi goreng",
+  "emoji": "🍳",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "fakeaway",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 22,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 250,
+    "unit": "g",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Cook the rice for 12 minutes, drain and spread out to steam dry.",
+   "Stir-fry the chicken in the oil over a high heat for 5 minutes.",
+   "Add the garlic, onion and chili and cook for 2 minutes.",
+   "Mix the soy sauce, honey and ketchup into a sweet soy sauce, add with the rice and stir-fry for 3 minutes until sticky.",
+   "Fry the eggs in another pan until crispy at the edges.",
+   "Serve the rice topped with the eggs and cucumber on the side."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "laksa-style-shrimp-noodles",
+  "title": "Laksa-style shrimp noodle soup",
+  "emoji": "🍜",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "thai-curry-paste",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 400,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "fish-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "shrimp",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-noodles",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bean-sprouts",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Boil the eggs for 7 minutes, cool and peel.",
+   "Fry the curry paste and curry powder in the oil for 1 minute.",
+   "Add the coconut milk, 700 ml boiling water, the bouillon, fish sauce and sugar and simmer for 5 minutes.",
+   "Add the shrimp and simmer for 3 minutes until pink.",
+   "Soak the noodles in just-boiled water for 8 minutes and drain into bowls.",
+   "Ladle over the soup and top with sprouts, halved eggs and lime."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "yaki-udon",
+  "title": "Yaki udon with pork & cabbage",
+  "emoji": "🍜",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "udon-noodles",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "ground-pork",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 200,
+    "unit": "g",
+    "note": "shredded"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into matchsticks"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 100,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Loosen the udon in boiling water for 2 minutes, then drain.",
+   "Fry the pork in the oil over a high heat for 5 minutes until browned.",
+   "Add the cabbage, carrot and mushrooms and stir-fry for 3 minutes.",
+   "Mix the soy sauce, Worcestershire and honey.",
+   "Add the noodles and sauce and toss for 2 minutes.",
+   "Serve topped with spring onion and sesame seeds."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "air-fryer-tonkatsu-pork",
+  "title": "Air-fryer tonkatsu pork with cabbage",
+  "emoji": "🐷",
+  "cuisine": "Japanese",
+  "vibes": [
+   "fakeaway",
+   "family"
+  ],
+  "appliances": [
+   "airFryer",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "pork-tenderloin",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into 8 medallions and flattened"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 300,
+    "unit": "g",
+    "note": "very finely shredded"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Season the pork with salt, dust in flour, dip in egg, then press into the breadcrumbs.",
+   "Air-fry at 200°C (400°F) for 12 minutes, turning halfway, until golden and cooked through.",
+   "Mix the ketchup and Worcestershire into a quick tonkatsu sauce.",
+   "Pile the shredded cabbage onto plates — shred it as finely as you can.",
+   "Slice the pork and serve with the rice, cabbage and sauce."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chicken-karaage-bowl",
+  "title": "Air-fryer chicken karaage bowl",
+  "emoji": "🍗",
+  "cuisine": "Japanese",
+  "vibes": [
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "airFryer",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "cut into chunks"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 200,
+    "unit": "g",
+    "note": "shredded"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Marinate the chicken in 2 tbsp soy sauce, the ginger and garlic for 10 minutes.",
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Toss the chicken in the cornstarch until coated.",
+   "Air-fry at 200°C (400°F) for 14 minutes, shaking halfway, until crisp and cooked through.",
+   "Mix the mayonnaise with the sriracha.",
+   "Serve over rice with cabbage, the spicy mayo, lemon wedges and spring onions, drizzled with the rest of the soy."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "dakgalbi-spicy-chicken",
+  "title": "Cheesy dakgalbi-style spicy chicken",
+  "emoji": "🌶️",
+  "cuisine": "Korean",
+  "vibes": [
+   "onePan",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 400,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 1,
+    "unit": "piece",
+    "note": "torn"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Mix the gochujang, soy sauce, honey and garlic and coat the chicken.",
+   "Heat the oil in a large pan and add the chicken, cabbage and onion.",
+   "Stir-fry for 10 minutes until the chicken is cooked and the sauce is sticky.",
+   "Scatter over the mozzarella, cover for 2 minutes to melt.",
+   "Sprinkle with sesame and serve with the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "beef-bulgogi-rice-bowl",
+  "title": "Beef bulgogi rice bowl",
+  "emoji": "🥩",
+  "cuisine": "Korean",
+  "vibes": [
+   "highProtein",
+   "fakeaway"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 10,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 2,
+    "unit": "piece",
+    "note": "very thinly sliced"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Mix the soy sauce, honey and garlic and marinate the beef for 10 minutes.",
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Heat the sesame oil in a very hot pan and cook the onion for 2 minutes.",
+   "Add the beef in batches and sear for 2 minutes until caramelised.",
+   "Spoon over the rice.",
+   "Serve with cucumber, spring onions and sesame."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "kimchi-stew-pork-tofu",
+  "title": "Kimchi stew with pork & tofu",
+  "emoji": "🍲",
+  "cuisine": "Korean",
+  "vibes": [
+   "comfort",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-pork",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "kimchi",
+    "amount": 300,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "gochujang",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "tofu",
+    "amount": 400,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Brown the pork in the oil in a deep pan for 5 minutes.",
+   "Add the kimchi, onion and garlic and cook for 5 minutes — frying the kimchi deepens the flavour.",
+   "Stir in the gochujang, then 900 ml boiling water, the bouillon and soy sauce, and simmer for 10 minutes.",
+   "Slide in the tofu and simmer for 5 minutes more.",
+   "Scatter with spring onions and serve with the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "palak-paneer",
+  "title": "Palak paneer",
+  "emoji": "🥬",
+  "cuisine": "Indian",
+  "vibes": [
+   "healthyish",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop",
+   "blender"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spinach-frozen",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paneer",
+    "amount": 225,
+    "unit": "g",
+    "note": "cubed"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "heavy-cream",
+    "amount": 50,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Heat the spinach with a splash of water until hot, then blend until smooth.",
+   "Fry the paneer in half the oil until golden, then set aside.",
+   "Cook the onion in the rest of the oil for 6 minutes, then add the garlic, ginger and spices for 1 minute, and the tomato for 3 minutes.",
+   "Stir in the spinach, cream and salt and simmer for 3 minutes.",
+   "Fold in the paneer and serve with the rice."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chicken-jalfrezi",
+  "title": "Chicken jalfrezi",
+  "emoji": "🌶️",
+  "cuisine": "Indian",
+  "vibes": [
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 3,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cut into chunks"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cut into chunks"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "chili-fresh",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Brown the chicken in half the oil for 5 minutes, then set aside.",
+   "Fry the onions and peppers in the rest of the oil over a high heat for 5 minutes until charred at the edges.",
+   "Add the garlic, ginger, chili and spices for 1 minute.",
+   "Add the tomatoes, chicken and salt and simmer for 8 minutes until thick.",
+   "Serve with the rice and cilantro."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "tandoori-chicken-traybake",
+  "title": "Tandoori-style chicken traybake",
+  "emoji": "🍗",
+  "cuisine": "Indian",
+  "vibes": [
+   "onePan",
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 700,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cauliflower",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into florets"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cut into wedges"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F).",
+   "Mix half the yogurt with the spices, garlic, lemon juice and salt and coat the chicken.",
+   "Toss the cauliflower and onions with the oil on a large tray and add the chicken.",
+   "Roast for 30 minutes until the chicken is charred and cooked through.",
+   "Meanwhile, cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Mix the rest of the yogurt with the cucumber and serve alongside."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "rajma-kidney-bean-curry",
+  "title": "Rajma kidney bean curry",
+  "emoji": "🫘",
+  "cuisine": "Indian",
+  "vibes": [
+   "healthyish",
+   "batchFriendly",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ground-coriander",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kidney-beans",
+    "amount": 720,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Fry the cumin in the oil for 30 seconds, then add the onion for 6 minutes.",
+   "Add the garlic, ginger and spices for 1 minute.",
+   "Add the tomatoes, beans, salt and 200 ml water.",
+   "Simmer for 15 minutes, crushing some of the beans to thicken.",
+   "Serve over the rice with cilantro."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "egg-curry",
+  "title": "Spiced egg curry",
+  "emoji": "🥚",
+  "cuisine": "Indian",
+  "vibes": [
+   "quickEasy",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garam-masala",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basmati-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Boil the eggs for 9 minutes, then cool in cold water and peel.",
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Cook the onions in the oil for 8 minutes until golden.",
+   "Add the garlic, ginger and spices for 1 minute, then the tomatoes, coconut milk and salt.",
+   "Simmer for 8 minutes, then add the spinach and the eggs, halved.",
+   "Warm through and serve with the rice and cilantro."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chicken-chickpea-tagine",
+  "title": "Chicken & chickpea tagine with couscous",
+  "emoji": "🍲",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 600,
+    "unit": "g",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ground-coriander",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "couscous",
+    "amount": 250,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Brown the chicken in the oil in a deep pan for 5 minutes.",
+   "Add the onion and cook for 5 minutes, then the garlic and spices for 1 minute.",
+   "Add the tomatoes, 300 ml water, 1 tsp bouillon, the chickpeas, raisins and honey.",
+   "Cover and simmer for 20 minutes until the chicken is tender.",
+   "Pour 350 ml boiling water with the rest of the bouillon over the couscous, cover for 5 minutes, then fluff.",
+   "Serve the tagine over the couscous."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "lebanese-chicken-rice",
+  "title": "Lebanese-style spiced chicken & rice",
+  "emoji": "🍚",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "family",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 800,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cashews",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Poach the chicken in the stock for 15 minutes, then lift out and shred, keeping 600 ml of stock.",
+   "Brown the beef and onion in the butter for 7 minutes with the cinnamon, cumin and salt.",
+   "Stir in the rice, then the saved stock.",
+   "Cover and cook on a low heat for 15 minutes until tender.",
+   "Toast the cashews in a dry pan until golden.",
+   "Pile the rice onto a plate, top with the chicken, cashews and parsley, and serve with yogurt and cucumber."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "greek-baked-white-beans",
+  "title": "Greek-style baked white beans with feta",
+  "emoji": "🫘",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "healthyish",
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.25,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "tomato-paste",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 720,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F).",
+   "Cook the onion and carrot in the oil for 6 minutes, then add the garlic, oregano and cinnamon.",
+   "Stir in the tomatoes, tomato paste, beans and 150 ml water.",
+   "Tip into a baking dish and crumble over the feta.",
+   "Bake for 25 minutes until bubbling and golden at the edges.",
+   "Scatter with parsley and serve with warm baguette."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "briam-roast-vegetables",
+  "title": "Briam Greek roast vegetables with feta",
+  "emoji": "🍆",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "healthyish",
+   "onePan",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 3,
+    "unit": "piece",
+    "note": "cut into small chunks"
+   },
+   {
+    "ingredientId": "zucchini",
+    "amount": 2,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "eggplant",
+    "amount": 1,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cut into wedges"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 4,
+    "unit": "clove",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F).",
+   "Toss all the vegetables and garlic with the oil, oregano and salt on your largest tray — small pieces and space are what make this fast.",
+   "Roast for 20 minutes.",
+   "Stir in the tomatoes and roast for 15 minutes more until soft and caramelised.",
+   "Crumble over the feta.",
+   "Serve with bread."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "greek-stuffed-peppers",
+  "title": "Greek stuffed peppers with rice & feta",
+  "emoji": "🫑",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "healthyish",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 4,
+    "unit": "piece",
+    "note": "halved lengthways and seeded"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 120,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F) and roast the pepper halves for 10 minutes while you make the filling.",
+   "Cook the onion in the oil for 5 minutes, then add the garlic, rice and oregano.",
+   "Add the tomatoes, 300 ml water and the bouillon and simmer for 12 minutes until the rice is nearly tender.",
+   "Stir in the chickpeas and most of the feta.",
+   "Fill the peppers and bake for 15 minutes.",
+   "Crumble over the rest of the feta to serve."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chicken-cacciatore",
+  "title": "Chicken cacciatore",
+  "emoji": "🍗",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 700,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 200,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "olives",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "penne",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Season the chicken with salt and brown in the oil in a deep pan for 6 minutes, then set aside.",
+   "Cook the onion, peppers and mushrooms for 6 minutes.",
+   "Add the garlic and herbs, then the tomatoes, stock and olives.",
+   "Return the chicken, cover and simmer for 25 minutes until tender.",
+   "Cook the pasta in salted boiling water, then drain.",
+   "Serve the chicken and sauce over the pasta with parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "spaghetti-carbonara",
+  "title": "Spaghetti carbonara",
+  "emoji": "🍝",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "spaghetti",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "bacon",
+    "amount": 8,
+    "unit": "slice",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 80,
+    "unit": "g",
+    "note": "finely grated"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 1,
+    "unit": "clove",
+    "note": "peeled"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 100,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Cook the spaghetti in salted boiling water, adding the peas for the last 2 minutes. Save a mug of water before draining.",
+   "Fry the bacon with the whole garlic clove until crisp, then discard the garlic.",
+   "Whisk the eggs with most of the parmesan and the pepper.",
+   "Take the bacon pan off the heat and add the spaghetti and peas.",
+   "Pour in the egg mixture with a splash of pasta water and toss quickly until silky, not scrambled.",
+   "Serve with the rest of the parmesan and more pepper."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "pasta-e-fagioli",
+  "title": "Pasta e fagioli",
+  "emoji": "🍲",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 3,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "penne",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 40,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the onion, carrot and celery in the oil for 8 minutes.",
+   "Add the garlic and herbs for 1 minute.",
+   "Add the tomatoes, beans, 1 litre boiling water and the bouillon, then mash a few beans to thicken.",
+   "Simmer for 5 minutes, then add the pasta and simmer for 10 minutes until tender.",
+   "Season and loosen with a splash of water if needed.",
+   "Serve with parmesan and crusty bread."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "gnocchi-alla-sorrentina",
+  "title": "Gnocchi alla sorrentina",
+  "emoji": "🍅",
+  "cuisine": "Italian",
+  "vibes": [
+   "comfort",
+   "family",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "gnocchi",
+    "amount": 1000,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mozzarella",
+    "amount": 2,
+    "unit": "piece",
+    "note": "torn"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 30,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "arugula",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F).",
+   "Cook the garlic in the oil in an ovenproof pan for 1 minute, then add the passata, herbs and salt and simmer for 8 minutes.",
+   "Cook the gnocchi in boiling water for 2 minutes until they float, then drain.",
+   "Stir the gnocchi and half the basil into the sauce.",
+   "Top with mozzarella and parmesan and bake for 12 minutes until bubbling.",
+   "Scatter with the rest of the basil and serve with an arugula salad."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "lemon-butter-chicken-spaghetti",
+  "title": "Lemon butter chicken with spaghetti",
+  "emoji": "🍋",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 3,
+    "unit": "piece",
+    "note": "halved horizontally"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spaghetti",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 15,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 30,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the spaghetti in salted boiling water, saving a mug of water before draining.",
+   "Season the chicken with salt and dust in the flour.",
+   "Fry in the oil and 1 tbsp butter for 4 minutes on each side until golden and cooked. Set aside.",
+   "Add the garlic, stock and lemon juice to the pan and bubble for 3 minutes, then stir in the rest of the butter.",
+   "Toss the spaghetti and spinach in half the sauce with a splash of pasta water.",
+   "Slice the chicken, lay on top and spoon over the rest of the sauce, parsley and parmesan."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "pasta-alla-norma",
+  "title": "Pasta alla norma",
+  "emoji": "🍆",
+  "cuisine": "Italian",
+  "vibes": [
+   "healthyish",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggplant",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cubed"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 800,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "penne",
+    "amount": 350,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 40,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Fry the eggplant in 3 tbsp oil over a medium-high heat for 10 minutes, turning, until golden and soft.",
+   "Push to one side, add the rest of the oil, garlic and chili for 1 minute.",
+   "Add the tomatoes and salt and simmer for 12 minutes.",
+   "Meanwhile, cook the pasta in salted boiling water, then drain.",
+   "Toss the pasta with the sauce and most of the basil.",
+   "Serve with parmesan and the rest of the basil."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "vegetable-paella",
+  "title": "Vegetable paella",
+  "emoji": "🥘",
+  "cuisine": "Spanish/Portuguese",
+  "vibes": [
+   "onePan",
+   "healthyish",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "turmeric",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "arborio-rice",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 3,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 150,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the onion and peppers in the oil in a wide pan for 6 minutes.",
+   "Add the garlic, paprika and turmeric for 1 minute.",
+   "Stir in the rice, then the tomatoes, 900 ml boiling water and the bouillon.",
+   "Simmer without stirring for 15 minutes — not stirring is what gives paella its crispy base.",
+   "Scatter over the beans, peas and chickpeas, cover and cook for 8 minutes until the rice is tender.",
+   "Serve with lemon wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "patatas-bravas-eggs",
+  "title": "Patatas bravas with fried eggs",
+  "emoji": "🥔",
+  "cuisine": "Spanish/Portuguese",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 5,
+    "unit": "piece",
+    "note": "cubed"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-wine-vinegar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Toss the potatoes with 2 tbsp oil and salt and roast for 35 minutes until crisp.",
+   "Cook the garlic, paprika and chili in the rest of the oil for 1 minute.",
+   "Add the tomatoes and vinegar and simmer for 10 minutes until thick.",
+   "Mix 1 tbsp of the sauce into the mayonnaise.",
+   "Fry the eggs until crisp at the edges.",
+   "Pile the potatoes onto plates, spoon over the bravas sauce and garlic mayo and top with the eggs and parsley."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "carne-asada-bowls",
+  "title": "Carne asada rice bowls",
+  "emoji": "🥩",
+  "cuisine": "Mexican",
+  "vibes": [
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "beef-steak",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "finely diced"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 20,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Mix the juice of 2 limes, the garlic, spices, oil and salt and marinate the steak for 10 minutes.",
+   "Cook the rice in salted boiling water for 12 minutes, then drain and toss with half the cilantro.",
+   "Mix the tomato, onion, the rest of the cilantro and the juice of the last lime for a pico de gallo.",
+   "Sear the steak in a very hot pan for 3–4 minutes on each side.",
+   "Rest for 5 minutes, then slice thinly against the grain.",
+   "Serve over the rice with warm beans and pico de gallo."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "taco-soup",
+  "title": "One-pot taco soup",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "onePan",
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kidney-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 165,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 60,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "cut into strips"
+   }
+  ],
+  "steps": [
+   "Brown the beef with the onion and pepper for 8 minutes.",
+   "Stir in the spices for 1 minute.",
+   "Add the tomatoes, beans, sweetcorn, 700 ml boiling water and the bouillon and simmer for 15 minutes.",
+   "Toast the tortilla strips in a dry pan until crisp.",
+   "Taste and season with salt.",
+   "Serve topped with cheddar and the crispy strips."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "street-corn-chicken-bowl",
+  "title": "Street corn chicken bowl",
+  "emoji": "🌽",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "corn-frozen",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 80,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "finely diced"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Rub the chicken with the spices and salt and cook in the oil for 6 minutes on each side, then slice.",
+   "Char the corn in the hot pan for 6 minutes until blackened in spots.",
+   "Mix the mayonnaise, yogurt and juice of 1 lime, then toss with the corn, feta and onion.",
+   "Fill bowls with rice, chicken and the street corn.",
+   "Finish with cilantro, chili and lime wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chicken-biscuit-pot-pie",
+  "title": "Chicken pot pie skillet with biscuit topping",
+  "emoji": "🥧",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 180,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 500,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 250,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 40,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F).",
+   "Cook the onion, carrot, celery and chicken in 1 tbsp butter in an ovenproof pan for 8 minutes.",
+   "Stir in 2 tbsp flour and the thyme, then whisk in the stock and 150 ml milk and simmer until thick. Add the peas.",
+   "Rub the rest of the butter into the rest of the flour with the baking powder and salt, then stir in the cheese and the rest of the milk to a soft dough.",
+   "Drop spoonfuls of the dough over the filling.",
+   "Bake for 20 minutes until the biscuits are risen and golden."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "mini-turkey-meatloaves",
+  "title": "Mini turkey meatloaves with mash",
+  "emoji": "🦃",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "highProtein",
+   "comfort"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-turkey",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 5,
+    "unit": "piece",
+    "note": "peeled and chopped"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 100,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "green-beans",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F).",
+   "Mix the turkey, onion, breadcrumbs, egg, Worcestershire, garlic powder and salt and shape into 8 mini loaves on a lined tray.",
+   "Brush with the ketchup and bake for 25 minutes until glazed and cooked through.",
+   "Meanwhile, boil the potatoes for 15 minutes, then mash with the milk and butter.",
+   "Steam the green beans for 4 minutes.",
+   "Serve the meatloaves with the mash and beans."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "one-pot-chili-mac",
+  "title": "One-pot chili mac",
+  "emoji": "🌶️",
+  "cuisine": "American",
+  "vibes": [
+   "onePan",
+   "family",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "ground-beef",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "kidney-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 700,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "penne",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 100,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Brown the beef and onion in a large pan for 8 minutes.",
+   "Add the garlic and spices for 1 minute.",
+   "Stir in the tomatoes, beans and stock and bring to the boil.",
+   "Add the pasta and simmer for 12 minutes, stirring often, until tender.",
+   "Stir in most of the cheddar until melted.",
+   "Top with the rest of the cheese and spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "white-chicken-chili",
+  "title": "White chicken chili",
+  "emoji": "🍲",
+  "cuisine": "American",
+  "vibes": [
+   "comfort",
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-oregano",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "corn-frozen",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 4,
+    "unit": "piece",
+    "note": "cut into strips"
+   }
+  ],
+  "steps": [
+   "Cook the onion in the oil for 5 minutes, then add the garlic, chili and spices.",
+   "Add the whole chicken breasts, 800 ml boiling water and the bouillon and simmer for 15 minutes.",
+   "Lift out and shred the chicken.",
+   "Mash half the beans and add them all to the pot with the corn and chicken.",
+   "Stir in the cream cheese and lime juice until creamy.",
+   "Serve with cilantro and toasted tortilla strips."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "air-fryer-fish-chips",
+  "title": "Air-fryer fish goujons, chips & mushy peas",
+  "emoji": "🐟",
+  "cuisine": "British",
+  "vibes": [
+   "family",
+   "fakeaway"
+  ],
+  "appliances": [
+   "airFryer",
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 4,
+    "unit": "piece",
+    "note": "cut into chips"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "white-fish",
+    "amount": 3,
+    "unit": "piece",
+    "note": "cut into fingers"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "breadcrumbs",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Toss the chips with the oil and salt and air-fry at 200°C (400°F) for 20 minutes, shaking twice. Keep warm.",
+   "Dust the fish in flour, dip in egg, then press into the breadcrumbs mixed with the paprika.",
+   "Air-fry at 200°C (400°F) for 8–10 minutes until golden and flaky.",
+   "Meanwhile, boil the peas for 3 minutes, drain and mash with the butter and a pinch of salt.",
+   "Mix the mayonnaise with a squeeze of lemon.",
+   "Serve the fish and chips with the mushy peas, lemon mayo and lemon wedges."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "lamb-potato-stew",
+  "title": "One-pot lamb, potato & carrot stew",
+  "emoji": "🥘",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "batchFriendly",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "lamb-mince",
+    "amount": 500,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "carrot",
+    "amount": 3,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 4,
+    "unit": "piece",
+    "note": "cut into chunks"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Brown the lamb in a deep pan for 6 minutes until crisp, then spoon off most of the fat.",
+   "Add the onions and carrots and cook for 5 minutes.",
+   "Stir in the flour, then the Worcestershire, thyme, bouillon, salt and 600 ml boiling water.",
+   "Add the potatoes, cover and simmer for 25 minutes until tender and the gravy is thick.",
+   "Stir in the peas for the last 3 minutes.",
+   "Serve in bowls with plenty of gravy."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "huli-huli-style-chicken",
+  "title": "Huli huli-style chicken & rice",
+  "emoji": "🍗",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "fakeaway",
+   "highProtein"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 30,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-thighs",
+    "amount": 700,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ketchup",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 15,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cabbage",
+    "amount": 200,
+    "unit": "g",
+    "note": "shredded"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F).",
+   "Whisk the ketchup, soy sauce, honey, ginger and garlic and toss the chicken in half of it.",
+   "Roast on a lined tray for 25–30 minutes, brushing with the rest of the sauce twice, until sticky and charred.",
+   "Cook the rice in salted boiling water for 12 minutes, then drain.",
+   "Toss the cabbage with the lime juice and a pinch of salt.",
+   "Serve the chicken over rice with the slaw and spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "dinner",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "elote-chickpea-salad",
+  "title": "Elote-style corn & chickpea salad",
+  "emoji": "🌽",
+  "cuisine": "Mexican",
+  "vibes": [
+   "healthyish",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "corn-frozen",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 50,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.25,
+    "unit": "piece",
+    "note": "finely diced"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Char the corn in a dry pan over a high heat for 6 minutes until blackened in spots.",
+   "Mix the mayonnaise, yogurt, lime juice and chili powder.",
+   "Toss the corn, chickpeas and onion in the dressing.",
+   "Top with feta and cilantro and serve with toasted tortillas."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "curried-chicken-salad-sandwich",
+  "title": "Curried chicken salad sandwich",
+  "emoji": "🥪",
+  "cuisine": "British",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 20,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 1,
+    "unit": "piece",
+    "note": "finely diced"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 0.25,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Poach the chicken in simmering water for 12 minutes, then cool and dice.",
+   "Mix the yogurt, mayonnaise and curry powder.",
+   "Fold in the chicken, raisins, celery and spring onion.",
+   "Fill the bread with lettuce and the curried chicken."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chicken-avocado-club",
+  "title": "Chicken & avocado club sandwich",
+  "emoji": "🥪",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 1,
+    "unit": "piece",
+    "note": "halved horizontally"
+   },
+   {
+    "ingredientId": "bacon",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 6,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 0.25,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the chicken in the oil for 5 minutes on each side, then slice. Fry the bacon until crisp.",
+   "Toast the bread and spread with mayonnaise.",
+   "Layer toast, chicken and lettuce, then toast, bacon, avocado and tomato, then toast.",
+   "Hold with skewers and cut into triangles."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "onigirazu-sushi-sandwich",
+  "title": "Tuna onigirazu sushi sandwich",
+  "emoji": "🍙",
+  "cuisine": "Japanese",
+  "vibes": [
+   "quickEasy",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 125,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "nori",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "canned-tuna",
+    "amount": 145,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sriracha",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "cut into thin strips"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 0.25,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the rice for 12 minutes, drain and mix with the vinegar, then cool slightly.",
+   "Mix the tuna with the mayonnaise and sriracha.",
+   "Lay a nori sheet diamond-wise, put a square of rice in the middle, then lettuce, tuna, cucumber and more rice.",
+   "Fold the corners over to make a parcel, wrap tightly and cut in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "roast-cauliflower-tahini-salad",
+  "title": "Roast cauliflower salad with tahini",
+  "emoji": "🥗",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "cauliflower",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into florets"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "tahini",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 1,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "arugula",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "parsley",
+    "amount": 15,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 220°C (425°F). Toss the cauliflower and chickpeas with the oil, spices and salt and roast for 25 minutes.",
+   "Whisk the tahini, lemon juice, garlic and 4 tbsp water.",
+   "Toss the arugula, raisins and parsley with the warm roast tray.",
+   "Drizzle generously with the tahini sauce."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "french-onion-soup",
+  "title": "Quicker French onion soup with cheesy toast",
+  "emoji": "🧅",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "onion",
+    "amount": 5,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "dried-thyme",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 3,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "worcestershire",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 100,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Cook the onions in the butter with the sugar, thyme and salt over a medium-high heat for 18 minutes, adding a splash of water whenever they catch — this speeds up the browning.",
+   "Stir in the flour, then 1.2 litres boiling water, the bouillon and Worcestershire, and simmer for 5 minutes.",
+   "Top the baguette slices with cheddar and grill until bubbling.",
+   "Ladle the soup into bowls and float the cheesy toasts on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chinese-chicken-corn-soup",
+  "title": "Chinese-style chicken & sweetcorn soup",
+  "emoji": "🌽",
+  "cuisine": "Chinese",
+  "vibes": [
+   "comfort",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 15,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chicken-stock",
+    "amount": 1200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "ginger",
+    "amount": 10,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "chicken-breast",
+    "amount": 2,
+    "unit": "piece",
+    "note": "finely diced"
+   },
+   {
+    "ingredientId": "corn-frozen",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "sesame-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 4,
+    "unit": "slice"
+   }
+  ],
+  "steps": [
+   "Simmer the stock with the ginger, chicken and corn for 10 minutes.",
+   "Stir in the soy sauce and the cornstarch mixed with 3 tbsp water until slightly thickened.",
+   "Slowly drizzle in the egg while stirring gently so it forms silky ribbons.",
+   "Finish with sesame oil and spring onions, with toast on the side."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "hot-sour-tofu-soup",
+  "title": "Hot & sour tofu soup",
+  "emoji": "🍲",
+  "cuisine": "Chinese",
+  "vibes": [
+   "healthyish",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "mushrooms",
+    "amount": 150,
+    "unit": "g",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "tofu",
+    "amount": 200,
+    "unit": "g",
+    "note": "cut into strips"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "rice-vinegar",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "rice-noodles",
+    "amount": 60,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Simmer 800 ml water with the bouillon, mushrooms and noodles for 5 minutes.",
+   "Add the tofu, soy sauce, vinegar, pepper and chili.",
+   "Stir in the cornstarch mixed with 2 tbsp water until thickened.",
+   "Drizzle in the egg while stirring, then top with spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "west-african-peanut-soup",
+  "title": "Spicy peanut & sweet potato soup",
+  "emoji": "🥜",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "blender"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 3,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sweet-potato",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cubed"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "vegetable-bouillon",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 30,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the onion in the oil for 5 minutes, then add the garlic and chili.",
+   "Add the sweet potato, tomatoes, 900 ml boiling water and the bouillon and simmer for 18 minutes.",
+   "Stir in the peanut butter and blend half the soup, then stir it back in.",
+   "Add the spinach until wilted and serve with peanuts and lime."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "curried-cauliflower-soup",
+  "title": "Curried cauliflower soup with crispy chickpeas",
+  "emoji": "🥣",
+  "cuisine": "Indian",
+  "vibes": [
+   "healthyish",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "blender"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "curry-powder",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cauliflower",
+    "amount": 1,
+    "unit": "piece",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 900,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "chickpeas",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained and patted dry"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "naan",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Cook the onion in 1 tbsp oil for 5 minutes, then add the curry powder.",
+   "Add the cauliflower, potato and stock and simmer for 18 minutes, then blend with the coconut milk.",
+   "Fry the chickpeas in the rest of the oil with the paprika for 6 minutes until crisp.",
+   "Serve the soup topped with crispy chickpeas and cilantro, with warm naan."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "loaded-hummus-spiced-beef",
+  "title": "Loaded hummus bowl with spiced beef",
+  "emoji": "🫓",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "hummus",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ground-beef",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "pita-bread",
+    "amount": 4,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Brown the beef in the oil for 7 minutes until crisp, adding the garlic and spices for the last minute.",
+   "Swoosh the hummus over plates.",
+   "Pile on the spiced beef, tomato and cucumber and squeeze over the lemon.",
+   "Serve with warm pita for scooping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "tuna-stuffed-avocado",
+  "title": "Tuna-stuffed avocados",
+  "emoji": "🥑",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "avocado",
+    "amount": 2,
+    "unit": "piece",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "canned-tuna",
+    "amount": 145,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.25,
+    "unit": "piece",
+    "note": "finely diced"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 60,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "rice-cakes",
+    "amount": 4,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Scoop a little flesh from each avocado half and dice it.",
+   "Mix with the tuna, yogurt, lemon juice, onion and sweetcorn.",
+   "Pile back into the avocado halves and dust with paprika.",
+   "Serve with rice cakes."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "halloumi-fries-salad",
+  "title": "Air-fryer halloumi fries with salad",
+  "emoji": "🧀",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "airFryer"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "halloumi",
+    "amount": 250,
+    "unit": "g",
+    "note": "cut into fries"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sweet-chili-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 3,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pita-bread",
+    "amount": 4,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Toss the halloumi in the cornstarch and paprika.",
+   "Air-fry at 200°C (400°F) for 8–10 minutes until golden.",
+   "Toss the cucumber, tomato and spinach.",
+   "Serve the fries with the salad, warm pita, yogurt and sweet chili sauce for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "pea-feta-mint-frittata",
+  "title": "Pea, feta & mint frittata",
+  "emoji": "🍳",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "highProtein",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "oven"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 8,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "peas-frozen",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 100,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "mint",
+    "amount": 15,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "arugula",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F) and soften the spring onions in the oil in an ovenproof pan for 2 minutes.",
+   "Whisk the eggs with the salt and stir in the peas, feta and mint.",
+   "Pour into the pan, cook for 3 minutes until the edges set, then bake for 15 minutes.",
+   "Cut into wedges and serve warm or cold with arugula and toast."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "spanish-tortilla",
+  "title": "Spanish potato tortilla",
+  "emoji": "🥔",
+  "cuisine": "Spanish/Portuguese",
+  "vibes": [
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "microwave",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 4,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 6,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lettuce",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Microwave the potato slices with a splash of water, covered, for 8 minutes until just tender.",
+   "Fry the onion and potatoes in the oil over a medium heat for 6 minutes without browning much.",
+   "Beat the eggs with the salt, stir in the potatoes and onion, pour back into the pan and cook over a low heat for 5 minutes, then flip onto a plate and slide back for 3 minutes.",
+   "Cut into wedges and serve warm or cold with a lettuce and tomato salad."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "mezze-plate",
+  "title": "Mezze lunch plate",
+  "emoji": "🫒",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "healthyish",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "hummus",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "pita-bread",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "cut into sticks"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into wedges"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "roasted-peppers",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Boil the eggs for 8 minutes, then cool, peel and halve.",
+   "Warm the pittas and cut into strips.",
+   "Spoon the hummus onto plates and drizzle with the oil and paprika.",
+   "Arrange the eggs, cucumber, tomato, feta and peppers around it."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "ploughmans-lunch-box",
+  "title": "Ploughman's lunch box",
+  "emoji": "🧀",
+  "cuisine": "British",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "cheddar",
+    "amount": 80,
+    "unit": "g",
+    "note": "cut into chunks"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "apple",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "celery",
+    "amount": 1,
+    "unit": "piece",
+    "note": "cut into sticks"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "grapes",
+    "amount": 80,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Boil the eggs for 8 minutes, then cool, peel and halve.",
+   "Slice the bread.",
+   "Pack the cheddar, ham, apple, eggs, celery and grapes into boxes.",
+   "Add a dab of mustard and the bread."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "leek-potato-soup",
+  "title": "Leek & potato soup",
+  "emoji": "🥣",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop",
+   "blender"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "leek",
+    "amount": 3,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 3,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 1000,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 150,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 60,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Soften the leeks and onion in the butter for 8 minutes without browning.",
+   "Add the potatoes, stock and salt and simmer for 15 minutes.",
+   "Blend until smooth and stir in the milk.",
+   "Serve with cheddar on top and toast on the side."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "smoky-chorizo-bean-soup",
+  "title": "Smoky chorizo & bean soup",
+  "emoji": "🥘",
+  "cuisine": "Spanish/Portuguese",
+  "vibes": [
+   "comfort",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "chorizo",
+    "amount": 100,
+    "unit": "g",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 2,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chopped-tomatoes",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "vegetable-stock",
+    "amount": 800,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "kale",
+    "amount": 80,
+    "unit": "g",
+    "note": "shredded"
+   },
+   {
+    "ingredientId": "baguette",
+    "amount": 1,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Fry the chorizo in a dry pan for 3 minutes until it releases its oil.",
+   "Add the onion for 5 minutes, then the garlic and paprika.",
+   "Add the tomatoes, beans and stock and simmer for 10 minutes, then stir in the kale.",
+   "Serve with crusty bread."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "cheesy-bean-tortilla-bake",
+  "title": "Cheesy bean & corn tortilla bake",
+  "emoji": "🫓",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 20,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 480,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "sweetcorn-tin",
+    "amount": 165,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 300,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cumin",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 120,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "sour-cream",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cilantro",
+    "amount": 10,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F).",
+   "Mix the beans, sweetcorn, spinach, cumin and two-thirds of the salsa.",
+   "Layer tortillas, bean mix and cheese in a round dish, finishing with a tortilla, the rest of the salsa and cheese.",
+   "Bake for 20 minutes, then cut into wedges and serve with sour cream and cilantro."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "lunch",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "croque-madame",
+  "title": "Pan-fried croque madame",
+  "emoji": "🥪",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 60,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Spread two slices of bread with mustard and top with ham and most of the cheese, then close the sandwiches.",
+   "Butter the outsides and fry over a medium heat for 3 minutes on each side, pressing down.",
+   "Scatter the rest of the cheese on top in the pan and cover for 1 minute to melt.",
+   "Fry the eggs and sit one on each sandwich."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "lighter-eggs-benedict",
+  "title": "Lighter eggs Benedict",
+  "emoji": "🍳",
+  "cuisine": "American",
+  "vibes": [
+   "highProtein",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sourdough",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Whisk the yogurt, mustard and lemon juice and warm gently in a small pan (don't boil) for a quick hollandaise.",
+   "Poach the eggs in barely simmering water for 3 minutes.",
+   "Toast the bread.",
+   "Layer the toast with ham and eggs and spoon over the sauce with a pinch of paprika."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chilaquiles",
+  "title": "Chilaquiles with fried eggs",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 6,
+    "unit": "piece",
+    "note": "cut into triangles"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "chili-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 40,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "red-onion",
+    "amount": 0.25,
+    "unit": "piece",
+    "note": "finely sliced"
+   }
+  ],
+  "steps": [
+   "Toss the tortilla triangles with the oil and bake at 200°C (400°F) for 8 minutes until crisp.",
+   "Warm the salsa with the chili powder in a frying pan.",
+   "Toss the chips in the salsa until just coated, and fry the eggs in another pan.",
+   "Top with the eggs, feta and onion and eat straight away."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "sausage-potato-breakfast-hash",
+  "title": "Sausage & potato breakfast hash",
+  "emoji": "🥔",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "onePan"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 20,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "sausages",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "potato",
+    "amount": 2,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "onion",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "bell-pepper",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Fry the potatoes in the oil for 10 minutes until golden.",
+   "Add the sausage, onion, pepper and paprika and cook for 8 minutes.",
+   "Make 2 wells, crack in the eggs, cover and cook for 4 minutes.",
+   "Scatter with spring onion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "full-english-traybake",
+  "title": "Full English-style traybake",
+  "emoji": "🍳",
+  "cuisine": "British",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "sausages",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 2,
+    "unit": "piece",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cannellini-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "passata",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F). Toss the sausages and tomatoes with the oil on a large tray and roast for 15 minutes.",
+   "Mix the beans with the passata and a pinch of salt and spoon onto one corner of the tray.",
+   "Make 4 gaps, crack in the eggs and bake for 8–10 minutes until the whites set.",
+   "Serve with toast."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "tamago-sando",
+  "title": "Tamago sando egg sandwich",
+  "emoji": "🥚",
+  "cuisine": "Japanese",
+  "vibes": [
+   "comfort",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "mayonnaise",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dijon-mustard",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Boil the eggs for 9 minutes, then cool in cold water and peel.",
+   "Mash the yolks with the mayonnaise, mustard, sugar, milk and salt until creamy, then chop and fold in the whites.",
+   "Spread thickly between the bread.",
+   "Press gently, cut off the crusts and slice in half."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "snickers-overnight-oats",
+  "title": "Snickers-style overnight oats",
+  "emoji": "🍫",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "quickEasy"
+  ],
+  "appliances": [],
+  "prepMinutes": 5,
+  "cookMinutes": 0,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 240,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dark-chocolate",
+    "amount": 20,
+    "unit": "g",
+    "note": "melted"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 20,
+    "unit": "g",
+    "note": "chopped"
+   }
+  ],
+  "steps": [
+   "Stir the oats, milk, yogurt and half the peanut butter together.",
+   "Split between two jars and chill overnight.",
+   "Spread the rest of the peanut butter over the top.",
+   "Drizzle with melted chocolate and scatter with peanuts."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "banana-chocolate-crepes",
+  "title": "Banana chocolate crepes",
+  "emoji": "🥞",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "comfort"
+  ],
+  "appliances": [
+   "stovetop",
+   "blender"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "flour",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 150,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "banana",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "dark-chocolate",
+    "amount": 20,
+    "unit": "g",
+    "note": "melted"
+   }
+  ],
+  "steps": [
+   "Blend the flour, egg and milk into a thin batter and rest for 5 minutes.",
+   "Wipe a non-stick pan with butter and swirl in a thin layer of batter.",
+   "Cook for 1 minute, flip for 30 seconds and repeat to make 4–6 crepes.",
+   "Fill with banana, fold and drizzle with chocolate."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "make-ahead-french-toast-bake",
+  "title": "Make-ahead berry French toast bake",
+  "emoji": "🍞",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 35,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 8,
+    "unit": "slice",
+    "note": "cubed"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Butter a baking dish and add the bread and berries.",
+   "Whisk the eggs, milk, 2 tbsp maple syrup and cinnamon and pour over. Chill overnight.",
+   "Bake at 180°C (350°F) for 35 minutes until puffed and golden.",
+   "Drizzle with the rest of the maple syrup."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "maple-nut-granola",
+  "title": "Honey walnut granola with yogurt",
+  "emoji": "🥣",
+  "cuisine": "Other",
+  "vibes": [
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "walnuts",
+    "amount": 50,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 4,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 400,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 150,
+    "unit": "g",
+    "note": "thawed"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 160°C (325°F).",
+   "Mix the oats, walnuts, cinnamon, honey and oil and spread on a lined tray.",
+   "Bake for 25 minutes, stirring once, then leave to cool — it crisps as it cools.",
+   "Serve over yogurt with berries. Keep the rest in a jar for 2 weeks."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "spinach-feta-savory-muffins",
+  "title": "Spinach & feta savory muffins",
+  "emoji": "🧁",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 22,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "flour",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 150,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 100,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 100,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F) and line an 8-hole muffin tin.",
+   "Whisk the eggs, milk, yogurt and oil, then fold in the flour, baking powder and salt.",
+   "Fold in the spinach and feta and divide between the cases.",
+   "Bake for 20–22 minutes until risen and golden. Keep for 3 days."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "yogurt-dough-egg-flatbread",
+  "title": "Two-ingredient dough flatbread with eggs",
+  "emoji": "🫓",
+  "cuisine": "Middle Eastern",
+  "vibes": [
+   "highProtein",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "flour",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 120,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 3,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "feta",
+    "amount": 40,
+    "unit": "g",
+    "note": "crumbled"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Mix the flour, yogurt and baking powder into a soft dough, then roll into 2 thin rounds.",
+   "Cook each in a dry pan for 2 minutes on each side until puffed and charred.",
+   "Scramble the eggs in the butter with the spinach.",
+   "Pile onto the flatbreads with feta and chili."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "two-ingredient-bagels",
+  "title": "Two-ingredient dough bagels",
+  "emoji": "🥯",
+  "cuisine": "American",
+  "vibes": [
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 15,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "flour",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 190°C (375°F). Mix the flour, yogurt, baking powder and salt into a dough and split into 4.",
+   "Roll each into a rope, join into a ring, brush with egg and sprinkle with sesame.",
+   "Bake for 25 minutes until golden. Make a batch at the weekend — they keep for 2 days.",
+   "Serve split with cream cheese and cucumber."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "healthy-banana-bread",
+  "title": "Healthy banana bread",
+  "emoji": "🍌",
+  "cuisine": "Other",
+  "vibes": [
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 50,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "banana",
+    "amount": 3,
+    "unit": "piece",
+    "note": "mashed"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "vegetable-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "flour",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 50,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 2,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 180°C (350°F) and line a loaf tin.",
+   "Whisk the bananas, eggs, yogurt, maple syrup and oil, then fold in the flour, oats, baking powder and cinnamon.",
+   "Bake for 45–50 minutes until a skewer comes out clean.",
+   "Cool before slicing. It keeps for 4 days wrapped up."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "apple-oat-breakfast-bars",
+  "title": "Apple oat breakfast bars",
+  "emoji": "🍏",
+  "cuisine": "Other",
+  "vibes": [
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 25,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "apple",
+    "amount": 2,
+    "unit": "piece",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "banana",
+    "amount": 1,
+    "unit": "piece",
+    "note": "mashed"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "raisins",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "baking-powder",
+    "amount": 1,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 180°C (350°F) and line a square tin.",
+   "Mix everything together.",
+   "Press into the tin.",
+   "Bake for 25 minutes until golden, then cool and cut into 8 bars."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": true,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "mango-coconut-rice-pudding",
+  "title": "Mango coconut breakfast rice pudding",
+  "emoji": "🥭",
+  "cuisine": "Thai",
+  "vibes": [
+   "comfort",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 25,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "long-grain-rice",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "coconut-milk",
+    "amount": 200,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 300,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "mango",
+    "amount": 1,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 0.5,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Simmer the rice with the coconut milk, milk, maple syrup and cinnamon for 25 minutes, stirring often, until creamy.",
+   "Toss the mango with the lime juice.",
+   "Spoon the rice pudding into bowls.",
+   "Top with the mango."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "pb-banana-breakfast-quesadilla",
+  "title": "Peanut butter banana breakfast quesadilla",
+  "emoji": "🍌",
+  "cuisine": "Other",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 3,
+  "cookMinutes": 5,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "banana",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 100,
+    "unit": "g"
+   }
+  ],
+  "steps": [
+   "Spread the tortillas with peanut butter.",
+   "Lay the banana over half of each, sprinkle with cinnamon and fold.",
+   "Toast in a dry pan for 2 minutes on each side.",
+   "Cut into wedges and serve with yogurt and honey."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "savory-cheese-tomato-french-toast",
+  "title": "Savory cheese & tomato French toast",
+  "emoji": "🍞",
+  "cuisine": "Other",
+  "vibes": [
+   "comfort",
+   "highProtein"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "sourdough",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "milk",
+    "amount": 50,
+    "unit": "ml"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 20,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "cherry-tomatoes",
+    "amount": 120,
+    "unit": "g",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Whisk the eggs, milk, parmesan and pepper.",
+   "Soak the bread in the mixture for 1 minute on each side.",
+   "Fry in the butter for 3 minutes on each side until golden.",
+   "Blister the tomatoes in the same pan and pile on top."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "fluffy-cottage-cheese-eggs",
+  "title": "Fluffy cottage cheese scrambled eggs",
+  "emoji": "🍳",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 2,
+  "cookMinutes": 5,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cottage-cheese",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "wholemeal-bread",
+    "amount": 2,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "black-pepper",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Whisk the eggs with the cottage cheese and pepper.",
+   "Melt the butter in a non-stick pan over a low heat.",
+   "Stir the eggs slowly until softly set and fluffy.",
+   "Serve on toast with spring onion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "breakfast-nachos",
+  "title": "Breakfast nachos",
+  "emoji": "🧀",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "comfort"
+  ],
+  "appliances": [
+   "oven",
+   "stovetop"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "corn-tortillas",
+    "amount": 8,
+    "unit": "piece",
+    "note": "cut into triangles"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "eggs",
+    "amount": 4,
+    "unit": "piece",
+    "note": "beaten"
+   },
+   {
+    "ingredientId": "black-beans",
+    "amount": 240,
+    "unit": "g",
+    "note": "drained"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 80,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "salsa",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Toss the tortilla triangles with the oil and bake at 200°C (400°F) for 8 minutes until crisp.",
+   "Softly scramble the eggs.",
+   "Spoon the eggs and beans over the chips, scatter with cheddar and bake for 4 minutes.",
+   "Top with salsa and spring onions."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "breakfast",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "cottage-cheese-crisps",
+  "title": "Baked cottage cheese crisps",
+  "emoji": "🧀",
+  "cuisine": "Other",
+  "vibes": [
+   "highProtein",
+   "quickEasy"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 3,
+  "cookMinutes": 25,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "cottage-cheese",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "italian-herbs",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F) and line a tray with baking paper.",
+   "Spread teaspoons of cottage cheese thinly on the tray and sprinkle with herbs and chili.",
+   "Bake for 20–25 minutes until golden and crisp, then cool on the tray."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "no-bake-peanut-oat-bars",
+  "title": "No-bake peanut oat bars",
+  "emoji": "🥜",
+  "cuisine": "Other",
+  "vibes": [
+   "batchFriendly",
+   "family"
+  ],
+  "appliances": [
+   "microwave"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 1,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "rolled-oats",
+    "amount": 150,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 5,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "dark-chocolate",
+    "amount": 40,
+    "unit": "g",
+    "note": "melted"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 20,
+    "unit": "g",
+    "note": "chopped"
+   }
+  ],
+  "steps": [
+   "Warm the peanut butter and honey in the microwave for 30 seconds and stir into the oats.",
+   "Press into a small lined tin and drizzle with the chocolate and peanuts.",
+   "Chill for 1 hour, then cut into 8 bars."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "tzatziki-pita-chips",
+  "title": "Tzatziki with baked pita chips",
+  "emoji": "🥒",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "healthyish",
+   "quickEasy"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 8,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cucumber",
+    "amount": 1,
+    "unit": "piece",
+    "note": "grated and squeezed"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 1,
+    "unit": "clove",
+    "note": "crushed"
+   },
+   {
+    "ingredientId": "mint",
+    "amount": 10,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "pita-bread",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cut into triangles"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200°C (400°F) and bake the pita triangles with half the oil for 8 minutes.",
+   "Mix the yogurt, cucumber, garlic, mint and lemon juice.",
+   "Drizzle with the rest of the oil and serve with the chips."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "healthier-pb-cups",
+  "title": "Healthier peanut butter cups",
+  "emoji": "🍫",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "batchFriendly"
+  ],
+  "appliances": [
+   "microwave"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 1,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "dark-chocolate",
+    "amount": 100,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 2,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Melt the chocolate in the microwave and spoon a little into 8 mini cupcake cases.",
+   "Mix the peanut butter, honey and yogurt, add a spoonful to each and top with the rest of the chocolate.",
+   "Chill for 30 minutes until set."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "tomato-bruschetta",
+  "title": "Tomato bruschetta",
+  "emoji": "🍅",
+  "cuisine": "Italian",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 10,
+  "cookMinutes": 5,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "baguette",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "tomato",
+    "amount": 4,
+    "unit": "piece",
+    "note": "diced"
+   },
+   {
+    "ingredientId": "garlic",
+    "amount": 1,
+    "unit": "clove",
+    "note": "halved"
+   },
+   {
+    "ingredientId": "basil",
+    "amount": 10,
+    "unit": "g",
+    "note": "chopped"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "balsamic-vinegar",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Toast the baguette slices in a hot oven at 200°C (400°F) for 5 minutes, then rub with the cut garlic.",
+   "Mix the tomatoes, basil, oil, balsamic and salt.",
+   "Spoon onto the toasts just before eating."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "ham-cheese-pinwheels",
+  "title": "Ham & cheese pinwheels",
+  "emoji": "🌀",
+  "cuisine": "British",
+  "vibes": [
+   "family",
+   "quickEasy"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 2,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cream-cheese",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "ham",
+    "amount": 4,
+    "unit": "slice"
+   },
+   {
+    "ingredientId": "spinach",
+    "amount": 30,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "cheddar",
+    "amount": 40,
+    "unit": "g",
+    "note": "grated"
+   }
+  ],
+  "steps": [
+   "Spread the tortillas with cream cheese.",
+   "Cover with ham, spinach and cheddar and roll up tightly.",
+   "Chill for 10 minutes, then slice into 1 cm pinwheels."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "sweet-chili-halloumi-bites",
+  "title": "Air-fryer sweet chili halloumi bites",
+  "emoji": "🧀",
+  "cuisine": "Mediterranean",
+  "vibes": [
+   "quickEasy",
+   "fakeaway"
+  ],
+  "appliances": [
+   "airFryer"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 8,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "halloumi",
+    "amount": 250,
+    "unit": "g",
+    "note": "cubed"
+   },
+   {
+    "ingredientId": "cornstarch",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "sweet-chili-sauce",
+    "amount": 3,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "spring-onion",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Toss the halloumi in the cornstarch.",
+   "Air-fry at 200°C (400°F) for 8 minutes until golden.",
+   "Toss with the sweet chili sauce and lime juice and finish with sesame and spring onion."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "microwave-potato-crisps",
+  "title": "Microwave potato crisps",
+  "emoji": "🥔",
+  "cuisine": "British",
+  "vibes": [
+   "quickEasy",
+   "family"
+  ],
+  "appliances": [
+   "microwave"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 8,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "potato",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced paper-thin"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Pat the potato slices dry and toss with the oil.",
+   "Lay in a single layer on baking paper and microwave for 3–4 minutes until crisp, turning once. Repeat in batches.",
+   "Sprinkle with salt and paprika."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "cinnamon-sugar-tortilla-chips",
+  "title": "Air-fryer cinnamon sugar tortilla chips",
+  "emoji": "🌮",
+  "cuisine": "Mexican",
+  "vibes": [
+   "family",
+   "quickEasy"
+  ],
+  "appliances": [
+   "airFryer"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 5,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "tortillas",
+    "amount": 2,
+    "unit": "piece",
+    "note": "cut into triangles"
+   },
+   {
+    "ingredientId": "butter",
+    "amount": 1,
+    "unit": "tbsp",
+    "note": "melted"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "sugar",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 80,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "berries-frozen",
+    "amount": 60,
+    "unit": "g",
+    "note": "thawed"
+   }
+  ],
+  "steps": [
+   "Brush the tortilla triangles with the butter and toss in the cinnamon and sugar.",
+   "Air-fry at 180°C (350°F) for 4–5 minutes until crisp.",
+   "Serve with yogurt mashed with the berries for dipping."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "greek-yogurt-fruit-dip",
+  "title": "Honey yogurt fruit dip platter",
+  "emoji": "🍎",
+  "cuisine": "Other",
+  "vibes": [
+   "healthyish",
+   "family"
+  ],
+  "appliances": [],
+  "prepMinutes": 10,
+  "cookMinutes": 0,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "greek-yogurt",
+    "amount": 250,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "honey",
+    "amount": 2,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "apple",
+    "amount": 2,
+    "unit": "piece",
+    "note": "sliced"
+   },
+   {
+    "ingredientId": "grapes",
+    "amount": 200,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "banana",
+    "amount": 1,
+    "unit": "piece",
+    "note": "sliced"
+   }
+  ],
+  "steps": [
+   "Whisk the yogurt, honey, cinnamon and peanut butter.",
+   "Arrange the fruit around the dip.",
+   "Dip and eat straight away."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "crispy-broccoli-parmesan-bites",
+  "title": "Air-fryer crispy broccoli parmesan bites",
+  "emoji": "🥦",
+  "cuisine": "Italian",
+  "vibes": [
+   "healthyish",
+   "family"
+  ],
+  "appliances": [
+   "airFryer"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 10,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "broccoli",
+    "amount": 0.5,
+    "unit": "piece",
+    "note": "cut into small florets"
+   },
+   {
+    "ingredientId": "olive-oil",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "parmesan",
+    "amount": 20,
+    "unit": "g",
+    "note": "grated"
+   },
+   {
+    "ingredientId": "garlic-powder",
+    "amount": 0.5,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 0.5,
+    "unit": "piece"
+   }
+  ],
+  "steps": [
+   "Toss the broccoli with the oil, garlic powder and half the parmesan.",
+   "Air-fry at 190°C (375°F) for 8–10 minutes until crisp at the edges.",
+   "Toss with the rest of the parmesan and a squeeze of lemon."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "maple-paprika-mixed-nuts",
+  "title": "Maple paprika mixed nuts",
+  "emoji": "🌰",
+  "cuisine": "Other",
+  "vibes": [
+   "batchFriendly"
+  ],
+  "appliances": [
+   "oven"
+  ],
+  "prepMinutes": 2,
+  "cookMinutes": 12,
+  "baseServings": 4,
+  "ingredients": [
+   {
+    "ingredientId": "cashews",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "walnuts",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanuts",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "maple-syrup",
+    "amount": 1,
+    "unit": "tbsp"
+   },
+   {
+    "ingredientId": "paprika",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "salt",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 170°C (340°F).",
+   "Toss the nuts with the maple syrup, paprika and salt and spread on a lined tray.",
+   "Roast for 12 minutes, stirring once, then cool to crisp up."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "chocolate-rice-cake-bites",
+  "title": "Chocolate peanut rice cake bites",
+  "emoji": "🍘",
+  "cuisine": "Other",
+  "vibes": [
+   "family",
+   "quickEasy"
+  ],
+  "appliances": [
+   "microwave"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 1,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "rice-cakes",
+    "amount": 3,
+    "unit": "piece",
+    "note": "broken into pieces"
+   },
+   {
+    "ingredientId": "dark-chocolate",
+    "amount": 40,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "peanut-butter",
+    "amount": 1,
+    "unit": "tbsp"
+   }
+  ],
+  "steps": [
+   "Melt the chocolate with the peanut butter in the microwave.",
+   "Dip the rice cake pieces and lay on a lined tray.",
+   "Chill for 15 minutes until set."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "avocado-edamame-rice-cakes",
+  "title": "Smashed avocado & edamame rice cakes",
+  "emoji": "🥑",
+  "cuisine": "Japanese",
+  "vibes": [
+   "healthyish",
+   "quickEasy"
+  ],
+  "appliances": [
+   "stovetop"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 4,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "edamame-frozen",
+    "amount": 60,
+    "unit": "g"
+   },
+   {
+    "ingredientId": "avocado",
+    "amount": 1,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "lime",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "soy-sauce",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "rice-cakes",
+    "amount": 3,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "sesame-seeds",
+    "amount": 1,
+    "unit": "tsp"
+   },
+   {
+    "ingredientId": "chili-flakes",
+    "amount": 1,
+    "unit": "pinch"
+   }
+  ],
+  "steps": [
+   "Boil the edamame for 3 minutes, then drain and cool.",
+   "Smash with the avocado, lime juice and soy sauce.",
+   "Spread over the rice cakes and finish with sesame and chili."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
+ },
+ {
+  "id": "air-fryer-banana-chips",
+  "title": "Air-fryer cinnamon banana chips",
+  "emoji": "🍌",
+  "cuisine": "Other",
+  "vibes": [
+   "healthyish",
+   "family"
+  ],
+  "appliances": [
+   "airFryer"
+  ],
+  "prepMinutes": 5,
+  "cookMinutes": 15,
+  "baseServings": 2,
+  "ingredients": [
+   {
+    "ingredientId": "banana",
+    "amount": 2,
+    "unit": "piece",
+    "note": "thinly sliced"
+   },
+   {
+    "ingredientId": "lemon",
+    "amount": 0.5,
+    "unit": "piece"
+   },
+   {
+    "ingredientId": "cinnamon",
+    "amount": 0.5,
+    "unit": "tsp"
+   }
+  ],
+  "steps": [
+   "Toss the banana slices in the lemon juice and cinnamon.",
+   "Air-fry in a single layer at 150°C (300°F) for 12–15 minutes, flipping halfway.",
+   "Cool for 5 minutes to crisp up."
+  ],
+  "imageName": null,
+  "isLeftoverFriendly": false,
+  "mealType": "snack",
+  "tags": [
+   "trending"
+  ]
  }
 ]
