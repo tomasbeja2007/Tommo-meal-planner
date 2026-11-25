@@ -35,6 +35,12 @@ struct PaywallView: View {
         ZStack(alignment: .topLeading) {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                    // App Review 3.1.2: name the subscription.
+                    Text("TOMMO PRO")
+                        .font(Theme.Typography.eyebrow)
+                        .tracking(1.2)
+                        .foregroundStyle(Theme.tomatoDeep)
+                        .padding(.bottom, -Theme.Spacing.m)
                     Text(headline)
                         .font(.system(.largeTitle, design: .rounded).weight(.bold))
                         .foregroundStyle(Theme.aubergine)
