@@ -234,7 +234,7 @@ struct ProfileView: View {
         ProfileGroup(title: String(localized: "Eating style")) {
             ChipCard(footnote: String(localized: "Pick one diet, plus any extras.")) {
                 ForEach(Diet.allCases, id: \.self) { diet in
-                    SelectChip(title: diet == .none ? String(localized: "No restrictions") : diet.displayName, emoji: dietEmoji(diet), isSelected: profile.diet == diet) {
+                    SelectChip(title: diet == Diet.none ? String(localized: "No restrictions") : diet.displayName, emoji: dietEmoji(diet), isSelected: profile.diet == diet) {
                         profile.diet = diet
                         commit()
                     }
