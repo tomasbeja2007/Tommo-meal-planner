@@ -30,6 +30,8 @@ struct GroceriesView: View {
         @Bindable var router = router
         NavigationStack(path: $router.groceriesPath) {
             VStack(spacing: 0) {
+                ScreenTitleBar(String(localized: "Groceries")) { headerActions }
+                    .padding(.horizontal, Theme.Spacing.gutter)
                 listSelectors
                 if activeListID == nil {
                     listContent
@@ -49,7 +51,7 @@ struct GroceriesView: View {
             }
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle(String(localized: "Groceries"))
-            .toolbar { toolbarContent }
+            .toolbar(.hidden, for: .navigationBar)
             .overlay(alignment: .bottom) {
                 if activeListID == nil && showDoneToast && planStore.allGroceriesChecked {
                     ShopDoneToast()
@@ -179,6 +181,8 @@ struct GroceriesView: View {
             Section { addRow }
         }
         .listStyle(.insetGrouped)
+        .listSectionSpacing(.compact)
+        .contentMargins(.top, Theme.Spacing.xs, for: .scrollContent)
         .scrollContentBackground(.hidden)
         .animation(Theme.motion(reduceMotion), value: planStore.checkedKeys)
     }
@@ -191,10 +195,16 @@ struct GroceriesView: View {
     }
 
     @ToolbarContentBuilder
-    private var toolbarContent: some ToolbarContent {
-        ToolbarItemGroup(placement: .topBarTrailing) {
+    /// "Share" pill and the more menu, on the title row.
+    private var headerActions: some View {
+        HStack(spacing: Theme.Spacing.s) {
             ShareLink(item: planStore.shareText(title: shareTitle, listID: activeListID)) {
-                Image(systemName: "square.and.arrow.up")
+                Label(String(localized: "Share"), systemImage: "square.and.arrow.up")
+                    .font(.subheadline.weight(.bold))
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .padding(.horizontal, Theme.Spacing.l)
+                    .frame(minHeight: Theme.Size.tapTarget)
+                    .background(Capsule().fill(Theme.tomatoSoft))
             }
             .accessibilityLabel(Text("Share grocery list"))
             Menu {
@@ -205,7 +215,11 @@ struct GroceriesView: View {
                 }
                 Button(String(localized: "Add item"), systemImage: "plus") { isAddingExtra = true }
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: "ellipsis")
+                    .font(.body.weight(.bold))
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .frame(width: Theme.Size.iconButton, height: Theme.Size.iconButton)
+                    .background(Circle().fill(Theme.tomatoSoft))
             }
             .accessibilityLabel(Text("More"))
         }

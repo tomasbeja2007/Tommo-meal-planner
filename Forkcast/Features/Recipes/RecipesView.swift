@@ -43,17 +43,17 @@ struct RecipesView: View {
         NavigationStack(path: $router.recipesPath) {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                    ScreenTitleBar(String(localized: "Cookbooks"))
                     NavigationLink(value: CookbookRoute.discover) { discoverCover }
                         .buttonStyle(.plain)
                     SearchField(text: $query, prompt: String(localized: "Search my cookbooks"))
-                    LazyVGrid(columns: columns, spacing: Theme.Spacing.m) {
+                    LazyVGrid(columns: columns, spacing: Theme.Spacing.l) {
                         if query.isEmpty {
                             Button {
                                 title = ""
                                 createsCollection = true
                             } label: {
-                                collectionCover(title: String(localized: "New cookbook"), subtitle: String(localized: "Start a collection"),
-                                                icon: "plus", recipes: [])
+                                newCookbookCover
                             }
                             .buttonStyle(.plain)
                         }
@@ -76,6 +76,7 @@ struct RecipesView: View {
             .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle("Cookbooks")
+            .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: RecipeRoute.self) { route in
                 RecipeDetailView(recipeId: route.recipeId)
             }
@@ -144,52 +145,169 @@ struct RecipesView: View {
         return ids.compactMap { seen.insert($0).inserted ? repository.recipe(id: $0) : nil }
     }
 
+    /// Three sharp, colourful photos for the Discover card.
+    private var discoverRecipes: [Recipe] {
+        ["shakshuka", "chicken-caesar-salad", "black-bean-tacos"].compactMap { repository.recipe(id: $0) }
+    }
+
+    /// A bold tomato card: eyebrow, title, line, white "Browse recipes" pill, and a fan of three photos.
     private var discoverCover: some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-            HStack {
-                VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                    Text("Tommo recipes").font(.caption.weight(.heavy)).textCase(.uppercase)
-                        .foregroundStyle(Theme.tomatoDeep)
-                    Text("Discover").font(.system(.title, design: .rounded, weight: .bold)).foregroundStyle(Theme.aubergine)
-                    Text("Fresh ideas for your week").font(.subheadline).foregroundStyle(Theme.aubergineMuted)
+        HStack(alignment: .center, spacing: Theme.Spacing.s) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                Text("Tommo recipes")
+                    .font(Theme.Typography.eyebrow)
+                    .tracking(1.2)
+                    .textCase(.uppercase)
+                    .foregroundStyle(Color.white.opacity(0.85))
+                Text("Discover")
+                    .font(.system(.title, design: .rounded, weight: .bold))
+                    .foregroundStyle(Color.white)
+                Text("Fresh ideas for your week")
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(Color.white.opacity(0.92))
+                    .fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: Theme.Spacing.xs) {
+                    Text("Browse recipes")
+                    Image(systemName: "chevron.right").font(.caption.weight(.bold))
                 }
-                Spacer(minLength: 0)
-                ZStack {
-                    if let first = repository.recipe(id: "crispy-salmon-rice-bowl") {
-                        DishTileView(recipe: first, size: 70).rotationEffect(.degrees(-12)).offset(x: -17, y: -8)
-                    }
-                    if let second = repository.recipe(id: "smash-burger-tacos") {
-                        DishTileView(recipe: second, size: 70).rotationEffect(.degrees(12)).offset(x: 13, y: 10)
-                    }
-                }
-                .frame(width: 112, height: 94)
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(Theme.tomatoDeep)
+                .padding(.horizontal, Theme.Spacing.l)
+                .frame(minHeight: 40)
+                .background(Capsule().fill(Color.white))
+                .padding(.top, Theme.Spacing.m)
             }
-            Label("Browse recipes", systemImage: "arrow.right").font(.subheadline.weight(.bold)).foregroundStyle(Theme.tomatoDeep)
+            .layoutPriority(1)
+            Spacer(minLength: 0)
+            PhotoFan(recipes: discoverRecipes)
+                .frame(width: 128, height: 132)
+                .accessibilityHidden(true)
         }
-        .padding(Theme.Spacing.l)
-        .background(Theme.tomatoSoft, in: RoundedRectangle(cornerRadius: Theme.Radius.card))
+        .padding(Theme.Spacing.gutter)
+        .background(
+            LinearGradient(colors: [Theme.tomato, Theme.tomatoDeep], startPoint: .topLeading, endPoint: .bottomTrailing),
+            in: RoundedRectangle(cornerRadius: Theme.Radius.large, style: .continuous)
+        )
+        .elevation(Theme.Elevation.card)
+        .accessibilityElement(children: .combine)
+    }
+
+    /// Dashed-feel outlined tile with a big plus, same size as the cookbook covers.
+    private var newCookbookCover: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
+            RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous)
+                .fill(Theme.tomatoSoft.opacity(0.45))
+                .overlay(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).strokeBorder(Theme.tomato, lineWidth: 2))
+                .overlay {
+                    Image(systemName: "plus")
+                        .font(.system(size: 26, weight: .semibold))
+                        .foregroundStyle(Theme.tomatoDeep)
+                        .frame(width: 56, height: 56)
+                        .background(Circle().fill(Theme.tomatoSoft))
+                }
+                .frame(height: CookbookMosaic.height)
+            coverCaption(title: String(localized: "New cookbook"), subtitle: String(localized: "Start a collection"))
+        }
         .accessibilityElement(children: .combine)
     }
 
     private func collectionCover(title: String, subtitle: String, icon: String, recipes: [Recipe]) -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            HStack(spacing: Theme.Spacing.xs) {
-                if recipes.isEmpty {
-                    Image(systemName: icon).font(.title2.weight(.medium)).foregroundStyle(Theme.tomatoDeep)
-                        .accessibilityHidden(true)
-                } else {
-                    ForEach(recipes.prefix(2)) { recipe in
-                        DishTileView(recipe: recipe, size: 45, cornerRadius: Theme.Radius.small)
-                    }
+        VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
+            CookbookMosaic(recipes: recipes, icon: icon)
+            coverCaption(title: title, subtitle: subtitle)
+        }
+        .accessibilityElement(children: .combine)
+    }
+
+    private func coverCaption(title: String, subtitle: String) -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
+            Text(title)
+                .font(.system(.headline, design: .rounded).weight(.bold))
+                .foregroundStyle(Theme.aubergine)
+                .lineLimit(1)
+            Text(subtitle)
+                .font(.subheadline)
+                .foregroundStyle(Theme.aubergineMuted)
+        }
+        .padding(.top, Theme.Spacing.s)
+        .padding(.horizontal, Theme.Spacing.xxs)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+/// The Discover card's fanned stack of photos with white borders.
+private struct PhotoFan: View {
+    let recipes: [Recipe]
+
+    var body: some View {
+        // Back-left, back-right, then the front card in the middle.
+        let poses: [(angle: Double, x: CGFloat, y: CGFloat)] = [(-12, -30, 8), (11, 30, -2), (0, 0, 6)]
+        ZStack {
+            ForEach(Array(recipes.prefix(3).enumerated()), id: \.offset) { index, recipe in
+                let pose = poses[index]
+                DishTileView(recipe: recipe, size: 76, height: 100, cornerRadius: Theme.Radius.button)
+                    .overlay(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous).strokeBorder(Color.white, lineWidth: 3))
+                    .elevation(Theme.Elevation.lifted)
+                    .rotationEffect(.degrees(pose.angle))
+                    .offset(x: pose.x, y: pose.y)
+            }
+        }
+    }
+}
+
+/// A cookbook cover: one big photo and two small ones, with the recipe count on a badge.
+/// Empty cookbooks show soft placeholder blocks and their icon.
+private struct CookbookMosaic: View {
+    static let height: CGFloat = 150
+    let recipes: [Recipe]
+    let icon: String
+
+    var body: some View {
+        GeometryReader { proxy in
+            let gap: CGFloat = Theme.Spacing.xxs
+            let bigWidth = (proxy.size.width - gap) * 0.62
+            let smallWidth = proxy.size.width - gap - bigWidth
+            let smallHeight = (proxy.size.height - gap) / 2
+            HStack(spacing: gap) {
+                slot(0, width: bigWidth, height: proxy.size.height, showsIcon: true)
+                VStack(spacing: gap) {
+                    slot(1, width: smallWidth, height: smallHeight)
+                    slot(2, width: smallWidth, height: smallHeight)
                 }
             }
-            .frame(height: 48)
-            Text(title).font(.system(.subheadline, design: .rounded, weight: .bold)).foregroundStyle(Theme.aubergine)
-            Text(subtitle).font(.caption).foregroundStyle(Theme.aubergineMuted)
         }
-        .frame(maxWidth: .infinity, minHeight: 108, alignment: .leading)
-        .cardStyle(padding: Theme.Spacing.m)
-        .accessibilityElement(children: .combine)
+        .frame(height: Self.height)
+        .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous))
+        .overlay(alignment: .bottomLeading) {
+            HStack(spacing: Theme.Spacing.xs) {
+                Image(systemName: "book.closed").font(.caption.weight(.semibold))
+                Text("\(recipes.count)").font(.subheadline.weight(.bold)).monospacedDigit()
+            }
+            .foregroundStyle(Theme.aubergine)
+            .padding(.horizontal, Theme.Spacing.m)
+            .padding(.vertical, Theme.Spacing.xs)
+            .background(Capsule().fill(Theme.card.opacity(0.92)))
+            .padding(Theme.Spacing.m)
+            .accessibilityHidden(true)
+        }
+    }
+
+    @ViewBuilder
+    private func slot(_ index: Int, width: CGFloat, height: CGFloat, showsIcon: Bool = false) -> some View {
+        if index < recipes.count {
+            DishTileView(recipe: recipes[index], size: width, height: height, cornerRadius: 0)
+        } else {
+            Rectangle()
+                .fill(Theme.creamDeep)
+                .frame(width: width, height: height)
+                .overlay {
+                    if showsIcon && recipes.isEmpty {
+                        Image(systemName: icon)
+                            .font(.system(size: 26, weight: .medium))
+                            .foregroundStyle(Theme.tomato.opacity(0.7))
+                    }
+                }
+        }
     }
 }
 

@@ -47,6 +47,8 @@ struct ProfileView: View {
         NavigationStack(path: $router.youPath) {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+                    ScreenTitleBar(String(localized: "Profile"))
+                        .padding(.bottom, -Theme.Spacing.s)
                     if let profile = profileStore.profile {
                         ProfileHeaderCard(profile: profile) {
                             draftName = profile.name
@@ -83,6 +85,7 @@ struct ProfileView: View {
             .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle(String(localized: "Profile"))
+            .toolbar(.hidden, for: .navigationBar)
         }
         .sheet(isPresented: $showsPantry) { PantryEditorSheet(initial: planStore.currentOnHand) }
         .sheet(item: $editing) { kind in
