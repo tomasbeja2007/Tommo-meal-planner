@@ -11,6 +11,8 @@ Feature prompts (usually written by Grok) go on top of this file.
    Generate the project with `xcodegen generate` (never hand-edit the .xcodeproj). Run `cd Packages/ForkcastCore && swift test`.
 3. Report back with what changed, anything you had to assume, and what I should test by hand.
    If you cannot run the Simulator, say so and still do a syntax check.
+   For any UI change, run `/design-review` (installed globally by `Tools/claude-global/install.sh`): look at real
+   Simulator screenshots before and after. A UI change is never done just because it compiles.
 
 Do not redesign or reorder existing screens unless the prompt explicitly says to. Reuse the app's existing
 components, colours, fonts, and assets. Keep the existing design system. Do not invent a new look.

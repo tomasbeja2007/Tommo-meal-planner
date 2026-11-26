@@ -18,3 +18,4 @@ __pycache__/
 
 # Local planning and recipe-generation prompts
 /Prompts/
+.design-review/
