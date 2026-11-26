@@ -3,12 +3,16 @@ import StoreKit
 import AuthenticationServices
 import ForkcastCore
 
+/// One long page of cards: who you are, your plan settings (edited right here), then subscription,
+/// notifications, account, support and the danger zone. Plan-shaping edits save instantly and
+/// offer to update this week's plan.
 struct ProfileView: View {
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @Environment(NotificationManager.self) private var notifications: NotificationManager
     @Environment(AppRouter.self) private var router: AppRouter
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var showsPantry = false
     @State private var editing: PreferenceKind? = nil
@@ -18,6 +22,11 @@ struct ProfileView: View {
     @State private var isRestoring = false
     @State private var restoreMessage: String?
     @State private var dataDeletionFailed = false
+    @State private var isNameEditorShown = false
+    @State private var draftName = ""
+    /// Set after an inline edit that changes which meals fit; offers to update this week's plan.
+    @State private var planIsOutdated = false
+    @State private var vibeLimitNudge = 0
 
     enum DangerAction: Identifiable {
         case resetPlan
@@ -36,51 +45,42 @@ struct ProfileView: View {
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.youPath) {
-            List {
-                if let profile = profileStore.profile {
-                    ProfileCard(profile: profile)
-                        .listRowBackground(Color.clear)
-                        .listRowInsets(EdgeInsets())
-                    AccountSection(profile: profile) { confirm = .deleteAll }
-                }
-                subscriptionSection
-                if let profile = profileStore.profile {
-                    PreferencesSection(profile: profile) { editing = $0 }
-                    Section {
-                        Button { showsPantry = true } label: {
-                            Label { Text("Select ingredients") } icon: { Glyph(name: "glyph-pantry", size: 18) }
+            ScrollView {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+                    if let profile = profileStore.profile {
+                        ProfileHeaderCard(profile: profile) {
+                            draftName = profile.name
+                            isNameEditorShown = true
                         }
-                    } header: {
-                        Text("Pantry")
-                    } footer: {
-                        Text("Ingredients you have are excluded from this week's grocery list.")
-                    }
-                    .listRowBackground(Theme.card)
-                    NotificationsSection(profile: profile)
-                }
-                Section("Meal plan") {
-                    Button("Plan my week", systemImage: "calendar") {
-                        router.selectedTab = .plan
-                        router.planPath = NavigationPath()
-                        if planStore.hasPlan {
-                            router.gate(isPro: subscriptions.hasProAccess) { router.isWeekEditorPresented = true }
-                        } else {
-                            Task { await planStore.generatePlan() }
+                        mealPlanGroup(profile)
+                        householdGroup(profile)
+                        appliancesGroup(profile)
+                        eatingStyleGroup(profile)
+                        vibesGroup(profile)
+                        allergiesGroup(profile)
+                        dislikesGroup(profile)
+                        pantryCard
+                        planActions
+                        subscriptionGroup
+                        ProfileGroup(title: String(localized: "Notifications")) {
+                            NotificationsSection(profile: profile)
+                        }
+                        ProfileGroup(
+                            title: String(localized: "Account"),
+                            footer: String(localized: "Sign in with Apple is optional. Your iCloud account controls sync.")
+                        ) {
+                            AccountSection(profile: profile) { confirm = .deleteAll }
                         }
                     }
-                    Button(role: .destructive) { confirm = .resetPlan } label: {
-                        Label("Reset my current meal plan", systemImage: "trash")
-                    }
-                        .disabled(!planStore.hasPlan)
+                    supportGroup
+                    dangerGroup
+                    FooterView { isDebugShown = true }
                 }
-                .listRowBackground(Theme.card)
-                supportSection
-                legalSection
-                dangerSection
-                FooterView { isDebugShown = true }
-                    .listRowBackground(Color.clear)
+                .padding(.horizontal, Theme.Spacing.gutter)
+                .padding(.top, Theme.Spacing.s)
+                .padding(.bottom, 110)
             }
-            .scrollContentBackground(.hidden)
+            .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle(String(localized: "Profile"))
         }
@@ -100,22 +100,299 @@ struct ProfileView: View {
         } message: {
             Text("Try again from Profile.")
         }
+        .alert(String(localized: "Your name"), isPresented: $isNameEditorShown) {
+            TextField(String(localized: "Your name"), text: $draftName)
+                .textInputAutocapitalization(.words)
+            Button(String(localized: "Save")) {
+                let trimmed = draftName.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !trimmed.isEmpty, let profile = profileStore.profile else { return }
+                profile.name = trimmed
+                profileStore.save()
+            }
+            Button(String(localized: "Cancel"), role: .cancel) {}
+        }
+        .sensoryFeedback(.warning, trigger: vibeLimitNudge)
     }
 
-    // MARK: Sections
+    // MARK: Saving inline edits
 
-    private var subscriptionSection: some View {
-        Section {
-            if !subscriptions.hasProAccess {
-                Button {
-                    router.isPaywallPresented = true
-                } label: {
-                    Label(String(localized: "View subscription plans"), systemImage: "sparkles")
-                        .foregroundStyle(Theme.tomato)
+    /// Saves an edit made on this page. Plan-shaping edits offer to update this week's plan.
+    private func commit(affectsPlan: Bool = true) {
+        profileStore.save()
+        planStore.recompute()
+        if affectsPlan && planStore.hasPlan {
+            withAnimation(reduceMotion ? nil : Theme.Motion.update) { planIsOutdated = true }
+        }
+    }
+
+    // MARK: Meal plan
+
+    private func mealPlanGroup(_ profile: UserProfile) -> some View {
+        ProfileGroup(title: String(localized: "Meal plan")) {
+            ProfileRow(
+                glyph: "glyph-cost",
+                title: String(localized: "Weekly budget"),
+                subtitle: String(localized: "Your weekly budget at \(profileStore.storeName)"),
+                value: profileStore.formatMoney(profile.weeklyBudget),
+                emphasisedValue: true
+            ) { editing = .budget }
+            ProfileDivider()
+            ProfileRow(glyph: "glyph-store", title: String(localized: "Shopping at"), value: profileStore.storeName) { editing = .store }
+            ProfileDivider()
+            ProfileRow(
+                glyph: "glyph-calories",
+                title: String(localized: "Nutrition goals"),
+                subtitle: nutritionSubtitle(profile),
+                value: profile.nutritionTarget.map { String(localized: "\($0.calories.formatted()) kcal") } ?? String(localized: "Off")
+            ) { editing = .nutrition }
+            ProfileDivider()
+            ProfileRow(systemImage: "fork.knife", title: String(localized: "Meals"), value: MealType.ordered(profile.mealTypes).map { $0.title }.joined(separator: ", ")) { editing = .meals }
+            ProfileDivider()
+            ProfileRow(systemImage: "calendar", title: String(localized: "Cooking days"), value: String(localized: "\(profile.cookingDays.count) a week")) { editing = .cookingDays }
+            ProfileDivider()
+            ProfileRow(glyph: "glyph-time", title: String(localized: "Max cook time"), value: profile.maxCookMinutes == 0 ? String(localized: "Any") : String(localized: "\(profile.maxCookMinutes) min")) { editing = .cookTime }
+            ProfileDivider()
+            ProfileRow(systemImage: "globe", title: String(localized: "Country"), value: "\(profileStore.country.flagEmoji) \(profileStore.country.name)") { editing = .country }
+            ProfileDivider()
+            ProfileRow(systemImage: "ruler", title: String(localized: "Units"), value: profileStore.unitSystem == .imperial ? String(localized: "Imperial") : String(localized: "Metric")) { editing = .units }
+            ProfileDivider()
+            ProfileToggleRow(
+                systemImage: "book",
+                title: String(localized: "Include my recipes"),
+                subtitle: String(localized: "Recipes you created can appear in your plans"),
+                isOn: Binding(
+                    get: { profile.includeUserRecipesInPlans },
+                    set: { profile.includeUserRecipesInPlans = $0; commit() }
+                )
+            )
+        }
+    }
+
+    private func nutritionSubtitle(_ profile: UserProfile) -> String? {
+        guard let target = profile.nutritionTarget else { return String(localized: "No daily target") }
+        let macros = target.grams
+        return String(localized: "\(macros.protein) g protein · \(macros.carbs) g carbs · \(macros.fat) g fat")
+    }
+
+    // MARK: Household
+
+    private func householdGroup(_ profile: UserProfile) -> some View {
+        ProfileGroup(title: String(localized: "Household")) {
+            ProfileStepperRow(
+                title: String(localized: "Adults"),
+                subtitle: String(localized: "full portions"),
+                value: Binding(get: { profile.householdAdults }, set: { profile.householdAdults = $0; commit() }),
+                range: 1...10
+            )
+            ProfileDivider()
+            ProfileStepperRow(
+                title: String(localized: "Kids"),
+                subtitle: String(localized: "half portions"),
+                value: Binding(get: { profile.householdKids }, set: { profile.householdKids = $0; commit() }),
+                range: 0...10
+            )
+        }
+    }
+
+    // MARK: Chip groups
+
+    private func appliancesGroup(_ profile: UserProfile) -> some View {
+        ProfileGroup(title: String(localized: "Kitchen appliances")) {
+            ChipCard(footnote: String(localized: "Select the appliances you have.")) {
+                ForEach(Appliance.allCases, id: \.self) { appliance in
+                    SelectChip(title: appliance.displayName, systemImage: appliance.systemImage, isSelected: profile.appliances.contains(appliance)) {
+                        var set = profile.appliances
+                        if set.contains(appliance) {
+                            guard set.count > 1 else { return }  // At least one way to cook.
+                            set.remove(appliance)
+                        } else {
+                            set.insert(appliance)
+                        }
+                        profile.appliances = set
+                        commit()
+                    }
                 }
             }
-            Button(String(localized: "Manage subscription")) { isManageShown = true }
-            Button(String(localized: "Restore purchases")) {
+        }
+    }
+
+    private func eatingStyleGroup(_ profile: UserProfile) -> some View {
+        ProfileGroup(title: String(localized: "Eating style")) {
+            ChipCard(footnote: String(localized: "Pick one diet, plus any extras.")) {
+                ForEach(Diet.allCases, id: \.self) { diet in
+                    SelectChip(title: diet == .none ? String(localized: "No restrictions") : diet.displayName, emoji: dietEmoji(diet), isSelected: profile.diet == diet) {
+                        profile.diet = diet
+                        commit()
+                    }
+                }
+                ForEach(ExtraDiet.allCases) { extra in
+                    let picked = profile.onboardingAnswers.extraDiets.contains(extra.rawValue)
+                    SelectChip(title: extra.title, emoji: extraEmoji(extra), isSelected: picked) {
+                        var answers = profile.onboardingAnswers
+                        if picked {
+                            answers.extraDiets.removeAll { $0 == extra.rawValue }
+                        } else {
+                            answers.extraDiets.append(extra.rawValue)
+                        }
+                        profile.onboardingAnswers = answers
+                        commit()
+                    }
+                }
+            }
+        }
+    }
+
+    private func dietEmoji(_ diet: Diet) -> String {
+        switch diet {
+        case .none: return "🍽️"
+        case .vegetarian: return "🥕"
+        case .vegan: return "🌱"
+        case .pescatarian: return "🐟"
+        }
+    }
+
+    private func extraEmoji(_ extra: ExtraDiet) -> String {
+        switch extra {
+        case .highProtein: return "💪"
+        case .lowCalorie: return "🥗"
+        case .mediterranean: return "🫒"
+        }
+    }
+
+    private func vibesGroup(_ profile: UserProfile) -> some View {
+        let picked = Set(profile.vibes)
+        let options: [Vibe] = VibePicker.featured + [.highProtein, .lowCalorie].filter { picked.contains($0) }
+        return ProfileGroup(title: String(localized: "What kind of vibe?")) {
+            ChipCard(footnote: String(localized: "\(picked.count) of 3 picked")) {
+                ForEach(options, id: \.self) { vibe in
+                    let details = VibePicker.details(for: vibe)
+                    SelectChip(title: details.0, systemImage: details.2, isSelected: picked.contains(vibe)) {
+                        var vibes = profile.vibes
+                        if let index = vibes.firstIndex(of: vibe) {
+                            vibes.remove(at: index)
+                        } else if vibes.count >= 3 {
+                            vibeLimitNudge += 1
+                            return
+                        } else {
+                            vibes.append(vibe)
+                        }
+                        profile.vibes = vibes
+                        commit()
+                    }
+                }
+            }
+        }
+    }
+
+    private func allergiesGroup(_ profile: UserProfile) -> some View {
+        ProfileGroup(title: String(localized: "Allergies & intolerances")) {
+            ChipCard(footnote: String(localized: "A hard filter: recipes with these are left out of every plan. Always check labels for allergens and cross-contact.")) {
+                SelectChip(title: String(localized: "None"), emoji: "👍", isSelected: profile.allergens.isEmpty) {
+                    profile.allergens = []
+                    commit()
+                }
+                ForEach(Allergen.allCases, id: \.self) { allergen in
+                    SelectChip(title: allergen.displayName, emoji: allergen.emoji, isSelected: profile.allergens.contains(allergen)) {
+                        var set = profile.allergens
+                        if set.contains(allergen) { set.remove(allergen) } else { set.insert(allergen) }
+                        profile.allergens = set
+                        commit()
+                    }
+                }
+            }
+        }
+    }
+
+    private func dislikesGroup(_ profile: UserProfile) -> some View {
+        ProfileGroup(title: String(localized: "Foods to skip")) {
+            DislikesPicker(
+                selection: Binding(get: { profile.dislikedIngredientIds }, set: { profile.dislikedIngredientIds = $0; commit() }),
+                unitSystem: profileStore.unitSystem
+            )
+            .padding(Theme.Spacing.l)
+        }
+    }
+
+    // MARK: Pantry and plan actions
+
+    private var pantryCard: some View {
+        Button { showsPantry = true } label: {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                Text("What ingredients do you currently have?")
+                    .font(.system(.headline, design: .rounded))
+                    .foregroundStyle(Theme.aubergine)
+                Text("They're left off this week's grocery list.")
+                    .font(.subheadline)
+                    .foregroundStyle(Theme.aubergineMuted)
+                HStack {
+                    Glyph(name: "glyph-pantry", size: 16)
+                        .foregroundStyle(Theme.tomato)
+                    Text(planStore.currentOnHand.isEmpty ? String(localized: "Select ingredients") : String(localized: "\(planStore.currentOnHand.count) selected"))
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Theme.aubergine)
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .font(.caption.weight(.bold))
+                        .foregroundStyle(Theme.aubergineMuted)
+                }
+                .padding(.top, Theme.Spacing.s)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .cardStyle()
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var planActions: some View {
+        VStack(spacing: Theme.Spacing.m) {
+            if planIsOutdated {
+                HStack(spacing: Theme.Spacing.s) {
+                    Text("Changes apply to your next plan.")
+                        .font(.subheadline)
+                        .foregroundStyle(Theme.aubergine)
+                    Spacer(minLength: Theme.Spacing.s)
+                    Button(String(localized: "Update now")) {
+                        router.gate(isPro: subscriptions.hasProAccess) {
+                            planIsOutdated = false
+                            Task { await planStore.regenerate(keepCookedAndLiked: true) }
+                        }
+                    }
+                    .font(.subheadline.weight(.bold))
+                    .foregroundStyle(Theme.tomatoDeep)
+                }
+                .padding(Theme.Spacing.m)
+                .background(RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous).fill(Theme.saffronSoft))
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+            PrimaryButton(String(localized: "Plan my week")) {
+                router.selectedTab = .plan
+                router.planPath = NavigationPath()
+                if planStore.hasPlan {
+                    router.gate(isPro: subscriptions.hasProAccess) { router.isWeekEditorPresented = true }
+                } else {
+                    Task { _ = await planStore.generatePlan() }
+                }
+            }
+            Button(String(localized: "Reset my current meal plan")) { confirm = .resetPlan }
+                .buttonStyle(SecondaryButtonStyle(outlined: true))
+                .disabled(!planStore.hasPlan)
+                .opacity(planStore.hasPlan ? 1 : 0.5)
+        }
+    }
+
+    // MARK: Subscription
+
+    private var subscriptionGroup: some View {
+        ProfileGroup(title: String(localized: "Subscription"), footer: restoreMessage) {
+            ProfileRow(systemImage: "sparkles", title: String(localized: "Tommo Pro"), value: subscriptions.statusText) {
+                if subscriptions.hasProAccess { isManageShown = true } else { router.isPaywallPresented = true }
+            }
+            ProfileDivider()
+            ProfileRow(systemImage: "creditcard", title: String(localized: "Manage subscription")) { isManageShown = true }
+            ProfileDivider()
+            ProfileRow(systemImage: "arrow.clockwise", title: isRestoring ? String(localized: "Restoring purchases…") : String(localized: "Restore purchases")) {
+                guard !isRestoring else { return }
                 Task {
                     isRestoring = true
                     restoreMessage = nil
@@ -130,68 +407,42 @@ struct ProfileView: View {
                     }
                 }
             }
-            .disabled(isRestoring)
-            if isRestoring {
-                ProgressView("Restoring purchases…")
-            }
-            if let restoreMessage {
-                Text(restoreMessage).font(.footnote).foregroundStyle(Theme.aubergineMuted)
-            }
-        } header: {
-            Text("Subscription")
         }
-        .foregroundStyle(Theme.aubergine)
-        .listRowBackground(Theme.card)
     }
 
-    private var supportSection: some View {
-        Section {
-            // Apple's review prompt may silently not appear when tapped, so the button opens the
+    // MARK: Support, legal, danger zone
+
+    private var supportGroup: some View {
+        ProfileGroup(title: String(localized: "Support & legal")) {
+            // Apple's review prompt may silently not appear when tapped, so this opens the
             // App Store's write-a-review page instead. Hidden until the App Store ID is set.
             if let review = AppLinks.writeReview {
-                Link(destination: review) {
-                    Label(String(localized: "Rate Tommo"), systemImage: "star")
-                }
-            }
-            if let contact = AppLinks.mail(subject: "Hello from Tommo") {
-                Link(destination: contact) {
-                    Label(String(localized: "Contact us"), systemImage: "envelope")
-                }
+                ProfileLinkRow(systemImage: "star", title: String(localized: "Rate Tommo"), destination: review)
+                ProfileDivider()
             }
             if let feature = AppLinks.mail(subject: "Feature request") {
-                Link(destination: feature) {
-                    Label(String(localized: "Request a feature"), systemImage: "lightbulb")
-                }
+                ProfileLinkRow(systemImage: "lightbulb", title: String(localized: "Request a feature"), destination: feature)
+                ProfileDivider()
             }
-        } header: {
-            Text("Support")
+            if let contact = AppLinks.mail(subject: "Hello from Tommo") {
+                ProfileLinkRow(systemImage: "envelope", title: String(localized: "Email support"), subtitle: AppLinks.supportEmail, destination: contact)
+                ProfileDivider()
+            }
+            ProfileLinkRow(systemImage: "doc.text", title: String(localized: "Terms of Use"), destination: AppLinks.terms)
+            ProfileDivider()
+            ProfileLinkRow(systemImage: "hand.raised", title: String(localized: "Privacy Policy"), destination: AppLinks.privacyPolicy)
         }
-        .foregroundStyle(Theme.aubergine)
-        .listRowBackground(Theme.card)
     }
 
-    private var legalSection: some View {
-        Section {
-            Link(String(localized: "Privacy Policy"), destination: AppLinks.privacyPolicy)
-            Link(String(localized: "Terms"), destination: AppLinks.terms)
-        } header: {
-            Text("Legal")
+    private var dangerGroup: some View {
+        ProfileGroup(
+            title: String(localized: "Danger zone"),
+            footer: String(localized: "Start over re-runs the quiz. Deleting clears this app’s data on this device. If iCloud sync is active, deletions sync to iCloud.")
+        ) {
+            ProfileRow(systemImage: "arrow.counterclockwise", title: String(localized: "Start over"), showsChevron: false) { confirm = .startOver }
+            ProfileDivider()
+            ProfileRow(systemImage: "trash", title: String(localized: "Delete account and all data"), tint: Theme.tomatoDeep, showsChevron: false) { confirm = .deleteAll }
         }
-        .foregroundStyle(Theme.aubergine)
-        .listRowBackground(Theme.card)
-    }
-
-    private var dangerSection: some View {
-        Section {
-            Button(String(localized: "Start over")) { confirm = .startOver }
-            Button(String(localized: "Delete account and all data"), role: .destructive) { confirm = .deleteAll }
-        } header: {
-            Text("Danger zone")
-        } footer: {
-            Text("Start over re-runs the quiz. Deleting clears this app’s data on this device. If iCloud sync is active, deletions sync to iCloud.")
-        }
-        .foregroundStyle(Theme.tomatoDeep)
-        .listRowBackground(Theme.card)
     }
 
     private func dangerAlert(_ action: DangerAction) -> Alert {
@@ -237,48 +488,6 @@ struct ProfileView: View {
                 secondaryButton: .cancel()
             )
         }
-    }
-}
-
-/// Name (editable), store and subscription status.
-private struct ProfileCard: View {
-    @Bindable var profile: UserProfile
-    @Environment(ProfileStore.self) private var profileStore: ProfileStore
-    @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
-
-    var body: some View {
-        HStack(spacing: Theme.Spacing.m) {
-            Text(String(profile.name.first.map { String($0) } ?? "🙂").uppercased())
-                .font(.system(.title, design: .rounded).weight(.bold))
-                .foregroundStyle(Color.white)
-                .frame(width: 60, height: 60)
-                .background(Circle().fill(Theme.tomato))
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-                TextField(String(localized: "Your name"), text: $profile.name)
-                    .font(.system(.title3, design: .rounded).weight(.bold))
-                    .foregroundStyle(Theme.aubergine)
-                    .submitLabel(.done)
-                    .onSubmit { profileStore.save() }
-                if let email = profile.appleEmail {
-                    Text(email)
-                        .font(.subheadline)
-                        .foregroundStyle(Theme.aubergineMuted)
-                        .textSelection(.enabled)
-                }
-                Text("shopping at \(profileStore.storeName)")
-                    .font(.subheadline)
-                    .foregroundStyle(Theme.aubergineMuted)
-                TagLabel(
-                    text: subscriptions.statusText,
-                    tint: subscriptions.hasProAccess ? Theme.tomatoDeep : Theme.aubergineMuted,
-                    fill: subscriptions.hasProAccess ? Theme.tomatoSoft : Theme.creamDeep
-                )
-            }
-            Spacer(minLength: 0)
-        }
-        .cardStyle()
-        .padding(.vertical, Theme.Spacing.s)
     }
 }
 

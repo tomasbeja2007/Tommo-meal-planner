@@ -10,12 +10,15 @@ struct VibePicker: View {
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
+    /// The vibes offered (High-protein and Lighter only show once picked elsewhere). Shared with Profile.
+    static let featured: [Vibe] = [.quickEasy, .onePan, .batchFriendly, .family, .comfort, .healthyish, .fiberForward, .fakeaway]
+
     private var options: [Vibe] {
-        let featured: [Vibe] = [.quickEasy, .onePan, .batchFriendly, .family, .comfort, .healthyish, .fiberForward, .fakeaway]
-        return featured + [.highProtein, .lowCalorie].filter { selection.contains($0) }
+        Self.featured + [.highProtein, .lowCalorie].filter { selection.contains($0) }
     }
 
-    private func details(for vibe: Vibe) -> (String, String, String) {
+    /// Title, subtitle and symbol for a vibe. Shared with Profile.
+    static func details(for vibe: Vibe) -> (String, String, String) {
         switch vibe {
         case .quickEasy: return (String(localized: "Quick & Easy"), String(localized: "Ready in about 20 minutes"), "bolt")
         case .onePan: return (String(localized: "One Pan"), String(localized: "Minimal cleanup"), "frying.pan")
@@ -34,7 +37,7 @@ struct VibePicker: View {
             // A 4th tap gently shakes the whole grid (and the counter turns tomato).
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: Theme.Spacing.m), count: typeSize.isAccessibilitySize ? 1 : 2), spacing: Theme.Spacing.m) {
                 ForEach(options, id: \.self) { vibe in
-                    let (title, subtitle, icon) = details(for: vibe)
+                    let (title, subtitle, icon) = Self.details(for: vibe)
                     OptionTile(
                         title: title,
                         subtitle: subtitle.isEmpty ? nil : subtitle,
