@@ -9,7 +9,6 @@ struct ProfileView: View {
     @Environment(SubscriptionManager.self) private var subscriptions: SubscriptionManager
     @Environment(NotificationManager.self) private var notifications: NotificationManager
     @Environment(AppRouter.self) private var router: AppRouter
-    @Environment(\.requestReview) private var requestReview: RequestReviewAction
 
     @State private var showsPantry = false
     @State private var editing: PreferenceKind? = nil
@@ -152,10 +151,12 @@ struct ProfileView: View {
 
     private var supportSection: some View {
         Section {
-            Button {
-                requestReview()
-            } label: {
-                Label(String(localized: "Rate Tommo"), systemImage: "star")
+            // Apple's review prompt may silently not appear when tapped, so the button opens the
+            // App Store's write-a-review page instead. Hidden until the App Store ID is set.
+            if let review = AppLinks.writeReview {
+                Link(destination: review) {
+                    Label(String(localized: "Rate Tommo"), systemImage: "star")
+                }
             }
             if let contact = AppLinks.mail(subject: "Hello from Tommo") {
                 Link(destination: contact) {

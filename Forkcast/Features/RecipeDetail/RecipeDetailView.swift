@@ -2,6 +2,7 @@ import SwiftUI
 import PhotosUI
 import ImageIO
 import UIKit
+import StoreKit
 import ForkcastCore
 
 struct RecipeDetailView: View {
@@ -39,6 +40,8 @@ private struct RecipeDetailContent: View {
     @Environment(PlanStore.self) private var planStore: PlanStore
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(LibraryStore.self) private var library: LibraryStore
+    @Environment(\.requestReview) private var requestReview: RequestReviewAction
+    @AppStorage(FeatureFlags.reviewRequestedKey) private var didAskForReview = false
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showsListPicker = false
@@ -474,6 +477,18 @@ private struct RecipeDetailContent: View {
         library.recordCooked(recipe.id)
         planStore.markCooked(recipeId: recipe.id, meal: plannedMeal)
         Haptics.success()
+        askForReviewAfterFirstCook(stars: stars)
+    }
+
+    /// Ask for an App Store rating once, after the first meal they've cooked, and never right
+    /// after a low rating. The pause lets cook mode close first so the prompt isn't swallowed.
+    private func askForReviewAfterFirstCook(stars: Int) {
+        guard !didAskForReview, stars == 0 || stars >= 4 else { return }
+        didAskForReview = true
+        Task {
+            try? await Task.sleep(for: .milliseconds(1_200))
+            requestReview()
+        }
     }
 }
 

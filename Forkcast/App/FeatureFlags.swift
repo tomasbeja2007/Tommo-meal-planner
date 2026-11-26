@@ -10,7 +10,7 @@ enum FeatureFlags {
 
     /// UserDefaults key for the hidden debug menu's "Toggle Pro" switch.
     static let debugProOverrideKey: String = "debug.proOverride"
-    static let reviewRequestedKey: String = "onboarding.didAskForReview"
+    static let reviewRequestedKey: String = "review.askedAfterFirstCook"
 
     static var debugProOverride: Bool {
         #if DEBUG
@@ -30,6 +30,12 @@ enum AppLinks {
     static let appleAccount: URL = URL(string: "https://account.apple.com/")!
     static let support: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/support.html")!
     static let supportEmail: String = "tomasbeja2007@icloud.com"
+
+    /// The numeric Apple ID from App Store Connect (App Information → Apple ID). Set it to show "Rate Tommo".
+    static let appStoreId: String? = nil
+    static var writeReview: URL? {
+        appStoreId.flatMap { URL(string: "https://apps.apple.com/app/id\($0)?action=write-review") }
+    }
 
     static func mail(subject: String) -> URL? {
         let encoded: String = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
