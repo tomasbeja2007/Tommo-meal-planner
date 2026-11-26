@@ -16,7 +16,7 @@ final class AppServices {
     let router: AppRouter
     let appleSignIn: AppleSignInManager
 
-    /// The live instance (for the few places that need app-wide actions, e.g. "Delete all my data").
+    /// The live instance (for the few places that need app-wide actions, e.g. "Delete account and all data").
     static weak var current: AppServices?
 
     init(inMemory: Bool = false) {

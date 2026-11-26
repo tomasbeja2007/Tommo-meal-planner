@@ -42,7 +42,7 @@ struct ProfileView: View {
                     ProfileCard(profile: profile)
                         .listRowBackground(Color.clear)
                         .listRowInsets(EdgeInsets())
-                    AccountSection(profile: profile)
+                    AccountSection(profile: profile) { confirm = .deleteAll }
                 }
                 subscriptionSection
                 if let profile = profileStore.profile {
@@ -189,7 +189,7 @@ struct ProfileView: View {
     private var dangerSection: some View {
         Section {
             Button(String(localized: "Start over")) { confirm = .startOver }
-            Button(String(localized: "Delete all my data"), role: .destructive) { confirm = .deleteAll }
+            Button(String(localized: "Delete account and all data"), role: .destructive) { confirm = .deleteAll }
         } header: {
             Text("Danger zone")
         } footer: {
@@ -226,7 +226,7 @@ struct ProfileView: View {
                 message = Text("This can’t be undone. Manage your subscription separately in Apple Subscriptions.")
             }
             return Alert(
-                title: Text("Delete all your data?"),
+                title: Text("Delete your account and data?"),
                 message: message,
                 primaryButton: .destructive(Text("Delete everything")) {
                     guard let services = AppServices.current else {

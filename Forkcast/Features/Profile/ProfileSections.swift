@@ -231,6 +231,8 @@ struct NotificationsSection: View {
 
 struct AccountSection: View {
     @Bindable var profile: UserProfile
+    /// Opens the "delete account and data" confirmation (App Review 5.1.1(v)).
+    var onDeleteAccount: () -> Void = {}
     @Environment(ProfileStore.self) private var profileStore: ProfileStore
     @Environment(AppleSignInManager.self) private var appleSignIn: AppleSignInManager
 
@@ -267,10 +269,12 @@ struct AccountSection: View {
                 .foregroundStyle(Theme.tomatoDeep)
                 Link("Manage Sign in with Apple", destination: AppLinks.appleAccount)
             }
+            Button(String(localized: "Delete account"), role: .destructive, action: onDeleteAccount)
+                .foregroundStyle(Theme.tomatoDeep)
         } header: {
             Text("Account")
         } footer: {
-            Text("Sign in with Apple is optional. Your iCloud account controls sync.")
+            Text("Sign in with Apple is optional. Your iCloud account controls sync. Deleting your account erases Tommo’s data on this iPhone, and in iCloud when sync is on.")
         }
         .listRowBackground(Theme.card)
     }

@@ -70,7 +70,7 @@ enum PersistenceController {
         }
     }
 
-    /// Deletes every Forkcast record (used by "Delete all my data").
+    /// Deletes every Forkcast record (used by "Delete account and all data").
     @MainActor
     static func deleteAll(in context: ModelContext) throws {
         try context.save()
