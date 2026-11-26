@@ -149,82 +149,80 @@ struct PlanView: View {
         return days.first { Calendar.current.isDateInToday($0) } ?? days.first
     }
 
+    /// The whole week at once, evenly spread (no sideways scrolling, nothing cut off).
+    /// The picked day sits in a tomato circle that travels between days; a dot marks days with meals.
     private func calendarStrip(active: Date) -> some View {
-        HStack(alignment: .top, spacing: Theme.Spacing.xs) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: Theme.Spacing.xs) {
-                    ForEach(planStore.weekDays, id: \.self) { day in
-                        let meals = planStore.meals(on: day)
-                        let selected = day == active
-                        Button {
-                            withAnimation(Theme.motion(reduceMotion)) { selectedDate = day }
-                        } label: {
-                            VStack(spacing: Theme.Spacing.xs) {
-                                VStack(spacing: Theme.Spacing.xxs) {
-                                    Text(DateText.shortWeekday(day).prefix(1))
-                                        .font(.caption2.weight(.bold))
-                                    Text(day.formatted(.dateTime.day()))
-                                        .font(.subheadline.weight(.bold))
-                                    Circle()
-                                        .fill(selected ? Color.white : Theme.tomato)
-                                        .frame(width: 4, height: 4)
-                                        .opacity(meals.isEmpty ? 0 : 1)
-                                }
-                                .frame(width: 44, height: 52)
+        VStack(spacing: Theme.Spacing.xxs) {
+            HStack(alignment: .top, spacing: 0) {
+                ForEach(planStore.weekDays, id: \.self) { day in
+                    let meals = planStore.meals(on: day)
+                    let selected = day == active
+                    let isPast = Calendar.current.startOfDay(for: day) < Calendar.current.startOfDay(for: Date())
+                    Button {
+                        withAnimation(Theme.motion(reduceMotion)) { selectedDate = day }
+                    } label: {
+                        VStack(spacing: Theme.Spacing.xs) {
+                            Text(DateText.shortWeekday(day).prefix(1))
+                                .font(.system(.caption, design: .rounded).weight(.bold))
+                                .foregroundStyle(selected ? Theme.tomatoDeep : Theme.aubergineFaint)
+                            Text(day.formatted(.dateTime.day()))
+                                .font(.system(.title3, design: .rounded).weight(.bold))
+                                .monospacedDigit()
+                                .foregroundStyle(selected ? Color.white : (isPast ? Theme.aubergineFaint : Theme.aubergine))
+                                .frame(width: 40, height: 40)
                                 .background {
-                                    // One pill travels between days instead of swapping colours in place.
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous).fill(Theme.card)
-                                        if selected {
-                                            RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous)
-                                                .fill(Theme.tomatoDeep)
-                                                .shadow(color: Theme.tomatoDeep.opacity(0.25), radius: 6, y: 3)
-                                                .matchedGeometryEffect(id: "selectedDay", in: dayPill)
-                                        }
+                                    // One circle travels between days instead of swapping colours in place.
+                                    if selected {
+                                        Circle()
+                                            .fill(Theme.tomatoDeep)
+                                            .shadow(color: Theme.tomatoDeep.opacity(0.3), radius: 8, y: 3)
+                                            .matchedGeometryEffect(id: "selectedDay", in: dayPill)
                                     }
                                 }
-                                if expandsCalendar {
-                                    Group {
-                                        if let meal = meals.first(where: { !$0.isSide }) ?? meals.first,
-                                           let recipe = planStore.recipe(for: meal) {
-                                            DishTileView(recipe: recipe, size: 38, cornerRadius: Theme.Radius.small)
-                                                .scaleEffect(selected ? 1.06 : 1)
-                                        } else {
-                                            RoundedRectangle(cornerRadius: Theme.Radius.small)
-                                                .fill(Theme.creamDeep)
-                                                .frame(width: 38, height: 38)
-                                        }
+                            Circle()
+                                .fill(Theme.tomato)
+                                .frame(width: 5, height: 5)
+                                .opacity(meals.isEmpty ? 0 : (isPast ? 0.4 : 1))
+                            if expandsCalendar {
+                                Group {
+                                    if let meal = meals.first(where: { !$0.isSide }) ?? meals.first,
+                                       let recipe = planStore.recipe(for: meal) {
+                                        DishTileView(recipe: recipe, size: 38, cornerRadius: Theme.Radius.small)
+                                            .scaleEffect(selected ? 1.06 : 1)
+                                    } else {
+                                        RoundedRectangle(cornerRadius: Theme.Radius.small)
+                                            .fill(Theme.creamDeep)
+                                            .frame(width: 38, height: 38)
                                     }
-                                    .transition(.opacity)
                                 }
+                                .transition(.opacity)
                             }
-                            .foregroundStyle(selected ? Color.white : Theme.aubergine)
                         }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel(Text(day.formatted(.dateTime.weekday(.wide).day().month(.wide))))
-                        .accessibilityValue(Text("\(meals.count) meals"))
-                        .accessibilityAddTraits(selected ? .isSelected : [])
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text(day.formatted(.dateTime.weekday(.wide).day().month(.wide))))
+                    .accessibilityValue(Text("\(meals.count) meals"))
+                    .accessibilityAddTraits(selected ? .isSelected : [])
                 }
-                // Room inside the scroll view so the first pill and its shadow aren't clipped,
-                // and the first day lines up with the title above.
-                .padding(.leading, Theme.Spacing.gutter)
-                .padding(.trailing, Theme.Spacing.xs)
-                .padding(.vertical, Theme.Spacing.s)
             }
             Button {
                 withAnimation(Theme.motion(reduceMotion)) { expandsCalendar.toggle() }
             } label: {
                 Image(systemName: expandsCalendar ? "chevron.up" : "chevron.down")
                     .font(.caption.weight(.bold))
-                    .foregroundStyle(Theme.aubergine)
-                    .frame(width: 44, height: 48)
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .frame(width: 52, height: 26)
+                    .background(Capsule().fill(Theme.creamDeep))
+                    .frame(minWidth: 64, minHeight: 36)
+                    .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .padding(.top, Theme.Spacing.s)
             .accessibilityLabel(expandsCalendar ? Text("Hide meal previews") : Text("Show meal previews"))
         }
-        .padding(.trailing, Theme.Spacing.m)
+        .padding(.horizontal, Theme.Spacing.m)
+        .padding(.top, Theme.Spacing.s)
         .background(Theme.cream)
         .sensoryFeedback(.selection, trigger: selectedDate)
     }
@@ -243,12 +241,7 @@ struct PlanView: View {
         if planStore.needsWeeklyFeedback {
             FeedbackPromptCard { isFeedbackShown = true }
         }
-        BudgetCard(
-            total: planStore.total,
-            budget: planStore.budget,
-            currencyCode: profileStore.currencyCode,
-            onInfo: { isWhyCheaperShown = true }
-        )
+        // The budget lives on the Groceries tab, next to the basket it describes.
         if let day = activeDate {
             let date = day.formatted(.dateTime.weekday(.wide).month(.abbreviated).day())
             let count = planStore.meals(on: day).count

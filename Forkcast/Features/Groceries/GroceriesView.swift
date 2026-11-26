@@ -227,60 +227,96 @@ private struct GroceryHeader: View {
     @Environment(ProfileStore.self) private var profileStore
 
     var body: some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            Text("Estimated total")
-                .font(.caption.weight(.bold))
-                .foregroundStyle(Theme.aubergineMuted)
-                .textCase(.uppercase)
-            if let estimate = planStore.basketEstimate {
-                MoneyText(amount: estimate.amount, currencyCode: profileStore.currencyCode, font: .system(.largeTitle, design: .rounded).weight(.bold))
-            } else {
-                Text(planStore.hasPlan ? "Full estimate unavailable" : "No planned groceries")
-                    .font(.headline)
-                    .foregroundStyle(Theme.aubergineMuted)
+        VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.m) {
+                HStack(alignment: .firstTextBaseline) {
+                    if let estimate = planStore.basketEstimate {
+                        MoneyText(amount: estimate.amount, currencyCode: profileStore.currencyCode, font: .system(.largeTitle, design: .rounded).weight(.bold), color: isOver ? Theme.tomatoDeep : Theme.aubergine)
+                            .accessibilityLabel(Text("Estimated total \(profileStore.formatMoney(estimate.amount))"))
+                    } else {
+                        Text(planStore.hasPlan ? "Full estimate unavailable" : "No planned groceries")
+                            .font(.headline)
+                            .foregroundStyle(Theme.aubergineMuted)
+                    }
+                    Spacer(minLength: Theme.Spacing.s)
+                    if planStore.budget > 0 {
+                        Text("Your budget: \(profileStore.formatMoney(planStore.budget))")
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.aubergineMuted)
+                            .multilineTextAlignment(.trailing)
+                    }
+                }
+                if let estimate = planStore.basketEstimate, let budget = GroceryEstimate(planStore.budget), budget.amount > 0 {
+                    ProgressBar(value: min(estimate.amount / budget.amount, 1),
+                                tint: isOver ? Theme.tomatoDeep : Theme.herb, height: 8)
+                }
+                HStack(alignment: .center, spacing: Theme.Spacing.s) {
+                    VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
+                        if let status = budgetStatus {
+                            Text(status)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(isOver ? Theme.tomatoDeep : Theme.herb)
+                        }
+                        storeLabel
+                    }
+                    Spacer(minLength: Theme.Spacing.s)
+                    if let store = profileStore.store {
+                        StoreMonogram(store: store, size: 40)
+                            .accessibilityHidden(true)
+                    }
+                    compareButton
+                }
             }
-            if let estimate = planStore.basketEstimate, let budget = GroceryEstimate(planStore.budget), budget.amount > 0 {
-                let difference = estimate.difference(from: budget)
-                let delta = profileStore.formatMoney(abs(difference))
-                Text("Your budget: \(profileStore.formatMoney(planStore.budget))")
-                    .font(.subheadline)
-                    .foregroundStyle(Theme.aubergineMuted)
-                ProgressBar(value: min(estimate.amount / budget.amount, 1),
-                            tint: difference > 0 ? Theme.tomatoDeep : Theme.herb, height: 8)
-                Text(difference > 0 ? String(localized: "Over budget by \(delta)") :
-                    difference < 0 ? String(localized: "\(delta) under budget") : String(localized: "On budget"))
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(difference > 0 ? Theme.tomatoDeep : Theme.herb)
-            }
-            Divider()
-            ViewThatFits(in: .horizontal) {
-                HStack { storeLabel; Spacer(); compareButton }
-                VStack(alignment: .leading, spacing: Theme.Spacing.s) { storeLabel; compareButton }
-            }
+            .cardStyle()
             if let plan = planStore.currentPlan {
                 let count = planStore.groceryList.itemCount + planStore.extras.count
                 let range = DateText.range(from: plan.weekStartDate, to: plan.weekEndDate)
-                Text("\(count) items · \(range)")
-                    .font(.caption)
-                    .foregroundStyle(Theme.aubergineMuted)
+                (Text("\(count) items · ").foregroundStyle(Theme.aubergineMuted) + Text(range).foregroundStyle(Theme.tomatoDeep))
+                    .font(.subheadline.weight(.medium))
+                    .padding(.horizontal, Theme.Spacing.xs)
             }
         }
-        .cardStyle()
+    }
+
+    private var difference: Double? {
+        guard let estimate = planStore.basketEstimate, let budget = GroceryEstimate(planStore.budget), budget.amount > 0 else { return nil }
+        return estimate.difference(from: budget)
+    }
+
+    private var isOver: Bool { (difference ?? 0) > 0 }
+
+    private var budgetStatus: String? {
+        guard let difference else { return nil }
+        let delta = profileStore.formatMoney(abs(difference))
+        if difference > 0 { return String(localized: "Over budget by \(delta)") }
+        if difference < 0 { return String(localized: "\(delta) under budget") }
+        return String(localized: "On budget")
     }
 
     private var storeLabel: some View {
-        Label { Text("Shopping at \(profileStore.store?.name ?? profileStore.storeName)") } icon: { Glyph(name: "glyph-store", size: 16) }
+        Text("Shopping at \(profileStore.store?.name ?? profileStore.storeName)")
             .font(.subheadline.weight(.semibold))
             .foregroundStyle(Theme.aubergine)
+            .lineLimit(1)
+            .minimumScaleFactor(0.85)
     }
 
     private var compareButton: some View {
-        Button("Compare", action: onCompare)
-            .buttonStyle(.borderless)
+        Button(action: onCompare) {
+            HStack(spacing: Theme.Spacing.xxs) {
+                Text("Compare")
+                Image(systemName: "chevron.right").font(.caption.weight(.bold))
+            }
             .font(.subheadline.weight(.bold))
             .foregroundStyle(Theme.tomatoDeep)
-            .disabled(!planStore.hasPlan)
-            .accessibilityFocused(compareFocused)
+            .padding(.horizontal, Theme.Spacing.m)
+            .frame(minHeight: 40)
+            .background(Capsule().fill(Theme.tomatoSoft))
+        }
+        .buttonStyle(.plain)
+        .disabled(!planStore.hasPlan)
+        .opacity(planStore.hasPlan ? 1 : 0.5)
+        .accessibilityFocused(compareFocused)
     }
 }
 
@@ -391,55 +427,59 @@ struct GroceryRow: View {
         Button {
             withAnimation(reduceMotion ? nil : Theme.Motion.update) { planStore.toggleChecked(item.key) }
         } label: {
-            HStack(alignment: .top, spacing: Theme.Spacing.m) {
+            HStack(alignment: .center, spacing: Theme.Spacing.m) {
                 CheckCircle(isChecked: checked)
-                IngredientThumbnail(ingredientID: item.ingredientId, showsBackground: false)
+                // A big photo, like a shelf label: easy to spot in the shop.
+                IngredientThumbnail(ingredientID: item.ingredientId, size: 60, showsBackground: false)
+                    .opacity(checked ? 0.45 : 1)
                 VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                     Text(item.name.capitalizedFirst)
-                        .font(.system(.body, design: .rounded).weight(.semibold))
+                        .font(.system(.title3, design: .rounded).weight(.semibold))
                         .strikethrough(checked, color: Theme.aubergineFaint)
                         .foregroundStyle(checked ? Theme.aubergineFaint : Theme.aubergine)
+                        .fixedSize(horizontal: false, vertical: true)
                     if !item.isPantryStaple {
                         Text(item.displayQuantity)
-                            .font(.subheadline)
+                            .font(.system(.body, design: .rounded))
                             .foregroundStyle(checked ? Theme.aubergineFaint : Theme.aubergineMuted)
-                    }
-                    Text(item.neededText)
-                        .font(.caption)
-                        .foregroundStyle(Theme.aubergineFaint)
-                    let recipes = planStore.recipesByGroceryKey[item.key] ?? []
-                    if !recipes.isEmpty {
-                        HStack(spacing: -5) {
-                            ForEach(recipes.prefix(3)) { recipe in
-                                DishTileView(recipe: recipe, size: 21)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().strokeBorder(Theme.card, lineWidth: 1))
-                            }
-                            if recipes.count > 3 {
-                                Text("+\(recipes.count - 3)")
-                                    .font(.caption2.weight(.semibold))
-                                    .padding(.leading, 8)
-                            }
-                        }
-                        .accessibilityElement(children: .ignore)
-                        .accessibilityLabel(Text(recipes.map(\.title).formatted(.list(type: .and))))
-                    }
-                    if !item.usedOnWeekdays.isEmpty {
-                        Text(DateText.usedOn(item.usedOnWeekdays))
+                    } else {
+                        Text(item.neededText)
                             .font(.caption)
                             .foregroundStyle(Theme.aubergineFaint)
                     }
                 }
-                Spacer(minLength: 4)
-                if item.hasPrice && !item.isPantryStaple {
-                    Text("~" + profileStore.formatMoney(item.cost))
-                        .font(.caption.weight(.semibold))
-                        .monospacedDigit()
-                        .foregroundStyle(Theme.aubergineFaint)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .trailing, spacing: Theme.Spacing.xs) {
+                    let recipes = planStore.recipesByGroceryKey[item.key] ?? []
+                    if !recipes.isEmpty {
+                        // The meals it's for, as small overlapping plates.
+                        HStack(spacing: -10) {
+                            ForEach(recipes.prefix(3)) { recipe in
+                                DishTileView(recipe: recipe, size: 30)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().strokeBorder(Theme.card, lineWidth: 2))
+                            }
+                            if recipes.count > 3 {
+                                Text("+\(recipes.count - 3)")
+                                    .font(.caption2.weight(.semibold))
+                                    .foregroundStyle(Theme.aubergineMuted)
+                                    .padding(.leading, 12)
+                            }
+                        }
+                        .opacity(checked ? 0.45 : 1)
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(Text(recipes.map(\.title).formatted(.list(type: .and))))
+                    }
+                    if item.hasPrice && !item.isPantryStaple {
+                        Text("~" + profileStore.formatMoney(item.cost))
+                            .font(.caption.weight(.semibold))
+                            .monospacedDigit()
+                            .foregroundStyle(Theme.aubergineFaint)
+                    }
                 }
             }
-            .frame(minHeight: 44)
-            .padding(.vertical, 4)
+            .frame(minHeight: 72)
+            .padding(.vertical, Theme.Spacing.xs)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
