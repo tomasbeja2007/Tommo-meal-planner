@@ -71,7 +71,7 @@ struct RecipesView: View {
                     }
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
-                .padding(.bottom, 82)
+                .padding(.bottom, Theme.Size.tabBarClearance)
             }
             .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())

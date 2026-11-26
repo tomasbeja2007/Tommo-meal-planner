@@ -318,8 +318,8 @@ struct SelectChip: View {
                     .lineLimit(1)
             }
             .foregroundStyle(isSelected ? Color.white : Theme.aubergine)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 9)
+            .padding(.horizontal, Theme.Spacing.m)
+            .padding(.vertical, Theme.Spacing.s)
             .frame(minHeight: 40)
             .background(Capsule().fill(isSelected ? Theme.aubergine : Theme.card))
             .overlay(Capsule().stroke(isSelected ? Color.clear : Theme.line, lineWidth: 1))

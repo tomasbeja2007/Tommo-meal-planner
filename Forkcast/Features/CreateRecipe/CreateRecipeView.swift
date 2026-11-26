@@ -168,7 +168,7 @@ private struct TagsSection: View {
                     }
                 }
             }
-            .padding(.vertical, 4)
+            .padding(.vertical, Theme.Spacing.xs)
         } header: {
             Text("Tags")
         }
@@ -225,7 +225,7 @@ private struct IngredientEditorRow: View {
                     .keyboardType(.numbersAndPunctuation)
                     .multilineTextAlignment(.center)
                     .frame(width: 52)
-                    .padding(.vertical, 8)
+                    .padding(.vertical, Theme.Spacing.s)
                     .background(RoundedRectangle(cornerRadius: Theme.Radius.small, style: .continuous).fill(Theme.creamDeep))
                     .accessibilityLabel(Text("Amount"))
                 Menu {
@@ -237,8 +237,8 @@ private struct IngredientEditorRow: View {
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(Theme.aubergine)
                         .frame(minWidth: 56)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 6)
+                        .padding(.vertical, Theme.Spacing.s)
+                        .padding(.horizontal, Theme.Spacing.inline)
                         .background(RoundedRectangle(cornerRadius: Theme.Radius.small, style: .continuous).fill(Theme.creamDeep))
                 }
                 .accessibilityLabel(Text("Unit"))
@@ -312,7 +312,7 @@ private struct StepsEditorSection: View {
                         .foregroundStyle(Color.white)
                         .frame(width: 24, height: 24)
                         .background(Circle().fill(Theme.tomato))
-                        .padding(.top, 2)
+                        .padding(.top, Theme.Spacing.xxs)
                     TextField(String(localized: "Describe this step…"), text: textBinding(for: step.id), axis: .vertical)
                         .lineLimit(1...6)
                 }

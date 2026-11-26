@@ -182,7 +182,7 @@ struct IngredientHero: View {
             .scaledToFill()
             .frame(width: screenHeight * 0.48, height: screenHeight)
             .clipShape(corners)
-            .padding(5)
+            .padding(Theme.Spacing.xs)
             .background(Color(white: 0.14), in: corners)
             .rotation3DEffect(.degrees(-9), axis: (x: 0, y: 1, z: 0), perspective: 0.5)
             .rotationEffect(.degrees(-10))

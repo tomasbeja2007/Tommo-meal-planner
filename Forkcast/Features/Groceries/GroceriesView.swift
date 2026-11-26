@@ -123,7 +123,7 @@ struct GroceriesView: View {
             Section {
                 GroceryHeader(compareFocused: $compareFocused) { showsCompare = true }
                     .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .listRowInsets(EdgeInsets(top: Theme.Spacing.xs, leading: 0, bottom: Theme.Spacing.xs, trailing: 0))
                 Picker(String(localized: "Sort"), selection: $sortMode) {
                     ForEach(SortMode.allCases) { mode in
                         Text(mode.title).tag(mode)
@@ -131,7 +131,7 @@ struct GroceriesView: View {
                 }
                 .pickerStyle(.segmented)
                 .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 8, trailing: 0))
+                .listRowInsets(EdgeInsets(top: Theme.Spacing.xs, leading: 0, bottom: Theme.Spacing.s, trailing: 0))
             }
             if !planStore.extras.isEmpty { ExtrasSection() }
             if sortMode == .aisle {
@@ -385,7 +385,7 @@ private struct StoreComparisonSheet: View {
                     Text("Full estimate unavailable").font(.caption).foregroundStyle(Theme.aubergineMuted)
                 }
             }
-            Spacer(minLength: 4)
+            Spacer(minLength: Theme.Spacing.xs)
             if let price = estimates[store.id] {
                 Text(profileStore.formatMoney(price.amount)).font(.subheadline.weight(.bold)).monospacedDigit()
             }
@@ -453,7 +453,7 @@ struct GroceryRow: View {
                     let recipes = planStore.recipesByGroceryKey[item.key] ?? []
                     if !recipes.isEmpty {
                         // The meals it's for, as small overlapping plates.
-                        HStack(spacing: -10) {
+                        HStack(spacing: -Theme.Spacing.m) {
                             ForEach(recipes.prefix(3)) { recipe in
                                 DishTileView(recipe: recipe, size: 30)
                                     .clipShape(Circle())
@@ -463,7 +463,7 @@ struct GroceryRow: View {
                                 Text("+\(recipes.count - 3)")
                                     .font(.caption2.weight(.semibold))
                                     .foregroundStyle(Theme.aubergineMuted)
-                                    .padding(.leading, 12)
+                                    .padding(.leading, Theme.Spacing.m)
                             }
                         }
                         .opacity(checked ? 0.45 : 1)

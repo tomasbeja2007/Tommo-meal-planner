@@ -100,6 +100,12 @@ A 4-point scale with one 6 for tight inline gaps. Tokens: `Theme.Spacing`. No ot
 | `xxl` | 32 | Bottom breathing room above pinned buttons. |
 | `xxxl` | 48 | Top breathing room on celebration screens. |
 
+**Fixed patterns (so the same thing is always spaced the same)**
+- Chips: `m` horizontal × `s` vertical. Tags and small badges: `s` × `xs`.
+- Overlapping avatar or dish stacks use a negative token (`-inline` for small plates, `-m` for 30 pt plates).
+- Scrolling tab screens end with `Theme.Size.tabBarClearance` (96) so the last card clears the floating tab bar.
+- `0` is allowed (flush stacks). Any other raw number needs a comment saying why it's geometry, not spacing.
+
 **Layout rules**
 - Screens: `gutter` left and right, content in a `ScrollView`, the primary action **pinned at the bottom** with
   `.safeAreaInset(edge: .bottom)` on a `cream` (97%) background, padded `gutter` × `s`.

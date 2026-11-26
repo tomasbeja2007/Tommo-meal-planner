@@ -111,7 +111,7 @@ struct MainTabView: View {
             }
             .padding(.trailing, Theme.Spacing.m)
             .padding(.leading, Theme.Spacing.m)
-            .padding(.bottom, 56)
+            .padding(.bottom, Theme.Size.tabBarHeight)
         }
         .accessibilityAction(.escape) { setActions(false) }
     }

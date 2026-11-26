@@ -78,7 +78,7 @@ struct ProfileView: View {
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
                 .padding(.top, Theme.Spacing.s)
-                .padding(.bottom, 110)
+                .padding(.bottom, Theme.Size.tabBarClearance)
             }
             .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())

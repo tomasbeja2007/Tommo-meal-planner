@@ -50,7 +50,7 @@ struct WhyCheaperSheet: View {
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(Theme.aubergine)
                 }
-                .padding(.top, 4)
+                .padding(.top, Theme.Spacing.xs)
             }
         }
         .cardStyle()

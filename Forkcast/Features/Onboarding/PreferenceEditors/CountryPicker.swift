@@ -46,7 +46,7 @@ private struct CountryRow: View {
                 Text(country.name)
                     .font(.system(.body, design: .rounded).weight(.semibold))
                     .foregroundStyle(Theme.aubergine)
-                Spacer(minLength: 8)
+                Spacer(minLength: Theme.Spacing.s)
                 TagLabel(text: country.currencyCode)
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill").foregroundStyle(Theme.tomato)

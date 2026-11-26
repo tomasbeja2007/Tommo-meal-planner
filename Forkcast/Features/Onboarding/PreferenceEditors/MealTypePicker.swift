@@ -45,8 +45,8 @@ private struct MealTypeChip: View {
                         .transition(.scale(scale: 0.6).combined(with: .opacity))
                 }
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 9)
+            .padding(.horizontal, Theme.Spacing.m)
+            .padding(.vertical, Theme.Spacing.s)
             .frame(minHeight: 44)
             .background(Capsule().fill(isOn ? Theme.tomatoSoft : Theme.creamDeep))
             .overlay(Capsule().stroke(isOn ? Theme.tomato : Color.clear, lineWidth: 2))

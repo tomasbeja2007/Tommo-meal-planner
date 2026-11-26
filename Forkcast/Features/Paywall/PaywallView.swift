@@ -67,7 +67,7 @@ struct PaywallView: View {
                     if dynamicTypeSize.isAccessibilitySize { bottomBar }
                 }
                 .padding(.horizontal, Theme.Spacing.gutter)
-                .padding(.top, 64)
+                .padding(.top, Theme.Spacing.xxxl + Theme.Spacing.l)  // clears the close button
                 .padding(.bottom, Theme.Spacing.l)
             }
             .safeAreaInset(edge: .bottom) {
@@ -374,8 +374,8 @@ private struct PlanCard: View {
                     Text(badge)
                         .font(.caption.weight(.heavy))
                         .foregroundStyle(Theme.aubergine)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, Theme.Spacing.s)
+                        .padding(.vertical, Theme.Spacing.xs)
                         .background(Capsule().fill(Theme.saffron))
                         .padding(.bottom, Theme.Spacing.s)
                 }

@@ -99,8 +99,8 @@ struct DislikeChip: View {
                     }
             }
             .foregroundStyle(isStruck ? Theme.cream : Theme.aubergine)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 9)
+            .padding(.horizontal, Theme.Spacing.m)
+            .padding(.vertical, Theme.Spacing.s)
             .frame(minHeight: 36)
             .background(Capsule().fill(isStruck ? Theme.aubergine : Theme.creamDeep))
             .contentShape(Capsule())

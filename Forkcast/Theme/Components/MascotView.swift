@@ -231,6 +231,6 @@ enum AssetImage {
         MascotView(size: 90, mood: .cheer)
         MascotView(size: 90, mood: .thinking)
     }
-    .padding(40)
+    .padding(Theme.Spacing.xxl)
     .creamBackground()
 }

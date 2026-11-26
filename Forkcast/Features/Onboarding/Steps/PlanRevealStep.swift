@@ -206,10 +206,10 @@ private struct RevealDayCard: View {
                             .font(.caption2.weight(.bold))
                             .labelStyle(CompactLabelStyle())
                             .foregroundStyle(Theme.aubergine)
-                            .padding(.horizontal, 7)
-                            .padding(.vertical, 4)
+                            .padding(.horizontal, Theme.Spacing.s)
+                            .padding(.vertical, Theme.Spacing.xs)
                             .background(Capsule().fill(Theme.card.opacity(0.92)))
-                            .padding(6)
+                            .padding(Theme.Spacing.inline)
                     }
                 }
             VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
@@ -225,7 +225,7 @@ private struct RevealDayCard: View {
             }
             if !others.isEmpty {
                 HStack(spacing: Theme.Spacing.inline) {
-                    HStack(spacing: -6) {
+                    HStack(spacing: -Theme.Spacing.inline) {
                         ForEach(Array(others.prefix(3).enumerated()), id: \.offset) { _, other in
                             DishTileView(recipe: other, size: 24)
                                 .clipShape(Circle())
@@ -659,7 +659,7 @@ private struct DishRivers: View {
                         }
                 }
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, Theme.Spacing.s)
         }
         .frame(height: tile * CGFloat(rows.count) + gap * CGFloat(max(0, rows.count - 1)) + 16)
         .clipped()

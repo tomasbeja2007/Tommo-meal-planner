@@ -124,7 +124,7 @@ private struct SwapRow: View {
                         .foregroundStyle(Theme.aubergineMuted)
                     MacrosLine(macros: repository.nutrition(for: recipe).macros)
                 }
-                Spacer(minLength: 4)
+                Spacer(minLength: Theme.Spacing.xs)
                 DeltaChip(delta: delta, currencyCode: currencyCode)
             }
             .contentShape(Rectangle())
@@ -145,8 +145,8 @@ struct DeltaChip: View {
             .font(.caption.weight(.bold))
             .monospacedDigit()
             .foregroundStyle(cheaper ? Theme.herb : Theme.aubergineMuted)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
+            .padding(.horizontal, Theme.Spacing.s)
+            .padding(.vertical, Theme.Spacing.xs)
             .background(Capsule().fill(cheaper ? Theme.herbSoft : Theme.creamDeep))
             .accessibilityLabel(Text(cheaper ? "saves \(MoneyFormat.string(-delta, currencyCode: currencyCode))" : "adds \(MoneyFormat.string(delta, currencyCode: currencyCode))"))
     }

@@ -19,7 +19,7 @@ struct SectionHeader: View {
                         .foregroundStyle(Theme.aubergineMuted)
                 }
             }
-            Spacer(minLength: 8)
+            Spacer(minLength: Theme.Spacing.s)
             if let actionTitle, let action {
                 Button(actionTitle, action: action)
                     .font(.system(.subheadline, design: .rounded).weight(.semibold))

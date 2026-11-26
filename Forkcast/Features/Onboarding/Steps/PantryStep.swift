@@ -97,7 +97,7 @@ private struct PantryTile: View {
             .overlay(RoundedRectangle(cornerRadius: Theme.Radius.button, style: .continuous).stroke(isSelected ? Theme.tomato : Color.clear, lineWidth: 2))
             .overlay(alignment: .topTrailing) {
                 if isSelected {
-                    CheckBadge().padding(6).transition(reduceMotion ? .opacity : .scale(scale: 0.6).combined(with: .opacity))
+                    CheckBadge().padding(Theme.Spacing.inline).transition(reduceMotion ? .opacity : .scale(scale: 0.6).combined(with: .opacity))
                 }
             }
             .contentShape(Rectangle())

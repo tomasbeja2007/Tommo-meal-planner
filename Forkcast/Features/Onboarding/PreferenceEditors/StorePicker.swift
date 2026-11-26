@@ -78,7 +78,7 @@ struct StoreTile: View {
             .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(isSelected ? Theme.tomatoSoft : Theme.card))
             .overlay(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).stroke(isSelected ? Theme.tomato : Theme.line, lineWidth: isSelected ? 2 : 1))
             .overlay(alignment: .topTrailing) {
-                if isSelected { CheckBadge().padding(8) }
+                if isSelected { CheckBadge().padding(Theme.Spacing.s) }
             }
             .contentShape(Rectangle())
         }
@@ -154,7 +154,7 @@ struct StoreLogo: View {
                     .resizable()
                     .interpolation(.high)
                     .scaledToFit()
-                    .padding(.horizontal, 6)
+                    .padding(.horizontal, Theme.Spacing.inline)
                     .frame(maxWidth: .infinity, maxHeight: height)
             } else {
                 Text(store.name)
@@ -162,7 +162,7 @@ struct StoreLogo: View {
                     .foregroundStyle(Color(hexString: store.brandColorHex))
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, Theme.Spacing.s)
                     .frame(maxWidth: .infinity, maxHeight: height)
             }
         }

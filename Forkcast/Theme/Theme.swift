@@ -83,6 +83,10 @@ enum Theme {
         static let iconButton: CGFloat = 44
         /// Corner mascot reactions on question screens.
         static let mascotCorner: CGFloat = 48
+        /// Height of the floating tab bar's footprint above the home indicator.
+        static let tabBarHeight: CGFloat = 56
+        /// Bottom inset for scrolling tab screens so the last card clears the floating tab bar.
+        static let tabBarClearance: CGFloat = 96
     }
 
     /// The only shadows in the app.

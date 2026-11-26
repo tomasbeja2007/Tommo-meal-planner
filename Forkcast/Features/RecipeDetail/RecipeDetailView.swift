@@ -699,7 +699,7 @@ private struct IngredientRow: View {
                     Text("no nutrition data").font(.caption2).foregroundStyle(Theme.aubergineFaint)
                 }
             }
-            Spacer(minLength: 8)
+            Spacer(minLength: Theme.Spacing.s)
             Text(line.amountText)
                 .font(.body.weight(.semibold))
                 .monospacedDigit()
@@ -738,8 +738,8 @@ private struct MethodSection: View {
                 }
                 .background(alignment: .topLeading) {
                     Rectangle().fill(Theme.line).frame(width: 1)
-                        .padding(.leading, 14)
-                        .padding(.bottom, 24)
+                        .padding(.leading, 14)  // geometry: the centre of the 28 pt step-number circle
+                        .padding(.bottom, Theme.Spacing.xl)
                         .accessibilityHidden(true)
                 }
             }
@@ -809,7 +809,7 @@ struct StepChips: View {
                                 Label { Text(label) } icon: { Glyph(name: "glyph-step-timer", size: 14) }
                                     .font(.caption.weight(.bold))
                                     .foregroundStyle(Theme.aubergine)
-                                    .padding(.horizontal, 10)
+                                    .padding(.horizontal, Theme.Spacing.s)
                                     .frame(minHeight: 44)
                                     .background(Capsule().fill(Theme.saffronSoft))
                                     .overlay(Capsule().stroke(Theme.saffron, lineWidth: 1))
@@ -838,9 +838,9 @@ struct StepChips: View {
             }
         }
         .foregroundStyle(Theme.aubergine)
-        .padding(.leading, 2)
-        .padding(.trailing, 8)
-        .padding(.vertical, 2)
+        .padding(.leading, Theme.Spacing.xxs)
+        .padding(.trailing, Theme.Spacing.s)
+        .padding(.vertical, Theme.Spacing.xxs)
         .background(Theme.creamDeep, in: Capsule())
         .accessibilityElement(children: .combine)
     }

@@ -59,7 +59,7 @@ struct PlanView: View {
                         }
                     }
                     .padding(.horizontal, Theme.Spacing.gutter)
-                    .padding(.bottom, 78)
+                    .padding(.bottom, Theme.Size.tabBarClearance)
                 }
             }
             .background(Theme.cream.ignoresSafeArea())
@@ -328,9 +328,9 @@ struct PlanHeader: View {
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(Theme.tomatoDeep)
             }
-            .padding(.leading, 4)
-            .padding(.trailing, 10)
-            .padding(.vertical, 4)
+            .padding(.leading, Theme.Spacing.xs)
+            .padding(.trailing, Theme.Spacing.m)
+            .padding(.vertical, Theme.Spacing.xs)
             .background(Capsule().fill(Theme.tomatoSoft))
         }
         .padding(.top, Theme.Spacing.l)

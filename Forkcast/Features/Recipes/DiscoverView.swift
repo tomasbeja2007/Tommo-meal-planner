@@ -166,7 +166,7 @@ struct RecipeCarousel: View {
                         }
                     }
                     .padding(.horizontal, Theme.Spacing.gutter)
-                    .padding(.vertical, 6)
+                    .padding(.vertical, Theme.Spacing.inline)
                 }
             }
         }

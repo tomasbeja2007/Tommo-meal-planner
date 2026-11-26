@@ -54,7 +54,7 @@ struct CountStepperRow: View {
                     Text(subtitle).font(.caption).foregroundStyle(Theme.aubergineMuted)
                 }
             }
-            Spacer(minLength: 8)
+            Spacer(minLength: Theme.Spacing.s)
             RoundStepper(value: $value, range: range)
         }
         .padding(Theme.Spacing.l)

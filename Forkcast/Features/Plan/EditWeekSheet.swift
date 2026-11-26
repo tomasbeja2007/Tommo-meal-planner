@@ -44,7 +44,7 @@ struct EditWeekSheet: View {
                             onAdd: { pickerIndex = index }
                         )
                         .listRowBackground(Theme.card)
-                        .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+                        .listRowInsets(EdgeInsets(top: Theme.Spacing.s, leading: Theme.Spacing.m, bottom: Theme.Spacing.s, trailing: Theme.Spacing.m))
                     }
                     .onMove { from, to in
                         rowsByType[mealType]?.move(fromOffsets: from, toOffset: to)

@@ -97,7 +97,7 @@ private struct FeedbackRow: View {
                 .font(.system(.subheadline, design: .rounded).weight(.semibold))
                 .foregroundStyle(Theme.aubergine)
                 .lineLimit(2)
-            Spacer(minLength: 4)
+            Spacer(minLength: Theme.Spacing.xs)
             RatingButton(systemImage: choice == .like ? "heart.fill" : "heart", isOn: choice == .like, onTint: Theme.tomato, label: String(localized: "Like")) {
                 onChoose(.like)
             }

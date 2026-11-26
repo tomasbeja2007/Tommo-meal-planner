@@ -35,8 +35,8 @@ struct Chip: View {
             }
         }
         .foregroundStyle(isSelected ? Theme.tomatoDeep : Theme.aubergine)
-        .padding(.horizontal, 14)
-        .padding(.vertical, 9)
+        .padding(.horizontal, Theme.Spacing.m)
+        .padding(.vertical, Theme.Spacing.s)
         .frame(minHeight: 36)
         .background(Capsule().fill(isSelected ? Theme.tomatoSoft : Theme.creamDeep))
         .overlay(Capsule().stroke(isSelected ? Theme.tomato : Color.clear, lineWidth: 1))
@@ -54,8 +54,8 @@ struct TagLabel: View {
         Text(text)
             .font(.system(.caption, design: .rounded).weight(.semibold))
             .foregroundStyle(tint)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
+            .padding(.horizontal, Theme.Spacing.s)
+            .padding(.vertical, Theme.Spacing.xs)
             .background(Capsule().fill(fill))
             .lineLimit(1)
     }
@@ -63,7 +63,7 @@ struct TagLabel: View {
 
 /// Simple wrapping layout for chips (iOS 16+ Layout protocol).
 struct FlowLayout: Layout {
-    var spacing: CGFloat = 8
+    var spacing: CGFloat = Theme.Spacing.s
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         let maxWidth: CGFloat = proposal.width ?? .greatestFiniteMagnitude

@@ -148,7 +148,7 @@ struct TermsCheckbox: View {
                 .font(.subheadline)
                 .foregroundStyle(Theme.aubergineMuted)
                 .tint(Theme.tomato)
-                .padding(.top, 11)
+                .padding(.top, Theme.Spacing.m)
             Spacer(minLength: 0)
         }
     }
