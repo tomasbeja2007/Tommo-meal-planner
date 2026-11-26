@@ -86,6 +86,14 @@ struct ProfileView: View {
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle(String(localized: "Profile"))
             .toolbar(.hidden, for: .navigationBar)
+            .navigationDestination(for: ProfileRoute.self) { route in
+                switch route {
+                case .nutrition:
+                    if let profile = profileStore.profile {
+                        NutritionGoalsPage(profile: profile)
+                    }
+                }
+            }
         }
         .sheet(isPresented: $showsPantry) { PantryEditorSheet(initial: planStore.currentOnHand) }
         .sheet(item: $editing) { kind in
@@ -147,7 +155,7 @@ struct ProfileView: View {
                 title: String(localized: "Nutrition goals"),
                 subtitle: nutritionSubtitle(profile),
                 value: profile.nutritionTarget.map { String(localized: "\($0.calories.formatted()) kcal") } ?? String(localized: "Off")
-            ) { editing = .nutrition }
+            ) { router.youPath.append(ProfileRoute.nutrition) }
             ProfileDivider()
             ProfileRow(systemImage: "fork.knife", title: String(localized: "Meals"), value: MealType.ordered(profile.mealTypes).map { $0.title }.joined(separator: ", ")) { editing = .meals }
             ProfileDivider()

@@ -281,43 +281,56 @@ struct NutritionTargetStep: View {
     }
 }
 
+/// "Plan around my macros" switch, then (when on) a calorie ring with − / +, the macro split presets
+/// with a row per macro, and the guidance notes. Used in onboarding and on Profile → Nutrition goals.
 struct NutritionTargetEditor: View {
     @Binding var target: NutritionTarget?
+    /// Profile only: the plan already exists, so say when changes take effect.
+    var showsNextPlanNote: Bool = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var lastTarget = NutritionTarget()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-            OptionTile(
-                title: String(localized: "No, keep it simple"),
-                subtitle: String(localized: "Plan meals without a daily target."),
-                systemImage: "fork.knife",
-                isSelected: target == nil
-            ) {
-                if let target { lastTarget = target }
-                self.target = nil
-            }
-
-            OptionTile(
-                title: String(localized: "Yes, set a target"),
-                subtitle: String(localized: "Choose daily calories and a macro split."),
-                systemImage: "target",
-                isSelected: target != nil
-            ) {
-                if target == nil { target = lastTarget }
-            }
+        VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+            ProfileToggleRow(
+                glyph: "glyph-calories",
+                title: String(localized: "Plan around my macros"),
+                subtitle: String(localized: "We fit your meals to these numbers"),
+                isOn: Binding(
+                    get: { target != nil },
+                    set: { isOn in
+                        if isOn {
+                            if target == nil { target = lastTarget }
+                        } else {
+                            if let target { lastTarget = target }
+                            target = nil
+                        }
+                    }
+                )
+            )
+            .background(RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous).fill(Theme.card))
+            .elevation(Theme.Elevation.card)
 
             if let current = target {
                 NutritionTargetControls(target: Binding(
                     get: { target ?? current },
                     set: { target = $0 }
                 ))
-                .transition(.opacity)
-                Text("The 2,000 kcal starting value is a reference. Your needs may differ.")
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+
+            VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                if showsNextPlanNote {
+                    Text("Changes apply to your next plan.")
+                        .font(.subheadline)
+                        .foregroundStyle(Theme.aubergineMuted)
+                }
+                Text("The 2,000 kcal starting point is based on average adult needs. Targets here are general guidance, not medical advice. Talk to a doctor or registered dietitian about what's right for you.")
                     .font(.footnote)
-                    .foregroundStyle(Theme.aubergineMuted)
+                    .foregroundStyle(Theme.aubergineFaint)
                     .fixedSize(horizontal: false, vertical: true)
             }
+            .padding(.horizontal, Theme.Spacing.xs)
         }
         .animation(Theme.motion(reduceMotion), value: target != nil)
     }
@@ -327,75 +340,99 @@ private struct NutritionTargetControls: View {
     @Binding var target: NutritionTarget
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    private let presetColumns: [GridItem] = [
+        GridItem(.flexible(), spacing: Theme.Spacing.s),
+        GridItem(.flexible(), spacing: Theme.Spacing.s)
+    ]
+
     var body: some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.l) {
-            ViewThatFits(in: .horizontal) {
-                HStack {
-                    Text("Daily calories")
-                        .font(.headline)
-                        .fixedSize(horizontal: true, vertical: false)
-                    Spacer(minLength: Theme.Spacing.s)
-                    calorieStepper.fixedSize(horizontal: true, vertical: false)
+        VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+            ProfileGroup(title: String(localized: "Daily calories")) {
+                HStack(spacing: Theme.Spacing.l) {
+                    calorieButton(systemImage: "minus", delta: -NutritionTarget.calorieStep)
+                    CalorieRing(calories: target.calories, split: target.percentages)
+                        .frame(width: 150, height: 150)
+                        .animation(reduceMotion ? nil : Theme.Motion.update, value: target)
+                    calorieButton(systemImage: "plus", delta: NutritionTarget.calorieStep)
                 }
-                VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-                    Text("Daily calories").font(.headline)
-                    calorieStepper
-                }
-            }
-
-            VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-                Text("Macro split")
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(Theme.aubergineMuted)
-                    .accessibilityAddTraits(.isHeader)
-                FlowLayout(spacing: Theme.Spacing.s) {
-                    ForEach(NutritionTarget.Preset.allCases) { preset in
-                        presetButton(preset)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, Theme.Spacing.l)
+                .sensoryFeedback(.selection, trigger: target.calories)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("Daily calorie target"))
+                .accessibilityValue(Text("\(target.calories.formatted()) kilocalories"))
+                .accessibilityAdjustableAction { direction in
+                    switch direction {
+                    case .increment: change(by: NutritionTarget.calorieStep)
+                    case .decrement: change(by: -NutritionTarget.calorieStep)
+                    @unknown default: break
                     }
                 }
             }
-            .sensoryFeedback(.selection, trigger: target.preset)
 
-            if target.preset == .custom {
-                VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-                    Stepper(value: $target.customProteinPercent, in: 0...(100 - target.percentages.carbs)) {
-                        Text("Protein: \(target.percentages.protein)%")
+            ProfileGroup(title: String(localized: "Macro split")) {
+                VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                    LazyVGrid(columns: presetColumns, spacing: Theme.Spacing.s) {
+                        ForEach(NutritionTarget.Preset.allCases) { preset in
+                            presetButton(preset)
+                        }
                     }
-                    Stepper(value: $target.customCarbPercent, in: 0...(100 - target.percentages.protein)) {
-                        Text("Carbs: \(target.percentages.carbs)%")
+                    .sensoryFeedback(.selection, trigger: target.preset)
+                    let split = target.percentages
+                    let grams = target.grams
+                    macroRow(String(localized: "Protein"), grams: grams.protein, percent: split.protein, tint: Theme.macroProtein)
+                    macroRow(String(localized: "Carbs"), grams: grams.carbs, percent: split.carbs, tint: Theme.macroCarbs)
+                    macroRow(String(localized: "Fat"), grams: grams.fat, percent: split.fat, tint: Theme.macroFat)
+                    if target.preset == .custom {
+                        VStack(spacing: Theme.Spacing.s) {
+                            customRow(String(localized: "Protein %"), value: $target.customProteinPercent, range: 0...(100 - split.carbs))
+                            customRow(String(localized: "Carbs %"), value: $target.customCarbPercent, range: 0...(100 - split.protein))
+                            Text("Fat takes the remaining share.")
+                                .font(.footnote)
+                                .foregroundStyle(Theme.aubergineMuted)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .transition(.opacity)
                     }
-                    Text("Fat: \(target.percentages.fat)% · remaining share")
-                        .foregroundStyle(Theme.aubergineMuted)
                 }
-                .font(.subheadline)
+                .padding(Theme.Spacing.l)
+                .animation(reduceMotion ? nil : Theme.Motion.update, value: target)
             }
 
-            macroSummary
-
-            Label("You can change your target anytime in Profile.", systemImage: "info.circle")
-                .font(.footnote)
-                .foregroundStyle(Theme.aubergineMuted)
+            Label {
+                Text("Your target is for one adult. Tommo sizes each day's portions so one adult's day lands near it.")
+                    .fixedSize(horizontal: false, vertical: true)
+            } icon: {
+                Image(systemName: "info.circle")
+            }
+            .font(.footnote)
+            .foregroundStyle(Theme.aubergineMuted)
+            .padding(Theme.Spacing.m)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(RoundedRectangle(cornerRadius: Theme.Radius.medium, style: .continuous).fill(Theme.creamDeep))
         }
-        .foregroundStyle(Theme.aubergine)
-        .cardStyle()
     }
 
-    private var calorieStepper: some View {
-        RoundStepper(value: $target.calories, range: NutritionTarget.calorieRange, suffix: " kcal", step: NutritionTarget.calorieStep)
-            .lineLimit(1)
-            .minimumScaleFactor(0.65)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text("Daily calorie target"))
-            .accessibilityValue(Text("\(target.calories.formatted()) kilocalories"))
-            .accessibilityAdjustableAction { direction in
-                switch direction {
-                case .increment:
-                    target.calories = min(NutritionTarget.calorieRange.upperBound, target.calories + NutritionTarget.calorieStep)
-                case .decrement:
-                    target.calories = max(NutritionTarget.calorieRange.lowerBound, target.calories - NutritionTarget.calorieStep)
-                @unknown default: break
-                }
-            }
+    private func change(by delta: Int) {
+        let range = NutritionTarget.calorieRange
+        target.calories = min(range.upperBound, max(range.lowerBound, target.calories + delta))
+    }
+
+    private func calorieButton(systemImage: String, delta: Int) -> some View {
+        let range = NutritionTarget.calorieRange
+        let enabled = delta > 0 ? target.calories < range.upperBound : target.calories > range.lowerBound
+        let isPlus = delta > 0
+        return Button { change(by: delta) } label: {
+            Image(systemName: systemImage)
+                .font(.system(size: 15, weight: .bold))
+                .foregroundStyle(isPlus ? Color.white : Theme.aubergine)
+                .frame(width: Theme.Size.tapTarget, height: Theme.Size.tapTarget)
+                .background(Circle().fill(isPlus ? Theme.aubergine : Theme.card))
+                .overlay(Circle().stroke(isPlus ? Color.clear : Theme.line, lineWidth: 1))
+                .opacity(enabled ? 1 : 0.4)
+        }
+        .buttonStyle(.plain)
+        .disabled(!enabled)
     }
 
     private func presetButton(_ preset: NutritionTarget.Preset) -> some View {
@@ -403,53 +440,118 @@ private struct NutritionTargetControls: View {
         return Button {
             target.preset = preset
         } label: {
-            Label(preset.title, systemImage: isSelected ? "checkmark" : "chart.bar.xaxis")
-                .font(.subheadline.weight(.semibold))
-                .padding(.horizontal, Theme.Spacing.m)
-                .frame(minHeight: 44)
-                .foregroundStyle(isSelected ? Theme.tomatoDeep : Theme.aubergine)
-                .background(isSelected ? Theme.tomatoSoft : Theme.cream, in: Capsule())
-                .overlay(Capsule().strokeBorder(isSelected ? Theme.tomato : Theme.line, lineWidth: 1))
+            HStack(spacing: Theme.Spacing.inline) {
+                Image(systemName: isSelected ? "checkmark" : preset.symbol)
+                    .font(.caption.weight(.bold))
+                Text(preset.title)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
+            }
+            .font(.system(.subheadline, design: .rounded).weight(.semibold))
+            .foregroundStyle(isSelected ? Color.white : Theme.aubergine)
+            .frame(maxWidth: .infinity, minHeight: Theme.Size.tapTarget)
+            .background(Capsule().fill(isSelected ? Theme.aubergine : Theme.card))
+            .overlay(Capsule().stroke(isSelected ? Color.clear : Theme.line, lineWidth: 1))
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
-    private var macroSummary: some View {
-        let split = target.percentages
-        let grams = target.grams
-        return VStack(alignment: .leading, spacing: Theme.Spacing.s) {
-            GeometryReader { geometry in
-                HStack(spacing: 0) {
-                    Theme.macroProtein.frame(width: geometry.size.width * CGFloat(split.protein) / 100)
-                    Theme.macroCarbs.frame(width: geometry.size.width * CGFloat(split.carbs) / 100)
-                    Theme.macroFat.frame(width: geometry.size.width * CGFloat(split.fat) / 100)
+    /// "● Protein      225 g   30%" with a bar filled to the percentage.
+    private func macroRow(_ name: String, grams: Int, percent: Int, tint: Color) -> some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+            HStack(spacing: Theme.Spacing.s) {
+                Circle().fill(tint).frame(width: 8, height: 8).accessibilityHidden(true)
+                Text(name)
+                    .font(.system(.subheadline, design: .rounded).weight(.semibold))
+                    .foregroundStyle(Theme.aubergine)
+                Spacer(minLength: Theme.Spacing.s)
+                Text("\(grams) g")
+                    .font(.system(.subheadline, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .monospacedDigit()
+                    .contentTransition(.numericText(value: Double(grams)))
+                Text("\(percent)%")
+                    .font(.subheadline)
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .monospacedDigit()
+                    .frame(minWidth: 40, alignment: .trailing)
+            }
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    Capsule().fill(Theme.creamDeep)
+                    Capsule().fill(tint).frame(width: proxy.size.width * CGFloat(percent) / 100)
                 }
-                .clipShape(Capsule())
             }
-            .frame(height: 8)
-            .animation(reduceMotion ? nil : Theme.Motion.update, value: target)
+            .frame(height: 6)
             .accessibilityHidden(true)
-            FlowLayout(spacing: Theme.Spacing.m) {
-                macroAmount(String(localized: "Protein"), grams: grams.protein, tint: Theme.macroProtein)
-                macroAmount(String(localized: "Carbs"), grams: grams.carbs, tint: Theme.macroCarbs)
-                macroAmount(String(localized: "Fat"), grams: grams.fat, tint: Theme.macroFat)
-            }
         }
+        .accessibilityElement(children: .combine)
     }
 
-    private func macroAmount(_ name: String, grams: Int, tint: Color) -> some View {
-        HStack(spacing: Theme.Spacing.xs) {
-            Circle().fill(tint).frame(width: 7, height: 7).accessibilityHidden(true)
-            Text("\(grams) g").fontWeight(.bold).monospacedDigit()
-            Text(name).foregroundStyle(Theme.aubergineMuted)
+    private func customRow(_ title: String, value: Binding<Int>, range: ClosedRange<Int>) -> some View {
+        HStack {
+            Text(title)
+                .font(.system(.subheadline, design: .rounded).weight(.semibold))
+                .foregroundStyle(Theme.aubergine)
+            Spacer(minLength: Theme.Spacing.s)
+            RoundStepper(value: value, range: range, suffix: "%", step: 5)
         }
-        .font(.caption)
-        .accessibilityElement(children: .combine)
+    }
+}
+
+/// The day's calories as a ring split into protein, carbs and fat.
+private struct CalorieRing: View {
+    let calories: Int
+    let split: (protein: Int, carbs: Int, fat: Int)
+
+    private let lineWidth: CGFloat = 16
+    /// Room for the round caps between segments, as a fraction of the ring.
+    private let gap: Double = 0.03
+
+    var body: some View {
+        let protein = Double(split.protein) / 100
+        let carbs = Double(split.carbs) / 100
+        ZStack {
+            Circle().stroke(Theme.creamDeep, lineWidth: lineWidth)
+            segment(from: 0, to: protein, color: Theme.macroProtein)
+            segment(from: protein, to: protein + carbs, color: Theme.macroCarbs)
+            segment(from: protein + carbs, to: 1, color: Theme.macroFat)
+            VStack(spacing: Theme.Spacing.xxs) {
+                Text(calories.formatted())
+                    .font(.system(.title, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .monospacedDigit()
+                    .contentTransition(.numericText(value: Double(calories)))
+                Text("kcal a day")
+                    .font(.caption)
+                    .foregroundStyle(Theme.aubergineMuted)
+            }
+        }
+        .padding(lineWidth / 2)
+    }
+
+    @ViewBuilder
+    private func segment(from start: Double, to end: Double, color: Color) -> some View {
+        if end - start > gap * 2 {
+            Circle()
+                .trim(from: start + gap, to: end - gap)
+                .stroke(color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+        }
     }
 }
 
 private extension NutritionTarget.Preset {
+    var symbol: String {
+        switch self {
+        case .balanced: return "chart.bar.fill"
+        case .highProtein: return "bolt.fill"
+        case .lowCarb: return "leaf.fill"
+        case .custom: return "slider.horizontal.3"
+        }
+    }
+
     var title: String {
         switch self {
         case .balanced: return String(localized: "Balanced")

@@ -63,6 +63,41 @@ enum PreferenceKind: String, Identifiable, CaseIterable {
     var affectsPlan: Bool { self != .units && self != .nutrition }
 }
 
+// MARK: - Pushed pages
+
+enum ProfileRoute: Hashable {
+    case nutrition
+}
+
+/// Nutrition goals as its own page (like the rest of Profile, edits save as you go).
+struct NutritionGoalsPage: View {
+    @Bindable var profile: UserProfile
+    @Environment(ProfileStore.self) private var profileStore: ProfileStore
+    @Environment(PlanStore.self) private var planStore: PlanStore
+
+    var body: some View {
+        ScrollView {
+            NutritionTargetEditor(
+                target: Binding(
+                    get: { profile.nutritionTarget },
+                    set: { newValue in
+                        profile.nutritionTarget = newValue
+                        profileStore.save()
+                        planStore.recompute()
+                    }
+                ),
+                showsNextPlanNote: true
+            )
+            .padding(.horizontal, Theme.Spacing.gutter)
+            .padding(.top, Theme.Spacing.s)
+            .padding(.bottom, Theme.Size.tabBarClearance)
+        }
+        .background(Theme.cream.ignoresSafeArea())
+        .navigationTitle(String(localized: "Nutrition goals"))
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
 // MARK: - Page building blocks
 
 /// A small uppercase title over one white card, with an optional grey note under it.
