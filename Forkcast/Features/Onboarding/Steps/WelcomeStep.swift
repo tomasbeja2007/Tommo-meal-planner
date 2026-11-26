@@ -183,7 +183,7 @@ struct IngredientHero: View {
             .frame(width: screenHeight * 0.48, height: screenHeight)
             .clipShape(corners)
             .padding(Theme.Spacing.xs)
-            .background(Color(white: 0.14), in: corners)
+            .background(Theme.Illustration.deviceBezel, in: corners)
             .rotation3DEffect(.degrees(-9), axis: (x: 0, y: 1, z: 0), perspective: 0.5)
             .rotationEffect(.degrees(-10))
             .shadow(color: Theme.aubergine.opacity(0.24), radius: 12, x: 3, y: 8)

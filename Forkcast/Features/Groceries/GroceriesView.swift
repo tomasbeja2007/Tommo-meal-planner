@@ -557,7 +557,7 @@ private struct ShopDoneToast: View {
         .background(
             Capsule()
                 .fill(Theme.card)
-                .shadow(color: Color.black.opacity(0.12), radius: 14, x: 0, y: 4)
+                .elevation(Theme.Elevation.lifted)
         )
     }
 }

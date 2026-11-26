@@ -31,7 +31,8 @@ Light mode only. Use the `Theme` names in code, never raw hex (the one exception
 | `herb` | `#5B8C5A` | Success only: checkmarks, "under budget", "saved". **Never a brand colour.** |
 | `herbSoft` | `#E3EEDF` | Success backgrounds. |
 | `macroProtein` / `macroCarbs` / `macroFat` | tomato 75% / saffron 85% / `#7A5C7E` 80% | Macro bars and dots only. |
-| `Illustration.*` | ocean, land, coast, atmosphere | The globe only. Never interface chrome. |
+| `scrim` | black 28% | Dims behind menus and under the status bar on photos. |
+| `Illustration.*` | ocean, land, coast, atmosphere, device bezel | Illustrations only (globe, welcome phone). Never interface chrome. |
 
 **Contrast (measured, WCAG):**
 
@@ -47,7 +48,14 @@ Light mode only. Use the `Theme` names in code, never raw hex (the one exception
 
 **Rules**
 - One tomato action per screen. Everything else is secondary (outline), quiet (text) or a chip.
-- Selected = `tomatoSoft` fill + `tomato` outline (1.5–2 pt) + `tomatoDeep` text. Unselected = `creamDeep`, no outline.
+- Selected **option tiles and filter chips** (onboarding questions, list pickers) = `tomatoSoft` fill + `tomato` outline
+  (1.5–2 pt) + `tomatoDeep` text. Unselected = `creamDeep`, no outline.
+- Selected **settings chips** (Profile chip groups, macro presets) = `aubergine` fill, white text, a ✓. Unselected =
+  `card` with a `line` hairline. Use this only where many chips sit in a card and several can be on at once.
+- Steppers: `−` is `card` with a `line` hairline; `+` is `aubergine` filled. Both 44 pt circles minimum.
+- Feature cards (Discover) are solid `tomatoDeep` with white text and a white pill button. No gradient.
+- Shadows only through `.elevation(Theme.Elevation.card / .lifted / .subtle)`. The exceptions are coloured glows
+  (selected day, celebration art) and shadows that animate inside illustrations.
 - Success is the only green. Errors and "over budget" use `tomatoDeep`, never a new red.
 - No gradients in interface chrome. Gradients are allowed inside illustrations (globe, pin, glows).
 
@@ -105,6 +113,11 @@ A 4-point scale with one 6 for tight inline gaps. Tokens: `Theme.Spacing`. No ot
 - Overlapping avatar or dish stacks use a negative token (`-inline` for small plates, `-m` for 30 pt plates).
 - Scrolling tab screens end with `Theme.Size.tabBarClearance` (96) so the last card clears the floating tab bar.
 - `0` is allowed (flush stacks). Any other raw number needs a comment saying why it's geometry, not spacing.
+
+**Screen tops**
+- Tab screens hide the system bar and start with `ScreenTitleBar` (large rounded title + actions on one row), so there is
+  never an empty toolbar strip above the title. Pushed pages use the standard inline bar (keeps swipe-back).
+- Sheets for one setting: half height (`.medium`, `.large`), grab handle, title left + **Done** right; swipe down cancels.
 
 **Layout rules**
 - Screens: `gutter` left and right, content in a `ScrollView`, the primary action **pinned at the bottom** with

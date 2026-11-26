@@ -184,10 +184,7 @@ struct RecipesView: View {
                 .accessibilityHidden(true)
         }
         .padding(Theme.Spacing.gutter)
-        .background(
-            LinearGradient(colors: [Theme.tomato, Theme.tomatoDeep], startPoint: .topLeading, endPoint: .bottomTrailing),
-            in: RoundedRectangle(cornerRadius: Theme.Radius.large, style: .continuous)
-        )
+        .background(Theme.tomatoDeep, in: RoundedRectangle(cornerRadius: Theme.Radius.large, style: .continuous))
         .elevation(Theme.Elevation.card)
         .accessibilityElement(children: .combine)
     }
@@ -338,7 +335,7 @@ struct RecipeCard: View {
         .background(
             RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous)
                 .fill(Theme.card)
-                .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+                .elevation(Theme.Elevation.card)
         )
         .accessibilityElement(children: .combine)
     }

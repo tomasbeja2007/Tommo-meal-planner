@@ -184,7 +184,7 @@ private struct SavedWeekArt: View {
                         let sway = 1.2 * wave(l, period: [4_000, 8_000, 2_000][slot], phase: seeded(index))
                         DishTileView(recipe: recipe, size: 112, cornerRadius: Theme.Radius.large)
                             .overlay(RoundedRectangle(cornerRadius: Theme.Radius.large, style: .continuous).strokeBorder(Theme.card, lineWidth: 4))
-                            .shadow(color: Theme.aubergine.opacity(0.16), radius: 10, y: 6)
+                            .elevation(Theme.Elevation.lifted)
                             .rotationEffect(.degrees(fan[slot] * deal + sway), anchor: .bottom)
                             .offset(x: shift[slot] * deal, y: slot == 1 ? -10 * deal : 0)
                             .zIndex(slot == 1 ? 2 : 1)

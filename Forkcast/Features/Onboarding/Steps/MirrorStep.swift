@@ -115,7 +115,7 @@ struct SpeechBubble<Content: View>: View {
             .background(
                 RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous)
                     .fill(Theme.card)
-                    .shadow(color: Color.black.opacity(0.06), radius: 12, x: 0, y: 4)
+                    .elevation(Theme.Elevation.card)
             )
             .overlay(alignment: .bottom) {
                 BubbleTail()

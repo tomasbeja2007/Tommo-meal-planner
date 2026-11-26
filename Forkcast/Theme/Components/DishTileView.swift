@@ -74,7 +74,7 @@ struct DishTileView: View {
             )
             Text(emoji)
                 .font(.system(size: min(size, resolvedHeight) * 0.5))
-                .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 2)
+                .elevation(Theme.Elevation.subtle)
         }
     }
 }

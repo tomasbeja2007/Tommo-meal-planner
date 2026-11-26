@@ -184,7 +184,7 @@ struct LocatingStep: View {
                     .frame(width: 70, height: 34)
                     .background(Capsule().fill(Theme.card))
                     .overlay(Capsule().stroke(Theme.line, lineWidth: 1))
-                    .shadow(color: Theme.aubergine.opacity(0.1), radius: 5, y: 3)
+                    .elevation(Theme.Elevation.subtle)
                     .scaleEffect(0.85 + 0.15 * p)
                     .opacity(p)
                     .offset(x: cos(angle) * Double(globe) * 0.7, y: sin(angle) * Double(globe) * 0.7 + bob - 8 * (1 - p))

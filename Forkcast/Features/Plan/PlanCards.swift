@@ -143,7 +143,7 @@ struct PlanRevealToast: View {
         .background(
             RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous)
                 .fill(Theme.card)
-                .shadow(color: Color.black.opacity(0.12), radius: 16, x: 0, y: 6)
+                .elevation(Theme.Elevation.lifted)
         )
         .padding(.horizontal, Theme.Spacing.gutter)
         .padding(.top, Theme.Spacing.s)

@@ -65,7 +65,7 @@ struct MainTabView: View {
     private var quickActions: some View {
         ZStack(alignment: .bottomTrailing) {
             if showsActions {
-                Color.black.opacity(0.28)
+                Theme.scrim
                     .ignoresSafeArea()
                     .onTapGesture { setActions(false) }
                     .accessibilityHidden(true)
@@ -102,7 +102,7 @@ struct MainTabView: View {
                         .foregroundStyle(.white)
                         .frame(width: 51, height: 51)
                         .background(Theme.tomatoDeep, in: Circle())
-                        .shadow(color: .black.opacity(0.15), radius: 9, y: 4)
+                        .elevation(Theme.Elevation.lifted)
                 }
                 .buttonStyle(.plain)
                 .sensoryFeedback(.selection, trigger: showsActions)

@@ -19,9 +19,13 @@ enum Theme {
     static let herb = Color(hex: 0x5B8C5A)
     static let herbSoft = Color(hex: 0xE3EEDF)
     static let line = Color(hex: 0xEADFCF)
+    /// Dims what's behind a menu or a photo's status-bar area so content on top reads.
+    static let scrim = Color.black.opacity(0.28)
 
     /// Illustration-only colours (the globe). Never used for interface chrome.
     enum Illustration {
+        /// The phone frame around app screenshots on the welcome screen.
+        static let deviceBezel = Color(white: 0.14)
         static let oceanLight = Color(hex: 0x5B9CE8)
         static let oceanDeep = Color(hex: 0x1D4E9E)
         static let landLight = Color(hex: 0x9AD872)

@@ -265,7 +265,7 @@ private struct RecipeDetailContent: View {
             heroImage(width: proxy.size.width, height: heroHeight + stretch)
                 .overlay(alignment: .top) {
                     // A soft scrim so the status bar and the glass buttons always read.
-                    LinearGradient(colors: [Color.black.opacity(0.28), .clear], startPoint: .top, endPoint: .bottom)
+                    LinearGradient(colors: [Theme.scrim, .clear], startPoint: .top, endPoint: .bottom)
                         .frame(height: 140)
                         .allowsHitTesting(false)
                 }
@@ -898,7 +898,7 @@ struct TimerPill: View {
         .background(
             RoundedRectangle(cornerRadius: Theme.Radius.card, style: .continuous)
                 .fill(Theme.card)
-                .shadow(color: Color.black.opacity(0.12), radius: 14, x: 0, y: 4)
+                .elevation(Theme.Elevation.lifted)
         )
         .animation(reduceMotion ? nil : Theme.Motion.update, value: timer.remaining)
     }

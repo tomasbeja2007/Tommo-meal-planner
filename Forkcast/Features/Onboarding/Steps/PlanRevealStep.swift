@@ -613,7 +613,7 @@ private struct MatchingLoader: View {
                     DishTileView(recipe: recipe, size: 40, cornerRadius: 20)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Theme.card, lineWidth: 2))
-                        .shadow(color: Theme.aubergine.opacity(0.12), radius: 4, y: 2)
+                        .elevation(Theme.Elevation.subtle)
                         .scaleEffect(0.8 + 0.2 * open)
                         .opacity(open)
                         .offset(x: cos(angle) * radius, y: sin(angle) * radius)
@@ -650,7 +650,7 @@ private struct DishRivers: View {
                                 ForEach(0..<3, id: \.self) { _ in
                                     ForEach(row) { recipe in
                                         DishTileView(recipe: recipe, size: tile, cornerRadius: Theme.Radius.large)
-                                            .shadow(color: Theme.aubergine.opacity(0.08), radius: 6, y: 4)
+                                            .elevation(Theme.Elevation.subtle)
                                     }
                                 }
                             }
