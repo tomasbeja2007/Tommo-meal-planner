@@ -98,6 +98,9 @@ struct ProfileView: View {
         .sheet(isPresented: $showsPantry) { PantryEditorSheet(initial: planStore.currentOnHand) }
         .sheet(item: $editing) { kind in
             PreferenceEditorSheet(kind: kind)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(Theme.Radius.hero)
         }
         .manageSubscriptionsSheet(isPresented: $isManageShown)
         .sheet(isPresented: $isDebugShown) {

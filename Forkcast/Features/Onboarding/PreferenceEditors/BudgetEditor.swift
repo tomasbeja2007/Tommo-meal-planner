@@ -10,7 +10,11 @@ struct BudgetEditor: View {
     let days: Int
     /// Meal types planned on each day (dinner only by default).
     var mealTypes: Set<MealType> = [.dinner]
+    /// Shown as a context chip when known (Profile).
+    var storeName: String? = nil
     var onUserChange: (() -> Void)? = nil
+    @State private var isTypingAmount = false
+    @State private var typedAmount = ""
 
     private var range: ClosedRange<Double> {
         BudgetMath.range(region: country.regionPriceKey, portions: portions, days: days, multiplier: country.priceMultiplier, mealTypes: mealTypes)
@@ -34,25 +38,61 @@ struct BudgetEditor: View {
 
     var body: some View {
         VStack(spacing: Theme.Spacing.l) {
-            Text(householdSummary)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(Theme.aubergineMuted)
-                .frame(maxWidth: .infinity)
-            VStack(spacing: Theme.Spacing.xxs) {
-                Text(MoneyFormat.string(budget, currencyCode: country.currencyCode, fractionDigits: 0))
-                    .font(.system(size: 56, weight: .heavy, design: .rounded))
-                    .monospacedDigit()
-                    .foregroundStyle(Theme.aubergine)
-                    .contentTransition(.numericText(value: budget))
-                    .animation(Theme.spring, value: budget)
-                    .minimumScaleFactor(0.6)
-                    .lineLimit(1)
-                Text("per week")
-                    .font(.subheadline)
-                    .foregroundStyle(Theme.aubergineFaint)
+            // What the budget covers, as small chips: days, meals, servings, shop.
+            FlowLayout(spacing: Theme.Spacing.inline) {
+                ForEach(contextChips, id: \.self) { chip in
+                    Text(chip)
+                        .font(.system(.caption, design: .rounded).weight(.semibold))
+                        .foregroundStyle(Theme.aubergineMuted)
+                        .padding(.horizontal, Theme.Spacing.s)
+                        .padding(.vertical, Theme.Spacing.xs)
+                        .overlay(Capsule().stroke(Theme.line, lineWidth: 1))
+                }
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .combine)
+
+            HStack(spacing: Theme.Spacing.m) {
+                stepButton(systemImage: "minus", delta: -BudgetMath.step(region: country.regionPriceKey))
+                Button {
+                    typedAmount = String(Int(budget.rounded()))
+                    isTypingAmount = true
+                } label: {
+                    VStack(spacing: Theme.Spacing.xxs) {
+                        HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.xs) {
+                            Text(MoneyFormat.string(budget, currencyCode: country.currencyCode, fractionDigits: 0))
+                                .font(.system(size: 56, weight: .heavy, design: .rounded))
+                                .monospacedDigit()
+                                .foregroundStyle(Theme.aubergine)
+                                .contentTransition(.numericText(value: budget))
+                                .animation(Theme.spring, value: budget)
+                                .minimumScaleFactor(0.6)
+                                .lineLimit(1)
+                            Image(systemName: "pencil")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(Theme.aubergineFaint)
+                        }
+                        Text("per week")
+                            .font(.subheadline)
+                            .foregroundStyle(Theme.aubergineFaint)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text("Weekly budget \(MoneyFormat.string(budget, currencyCode: country.currencyCode, fractionDigits: 0)) per week"))
+                .accessibilityHint(Text("Double tap to type an amount"))
+                stepButton(systemImage: "plus", delta: BudgetMath.step(region: country.regionPriceKey))
+            }
+            .alert(String(localized: "Weekly budget"), isPresented: $isTypingAmount) {
+                TextField(String(localized: "Amount"), text: $typedAmount)
+                    .keyboardType(.numberPad)
+                Button(String(localized: "Set")) {
+                    if let value = Double(typedAmount.filter(\.isNumber)) { setBudget(value) }
+                }
+                Button(String(localized: "Cancel"), role: .cancel) {}
+            } message: {
+                Text("Between \(MoneyFormat.string(range.lowerBound, currencyCode: country.currencyCode, fractionDigits: 0)) and \(MoneyFormat.string(range.upperBound, currencyCode: country.currencyCode, fractionDigits: 0)).")
+            }
 
             VStack(spacing: Theme.Spacing.xs) {
                 Slider(value: sliderBinding, in: range, step: BudgetMath.step(region: country.regionPriceKey))
@@ -96,6 +136,43 @@ struct BudgetEditor: View {
                 onUserChange?()
             }
         )
+    }
+
+    private var contextChips: [String] {
+        let portionsText: String = FractionFormatter.string(portions)
+        var chips: [String] = [
+            String(localized: "\(max(1, days)) days"),
+            MealType.ordered(mealTypes).map { $0.title }.joined(separator: ", "),
+            portions == 1 ? String(localized: "1 serving") : String(localized: "\(portionsText) servings")
+        ]
+        if let storeName, !storeName.isEmpty { chips.append(storeName) }
+        return chips
+    }
+
+    private func setBudget(_ value: Double) {
+        let clamped = min(max(value, range.lowerBound), range.upperBound)
+        guard clamped != budget else { return }
+        budget = clamped
+        sliderTick += 1
+        onUserChange?()
+    }
+
+    /// − (outlined) and + (filled) on either side of the amount.
+    private func stepButton(systemImage: String, delta: Double) -> some View {
+        let enabled = delta > 0 ? budget < range.upperBound : budget > range.lowerBound
+        let isPlus = delta > 0
+        return Button { setBudget(budget + delta) } label: {
+            Image(systemName: systemImage)
+                .font(.system(size: 17, weight: .bold))
+                .foregroundStyle(isPlus ? Color.white : Theme.aubergine)
+                .frame(width: 52, height: 52)
+                .background(Circle().fill(isPlus ? Theme.aubergine : Theme.card))
+                .overlay(Circle().stroke(isPlus ? Color.clear : Theme.line, lineWidth: 1))
+                .opacity(enabled ? 1 : 0.4)
+        }
+        .buttonStyle(.plain)
+        .disabled(!enabled)
+        .accessibilityLabel(isPlus ? Text("Increase budget") : Text("Decrease budget"))
     }
 
     private var householdSummary: String {

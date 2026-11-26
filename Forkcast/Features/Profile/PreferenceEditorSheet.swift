@@ -14,44 +14,84 @@ struct PreferenceEditorSheet: View {
     @State private var unitChoice: String = "auto"
     @State private var didLoad: Bool = false
     @State private var isUpdatePromptShown: Bool = false
+    @State private var switchedKind: PreferenceKind? = nil
 
+    /// The editor showing now: starts as `kind`; "Change country" on the shop list swaps to the country list.
+    private var active: PreferenceKind { switchedKind ?? kind }
+
+    /// A compact sheet: title on the left, Done on the right, the editor below. Swipe down to cancel.
     var body: some View {
-        NavigationStack {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.m) {
+                Text(active.title)
+                    .font(.system(.title2, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.aubergine)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer(minLength: Theme.Spacing.s)
+                Button(String(localized: "Done"), action: save)
+                    .font(.system(.headline, design: .rounded).weight(.bold))
+                    .foregroundStyle(Theme.tomatoDeep)
+                    .frame(minHeight: Theme.Size.tapTarget)
+                    .disabled(!isValid)
+                    .opacity(isValid ? 1 : 0.4)
+            }
+            .padding(.horizontal, Theme.Spacing.gutter)
+            .padding(.top, Theme.Spacing.xl)
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
+                    if active == .store {
+                        storeIntro
+                    }
                     editor
                 }
-                .padding(Theme.Spacing.gutter)
+                .padding(.horizontal, Theme.Spacing.gutter)
+                .padding(.top, Theme.Spacing.s)
+                .padding(.bottom, Theme.Spacing.xl)
             }
-            .background(Theme.cream.ignoresSafeArea())
-            .navigationTitle(kind.title)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(String(localized: "Cancel")) { dismiss() }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(String(localized: "Save"), action: save)
-                        .fontWeight(.bold)
-                        .disabled(!isValid)
-                }
+            .scrollDismissesKeyboard(.interactively)
+        }
+        .background(Theme.cream.ignoresSafeArea())
+        .animation(Theme.motion(reduceMotion), value: active)
+        .alert(String(localized: "update this week's plan?"), isPresented: $isUpdatePromptShown) {
+            Button(String(localized: "Regenerate unlocked meals")) {
+                Task { await planStore.regenerate(keepCookedAndLiked: true) }
+                dismiss()
             }
-            .alert(String(localized: "update this week's plan?"), isPresented: $isUpdatePromptShown) {
-                Button(String(localized: "Regenerate unlocked meals")) {
-                    Task { await planStore.regenerate(keepCookedAndLiked: true) }
-                    dismiss()
-                }
-                Button(String(localized: "Keep as is"), role: .cancel) { dismiss() }
-            } message: {
-                Text("Cooked and liked meals stay put.")
-            }
+            Button(String(localized: "Keep as is"), role: .cancel) { dismiss() }
+        } message: {
+            Text("Cooked and liked meals stay put.")
         }
         .onAppear(perform: load)
     }
 
+    /// "Pick the shops you use…" and a link to change the country, above the shop grid.
+    private var storeIntro: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+            Text("Pick the shops you use. The first one you pick sets the prices.")
+                .font(.subheadline)
+                .foregroundStyle(Theme.aubergineMuted)
+                .fixedSize(horizontal: false, vertical: true)
+            Button {
+                switchedKind = .country
+            } label: {
+                HStack(spacing: Theme.Spacing.xs) {
+                    let country = state.country(in: FoodCatalog.bundled)
+                    Text("\(country.flagEmoji) \(country.name) ·")
+                        .foregroundStyle(Theme.aubergineMuted)
+                    Text("Change country")
+                        .foregroundStyle(Theme.tomatoDeep)
+                        .fontWeight(.semibold)
+                }
+                .font(.subheadline)
+                .frame(minHeight: Theme.Size.tapTarget)
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
     @ViewBuilder
     private var editor: some View {
-        switch kind {
+        switch active {
         case .country:
             CountryPicker(selection: $state.countryId)
         case .store:
@@ -68,7 +108,7 @@ struct PreferenceEditorSheet: View {
             }
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: state.mealPrepMode)
         case .budget:
-            BudgetEditor(budget: $state.budget, country: state.country(in: FoodCatalog.bundled), portions: state.portions, days: state.cookingDays.count, mealTypes: state.mealTypes)
+            BudgetEditor(budget: $state.budget, country: state.country(in: FoodCatalog.bundled), portions: state.portions, days: state.cookingDays.count, mealTypes: state.mealTypes, storeName: profileStore.storeName)
         case .vibes:
             VibePicker(selection: $state.vibes)
         case .diet:
@@ -90,7 +130,7 @@ struct PreferenceEditorSheet: View {
     }
 
     private var isValid: Bool {
-        switch kind {
+        switch active {
         case .cookingDays: return !state.cookingDays.isEmpty
         case .meals: return !state.mealTypes.isEmpty
         case .appliances: return !state.appliances.isEmpty
@@ -108,20 +148,20 @@ struct PreferenceEditorSheet: View {
 
     private func save() {
         guard let profile = profileStore.profile else { return }
-        if kind == .units {
+        if active == .units {
             profile.unitSystemOverride = unitChoice == "auto" ? nil : unitChoice
-        } else if kind == .nutrition {
+        } else if active == .nutrition {
             profile.nutritionTarget = state.nutritionTarget
         } else {
-            if kind == .country {
+            if active == .country {
                 // Shops from another country no longer apply; `apply` falls back to "My local store".
                 state.keepOnlyStores(availableIn: state.countryId, catalog: FoodCatalog.bundled)
             }
-            state.apply(to: profile, updateMealPrep: kind == .cookingDays)
+            state.apply(to: profile, updateMealPrep: active == .cookingDays)
         }
         profileStore.save()
         planStore.recompute()
-        if kind.affectsPlan && planStore.hasPlan {
+        if active.affectsPlan && planStore.hasPlan {
             isUpdatePromptShown = true
         } else {
             dismiss()
