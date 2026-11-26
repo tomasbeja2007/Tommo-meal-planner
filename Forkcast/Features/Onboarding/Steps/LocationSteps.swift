@@ -448,3 +448,67 @@ enum CountryCentre {
         }
     }
 }
+
+/// "How do you measure?" Asked right after the country, preselected to that country's usual system.
+/// The answer is saved to the profile (Profile → Units) and every recipe, step and list follows it.
+struct UnitsStep: View {
+    @Bindable var state: OnboardingState
+    let onContinue: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    private var selected: UnitSystem { state.units() }
+
+    var body: some View {
+        QuestionScaffold(
+            title: String(localized: "how do you measure?"),
+            subtitle: String(localized: "every recipe, step and grocery list will use it"),
+            onContinue: {
+                state.unitSystem = selected
+                onContinue()
+            }
+        ) {
+            VStack(spacing: Theme.Spacing.l) {
+                VStack(spacing: Theme.Spacing.m) {
+                    OptionTile(title: String(localized: "Metric"), subtitle: String(localized: "grams, millilitres, °C"), emoji: "⚖️", isSelected: selected == .metric) {
+                        state.unitSystem = .metric
+                    }
+                    OptionTile(title: String(localized: "Imperial"), subtitle: String(localized: "ounces, cups, °F"), emoji: "🥄", isSelected: selected == .imperial) {
+                        state.unitSystem = .imperial
+                    }
+                }
+                preview
+            }
+        }
+    }
+
+    /// The same three recipe lines, rewritten live in the chosen system.
+    private var preview: some View {
+        Card {
+            VStack(alignment: .leading, spacing: Theme.Spacing.s) {
+                Text("YOUR RECIPES WILL READ")
+                    .font(Theme.Typography.eyebrow)
+                    .tracking(1.2)
+                    .foregroundStyle(Theme.tomatoDeep)
+                previewLine("•", String(localized: "\(QuantityFormatter.mass(grams: 400, system: selected)) chicken thighs"))
+                previewLine("1", StepTextFormatter.string(String(localized: "Heat the oven to 200°C (400°F)."), system: selected))
+                previewLine("2", StepTextFormatter.string(String(localized: "Pour 350 ml boiling water over the couscous."), system: selected))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .animation(reduceMotion ? nil : Theme.Motion.update, value: selected)
+        }
+    }
+
+    private func previewLine(_ marker: String, _ text: String) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.s) {
+            Text(marker)
+                .font(Theme.Typography.subheadline.weight(.bold))
+                .foregroundStyle(Theme.tomato)
+                .frame(width: 14)
+            Text(text)
+                .font(Theme.Typography.body)
+                .foregroundStyle(Theme.aubergine)
+                .contentTransition(.interpolate)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+}

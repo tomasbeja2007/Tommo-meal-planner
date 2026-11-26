@@ -11,6 +11,8 @@ final class OnboardingState {
     /// 0 = "I don't mind".
     var maxCookMinutes: Int = 30
     var countryId: String = OnboardingState.deviceCountryId()
+    /// Set by the units question; nil until then (the country's usual system is shown).
+    var unitSystem: UnitSystem?
     /// Shops in the order they were picked. The first one is the main shop and sets prices.
     var storeIds: [String] = []
     var adults: Int = 2
@@ -58,6 +60,7 @@ final class OnboardingState {
         goals = Set(profile.goals)
         maxCookMinutes = profile.maxCookMinutes
         countryId = profile.countryId
+        unitSystem = profile.unitSystemOverride.flatMap(UnitSystem.init(rawValue:))
         storeIds = profile.storeIds
         adults = profile.householdAdults
         kids = profile.householdKids
@@ -102,6 +105,11 @@ final class OnboardingState {
         storeIds = storeIds.filter { available.contains($0) }
     }
 
+    /// The reader's units: their answer, or their country's usual system before they've answered.
+    func units(in catalog: FoodCatalog = .bundled) -> UnitSystem {
+        unitSystem ?? country(in: catalog).unitSystem
+    }
+
     func country(in catalog: FoodCatalog) -> Country {
         catalog.country(id: countryId) ?? catalog.defaultCountry
     }
@@ -131,6 +139,7 @@ final class OnboardingState {
         profile.goals = goals.sorted()
         profile.maxCookMinutes = maxCookMinutes
         profile.countryId = countryId
+        if let unitSystem { profile.unitSystemOverride = unitSystem.rawValue }
         profile.storeIds = storeIds.isEmpty ? [Store.localStoreId] : storeIds
         profile.householdAdults = max(1, adults)
         profile.householdKids = max(0, kids)
@@ -178,6 +187,7 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case vibes
     case kitchen
     case locating
+    case units
     case store
     case budget
     case pantry

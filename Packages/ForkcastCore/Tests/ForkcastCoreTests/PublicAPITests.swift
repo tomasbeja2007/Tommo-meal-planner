@@ -33,6 +33,7 @@ final class PublicAPITests: XCTestCase {
         _ = "olive oil".capitalizedFirst
         _ = TimerDetector.timers(in: "for 20 minutes").first?.id
         _ = TimerDetector.clock(90)
+        _ = StepTextFormatter.string("Heat the oven to 200°C (400°F).", system: .imperial)
         _ = StepIngredientMatcher.ingredients(in: recipe.steps[0], recipe: recipe, catalog: catalog)
         _ = IngredientMatcher.suggestions(for: "oni", in: catalog, limit: 4)
         _ = IngredientMatcher.bestMatch(for: "onion", in: catalog)

@@ -89,7 +89,7 @@ struct DislikesStepView: View {
             buttonTitle: state.dislikes.isEmpty ? String(localized: "I eat everything") : continueTitle(selected: state.dislikes.count),
             onContinue: onContinue
         ) {
-            DislikesPicker(selection: $state.dislikes, unitSystem: state.country(in: FoodCatalog.bundled).unitSystem)
+            DislikesPicker(selection: $state.dislikes, unitSystem: state.units(in: FoodCatalog.bundled))
         }
     }
 }

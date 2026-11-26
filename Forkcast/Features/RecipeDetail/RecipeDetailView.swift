@@ -67,7 +67,7 @@ private struct RecipeDetailContent: View {
     @State private var appeared = false
     @Namespace private var segmentPill
 
-    private let heroHeight: CGFloat = 380
+    private let heroHeight: CGFloat = 420
     /// How far the cream sheet rises over the photo.
     private let sheetOverlap: CGFloat = 28
 
@@ -284,40 +284,18 @@ private struct RecipeDetailContent: View {
                 .scaledToFill()
                 .frame(width: width, height: height)
                 .accessibilityLabel(Text("Your recipe photo"))
-        } else if let small = smallPhoto {
-            // Small images (most illustrative ones are 418 px) go soft when stretched across the screen.
-            // Show them at a size they hold sharply, as a plate on a blurred backdrop of the same image.
-            let plate = min(width * 0.64, small.pixelWidth / 2)
-            ZStack {
-                Image(small.name)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: width, height: height)
-                    .blur(radius: 28, opaque: true)
-                    .overlay(Theme.cream.opacity(0.25))
-                Image(small.name)
-                    .resizable()
-                    .interpolation(.high)
-                    .scaledToFill()
-                    .frame(width: plate, height: plate)
-                    .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.hero, style: .continuous))
-                    .overlay(RoundedRectangle(cornerRadius: Theme.Radius.hero, style: .continuous).strokeBorder(Color.white.opacity(0.6), lineWidth: 3))
-                    .elevation(Theme.Elevation.lifted)
-                    .offset(y: -sheetOverlap / 2 + 18)
-            }
-            .frame(width: width, height: height)
-            .clipped()
-            .accessibilityHidden(true)
+        } else if let name = DishTileView(recipe: recipe).photoName {
+            // Every recipe photo fills the top edge to edge, scaled with the best filter.
+            Image(name)
+                .resizable()
+                .interpolation(.high)
+                .antialiased(true)
+                .scaledToFill()
+                .frame(width: width, height: height)
+                .accessibilityHidden(true)
         } else {
             DishTileView(recipe: recipe, size: width, height: height, cornerRadius: 0)
         }
-    }
-
-    /// The bundled image when it's too small to fill the screen sharply (under ~900 px wide), else nil.
-    private var smallPhoto: (name: String, pixelWidth: CGFloat)? {
-        guard let name = DishTileView(recipe: recipe).photoName, let image = UIImage(named: name) else { return nil }
-        let pixels = image.size.width * image.scale
-        return pixels < 900 ? (name, pixels) : nil
     }
 
     private var isIllustrative: Bool {
@@ -755,7 +733,7 @@ private struct MethodSection: View {
                 .foregroundStyle(Theme.aubergineMuted)
                 VStack(alignment: .leading, spacing: Theme.Spacing.l) {
                     ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
-                        StepRow(number: index + 1, text: step, recipe: recipe, servings: servings, system: system, timer: timer)
+                        StepRow(number: index + 1, text: StepTextFormatter.string(step, system: system), recipe: recipe, servings: servings, system: system, timer: timer)
                     }
                 }
                 .background(alignment: .topLeading) {

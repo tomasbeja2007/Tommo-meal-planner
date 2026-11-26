@@ -14,7 +14,7 @@ struct PantryStep: View {
             buttonTitle: state.pantry.isEmpty ? String(localized: "Skip for now") : continueTitle(selected: state.pantry.count),
             onContinue: onContinue
         ) {
-            PantryPicker(selection: $state.pantry, unitSystem: state.country(in: .bundled).unitSystem)
+            PantryPicker(selection: $state.pantry, unitSystem: state.units(in: .bundled))
         }
     }
 }

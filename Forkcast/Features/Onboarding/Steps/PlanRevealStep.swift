@@ -469,7 +469,7 @@ struct CatalogPreviewStep: View {
     /// The answers the loader ticks off, in their own words ("Avoiding peanuts", "Kitchen · oven + stovetop").
     private var checks: [String] {
         let catalog = FoodCatalog.bundled
-        let system = state.country(in: catalog).unitSystem
+        let system = state.units(in: catalog)
         let allergens = Allergen.allCases.filter { state.effectiveAllergens.contains($0) }.prefix(2).map { $0.displayName.lowercased() }
         let dislikes = state.dislikes.sorted().prefix(2).map { DislikeCatalog.label(for: $0, catalog: catalog, system: system).lowercased() }
         let kitchen = Appliance.allCases.filter { state.appliances.contains($0) }.map { $0.displayName.lowercased() }

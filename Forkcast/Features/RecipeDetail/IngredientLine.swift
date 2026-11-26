@@ -47,7 +47,7 @@ enum RecipeShareText {
         lines.append("")
         lines.append("Method")
         for (index, step) in recipe.steps.enumerated() {
-            lines.append("\(index + 1). \(step)")
+            lines.append("\(index + 1). \(StepTextFormatter.string(step, system: system))")
         }
         lines.append("")
         lines.append("Planned with Tommo")

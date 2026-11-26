@@ -25,7 +25,7 @@ struct CookModeView: View {
             CookModeHeader(index: index, stepCount: stepCount) { dismiss() }
             TabView(selection: $index) {
                 ForEach(Array(recipe.steps.enumerated()), id: \.offset) { position, step in
-                    CookStepPage(number: position + 1, text: step, recipe: recipe, servings: servings, system: system, timer: timer)
+                    CookStepPage(number: position + 1, text: StepTextFormatter.string(step, system: system), recipe: recipe, servings: servings, system: system, timer: timer)
                         .tag(position)
                 }
                 CookFinishedPage(stars: $stars, isPlanned: isPlanned) {

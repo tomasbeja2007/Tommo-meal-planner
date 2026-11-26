@@ -116,6 +116,8 @@ struct OnboardingFlow: View {
             PantryStep(state: state) { advance() }
         case .locating:
             LocatingStep(state: state) { advance() }
+        case .units:
+            UnitsStep(state: state) { advance() }
         case .store:
             StoreStepView(state: state) { advance() }
         case .heardAbout:
