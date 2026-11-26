@@ -13,8 +13,8 @@ struct StayOnTrackStep: View {
             title: String(localized: "Stay on track with your meals"),
             buttonTitle: String(localized: "Continue"),
             isButtonEnabled: !isAsking,
-            secondaryTitle: isAsking ? nil : String(localized: "Not now"),
-            secondaryAction: onContinue,
+            // No "Not now": a screen before a permission request must always lead to Apple's prompt,
+            // where the user can still say no (App Review 5.1.1(iv)).
             onContinue: ask
         ) {
             VStack(spacing: Theme.Spacing.xl) {

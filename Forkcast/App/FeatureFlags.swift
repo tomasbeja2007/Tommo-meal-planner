@@ -30,6 +30,8 @@ enum AppLinks {
     static let appleAccount: URL = URL(string: "https://account.apple.com/")!
     static let support: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/support.html")!
     static let supportEmail: String = "tomasbeja2007@icloud.com"
+    /// Source for the 2,000 kcal reference intake shown on the calorie-target screen (EU food information regulation).
+    static let calorieReferenceSource: URL = URL(string: "https://eur-lex.europa.eu/eli/reg/2011/1169/oj")!
 
     /// The numeric Apple ID from App Store Connect (App Information → Apple ID). Set it to show "Rate Tommo".
     static let appStoreId: String? = nil

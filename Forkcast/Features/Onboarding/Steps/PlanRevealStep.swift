@@ -267,9 +267,11 @@ private struct RevealDayCard: View {
 }
 
 /// The savings moment, in the reference choreography the owner picked, with the yearly total as the
-/// "wow": Chef Tommo hops in alone, "you could save around" fades up, "20 € every week" rises in, then the
+/// "wow": Chef Tommo hops in alone, "you could save around" fades up, the weekly amount rises in, then the
 /// yearly figure counts up big (with ticking haptics), lands with a pop, a burst of sparks, a warm glow and
-/// confetti. An example in the user's currency (said so in the footnote), not a promise.
+/// confetti. The amount is an example worked out from the user's own weekly budget (`savingsShare` of it,
+/// in their currency), and the footnote shows that maths, so it is never a fixed figure or a promise
+/// (App Review 2.3.1: no unsubstantiated claims).
 /// One timeline (ms): 0 mascot · 300 line · 900 weekly · 1 700–2 900 count-up · 2 900 land · 3 700 end.
 struct SavingsStep: View {
     let state: OnboardingState
@@ -279,8 +281,12 @@ struct SavingsStep: View {
     @State private var countTicks = 0
     @State private var yearLanded = false
 
-    private let weekly = 20
+    /// Share of the weekly budget used for the example (planning ahead, one combined list, fewer top-up trips).
+    private let savingsShare = 0.15
     private let weeks = 52
+    /// The example weekly saving: a share of the budget the user just set, rounded to whole currency units.
+    private var weekly: Int { max(1, Int((state.budget * savingsShare).rounded())) }
+    private var sharePercent: Int { Int((savingsShare * 100).rounded()) }
     private var currency: String { state.country(in: FoodCatalog.bundled).currencyCode }
 
     private enum Beat {
@@ -331,7 +337,7 @@ struct SavingsStep: View {
                     VStack(spacing: Theme.Spacing.s) {
                         PrimaryButton(String(localized: "Continue"), action: onContinue)
                             .opacity(0.76 + 0.24 * seg(t, Beat.land, Beat.end))
-                        Text("Example based on saving \(money(weekly)) a week")
+                        Text("Example: saving \(sharePercent)% of your \(money(Int(state.budget.rounded()))) weekly budget")
                             .font(.footnote)
                             .foregroundStyle(Theme.aubergineMuted)
                     }
