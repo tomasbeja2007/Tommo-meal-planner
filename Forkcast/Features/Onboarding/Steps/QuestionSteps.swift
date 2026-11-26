@@ -325,10 +325,18 @@ struct NutritionTargetEditor: View {
                         .font(.subheadline)
                         .foregroundStyle(Theme.aubergineMuted)
                 }
-                Text("The 2,000 kcal starting point is based on average adult needs. Targets here are general guidance, not medical advice. Talk to a doctor or registered dietitian about what's right for you.")
+                Text("The 2,000 kcal starting point is the EU reference intake for an average adult. Targets here are general guidance, not medical advice. Talk to a doctor or registered dietitian about what's right for you.")
                     .font(.footnote)
                     .foregroundStyle(Theme.aubergineMuted)
                     .fixedSize(horizontal: false, vertical: true)
+                // App Review 1.4.1: cite the source of health figures.
+                Link(destination: AppLinks.calorieReferenceSource) {
+                    Text("Source: Regulation (EU) No 1169/2011, Annex XIII")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(Theme.tomatoDeep)
+                        .underline()
+                        .multilineTextAlignment(.leading)
+                }
             }
             .padding(.horizontal, Theme.Spacing.xs)
         }
