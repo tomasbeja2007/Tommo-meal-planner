@@ -15,7 +15,6 @@ struct PaywallView: View {
     @State private var selectedId: String = SubscriptionManager.yearlyId
     @State private var isPurchasing: Bool = false
     @State private var errorMessage: String? = nil
-    @State private var isRedeemShown: Bool = false
     @State private var purchased: Bool = false
     @State private var revealedStage = 0
 
@@ -106,9 +105,6 @@ struct PaywallView: View {
         }
         .background(Theme.cream.ignoresSafeArea())
         .sensoryFeedback(.success, trigger: purchased)
-        .offerCodeRedemption(isPresented: $isRedeemShown) { _ in
-            Task { await subscriptions.refreshEntitlements() }
-        }
         .task {
             if subscriptions.products.isEmpty { await subscriptions.loadProducts() }
         }
@@ -273,7 +269,6 @@ struct PaywallView: View {
                 .disabled(isPurchasing)
                 Link(String(localized: "Terms of Use"), destination: AppLinks.licenseAgreement)
                 Link(String(localized: "Privacy"), destination: AppLinks.privacyPolicy)
-                Button(String(localized: "Have a code?")) { isRedeemShown = true }
             }
             .font(.caption)
             .frame(maxWidth: .infinity)

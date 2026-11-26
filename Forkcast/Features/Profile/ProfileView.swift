@@ -13,7 +13,6 @@ struct ProfileView: View {
     @State private var showsPantry = false
     @State private var editing: PreferenceKind? = nil
     @State private var isManageShown: Bool = false
-    @State private var isRedeemShown: Bool = false
     @State private var isDebugShown: Bool = false
     @State private var confirm: DangerAction? = nil
     @State private var isRestoring = false
@@ -90,9 +89,6 @@ struct ProfileView: View {
             PreferenceEditorSheet(kind: kind)
         }
         .manageSubscriptionsSheet(isPresented: $isManageShown)
-        .offerCodeRedemption(isPresented: $isRedeemShown) { _ in
-            Task { await subscriptions.refreshEntitlements() }
-        }
         .sheet(isPresented: $isDebugShown) {
             DebugMenuView()
         }
@@ -141,7 +137,6 @@ struct ProfileView: View {
             if let restoreMessage {
                 Text(restoreMessage).font(.footnote).foregroundStyle(Theme.aubergineMuted)
             }
-            Button(String(localized: "Redeem code")) { isRedeemShown = true }
         } header: {
             Text("Subscription")
         }
