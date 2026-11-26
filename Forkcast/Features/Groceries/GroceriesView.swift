@@ -196,7 +196,6 @@ struct GroceriesView: View {
         return unchecked + checked
     }
 
-    @ToolbarContentBuilder
     /// "Share" pill and the more menu, on the title row.
     private var headerActions: some View {
         HStack(spacing: Theme.Spacing.s) {
