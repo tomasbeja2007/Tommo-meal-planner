@@ -19,6 +19,7 @@ struct ProfileView: View {
     @State private var confirm: DangerAction? = nil
     @State private var isRestoring = false
     @State private var restoreMessage: String?
+    @State private var dataDeletionFailed = false
 
     enum DangerAction: Identifiable {
         case resetPlan
@@ -98,6 +99,11 @@ struct ProfileView: View {
         }
         .alert(item: $confirm) { action in
             dangerAlert(action)
+        }
+        .alert("Couldn’t delete your data", isPresented: $dataDeletionFailed) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Try again from Profile.")
         }
     }
 
@@ -186,7 +192,7 @@ struct ProfileView: View {
         } header: {
             Text("Danger zone")
         } footer: {
-            Text("Start over re-runs the quiz and keeps your subscription. Deleting removes your plans, recipes and preferences from this device and iCloud.")
+            Text("Start over re-runs the quiz. Deleting clears this app’s data on this device. If iCloud sync is active, deletions sync to iCloud.")
         }
         .foregroundStyle(Theme.tomatoDeep)
         .listRowBackground(Theme.card)
@@ -212,11 +218,25 @@ struct ProfileView: View {
                 secondaryButton: .cancel()
             )
         case .deleteAll:
+            let message: Text
+            if profileStore.profile?.appleUserId != nil {
+                message = Text("This can’t be undone. To revoke Sign in with Apple access, go to your Apple Account settings. Manage your subscription separately in Apple Subscriptions.")
+            } else {
+                message = Text("This can’t be undone. Manage your subscription separately in Apple Subscriptions.")
+            }
             return Alert(
                 title: Text("Delete all your data?"),
-                message: Text("This can't be undone. Your subscription is managed by Apple and isn't affected."),
+                message: message,
                 primaryButton: .destructive(Text("Delete everything")) {
-                    AppServices.current?.deleteAllData()
+                    guard let services = AppServices.current else {
+                        dataDeletionFailed = true
+                        return
+                    }
+                    do {
+                        try services.deleteAllData()
+                    } catch {
+                        dataDeletionFailed = true
+                    }
                 },
                 secondaryButton: .cancel()
             )

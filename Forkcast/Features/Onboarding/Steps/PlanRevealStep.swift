@@ -14,7 +14,7 @@ struct PlanRevealStep: View {
     @Environment(\.requestReview) private var requestReview: RequestReviewAction
     /// Ask for a rating once, at the happiest moment of onboarding (the week just landed). The system
     /// decides whether the prompt actually shows; we never gate anything on it.
-    @AppStorage("onboarding.didAskForReview") private var didAskForReview = false
+    @AppStorage(FeatureFlags.reviewRequestedKey) private var didAskForReview = false
 
     private var currency: String { profileStore.currencyCode }
 

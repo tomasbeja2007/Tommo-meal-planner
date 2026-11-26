@@ -103,5 +103,6 @@ final class NotificationManager {
 
     func removeAll() {
         center.removeAllPendingNotificationRequests()
+        center.removeAllDeliveredNotifications()
     }
 }

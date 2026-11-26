@@ -50,8 +50,8 @@ final class AppServices {
     }
 
     /// Danger zone: wipe SwiftData and the App Group.
-    func deleteAllData() {
-        PersistenceController.deleteAll(in: container.mainContext)
+    func deleteAllData() throws {
+        try PersistenceController.deleteAll(in: container.mainContext)
         if let directory = SharedConstants.appGroupContainerURL() {
             for name in [SharedConstants.widgetSnapshotFileName, "pending-import.json"] {  // also clears any file left by the old share extension
                 try? FileManager.default.removeItem(at: directory.appendingPathComponent(name))
@@ -59,7 +59,9 @@ final class AppServices {
         }
         WidgetSnapshotWriter.clear()
         notifications.removeAll()
+        subscriptions.setDebugProOverride(false)
         UserDefaults.standard.removeObject(forKey: FeatureFlags.debugProOverrideKey)
+        UserDefaults.standard.removeObject(forKey: FeatureFlags.reviewRequestedKey)
         reloadAll()
         router.popToRoot()
         router.selectedTab = .plan

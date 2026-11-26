@@ -37,6 +37,8 @@ final class SubscriptionManager {
     }
 
     @ObservationIgnored private var updatesTask: Task<Void, Never>? = nil
+    @ObservationIgnored private var entitlementRequest = 0
+    @ObservationIgnored private var appliedEntitlementRequest = 0
 
     /// What the UI should use for gating.
     var hasProAccess: Bool {
@@ -53,8 +55,8 @@ final class SubscriptionManager {
     /// Call once at launch.
     func start() async {
         listenForTransactions()
-        await loadProducts()
         await refreshEntitlements()
+        await loadProducts()
     }
 
     func loadProducts() async {
@@ -65,8 +67,14 @@ final class SubscriptionManager {
         defer { isLoadingProducts = false }
         do {
             let loaded: [Product] = try await Product.products(for: SubscriptionManager.productIds)
-            products = loaded.sorted { $0.price > $1.price }
-            productLoadFailed = loaded.isEmpty
+            // The paywall labels these products as one month and one year.
+            products = loaded.filter { product in
+                guard product.type == .autoRenewable, let period = product.subscription?.subscriptionPeriod,
+                      period.value == 1 else { return false }
+                return (product.id == Self.yearlyId && period.unit == .year)
+                    || (product.id == Self.monthlyId && period.unit == .month)
+            }.sorted { $0.price > $1.price }
+            productLoadFailed = products.isEmpty
             if let subscription = yearly?.subscription,
                subscription.introductoryOffer?.paymentMode == .freeTrial {
                 isEligibleForTrial = await subscription.isEligibleForIntroOffer
@@ -83,9 +91,9 @@ final class SubscriptionManager {
             case .success(let verification):
                 switch verification {
                 case .verified(let transaction):
-                    await transaction.finish()
                     await refreshEntitlements()
-                    return .success
+                    await transaction.finish()
+                    return isPro ? .success : .failed(String(localized: "Tommo Pro is still unavailable. Try Restore purchases."))
                 case .unverified(_, let error):
                     return .failed(error.localizedDescription)
                 }
@@ -108,6 +116,8 @@ final class SubscriptionManager {
     }
 
     func refreshEntitlements() async {
+        entitlementRequest += 1
+        let request = entitlementRequest
         var pro: Bool = false
         var trial: Bool = false
         var trialEnd: Date? = nil
@@ -115,16 +125,19 @@ final class SubscriptionManager {
         var productId: String? = nil
         for await result in Transaction.currentEntitlements {
             guard case .verified(let transaction) = result else { continue }
-            guard SubscriptionManager.productIds.contains(transaction.productID), transaction.revocationDate == nil else { continue }
-            if let expires = transaction.expirationDate, expires < Date() { continue }
+            guard SubscriptionManager.productIds.contains(transaction.productID),
+                  transaction.revocationDate == nil, !transaction.isUpgraded else { continue }
+            // StoreKit includes subscriptions in billing grace in currentEntitlements.
             pro = true
+            guard productId == nil || (transaction.expirationDate ?? .distantPast) > (expiry ?? .distantPast) else { continue }
             productId = transaction.productID
             expiry = transaction.expirationDate
-            if transaction.offerType == .introductory {
-                trial = true
-                trialEnd = transaction.expirationDate
-            }
+            trial = transaction.expirationDate.map { $0 > Date() } == true && isFreeTrial(transaction)
+            trialEnd = trial ? expiry : nil
         }
+        // A foreground refresh can overlap a purchase or transaction update.
+        guard !Task.isCancelled, request > appliedEntitlementRequest else { return }
+        appliedEntitlementRequest = request
         isPro = pro
         isInTrial = trial
         trialEndDate = trialEnd
@@ -132,14 +145,23 @@ final class SubscriptionManager {
         activeProductId = productId
     }
 
+    private func isFreeTrial(_ transaction: Transaction) -> Bool {
+        if #available(iOS 17.2, *), let paymentMode = transaction.offer?.paymentMode {
+            return paymentMode == .freeTrial
+        }
+        // Older clients can use the payment mode in the verified transaction payload.
+        let payload = (try? JSONSerialization.jsonObject(with: transaction.jsonRepresentation)) as? [String: Any]
+        return payload?["offerDiscountType"] as? String == "FREE_TRIAL"
+    }
+
     private func listenForTransactions() {
         guard updatesTask == nil else { return }
         updatesTask = Task { [weak self] in
             for await result in Transaction.updates {
-                if case .verified(let transaction) = result {
-                    await transaction.finish()
-                }
+                guard case .verified(let transaction) = result,
+                      Self.productIds.contains(transaction.productID) else { continue }
                 await self?.refreshEntitlements()
+                await transaction.finish()
             }
         }
     }

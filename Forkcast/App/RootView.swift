@@ -28,5 +28,10 @@ struct RootView: View {
                 planStore.reload()
             }
         }
+        .task(id: scenePhase) {
+            if scenePhase == .active {
+                await subscriptions.refreshEntitlements()
+            }
+        }
     }
 }

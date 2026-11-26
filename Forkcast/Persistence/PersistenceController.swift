@@ -72,23 +72,33 @@ enum PersistenceController {
 
     /// Deletes every Forkcast record (used by "Delete all my data").
     @MainActor
-    static func deleteAll(in context: ModelContext) {
+    static func deleteAll(in context: ModelContext) throws {
+        try context.save()
         do {
-            try context.delete(model: PlannedMeal.self)
-            try context.delete(model: GroceryCheck.self)
-            try context.delete(model: WeekPlan.self)
-            try context.delete(model: ExtraGroceryItem.self)
-            try context.delete(model: GroceryCollection.self)
-            try context.delete(model: RecipeBehavior.self)
-            try context.delete(model: RecipeFeedback.self)
-            try context.delete(model: SavedRecipe.self)
-            try context.delete(model: RecipeCollection.self)
-            try context.delete(model: UserRecipeIngredient.self)
-            try context.delete(model: UserRecipe.self)
-            try context.delete(model: UserProfile.self)
+            try delete(PlannedMeal.self, in: context)
+            try delete(GroceryCheck.self, in: context)
+            try delete(WeekPlan.self, in: context)
+            try delete(ExtraGroceryItem.self, in: context)
+            try delete(GroceryCollection.self, in: context)
+            try delete(RecipeBehavior.self, in: context)
+            try delete(RecipeFeedback.self, in: context)
+            try delete(SavedRecipe.self, in: context)
+            try delete(RecipeCollection.self, in: context)
+            try delete(UserRecipeIngredient.self, in: context)
+            try delete(UserRecipe.self, in: context)
+            try delete(UserProfile.self, in: context)
             try context.save()
         } catch {
-            logger.error("Delete all failed: \(String(describing: error), privacy: .public)")
+            context.rollback()
+            logger.error("Delete all failed: \(String(describing: error), privacy: .private)")
+            throw error
+        }
+    }
+
+    @MainActor
+    private static func delete<Model: PersistentModel>(_ type: Model.Type, in context: ModelContext) throws {
+        for record in try context.fetch(FetchDescriptor<Model>()) {
+            context.delete(record)
         }
     }
 }

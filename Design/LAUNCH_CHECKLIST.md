@@ -31,14 +31,11 @@ Identifiers are hard-coded in the app: use them exactly.
 - [ ] **Pricing and availability**: free download (Pro is the subscription), countries.
 - [ ] **TestFlight**: add yourself as internal tester; add the "What to test" note.
 
-## 3. Things only you can make (the app links to them)
-- [ ] **Privacy Policy page**: a public URL. The app currently opens `https://forkcast.app/privacy` → replace.
-- [ ] **Terms of Use page**: a public URL. The app currently opens `https://forkcast.app/terms` → replace.
-      (Apple's standard EULA is fine; then link to it: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
-- [ ] **Support email**: the app's "Contact us" writes to `hello@forkcast.app` → replace with your inbox.
-- [ ] **Support URL** (required by App Store Connect): any page with a way to contact you.
-- [ ] **Marketing URL** (optional).
-→ Send me the three URLs and the email; I'll put them in `Forkcast/App/FeatureFlags.swift` (AppLinks).
+## 3. Public links and contact details
+- [ ] Verify that the live privacy, terms and support pages open without signing in. [Tommo website](https://tomasbeja2007.github.io/Tommo-meal-planner/)
+- [ ] Send a test message to `tomasbeja2007@icloud.com` and verify that the published inbox receives it.
+- [ ] Set the Privacy Policy and Support URLs in App Store Connect. Include the Apple standard Terms of Use link in the app metadata when using that licence. [Apple standard EULA](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/)
+- [ ] Confirm the developer's public business contact details, trader status and any required address and phone number for EU distribution. [Apple Digital Services Act information](https://developer.apple.com/support/dsa/)
 
 ## 4. iCloud / CloudKit (icloud.developer.apple.com)
 - [ ] Run the app once with iCloud signed in (Simulator or device) so the schema is created in Development.
@@ -47,16 +44,17 @@ Identifiers are hard-coded in the app: use them exactly.
 - [ ] Re-deploy whenever a SwiftData model gains a new field.
 
 ## 5. Xcode before the first archive
-- [ ] Signing & Capabilities → pick your **Team** for **Forkcast** and **ForkcastWidget**.
-- [ ] Delete the **ForkcastShare** target (Project → Targets → ForkcastShare → "−").
-- [ ] Version 1.0, build 1 (raise the build number for every upload).
-- [ ] App icon present (done), encryption declared (done: no non-exempt encryption), privacy manifest (done).
-- [ ] Product → Archive (device: Any iOS Device) → Distribute → App Store Connect → Upload.
+- [ ] Use an Xcode and iOS SDK version that App Store Connect currently accepts. [Apple upcoming requirements](https://developer.apple.com/news/upcoming-requirements/)
+- [ ] Run `xcodegen generate` and open `Tommo.xcodeproj`. Set the signing team for Tommo and ForkcastWidget.
+- [ ] Set an unused build number and archive the Tommo Release scheme for Any iOS Device.
+- [ ] Inspect the archive for the iPhone-only device family, app and widget signing, and the bundled app privacy manifest. Validate the new archive in Xcode Organizer.
+- [ ] In Sandbox or TestFlight, test monthly and yearly purchase, intro-offer eligibility and billing, Restore, cancellation, and access after renewal or expiry.
+- [ ] On two iCloud devices, confirm that deleting data in Profile syncs deletions. If Sign in with Apple is linked, confirm local account data is cleared and confirm Apple's account management instructions work. Review token revocation before submission. [Apple Sign in with Apple deletion guidance](https://developer.apple.com/documentation/technotes/tn3194-handling-account-deletions-and-revoking-tokens-for-sign-in-with-apple)
 
 ## 6. App Store listing (for review, not needed for TestFlight)
 - [ ] Screenshots: 6.9" iPhone (1320×2868 or 1290×2796) at minimum; 3 to 10 of them.
 - [ ] App name, subtitle (30 characters), description, keywords (100 characters), promotional text.
-- [ ] Review notes: "No login needed. Pro is a subscription with a 3-day free trial; use a sandbox account.
+- [ ] Review notes: "No login needed. Pro is a subscription with a 3-day free trial for eligible subscribers. Use a sandbox account.
       Sign in with Apple is optional." No demo account needed.
 - [ ] Copyright line ("2026 <your name or company>").
 

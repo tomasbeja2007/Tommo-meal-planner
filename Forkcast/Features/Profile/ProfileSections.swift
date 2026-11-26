@@ -265,11 +265,12 @@ struct AccountSection: View {
                     profileStore.save()
                 }
                 .foregroundStyle(Theme.tomatoDeep)
+                Link("Manage Sign in with Apple", destination: AppLinks.appleAccount)
             }
         } header: {
             Text("Account")
         } footer: {
-            Text("You can keep using Tommo without signing in.")
+            Text("Sign in with Apple is optional. Your iCloud account controls sync.")
         }
         .listRowBackground(Theme.card)
     }

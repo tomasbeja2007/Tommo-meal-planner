@@ -51,6 +51,10 @@ targets:
           - "**/*.md"
           - "Supporting/Info.plist"
           - "Supporting/Forkcast.entitlements"
+          - "Supporting/PrivacyInfo.xcprivacy"
+      - path: Forkcast/Supporting/PrivacyInfo.xcprivacy
+        type: file
+        buildPhase: resources
     dependencies:
       - package: ForkcastCore
       - target: ForkcastWidget

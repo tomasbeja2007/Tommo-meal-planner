@@ -10,6 +10,7 @@ enum FeatureFlags {
 
     /// UserDefaults key for the hidden debug menu's "Toggle Pro" switch.
     static let debugProOverrideKey: String = "debug.proOverride"
+    static let reviewRequestedKey: String = "onboarding.didAskForReview"
 
     static var debugProOverride: Bool {
         #if DEBUG
@@ -25,9 +26,10 @@ enum AppLinks {
     static let website: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/")!
     static let privacyPolicy: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/privacy.html")!
     static let terms: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/terms.html")!
+    static let licenseAgreement: URL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+    static let appleAccount: URL = URL(string: "https://account.apple.com/")!
     static let support: URL = URL(string: "https://tomasbeja2007.github.io/Tommo-meal-planner/support.html")!
-    /// Placeholder: replace with the real support inbox before launch.
-    static let supportEmail: String = "hello@forkcast.app"
+    static let supportEmail: String = "tomasbeja2007@icloud.com"
 
     static func mail(subject: String) -> URL? {
         let encoded: String = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

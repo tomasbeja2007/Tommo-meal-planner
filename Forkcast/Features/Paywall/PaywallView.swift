@@ -204,7 +204,7 @@ struct PaywallView: View {
 
     private var yearlyBadge: String {
         if let percent = subscriptions.yearlySavingsPercent {
-            return String(localized: "BEST VALUE · \(percent)% off")
+            return String(localized: "SAVE \(percent)% VS MONTHLY")
         }
         return String(localized: "BEST VALUE")
     }
@@ -216,13 +216,31 @@ struct PaywallView: View {
 
     // MARK: Bottom bar
 
+    private var billingText: String? {
+        guard let product = selectedProduct else { return nil }
+        if product.id == SubscriptionManager.yearlyId {
+            if let trialDuration {
+                return String(localized: "\(trialDuration) free, then \(product.displayPrice) per year.")
+            }
+            if offersTrial {
+                return String(localized: "Free trial, then \(product.displayPrice) per year.")
+            }
+            return String(localized: "\(product.displayPrice) per year.")
+        }
+        return String(localized: "\(product.displayPrice) per month.")
+    }
+
     private var bottomBar: some View {
         VStack(spacing: Theme.Spacing.xs) {
-            if offersTrial {
-                Label("No payment due now", systemImage: "checkmark")
+            if let billingText {
+                Text(billingText)
                     .font(.footnote.weight(.semibold))
-                    .foregroundStyle(Theme.herb)
-                    .modifier(PaywallEntrance(visible: visible(5)))
+                    .foregroundStyle(Theme.aubergine)
+                    .multilineTextAlignment(.center)
+                Text("Renews automatically. Manage or cancel in Apple Subscriptions.")
+                    .font(.footnote)
+                    .foregroundStyle(Theme.aubergineMuted)
+                    .multilineTextAlignment(.center)
             }
             Button(action: purchase) {
                 HStack(spacing: Theme.Spacing.s) {
@@ -233,12 +251,6 @@ struct PaywallView: View {
             .buttonStyle(PrimaryButtonStyle())
             .disabled(isPurchasing || selectedProduct == nil)
             .modifier(PaywallEntrance(visible: visible(6)))
-            if !offersTrial, selectedProduct != nil {
-                Text("Renews automatically. Manage or cancel in Apple Subscriptions.")
-                    .font(.footnote)
-                    .foregroundStyle(Theme.aubergineMuted)
-                    .multilineTextAlignment(.center)
-            }
             FlowLayout(spacing: Theme.Spacing.m) {
                 Button(String(localized: "Restore")) {
                     guard !isPurchasing else { return }
@@ -259,7 +271,7 @@ struct PaywallView: View {
                     }
                 }
                 .disabled(isPurchasing)
-                Link(String(localized: "Terms"), destination: AppLinks.terms)
+                Link(String(localized: "Terms of Use"), destination: AppLinks.licenseAgreement)
                 Link(String(localized: "Privacy"), destination: AppLinks.privacyPolicy)
                 Button(String(localized: "Have a code?")) { isRedeemShown = true }
             }
@@ -298,7 +310,7 @@ struct PaywallView: View {
 
     /// The reminder screen promised this, so it must be scheduled.
     private func scheduleTrialReminderIfNeeded() {
-        guard subscriptions.isInTrial, let end = subscriptions.trialEndDate else { return }
+        guard notifications.isAuthorized, subscriptions.isInTrial, let end = subscriptions.trialEndDate else { return }
         let days: Int = profileStore.profile?.trialReminderDaysBefore ?? 1
         notifications.scheduleTrialReminder(trialEnd: end, daysBefore: days)
     }

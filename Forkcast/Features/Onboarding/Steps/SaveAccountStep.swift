@@ -52,7 +52,7 @@ struct SaveAccountStep: View {
                 }
                 .multilineTextAlignment(.center)
                 VStack(alignment: .leading, spacing: Theme.Spacing.m) {
-                    benefit("faceid", String(localized: "No password, just Face ID"))
+                    benefit("person.crop.circle", String(localized: "Sign in with your Apple Account"))
                     benefit("envelope.badge.shield.half.filled", String(localized: "Keep your email private if you like"))
                     benefit("iphone", String(localized: "Your week stays on this phone either way"))
                 }

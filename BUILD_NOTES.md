@@ -247,7 +247,7 @@ its plans and feedback still appear. Deploy the updated CloudKit schema before t
       and run `python3 Tools/generate_data.py`. `LibraryValidationTests` will catch bad ids, units or macros.
 - [ ] **Prices** in `prices.json` are rough 2026 estimates per pack (standard tier) and must be refined per market.
       Pack sizes use one metric pack with an imperial label (e.g. "500 g pack" / "1 lb pack").
-- [ ] **Legal URLs**: `AppLinks.privacyPolicy`, `AppLinks.terms` and the support email `hello@forkcast.app` in `App/FeatureFlags.swift`.
+- [ ] **Legal URLs**: `AppLinks.privacyPolicy`, `AppLinks.licenseAgreement`, `AppLinks.terms` and the support email `tomasbeja2007@icloud.com` in `App/FeatureFlags.swift`.
 - [ ] **Accounts beyond Apple**: "Sign in", Google, Email and "Join with a household code" are hidden until there's a
       backend. The welcome screen has one button; "Save your plan" offers Sign in with Apple only.
 - [ ] **More breakfasts, lunches and snacks**: 32 to start; aim for 25+ breakfasts and lunches so weeks don't repeat.
