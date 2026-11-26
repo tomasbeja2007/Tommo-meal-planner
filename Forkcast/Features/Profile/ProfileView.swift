@@ -81,7 +81,10 @@ struct ProfileView: View {
                 .padding(.horizontal, Theme.Spacing.gutter)
                 .padding(.top, Theme.Spacing.s)
                 .padding(.bottom, Theme.Size.tabBarClearance)
+                // Pin the page to the screen width so no row can make it wider and let it drag sideways.
+                .containerRelativeFrame(.horizontal, alignment: .leading)
             }
+            .scrollBounceBehavior(.basedOnSize, axes: .horizontal)
             .scrollDismissesKeyboard(.interactively)
             .background(Theme.cream.ignoresSafeArea())
             .navigationTitle(String(localized: "Profile"))

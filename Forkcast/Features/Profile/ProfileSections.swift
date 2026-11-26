@@ -91,7 +91,9 @@ struct NutritionGoalsPage: View {
             .padding(.horizontal, Theme.Spacing.gutter)
             .padding(.top, Theme.Spacing.s)
             .padding(.bottom, Theme.Size.tabBarClearance)
+            .containerRelativeFrame(.horizontal, alignment: .leading)  // never wider than the screen
         }
+        .scrollBounceBehavior(.basedOnSize, axes: .horizontal)
         .background(Theme.cream.ignoresSafeArea())
         .navigationTitle(String(localized: "Nutrition goals"))
         .navigationBarTitleDisplayMode(.inline)
