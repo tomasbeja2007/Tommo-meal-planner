@@ -255,7 +255,7 @@ private struct IngredientEditorRow: View {
             if item.ingredientId == nil && !item.isEmpty && !nameFocused {
                 Text("no nutrition data")
                     .font(.caption2)
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
             }
             if !suggestions.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {

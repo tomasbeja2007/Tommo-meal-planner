@@ -47,6 +47,7 @@ struct GroceriesView: View {
                         addRow
                     }
                     .scrollContentBackground(.hidden)
+                    .contentMargins(.bottom, Theme.Size.tabBarClearance, for: .scrollContent)
                 }
             }
             .background(Theme.cream.ignoresSafeArea())
@@ -183,6 +184,7 @@ struct GroceriesView: View {
         .listStyle(.insetGrouped)
         .listSectionSpacing(.compact)
         .contentMargins(.top, Theme.Spacing.xs, for: .scrollContent)
+        .contentMargins(.bottom, Theme.Size.tabBarClearance, for: .scrollContent)
         .scrollContentBackground(.hidden)
         .animation(Theme.motion(reduceMotion), value: planStore.checkedKeys)
     }
@@ -424,7 +426,7 @@ private struct AisleHeader: View {
             Text("\(done)/\(total)")
                 .font(.caption.weight(.semibold))
                 .monospacedDigit()
-                .foregroundStyle(done == total ? Theme.herb : Theme.aubergineFaint)
+                .foregroundStyle(done == total ? Theme.herb : Theme.aubergineMuted)
         }
         .accessibilityElement(children: .combine)
     }
@@ -459,7 +461,7 @@ struct GroceryRow: View {
                     } else {
                         Text(item.neededText)
                             .font(.caption)
-                            .foregroundStyle(Theme.aubergineFaint)
+                            .foregroundStyle(checked ? Theme.aubergineFaint : Theme.aubergineMuted)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -488,7 +490,7 @@ struct GroceryRow: View {
                         Text("~" + profileStore.formatMoney(item.cost))
                             .font(.caption.weight(.semibold))
                             .monospacedDigit()
-                            .foregroundStyle(Theme.aubergineFaint)
+                            .foregroundStyle(checked ? Theme.aubergineFaint : Theme.aubergineMuted)
                     }
                 }
             }

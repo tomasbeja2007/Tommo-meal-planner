@@ -164,7 +164,7 @@ struct PlanView: View {
                         VStack(spacing: Theme.Spacing.xs) {
                             Text(DateText.shortWeekday(day).prefix(1))
                                 .font(.system(.caption, design: .rounded).weight(.bold))
-                                .foregroundStyle(selected ? Theme.tomatoDeep : Theme.aubergineFaint)
+                                .foregroundStyle(selected ? Theme.tomatoDeep : (isPast ? Theme.aubergineFaint : Theme.aubergineMuted))
                             Text(day.formatted(.dateTime.day()))
                                 .font(.system(.title3, design: .rounded).weight(.bold))
                                 .monospacedDigit()

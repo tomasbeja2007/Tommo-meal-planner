@@ -216,10 +216,10 @@ struct EmptyDayRow: View {
             HStack {
                 Text(label ?? DateText.dayLabel(day))
                     .font(.caption.weight(.bold))
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
                 Text("Add \(mealType.noun)")
                     .font(.subheadline)
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
                 Spacer()
                 Image(systemName: "plus").accessibilityHidden(true)
                     .font(.subheadline.weight(.semibold))

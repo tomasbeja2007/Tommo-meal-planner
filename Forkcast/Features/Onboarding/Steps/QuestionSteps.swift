@@ -327,7 +327,7 @@ struct NutritionTargetEditor: View {
                 }
                 Text("The 2,000 kcal starting point is based on average adult needs. Targets here are general guidance, not medical advice. Talk to a doctor or registered dietitian about what's right for you.")
                     .font(.footnote)
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, Theme.Spacing.xs)

@@ -379,7 +379,7 @@ struct SavingsStep: View {
                         .opacity(burst > 0 ? bell(burst) : 0)
                 }
                 Text(money(value))
-                    .font(.system(size: 72, weight: .black, design: .rounded))
+                    .font(Theme.Typography.heroNumber)
                     .monospacedDigit()
                     .foregroundStyle(Theme.tomatoDeep)
                     .lineLimit(1)
@@ -549,7 +549,7 @@ private struct MatchingLoader: View {
                         let checked = Int((Double(total) * seg(t, 0, 2_300, easeOut: false)).rounded())
                         let settle = seg(t, 2_350, 2_700)
                         Text((settle > 0.5 ? fit : checked).formatted())
-                            .font(.system(size: 44, weight: .black, design: .rounded))
+                            .font(Theme.Typography.bigNumber)
                             .monospacedDigit()
                             .foregroundStyle(settle > 0.5 ? Theme.tomatoDeep : Theme.aubergine)
                             .contentTransition(.numericText())

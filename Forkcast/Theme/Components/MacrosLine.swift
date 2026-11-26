@@ -10,7 +10,7 @@ struct MacrosLine: View {
         Text(MacrosText.compact(macros))
             .font(font)
             .monospacedDigit()
-            .foregroundStyle(Theme.aubergineFaint)
+            .foregroundStyle(Theme.aubergineMuted)
             .lineLimit(1)
             .minimumScaleFactor(0.8)
             .accessibilityLabel(Text(MacrosText.spoken(macros)))

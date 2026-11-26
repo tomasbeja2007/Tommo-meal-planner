@@ -37,7 +37,7 @@ struct BudgetCard: View {
                 Text("/ \(MoneyFormat.string(budget, currencyCode: currencyCode, fractionDigits: 0))")
                     .font(.system(.title3, design: .rounded).weight(.semibold))
                     .monospacedDigit()
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
             }
             ProgressBar(value: ratio, tint: barTint, height: 10)
             statusChip

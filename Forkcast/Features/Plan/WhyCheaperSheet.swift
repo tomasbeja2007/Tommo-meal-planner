@@ -30,7 +30,7 @@ struct WhyCheaperSheet: View {
                 comparison
                 Text("Prices are approximate and vary by shop and season.")
                     .font(.caption)
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
                 PrimaryButton(String(localized: "Got it")) { dismiss() }
             }
             .padding(Theme.Spacing.xl)

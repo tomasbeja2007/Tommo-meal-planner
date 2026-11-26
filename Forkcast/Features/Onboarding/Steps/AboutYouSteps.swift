@@ -22,7 +22,7 @@ struct NameStep: View {
         ) {
             VStack(alignment: .leading, spacing: Theme.Spacing.s) {
                 TextField(String(localized: "Your name"), text: $state.name)
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .font(Theme.Typography.title)
                     .foregroundStyle(Theme.aubergine)
                     .textContentType(.givenName)
                     .textInputAutocapitalization(.words)

@@ -107,7 +107,7 @@ struct BudgetEditor: View {
                 }
                 .font(.caption)
                 .monospacedDigit()
-                .foregroundStyle(Theme.aubergineFaint)
+                .foregroundStyle(Theme.aubergineMuted)
             }
 
             VerdictCard(verdict: verdict, perServingText: MoneyFormat.string(perServing, currencyCode: country.currencyCode))
@@ -121,7 +121,7 @@ struct BudgetEditor: View {
             if let note = country.priceNote {
                 Text(note)
                     .font(.caption)
-                    .foregroundStyle(Theme.aubergineFaint)
+                    .foregroundStyle(Theme.aubergineMuted)
             }
         }
     }

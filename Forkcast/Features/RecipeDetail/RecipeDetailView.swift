@@ -693,10 +693,10 @@ private struct IngredientRow: View {
                     .font(.body)
                     .foregroundStyle(Theme.aubergine)
                 if let note = line.note {
-                    Text(note).font(.caption).foregroundStyle(Theme.aubergineFaint)
+                    Text(note).font(.caption).foregroundStyle(Theme.aubergineMuted)
                 }
                 if !line.isLinked {
-                    Text("no nutrition data").font(.caption2).foregroundStyle(Theme.aubergineFaint)
+                    Text("no nutrition data").font(.caption2).foregroundStyle(Theme.aubergineMuted)
                 }
             }
             Spacer(minLength: Theme.Spacing.s)
