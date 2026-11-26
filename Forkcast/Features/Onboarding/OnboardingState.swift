@@ -187,8 +187,8 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
     case vibes
     case kitchen
     case locating
-    case units
     case store
+    case units
     case budget
     case pantry
     case heardAbout

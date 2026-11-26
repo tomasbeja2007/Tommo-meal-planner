@@ -449,7 +449,7 @@ enum CountryCentre {
     }
 }
 
-/// "How do you measure?" Asked right after the country, preselected to that country's usual system.
+/// "How do you measure?" Asked right after the shop choice, preselected to the country's usual system.
 /// The answer is saved to the profile (Profile → Units) and every recipe, step and list follows it.
 struct UnitsStep: View {
     @Bindable var state: OnboardingState
